@@ -1,0 +1,41 @@
+NEXT JOB v3.1 — 아이폰 설치 안내
+
+[GitHub 새 저장소 이름]
+Next-Job-v3
+
+[저장소 루트에 올릴 항목]
+data/
+scripts/
+workflow-template/
+index.html
+manifest.webmanifest
+vercel.json
+README.txt
+
+중요:
+아이폰 파일 앱에서는 .github 폴더가 숨겨져 보이지 않을 수 있습니다.
+그래서 workflow-template/update-jobs.yml 파일을 눈에 보이게 복사해 두었습니다.
+
+[GitHub Actions 워크플로 만들기]
+1. GitHub 저장소에서 Add file → Create new file
+2. 파일 이름에 정확히 아래 입력:
+   .github/workflows/update-jobs.yml
+3. workflow-template/update-jobs.yml 내용을 복사해서 붙여넣기
+4. Commit changes
+
+[첫 자동수집 실행]
+1. GitHub 저장소 상단 Actions
+2. Update job postings
+3. Run workflow
+4. 초록 체크가 뜰 때까지 1~2분 기다리기
+5. data/jobs.json 파일의 updatedAt이 바뀌면 성공
+
+[Vercel]
+1. Add New → Project
+2. Next-Job-v3 저장소 Import
+3. Framework Preset: Other
+4. Build Command, Output Directory, Root Directory 모두 건드리지 않기
+5. Deploy
+
+이후 GitHub Actions가 약 3시간마다 공고를 확인하고,
+data/jobs.json을 갱신하면 Vercel이 자동 재배포합니다.

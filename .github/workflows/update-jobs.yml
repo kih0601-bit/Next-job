@@ -1,1 +1,27 @@
-
+name: Update job postings
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */3 * * *"
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node scripts/collect.mjs
+      - run: |
+          if git diff --quiet -- data/jobs.json; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "next-job-bot"
+          git config user.email "next-job-bot@users.noreply.github.com"
+          git add data/jobs.json
+          git commit -m "자동 채용공고 업데이트"
+          git push

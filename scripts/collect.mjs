@@ -4,6 +4,8 @@ import { extractCandidatesForSource, canonicalJobUrl } from './collectors/source
 import { extractAlioCandidates } from './collectors/alio-adapter.mjs';
 import { analyzeJob } from './lib/classifier.mjs';
 import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
+import { analyzeAttachments } from './lib/document-analyzer.mjs';
+import { validateJob, runCollectionQA, VALIDATOR_VERSION } from './lib/validator.mjs';
 import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, RULES_VERSION } from './lib/rules.mjs';
 
 const SOURCES = [
@@ -122,7 +124,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/10.0-source-engine)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.0-ultimate)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -145,7 +147,8 @@ async function enrichCandidate(candidate, source) {
     return { job: null, rejection: detail.error || 'detail validation failed' };
   }
 
-  const analysisText = `${candidate.title}\n${candidate.listText}\n${detail.text}`;
+  const documents = await analyzeAttachments(detail.attachments, { maxFiles: 3 });
+  const analysisText = `${candidate.title}\n${candidate.listText}\n${detail.text}\n${documents.text}`;
   const deadline = extractDeadline(analysisText);
   if (isExpired(deadline)) return { job: null, rejection: 'expired deadline' };
   if (/접수(?:가|는)?\s*(?:마감|종료)|채용\s*마감|마감된\s*공고|\/\s*마감(?:\s|$)/.test(analysisText)) {
@@ -156,6 +159,7 @@ async function enrichCandidate(candidate, source) {
     title: candidate.title,
     listText: candidate.listText,
     detailText: detail.text,
+    documentText: documents.text,
     detailOk: detail.ok
   });
   if (result.excluded) {
@@ -163,19 +167,19 @@ async function enrichCandidate(candidate, source) {
   }
 
   const finalLink = canonicalJobUrl(detail.finalUrl || candidate.link);
-  const quality = scoreJobQuality({ detail, analysis: result, deadline, title: candidate.title, link: finalLink });
+  const quality = scoreJobQuality({ detail, documents, analysis: result, deadline, title: candidate.title, link: finalLink });
   if ((STRICT_TARGET_ONLY && !result.recommended) || !quality.passed) {
     return { job: null, rejection: quality.penalties.join(', ') || 'quality score below threshold' };
   }
 
-  return {
-    job: {
+  const job = {
       org: candidate.org,
       title: candidate.title,
       link: finalLink,
       date: '',
       deadline,
       employmentType: result.employmentType,
+      jobCategory: result.jobCategory,
       eligibility: result.eligibility,
       location: result.location,
       status: result.status,
@@ -191,11 +195,16 @@ async function enrichCandidate(candidate, source) {
       detailConfidence: detail.confidence || null,
       detailError: detail.error || '',
       attachments: detail.attachments,
+      documentAnalysis: { attempted: documents.attempted, successful: documents.successful, results: documents.results.map(({ text, ...meta }) => meta) },
+      crossValidation: result.crossValidation,
       adapter: candidate.adapter || (source.alio ? 'ALIO' : source.org),
-      raw: (detail.text || candidate.listText).slice(0, 3000)
-    },
-    rejection: ''
-  };
+      raw: `${detail.text || candidate.listText}
+${documents.text}`.slice(0, 5000)
+    };
+  const validation = validateJob(job);
+  if (!validation.passed) return { job: null, rejection: validation.errors.join(', ') || 'automatic QA failed' };
+  job.validation = validation;
+  return { job, rejection: '' };
 }
 async function fetchSource(source) {
   try {
@@ -283,9 +292,14 @@ if (previousCount >= 5 && jobs.length < Math.max(2, Math.floor(previousCount * 0
   throw new Error(`수집 결과가 비정상적으로 급감했습니다(${previousCount}건 → ${jobs.length}건). 기존 data/jobs.json을 유지합니다.`);
 }
 
-jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
+const qa = runCollectionQA(jobs);
+if (!qa.passed) {
+  throw new Error(`자동 QA 실패: ${JSON.stringify(qa.counts)}`);
+}
+
+jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || (b.qualityScore || 0) - (a.qualityScore || 0) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '10.0-source-engine', rulesVersion: RULES_VERSION, qualityEngineVersion: QUALITY_ENGINE_VERSION, updatedAt: nowIso,
+  version: '11.0-ultimate', rulesVersion: RULES_VERSION, qualityEngineVersion: QUALITY_ENGINE_VERSION, validatorVersion: VALIDATOR_VERSION, updatedAt: nowIso,
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -301,9 +315,14 @@ const payload = {
     sourceDetailFailures: sources.reduce((sum, source) => sum + (source.detailFailures || 0), 0),
     degradedSources,
     failedSources,
-    retainedJobs
+    retainedJobs,
+    documentsAttempted: jobs.reduce((sum, job) => sum + Number(job.documentAnalysis?.attempted || 0), 0),
+    documentsParsed: jobs.reduce((sum, job) => sum + Number(job.documentAnalysis?.successful || 0), 0),
+    qaPassed: qa.passed,
+    qaIssueCount: qa.issueCount
   },
-  note: '기관별 상세 링크 어댑터와 원문 품질 점수를 함께 적용하며, 고졸·울산·정규직 계열 조건을 모두 확인한 공고만 노출합니다.'
+  qa,
+  note: '기관별 링크 검증, 첨부문서 분석, 본문-문서 교차검증, 90점 품질기준과 자동 QA를 모두 통과한 공고만 노출합니다.'
 };
 const healthPayload = {
   version: payload.version,
@@ -320,6 +339,7 @@ const healthPayload = {
 await fs.mkdir('data', { recursive: true });
 await Promise.all([
   fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8'),
-  fs.writeFile('data/source-health.json', `${JSON.stringify(healthPayload, null, 2)}\n`, 'utf8')
+  fs.writeFile('data/source-health.json', `${JSON.stringify(healthPayload, null, 2)}\n`, 'utf8'),
+  fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, ...qa }, null, 2)}\n`, 'utf8')
 ]);
 console.log(payload.stats);

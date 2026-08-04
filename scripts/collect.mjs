@@ -121,7 +121,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/7.0-target-accuracy)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/9.0-quality-resilience)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -200,30 +200,62 @@ async function fetchSource(source) {
   }
 }
 
+async function readPreviousPayload() {
+  try {
+    return JSON.parse(await fs.readFile('data/jobs.json', 'utf8'));
+  } catch {
+    return { jobs: [], sources: [], stats: {} };
+  }
+}
+
+const previousPayload = await readPreviousPayload();
+const previousJobs = Array.isArray(previousPayload.jobs) ? previousPayload.jobs : [];
 const results = await Promise.all(SOURCES.map(fetchSource));
 const dedupedJobs = new Map(), sources = [];
+const nowIso = new Date().toISOString();
 for (const result of results) {
+  let retained = [];
+  if (!result.ok) {
+    retained = previousJobs.filter(job => job.org === result.source.org && !isExpired(job.deadline));
+  }
+  const sourceJobs = result.ok ? result.jobs : retained;
   sources.push({
-    org: result.source.org, ok: result.ok, candidates: result.candidates,
-    count: result.jobs.length, rejected: result.rejected || 0,
-    detailFailures: result.detailFailures || 0, error: result.error || ''
+    org: result.source.org,
+    ok: result.ok,
+    status: result.ok ? 'healthy' : retained.length ? 'degraded' : 'failed',
+    candidates: result.candidates,
+    count: result.jobs.length,
+    retained: retained.length,
+    rejected: result.rejected || 0,
+    detailFailures: result.detailFailures || 0,
+    error: result.error || ''
   });
-  for (const job of result.jobs) {
+  for (const job of sourceJobs) {
     const normalizedTitle = normalizeTitleForDedup(job.title) || job.title.toLowerCase().replace(/\s+/g, ' ').trim();
     const key = `${job.org}|${normalizedTitle}`;
-    dedupedJobs.set(key, choosePreferredJob(dedupedJobs.get(key), job));
+    const stampedJob = { ...job, collectedAt: job.collectedAt || nowIso, retainedFromPreviousRun: !result.ok };
+    dedupedJobs.set(key, choosePreferredJob(dedupedJobs.get(key), stampedJob));
   }
 }
 const jobs = [...dedupedJobs.values()];
 
 const successfulSources = sources.filter(source => source.ok).length;
+const degradedSources = sources.filter(source => source.status === 'degraded').length;
+const failedSources = sources.filter(source => source.status === 'failed').length;
+const retainedJobs = jobs.filter(job => job.retainedFromPreviousRun).length;
 if (successfulSources === 0) {
   throw new Error('모든 수집 출처가 실패하여 기존 data/jobs.json을 유지합니다.');
 }
 
+const previousCount = previousJobs.filter(job => !isExpired(job.deadline)).length;
+const successRatio = successfulSources / SOURCES.length;
+if (previousCount >= 5 && jobs.length < Math.max(2, Math.floor(previousCount * 0.2)) && successRatio < 0.7) {
+  throw new Error(`수집 결과가 비정상적으로 급감했습니다(${previousCount}건 → ${jobs.length}건). 기존 data/jobs.json을 유지합니다.`);
+}
+
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '7.0-target-accuracy', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
+  version: '9.0-quality-resilience', rulesVersion: RULES_VERSION, updatedAt: nowIso,
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -234,10 +266,28 @@ const payload = {
     detailChecked: jobs.filter(job => job.detailChecked).length,
     reviewNeeded: jobs.filter(job => job.status === '확인 필요').length,
     sourceRejected: sources.reduce((sum, source) => sum + (source.rejected || 0), 0),
-    sourceDetailFailures: sources.reduce((sum, source) => sum + (source.detailFailures || 0), 0)
+    sourceDetailFailures: sources.reduce((sum, source) => sum + (source.detailFailures || 0), 0),
+    degradedSources,
+    failedSources,
+    retainedJobs
   },
-  note: '고졸 지원 가능·울산 단일 근무·정규직 계열·접수 가능 상태가 원문에서 모두 확인된 공고만 저장합니다.'
+  note: '고졸·울산·정규직 계열 조건을 엄격히 유지하며, 일시적인 출처 장애 때는 해당 기관의 이전 검증 공고만 보존합니다.'
+};
+const healthPayload = {
+  version: payload.version,
+  updatedAt: nowIso,
+  summary: {
+    totalSources: SOURCES.length,
+    healthy: successfulSources,
+    degraded: degradedSources,
+    failed: failedSources,
+    retainedJobs
+  },
+  sources
 };
 await fs.mkdir('data', { recursive: true });
-await fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+await Promise.all([
+  fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8'),
+  fs.writeFile('data/source-health.json', `${JSON.stringify(healthPayload, null, 2)}\n`, 'utf8')
+]);
 console.log(payload.stats);

@@ -4,7 +4,7 @@ import { extractCandidatesForSource, canonicalJobUrl, discoverListingUrls } from
 import { extractAlioCandidates } from './collectors/alio-adapter.mjs';
 import { analyzeVacancies } from './lib/classifier.mjs';
 import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
-import { analyzeAttachments } from './lib/document-analyzer.mjs';
+import { analyzeAttachments, getDocumentToolDiagnostics } from './lib/document-analyzer.mjs';
 import { validateJob, runCollectionQA, VALIDATOR_VERSION } from './lib/validator.mjs';
 import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, RULES_VERSION } from './lib/rules.mjs';
 
@@ -15,7 +15,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '11.5-debug-stage2';
+const DATA_VERSION = '11.6-debug-stage3-tools';
 
 function validTitle(title) {
   if (!title || title.length < 6 || title.length > 220) return false;
@@ -423,11 +423,13 @@ const healthPayload = {
   sources
 };
 await fs.mkdir('data', { recursive: true });
+const documentToolDiagnostics = await getDocumentToolDiagnostics();
 const debugPayload = {
   version: payload.version,
   updatedAt: nowIso,
   reportPath: 'data/debug-report.json',
-  documentAnalyzerVersion: '11.5-document-debug-stage2',
+  documentAnalyzerVersion: documentToolDiagnostics.analyzerVersion,
+  documentToolDiagnostics,
   sources: sources.map(source => ({
     org: source.org,
     status: source.status,

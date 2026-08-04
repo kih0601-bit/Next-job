@@ -5,7 +5,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '11.5-document-debug-stage2';
+const ANALYZER_VERSION = '11.6-document-tool-diagnostics';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -13,14 +13,37 @@ function run(command, args, { timeoutMs = 35000 } = {}) {
     let stdout = '', stderr = '';
     const timer = setTimeout(() => {
       child.kill('SIGKILL');
-      reject(new Error(`${command} timeout`));
+      const error = new Error(`${command} timeout after ${timeoutMs}ms`);
+      error.code = 'COMMAND_TIMEOUT';
+      error.command = command;
+      error.args = args;
+      error.stdout = stdout.slice(-1200);
+      error.stderr = stderr.slice(-1200);
+      reject(error);
     }, timeoutMs);
     child.stdout.on('data', chunk => { stdout += chunk; });
     child.stderr.on('data', chunk => { stderr += chunk; });
-    child.on('error', reject);
+    child.on('error', cause => {
+      clearTimeout(timer);
+      const error = new Error(`${command} spawn failed: ${cause.message}`);
+      error.code = cause.code || 'SPAWN_FAILED';
+      error.command = command;
+      error.args = args;
+      error.stdout = stdout.slice(-1200);
+      error.stderr = stderr.slice(-1200);
+      reject(error);
+    });
     child.on('close', code => {
       clearTimeout(timer);
-      code === 0 ? resolve(stdout) : reject(new Error(`${command} exited ${code}: ${stderr.slice(0, 500)}`));
+      if (code === 0) return resolve({ stdout, stderr, exitCode: code });
+      const error = new Error(`${command} exited ${code}`);
+      error.code = 'COMMAND_FAILED';
+      error.exitCode = code;
+      error.command = command;
+      error.args = args;
+      error.stdout = stdout.slice(-1200);
+      error.stderr = stderr.slice(-1200);
+      reject(error);
     });
   });
 }
@@ -76,7 +99,7 @@ function typeFromFilename(value = '') {
 async function inspectZipType(file) {
   if (!(await commandExists('unzip'))) return '';
   try {
-    const listing = await run('unzip', ['-Z1', file], { timeoutMs: 12000 });
+    const { stdout: listing } = await run('unzip', ['-Z1', file], { timeoutMs: 12000 });
     if (/^word\/document\.xml$/mi.test(listing)) return 'docx';
     if (/^xl\/workbook\.xml$/mi.test(listing)) return 'xlsx';
     if (/^Contents\/section\d+\.xml$/mi.test(listing) || /^Contents\/content\.hpf$/mi.test(listing)) return 'hwpx';
@@ -151,7 +174,7 @@ async function extractPdf(file) {
     .sort();
   const chunks = [];
   for (const page of pages) {
-    chunks.push(await run('tesseract', [path.join(path.dirname(file), page), 'stdout', '-l', 'kor+eng', '--psm', '6'], { timeoutMs: 45000 }));
+    chunks.push((await run('tesseract', [path.join(path.dirname(file), page), 'stdout', '-l', 'kor+eng', '--psm', '6'], { timeoutMs: 45000 })).stdout);
   }
   text = normalizeText(chunks.join('\n'));
   if (text.length < 20) throw new Error('OCR text too short');
@@ -160,7 +183,7 @@ async function extractPdf(file) {
 
 async function extractHwp(file) {
   if (!(await commandExists('hwp5txt'))) throw new Error('hwp5txt unavailable');
-  const text = normalizeText(await run('hwp5txt', [file], { timeoutMs: 45000 }));
+  const text = normalizeText((await run('hwp5txt', [file], { timeoutMs: 45000 })).stdout);
   return { text, method: 'hwp5txt' };
 }
 
@@ -168,13 +191,13 @@ async function extractZipXml(file, entries) {
   if (!(await commandExists('unzip'))) throw new Error('unzip unavailable');
   const chunks = [];
   for (const entry of entries) {
-    try { chunks.push(await run('unzip', ['-p', file, entry], { timeoutMs: 15000 })); } catch { /* optional */ }
+    try { chunks.push((await run('unzip', ['-p', file, entry], { timeoutMs: 15000 })).stdout); } catch { /* optional */ }
   }
   return normalizeText(chunks.join('\n').replace(/<[^>]+>/g, ' '));
 }
 
 async function extractHwpx(file) {
-  const listing = await run('unzip', ['-Z1', file]);
+  const { stdout: listing } = await run('unzip', ['-Z1', file]);
   const entries = listing.split(/\r?\n/).filter(name => /^Contents\/section\d+\.xml$/i.test(name)).sort();
   return { text: await extractZipXml(file, entries), method: 'hwpx-xml' };
 }
@@ -184,7 +207,7 @@ async function extractDocx(file) {
 }
 
 async function extractXlsx(file) {
-  const listing = await run('unzip', ['-Z1', file]);
+  const { stdout: listing } = await run('unzip', ['-Z1', file]);
   const entries = listing.split(/\r?\n/).filter(name => /^xl\/(?:sharedStrings|worksheets\/sheet\d+)\.xml$/i.test(name));
   return { text: await extractZipXml(file, entries), method: 'xlsx-xml' };
 }
@@ -192,14 +215,14 @@ async function extractXlsx(file) {
 async function extractImage(file) {
   if (!(await commandExists('tesseract'))) throw new Error('tesseract unavailable');
   return {
-    text: normalizeText(await run('tesseract', [file, 'stdout', '-l', 'kor+eng', '--psm', '6'], { timeoutMs: 45000 })),
+    text: normalizeText((await run('tesseract', [file, 'stdout', '-l', 'kor+eng', '--psm', '6'], { timeoutMs: 45000 })).stdout),
     method: 'image-ocr'
   };
 }
 
 async function extractLegacyOffice(file, type, workDir) {
   if (type === 'doc' && await commandExists('antiword')) {
-    return { text: normalizeText(await run('antiword', [file])), method: 'antiword' };
+    return { text: normalizeText((await run('antiword', [file])).stdout), method: 'antiword' };
   }
   if (!(await commandExists('libreoffice'))) throw new Error('libreoffice unavailable');
   await run('libreoffice', ['--headless', '--convert-to', 'txt:Text', '--outdir', workDir, file], { timeoutMs: 75000 });
@@ -238,6 +261,42 @@ function summarizeResults(results) {
     }
   }
   return { byDetectedType, byContentType, byError };
+}
+
+
+const TOOL_COMMANDS = ['pdftotext', 'pdftoppm', 'tesseract', 'hwp5txt', 'unzip', 'antiword', 'libreoffice', 'file'];
+
+export async function getDocumentToolDiagnostics() {
+  const tools = {};
+  for (const command of TOOL_COMMANDS) {
+    try {
+      const location = (await run('bash', ['-lc', `command -v ${command}`], { timeoutMs: 5000 })).stdout.trim();
+      let version = '';
+      try {
+        const versionArgs = command === 'libreoffice' ? ['--version'] : command === 'tesseract' ? ['--version'] : ['-v'];
+        const result = await run(command, versionArgs, { timeoutMs: 7000 });
+        version = `${result.stdout}\n${result.stderr}`.trim().split(/\r?\n/)[0].slice(0, 240);
+      } catch (error) {
+        version = `version-check-failed: ${error.message}`;
+      }
+      tools[command] = { available: true, location, version };
+    } catch (error) {
+      tools[command] = { available: false, error: error.message };
+    }
+  }
+  return { analyzerVersion: ANALYZER_VERSION, platform: process.platform, node: process.version, tools };
+}
+
+function serializeCommandError(error) {
+  return {
+    message: error?.message || String(error),
+    code: error?.code || '',
+    exitCode: error?.exitCode ?? null,
+    command: error?.command || '',
+    args: error?.args || [],
+    stdout: error?.stdout || '',
+    stderr: error?.stderr || ''
+  };
 }
 
 export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {}) {
@@ -317,6 +376,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
           size: meta?.size || 0,
           ok: false,
           error: error.message,
+          commandError: serializeCommandError(error),
           priority: documentPriority(item)
         });
       }

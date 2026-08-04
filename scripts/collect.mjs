@@ -25,6 +25,7 @@ const POSITIVE = /채용\s*공고|직원\s*채용|신입(?:사원|직원)?\s*채
 const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*명단|서류(?:전형|심사)|필기(?:전형|시험)|면접(?:전형|시험)|AI\s*역량검사|체력검정|시험\s*실시|접수현황|지원현황|경쟁률|전형결과|결과발표|채용절차|전형일정|시험장소/;
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
+const STRICT_TARGET_ONLY = true;
 
 function validTitle(title) {
   if (!title || title.length < 6 || title.length > 220) return false;
@@ -81,12 +82,18 @@ function parseDateValue(yearText, monthText, dayText, referenceYear = new Date()
 }
 
 function extractDeadline(text = '') {
-  const range = text.match(/(?:20)?(\d{2})[.\-/]\s*(\d{1,2})[.\-/]\s*(\d{1,2})\s*~\s*(?:20)?(\d{2})[.\-/]\s*(\d{1,2})[.\-/]\s*(\d{1,2})/);
+  const normalized = String(text).replace(/\s+/g, ' ');
+  const range = normalized.match(/(?:20)?(\d{2})[.\-/]\s*(\d{1,2})[.\-/]\s*(\d{1,2})\s*~\s*(?:20)?(\d{2})[.\-/]\s*(\d{1,2})[.\-/]\s*(\d{1,2})/);
   if (range) {
     const date = parseDateValue(range[4], range[5], range[6]);
     return date ? `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` : '';
   }
-  const labeled = [...text.matchAll(/(?:접수(?:기간|마감)?|마감(?:일)?|공고기간)\s*[:：]?[^\n]{0,100}?(?:(20\d{2}|\d{2})[.\-/년]\s*)?(\d{1,2})[.\-/월]\s*(\d{1,2})\s*일?/g)];
+  const until = normalized.match(/(?:접수|지원|제출|원서접수)[^\n]{0,120}?(?:(20\d{2}|\d{2})[.\-/년]\s*)?(\d{1,2})[.\-/월]\s*(\d{1,2})\s*일?[^\n]{0,30}?(?:까지|마감|종료)/);
+  if (until) {
+    const date = parseDateValue(until[1], until[2], until[3]);
+    if (date) return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  }
+  const labeled = [...normalized.matchAll(/(?:접수(?:기간|마감)?|마감(?:일)?|공고기간)\s*[:：]?[^\n]{0,100}?(?:(20\d{2}|\d{2})[.\-/년]\s*)?(\d{1,2})[.\-/월]\s*(\d{1,2})\s*일?/g)];
   if (!labeled.length) return '';
   const match = labeled.at(-1);
   const date = parseDateValue(match[1], match[2], match[3]);
@@ -114,7 +121,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/6.0-link-reliability)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/7.0-target-accuracy)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -136,7 +143,7 @@ async function enrichCandidate(candidate, source) {
   if (source.requireValidDetail && !detail.ok) return null;
   const analysisText = `${candidate.title}\n${candidate.listText}\n${detail.text}`;
   const deadline = extractDeadline(analysisText);
-  if (isExpired(deadline) || /\/\s*마감(?:\s|$)/.test(candidate.title)) return null;
+  if (isExpired(deadline) || /접수(?:가|는)?\s*(?:마감|종료)|채용\s*마감|마감된\s*공고|\/\s*마감(?:\s|$)/.test(analysisText)) return null;
 
   const result = analyzeJob({
     title: candidate.title,
@@ -144,7 +151,7 @@ async function enrichCandidate(candidate, source) {
     detailText: detail.text,
     detailOk: detail.ok
   });
-  if (result.excluded) return null;
+  if (result.excluded || (STRICT_TARGET_ONLY && !result.recommended)) return null;
 
   return {
     org: candidate.org,
@@ -216,7 +223,7 @@ if (successfulSources === 0) {
 
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '6.0-link-reliability', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
+  version: '7.0-target-accuracy', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -229,7 +236,7 @@ const payload = {
     sourceRejected: sources.reduce((sum, source) => sum + (source.rejected || 0), 0),
     sourceDetailFailures: sources.reduce((sum, source) => sum + (source.detailFailures || 0), 0)
   },
-  note: '실제 상세 원문을 HTTP로 검증한 공고만 저장합니다. 목록·메인·오류·로그인·외부 리디렉션·제목 불일치 링크는 제외합니다.'
+  note: '고졸 지원 가능·울산 단일 근무·정규직 계열·접수 가능 상태가 원문에서 모두 확인된 공고만 저장합니다.'
 };
 await fs.mkdir('data', { recursive: true });
 await fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8');

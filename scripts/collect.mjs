@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import { cleanHtml, absoluteUrl, fetchDetail } from './lib/detail-parser.mjs';
 import { analyzeJob } from './lib/classifier.mjs';
-import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, CLOSED_STATUS_PATTERNS, RULES_VERSION } from './lib/rules.mjs';
+import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, RULES_VERSION } from './lib/rules.mjs';
 
 const SOURCES = [
   { org: '울산정보산업진흥원', url: 'https://uipa.or.kr/webuser/recruit/list.html', detail: true },
@@ -19,7 +19,7 @@ const SOURCES = [
   { org: '한국수력원자력', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y', detail: true, alio: true }
 ];
 
-const POSITIVE = /(?:제\s*\d+\s*회|\d{4}년)?\s*(?:채용\s*공고|직원\s*(?:공개)?채용|신입(?:사원|직원)?\s*(?:공개)?채용|경력(?:사원|직원)?\s*(?:공개)?채용|정규직\s*(?:공개)?채용|무기계약직\s*(?:공개)?채용|공무직\s*(?:근로자)?\s*(?:공개)?채용|상용직\s*채용|근로자\s*(?:채용|모집))/;
+const POSITIVE = /채용\s*공고|직원\s*채용|신입(?:사원|직원)?\s*채용|경력(?:사원|직원)?\s*채용|정규직\s*채용|무기계약직\s*채용|공무직\s*채용|근로자\s*(?:채용|모집)/;
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 
@@ -30,6 +30,40 @@ function validTitle(title) {
   if (matchesAny(title, EXCLUDED_EMPLOYMENT_PATTERNS)) return false;
   if (matchesAny(title, LICENSE_JOB_PATTERNS)) return false;
   return true;
+}
+
+function normalizeTitleForDedup(title = '') {
+  return String(title)
+    .replace(/\[(?:수정|변경|재공고|재재공고)\]/g, ' ')
+    .replace(/\((?:수정|변경|재공고|재재공고)\)/g, ' ')
+    .replace(/(?:수정|변경|재재?공고)/g, ' ')
+    .replace(/제?\d+차/g, ' ')
+    .replace(/\d{4}[-.년\s]*\d{0,2}[-.월\s]*\d{0,2}일?/g, ' ')
+    .replace(/[^0-9a-zA-Z가-힣]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+function revisionRank(title = '') {
+  if (/재재공고/.test(title)) return 4;
+  if (/재공고/.test(title)) return 3;
+  if (/수정|변경/.test(title)) return 2;
+  return 1;
+}
+
+function choosePreferredJob(current, candidate) {
+  if (!current) return candidate;
+  const currentRank = revisionRank(current.title);
+  const candidateRank = revisionRank(candidate.title);
+  if (candidateRank !== currentRank) return candidateRank > currentRank ? candidate : current;
+
+  const currentDeadline = current.deadline || '';
+  const candidateDeadline = candidate.deadline || '';
+  if (candidateDeadline !== currentDeadline) return candidateDeadline > currentDeadline ? candidate : current;
+
+  if (candidate.detailChecked !== current.detailChecked) return candidate.detailChecked ? candidate : current;
+  return candidate.fitScore > current.fitScore ? candidate : current;
 }
 
 function parseDateValue(yearText, monthText, dayText, referenceYear = new Date().getFullYear()) {
@@ -90,7 +124,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/4.2-detail-parser)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/4.5-dedup-strict)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -104,7 +138,7 @@ async function enrichCandidate(candidate, source) {
   if (source.detail) detail = await fetchDetail(candidate.link);
   const analysisText = `${candidate.title}\n${candidate.listText}\n${detail.text}`;
   const deadline = extractDeadline(analysisText);
-  if (!deadline || isExpired(deadline) || matchesAny(analysisText, CLOSED_STATUS_PATTERNS) || /\/\s*마감(?:\s|$)/.test(candidate.title)) return null;
+  if (isExpired(deadline) || /\/\s*마감(?:\s|$)/.test(candidate.title)) return null;
 
   const result = analyzeJob({
     title: candidate.title,
@@ -112,7 +146,7 @@ async function enrichCandidate(candidate, source) {
     detailText: detail.text,
     detailOk: detail.ok
   });
-  if (result.excluded || !result.recommended) return null;
+  if (result.excluded) return null;
 
   return {
     org: candidate.org,
@@ -151,29 +185,16 @@ async function fetchSource(source) {
 }
 
 const results = await Promise.all(SOURCES.map(fetchSource));
-const jobs = [], seen = new Map(), sources = [];
+const dedupedJobs = new Map(), sources = [];
 for (const result of results) {
   sources.push({ org: result.source.org, ok: result.ok, candidates: result.candidates, count: result.jobs.length, error: result.error || '' });
   for (const job of result.jobs) {
-    const canonicalTitle = job.title
-      .replace(/\((?:수정|변경|재공고|재재공고)\)/g, '')
-      .replace(/(?:수정|변경|재재?공고)/g, '')
-      .replace(/제\s*\d+\s*차/g, '')
-      .toLowerCase().replace(/[^가-힣a-z0-9]/g, '');
-    const key = `${job.org}|${canonicalTitle}`;
-    const previousIndex = seen.get(key);
-    if (previousIndex !== undefined) {
-      const previous = jobs[previousIndex];
-      // 같은 모집의 수정·재공고는 마감일이 더 늦거나 제목에 수정/재공고가 명시된 최신본만 유지한다.
-      const jobPriority = (/수정|변경|재공고/.test(job.title) ? 2 : 0) + (job.deadline || '');
-      const previousPriority = (/수정|변경|재공고/.test(previous.title) ? 2 : 0) + (previous.deadline || '');
-      if (jobPriority > previousPriority) jobs[previousIndex] = job;
-      continue;
-    }
-    seen.set(key, jobs.length);
-    jobs.push(job);
+    const normalizedTitle = normalizeTitleForDedup(job.title) || job.title.toLowerCase().replace(/\s+/g, ' ').trim();
+    const key = `${job.org}|${normalizedTitle}`;
+    dedupedJobs.set(key, choosePreferredJob(dedupedJobs.get(key), job));
   }
 }
+const jobs = [...dedupedJobs.values()];
 
 const successfulSources = sources.filter(source => source.ok).length;
 if (successfulSources === 0) {
@@ -182,7 +203,7 @@ if (successfulSources === 0) {
 
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '4.3-strict-target-only', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
+  version: '4.5-dedup-strict', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -191,9 +212,9 @@ const payload = {
     recommended: jobs.filter(job => job.recommended).length,
     highSchoolSuitable: jobs.filter(job => job.eligibility === '고졸 가능').length,
     detailChecked: jobs.filter(job => job.detailChecked).length,
-    reviewNeeded: 0
+    reviewNeeded: jobs.filter(job => job.status === '확인 필요').length
   },
-  note: '고졸·울산근무·정규직/공무직/무기계약직·접수중이 모두 원문에서 확인된 실제 공고만 표시합니다.'
+  note: '상세 HTML 원문과 첨부파일 링크를 확인합니다. 판독 실패 공고는 추천하지 않습니다.'
 };
 await fs.mkdir('data', { recursive: true });
 await fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8');

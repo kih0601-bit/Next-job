@@ -20,12 +20,14 @@ const SOURCES = [
 ];
 
 const POSITIVE = /채용\s*공고|직원\s*채용|신입(?:사원|직원)?\s*채용|경력(?:사원|직원)?\s*채용|정규직\s*채용|무기계약직\s*채용|공무직\s*채용|근로자\s*(?:채용|모집)/;
+const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*명단|서류(?:전형|심사)|필기(?:전형|시험)|면접(?:전형|시험)|AI\s*역량검사|체력검정|시험\s*실시|접수현황|지원현황|경쟁률|전형결과|결과발표/;
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 
 function validTitle(title) {
   if (!title || title.length < 6 || title.length > 220) return false;
   if (!POSITIVE.test(title)) return false;
+  if (RECRUITMENT_STAGE_NOISE.test(title)) return false;
   if (matchesAny(title, NON_JOB_PATTERNS)) return false;
   if (matchesAny(title, EXCLUDED_EMPLOYMENT_PATTERNS)) return false;
   if (matchesAny(title, LICENSE_JOB_PATTERNS)) return false;
@@ -143,7 +145,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/4.6-uic-detail-guard)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/4.7-stage-noise-filter)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -222,7 +224,7 @@ if (successfulSources === 0) {
 
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '4.6-uic-detail-guard', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
+  version: '4.7-stage-noise-filter', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -233,7 +235,7 @@ const payload = {
     detailChecked: jobs.filter(job => job.detailChecked).length,
     reviewNeeded: jobs.filter(job => job.status === '확인 필요').length
   },
-  note: '목록·메인 페이지 URL은 원문 링크로 저장하지 않습니다. 상세주소가 확인되지 않은 공고는 노출하지 않습니다.'
+  note: '목록·메인 페이지 링크와 합격자·시험·전형결과 공지는 노출하지 않습니다. 실제 모집공고만 남깁니다.'
 };
 await fs.mkdir('data', { recursive: true });
 await fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8');

@@ -74,7 +74,7 @@ export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', 
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/5.2-detail-confidence)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/6.0-link-reliability)',
         'accept-language': 'ko-KR,ko;q=0.9,en;q=0.5',
         accept: 'text/html,application/xhtml+xml'
       }
@@ -109,6 +109,14 @@ export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', 
     }
     if (sourceOrg === '울산시설공단' && /\/notify\/noti06\.do$/i.test(new URL(finalUrl).pathname) && !new URL(finalUrl).search) {
       throw new Error('uic list url detected');
+    }
+
+    const finalParams = [...final.searchParams.keys()];
+    const hasDetailPath = /(?:view|detail|read|select|article|boardView|recruitview)/i.test(final.pathname);
+    const hasDetailParam = finalParams.some(key => /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no)$/i.test(key));
+    const sameAsSourceListing = /(?:list|recruit\.do|contents\.ulsan|noti06\.do)$/i.test(final.pathname) && !hasDetailParam;
+    if ((!hasDetailPath && !hasDetailParam) || sameAsSourceListing) {
+      throw new Error('final url is not a detail page');
     }
 
     const confidence = detailConfidence(text, expectedTitle);

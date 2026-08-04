@@ -15,7 +15,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '11.6-debug-stage3-tools';
+const DATA_VERSION = '11.7-candidate-attachment-scope';
 
 function validTitle(title) {
   if (!title || title.length < 6 || title.length > 220) return false;

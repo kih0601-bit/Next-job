@@ -36,3 +36,15 @@ const explicitTemporary = analyzeJob({
 });
 assert.equal(explicitTemporary.excluded, true);
 assert.ok(explicitTemporary.excludeReasons.some(reason => reason.includes('고용형태')));
+
+const { SOURCES } = await import('./collectors/source-registry.mjs');
+assert.ok(SOURCES.length >= 21, '21개 이상 기관 출처가 등록되어야 함');
+assert.ok(SOURCES.every(source => source.org && source.url && source.requireValidDetail), '모든 출처는 상세 검증을 요구해야 함');
+
+const { extractAttachments } = await import('./lib/detail-parser.mjs');
+const extractedAttachments = extractAttachments(`
+  <a href="/files/recruit.pdf">채용공고문</a>
+  <a href="#" data-url="/files/job.hwpx">직무기술서</a>
+  <a href="javascript:void(0)" onclick="window.open('/files/table.xlsx')">채용분야표</a>
+`, 'https://example.com/board/view?no=1');
+assert.equal(extractedAttachments.length, 3, 'href/data-url/onclick 공개 첨부를 모두 발견해야 함');

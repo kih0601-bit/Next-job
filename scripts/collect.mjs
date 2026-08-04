@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
-import { extractCandidatesForSource, canonicalJobUrl } from './collectors/source-adapters.mjs';
+import { extractCandidatesForSource, canonicalJobUrl, discoverListingUrls } from './collectors/source-adapters.mjs';
 import { extractAlioCandidates } from './collectors/alio-adapter.mjs';
 import { analyzeJob } from './lib/classifier.mjs';
 import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
@@ -8,21 +8,7 @@ import { analyzeAttachments } from './lib/document-analyzer.mjs';
 import { validateJob, runCollectionQA, VALIDATOR_VERSION } from './lib/validator.mjs';
 import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, RULES_VERSION } from './lib/rules.mjs';
 
-const SOURCES = [
-  { org: '울산정보산업진흥원', url: 'https://uipa.or.kr/webuser/recruit/list.html', detail: true, requireValidDetail: true },
-  { org: '울산테크노파크', url: 'https://www.utp.or.kr/', detail: true, requireValidDetail: true },
-  { org: '울산시설공단', url: 'https://uic.or.kr/notify/noti06.do', detail: true, requireValidDetail: true },
-  { org: '울산광역시 타기관소식', url: 'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000', detail: true, requireValidDetail: true },
-  { org: '한국동서발전', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y', detail: true, alio: true, requireValidDetail: true },
-  { org: '한국석유공사', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%84%9D%EC%9C%A0%EA%B3%B5%EC%82%AC&search_yn=Y', detail: true, alio: true, requireValidDetail: true },
-  { org: '한국에너지공단', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y', detail: true, alio: true, requireValidDetail: true },
-  { org: '한국산업인력공단', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y', detail: true, alio: true, requireValidDetail: true },
-  { org: '근로복지공단', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y', detail: true, alio: true, requireValidDetail: true },
-  { org: '한국산업안전보건공단', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y', detail: true, alio: true, requireValidDetail: true },
-  { org: '울산항만공사', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EC%9A%B8%EC%82%B0%ED%95%AD%EB%A7%8C%EA%B3%B5%EC%82%AC&search_yn=Y', detail: true, alio: true, requireValidDetail: true },
-  { org: '한국전력공사', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y', detail: true, alio: true, requireValidDetail: true },
-  { org: '한국수력원자력', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y', detail: true, alio: true }
-];
+import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.mjs';
 
 const POSITIVE = /채용\s*공고|직원\s*채용|신입(?:사원|직원)?\s*채용|경력(?:사원|직원)?\s*채용|정규직\s*채용|무기계약직\s*채용|공무직\s*채용|근로자\s*(?:채용|모집)/;
 const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*명단|서류(?:전형|심사)|필기(?:전형|시험)|면접(?:전형|시험)|AI\s*역량검사|체력검정|시험\s*실시|접수현황|지원현황|경쟁률|전형결과|결과발표|채용절차|전형일정|시험장소/;
@@ -124,7 +110,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.0-ultimate)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.2-collection-documents)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -147,7 +133,7 @@ async function enrichCandidate(candidate, source) {
     return { job: null, rejection: detail.error || 'detail validation failed' };
   }
 
-  const documents = await analyzeAttachments(detail.attachments, { maxFiles: 3 });
+  const documents = await analyzeAttachments(detail.attachments, { maxFiles: 12 });
   const analysisText = `${candidate.title}\n${candidate.listText}\n${detail.text}\n${documents.text}`;
   const deadline = extractDeadline(analysisText);
   if (isExpired(deadline)) return { job: null, rejection: 'expired deadline' };
@@ -195,7 +181,7 @@ async function enrichCandidate(candidate, source) {
       detailConfidence: detail.confidence || null,
       detailError: detail.error || '',
       attachments: detail.attachments,
-      documentAnalysis: { attempted: documents.attempted, successful: documents.successful, results: documents.results.map(({ text, ...meta }) => meta) },
+      documentAnalysis: { discovered: documents.discovered, attempted: documents.attempted, successful: documents.successful, analyzerVersion: documents.analyzerVersion, results: documents.results.map(({ text, ...meta }) => meta) },
       crossValidation: result.crossValidation,
       adapter: candidate.adapter || (source.alio ? 'ALIO' : source.org),
       raw: `${detail.text || candidate.listText}
@@ -215,7 +201,21 @@ async function fetchSource(source) {
       catch (error) { lastError = error; if (attempt === 1) await new Promise(resolve => setTimeout(resolve, 800)); }
     }
     if (!html) throw lastError || new Error('empty source html');
-    const candidates = extractListCandidates(html, source);
+    const listingUrls = source.alio ? [source.url] : discoverListingUrls(html, source);
+    const candidateMap = new Map();
+    for (const listingUrl of listingUrls) {
+      let listingHtml = listingUrl === source.url ? html : '';
+      if (!listingHtml) {
+        try { listingHtml = await fetchHtml(listingUrl, 18000); }
+        catch { continue; }
+      }
+      const listingSource = { ...source, url: listingUrl };
+      for (const candidate of extractListCandidates(listingHtml, listingSource)) {
+        const key = `${candidate.org}|${normalizeTitleForDedup(candidate.title)}|${canonicalJobUrl(candidate.link)}`;
+        if (!candidateMap.has(key)) candidateMap.set(key, candidate);
+      }
+    }
+    const candidates = [...candidateMap.values()];
     const jobs = [];
     const rejectionReasons = {};
     for (const candidate of candidates) {
@@ -227,7 +227,7 @@ async function fetchSource(source) {
       }
     }
     return {
-      ok: true, source, jobs, candidates: candidates.length,
+      ok: true, source, jobs, candidates: candidates.length, listingPagesChecked: listingUrls.length,
       rejected: Math.max(0, candidates.length - jobs.length),
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
@@ -262,6 +262,7 @@ for (const result of results) {
     ok: result.ok,
     status: result.ok ? 'healthy' : retained.length ? 'degraded' : 'failed',
     candidates: result.candidates,
+    listingPagesChecked: result.listingPagesChecked || 0,
     count: result.jobs.length,
     retained: retained.length,
     rejected: result.rejected || 0,
@@ -299,7 +300,7 @@ if (!qa.passed) {
 
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || (b.qualityScore || 0) - (a.qualityScore || 0) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '11.0-ultimate', rulesVersion: RULES_VERSION, qualityEngineVersion: QUALITY_ENGINE_VERSION, validatorVersion: VALIDATOR_VERSION, updatedAt: nowIso,
+  version: '11.2-collection-documents', rulesVersion: RULES_VERSION, sourceRegistryVersion: SOURCE_REGISTRY_VERSION, qualityEngineVersion: QUALITY_ENGINE_VERSION, validatorVersion: VALIDATOR_VERSION, updatedAt: nowIso,
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -316,13 +317,14 @@ const payload = {
     degradedSources,
     failedSources,
     retainedJobs,
+    publicAttachmentsDiscovered: jobs.reduce((sum, job) => sum + Number(job.documentAnalysis?.discovered || 0), 0),
     documentsAttempted: jobs.reduce((sum, job) => sum + Number(job.documentAnalysis?.attempted || 0), 0),
     documentsParsed: jobs.reduce((sum, job) => sum + Number(job.documentAnalysis?.successful || 0), 0),
     qaPassed: qa.passed,
     qaIssueCount: qa.issueCount
   },
   qa,
-  note: '기관별 링크 검증, 첨부문서 분석, 본문-문서 교차검증, 90점 품질기준과 자동 QA를 모두 통과한 공고만 노출합니다.'
+  note: '등록된 전체 기관을 공공 ALIO 또는 공개 홈페이지에서 확인하고, 발견된 공개 첨부문서를 형식별로 분석한 뒤 검증을 통과한 공고만 노출합니다.'
 };
 const healthPayload = {
   version: payload.version,

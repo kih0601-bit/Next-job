@@ -47,7 +47,26 @@ export function extractAttachments(html, baseUrl) {
   return attachments.slice(0, 20);
 }
 
-export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', sourceOrg = '' } = {}) {
+function titleTokens(value = '') {
+  return String(value)
+    .replace(/\[[^\]]+\]|\([^)]*\)/g, ' ')
+    .replace(/(?:채용|모집|공고|직원|신입|경력|정규직|공무직|무기계약직)/g, ' ')
+    .replace(/[^0-9a-zA-Z가-힣]+/g, ' ')
+    .trim().split(/\s+/).filter(word => word.length >= 2).slice(0, 8);
+}
+
+function detailConfidence(text = '', expectedTitle = '') {
+  const structureSignals = [
+    /모집분야|채용분야/, /응시자격|지원자격/, /접수기간|원서접수/,
+    /근무조건|근무지/, /채용인원|모집인원/, /전형절차|전형방법/, /공고번호/
+  ].filter(pattern => pattern.test(text)).length;
+  const tokens = titleTokens(expectedTitle);
+  const matched = tokens.filter(word => text.includes(word)).length;
+  const titleRatio = tokens.length ? matched / tokens.length : 1;
+  return { structureSignals, matched, tokenCount: tokens.length, titleRatio };
+}
+
+export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', sourceOrg = '', allowedHosts = [] } = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
@@ -55,7 +74,7 @@ export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', 
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/5.1-detail-validator)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/5.2-detail-confidence)',
         'accept-language': 'ko-KR,ko;q=0.9,en;q=0.5',
         accept: 'text/html,application/xhtml+xml'
       }
@@ -75,6 +94,16 @@ export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', 
     if (loginOrBlock) throw new Error('blocked or login page detected');
 
     const finalUrl = response.url || url;
+    const final = new URL(finalUrl);
+    const original = new URL(url);
+    const normalizedAllowedHosts = [original.hostname, ...allowedHosts].map(host => String(host).replace(/^www\./, ''));
+    const finalHost = final.hostname.replace(/^www\./, '');
+    if (!normalizedAllowedHosts.some(host => finalHost === host || finalHost.endsWith(`.${host}`))) {
+      throw new Error('unexpected redirect domain');
+    }
+    if (/\/(?:index|main|home)(?:\.|\/|$)/i.test(final.pathname) && !final.search) {
+      throw new Error('home page redirect detected');
+    }
     if (sourceOrg === '울산광역시 타기관소식' && /\/u\/rep\/contents\.ulsan$/i.test(new URL(finalUrl).pathname) && !/[?&](?:nttId|dataSid|bbsSeq|articleNo|postNo)=/i.test(finalUrl)) {
       throw new Error('ulsan list url detected');
     }
@@ -82,15 +111,14 @@ export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', 
       throw new Error('uic list url detected');
     }
 
-    if (expectedTitle) {
-      const titleProbe = expectedTitle.replace(/\[[^\]]+\]|\([^)]*\)/g, ' ').replace(/[^0-9a-zA-Z가-힣]+/g, ' ').trim().split(/\s+/).filter(word => word.length >= 2).slice(0, 5);
-      const matched = titleProbe.filter(word => text.includes(word)).length;
-      if (titleProbe.length >= 3 && matched < 2 && text.length < 500) throw new Error('detail title mismatch');
-    }
+    const confidence = detailConfidence(text, expectedTitle);
+    if (confidence.structureSignals < 2) throw new Error('insufficient detail structure');
+    if (confidence.tokenCount >= 3 && confidence.titleRatio < 0.34) throw new Error('detail title mismatch');
     return {
       ok: true,
       finalUrl,
       text,
+      confidence,
       attachments: extractAttachments(html, response.url || url)
     };
   } catch (error) {

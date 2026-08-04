@@ -74,7 +74,7 @@ export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', 
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/6.0-link-reliability)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/10.0-source-engine)',
         'accept-language': 'ko-KR,ko;q=0.9,en;q=0.5',
         accept: 'text/html,application/xhtml+xml'
       }
@@ -84,6 +84,7 @@ export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', 
     if (!/html|text\//i.test(contentType)) throw new Error(`unsupported content-type: ${contentType}`);
     const html = await response.text();
     const text = cleanHtml(html).slice(0, 50000);
+    if (text.length < 120) throw new Error('detail body too short');
     const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)|게시물\s*목록|검색결과\s*\d+건|채용공고\s*목록/.test(text) && !/(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text);
     if (looksLikeListOnly) throw new Error('list page detected');
 
@@ -127,6 +128,8 @@ export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', 
       finalUrl,
       text,
       confidence,
+      httpStatus: response.status,
+      contentType,
       attachments: extractAttachments(html, response.url || url)
     };
   } catch (error) {

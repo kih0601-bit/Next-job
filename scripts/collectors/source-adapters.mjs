@@ -92,25 +92,34 @@ function urlsFromJavascript(value = '', baseUrl = '') {
 
 function candidateUrls(attrs = '', source) {
   const urls = [];
-  const href = attrs.match(/\bhref\s*=\s*["']([^"']*)["']/i)?.[1] || '';
+  const href = attrs.match(/\bhref\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
   if (href && href !== '#' && !/^javascript:/i.test(href)) {
     const link = absoluteUrl(href, source.url);
     if (link) urls.push(link);
   }
-  const onclick = attrs.match(/\bonclick\s*=\s*["']([\s\S]*?)["']/i)?.[1] || (/^javascript:/i.test(href) ? href : '');
+  const onclick = attrs.match(/\bonclick\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || (/^javascript:/i.test(href) ? href : '');
   for (const link of urlsFromJavascript(onclick, source.url)) if (!urls.includes(link)) urls.push(link);
   return urls;
 }
 
 function sourceAllows(link, source) {
-  if (!link || FILE_OR_DOWNLOAD.test(link) || !hasDetailSignal(link, source) || isListOrMain(link, source)) return false;
+  if (!link || FILE_OR_DOWNLOAD.test(link) || isListOrMain(link, source)) return false;
   try {
     const url = new URL(link);
     const sourceHost = new URL(source.url).hostname.replace(/^www\./, '');
     const host = url.hostname.replace(/^www\./, '');
     const profile = profileFor(source);
     const allowedHosts = profile?.hosts || [sourceHost];
-    return allowedHosts.some(allowed => host === allowed || host.endsWith(`.${allowed}`));
+    const hostAllowed = allowedHosts.some(allowed => host === allowed || host.endsWith(`.${allowed}`));
+    if (!hostAllowed) return false;
+    if (hasDetailSignal(link, source)) return true;
+    // Some public boards use opaque paths or non-standard query keys. Accept only
+    // same-site links that differ from the listing URL; fetchDetail performs the
+    // final body/redirect/title validation before a job can be stored.
+    const listing = new URL(source.url);
+    const differsFromListing = canonicalJobUrl(url.href) !== canonicalJobUrl(listing.href);
+    const hasOpaqueIdentity = url.searchParams.size > 0 || url.pathname.split('/').filter(Boolean).length > listing.pathname.split('/').filter(Boolean).length;
+    return differsFromListing && hasOpaqueIdentity;
   } catch {
     return false;
   }
@@ -119,14 +128,19 @@ function sourceAllows(link, source) {
 export function extractCandidatesForSource(html, source, { validTitle, normalizeTitleForDedup }) {
   const jobs = [];
   const seen = new Set();
+  const diagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0 };
   const anchorRegex = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
   for (const match of html.matchAll(anchorRegex)) {
+    diagnostics.anchors += 1;
     const attrs = match[1] || '';
     const title = cleanHtml(match[2]).replace(/\s+/g, ' ').trim();
     if (!validTitle(title)) continue;
+    diagnostics.titleMatches += 1;
 
-    const link = candidateUrls(attrs, source).find(url => sourceAllows(url, source));
-    if (!link) continue;
+    const urls = candidateUrls(attrs, source);
+    if (!urls.length) { diagnostics.noUrl += 1; continue; }
+    const link = urls.find(url => sourceAllows(url, source));
+    if (!link) { diagnostics.unsafeUrl += 1; continue; }
     const canonical = canonicalJobUrl(link);
     const key = `${source.org}|${normalizeTitleForDedup(title)}|${canonical}`;
     if (seen.has(key)) continue;
@@ -136,8 +150,10 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     const end = Math.min(html.length, match.index + match[0].length + 900);
     const listText = cleanHtml(html.slice(start, end)).replace(/\s+/g, ' ').trim();
     jobs.push({ org: source.org, title, link: canonical, listText, adapter: source.org });
+    diagnostics.accepted += 1;
     if (jobs.length >= 30) break;
   }
+  Object.defineProperty(jobs, 'diagnostics', { value: diagnostics, enumerable: false });
   return jobs;
 }
 

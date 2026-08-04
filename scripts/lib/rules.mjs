@@ -1,4 +1,4 @@
-export const RULES_VERSION = '2026-08-04.10-source-engine';
+export const RULES_VERSION = '2026-08-04.11-ultimate';
 
 export const NON_JOB_PATTERNS = [
   /사칭|보이스피싱|스미싱|유의사항|주의/,

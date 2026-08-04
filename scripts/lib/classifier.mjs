@@ -1,13 +1,27 @@
 import {
   NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS,
   REQUIRED_LICENSE_PATTERNS, DEGREE_REQUIRED_PATTERNS, HIGH_SCHOOL_OK_PATTERNS,
-  ALLOWED_EMPLOYMENT
+  ALLOWED_EMPLOYMENT, TEMPORARY_EMPLOYMENT_STRONG_PATTERNS, TEMPORARY_EMPLOYMENT_BENIGN_PATTERNS
 } from './rules.mjs';
 
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 
+function stripBenignTemporaryMentions(text = '') {
+  return TEMPORARY_EMPLOYMENT_BENIGN_PATTERNS.reduce(
+    (value, pattern) => value.replace(new RegExp(pattern.source, pattern.flags.includes('g') ? pattern.flags : `${pattern.flags}g`), ' '),
+    String(text)
+  );
+}
+
+export function hasExcludedEmploymentEvidence(text = '') {
+  const original = String(text);
+  const cleaned = stripBenignTemporaryMentions(original);
+  if (matchesAny(cleaned, EXCLUDED_EMPLOYMENT_PATTERNS)) return true;
+  return matchesAny(cleaned, TEMPORARY_EMPLOYMENT_STRONG_PATTERNS);
+}
+
 export function detectEmployment(text = '') {
-  if (matchesAny(text, EXCLUDED_EMPLOYMENT_PATTERNS)) return '제외 고용형태';
+  if (hasExcludedEmploymentEvidence(text)) return '제외 고용형태';
   if (/무기계약직|기간의\s*정함이\s*없는\s*근로계약/.test(text)) return '무기계약직';
   if (/공무직/.test(text)) return '공무직';
   if (/상용직/.test(text)) return '상용직';
@@ -65,7 +79,7 @@ export function analyzeJob({ title = '', listText = '', detailText = '', documen
   const fullText = `${titleText}\n${listText}\n${detailText}\n${documentText}`.replace(/[ \t]+/g, ' ');
   const reasons = [], excludeReasons = [];
   if (matchesAny(titleText, NON_JOB_PATTERNS)) excludeReasons.push('채용공고가 아닌 안내·결과 공지');
-  if (matchesAny(fullText, EXCLUDED_EMPLOYMENT_PATTERNS)) excludeReasons.push('인턴·기간제·계약직 등 제외 고용형태');
+  if (hasExcludedEmploymentEvidence(fullText)) excludeReasons.push('인턴·기간제·계약직 등 제외 고용형태');
   if (matchesAny(titleText, LICENSE_JOB_PATTERNS) || matchesAny(fullText, REQUIRED_LICENSE_PATTERNS)) excludeReasons.push('전문면허·전문자격 필수 직무');
 
   const education = detectEducation(fullText);

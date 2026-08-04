@@ -1,9 +1,9 @@
+import { hasExcludedEmploymentEvidence } from './classifier.mjs';
 const LIST_OR_HOME = /(?:\/list(?:\.|\/|$)|\/index(?:\.|\/|$)|\/main(?:\.|\/|$)|\/home(?:\.|\/|$)|채용공고\s*목록|게시물\s*목록)/i;
 const ERROR_TEXT = /404|not\s*found|페이지를\s*찾을\s*수|주소가\s*올바른지|존재하지\s*않는\s*페이지/i;
 const CLOSED_TEXT = /접수\s*(?:마감|종료)|채용\s*마감|마감된\s*공고/i;
-const EXCLUDED_TYPE = /인턴|기간제|계약직|위촉직|촉탁직|휴직대체|대체인력|단시간|일용직|아르바이트/i;
 
-export const VALIDATOR_VERSION = '11.0.0';
+export const VALIDATOR_VERSION = '11.1.0-employment-context';
 
 export function validateJob(job = {}) {
   const errors = [], warnings = [];
@@ -19,7 +19,7 @@ export function validateJob(job = {}) {
   const raw = `${job.title || ''}\n${job.raw || ''}`;
   if (ERROR_TEXT.test(raw)) errors.push('오류 페이지 문구 포함');
   if (CLOSED_TEXT.test(raw)) errors.push('마감 문구 포함');
-  if (EXCLUDED_TYPE.test(raw) || EXCLUDED_TYPE.test(job.employmentType || '')) errors.push('제외 고용형태 포함');
+  if (job.employmentType === '제외 고용형태' || hasExcludedEmploymentEvidence(raw)) errors.push('제외 고용형태 포함');
   if (job.eligibility !== '고졸 가능') errors.push('고졸 지원 확인 안 됨');
   if (job.location !== '울산') errors.push('울산 단일 근무 확인 안 됨');
   if (!['정규직', '무기계약직', '공무직', '일반직', '상용직'].includes(job.employmentType)) errors.push('허용 고용형태 아님');

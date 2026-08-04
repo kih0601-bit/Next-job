@@ -6,7 +6,7 @@ import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, R
 const SOURCES = [
   { org: '울산정보산업진흥원', url: 'https://uipa.or.kr/webuser/recruit/list.html', detail: true },
   { org: '울산테크노파크', url: 'https://www.utp.or.kr/' },
-  { org: '울산시설공단', url: 'https://uic.or.kr/recruit/main/mainPage.do' },
+  { org: '울산시설공단', url: 'https://uic.or.kr/notify/noti06.do', detail: true, requireDetailUrl: true },
   { org: '울산광역시 타기관소식', url: 'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000' },
   { org: '한국동서발전', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y', detail: true, alio: true },
   { org: '한국석유공사', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%84%9D%EC%9C%A0%EA%B3%B5%EC%82%AC&search_yn=Y', detail: true, alio: true },
@@ -96,6 +96,25 @@ function isExpired(deadline) {
   return end.getTime() < now.getTime();
 }
 
+function isUsableDetailUrl(link, source) {
+  try {
+    const url = new URL(link);
+    const sourceUrl = new URL(source.url);
+
+    // 같은 목록·메인 페이지를 공고 상세주소로 저장하지 않는다.
+    if (url.href === sourceUrl.href) return false;
+    if (source.org === '울산시설공단') {
+      if (/\/recruit\/main\/mainPage\.do$/i.test(url.pathname)) return false;
+      if (/\/notify\/noti06\.do$/i.test(url.pathname) && !url.search) return false;
+      if (!url.search && !/(view|detail|read)/i.test(url.pathname)) return false;
+    }
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function extractListCandidates(html, source) {
   const jobs = [], seen = new Set();
   const anchorRegex = /<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
@@ -103,7 +122,7 @@ function extractListCandidates(html, source) {
     const title = cleanHtml(match[2]).replace(/\s+/g, ' ').trim();
     if (!validTitle(title)) continue;
     const link = absoluteUrl(match[1], source.url);
-    if (!link || link === source.url) continue;
+    if (!link || !isUsableDetailUrl(link, source)) continue;
     const key = `${source.org}|${title}`.toLowerCase().replace(/\s+/g, ' ');
     if (seen.has(key)) continue;
     seen.add(key);
@@ -124,7 +143,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/4.5-dedup-strict)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/4.6-uic-detail-guard)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -203,7 +222,7 @@ if (successfulSources === 0) {
 
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '4.5-dedup-strict', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
+  version: '4.6-uic-detail-guard', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -214,7 +233,7 @@ const payload = {
     detailChecked: jobs.filter(job => job.detailChecked).length,
     reviewNeeded: jobs.filter(job => job.status === '확인 필요').length
   },
-  note: '상세 HTML 원문과 첨부파일 링크를 확인합니다. 판독 실패 공고는 추천하지 않습니다.'
+  note: '목록·메인 페이지 URL은 원문 링크로 저장하지 않습니다. 상세주소가 확인되지 않은 공고는 노출하지 않습니다.'
 };
 await fs.mkdir('data', { recursive: true });
 await fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8');

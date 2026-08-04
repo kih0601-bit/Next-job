@@ -1,13 +1,14 @@
 import fs from 'node:fs/promises';
-import { cleanHtml, absoluteUrl, fetchDetail } from './lib/detail-parser.mjs';
+import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
+import { extractCandidatesForSource, canonicalJobUrl } from './collectors/source-adapters.mjs';
 import { analyzeJob } from './lib/classifier.mjs';
 import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, RULES_VERSION } from './lib/rules.mjs';
 
 const SOURCES = [
   { org: '울산정보산업진흥원', url: 'https://uipa.or.kr/webuser/recruit/list.html', detail: true },
-  { org: '울산테크노파크', url: 'https://www.utp.or.kr/' },
-  { org: '울산시설공단', url: 'https://uic.or.kr/notify/noti06.do', detail: true, requireDetailUrl: true },
-  { org: '울산광역시 타기관소식', url: 'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000' },
+  { org: '울산테크노파크', url: 'https://www.utp.or.kr/', detail: true, requireValidDetail: true },
+  { org: '울산시설공단', url: 'https://uic.or.kr/notify/noti06.do', detail: true, requireValidDetail: true },
+  { org: '울산광역시 타기관소식', url: 'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000', detail: true, requireValidDetail: true },
   { org: '한국동서발전', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y', detail: true, alio: true },
   { org: '한국석유공사', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%84%9D%EC%9C%A0%EA%B3%B5%EC%82%AC&search_yn=Y', detail: true, alio: true },
   { org: '한국에너지공단', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y', detail: true, alio: true },
@@ -98,61 +99,8 @@ function isExpired(deadline) {
   return end.getTime() < now.getTime();
 }
 
-function canonicalJobUrl(link = '') {
-  try {
-    const url = new URL(link);
-    url.hash = '';
-    for (const key of ['pageIndex','page','searchCondition','searchKeyword','menuNo','mId']) url.searchParams.delete(key);
-    const sorted = [...url.searchParams.entries()].sort(([a],[b]) => a.localeCompare(b));
-    url.search = '';
-    for (const [key, value] of sorted) url.searchParams.append(key, value);
-    return url.href.replace(/\/$/, '');
-  } catch { return String(link).split('#')[0]; }
-}
-
-function isUsableDetailUrl(link, source) {
-  try {
-    const url = new URL(link);
-    const sourceUrl = new URL(source.url);
-
-    // 같은 목록·메인 페이지를 공고 상세주소로 저장하지 않는다.
-    if (canonicalJobUrl(url.href) === canonicalJobUrl(sourceUrl.href)) return false;
-    if (/\/(?:list|index|main)(?:\.|\/|$)/i.test(url.pathname) && !/(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo)=/i.test(url.search)) return false;
-    if (source.org === '울산시설공단') {
-      if (/\/recruit\/main\/mainPage\.do$/i.test(url.pathname)) return false;
-      if (/\/notify\/noti06\.do$/i.test(url.pathname) && !url.search) return false;
-      const detailSignal = /(view|detail|read)/i.test(url.pathname) || /(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo)=/i.test(url.search);
-      if (!detailSignal) return false;
-    }
-
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 function extractListCandidates(html, source) {
-  const jobs = [], seen = new Set();
-  const anchorRegex = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
-  for (const match of html.matchAll(anchorRegex)) {
-    const attrs = match[1] || '';
-    const hrefMatch = attrs.match(/href=["']([^"']+)["']/i);
-    const onclickMatch = attrs.match(/onclick=["'][^"']*(?:location\.href|window\.open)\s*\(?\s*["']([^"']+)["']/i);
-    const rawHref = hrefMatch?.[1] || onclickMatch?.[1] || '';
-    const title = cleanHtml(match[2]).replace(/\s+/g, ' ').trim();
-    if (!validTitle(title)) continue;
-    const link = absoluteUrl(rawHref, source.url);
-    if (!link || !isUsableDetailUrl(link, source)) continue;
-    const key = `${source.org}|${normalizeTitleForDedup(title)}|${canonicalJobUrl(link)}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    const start = Math.max(0, match.index - 180);
-    const end = Math.min(html.length, match.index + match[0].length + 650);
-    const listText = cleanHtml(html.slice(start, end)).replace(/\s+/g, ' ').trim();
-    jobs.push({ org: source.org, title, link, listText });
-    if (jobs.length >= 15) break;
-  }
-  return jobs;
+  return extractCandidatesForSource(html, source, { validTitle, normalizeTitleForDedup });
 }
 
 async function fetchHtml(url, timeoutMs = 15000) {
@@ -163,7 +111,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/4.8-integrated-quality)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/5.0-source-adapters)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -174,7 +122,8 @@ async function fetchHtml(url, timeoutMs = 15000) {
 
 async function enrichCandidate(candidate, source) {
   let detail = { ok: false, finalUrl: candidate.link, text: '', attachments: [], error: 'detail disabled' };
-  if (source.detail) detail = await fetchDetail(candidate.link);
+  if (source.detail) detail = await fetchDetail(candidate.link, { expectedTitle: candidate.title, sourceOrg: source.org });
+  if (source.requireValidDetail && !detail.ok) return null;
   const analysisText = `${candidate.title}\n${candidate.listText}\n${detail.text}`;
   const deadline = extractDeadline(analysisText);
   if (isExpired(deadline) || /\/\s*마감(?:\s|$)/.test(candidate.title)) return null;
@@ -242,7 +191,7 @@ if (successfulSources === 0) {
 
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '4.8-integrated-quality', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
+  version: '5.0-source-adapters', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -253,7 +202,7 @@ const payload = {
     detailChecked: jobs.filter(job => job.detailChecked).length,
     reviewNeeded: jobs.filter(job => job.status === '확인 필요').length
   },
-  note: '상세 공고 주소가 확인된 실제 모집공고만 남기고, 목록·메인 페이지·전형결과·중복 URL·마감 공고를 제거합니다.'
+  note: '기관별 링크 추출기를 사용하고, 원문을 실제 요청해 404·오류페이지·게시판 목록이면 노출하지 않습니다.'
 };
 await fs.mkdir('data', { recursive: true });
 await fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8');

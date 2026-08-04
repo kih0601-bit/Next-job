@@ -48,3 +48,20 @@ const extractedAttachments = extractAttachments(`
   <a href="javascript:void(0)" onclick="window.open('/files/table.xlsx')">채용분야표</a>
 `, 'https://example.com/board/view?no=1');
 assert.equal(extractedAttachments.length, 3, 'href/data-url/onclick 공개 첨부를 모두 발견해야 함');
+
+const { analyzeVacancies } = await import('./lib/classifier.mjs');
+const mixedPosting = analyzeVacancies({
+  title: '2026년 통합 직원 채용 공고',
+  detailText: `접수기간 2026.08.01~2026.08.20\n공통사항 블라인드 채용\n채용분야: 행정사무\n채용인원 2명\n고용형태: 정규직\n학력: 학력무관\n근무지: 울산광역시 남구\n채용분야: 시설관리\n채용인원 1명\n고용형태: 기간제\n계약기간: 10개월\n학력: 고졸 이상\n근무지: 울산광역시 북구\n채용분야: 전산개발\n채용인원 1명\n고용형태: 정규직\n학력: 학사 이상\n근무지: 울산광역시 중구`,
+  detailOk: true
+});
+assert.equal(mixedPosting.length, 3, '혼합 공고를 3개 모집 직군으로 분리해야 함');
+assert.equal(mixedPosting.filter(item => item.analysis.recommended).length, 1, '고졸 정규직 울산 직군만 추천해야 함');
+assert.match(mixedPosting.find(item => item.analysis.recommended).name, /행정사무/);
+assert.ok(mixedPosting.some(item => item.analysis.excludeReasons.some(reason => reason.includes('고용형태'))), '기간제 직군은 제외해야 함');
+assert.ok(mixedPosting.some(item => item.analysis.excludeReasons.some(reason => reason.includes('학사'))), '학사 이상 직군은 제외해야 함');
+
+const singlePosting = analyzeVacancies({ title: '공무직 채용 공고', detailText: '고용형태 공무직\n학력무관\n근무지 울산광역시\n채용인원 1명\n접수기간 2026.08.01~2026.08.20', detailOk: true });
+assert.equal(singlePosting.length, 1, '단일 공고는 불필요하게 분리하지 않아야 함');
+assert.equal(singlePosting[0].analysis.recommended, true);
+console.log('v11.3 position-unit tests passed');

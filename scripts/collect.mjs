@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { extractCandidatesForSource, canonicalJobUrl, discoverListingUrls } from './collectors/source-adapters.mjs';
 import { extractAlioCandidates } from './collectors/alio-adapter.mjs';
-import { analyzeJob } from './lib/classifier.mjs';
+import { analyzeVacancies } from './lib/classifier.mjs';
 import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
 import { analyzeAttachments } from './lib/document-analyzer.mjs';
 import { validateJob, runCollectionQA, VALIDATOR_VERSION } from './lib/validator.mjs';
@@ -15,6 +15,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
+const DATA_VERSION = '11.3-position-unit';
 
 function validTitle(title) {
   if (!title || title.length < 6 || title.length > 220) return false;
@@ -110,7 +111,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.2-collection-documents)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.3-position-unit)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -130,37 +131,52 @@ async function enrichCandidate(candidate, source) {
     });
   }
   if (source.requireValidDetail && !detail.ok) {
-    return { job: null, rejection: detail.error || 'detail validation failed' };
+    return { jobs: [], rejection: detail.error || 'detail validation failed' };
   }
 
   const documents = await analyzeAttachments(detail.attachments, { maxFiles: 12 });
   const analysisText = `${candidate.title}\n${candidate.listText}\n${detail.text}\n${documents.text}`;
   const deadline = extractDeadline(analysisText);
-  if (isExpired(deadline)) return { job: null, rejection: 'expired deadline' };
+  if (isExpired(deadline)) return { jobs: [], rejection: 'expired deadline' };
   if (/접수(?:가|는)?\s*(?:마감|종료)|채용\s*마감|마감된\s*공고|\/\s*마감(?:\s|$)/.test(analysisText)) {
-    return { job: null, rejection: 'closed notice text' };
+    return { jobs: [], rejection: 'closed notice text' };
   }
 
-  const result = analyzeJob({
+  const vacancyAnalyses = analyzeVacancies({
     title: candidate.title,
     listText: candidate.listText,
     detailText: detail.text,
     documentText: documents.text,
     detailOk: detail.ok
   });
-  if (result.excluded) {
-    return { job: null, rejection: result.excludeReasons.join(', ') || 'classification excluded' };
-  }
-
   const finalLink = canonicalJobUrl(detail.finalUrl || candidate.link);
-  const quality = scoreJobQuality({ detail, documents, analysis: result, deadline, title: candidate.title, link: finalLink });
-  if ((STRICT_TARGET_ONLY && !result.recommended) || !quality.passed) {
-    return { job: null, rejection: quality.penalties.join(', ') || 'quality score below threshold' };
-  }
+  const jobs = [];
+  const vacancyRejections = [];
 
-  const job = {
+  for (const vacancy of vacancyAnalyses) {
+    const result = vacancy.analysis;
+    if (result.excluded) {
+      vacancyRejections.push(`${vacancy.name}: ${result.excludeReasons.join(', ') || 'classification excluded'}`);
+      continue;
+    }
+    const quality = scoreJobQuality({ detail, documents, analysis: result, deadline, title: candidate.title, link: finalLink });
+    if ((STRICT_TARGET_ONLY && !result.recommended) || !quality.passed) {
+      vacancyRejections.push(`${vacancy.name}: ${quality.penalties.join(', ') || 'quality score below threshold'}`);
+      continue;
+    }
+
+    const multiple = vacancyAnalyses.length > 1;
+    const displayTitle = multiple ? `${candidate.title} · ${vacancy.name}` : candidate.title;
+    const job = {
       org: candidate.org,
-      title: candidate.title,
+      title: displayTitle,
+      originalTitle: candidate.title,
+      vacancyId: vacancy.id,
+      vacancyName: vacancy.name,
+      vacancySource: vacancy.source,
+      vacancyConfidence: vacancy.confidence,
+      vacancyCount: vacancyAnalyses.length,
+      vacancySplitterVersion: vacancy.splitterVersion,
       link: finalLink,
       date: '',
       deadline,
@@ -175,7 +191,7 @@ async function enrichCandidate(candidate, source) {
       qualityThreshold: quality.threshold,
       qualityReasons: quality.reasons,
       qualityPenalties: quality.penalties,
-      fitReasons: result.fitReasons,
+      fitReasons: [...result.fitReasons, multiple ? '모집 직군 단위 판정 완료' : '단일 모집분야 판정'],
       excludeReasons: result.excludeReasons,
       detailChecked: detail.ok,
       detailConfidence: detail.confidence || null,
@@ -184,13 +200,26 @@ async function enrichCandidate(candidate, source) {
       documentAnalysis: { discovered: documents.discovered, attempted: documents.attempted, successful: documents.successful, analyzerVersion: documents.analyzerVersion, results: documents.results.map(({ text, ...meta }) => meta) },
       crossValidation: result.crossValidation,
       adapter: candidate.adapter || (source.alio ? 'ALIO' : source.org),
-      raw: `${detail.text || candidate.listText}
-${documents.text}`.slice(0, 5000)
+      raw: vacancy.evidenceText.slice(0, 5000)
     };
-  const validation = validateJob(job);
-  if (!validation.passed) return { job: null, rejection: validation.errors.join(', ') || 'automatic QA failed' };
-  job.validation = validation;
-  return { job, rejection: '' };
+    const validation = validateJob(job);
+    if (!validation.passed) {
+      vacancyRejections.push(`${vacancy.name}: ${validation.errors.join(', ') || 'automatic QA failed'}`);
+      continue;
+    }
+    job.validation = validation;
+    jobs.push(job);
+  }
+
+  return {
+    jobs,
+    rejection: jobs.length ? '' : (vacancyRejections.join(' | ') || 'no eligible vacancy'),
+    vacancyStats: {
+      detected: vacancyAnalyses.length,
+      accepted: jobs.length,
+      rejected: vacancyAnalyses.length - jobs.length
+    }
+  };
 }
 async function fetchSource(source) {
   try {
@@ -218,9 +247,15 @@ async function fetchSource(source) {
     const candidates = [...candidateMap.values()];
     const jobs = [];
     const rejectionReasons = {};
+    const vacancyStats = { detected: 0, accepted: 0, rejected: 0 };
     for (const candidate of candidates) {
       const outcome = await enrichCandidate(candidate, source);
-      if (outcome.job) jobs.push(outcome.job);
+      if (outcome.vacancyStats) {
+        vacancyStats.detected += outcome.vacancyStats.detected || 0;
+        vacancyStats.accepted += outcome.vacancyStats.accepted || 0;
+        vacancyStats.rejected += outcome.vacancyStats.rejected || 0;
+      }
+      if (outcome.jobs?.length) jobs.push(...outcome.jobs);
       else {
         const reason = outcome.rejection || 'unknown rejection';
         rejectionReasons[reason] = (rejectionReasons[reason] || 0) + 1;
@@ -232,7 +267,7 @@ async function fetchSource(source) {
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
-      rejectionReasons
+      rejectionReasons, vacancyStats
     };
   } catch (error) {
     return { ok: false, source, jobs: [], candidates: 0, rejectionReasons: {}, error: error.name === 'AbortError' ? 'timeout' : error.message };
@@ -268,11 +303,12 @@ for (const result of results) {
     rejected: result.rejected || 0,
     detailFailures: result.detailFailures || 0,
     error: result.error || '',
-    rejectionReasons: result.rejectionReasons || {}
+    rejectionReasons: result.rejectionReasons || {},
+    vacancyStats: result.vacancyStats || { detected: 0, accepted: 0, rejected: 0 }
   });
   for (const job of sourceJobs) {
     const normalizedTitle = normalizeTitleForDedup(job.title) || job.title.toLowerCase().replace(/\s+/g, ' ').trim();
-    const key = `${job.org}|${normalizedTitle}`;
+    const key = `${job.org}|${normalizedTitle}|${job.vacancyName || ''}`;
     const stampedJob = { ...job, collectedAt: job.collectedAt || nowIso, retainedFromPreviousRun: !result.ok };
     dedupedJobs.set(key, choosePreferredJob(dedupedJobs.get(key), stampedJob));
   }
@@ -300,7 +336,7 @@ if (!qa.passed) {
 
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || (b.qualityScore || 0) - (a.qualityScore || 0) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '11.2-collection-documents', rulesVersion: RULES_VERSION, sourceRegistryVersion: SOURCE_REGISTRY_VERSION, qualityEngineVersion: QUALITY_ENGINE_VERSION, validatorVersion: VALIDATOR_VERSION, updatedAt: nowIso,
+  version: '11.3-position-unit', rulesVersion: RULES_VERSION, sourceRegistryVersion: SOURCE_REGISTRY_VERSION, qualityEngineVersion: QUALITY_ENGINE_VERSION, validatorVersion: VALIDATOR_VERSION, updatedAt: nowIso,
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -320,11 +356,14 @@ const payload = {
     publicAttachmentsDiscovered: jobs.reduce((sum, job) => sum + Number(job.documentAnalysis?.discovered || 0), 0),
     documentsAttempted: jobs.reduce((sum, job) => sum + Number(job.documentAnalysis?.attempted || 0), 0),
     documentsParsed: jobs.reduce((sum, job) => sum + Number(job.documentAnalysis?.successful || 0), 0),
+    vacanciesDetected: sources.reduce((sum, source) => sum + Number(source.vacancyStats?.detected || 0), 0),
+    vacanciesAccepted: sources.reduce((sum, source) => sum + Number(source.vacancyStats?.accepted || 0), 0),
+    vacanciesRejected: sources.reduce((sum, source) => sum + Number(source.vacancyStats?.rejected || 0), 0),
     qaPassed: qa.passed,
     qaIssueCount: qa.issueCount
   },
   qa,
-  note: '등록된 전체 기관을 공공 ALIO 또는 공개 홈페이지에서 확인하고, 발견된 공개 첨부문서를 형식별로 분석한 뒤 검증을 통과한 공고만 노출합니다.'
+  note: '공개 본문·첨부문서를 확인한 뒤 한 공고 안의 모집 직군을 분리하여, 직군별 학력·고용형태·근무지를 연결 검증하고 지원 가능한 직군만 노출합니다.'
 };
 const healthPayload = {
   version: payload.version,

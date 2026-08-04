@@ -4,6 +4,29 @@ const LIST_QUERY_KEYS = new Set(['pageIndex', 'page', 'searchCondition', 'search
 const DETAIL_PARAM = /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no)$/i;
 const FILE_OR_DOWNLOAD = /\.(?:pdf|hwp|hwpx|docx?|xlsx?|zip)(?:$|[?#])|filedown|download|attach|atchfile|file_id|fileid/i;
 
+const SOURCE_PROFILES = {
+  '울산정보산업진흥원': {
+    hosts: ['uipa.or.kr'],
+    detailPath: /\/(?:recruit|board)\/(?:view|detail)|\/webuser\/recruit\/(?!list)/i,
+    detailParams: /^(?:idx|seq|no|bbsSeq|boardSeq)$/i
+  },
+  '울산테크노파크': {
+    hosts: ['utp.or.kr'],
+    detailPath: /(?:view|detail|read|boardView|recruit)/i,
+    detailParams: /^(?:idx|seq|no|nttId|bbsSeq|articleNo|postNo)$/i
+  },
+  '울산시설공단': {
+    hosts: ['uic.or.kr'],
+    detailPath: /\/notify\/(?!noti06\.do$)|(?:view|detail|read)/i,
+    detailParams: /^(?:idx|seq|no|nttId|bbsSeq|articleNo|dataSid)$/i
+  },
+  '울산광역시 타기관소식': {
+    hosts: ['ulsan.go.kr'],
+    detailPath: /(?:view|detail|read|select)/i,
+    detailParams: /^(?:nttId|dataSid|bbsSeq|articleNo|postNo)$/i
+  }
+};
+
 export function canonicalJobUrl(link = '') {
   try {
     const url = new URL(link);
@@ -20,11 +43,17 @@ export function canonicalJobUrl(link = '') {
   }
 }
 
-function hasDetailSignal(link = '') {
+function profileFor(source) {
+  return SOURCE_PROFILES[source.org] || null;
+}
+
+function hasDetailSignal(link = '', source = null) {
   try {
     const url = new URL(link);
+    const profile = source ? profileFor(source) : null;
+    if (profile?.detailPath?.test(url.pathname)) return true;
     if (/(?:view|detail|read|select|article|boardView|recruitview)/i.test(url.pathname)) return true;
-    return [...url.searchParams.keys()].some(key => DETAIL_PARAM.test(key));
+    return [...url.searchParams.keys()].some(key => (profile?.detailParams || DETAIL_PARAM).test(key));
   } catch {
     return false;
   }
@@ -35,10 +64,10 @@ function isListOrMain(link, source) {
     const url = new URL(link);
     const sourceUrl = new URL(source.url);
     if (canonicalJobUrl(url.href) === canonicalJobUrl(sourceUrl.href)) return true;
-    if (/\/(?:list|index|main|home|contents)(?:\.|\/|$)/i.test(url.pathname) && !hasDetailSignal(url.href)) return true;
-    if (/\/notify\/noti06\.do$/i.test(url.pathname) && !hasDetailSignal(url.href)) return true;
-    if (/\/u\/rep\/contents\.ulsan$/i.test(url.pathname) && !hasDetailSignal(url.href)) return true;
-    if (/\/recruit\/recruit\.do$/i.test(url.pathname) && !hasDetailSignal(url.href)) return true;
+    if (/\/(?:list|index|main|home|contents)(?:\.|\/|$)/i.test(url.pathname) && !hasDetailSignal(url.href, source)) return true;
+    if (/\/notify\/noti06\.do$/i.test(url.pathname) && !hasDetailSignal(url.href, source)) return true;
+    if (/\/u\/rep\/contents\.ulsan$/i.test(url.pathname) && !hasDetailSignal(url.href, source)) return true;
+    if (/\/recruit\/recruit\.do$/i.test(url.pathname) && !hasDetailSignal(url.href, source)) return true;
     return false;
   } catch {
     return true;
@@ -74,16 +103,14 @@ function candidateUrls(attrs = '', source) {
 }
 
 function sourceAllows(link, source) {
-  if (!link || FILE_OR_DOWNLOAD.test(link) || !hasDetailSignal(link) || isListOrMain(link, source)) return false;
+  if (!link || FILE_OR_DOWNLOAD.test(link) || !hasDetailSignal(link, source) || isListOrMain(link, source)) return false;
   try {
     const url = new URL(link);
     const sourceHost = new URL(source.url).hostname.replace(/^www\./, '');
     const host = url.hostname.replace(/^www\./, '');
-    if (source.org === '울산광역시 타기관소식') {
-      return host === sourceHost || host.endsWith(`.${sourceHost}`);
-    }
-    if (source.org === '울산시설공단') return host === 'uic.or.kr' || host.endsWith('.uic.or.kr');
-    return host === sourceHost || host.endsWith(`.${sourceHost}`);
+    const profile = profileFor(source);
+    const allowedHosts = profile?.hosts || [sourceHost];
+    return allowedHosts.some(allowed => host === allowed || host.endsWith(`.${allowed}`));
   } catch {
     return false;
   }
@@ -108,7 +135,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     const start = Math.max(0, match.index - 260);
     const end = Math.min(html.length, match.index + match[0].length + 900);
     const listText = cleanHtml(html.slice(start, end)).replace(/\s+/g, ' ').trim();
-    jobs.push({ org: source.org, title, link: canonical, listText });
+    jobs.push({ org: source.org, title, link: canonical, listText, adapter: source.org });
     if (jobs.length >= 30) break;
   }
   return jobs;

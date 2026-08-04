@@ -65,3 +65,16 @@ const singlePosting = analyzeVacancies({ title: '공무직 채용 공고', detai
 assert.equal(singlePosting.length, 1, '단일 공고는 불필요하게 분리하지 않아야 함');
 assert.equal(singlePosting[0].analysis.recommended, true);
 console.log('v11.3 position-unit tests passed');
+
+// v11.4 debug-stage extraction smoke tests
+{
+  const { extractAlioCandidates } = await import('./collectors/alio-adapter.mjs');
+  const html = `<a href="javascript:recruitView('303191')">2026년도 신입직원 공개채용 공고</a>`;
+  const rows = extractAlioCandidates(html, { org: '한국동서발전', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do' }, {
+    validTitle: title => /채용/.test(title),
+    normalizeTitleForDedup: title => title
+  });
+  if (rows.length !== 1 || !/recruitView\.do\?idx=303191/.test(rows[0].link)) {
+    throw new Error('v11.4 ALIO idx adapter test failed');
+  }
+}

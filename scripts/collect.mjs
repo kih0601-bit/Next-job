@@ -10,12 +10,12 @@ import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, R
 
 import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.mjs';
 
-const POSITIVE = /채용\s*공고|직원\s*채용|신입(?:사원|직원)?\s*채용|경력(?:사원|직원)?\s*채용|정규직\s*채용|무기계약직\s*채용|공무직\s*채용|근로자\s*(?:채용|모집)/;
+const POSITIVE = /채용(?:\s*(?:공고|계획|안내|모집)|\s*공개\s*모집|\s*공개채용)|직원\s*(?:공개\s*)?채용|신입(?:사원|직원)?(?:\s*공개)?\s*채용|경력(?:사원|직원)?(?:\s*공개)?\s*채용|정규직\s*(?:공개\s*)?채용|무기계약직\s*(?:공개\s*)?채용|공무직\s*(?:공개\s*)?채용|근로자\s*(?:채용|모집)|인력\s*(?:채용|모집)/;
 const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*명단|서류(?:전형|심사)|필기(?:전형|시험)|면접(?:전형|시험)|AI\s*역량검사|체력검정|시험\s*실시|접수현황|지원현황|경쟁률|전형결과|결과발표|채용절차|전형일정|시험장소/;
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '11.3-position-unit';
+const DATA_VERSION = '11.4-debug-stage1';
 
 function validTitle(title) {
   if (!title || title.length < 6 || title.length > 220) return false;
@@ -111,7 +111,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.3-position-unit)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.4-debug-stage1)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -131,7 +131,11 @@ async function enrichCandidate(candidate, source) {
     });
   }
   if (source.requireValidDetail && !detail.ok) {
-    return { jobs: [], rejection: detail.error || 'detail validation failed' };
+    return {
+      jobs: [],
+      rejection: detail.error || 'detail validation failed',
+      pipeline: { detailAttempted: Number(Boolean(source.detail)), detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }
+    };
   }
 
   const documents = await analyzeAttachments(detail.attachments, { maxFiles: 12 });
@@ -214,6 +218,13 @@ async function enrichCandidate(candidate, source) {
   return {
     jobs,
     rejection: jobs.length ? '' : (vacancyRejections.join(' | ') || 'no eligible vacancy'),
+    pipeline: {
+      detailAttempted: Number(Boolean(source.detail)),
+      detailValidated: Number(Boolean(detail.ok)),
+      attachmentsDiscovered: Number(documents.discovered || 0),
+      documentsAttempted: Number(documents.attempted || 0),
+      documentsParsed: Number(documents.successful || 0)
+    },
     vacancyStats: {
       detected: vacancyAnalyses.length,
       accepted: jobs.length,
@@ -232,6 +243,7 @@ async function fetchSource(source) {
     if (!html) throw lastError || new Error('empty source html');
     const listingUrls = source.alio ? [source.url] : discoverListingUrls(html, source);
     const candidateMap = new Map();
+    const extractionDiagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0 };
     for (const listingUrl of listingUrls) {
       let listingHtml = listingUrl === source.url ? html : '';
       if (!listingHtml) {
@@ -239,7 +251,11 @@ async function fetchSource(source) {
         catch { continue; }
       }
       const listingSource = { ...source, url: listingUrl };
-      for (const candidate of extractListCandidates(listingHtml, listingSource)) {
+      const extracted = extractListCandidates(listingHtml, listingSource);
+      if (extracted.diagnostics) {
+        for (const key of Object.keys(extractionDiagnostics)) extractionDiagnostics[key] += Number(extracted.diagnostics[key] || 0);
+      }
+      for (const candidate of extracted) {
         const key = `${candidate.org}|${normalizeTitleForDedup(candidate.title)}|${canonicalJobUrl(candidate.link)}`;
         if (!candidateMap.has(key)) candidateMap.set(key, candidate);
       }
@@ -248,8 +264,12 @@ async function fetchSource(source) {
     const jobs = [];
     const rejectionReasons = {};
     const vacancyStats = { detected: 0, accepted: 0, rejected: 0 };
+    const pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 };
     for (const candidate of candidates) {
       const outcome = await enrichCandidate(candidate, source);
+      if (outcome.pipeline) {
+        for (const key of Object.keys(pipeline)) pipeline[key] += Number(outcome.pipeline[key] || 0);
+      }
       if (outcome.vacancyStats) {
         vacancyStats.detected += outcome.vacancyStats.detected || 0;
         vacancyStats.accepted += outcome.vacancyStats.accepted || 0;
@@ -267,10 +287,10 @@ async function fetchSource(source) {
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
-      rejectionReasons, vacancyStats
+      rejectionReasons, vacancyStats, pipeline, extractionDiagnostics
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rejectionReasons: {}, error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPreviousPayload() {
@@ -304,6 +324,8 @@ for (const result of results) {
     detailFailures: result.detailFailures || 0,
     error: result.error || '',
     rejectionReasons: result.rejectionReasons || {},
+    extractionDiagnostics: result.extractionDiagnostics || {},
+    pipeline: result.pipeline || { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 },
     vacancyStats: result.vacancyStats || { detected: 0, accepted: 0, rejected: 0 }
   });
   for (const job of sourceJobs) {
@@ -336,7 +358,7 @@ if (!qa.passed) {
 
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || (b.qualityScore || 0) - (a.qualityScore || 0) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '11.3-position-unit', rulesVersion: RULES_VERSION, sourceRegistryVersion: SOURCE_REGISTRY_VERSION, qualityEngineVersion: QUALITY_ENGINE_VERSION, validatorVersion: VALIDATOR_VERSION, updatedAt: nowIso,
+  version: DATA_VERSION, rulesVersion: RULES_VERSION, sourceRegistryVersion: SOURCE_REGISTRY_VERSION, qualityEngineVersion: QUALITY_ENGINE_VERSION, validatorVersion: VALIDATOR_VERSION, updatedAt: nowIso,
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -353,9 +375,11 @@ const payload = {
     degradedSources,
     failedSources,
     retainedJobs,
-    publicAttachmentsDiscovered: jobs.reduce((sum, job) => sum + Number(job.documentAnalysis?.discovered || 0), 0),
-    documentsAttempted: jobs.reduce((sum, job) => sum + Number(job.documentAnalysis?.attempted || 0), 0),
-    documentsParsed: jobs.reduce((sum, job) => sum + Number(job.documentAnalysis?.successful || 0), 0),
+    detailAttempts: sources.reduce((sum, source) => sum + Number(source.pipeline?.detailAttempted || 0), 0),
+    detailValidatedCandidates: sources.reduce((sum, source) => sum + Number(source.pipeline?.detailValidated || 0), 0),
+    publicAttachmentsDiscovered: sources.reduce((sum, source) => sum + Number(source.pipeline?.attachmentsDiscovered || 0), 0),
+    documentsAttempted: sources.reduce((sum, source) => sum + Number(source.pipeline?.documentsAttempted || 0), 0),
+    documentsParsed: sources.reduce((sum, source) => sum + Number(source.pipeline?.documentsParsed || 0), 0),
     vacanciesDetected: sources.reduce((sum, source) => sum + Number(source.vacancyStats?.detected || 0), 0),
     vacanciesAccepted: sources.reduce((sum, source) => sum + Number(source.vacancyStats?.accepted || 0), 0),
     vacanciesRejected: sources.reduce((sum, source) => sum + Number(source.vacancyStats?.rejected || 0), 0),
@@ -381,6 +405,7 @@ await fs.mkdir('data', { recursive: true });
 await Promise.all([
   fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/source-health.json', `${JSON.stringify(healthPayload, null, 2)}\n`, 'utf8'),
-  fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, ...qa }, null, 2)}\n`, 'utf8')
+  fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, ...qa }, null, 2)}\n`, 'utf8'),
+  fs.writeFile('data/debug-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, sources: sources.map(source => ({ org: source.org, status: source.status, listingPagesChecked: source.listingPagesChecked, candidates: source.candidates, extractionDiagnostics: source.extractionDiagnostics, pipeline: source.pipeline, rejected: source.rejected, rejectionReasons: source.rejectionReasons, error: source.error })) }, null, 2)}\n`, 'utf8')
 ]);
 console.log(payload.stats);

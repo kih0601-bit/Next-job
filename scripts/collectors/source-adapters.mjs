@@ -140,3 +140,32 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
   }
   return jobs;
 }
+
+export function discoverListingUrls(html, source) {
+  if (!source.discoverListings) return [source.url];
+  const urls = [source.url];
+  const seen = new Set(urls.map(canonicalJobUrl));
+  const anchorRegex = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
+  for (const match of String(html).matchAll(anchorRegex)) {
+    const attrs = match[1] || '';
+    const label = cleanHtml(match[2]).replace(/\s+/g, ' ').trim();
+    if (!/(채용|인재|입사|직원모집|recruit|career|employment)/i.test(label)) continue;
+    const candidates = candidateUrls(attrs, source);
+    for (const link of candidates) {
+      try {
+        const url = new URL(link);
+        const base = new URL(source.url);
+        const host = url.hostname.replace(/^www\./, '');
+        const baseHost = base.hostname.replace(/^www\./, '');
+        if (!(host === baseHost || host.endsWith(`.${baseHost}`))) continue;
+        if (FILE_OR_DOWNLOAD.test(link)) continue;
+        const key = canonicalJobUrl(link);
+        if (seen.has(key)) continue;
+        seen.add(key);
+        urls.push(link);
+        if (urls.length >= (source.maxListingPages || 4)) return urls;
+      } catch { /* ignore invalid */ }
+    }
+  }
+  return urls;
+}

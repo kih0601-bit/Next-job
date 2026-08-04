@@ -1,7 +1,7 @@
 {
-  "version": "5.1-alio-and-source-health",
+  "version": "5.2-source-confidence",
   "rulesVersion": "2026-08-04.4",
-  "updatedAt": "2026-08-04T05:28:48.245Z",
+  "updatedAt": "2026-08-04T05:33:00.529Z",
   "jobs": [],
   "sources": [
     {
@@ -9,6 +9,8 @@
       "ok": false,
       "candidates": 0,
       "count": 0,
+      "rejected": 0,
+      "detailFailures": 0,
       "error": "HTTP 403"
     },
     {
@@ -16,6 +18,8 @@
       "ok": true,
       "candidates": 0,
       "count": 0,
+      "rejected": 0,
+      "detailFailures": 0,
       "error": ""
     },
     {
@@ -23,20 +27,26 @@
       "ok": true,
       "candidates": 0,
       "count": 0,
+      "rejected": 0,
+      "detailFailures": 0,
       "error": ""
     },
     {
       "org": "울산광역시 타기관소식",
-      "ok": false,
-      "candidates": 0,
+      "ok": true,
+      "candidates": 1,
       "count": 0,
-      "error": "fetch failed"
+      "rejected": 1,
+      "detailFailures": 1,
+      "error": ""
     },
     {
       "org": "한국동서발전",
       "ok": true,
       "candidates": 0,
       "count": 0,
+      "rejected": 0,
+      "detailFailures": 0,
       "error": ""
     },
     {
@@ -44,6 +54,8 @@
       "ok": true,
       "candidates": 0,
       "count": 0,
+      "rejected": 0,
+      "detailFailures": 0,
       "error": ""
     },
     {
@@ -51,6 +63,8 @@
       "ok": true,
       "candidates": 1,
       "count": 0,
+      "rejected": 1,
+      "detailFailures": 1,
       "error": ""
     },
     {
@@ -58,6 +72,8 @@
       "ok": true,
       "candidates": 2,
       "count": 0,
+      "rejected": 2,
+      "detailFailures": 2,
       "error": ""
     },
     {
@@ -65,6 +81,8 @@
       "ok": true,
       "candidates": 0,
       "count": 0,
+      "rejected": 0,
+      "detailFailures": 0,
       "error": ""
     },
     {
@@ -72,6 +90,8 @@
       "ok": true,
       "candidates": 0,
       "count": 0,
+      "rejected": 0,
+      "detailFailures": 0,
       "error": ""
     },
     {
@@ -79,6 +99,8 @@
       "ok": true,
       "candidates": 0,
       "count": 0,
+      "rejected": 0,
+      "detailFailures": 0,
       "error": ""
     },
     {
@@ -86,6 +108,8 @@
       "ok": true,
       "candidates": 1,
       "count": 0,
+      "rejected": 1,
+      "detailFailures": 1,
       "error": ""
     },
     {
@@ -93,17 +117,21 @@
       "ok": true,
       "candidates": 0,
       "count": 0,
+      "rejected": 0,
+      "detailFailures": 0,
       "error": ""
     }
   ],
   "stats": {
     "sourceCount": 13,
-    "success": 11,
+    "success": 12,
     "total": 0,
     "recommended": 0,
     "highSchoolSuitable": 0,
     "detailChecked": 0,
-    "reviewNeeded": 0
+    "reviewNeeded": 0,
+    "sourceRejected": 5,
+    "sourceDetailFailures": 5
   },
-  "note": "기관별 링크 추출과 ALIO 전용 상세링크 판독을 사용하며, 원문 검증에 실패한 항목은 저장하지 않습니다."
+  "note": "원문 구조·제목 일치도·리디렉션 도메인을 함께 검증하며, 목록/홈/오류 페이지와 신뢰도가 낮은 원문은 저장하지 않습니다."
 }

@@ -55,7 +55,7 @@ export async function fetchDetail(url, { timeoutMs = 15000 } = {}) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/4.2-detail-parser)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/4.8-detail-parser)',
         'accept-language': 'ko-KR,ko;q=0.9,en;q=0.5',
         accept: 'text/html,application/xhtml+xml'
       }
@@ -64,7 +64,9 @@ export async function fetchDetail(url, { timeoutMs = 15000 } = {}) {
     const contentType = response.headers.get('content-type') || '';
     if (!/html|text\//i.test(contentType)) throw new Error(`unsupported content-type: ${contentType}`);
     const html = await response.text();
-    const text = cleanHtml(html).slice(0, 30000);
+    const text = cleanHtml(html).slice(0, 50000);
+    const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)/.test(text) && !/(모집분야|응시자격|접수기간|근무조건|채용인원)/.test(text);
+    if (looksLikeListOnly) throw new Error('list page detected');
     return {
       ok: true,
       finalUrl: response.url || url,

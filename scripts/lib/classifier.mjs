@@ -38,7 +38,7 @@ export function detectLocation(text = '') {
 
 export function analyzeJob({ title = '', listText = '', detailText = '', detailOk = false }) {
   const titleText = String(title).trim();
-  const fullText = `${titleText}\n${listText}\n${detailText}`;
+  const fullText = `${titleText}\n${listText}\n${detailText}`.replace(/\s+/g, ' ');
   const reasons = [];
   const excludeReasons = [];
 
@@ -68,9 +68,10 @@ export function analyzeJob({ title = '', listText = '', detailText = '', detailO
   else reasons.push('근무지 원문 확인 필요');
 
   if (!detailOk) reasons.push('상세페이지 판독 실패 또는 미지원');
+  if (detailOk && detailText.length < 80) reasons.push('상세 본문이 너무 짧아 원문 재확인 필요');
 
   const excluded = excludeReasons.length > 0;
-  const recommended = !excluded && detailOk && education === '고졸 가능' && location === '울산' && ALLOWED_EMPLOYMENT.includes(employmentType);
+  const recommended = !excluded && detailOk && detailText.length >= 80 && education === '고졸 가능' && location === '울산' && ALLOWED_EMPLOYMENT.includes(employmentType);
   const reviewNeeded = !excluded && !recommended;
   let fitScore = recommended ? 100 : excluded ? 0 : 30;
   if (reviewNeeded) {

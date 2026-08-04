@@ -114,7 +114,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/5.1-alio-and-source-health)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/5.2-source-confidence)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -125,7 +125,14 @@ async function fetchHtml(url, timeoutMs = 15000) {
 
 async function enrichCandidate(candidate, source) {
   let detail = { ok: false, finalUrl: candidate.link, text: '', attachments: [], error: 'detail disabled' };
-  if (source.detail) detail = await fetchDetail(candidate.link, { expectedTitle: candidate.title, sourceOrg: source.org });
+  if (source.detail) {
+    const sourceHost = new URL(source.url).hostname;
+    detail = await fetchDetail(candidate.link, {
+      expectedTitle: candidate.title,
+      sourceOrg: source.org,
+      allowedHosts: source.alio ? ['job.alio.go.kr', 'alio.go.kr'] : [sourceHost]
+    });
+  }
   if (source.requireValidDetail && !detail.ok) return null;
   const analysisText = `${candidate.title}\n${candidate.listText}\n${detail.text}`;
   const deadline = extractDeadline(analysisText);
@@ -154,6 +161,7 @@ async function enrichCandidate(candidate, source) {
     fitReasons: result.fitReasons,
     excludeReasons: result.excludeReasons,
     detailChecked: detail.ok,
+    detailConfidence: detail.confidence || null,
     detailError: detail.error || '',
     attachments: detail.attachments,
     raw: (detail.text || candidate.listText).slice(0, 3000)
@@ -162,14 +170,24 @@ async function enrichCandidate(candidate, source) {
 
 async function fetchSource(source) {
   try {
-    const html = await fetchHtml(source.url);
+    let html = '';
+    let lastError;
+    for (let attempt = 1; attempt <= 2; attempt += 1) {
+      try { html = await fetchHtml(source.url, attempt === 1 ? 15000 : 25000); break; }
+      catch (error) { lastError = error; if (attempt === 1) await new Promise(resolve => setTimeout(resolve, 800)); }
+    }
+    if (!html) throw lastError || new Error('empty source html');
     const candidates = extractListCandidates(html, source);
     const jobs = [];
     for (const candidate of candidates) {
       const job = await enrichCandidate(candidate, source);
       if (job) jobs.push(job);
     }
-    return { ok: true, source, jobs, candidates: candidates.length };
+    return {
+      ok: true, source, jobs, candidates: candidates.length,
+      rejected: Math.max(0, candidates.length - jobs.length),
+      detailFailures: candidates.length - jobs.filter(job => job.detailChecked).length
+    };
   } catch (error) {
     return { ok: false, source, jobs: [], candidates: 0, error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
@@ -178,10 +196,14 @@ async function fetchSource(source) {
 const results = await Promise.all(SOURCES.map(fetchSource));
 const dedupedJobs = new Map(), sources = [];
 for (const result of results) {
-  sources.push({ org: result.source.org, ok: result.ok, candidates: result.candidates, count: result.jobs.length, error: result.error || '' });
+  sources.push({
+    org: result.source.org, ok: result.ok, candidates: result.candidates,
+    count: result.jobs.length, rejected: result.rejected || 0,
+    detailFailures: result.detailFailures || 0, error: result.error || ''
+  });
   for (const job of result.jobs) {
     const normalizedTitle = normalizeTitleForDedup(job.title) || job.title.toLowerCase().replace(/\s+/g, ' ').trim();
-    const key = `${job.org}|${normalizedTitle}|${canonicalJobUrl(job.link)}`;
+    const key = `${job.org}|${normalizedTitle}`;
     dedupedJobs.set(key, choosePreferredJob(dedupedJobs.get(key), job));
   }
 }
@@ -194,7 +216,7 @@ if (successfulSources === 0) {
 
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '5.1-alio-and-source-health', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
+  version: '5.2-source-confidence', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -203,9 +225,11 @@ const payload = {
     recommended: jobs.filter(job => job.recommended).length,
     highSchoolSuitable: jobs.filter(job => job.eligibility === '고졸 가능').length,
     detailChecked: jobs.filter(job => job.detailChecked).length,
-    reviewNeeded: jobs.filter(job => job.status === '확인 필요').length
+    reviewNeeded: jobs.filter(job => job.status === '확인 필요').length,
+    sourceRejected: sources.reduce((sum, source) => sum + (source.rejected || 0), 0),
+    sourceDetailFailures: sources.reduce((sum, source) => sum + (source.detailFailures || 0), 0)
   },
-  note: '기관별 링크 추출과 ALIO 전용 상세링크 판독을 사용하며, 원문 검증에 실패한 항목은 저장하지 않습니다.'
+  note: '원문 구조·제목 일치도·리디렉션 도메인을 함께 검증하며, 목록/홈/오류 페이지와 신뢰도가 낮은 원문은 저장하지 않습니다.'
 };
 await fs.mkdir('data', { recursive: true });
 await fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8');

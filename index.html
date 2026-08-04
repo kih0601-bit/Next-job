@@ -52,7 +52,7 @@
 <div id="sheet" class="sheet"><div class="backdrop" data-close></div><div class="panel"><div class="handle"></div><button class="close" data-close>×</button><div id="detail"></div></div></div>
 <script>
 let institutions=[], feed={jobs:[],sources:[],stats:{}}, filter='all';
-const UI_VERSION='8.0-usability';
+const UI_VERSION='9.0-quality-resilience';
 const state=JSON.parse(localStorage.getItem('nextJobUI')||'null')||{};
 state.favorites=Array.isArray(state.favorites)?state.favorites:[];state.seen=state.seen||{};state.applied=Array.isArray(state.applied)?state.applied:[];state.recent=Array.isArray(state.recent)?state.recent:[];state.watchedOrgs=Array.isArray(state.watchedOrgs)?state.watchedOrgs:[];
 const save=()=>localStorage.setItem('nextJobUI',JSON.stringify(state));
@@ -106,8 +106,8 @@ function visibleJobs(){
 }
 function render(){
   instCount.textContent=institutions.length;jobCount.textContent=(feed.jobs||[]).length;fitCount.textContent=(feed.jobs||[]).filter(j=>classify(j).fit).length;expectedCount.textContent=institutions.filter(i=>(i.months||[]).includes(month)).length;
-  const unseen=(feed.jobs||[]).filter(j=>!state.seen[key(j)]).length;briefing.textContent=unseen?`새 공고 ${unseen}건이 아직 확인되지 않았어요.`:'확인하지 않은 새 공고가 없습니다.';
-  updateBadge.textContent=feed.version||'갱신 전';status.textContent=feed.updatedAt?`${new Date(feed.updatedAt).toLocaleString()} 갱신 · ${feed.stats.success||0}/${feed.stats.sourceCount||0}개 출처 · 데이터 ${feed.version||'-'} · UI ${UI_VERSION}`:'첫 자동수집 전입니다.';
+  const unseen=(feed.jobs||[]).filter(j=>!state.seen[key(j)]).length;const degraded=Number(feed.stats?.degradedSources||0),failed=Number(feed.stats?.failedSources||0),retained=Number(feed.stats?.retainedJobs||0);briefing.textContent=(degraded||failed)?`일부 출처 상태 이상: 보존 ${retained}건 · 실패 ${failed}곳. 원문 검증된 이전 공고만 유지 중입니다.`:(unseen?`새 공고 ${unseen}건이 아직 확인되지 않았어요.`:'확인하지 않은 새 공고가 없습니다.');
+  updateBadge.textContent=feed.version||'갱신 전';status.textContent=feed.updatedAt?`${new Date(feed.updatedAt).toLocaleString()} 갱신 · 정상 ${feed.stats.success||0}/${feed.stats.sourceCount||0} · 보존 ${feed.stats.retainedJobs||0}건 · 데이터 ${feed.version||'-'} · UI ${UI_VERSION}`:'첫 자동수집 전입니다.';
   recommended.innerHTML=(feed.jobs||[]).filter(j=>{const c=classify(j);return c.fit&&c.ulsan&&c.regular}).slice(0,5).map(card).join('')||'<div class="empty">추천 공고가 없습니다.</div>';
   jobList.innerHTML=visibleJobs().map(card).join('')||'<div class="empty">조건에 맞는 공고가 없습니다.</div>';
   favoriteList.innerHTML=(feed.jobs||[]).filter(j=>state.favorites.includes(key(j))).map(card).join('')||'<div class="empty">즐겨찾기한 공고가 없습니다.</div>';

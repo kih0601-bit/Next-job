@@ -3,6 +3,7 @@ import {
   REQUIRED_LICENSE_PATTERNS, DEGREE_REQUIRED_PATTERNS, HIGH_SCHOOL_OK_PATTERNS,
   ALLOWED_EMPLOYMENT, TEMPORARY_EMPLOYMENT_STRONG_PATTERNS, TEMPORARY_EMPLOYMENT_BENIGN_PATTERNS
 } from './rules.mjs';
+import { splitVacancies, VACANCY_SPLITTER_VERSION } from './vacancy-splitter.mjs';
 
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 
@@ -74,7 +75,7 @@ function crossValidate(detailText = '', documentText = '') {
   return { checked: true, conflict: reasons.length > 0, reasons, detailEmployment, documentEmployment, detailEducation, documentEducation, detailLocation, documentLocation };
 }
 
-export function analyzeJob({ title = '', listText = '', detailText = '', documentText = '', detailOk = false }) {
+export function analyzeJob({ title = '', listText = '', detailText = '', documentText = '', detailOk = false, structuredVacancy = false }) {
   const titleText = String(title).trim();
   const fullText = `${titleText}\n${listText}\n${detailText}\n${documentText}`.replace(/[ \t]+/g, ' ');
   const reasons = [], excludeReasons = [];
@@ -102,10 +103,12 @@ export function analyzeJob({ title = '', listText = '', detailText = '', documen
   if (crossValidation.conflict) excludeReasons.push(...crossValidation.reasons);
   if (crossValidation.checked && !crossValidation.conflict) reasons.push('본문-첨부문서 교차검증 통과');
   if (!detailOk) reasons.push('상세페이지 판독 실패 또는 미지원');
-  if (detailOk && detailText.length < 120) reasons.push('상세 본문이 너무 짧음');
+  const structuredSignals = [education === '고졸 가능', location === '울산', ALLOWED_EMPLOYMENT.includes(employmentType), /채용인원|모집인원|\d+명/.test(detailText)].filter(Boolean).length;
+  const detailSufficient = detailText.length >= 120 || (structuredSignals >= 4 && detailText.length >= 55) || (structuredVacancy && structuredSignals >= 3 && detailText.length >= 55);
+  if (detailOk && !detailSufficient) reasons.push('상세 본문이 너무 짧음');
 
   const excluded = excludeReasons.length > 0;
-  const recommended = !excluded && detailOk && detailText.length >= 120 && education === '고졸 가능' && location === '울산' && ALLOWED_EMPLOYMENT.includes(employmentType);
+  const recommended = !excluded && detailOk && detailSufficient && education === '고졸 가능' && location === '울산' && ALLOWED_EMPLOYMENT.includes(employmentType);
   const reviewNeeded = !excluded && !recommended;
   let fitScore = recommended ? 100 : excluded ? 0 : 25;
   if (reviewNeeded) {
@@ -120,4 +123,27 @@ export function analyzeJob({ title = '', listText = '', detailText = '', documen
     eligibility: education, employmentType, location, fitScore, jobCategory: detectJobCategory(fullText), crossValidation,
     fitReasons: [...new Set(reasons)], excludeReasons: [...new Set(excludeReasons)]
   };
+}
+
+
+export function analyzeVacancies({ title = '', listText = '', detailText = '', documentText = '', detailOk = false } = {}) {
+  const vacancies = splitVacancies({ title, detailText, documentText });
+  return vacancies.map((vacancy, index) => {
+    const localDetail = `${vacancy.sharedContext}\n${vacancy.localText}`.trim();
+    const result = analyzeJob({
+      title: vacancies.length > 1 ? `${title} ${vacancy.name}` : title,
+      listText,
+      detailText: localDetail,
+      documentText: '',
+      detailOk,
+      structuredVacancy: vacancies.length > 1
+    });
+    return {
+      ...vacancy,
+      index,
+      analysis: result,
+      splitterVersion: VACANCY_SPLITTER_VERSION,
+      evidenceText: localDetail
+    };
+  });
 }

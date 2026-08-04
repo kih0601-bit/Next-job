@@ -1,5 +1,5 @@
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
-export const QUALITY_ENGINE_VERSION = '11.0.0';
+export const QUALITY_ENGINE_VERSION = '11.3.0-position-unit';
 export const QUALITY_THRESHOLD = 90;
 
 export function scoreJobQuality({ detail = {}, documents = {}, analysis = {}, deadline = '', link = '' } = {}) {

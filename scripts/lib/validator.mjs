@@ -3,7 +3,7 @@ const LIST_OR_HOME = /(?:\/list(?:\.|\/|$)|\/index(?:\.|\/|$)|\/main(?:\.|\/|$)|
 const ERROR_TEXT = /404|not\s*found|페이지를\s*찾을\s*수|주소가\s*올바른지|존재하지\s*않는\s*페이지/i;
 const CLOSED_TEXT = /접수\s*(?:마감|종료)|채용\s*마감|마감된\s*공고/i;
 
-export const VALIDATOR_VERSION = '11.1.0-employment-context';
+export const VALIDATOR_VERSION = '11.3.0-position-unit';
 
 export function validateJob(job = {}) {
   const errors = [], warnings = [];
@@ -26,6 +26,8 @@ export function validateJob(job = {}) {
   if (!job.deadline) warnings.push('마감일 미확인');
   if ((job.qualityScore || 0) < (job.qualityThreshold || 90)) errors.push('품질점수 미달');
   if (!job.detailChecked) errors.push('상세 원문 미검증');
+  if ((job.vacancyCount || 1) > 1 && !job.vacancyName) errors.push('다중 직군 이름 누락');
+  if ((job.vacancyCount || 1) > 1 && !job.vacancySplitterVersion) errors.push('직군 분리 버전 누락');
   return { passed: errors.length === 0, errors: [...new Set(errors)], warnings: [...new Set(warnings)] };
 }
 
@@ -35,7 +37,7 @@ export function runCollectionQA(jobs = []) {
   for (const job of jobs) {
     const validation = validateJob(job);
     if (!validation.passed) issues.push({ org: job.org, title: job.title, errors: validation.errors });
-    const key = `${job.org}|${String(job.title).replace(/\s+/g, ' ').trim().toLowerCase()}`;
+    const key = `${job.org}|${job.originalTitle || job.title}|${job.vacancyName || ''}`.replace(/\s+/g, ' ').trim().toLowerCase();
     if (seen.has(key)) issues.push({ org: job.org, title: job.title, errors: ['중복 공고'] });
     seen.add(key);
   }

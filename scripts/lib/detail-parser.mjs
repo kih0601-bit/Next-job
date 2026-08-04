@@ -93,20 +93,23 @@ export function extractAttachments(html, baseUrl) {
     const label = cleanHtml(match[2]);
     const context = attachmentContext(source, match.index || 0, match[0].length);
     const href = attrs.match(/\bhref\s*=\s*["']([^"']+)["']/i)?.[1] || '';
-    const anchorHasFileSignal = FILE_SIGNAL.test(`${attrs} ${label} ${href}`) || ATTACHMENT_CONTEXT.test(context);
+    const anchorProbe = `${attrs} ${label} ${href}`;
+    const anchorHasDirectFile = FILE_EXT.test(anchorProbe);
+    const anchorHasFileSignal = anchorHasDirectFile || FILE_SIGNAL.test(anchorProbe) || ATTACHMENT_CONTEXT.test(context);
 
     if (anchorHasFileSignal && href && href !== '#' && !/^javascript:/i.test(href)) {
       addAttachment(attachments, seen, href, label, baseUrl, '', context);
     }
     const onclickMatch = attrs.match(/\bonclick\s*=\s*(["'])([\s\S]*?)\1/i);
     const js = onclickMatch?.[2] || (/^javascript:/i.test(href) ? href : '');
-    if (anchorHasFileSignal || FILE_SIGNAL.test(js)) {
-      for (const candidate of urlsFromJavascript(js)) addAttachment(attachments, seen, candidate, label, baseUrl, '', context);
+    const jsCandidates = urlsFromJavascript(js);
+    if (anchorHasFileSignal || FILE_SIGNAL.test(js) || jsCandidates.some(candidate => FILE_EXT.test(candidate))) {
+      for (const candidate of jsCandidates) addAttachment(attachments, seen, candidate, label, baseUrl, '', context);
     }
     for (const attr of ['data-url', 'data-href', 'data-file', 'data-download', 'value']) {
       const valueMatch = attrs.match(new RegExp(`\\b${attr}\\s*=\\s*(["'])((?:(?!\\1).)+)\\1`, 'i'));
       const value = valueMatch?.[2];
-      if (value && (anchorHasFileSignal || /file|download/i.test(attr))) {
+      if (value && (anchorHasFileSignal || /file|download/i.test(attr) || FILE_EXT.test(value))) {
         addAttachment(attachments, seen, value, label, baseUrl, '', context);
       }
     }

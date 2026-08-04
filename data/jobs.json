@@ -1,7 +1,7 @@
 {
-  "version": "5.0-source-adapters",
+  "version": "5.1-alio-and-source-health",
   "rulesVersion": "2026-08-04.4",
-  "updatedAt": "2026-08-04T05:23:29.169Z",
+  "updatedAt": "2026-08-04T05:28:48.245Z",
   "jobs": [],
   "sources": [
     {
@@ -27,10 +27,10 @@
     },
     {
       "org": "울산광역시 타기관소식",
-      "ok": true,
-      "candidates": 1,
+      "ok": false,
+      "candidates": 0,
       "count": 0,
-      "error": ""
+      "error": "fetch failed"
     },
     {
       "org": "한국동서발전",
@@ -98,12 +98,12 @@
   ],
   "stats": {
     "sourceCount": 13,
-    "success": 12,
+    "success": 11,
     "total": 0,
     "recommended": 0,
     "highSchoolSuitable": 0,
     "detailChecked": 0,
     "reviewNeeded": 0
   },
-  "note": "기관별 링크 추출기를 사용하고, 원문을 실제 요청해 404·오류페이지·게시판 목록이면 노출하지 않습니다."
+  "note": "기관별 링크 추출과 ALIO 전용 상세링크 판독을 사용하며, 원문 검증에 실패한 항목은 저장하지 않습니다."
 }

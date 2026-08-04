@@ -4,6 +4,20 @@ const LIST_QUERY_KEYS = new Set(['pageIndex', 'page', 'searchCondition', 'search
 const DETAIL_PARAM = /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no)$/i;
 const FILE_OR_DOWNLOAD = /\.(?:pdf|hwp|hwpx|docx?|xlsx?|zip)(?:$|[?#])|filedown|download|attach|atchfile|file_id|fileid/i;
 
+
+const NON_RECRUITMENT_DISCLOSURE = [
+  /친인척(?:\s*해당자)?\s*(?:공개|현황)/,
+  /임직원\s*채용인원\s*(?:및|·)?\s*친인척/,
+  /채용(?:인원|현황|실적|통계)\s*(?:공개|현황)/,
+  /신규채용\s*(?:현황|실적|통계)/,
+  /채용비리|채용\s*감사|채용\s*점검/,
+  /퇴직자|재직자|임직원\s*현황/
+];
+
+function isRecruitmentDisclosure(title = '') {
+  return NON_RECRUITMENT_DISCLOSURE.some(pattern => pattern.test(title));
+}
+
 const SOURCE_PROFILES = {
   '울산정보산업진흥원': {
     hosts: ['uipa.or.kr'],
@@ -134,7 +148,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     diagnostics.anchors += 1;
     const attrs = match[1] || '';
     const title = cleanHtml(match[2]).replace(/\s+/g, ' ').trim();
-    if (!validTitle(title)) continue;
+    if (!validTitle(title) || isRecruitmentDisclosure(title)) continue;
     diagnostics.titleMatches += 1;
 
     const urls = candidateUrls(attrs, source);

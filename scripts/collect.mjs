@@ -15,7 +15,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '11.4-debug-stage1';
+const DATA_VERSION = '11.5-debug-stage2';
 
 function validTitle(title) {
   if (!title || title.length < 6 || title.length > 220) return false;
@@ -111,7 +111,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.4-debug-stage1)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.5-debug-stage2)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -134,7 +134,8 @@ async function enrichCandidate(candidate, source) {
     return {
       jobs: [],
       rejection: detail.error || 'detail validation failed',
-      pipeline: { detailAttempted: Number(Boolean(source.detail)), detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }
+      pipeline: { detailAttempted: Number(Boolean(source.detail)), detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 },
+      documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }
     };
   }
 
@@ -225,6 +226,8 @@ async function enrichCandidate(candidate, source) {
       documentsAttempted: Number(documents.attempted || 0),
       documentsParsed: Number(documents.successful || 0)
     },
+    documentDiagnostics: documents.diagnostics || { byDetectedType: {}, byContentType: {}, byError: {} },
+    documentResults: documents.results.map(({ text, ...meta }) => meta),
     vacancyStats: {
       detected: vacancyAnalyses.length,
       accepted: jobs.length,
@@ -232,6 +235,12 @@ async function enrichCandidate(candidate, source) {
     }
   };
 }
+
+function mergeCounts(target, source) {
+  for (const [key, value] of Object.entries(source || {})) target[key] = (target[key] || 0) + Number(value || 0);
+  return target;
+}
+
 async function fetchSource(source) {
   try {
     let html = '';
@@ -265,10 +274,20 @@ async function fetchSource(source) {
     const rejectionReasons = {};
     const vacancyStats = { detected: 0, accepted: 0, rejected: 0 };
     const pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 };
+    const documentDiagnostics = { byDetectedType: {}, byContentType: {}, byError: {} };
+    const documentSamples = [];
     for (const candidate of candidates) {
       const outcome = await enrichCandidate(candidate, source);
       if (outcome.pipeline) {
         for (const key of Object.keys(pipeline)) pipeline[key] += Number(outcome.pipeline[key] || 0);
+      }
+      if (outcome.documentDiagnostics) {
+        mergeCounts(documentDiagnostics.byDetectedType, outcome.documentDiagnostics.byDetectedType);
+        mergeCounts(documentDiagnostics.byContentType, outcome.documentDiagnostics.byContentType);
+        mergeCounts(documentDiagnostics.byError, outcome.documentDiagnostics.byError);
+      }
+      if (outcome.documentResults?.length && documentSamples.length < 40) {
+        documentSamples.push(...outcome.documentResults.slice(0, Math.max(0, 40 - documentSamples.length)));
       }
       if (outcome.vacancyStats) {
         vacancyStats.detected += outcome.vacancyStats.detected || 0;
@@ -287,10 +306,10 @@ async function fetchSource(source) {
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
-      rejectionReasons, vacancyStats, pipeline, extractionDiagnostics
+      rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPreviousPayload() {
@@ -326,7 +345,9 @@ for (const result of results) {
     rejectionReasons: result.rejectionReasons || {},
     extractionDiagnostics: result.extractionDiagnostics || {},
     pipeline: result.pipeline || { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 },
-    vacancyStats: result.vacancyStats || { detected: 0, accepted: 0, rejected: 0 }
+    vacancyStats: result.vacancyStats || { detected: 0, accepted: 0, rejected: 0 },
+    documentDiagnostics: result.documentDiagnostics || { byDetectedType: {}, byContentType: {}, byError: {} },
+    documentSamples: result.documentSamples || []
   });
   for (const job of sourceJobs) {
     const normalizedTitle = normalizeTitleForDedup(job.title) || job.title.toLowerCase().replace(/\s+/g, ' ').trim();
@@ -402,10 +423,30 @@ const healthPayload = {
   sources
 };
 await fs.mkdir('data', { recursive: true });
+const debugPayload = {
+  version: payload.version,
+  updatedAt: nowIso,
+  reportPath: 'data/debug-report.json',
+  documentAnalyzerVersion: '11.5-document-debug-stage2',
+  sources: sources.map(source => ({
+    org: source.org,
+    status: source.status,
+    listingPagesChecked: source.listingPagesChecked,
+    candidates: source.candidates,
+    extractionDiagnostics: source.extractionDiagnostics,
+    pipeline: source.pipeline,
+    documentDiagnostics: source.documentDiagnostics,
+    documentSamples: source.documentSamples,
+    rejected: source.rejected,
+    rejectionReasons: source.rejectionReasons,
+    error: source.error
+  }))
+};
 await Promise.all([
   fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/source-health.json', `${JSON.stringify(healthPayload, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, ...qa }, null, 2)}\n`, 'utf8'),
-  fs.writeFile('data/debug-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, sources: sources.map(source => ({ org: source.org, status: source.status, listingPagesChecked: source.listingPagesChecked, candidates: source.candidates, extractionDiagnostics: source.extractionDiagnostics, pipeline: source.pipeline, rejected: source.rejected, rejectionReasons: source.rejectionReasons, error: source.error })) }, null, 2)}\n`, 'utf8')
+  fs.writeFile('data/debug-report.json', `${JSON.stringify(debugPayload, null, 2)}\n`, 'utf8')
 ]);
 console.log(payload.stats);
+console.log({ debugReportPath: 'data/debug-report.json', debugReportWritten: true });

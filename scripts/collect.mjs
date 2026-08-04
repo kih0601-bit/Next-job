@@ -3,6 +3,7 @@ import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { extractCandidatesForSource, canonicalJobUrl } from './collectors/source-adapters.mjs';
 import { extractAlioCandidates } from './collectors/alio-adapter.mjs';
 import { analyzeJob } from './lib/classifier.mjs';
+import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
 import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, RULES_VERSION } from './lib/rules.mjs';
 
 const SOURCES = [
@@ -121,7 +122,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/9.0-quality-resilience)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/10.0-source-engine)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -140,10 +141,16 @@ async function enrichCandidate(candidate, source) {
       allowedHosts: source.alio ? ['job.alio.go.kr', 'alio.go.kr'] : [sourceHost]
     });
   }
-  if (source.requireValidDetail && !detail.ok) return null;
+  if (source.requireValidDetail && !detail.ok) {
+    return { job: null, rejection: detail.error || 'detail validation failed' };
+  }
+
   const analysisText = `${candidate.title}\n${candidate.listText}\n${detail.text}`;
   const deadline = extractDeadline(analysisText);
-  if (isExpired(deadline) || /접수(?:가|는)?\s*(?:마감|종료)|채용\s*마감|마감된\s*공고|\/\s*마감(?:\s|$)/.test(analysisText)) return null;
+  if (isExpired(deadline)) return { job: null, rejection: 'expired deadline' };
+  if (/접수(?:가|는)?\s*(?:마감|종료)|채용\s*마감|마감된\s*공고|\/\s*마감(?:\s|$)/.test(analysisText)) {
+    return { job: null, rejection: 'closed notice text' };
+  }
 
   const result = analyzeJob({
     title: candidate.title,
@@ -151,30 +158,45 @@ async function enrichCandidate(candidate, source) {
     detailText: detail.text,
     detailOk: detail.ok
   });
-  if (result.excluded || (STRICT_TARGET_ONLY && !result.recommended)) return null;
+  if (result.excluded) {
+    return { job: null, rejection: result.excludeReasons.join(', ') || 'classification excluded' };
+  }
+
+  const finalLink = canonicalJobUrl(detail.finalUrl || candidate.link);
+  const quality = scoreJobQuality({ detail, analysis: result, deadline, title: candidate.title, link: finalLink });
+  if ((STRICT_TARGET_ONLY && !result.recommended) || !quality.passed) {
+    return { job: null, rejection: quality.penalties.join(', ') || 'quality score below threshold' };
+  }
 
   return {
-    org: candidate.org,
-    title: candidate.title,
-    link: canonicalJobUrl(detail.finalUrl || candidate.link),
-    date: '',
-    deadline,
-    employmentType: result.employmentType,
-    eligibility: result.eligibility,
-    location: result.location,
-    status: result.status,
-    recommended: result.recommended,
-    fitScore: result.fitScore,
-    fitReasons: result.fitReasons,
-    excludeReasons: result.excludeReasons,
-    detailChecked: detail.ok,
-    detailConfidence: detail.confidence || null,
-    detailError: detail.error || '',
-    attachments: detail.attachments,
-    raw: (detail.text || candidate.listText).slice(0, 3000)
+    job: {
+      org: candidate.org,
+      title: candidate.title,
+      link: finalLink,
+      date: '',
+      deadline,
+      employmentType: result.employmentType,
+      eligibility: result.eligibility,
+      location: result.location,
+      status: result.status,
+      recommended: result.recommended,
+      fitScore: result.fitScore,
+      qualityScore: quality.score,
+      qualityThreshold: quality.threshold,
+      qualityReasons: quality.reasons,
+      qualityPenalties: quality.penalties,
+      fitReasons: result.fitReasons,
+      excludeReasons: result.excludeReasons,
+      detailChecked: detail.ok,
+      detailConfidence: detail.confidence || null,
+      detailError: detail.error || '',
+      attachments: detail.attachments,
+      adapter: candidate.adapter || (source.alio ? 'ALIO' : source.org),
+      raw: (detail.text || candidate.listText).slice(0, 3000)
+    },
+    rejection: ''
   };
 }
-
 async function fetchSource(source) {
   try {
     let html = '';
@@ -186,20 +208,27 @@ async function fetchSource(source) {
     if (!html) throw lastError || new Error('empty source html');
     const candidates = extractListCandidates(html, source);
     const jobs = [];
+    const rejectionReasons = {};
     for (const candidate of candidates) {
-      const job = await enrichCandidate(candidate, source);
-      if (job) jobs.push(job);
+      const outcome = await enrichCandidate(candidate, source);
+      if (outcome.job) jobs.push(outcome.job);
+      else {
+        const reason = outcome.rejection || 'unknown rejection';
+        rejectionReasons[reason] = (rejectionReasons[reason] || 0) + 1;
+      }
     }
     return {
       ok: true, source, jobs, candidates: candidates.length,
       rejected: Math.max(0, candidates.length - jobs.length),
-      detailFailures: candidates.length - jobs.filter(job => job.detailChecked).length
+      detailFailures: Object.entries(rejectionReasons)
+        .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
+        .reduce((sum, [, count]) => sum + count, 0),
+      rejectionReasons
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rejectionReasons: {}, error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
-
 async function readPreviousPayload() {
   try {
     return JSON.parse(await fs.readFile('data/jobs.json', 'utf8'));
@@ -228,7 +257,8 @@ for (const result of results) {
     retained: retained.length,
     rejected: result.rejected || 0,
     detailFailures: result.detailFailures || 0,
-    error: result.error || ''
+    error: result.error || '',
+    rejectionReasons: result.rejectionReasons || {}
   });
   for (const job of sourceJobs) {
     const normalizedTitle = normalizeTitleForDedup(job.title) || job.title.toLowerCase().replace(/\s+/g, ' ').trim();
@@ -255,7 +285,7 @@ if (previousCount >= 5 && jobs.length < Math.max(2, Math.floor(previousCount * 0
 
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '9.0-quality-resilience', rulesVersion: RULES_VERSION, updatedAt: nowIso,
+  version: '10.0-source-engine', rulesVersion: RULES_VERSION, qualityEngineVersion: QUALITY_ENGINE_VERSION, updatedAt: nowIso,
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -265,13 +295,15 @@ const payload = {
     highSchoolSuitable: jobs.filter(job => job.eligibility === '고졸 가능').length,
     detailChecked: jobs.filter(job => job.detailChecked).length,
     reviewNeeded: jobs.filter(job => job.status === '확인 필요').length,
+    qualityPassed: jobs.filter(job => (job.qualityScore || 0) >= (job.qualityThreshold || 85)).length,
+    averageQualityScore: jobs.length ? Math.round(jobs.reduce((sum, job) => sum + (job.qualityScore || 0), 0) / jobs.length) : 0,
     sourceRejected: sources.reduce((sum, source) => sum + (source.rejected || 0), 0),
     sourceDetailFailures: sources.reduce((sum, source) => sum + (source.detailFailures || 0), 0),
     degradedSources,
     failedSources,
     retainedJobs
   },
-  note: '고졸·울산·정규직 계열 조건을 엄격히 유지하며, 일시적인 출처 장애 때는 해당 기관의 이전 검증 공고만 보존합니다.'
+  note: '기관별 상세 링크 어댑터와 원문 품질 점수를 함께 적용하며, 고졸·울산·정규직 계열 조건을 모두 확인한 공고만 노출합니다.'
 };
 const healthPayload = {
   version: payload.version,

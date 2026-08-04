@@ -27,18 +27,48 @@ export function absoluteUrl(href, baseUrl) {
 }
 
 const FILE_EXT = /\.(pdf|hwp|hwpx|doc|docx|xls|xlsx|png|jpe?g|tiff?|zip)(?:$|[?#\s])/i;
-const FILE_SIGNAL = /첨부|다운로드|download|filedown|atchfile|file_id|fileid|fileSeq|atchFileId|nttFile/i;
+const FILE_SIGNAL = /첨부(?:파일)?|다운로드|download|filedown|atchfile|file_id|fileid|fileSeq|atchFileId|nttFile|fileDown|fileDownload/i;
+const ATTACHMENT_CONTEXT = /첨부(?:파일)?|파일\s*목록|download|filedown|atchfile|attach(?:ment)?|bbs[_-]?file|board[_-]?file|file[_-]?(?:list|area|box|wrap)/i;
+const STATIC_ASSET_URL = /\/(?:images?|img|assets?|static|common)\/(?:main|common|layout|icon|icons|btn|button|logo|menu|nav|quick|skin)\//i;
+const STATIC_ASSET_NAME = /(?:로고|logo|메뉴|menu|home|홈|버튼|button|아이콘|icon|닫기|열기|교육센터|마케팅홍보관|입주안내|시설현황|장비지원|RENET)/i;
 
-function addAttachment(attachments, seen, rawUrl, name, baseUrl, explicitType = '') {
+function attachmentContext(html = '', index = 0, length = 0) {
+  const start = Math.max(0, index - 450);
+  const end = Math.min(html.length, index + length + 450);
+  return html.slice(start, end);
+}
+
+function looksLikeStaticAsset(rawUrl = '', name = '') {
+  const probe = `${rawUrl} ${name}`;
+  if (STATIC_ASSET_URL.test(rawUrl)) return true;
+  if (STATIC_ASSET_NAME.test(name) && !FILE_SIGNAL.test(name)) return true;
+  if (/\/(?:logo|icon|btn|button|menu|home|q_menu|allmenu|quick)[^/]*\.(?:png|jpe?g|gif|svg)(?:$|[?#])/i.test(rawUrl)) return true;
+  return false;
+}
+
+function addAttachment(attachments, seen, rawUrl, name, baseUrl, explicitType = '', context = '') {
   const url = absoluteUrl(rawUrl, baseUrl);
   if (!url || /^javascript:/i.test(url)) return;
-  const probe = `${url} ${name} ${explicitType}`;
+  const probe = `${url} ${name} ${explicitType} ${context}`;
   const ext = probe.match(FILE_EXT)?.[1]?.toLowerCase() || String(explicitType || '').toLowerCase();
-  if (!ext && !FILE_SIGNAL.test(probe)) return;
+  const isDocument = /^(?:pdf|hwp|hwpx|doc|docx|xls|xlsx|zip)$/i.test(ext);
+  const isImage = /^(?:png|jpe?g|tiff?)$/i.test(ext);
+  const explicitFileSignal = FILE_SIGNAL.test(probe);
+  const inAttachmentArea = ATTACHMENT_CONTEXT.test(context);
+
+  // Document extensions are accepted directly. Images are accepted only when they
+  // are explicitly presented as a post attachment, not as page chrome/assets.
+  if (!isDocument && !explicitFileSignal && !(isImage && inAttachmentArea)) return;
+  if (isImage && looksLikeStaticAsset(url, name)) return;
+
   const key = url.split('#')[0];
   if (seen.has(key)) return;
   seen.add(key);
-  attachments.push({ name: cleanHtml(name) || `첨부파일${ext ? `.${ext}` : ''}`, type: ext || 'unknown', url });
+  attachments.push({
+    name: cleanHtml(name) || `첨부파일${ext ? `.${ext}` : ''}`,
+    type: ext || 'unknown',
+    url
+  });
 }
 
 function urlsFromJavascript(value = '') {
@@ -54,32 +84,49 @@ function urlsFromJavascript(value = '') {
 }
 
 export function extractAttachments(html, baseUrl) {
+  const source = String(html);
   const attachments = [];
   const seen = new Set();
 
-  for (const match of String(html).matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
+  for (const match of source.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
     const attrs = match[1] || '';
     const label = cleanHtml(match[2]);
+    const context = attachmentContext(source, match.index || 0, match[0].length);
     const href = attrs.match(/\bhref\s*=\s*["']([^"']+)["']/i)?.[1] || '';
-    if (href && href !== '#' && !/^javascript:/i.test(href)) addAttachment(attachments, seen, href, label, baseUrl);
+    const anchorHasFileSignal = FILE_SIGNAL.test(`${attrs} ${label} ${href}`) || ATTACHMENT_CONTEXT.test(context);
+
+    if (anchorHasFileSignal && href && href !== '#' && !/^javascript:/i.test(href)) {
+      addAttachment(attachments, seen, href, label, baseUrl, '', context);
+    }
     const onclickMatch = attrs.match(/\bonclick\s*=\s*(["'])([\s\S]*?)\1/i);
     const js = onclickMatch?.[2] || (/^javascript:/i.test(href) ? href : '');
-    for (const candidate of urlsFromJavascript(js)) addAttachment(attachments, seen, candidate, label, baseUrl);
+    if (anchorHasFileSignal || FILE_SIGNAL.test(js)) {
+      for (const candidate of urlsFromJavascript(js)) addAttachment(attachments, seen, candidate, label, baseUrl, '', context);
+    }
     for (const attr of ['data-url', 'data-href', 'data-file', 'data-download', 'value']) {
-      const valueMatch = attrs.match(new RegExp(`\\b${attr}\\s*=\\s*([\"'])((?:(?!\\1).)+)\\1`, 'i'));
+      const valueMatch = attrs.match(new RegExp(`\\b${attr}\\s*=\\s*(["'])((?:(?!\\1).)+)\\1`, 'i'));
       const value = valueMatch?.[2];
-      if (value) addAttachment(attachments, seen, value, label, baseUrl);
+      if (value && (anchorHasFileSignal || /file|download/i.test(attr))) {
+        addAttachment(attachments, seen, value, label, baseUrl, '', context);
+      }
     }
   }
 
-  for (const match of String(html).matchAll(/<(?:iframe|embed|object|source|img)\b([^>]*)>/gi)) {
-    const attrs = match[1] || '';
+  // Embedded documents are accepted. Images require an attachment-area signal or
+  // an explicit attachment label so logos/menu icons are never OCR'd.
+  for (const match of source.matchAll(/<(iframe|embed|object|source|img)\b([^>]*)>/gi)) {
+    const tag = (match[1] || '').toLowerCase();
+    const attrs = match[2] || '';
     const raw = attrs.match(/\b(?:src|data)\s*=\s*["']([^"']+)["']/i)?.[1] || '';
     const label = attrs.match(/\b(?:title|alt)\s*=\s*["']([^"']+)["']/i)?.[1] || '';
-    if (raw) addAttachment(attachments, seen, raw, label, baseUrl);
+    const context = attachmentContext(source, match.index || 0, match[0].length);
+    const explicit = FILE_SIGNAL.test(`${attrs} ${label} ${raw}`) || ATTACHMENT_CONTEXT.test(context);
+    if (!raw) continue;
+    if (tag === 'img' && !explicit) continue;
+    addAttachment(attachments, seen, raw, label, baseUrl, '', context);
   }
 
-  return attachments.slice(0, 50);
+  return attachments.slice(0, 24);
 }
 
 function titleTokens(value = '') {
@@ -109,7 +156,7 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.2-collection-documents)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.7-candidate-attachment-scope)',
         'accept-language': 'ko-KR,ko;q=0.9,en;q=0.5',
         accept: 'text/html,application/xhtml+xml'
       }

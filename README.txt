@@ -6,3 +6,5 @@ Next Job v4.3-strict-target-only
 GitHub Actions가 3시간마다 공고를 수집합니다.
 업로드 후 GitHub Actions에서 Update job postings를 한 번 수동 실행하세요.
 변경 내역은 CHANGELOG_v4.3.txt를 확인하세요.
+
+현재 UI 버전: v4.4

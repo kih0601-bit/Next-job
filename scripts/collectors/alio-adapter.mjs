@@ -8,32 +8,29 @@ function normalizeTitle(title = '') {
   return cleanHtml(title).replace(/\s+/g, ' ').trim();
 }
 
-function jsUrl(value = '', baseUrl = '') {
-  const decoded = decodeHtmlEntities(value);
-  const direct = decoded.match(/["']((?:https?:\/\/|\/|\.\/|\.\.\/)[^"']*(?:recruit|detail|view)[^"']*)["']/i)?.[1];
-  if (direct) return absoluteUrl(direct, baseUrl);
-
-  // ALIO 모바일 페이지의 상세 함수는 공고번호를 인자로 넘기는 경우가 있다.
-  const recruitNo = decoded.match(/(?:fn\w*Recruit\w*|go\w*Recruit\w*|recruit\w*)\s*\(\s*["']?([A-Za-z0-9_-]{5,})["']?/i)?.[1];
-  if (recruitNo) {
-    return `https://job.alio.go.kr/recruitview.do?idx=${encodeURIComponent(recruitNo)}`;
+function extractExplicitUrl(value = '', baseUrl = '') {
+  const decoded = decodeHtmlEntities(value).replace(/\\(['"])/g, '$1');
+  const candidates = [];
+  for (const match of decoded.matchAll(/["']((?:https?:\/\/|\/|\.\/|\.\.\/)[^"']+)["']/gi)) {
+    const link = absoluteUrl(match[1], baseUrl);
+    if (link && !candidates.includes(link)) candidates.push(link);
   }
-  return '';
+  return candidates.find(link => /(?:recruitview|detail|view)\.do|[?&](?:idx|recruitNo|recruit_no|seq|no)=/i.test(link)) || '';
 }
 
 function extractLink(attrs = '', sourceUrl = '') {
   const href = attrs.match(/\bhref\s*=\s*["']([^"']*)["']/i)?.[1] || '';
   if (href && href !== '#' && !/^javascript:/i.test(href)) return absoluteUrl(href, sourceUrl);
   const onclick = attrs.match(/\bonclick\s*=\s*["']([\s\S]*?)["']/i)?.[1] || href;
-  return jsUrl(onclick, sourceUrl);
+  return extractExplicitUrl(onclick, sourceUrl);
 }
 
 function isDetailUrl(link = '') {
   if (!link || FILE_LINK.test(link) || DOWNLOAD_LINK.test(link)) return false;
   try {
     const url = new URL(link);
-    if (!/(?:^|\.)alio\.go\.kr$/i.test(url.hostname)) return false;
-    if (/(?:recruitview|recruitView|detail|view)\.do$/i.test(url.pathname)) return true;
+    if (!(url.hostname === 'job.alio.go.kr' || url.hostname.endsWith('.alio.go.kr'))) return false;
+    if (/(?:recruitview|detail|view)\.do$/i.test(url.pathname)) return true;
     return DETAIL_PARAM.test(url.search);
   } catch {
     return false;
@@ -57,11 +54,11 @@ export function extractAlioCandidates(html, source, { validTitle, normalizeTitle
     if (seen.has(key)) continue;
     seen.add(key);
 
-    const start = Math.max(0, match.index - 280);
-    const end = Math.min(html.length, match.index + match[0].length + 900);
+    const start = Math.max(0, match.index - 320);
+    const end = Math.min(html.length, match.index + match[0].length + 1000);
     const listText = cleanHtml(html.slice(start, end)).replace(/\s+/g, ' ').trim();
     jobs.push({ org: source.org, title, link, listText, sourceType: 'ALIO' });
-    if (jobs.length >= 30) break;
+    if (jobs.length >= 40) break;
   }
   return jobs;
 }

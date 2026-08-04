@@ -52,7 +52,7 @@
 <div id="sheet" class="sheet"><div class="backdrop" data-close></div><div class="panel"><div class="handle"></div><button class="close" data-close>×</button><div id="detail"></div></div></div>
 <script>
 let institutions=[], feed={jobs:[],sources:[],stats:{}}, filter='all';
-const UI_VERSION='9.0-quality-resilience';
+const UI_VERSION='11.0-ultimate';
 const state=JSON.parse(localStorage.getItem('nextJobUI')||'null')||{};
 state.favorites=Array.isArray(state.favorites)?state.favorites:[];state.seen=state.seen||{};state.applied=Array.isArray(state.applied)?state.applied:[];state.recent=Array.isArray(state.recent)?state.recent:[];state.watchedOrgs=Array.isArray(state.watchedOrgs)?state.watchedOrgs:[];
 const save=()=>localStorage.setItem('nextJobUI',JSON.stringify(state));
@@ -72,6 +72,7 @@ function classify(j){
 }
 function summary(j){
   const c=classify(j),a=[];
+  if(Array.isArray(j.qualityReasons))a.push(...j.qualityReasons.slice(0,2));
   a.push(c.fit?'고졸 또는 학력무관 문구가 확인됐습니다.':j.eligibility==='고졸 지원 어려움'?'대졸 이상 조건이 확인됐습니다.':'학력 조건은 원문 확인이 필요합니다.');
   if(c.ulsan)a.push('울산 근무 관련 키워드가 포함돼 있습니다.');
   if(c.regular)a.push(`${c.type} 공고입니다.`);
@@ -84,7 +85,7 @@ function deadlineBadge(j){const d=daysLeft(j.deadline);if(d===null)return badge(
 function card(j){
   const c=classify(j),k=key(j),fav=state.favorites.includes(k),isNew=!state.seen[k],applied=state.applied.includes(k);
   const eduBadge=c.fit?badge('고졸 가능','green'):j.eligibility==='고졸 지원 어려움'?badge('고졸 어려움','red'):badge('학력 확인');
-  return `<article class="job ${applied?'applied':''}"><div class="job-top"><div><div class="org">${esc(j.org)}</div><div class="title">${esc(j.title)}</div></div><button class="star ${fav?'on':''}" onclick='fav(${JSON.stringify(k)})' aria-label="즐겨찾기">★</button></div><div class="badges">${isNew?badge('NEW','red'):''}${applied?badge('지원 완료','green'):''}${eduBadge}${c.ulsan?badge('울산','blue'):''}${c.regular?badge(c.type,'green'):''}${deadlineBadge(j)}</div><div class="summary"><b>한눈에 보는 요약</b><ul>${summary(j).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="actions"><button class="primary" onclick='openDetail(${JSON.stringify(k)})'>상세보기</button><a class="secondary" target="_blank" href="${esc(j.link)}">원문보기</a><button class="action-mini ${applied?'on':''}" onclick='toggleApplied(${JSON.stringify(k)})'>${applied?'완료됨':'지원 체크'}</button></div></article>`
+  return `<article class="job ${applied?'applied':''}"><div class="job-top"><div><div class="org">${esc(j.org)}</div><div class="title">${esc(j.title)}</div></div><button class="star ${fav?'on':''}" onclick='fav(${JSON.stringify(k)})' aria-label="즐겨찾기">★</button></div><div class="badges">${isNew?badge('NEW','red'):''}${applied?badge('지원 완료','green'):''}${eduBadge}${c.ulsan?badge('울산','blue'):''}${c.regular?badge(c.type,'green'):''}${j.jobCategory?badge(esc(j.jobCategory),'blue'):''}${j.qualityScore?badge(`품질 ${j.qualityScore}점`,j.qualityScore>=95?'green':'orange'):''}${deadlineBadge(j)}</div><div class="summary"><b>한눈에 보는 요약</b><ul>${summary(j).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="actions"><button class="primary" onclick='openDetail(${JSON.stringify(k)})'>상세보기</button><a class="secondary" target="_blank" href="${esc(j.link)}">원문보기</a><button class="action-mini ${applied?'on':''}" onclick='toggleApplied(${JSON.stringify(k)})'>${applied?'완료됨':'지원 체크'}</button></div></article>`
 }
 function jobScore(j){
   const c=classify(j);let score=0;if(c.fit)score+=40;if(c.ulsan)score+=30;if(c.regular)score+=20;
@@ -107,7 +108,7 @@ function visibleJobs(){
 function render(){
   instCount.textContent=institutions.length;jobCount.textContent=(feed.jobs||[]).length;fitCount.textContent=(feed.jobs||[]).filter(j=>classify(j).fit).length;expectedCount.textContent=institutions.filter(i=>(i.months||[]).includes(month)).length;
   const unseen=(feed.jobs||[]).filter(j=>!state.seen[key(j)]).length;const degraded=Number(feed.stats?.degradedSources||0),failed=Number(feed.stats?.failedSources||0),retained=Number(feed.stats?.retainedJobs||0);briefing.textContent=(degraded||failed)?`일부 출처 상태 이상: 보존 ${retained}건 · 실패 ${failed}곳. 원문 검증된 이전 공고만 유지 중입니다.`:(unseen?`새 공고 ${unseen}건이 아직 확인되지 않았어요.`:'확인하지 않은 새 공고가 없습니다.');
-  updateBadge.textContent=feed.version||'갱신 전';status.textContent=feed.updatedAt?`${new Date(feed.updatedAt).toLocaleString()} 갱신 · 정상 ${feed.stats.success||0}/${feed.stats.sourceCount||0} · 보존 ${feed.stats.retainedJobs||0}건 · 데이터 ${feed.version||'-'} · UI ${UI_VERSION}`:'첫 자동수집 전입니다.';
+  updateBadge.textContent=feed.version||'갱신 전';status.textContent=feed.updatedAt?`${new Date(feed.updatedAt).toLocaleString()} 갱신 · 정상 ${feed.stats.success||0}/${feed.stats.sourceCount||0} · 문서 ${feed.stats.documentsParsed||0}/${feed.stats.documentsAttempted||0} · QA ${feed.stats.qaPassed?'통과':'확인'} · 데이터 ${feed.version||'-'} · UI ${UI_VERSION}`:'첫 자동수집 전입니다.';
   recommended.innerHTML=(feed.jobs||[]).filter(j=>{const c=classify(j);return c.fit&&c.ulsan&&c.regular}).slice(0,5).map(card).join('')||'<div class="empty">추천 공고가 없습니다.</div>';
   jobList.innerHTML=visibleJobs().map(card).join('')||'<div class="empty">조건에 맞는 공고가 없습니다.</div>';
   favoriteList.innerHTML=(feed.jobs||[]).filter(j=>state.favorites.includes(key(j))).map(card).join('')||'<div class="empty">즐겨찾기한 공고가 없습니다.</div>';
@@ -120,7 +121,7 @@ window.toggleApplied=k=>{const i=state.applied.indexOf(k);i>=0?state.applied.spl
 window.toggleWatch=org=>{const i=state.watchedOrgs.indexOf(org);i>=0?state.watchedOrgs.splice(i,1):state.watchedOrgs.push(org);save();render()}
 window.openDetail=k=>{
   const j=(feed.jobs||[]).find(x=>key(x)===k);if(!j)return;state.seen[k]=true;state.recent=[k,...state.recent.filter(x=>x!==k)].slice(0,10);save();const c=classify(j);
-  detail.innerHTML=`<div class="org">${esc(j.org)}</div><h2>${esc(j.title)}</h2><div class="badges">${c.fit?badge('고졸 가능','green'):j.eligibility==='고졸 지원 어려움'?badge('고졸 어려움','red'):badge('학력 확인')}${c.ulsan?badge('울산','blue'):''}${c.regular?badge(c.type,'green'):''}</div><div class="summary"><b>공고 요약</b><ul>${summary(j).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="detail-grid" style="margin-top:12px"><div class="detail-cell"><span>기관</span><strong>${esc(j.org)}</strong></div><div class="detail-cell"><span>마감일</span><strong>${esc(j.deadline||'원문 확인')}</strong></div><div class="detail-cell"><span>학력</span><strong>${esc(j.eligibility||'확인 필요')}</strong></div><div class="detail-cell"><span>고용형태</span><strong>${esc(c.type)}</strong></div></div><div class="actions" style="margin-top:14px"><a class="primary" style="display:block;text-align:center;flex:1" target="_blank" href="${esc(j.link)}">원문 공고 열기</a><button class="action-mini ${state.applied.includes(k)?'on':''}" onclick='toggleApplied(${JSON.stringify(k)});openDetail(${JSON.stringify(k)})'>${state.applied.includes(k)?'지원 완료됨':'지원 완료 체크'}</button></div>`;
+  detail.innerHTML=`<div class="org">${esc(j.org)}</div><h2>${esc(j.title)}</h2><div class="badges">${c.fit?badge('고졸 가능','green'):j.eligibility==='고졸 지원 어려움'?badge('고졸 어려움','red'):badge('학력 확인')}${c.ulsan?badge('울산','blue'):''}${c.regular?badge(c.type,'green'):''}</div><div class="summary"><b>공고 요약</b><ul>${summary(j).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="detail-grid" style="margin-top:12px"><div class="detail-cell"><span>기관</span><strong>${esc(j.org)}</strong></div><div class="detail-cell"><span>마감일</span><strong>${esc(j.deadline||'원문 확인')}</strong></div><div class="detail-cell"><span>학력</span><strong>${esc(j.eligibility||'확인 필요')}</strong></div><div class="detail-cell"><span>고용형태</span><strong>${esc(c.type)}</strong></div><div class="detail-cell"><span>직무분류</span><strong>${esc(j.jobCategory||'기타')}</strong></div><div class="detail-cell"><span>품질점수</span><strong>${esc(j.qualityScore||'-')}/100</strong></div></div><div class="actions" style="margin-top:14px"><a class="primary" style="display:block;text-align:center;flex:1" target="_blank" href="${esc(j.link)}">원문 공고 열기</a><button class="action-mini ${state.applied.includes(k)?'on':''}" onclick='toggleApplied(${JSON.stringify(k)});openDetail(${JSON.stringify(k)})'>${state.applied.includes(k)?'지원 완료됨':'지원 완료 체크'}</button></div>`;
   sheet.classList.add('open');render();
 }
 async function load(){

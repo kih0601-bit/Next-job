@@ -9,7 +9,7 @@
   <title>Next Job</title>
   <style>
     :root{--bg:#07101d;--card:#111d31;--card2:#17263e;--text:#f8fafc;--muted:#94a3b8;--purple:#a78bfa;--green:#34d399;--orange:#fbbf24;--red:#fb7185;--blue:#38bdf8;--line:rgba(255,255,255,.08)}
-    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:linear-gradient(180deg,#07101d,#0a1424);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:linear-gradient(180deg,#07101d,#0a1424);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}
     header{position:sticky;top:0;z-index:8;display:flex;justify-content:space-between;align-items:center;padding:18px 17px 13px;background:rgba(7,16,29,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
     h1{font-size:30px;margin:2px 0 0}.eyebrow{font-size:12px;color:#c4b5fd;font-weight:800}.refresh{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:#142139;color:#fff;font-size:22px}
     main{max-width:850px;margin:auto;padding:14px 14px 110px}section{display:none}section.active{display:block}.card{background:linear-gradient(180deg,#16243a,#101b2f);border:1px solid var(--line);border-radius:21px;padding:16px}
@@ -17,7 +17,7 @@
     .update{height:max-content;padding:8px 10px;border-radius:999px;background:rgba(52,211,153,.13);color:#86efac;font-size:11px;font-weight:800;white-space:nowrap}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:11px}
     .stat span{font-size:13px;color:var(--muted)}.stat strong{display:block;font-size:29px;margin-top:7px}.heading{display:flex;justify-content:space-between;align-items:center;margin:20px 2px 9px}.heading h3{margin:0}
     .link-btn{border:0;background:none;color:#c4b5fd;font-weight:800}.toolbar{position:sticky;top:78px;z-index:5;background:rgba(7,16,29,.91);backdrop-filter:blur(15px);padding:8px 0 10px}
-    input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:15px;background:#0d1829;color:white;outline:none}.chips{display:flex;gap:7px;overflow:auto;padding-top:9px}
+    input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:15px;background:#0d1829;color:white;outline:none}.toolbar-row{display:grid;grid-template-columns:1fr auto;gap:8px}.sort{padding:0 11px;border:1px solid var(--line);border-radius:15px;background:#0d1829;color:white;min-width:112px}.chips{display:flex;gap:7px;overflow:auto;padding-top:9px}
     .chip{border:1px solid var(--line);border-radius:999px;background:#142139;color:#cbd5e1;padding:9px 12px;white-space:nowrap}.chip.active{background:var(--purple);color:#21163d}
     .job{margin:10px 0;padding:15px;background:linear-gradient(180deg,#17263e,#101b2f);border:1px solid var(--line);border-radius:19px}.job-top{display:flex;justify-content:space-between;gap:12px}
     .org{font-size:14px;font-weight:800;color:#c4b5fd}.title{font-size:17px;font-weight:850;margin-top:4px}.star{border:0;background:none;font-size:24px;color:#596579}.star.on{color:#facc15}.job.applied{border-color:rgba(52,211,153,.42);box-shadow:0 0 0 1px rgba(52,211,153,.08) inset}.action-mini{border:0;border-radius:13px;padding:11px 12px;font-weight:800;background:#17324a;color:#bae6fd}.action-mini.on{background:rgba(52,211,153,.18);color:#86efac}.watch{border:0;background:none;font-size:21px;color:#596579}.watch.on{color:#facc15}.section-note{font-size:12px;color:var(--muted);margin:-3px 2px 10px}
@@ -31,7 +31,7 @@
     .sheet{position:fixed;inset:0;z-index:30;opacity:0;pointer-events:none;transition:.2s}.sheet.open{opacity:1;pointer-events:auto}.backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6)}
     .panel{position:absolute;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;padding:18px;background:#0e1a2d;border-radius:24px 24px 0 0;transform:translateY(100%);transition:.25s}.sheet.open .panel{transform:translateY(0)}
     .handle{width:45px;height:5px;border-radius:999px;background:#475569;margin:0 auto 14px}.close{position:absolute;right:15px;top:12px;width:34px;height:34px;border:0;border-radius:50%;background:#26364f;color:white;font-size:21px}
-    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.detail-cell{padding:12px;border-radius:13px;background:#17263e}.detail-cell span{display:block;color:var(--muted);font-size:11px}.detail-cell strong{display:block;margin-top:5px}
+    .quick-actions{display:flex;gap:8px;margin-top:10px}.quick-actions button{flex:1;border:1px solid var(--line);border-radius:13px;padding:10px;background:#142139;color:#dbeafe;font-weight:800}.notice{margin:10px 0;padding:11px 12px;border-radius:14px;background:rgba(56,189,248,.10);color:#bae6fd;font-size:13px}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.detail-cell{padding:12px;border-radius:13px;background:#17263e}.detail-cell span{display:block;color:var(--muted);font-size:11px}.detail-cell strong{display:block;margin-top:5px}
     @media(min-width:700px){.stats{grid-template-columns:repeat(4,1fr)}}
   </style>
 </head>
@@ -43,7 +43,7 @@
     <div class="stats"><div class="stat card"><span>감시 기관</span><strong id="instCount">0</strong></div><div class="stat card"><span>전체 공고</span><strong id="jobCount">0</strong></div><div class="stat card"><span>고졸 적합</span><strong id="fitCount">0</strong></div><div class="stat card"><span>이번 달 예상</span><strong id="expectedCount">0</strong></div></div>
     <div class="heading"><h3>추천 공고</h3><button class="link-btn" data-go="jobs">전체보기</button></div><div id="recommended"></div>
   </section>
-  <section id="jobs"><div class="toolbar"><input id="search" placeholder="기관·직무·키워드 검색"><div class="chips"><button class="chip active" data-filter="all">전체</button><button class="chip" data-filter="fit">고졸 가능</button><button class="chip" data-filter="ulsan">울산</button><button class="chip" data-filter="regular">정규직 계열</button><button class="chip" data-filter="new">새 공고</button><button class="chip" data-filter="closing">마감 임박</button><button class="chip" data-filter="watched">관심 기관</button><button class="chip" data-filter="applied">지원 완료</button></div></div><div id="jobList"></div></section>
+  <section id="jobs"><div class="toolbar"><div class="toolbar-row"><input id="search" placeholder="기관·직무·키워드 검색"><select id="sort" class="sort" aria-label="정렬"><option value="recommended">추천순</option><option value="deadline">마감 임박순</option><option value="newest">최신순</option><option value="org">기관순</option></select></div><div class="chips"><button class="chip active" data-filter="all">전체</button><button class="chip" data-filter="fit">고졸 가능</button><button class="chip" data-filter="ulsan">울산</button><button class="chip" data-filter="regular">정규직 계열</button><button class="chip" data-filter="new">새 공고</button><button class="chip" data-filter="closing">마감 임박</button><button class="chip" data-filter="watched">관심 기관</button><button class="chip" data-filter="applied">지원 완료</button></div><div class="quick-actions"><button id="markAllSeen">새 공고 모두 확인</button><button id="resetFilters">필터 초기화</button></div></div><div id="jobList"></div></section>
   <section id="favorites"><div class="heading"><h3>즐겨찾기</h3></div><div id="favoriteList"></div><div class="heading"><h3>최근 본 공고</h3></div><div class="section-note">최근 열어본 공고가 최대 10개까지 저장됩니다.</div><div id="recentList"></div></section>
   <section id="institutions"><input id="instSearch" placeholder="기관 검색"><div id="instList" class="card" style="margin-top:10px"></div></section>
   <section id="settings"><div class="card"><h3>자동수집 상태</h3><div id="status" class="muted">확인 중...</div></div><div class="card" style="margin-top:10px"><h3>내 기록</h3><div id="recordStatus" class="muted"></div><button id="clearRecords" class="secondary" style="margin-top:12px">기록 초기화</button></div></section>
@@ -52,6 +52,7 @@
 <div id="sheet" class="sheet"><div class="backdrop" data-close></div><div class="panel"><div class="handle"></div><button class="close" data-close>×</button><div id="detail"></div></div></div>
 <script>
 let institutions=[], feed={jobs:[],sources:[],stats:{}}, filter='all';
+const UI_VERSION='8.0-usability';
 const state=JSON.parse(localStorage.getItem('nextJobUI')||'null')||{};
 state.favorites=Array.isArray(state.favorites)?state.favorites:[];state.seen=state.seen||{};state.applied=Array.isArray(state.applied)?state.applied:[];state.recent=Array.isArray(state.recent)?state.recent:[];state.watchedOrgs=Array.isArray(state.watchedOrgs)?state.watchedOrgs:[];
 const save=()=>localStorage.setItem('nextJobUI',JSON.stringify(state));
@@ -85,17 +86,28 @@ function card(j){
   const eduBadge=c.fit?badge('고졸 가능','green'):j.eligibility==='고졸 지원 어려움'?badge('고졸 어려움','red'):badge('학력 확인');
   return `<article class="job ${applied?'applied':''}"><div class="job-top"><div><div class="org">${esc(j.org)}</div><div class="title">${esc(j.title)}</div></div><button class="star ${fav?'on':''}" onclick='fav(${JSON.stringify(k)})' aria-label="즐겨찾기">★</button></div><div class="badges">${isNew?badge('NEW','red'):''}${applied?badge('지원 완료','green'):''}${eduBadge}${c.ulsan?badge('울산','blue'):''}${c.regular?badge(c.type,'green'):''}${deadlineBadge(j)}</div><div class="summary"><b>한눈에 보는 요약</b><ul>${summary(j).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="actions"><button class="primary" onclick='openDetail(${JSON.stringify(k)})'>상세보기</button><a class="secondary" target="_blank" href="${esc(j.link)}">원문보기</a><button class="action-mini ${applied?'on':''}" onclick='toggleApplied(${JSON.stringify(k)})'>${applied?'완료됨':'지원 체크'}</button></div></article>`
 }
+function jobScore(j){
+  const c=classify(j);let score=0;if(c.fit)score+=40;if(c.ulsan)score+=30;if(c.regular)score+=20;
+  const d=daysLeft(j.deadline);if(d!==null&&d>=0&&d<=7)score+=10-d;return score;
+}
 function visibleJobs(){
   const q=(search.value||'').toLowerCase();
-  return (feed.jobs||[]).filter(j=>{
+  const list=(feed.jobs||[]).filter(j=>{
     const c=classify(j),txt=(j.org+' '+j.title+' '+(j.raw||'')).toLowerCase();
     if(q&&!txt.includes(q))return false;if(filter==='fit'&&!c.fit)return false;if(filter==='ulsan'&&!c.ulsan)return false;if(filter==='regular'&&!c.regular)return false;if(filter==='new'&&state.seen[key(j)])return false;if(filter==='closing'&&!([0,1,2,3].includes(daysLeft(j.deadline))))return false;if(filter==='watched'&&!state.watchedOrgs.includes(j.org))return false;if(filter==='applied'&&!state.applied.includes(key(j)))return false;return true;
+  });
+  const mode=sort.value;
+  return list.sort((a,b)=>{
+    if(mode==='deadline'){const ad=daysLeft(a.deadline),bd=daysLeft(b.deadline);return (ad===null?9999:ad)-(bd===null?9999:bd)}
+    if(mode==='newest')return String(b.postedAt||b.collectedAt||'').localeCompare(String(a.postedAt||a.collectedAt||''));
+    if(mode==='org')return String(a.org||'').localeCompare(String(b.org||''),'ko');
+    return jobScore(b)-jobScore(a);
   });
 }
 function render(){
   instCount.textContent=institutions.length;jobCount.textContent=(feed.jobs||[]).length;fitCount.textContent=(feed.jobs||[]).filter(j=>classify(j).fit).length;expectedCount.textContent=institutions.filter(i=>(i.months||[]).includes(month)).length;
   const unseen=(feed.jobs||[]).filter(j=>!state.seen[key(j)]).length;briefing.textContent=unseen?`새 공고 ${unseen}건이 아직 확인되지 않았어요.`:'확인하지 않은 새 공고가 없습니다.';
-  updateBadge.textContent=feed.version||'갱신 전';status.textContent=feed.updatedAt?`${new Date(feed.updatedAt).toLocaleString()} 갱신 · ${feed.stats.success||0}/${feed.stats.sourceCount||0}개 출처 · ${feed.version||''}`:'첫 자동수집 전입니다.';
+  updateBadge.textContent=feed.version||'갱신 전';status.textContent=feed.updatedAt?`${new Date(feed.updatedAt).toLocaleString()} 갱신 · ${feed.stats.success||0}/${feed.stats.sourceCount||0}개 출처 · 데이터 ${feed.version||'-'} · UI ${UI_VERSION}`:'첫 자동수집 전입니다.';
   recommended.innerHTML=(feed.jobs||[]).filter(j=>{const c=classify(j);return c.fit&&c.ulsan&&c.regular}).slice(0,5).map(card).join('')||'<div class="empty">추천 공고가 없습니다.</div>';
   jobList.innerHTML=visibleJobs().map(card).join('')||'<div class="empty">조건에 맞는 공고가 없습니다.</div>';
   favoriteList.innerHTML=(feed.jobs||[]).filter(j=>state.favorites.includes(key(j))).map(card).join('')||'<div class="empty">즐겨찾기한 공고가 없습니다.</div>';
@@ -119,7 +131,7 @@ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.query
 document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>document.querySelector(`nav button[data-tab="${b.dataset.go}"]`).click());
 document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.filter;render()});
 document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>sheet.classList.remove('open'));
-search.oninput=render;instSearch.oninput=render;refreshBtn.onclick=load;clearRecords.onclick=()=>{if(confirm('즐겨찾기·최근 본 공고·지원 완료·관심 기관 기록을 모두 지울까요?')){state.favorites=[];state.seen={};state.applied=[];state.recent=[];state.watchedOrgs=[];save();render()}};
+search.oninput=render;sort.onchange=render;instSearch.oninput=render;refreshBtn.onclick=load;markAllSeen.onclick=()=>{(feed.jobs||[]).forEach(j=>state.seen[key(j)]=true);save();render()};resetFilters.onclick=()=>{filter='all';search.value='';sort.value='recommended';document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x.dataset.filter==='all'));render()};clearRecords.onclick=()=>{if(confirm('즐겨찾기·최근 본 공고·지원 완료·관심 기관 기록을 모두 지울까요?')){state.favorites=[];state.seen={};state.applied=[];state.recent=[];state.watchedOrgs=[];save();render()}};
 if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
 load();
 </script>

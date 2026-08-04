@@ -55,7 +55,7 @@ export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', 
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/5.0-detail-validator)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/5.1-detail-validator)',
         'accept-language': 'ko-KR,ko;q=0.9,en;q=0.5',
         accept: 'text/html,application/xhtml+xml'
       }
@@ -65,11 +65,14 @@ export async function fetchDetail(url, { timeoutMs = 15000, expectedTitle = '', 
     if (!/html|text\//i.test(contentType)) throw new Error(`unsupported content-type: ${contentType}`);
     const html = await response.text();
     const text = cleanHtml(html).slice(0, 50000);
-    const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)|게시물\s*목록/.test(text) && !/(모집분야|응시자격|접수기간|근무조건|채용인원)/.test(text);
+    const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)|게시물\s*목록|검색결과\s*\d+건|채용공고\s*목록/.test(text) && !/(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text);
     if (looksLikeListOnly) throw new Error('list page detected');
 
     const errorPage = /페이지의\s*주소가\s*올바른지|이용에\s*불편을\s*드려\s*죄송|요청하신\s*페이지를\s*찾을\s*수|존재하지\s*않는\s*페이지|404\s*(?:not\s*found)?/i.test(text);
     if (errorPage) throw new Error('site error page detected');
+
+    const loginOrBlock = /접근이\s*차단|비정상적인\s*접근|로그인이\s*필요|세션이\s*만료|자동화된\s*접근|captcha/i.test(text);
+    if (loginOrBlock) throw new Error('blocked or login page detected');
 
     const finalUrl = response.url || url;
     if (sourceOrg === '울산광역시 타기관소식' && /\/u\/rep\/contents\.ulsan$/i.test(new URL(finalUrl).pathname) && !/[?&](?:nttId|dataSid|bbsSeq|articleNo|postNo)=/i.test(finalUrl)) {

@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { extractCandidatesForSource, canonicalJobUrl } from './collectors/source-adapters.mjs';
+import { extractAlioCandidates } from './collectors/alio-adapter.mjs';
 import { analyzeJob } from './lib/classifier.mjs';
 import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, RULES_VERSION } from './lib/rules.mjs';
 
@@ -100,7 +101,9 @@ function isExpired(deadline) {
 }
 
 function extractListCandidates(html, source) {
-  return extractCandidatesForSource(html, source, { validTitle, normalizeTitleForDedup });
+  const helpers = { validTitle, normalizeTitleForDedup };
+  if (source.alio) return extractAlioCandidates(html, source, helpers);
+  return extractCandidatesForSource(html, source, helpers);
 }
 
 async function fetchHtml(url, timeoutMs = 15000) {
@@ -111,7 +114,7 @@ async function fetchHtml(url, timeoutMs = 15000) {
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/5.0-source-adapters)',
+        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/5.1-alio-and-source-health)',
         'accept-language': 'ko-KR,ko;q=0.9'
       }
     });
@@ -191,7 +194,7 @@ if (successfulSources === 0) {
 
 jobs.sort((a, b) => Number(b.recommended) - Number(a.recommended) || b.fitScore - a.fitScore || (a.deadline || '9999-12-31').localeCompare(b.deadline || '9999-12-31'));
 const payload = {
-  version: '5.0-source-adapters', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
+  version: '5.1-alio-and-source-health', rulesVersion: RULES_VERSION, updatedAt: new Date().toISOString(),
   jobs: jobs.slice(0, 200), sources,
   stats: {
     sourceCount: SOURCES.length,
@@ -202,7 +205,7 @@ const payload = {
     detailChecked: jobs.filter(job => job.detailChecked).length,
     reviewNeeded: jobs.filter(job => job.status === '확인 필요').length
   },
-  note: '기관별 링크 추출기를 사용하고, 원문을 실제 요청해 404·오류페이지·게시판 목록이면 노출하지 않습니다.'
+  note: '기관별 링크 추출과 ALIO 전용 상세링크 판독을 사용하며, 원문 검증에 실패한 항목은 저장하지 않습니다.'
 };
 await fs.mkdir('data', { recursive: true });
 await fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8');

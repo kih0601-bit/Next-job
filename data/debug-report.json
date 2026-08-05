@@ -1,10 +1,10 @@
 {
-  "version": "12.1-resilient-http-access",
-  "updatedAt": "2026-08-05T03:11:00.126Z",
+  "version": "12.4-detail-document-pipeline",
+  "updatedAt": "2026-08-05T04:19:45.467Z",
   "reportPath": "data/debug-report.json",
-  "documentAnalyzerVersion": "11.6-document-tool-diagnostics",
+  "documentAnalyzerVersion": "12.4-request-aware-attachment-parser",
   "documentToolDiagnostics": {
-    "analyzerVersion": "11.6-document-tool-diagnostics",
+    "analyzerVersion": "12.4-request-aware-attachment-parser",
     "platform": "linux",
     "node": "v22.23.1",
     "tools": {
@@ -427,27 +427,29 @@
           "unknown": 4
         },
         "byContentType": {
-          "text/html;charset=UTF-8": 4
+          "none": 1,
+          "text/html;charset=UTF-8": 3
         },
         "byError": {
-          "download returned HTML page": 4
+          "download HTTP 500": 1,
+          "download returned HTML page": 3
         }
       },
       "documentSamples": [
         {
-          "name": "기간제근로자(전기직) 채용 서류전형 합격자 및 면적시험 공고문.hwp (118.5KByte)",
-          "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434#fileDownload",
-          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434",
-          "hintedType": "hwp",
+          "name": "id=\"viewForm\" name=\"viewForm\" action=\"/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001000000000000000\" method=\"post\" \n 채용공고 상세보기 \n 제목 \n 기간제근로자(전기직) 채용 서류전형",
+          "url": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001000000000000000",
+          "finalUrl": "",
+          "hintedType": "unknown",
           "detectedType": "",
-          "contentType": "text/html;charset=UTF-8",
+          "contentType": "",
           "contentDisposition": "",
-          "signature": "3c21444f43545950452068746d6c3e0d",
-          "size": 214911,
+          "signature": "",
+          "size": 0,
           "ok": false,
-          "error": "download returned HTML page",
+          "error": "download HTTP 500",
           "commandError": {
-            "message": "download returned HTML page",
+            "message": "download HTTP 500",
             "code": "",
             "exitCode": null,
             "command": "",
@@ -455,7 +457,8 @@
             "stdout": "",
             "stderr": ""
           },
-          "priority": 70
+          "priority": 100,
+          "requestMethod": "POST"
         },
         {
           "name": "기간제근로자(전기직) 채용 서류전형 합격자 및 면적시험 공고문.hwp (118.5KByte)",
@@ -466,7 +469,7 @@
           "contentType": "text/html;charset=UTF-8",
           "contentDisposition": "",
           "signature": "3c21444f43545950452068746d6c3e0d",
-          "size": 106220,
+          "size": 105120,
           "ok": false,
           "error": "download returned HTML page",
           "commandError": {
@@ -478,7 +481,8 @@
             "stdout": "",
             "stderr": ""
           },
-          "priority": 70
+          "priority": 70,
+          "requestMethod": "GET"
         },
         {
           "name": "뷰어다운로드",
@@ -489,7 +493,7 @@
           "contentType": "text/html;charset=UTF-8",
           "contentDisposition": "",
           "signature": "3c21444f43545950452068746d6c3e0d",
-          "size": 75722,
+          "size": 75150,
           "ok": false,
           "error": "download returned HTML page",
           "commandError": {
@@ -501,7 +505,8 @@
             "stdout": "",
             "stderr": ""
           },
-          "priority": 40
+          "priority": 40,
+          "requestMethod": "GET"
         },
         {
           "name": "뷰어다운로드",
@@ -512,7 +517,7 @@
           "contentType": "text/html;charset=UTF-8",
           "contentDisposition": "",
           "signature": "3c21444f43545950452068746d6c3e0d",
-          "size": 75722,
+          "size": 75150,
           "ok": false,
           "error": "download returned HTML page",
           "commandError": {
@@ -524,7 +529,8 @@
             "stdout": "",
             "stderr": ""
           },
-          "priority": 40
+          "priority": 40,
+          "requestMethod": "GET"
         }
       ],
       "rejected": 4,

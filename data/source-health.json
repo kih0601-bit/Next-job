@@ -1,6 +1,6 @@
 {
-  "version": "12.1-resilient-http-access",
-  "updatedAt": "2026-08-05T03:11:00.126Z",
+  "version": "12.4-detail-document-pipeline",
+  "updatedAt": "2026-08-05T04:19:45.467Z",
   "summary": {
     "totalSources": 22,
     "healthy": 22,
@@ -399,7 +399,7 @@
           "url": "https://www.upa.or.kr/portal/contents.do?mid=0405000000",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785899224264",
+          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785903309662",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
@@ -461,7 +461,7 @@
         {
           "url": "https://recruit.kepco.co.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11003 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached",
           "attempt": 2
         },
         {
@@ -627,27 +627,29 @@
           "unknown": 4
         },
         "byContentType": {
-          "text/html;charset=UTF-8": 4
+          "none": 1,
+          "text/html;charset=UTF-8": 3
         },
         "byError": {
-          "download returned HTML page": 4
+          "download HTTP 500": 1,
+          "download returned HTML page": 3
         }
       },
       "documentSamples": [
         {
-          "name": "기간제근로자(전기직) 채용 서류전형 합격자 및 면적시험 공고문.hwp (118.5KByte)",
-          "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434#fileDownload",
-          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434",
-          "hintedType": "hwp",
+          "name": "id=\"viewForm\" name=\"viewForm\" action=\"/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001000000000000000\" method=\"post\" \n 채용공고 상세보기 \n 제목 \n 기간제근로자(전기직) 채용 서류전형",
+          "url": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001000000000000000",
+          "finalUrl": "",
+          "hintedType": "unknown",
           "detectedType": "",
-          "contentType": "text/html;charset=UTF-8",
+          "contentType": "",
           "contentDisposition": "",
-          "signature": "3c21444f43545950452068746d6c3e0d",
-          "size": 214911,
+          "signature": "",
+          "size": 0,
           "ok": false,
-          "error": "download returned HTML page",
+          "error": "download HTTP 500",
           "commandError": {
-            "message": "download returned HTML page",
+            "message": "download HTTP 500",
             "code": "",
             "exitCode": null,
             "command": "",
@@ -655,7 +657,8 @@
             "stdout": "",
             "stderr": ""
           },
-          "priority": 70
+          "priority": 100,
+          "requestMethod": "POST"
         },
         {
           "name": "기간제근로자(전기직) 채용 서류전형 합격자 및 면적시험 공고문.hwp (118.5KByte)",
@@ -666,7 +669,7 @@
           "contentType": "text/html;charset=UTF-8",
           "contentDisposition": "",
           "signature": "3c21444f43545950452068746d6c3e0d",
-          "size": 106220,
+          "size": 105120,
           "ok": false,
           "error": "download returned HTML page",
           "commandError": {
@@ -678,7 +681,8 @@
             "stdout": "",
             "stderr": ""
           },
-          "priority": 70
+          "priority": 70,
+          "requestMethod": "GET"
         },
         {
           "name": "뷰어다운로드",
@@ -689,7 +693,7 @@
           "contentType": "text/html;charset=UTF-8",
           "contentDisposition": "",
           "signature": "3c21444f43545950452068746d6c3e0d",
-          "size": 75722,
+          "size": 75150,
           "ok": false,
           "error": "download returned HTML page",
           "commandError": {
@@ -701,7 +705,8 @@
             "stdout": "",
             "stderr": ""
           },
-          "priority": 40
+          "priority": 40,
+          "requestMethod": "GET"
         },
         {
           "name": "뷰어다운로드",
@@ -712,7 +717,7 @@
           "contentType": "text/html;charset=UTF-8",
           "contentDisposition": "",
           "signature": "3c21444f43545950452068746d6c3e0d",
-          "size": 75722,
+          "size": 75150,
           "ok": false,
           "error": "download returned HTML page",
           "commandError": {
@@ -724,7 +729,8 @@
             "stdout": "",
             "stderr": ""
           },
-          "priority": 40
+          "priority": 40,
+          "requestMethod": "GET"
         }
       ]
     },
@@ -798,12 +804,18 @@
       "accessAttempts": [
         {
           "url": "https://www.uncmc.or.kr/",
+          "ok": false,
+          "error": "fetch failed (EAI_AGAIN) / curl failed: curl: (28) Resolving timed out after 6000 milliseconds\ncurl: (28) Resolving timed out after 6000 milliseconds\ncurl: (28) Resolving timed out after 6000 milliseconds",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.uncmc.or.kr/",
           "ok": true,
           "status": 200,
           "finalUrl": "https://www.uncmc.or.kr/",
           "transport": "node-fetch",
           "profile": "browser",
-          "attempt": 1
+          "attempt": 2
         }
       ],
       "rejectionReasons": {},
@@ -1117,7 +1129,7 @@
         {
           "url": "http://www.uri.re.kr/",
           "ok": false,
-          "error": "HTTP 403 / curl failed: HTTP 403",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / fetch failed (EAI_AGAIN) / curl failed: HTTP 403",
           "attempt": 1
         },
         {

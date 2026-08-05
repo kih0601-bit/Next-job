@@ -64,10 +64,19 @@ const RAW_SOURCES = [
     'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000' ] },
   { org: '울산문화관광재단', urls: ['https://www.uctf.or.kr/'] },
   { org: '울산복지가족진흥사회서비스원', urls: [
+    // Primary and legacy official recruitment boards.
     'https://www.wfps.or.kr/webuser/employment/list.html',
     'https://www.wfps.or.kr/',
     'https://www.uwfdi.re.kr/webuser/employment/list.html',
-    'https://www.uwfdi.re.kr/' ] },
+    'https://www.uwfdi.re.kr/',
+    // Official Ulsan Metropolitan City mirrors used when GitHub-hosted runners
+    // cannot establish a TCP connection to the institution domains.
+    'https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000',
+    'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000',
+    'https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001001000000',
+    // Official local-government availability fallback. Phase 2 must verify
+    // that institution-specific listing coverage is sufficient before parsing.
+    'https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2' ] },
   { org: '울주문화재단', urls: ['https://uljuculture.hubst.co.kr/', 'http://www.ucf.or.kr/', 'https://www.ucf.or.kr/'] },
   { org: '울산광역시 타기관소식', urls: [
     // Primary source: Ulsan Metropolitan City other-organization notices.
@@ -97,4 +106,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '13.0-phase1-official-source-fallback';
+export const SOURCE_REGISTRY_VERSION = '13.1-phase1-wfps-official-fallbacks';

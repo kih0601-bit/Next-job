@@ -75,6 +75,45 @@ function crossValidate(detailText = '', documentText = '') {
   return { checked: true, conflict: reasons.length > 0, reasons, detailEmployment, documentEmployment, detailEducation, documentEducation, detailLocation, documentLocation };
 }
 
+function collectEvidence(text = '', patterns = [], limit = 4) {
+  const lines = String(text)
+    .split(/\n|\r|\t| {2,}/)
+    .map(line => line.trim())
+    .filter(Boolean);
+  const matches = [];
+  for (const line of lines) {
+    if (patterns.some(pattern => pattern.test(line))) matches.push(line.slice(0, 240));
+    if (matches.length >= limit) break;
+  }
+  return [...new Set(matches)];
+}
+
+function buildDecisionEvidence({ fullText = '', detailText = '', documentText = '', education, employmentType, location }) {
+  return {
+    education: {
+      result: education,
+      lines: collectEvidence(fullText, [...HIGH_SCHOOL_OK_PATTERNS, ...DEGREE_REQUIRED_PATTERNS])
+    },
+    employment: {
+      result: employmentType,
+      lines: collectEvidence(fullText, [
+        /정규직|무기계약직|공무직|일반직|상용직/,
+        ...EXCLUDED_EMPLOYMENT_PATTERNS,
+        ...TEMPORARY_EMPLOYMENT_STRONG_PATTERNS
+      ])
+    },
+    location: {
+      result: location,
+      lines: collectEvidence(fullText, [/(?:근무지|근무지역|근무장소|근무예정지|배치예정지|소재지)/i, /울산|울주군|새울/])
+    },
+    sources: {
+      detailChars: String(detailText).length,
+      documentChars: String(documentText).length,
+      documentUsed: String(documentText).trim().length > 0
+    }
+  };
+}
+
 export function analyzeJob({ title = '', listText = '', detailText = '', documentText = '', detailOk = false, structuredVacancy = false }) {
   const titleText = String(title).trim();
   const fullText = `${titleText}\n${listText}\n${detailText}\n${documentText}`.replace(/[ \t]+/g, ' ');
@@ -118,10 +157,11 @@ export function analyzeJob({ title = '', listText = '', detailText = '', documen
     if (detailOk) fitScore += 10;
     fitScore = Math.min(fitScore, 90);
   }
+  const decisionEvidence = buildDecisionEvidence({ fullText, detailText, documentText, education, employmentType, location });
   return {
     status: recommended ? '지원 추천' : excluded ? '제외' : '확인 필요', recommended, excluded, reviewNeeded,
     eligibility: education, employmentType, location, fitScore, jobCategory: detectJobCategory(fullText), crossValidation,
-    fitReasons: [...new Set(reasons)], excludeReasons: [...new Set(excludeReasons)]
+    fitReasons: [...new Set(reasons)], excludeReasons: [...new Set(excludeReasons)], decisionEvidence
   };
 }
 
@@ -134,7 +174,7 @@ export function analyzeVacancies({ title = '', listText = '', detailText = '', d
       title: vacancies.length > 1 ? `${title} ${vacancy.name}` : title,
       listText,
       detailText: localDetail,
-      documentText: '',
+      documentText,
       detailOk,
       structuredVacancy: vacancies.length > 1
     });

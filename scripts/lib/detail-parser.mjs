@@ -90,6 +90,39 @@ function urlsFromJavascript(value = '') {
   return urls;
 }
 
+function isLikelyDownloadUrl(value = '', label = '') {
+  const probe = `${value} ${label}`;
+  if (FILE_EXT.test(probe)) return true;
+  if (/(?:FileDown|fileDown|download|atchFile|attach|bbsFile)[^?#/]*(?:\.do)?(?:[?#]|$)/i.test(value)) return true;
+  try {
+    const url = new URL(value, 'https://placeholder.invalid');
+    const keys = [...url.searchParams.keys()].join(' ');
+    return /atchFileId|fileSn|fileSeq|fileId|fileNo|bbsFile|download/i.test(keys);
+  } catch { return false; }
+}
+
+function commonFileDownloadCandidates(js = '', baseUrl = '') {
+  const decoded = decodeHtmlEntities(js).replace(/\\(["'])/g, '$1');
+  const call = decoded.match(/\b[A-Za-z_$][\w$]*\s*\(([^)]*)\)/);
+  if (!call) return [];
+  const args = splitJavascriptArgs(call[1]).map(jsLiteral).filter(Boolean);
+  const atchFileId = args.find(value => /^FILE_[0-9A-Za-z_-]+$/i.test(value));
+  const bbsId = args.find(value => /^BBS_[0-9A-Za-z_-]+$/i.test(value));
+  const numeric = args.filter(value => /^\d+$/.test(value));
+  if (!atchFileId) return [];
+  const fileSn = numeric.at(-1) || '0';
+  try {
+    const base = new URL(baseUrl);
+    const root = base.pathname.match(/^(.+?)\/bbs\//i)?.[1] || '';
+    const endpoint = `${root}/bbs/FileDown.do`;
+    const url = new URL(endpoint, base.origin);
+    url.searchParams.set('atchFileId', atchFileId);
+    if (bbsId) url.searchParams.set('bbsId', bbsId);
+    url.searchParams.set('fileSn', fileSn);
+    return [url.href];
+  } catch { return []; }
+}
+
 
 
 function splitJavascriptArgs(value = '') {
@@ -156,7 +189,11 @@ function extractFormAttachments(source, baseUrl, attachments, seen, request = {}
     const bodyHtml = match[2] || '';
     const context = `${attrs} ${bodyHtml.slice(0, 2000)}`;
     const action = attrs.match(/\baction\s*=\s*["']([^"']+)["']/i)?.[1] || '';
-    if (!action || (!FILE_SIGNAL.test(context) && !FILE_SIGNAL.test(action))) continue;
+    const hiddenNames = [...bodyHtml.matchAll(/<input\b[^>]*\bname\s*=\s*["']([^"']+)["'][^>]*>/gi)].map(input => input[1]).join(' ');
+    const actionLooksDownload = isLikelyDownloadUrl(action, context);
+    const fieldsLookDownload = /atchFileId|fileSn|fileSeq|fileId|fileNo|download/i.test(hiddenNames);
+    if (!action || (!actionLooksDownload && !fieldsLookDownload)) continue;
+    if (/\/(?:list|view|main|contents)\.(?:do|ulsan)(?:[?#]|$)/i.test(action) && !actionLooksDownload) continue;
     const method = (attrs.match(/\bmethod\s*=\s*["']([^"']+)["']/i)?.[1] || 'GET').toUpperCase();
     const params = new URLSearchParams();
     for (const input of bodyHtml.matchAll(/<input\b([^>]*)>/gi)) {
@@ -195,14 +232,17 @@ export function extractAttachments(html, baseUrl, request = {}) {
     const anchorHasDirectFile = FILE_EXT.test(anchorProbe);
     const anchorHasFileSignal = anchorHasDirectFile || FILE_SIGNAL.test(anchorProbe) || ATTACHMENT_CONTEXT.test(context);
 
-    if (anchorHasFileSignal && href && href !== '#' && !/^javascript:/i.test(href)) {
+    if (anchorHasFileSignal && href && href !== '#' && !/^javascript:/i.test(href) && isLikelyDownloadUrl(href, label)) {
       addAttachment(attachments, seen, href, label, baseUrl, '', context, request);
     }
     const onclickMatch = attrs.match(/\bonclick\s*=\s*(["'])([\s\S]*?)\1/i);
     const js = onclickMatch?.[2] || (/^javascript:/i.test(href) ? href : '');
     const jsCandidates = urlsFromJavascript(js);
     if (anchorHasFileSignal || FILE_SIGNAL.test(js) || jsCandidates.some(candidate => FILE_EXT.test(candidate))) {
-      for (const candidate of [...jsCandidates, ...javascriptDownloadCandidates(source, js)]) addAttachment(attachments, seen, candidate, label, baseUrl, '', context, request);
+      const recovered = [...jsCandidates, ...javascriptDownloadCandidates(source, js), ...commonFileDownloadCandidates(js, baseUrl)];
+      for (const candidate of recovered) {
+        if (isLikelyDownloadUrl(candidate, label)) addAttachment(attachments, seen, candidate, label, baseUrl, '', context, request);
+      }
     }
     for (const attr of ['data-url', 'data-href', 'data-file', 'data-download', 'value']) {
       const valueMatch = attrs.match(new RegExp(`\\b${attr}\\s*=\\s*(["'])((?:(?!\\1).)+)\\1`, 'i'));

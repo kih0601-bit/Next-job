@@ -5,7 +5,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '12.4-request-aware-attachment-parser';
+const ANALYZER_VERSION = '12.5-file-endpoint-and-transport-parser';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -127,7 +127,7 @@ async function detectActualType({ bytes, contentType, contentDisposition, finalU
   return { type: 'unsupported', reason: 'unknown-format' };
 }
 
-async function download(item, target, timeoutMs = 30000) {
+async function downloadWithFetch(item, target, timeoutMs = 30000) {
   const url = typeof item === 'string' ? item : item.url;
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -165,6 +165,67 @@ async function download(item, target, timeoutMs = 30000) {
     };
   } finally {
     clearTimeout(timer);
+  }
+}
+
+
+function curlHeaderArgs(headers = {}) {
+  return Object.entries(headers).flatMap(([key, value]) => value ? ['-H', `${key}: ${value}`] : []);
+}
+
+async function downloadWithCurl(item, target, timeoutMs = 45000) {
+  if (!(await commandExists('curl'))) throw new Error('curl unavailable');
+  const url = typeof item === 'string' ? item : item.url;
+  const method = String(item?.method || 'GET').toUpperCase();
+  const headers = {
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
+    'accept-language': 'ko-KR,ko;q=0.9',
+    accept: 'application/pdf,application/octet-stream,application/zip,image/*,*/*;q=0.8',
+    ...(item?.headers || {})
+  };
+  if (item?.referer) headers.referer = item.referer;
+  if (item?.cookie) headers.cookie = item.cookie;
+  const headerFile = `${target}.headers`;
+  const args = ['-L', '--fail-with-body', '--silent', '--show-error', '--max-time', String(Math.ceil(timeoutMs / 1000)), '-D', headerFile, '-o', target, ...curlHeaderArgs(headers)];
+  if (method !== 'GET') args.push('-X', method);
+  if (method !== 'GET' && method !== 'HEAD' && item?.body) args.push('--data-raw', item.body);
+  args.push(url);
+  await run('curl', args, { timeoutMs: timeoutMs + 5000 });
+  const bytes = new Uint8Array(await fs.readFile(target));
+  if (!bytes.byteLength) throw new Error('empty attachment');
+  if (bytes.byteLength > MAX_FILE_BYTES) throw new Error('attachment too large');
+  const rawHeaders = await fs.readFile(headerFile, 'utf8').catch(() => '');
+  const blocks = rawHeaders.split(/\r?\n\r?\n/).filter(Boolean);
+  const last = blocks.at(-1) || '';
+  const headerValue = name => last.match(new RegExp(`^${name}:\\s*(.+)$`, 'im'))?.[1]?.trim() || '';
+  const finalUrl = headerValue('location') ? new URL(headerValue('location'), url).href : url;
+  return {
+    bytes,
+    finalUrl,
+    contentType: headerValue('content-type'),
+    contentDisposition: headerValue('content-disposition'),
+    size: bytes.byteLength,
+    signature: fileSignature(bytes),
+    transport: 'curl'
+  };
+}
+
+async function download(item, target, timeoutMs = 30000) {
+  try {
+    const result = await downloadWithFetch(item, target, timeoutMs);
+    return { ...result, transport: 'node-fetch' };
+  } catch (fetchError) {
+    try {
+      return await downloadWithCurl(item, target, Math.max(timeoutMs, 45000));
+    } catch (curlError) {
+      const error = new Error(`${fetchError.message} / curl: ${curlError.message}`);
+      error.code = curlError.code || fetchError.code || '';
+      error.command = curlError.command || '';
+      error.args = curlError.args || [];
+      error.stdout = curlError.stdout || '';
+      error.stderr = curlError.stderr || '';
+      throw error;
+    }
   }
 }
 
@@ -364,6 +425,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
           contentType: meta.contentType,
           contentDisposition: meta.contentDisposition,
           signature: meta.signature,
+          transport: meta.transport || '',
           ok: true,
           size: meta.size,
           textLength: extracted.text.length,
@@ -382,6 +444,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
           contentType: meta?.contentType || '',
           contentDisposition: meta?.contentDisposition || '',
           signature: meta?.signature || '',
+          transport: meta?.transport || '',
           size: meta?.size || 0,
           ok: false,
           error: error.message,

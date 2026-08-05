@@ -1,55 +1,65 @@
 {
-  "version": "11.8-alio-row-fallback-debug-samples",
-  "updatedAt": "2026-08-05T02:21:58.231Z",
+  "version": "12.0-generic-row-detail-recovery",
+  "updatedAt": "2026-08-05T02:39:27.759Z",
   "summary": {
     "totalSources": 22,
-    "healthy": 18,
+    "healthy": 16,
     "degraded": 0,
-    "failed": 4,
+    "failed": 6,
     "retainedJobs": 0
   },
   "sources": [
     {
       "org": "한국동서발전",
-      "ok": true,
-      "status": "healthy",
+      "ok": false,
+      "status": "failed",
       "candidates": 0,
-      "listingPagesChecked": 1,
+      "listingPagesChecked": 0,
       "count": 0,
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "",
+      "error": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U => HTTP 502 | https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U => HTTP 502 | https://www.ewp.co.kr/ => HTTP 502 | https://www.ewp.co.kr/ => HTTP 502 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT)",
       "accessAttempts": [
         {
           "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U"
+          "ok": false,
+          "error": "HTTP 502",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+          "ok": false,
+          "error": "HTTP 502",
+          "attempt": 2
+        },
+        {
+          "url": "https://www.ewp.co.kr/",
+          "ok": false,
+          "error": "HTTP 502",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.ewp.co.kr/",
+          "ok": false,
+          "error": "HTTP 502",
+          "attempt": 2
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "attempt": 1
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "attempt": 2
         }
       ],
       "rejectionReasons": {},
-      "extractionDiagnostics": {
-        "anchors": 282,
-        "titleMatches": 2,
-        "noUrl": 1,
-        "unsafeUrl": 1,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [
-          "이전 채용공고",
-          "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안..."
-        ],
-        "unsafeSamples": [
-          {
-            "title": "이전 채용공고",
-            "attrs": " href=\"http://alio.go.kr/popSusi.do?apbaId=C0066&reportFormRootNo=B1020\" class=\"navy_btn blank\" target=\"_blank\" title=\"새 창 열림\"",
-            "urls": [
-              "http://alio.go.kr/popSusi.do?apbaId=C0066&reportFormRootNo=B1020"
-            ]
-          }
-        ]
-      },
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -150,7 +160,23 @@
           "한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)",
           "한국에너지공단 전문경력직 채용 공고"
         ],
-        "unsafeSamples": []
+        "unsafeSamples": [
+          {
+            "title": "한국에너지공단 공무직(시설관리 일반) 채용 공고",
+            "reason": "no-url",
+            "row": "<tr class=\"cnt_txt\">\r\n                                                <td class=\"col_tit\"><a href=\"javascript:void(0);\" onclick=\"javascript:fn_Detail('133');\" class=\"cnt_txt\"><span>한국에너지공단 공무직(시설관리 일반) 채용 공고</span></a></td>\r\n                                                <td class=\"tm_n\">신입및경력</td>\r\n                                                <td class=\"tm_n\">1</td>\r\n                                                <td class=\"tm_n\">울산</td>\r\n                                                <td class=\"tm_n\">무기계약직</td>\r\n                                                <td>2026-03-10~<br>2026-03-18</td>\r\n                                                <td class=\"tm_n\"> \r\n                                                \r\n                                                \t\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"tb_file\"><span class=\"skip\">첨부파일</span></p>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t</td>\r\n\t\t\t\t\t\t\t\t\t\t \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t                                                <td class=\"tm_n\">공고마감</td>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n                                            </tr>"
+          },
+          {
+            "title": "한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)",
+            "reason": "no-url",
+            "row": "<tr class=\"cnt_txt\">\r\n                                                <td class=\"col_tit\"><a href=\"javascript:void(0);\" onclick=\"javascript:fn_Detail('132');\" class=\"cnt_txt\"><span>한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)</span></a></td>\r\n                                                <td class=\"tm_n\">신입및경력</td>\r\n                                                <td class=\"tm_n\">1</td>\r\n                                                <td class=\"tm_n\">광주</td>\r\n                                                <td class=\"tm_n\">무기계약직</td>\r\n                                                <td>2026-03-10~<br>2026-03-18</td>\r\n                                                <td class=\"tm_n\"> \r\n                                                \r\n                                                \t\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"tb_file\"><span class=\"skip\">첨부파일</span></p>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t</td>\r\n\t\t\t\t\t\t\t\t\t\t \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t                                                <td class=\"tm_n\">공고마감</td>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n                                            </tr>"
+          },
+          {
+            "title": "한국에너지공단 전문경력직 채용 공고",
+            "reason": "no-url",
+            "row": "<tr class=\"cnt_txt\">\r\n                                                <td class=\"col_tit\"><a href=\"javascript:void(0);\" onclick=\"javascript:fn_Detail('130');\" class=\"cnt_txt\"><span>한국에너지공단 전문경력직 채용 공고</span></a></td>\r\n                                                <td class=\"tm_n\">경력</td>\r\n                                                <td class=\"tm_n\">4</td>\r\n                                                <td class=\"tm_n\">울산, 충북</td>\r\n                                                <td class=\"tm_n\">정규직</td>\r\n                                                <td>2026-03-10~<br>2026-03-25</td>\r\n                                                <td class=\"tm_n\"> \r\n                                                \r\n                                                \t\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"tb_file\"><span class=\"skip\">첨부파일</span></p>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t</td>\r\n\t\t\t\t\t\t\t\t\t\t \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t                                                <td class=\"tm_n\">공고마감</td>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n                                            </tr>"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -222,15 +248,15 @@
     },
     {
       "org": "근로복지공단",
-      "ok": true,
-      "status": "healthy",
+      "ok": false,
+      "status": "failed",
       "candidates": 0,
-      "listingPagesChecked": 1,
+      "listingPagesChecked": 0,
       "count": 0,
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "",
+      "error": "https://www.comwel.or.kr/comwel/noti/recruit.jsp => HTTP 400 | https://www.comwel.or.kr/comwel/noti/recruit.jsp => HTTP 400 | https://www.comwel.or.kr/ => HTTP 400 | https://www.comwel.or.kr/ => HTTP 400 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT)",
       "accessAttempts": [
         {
           "url": "https://www.comwel.or.kr/comwel/noti/recruit.jsp",
@@ -258,22 +284,19 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y"
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "attempt": 1
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "attempt": 2
         }
       ],
       "rejectionReasons": {},
-      "extractionDiagnostics": {
-        "anchors": 60,
-        "titleMatches": 0,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": []
-      },
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -346,45 +369,39 @@
       "org": "울산항만공사",
       "ok": true,
       "status": "healthy",
-      "candidates": 0,
+      "candidates": 2,
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
-      "detailFailures": 0,
+      "rejected": 2,
+      "detailFailures": 2,
       "error": "",
       "accessAttempts": [
         {
           "url": "https://www.upa.or.kr/portal/contents.do?mid=0405000000",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785896399999"
+          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785897443872"
         }
       ],
-      "rejectionReasons": {},
+      "rejectionReasons": {
+        "final url is not a detail page": 2
+      },
       "extractionDiagnostics": {
         "anchors": 393,
         "titleMatches": 2,
-        "noUrl": 1,
-        "unsafeUrl": 1,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 2,
+        "rowFallbackAccepted": 2,
         "titleSamples": [
           "--> 채용공고",
           "2026년 울산항만공사 연간 채용 계획 사전 안내"
         ],
-        "unsafeSamples": [
-          {
-            "title": "--> 채용공고",
-            "attrs": " href=\"#a\" title=\"펼치기\"",
-            "urls": [
-              "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785896399999#a"
-            ]
-          }
-        ]
+        "unsafeSamples": []
       },
       "pipeline": {
-        "detailAttempted": 0,
+        "detailAttempted": 2,
         "detailValidated": 0,
         "attachmentsDiscovered": 0,
         "documentsAttempted": 0,
@@ -404,15 +421,15 @@
     },
     {
       "org": "한국전력공사",
-      "ok": true,
-      "status": "healthy",
-      "candidates": 1,
-      "listingPagesChecked": 4,
+      "ok": false,
+      "status": "failed",
+      "candidates": 0,
+      "listingPagesChecked": 0,
       "count": 0,
       "retained": 0,
-      "rejected": 1,
+      "rejected": 0,
       "detailFailures": 0,
-      "error": "",
+      "error": "https://recruit.kepco.co.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://recruit.kepco.co.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT)",
       "accessAttempts": [
         {
           "url": "https://recruit.kepco.co.kr/",
@@ -428,35 +445,19 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y"
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "attempt": 1
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "attempt": 2
         }
       ],
-      "rejectionReasons": {
-        "closed notice text": 1
-      },
-      "extractionDiagnostics": {
-        "anchors": 77,
-        "titleMatches": 2,
-        "noUrl": 0,
-        "unsafeUrl": 1,
-        "accepted": 1,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [
-          "한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 진행중",
-          "1. 채용공고문.pdf"
-        ],
-        "unsafeSamples": [
-          {
-            "title": "1. 채용공고문.pdf",
-            "attrs": " href=\"https://www.alio.go.kr/download/download.json?fileNo=3066199\" target=\"_blank\"",
-            "urls": [
-              "https://www.alio.go.kr/download/download.json?fileNo=3066199"
-            ]
-          }
-        ]
-      },
+      "rejectionReasons": {},
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -529,11 +530,11 @@
       "org": "울산도시공사",
       "ok": true,
       "status": "healthy",
-      "candidates": 3,
+      "candidates": 4,
       "listingPagesChecked": 4,
       "count": 0,
       "retained": 0,
-      "rejected": 3,
+      "rejected": 4,
       "detailFailures": 3,
       "error": "",
       "accessAttempts": [
@@ -545,60 +546,152 @@
         }
       ],
       "rejectionReasons": {
+        "모집분야 1: 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인 | 모집분야 2: 인턴·기간제·계약직 등 제외 고용형태": 1,
         "HTTP 404": 3
       },
       "extractionDiagnostics": {
         "anchors": 1668,
         "titleMatches": 4,
         "noUrl": 0,
-        "unsafeUrl": 1,
-        "accepted": 3,
-        "rowFallbackAccepted": 0,
+        "unsafeUrl": 0,
+        "accepted": 4,
+        "rowFallbackAccepted": 1,
         "titleSamples": [
           "채용공고 더보기",
           "2026년 울산도시공사 신입직원(보훈) 채용공고",
           "2026년 울산도시공사 신입직원(기록물) 채용공고",
           "기간제근로자(전기직) 채용 공고"
         ],
-        "unsafeSamples": [
-          {
-            "title": "채용공고 더보기",
-            "attrs": " href=\"/umca/contents.do?mId=001001002000000000\" class=\"btn_more\"",
-            "urls": [
-              "https://www.umca.co.kr/umca/contents.do?mId=001001002000000000"
-            ]
-          }
-        ]
+        "unsafeSamples": []
       },
       "pipeline": {
-        "detailAttempted": 3,
-        "detailValidated": 0,
-        "attachmentsDiscovered": 0,
-        "documentsAttempted": 0,
+        "detailAttempted": 4,
+        "detailValidated": 1,
+        "attachmentsDiscovered": 4,
+        "documentsAttempted": 4,
         "documentsParsed": 0
       },
       "vacancyStats": {
-        "detected": 0,
+        "detected": 2,
         "accepted": 0,
-        "rejected": 0
+        "rejected": 2
       },
       "documentDiagnostics": {
-        "byDetectedType": {},
-        "byContentType": {},
-        "byError": {}
+        "byDetectedType": {
+          "unknown": 4
+        },
+        "byContentType": {
+          "text/html;charset=UTF-8": 4
+        },
+        "byError": {
+          "download returned HTML page": 4
+        }
       },
-      "documentSamples": []
+      "documentSamples": [
+        {
+          "name": "기간제근로자(전기직) 채용 서류전형 합격자 및 면적시험 공고문.hwp (118.5KByte)",
+          "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434#fileDownload",
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434",
+          "hintedType": "hwp",
+          "detectedType": "",
+          "contentType": "text/html;charset=UTF-8",
+          "contentDisposition": "",
+          "signature": "3c21444f43545950452068746d6c3e0d",
+          "size": 214911,
+          "ok": false,
+          "error": "download returned HTML page",
+          "commandError": {
+            "message": "download returned HTML page",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 70
+        },
+        {
+          "name": "기간제근로자(전기직) 채용 서류전형 합격자 및 면적시험 공고문.hwp (118.5KByte)",
+          "url": "https://www.umca.co.kr/umca",
+          "finalUrl": "https://www.umca.co.kr/umca/main.do",
+          "hintedType": "hwp",
+          "detectedType": "",
+          "contentType": "text/html;charset=UTF-8",
+          "contentDisposition": "",
+          "signature": "3c21444f43545950452068746d6c3e0d",
+          "size": 106220,
+          "ok": false,
+          "error": "download returned HTML page",
+          "commandError": {
+            "message": "download returned HTML page",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 70
+        },
+        {
+          "name": "뷰어다운로드",
+          "url": "https://www.umca.co.kr/umca/contents.do?mId=001008004000000000",
+          "finalUrl": "https://www.umca.co.kr/umca/contents.do?mId=001008004000000000",
+          "hintedType": "unknown",
+          "detectedType": "",
+          "contentType": "text/html;charset=UTF-8",
+          "contentDisposition": "",
+          "signature": "3c21444f43545950452068746d6c3e0d",
+          "size": 75722,
+          "ok": false,
+          "error": "download returned HTML page",
+          "commandError": {
+            "message": "download returned HTML page",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40
+        },
+        {
+          "name": "뷰어다운로드",
+          "url": "https://www.umca.co.kr/umca/contents.ulsan?mId=001008004000000000",
+          "finalUrl": "https://www.umca.co.kr/umca/contents.ulsan?mId=001008004000000000",
+          "hintedType": "unknown",
+          "detectedType": "",
+          "contentType": "text/html;charset=UTF-8",
+          "contentDisposition": "",
+          "signature": "3c21444f43545950452068746d6c3e0d",
+          "size": 75722,
+          "ok": false,
+          "error": "download returned HTML page",
+          "commandError": {
+            "message": "download returned HTML page",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40
+        }
+      ]
     },
     {
       "org": "울산시설공단",
       "ok": true,
       "status": "healthy",
-      "candidates": 0,
+      "candidates": 1,
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
-      "detailFailures": 0,
+      "rejected": 1,
+      "detailFailures": 1,
       "error": "",
       "accessAttempts": [
         {
@@ -608,29 +701,23 @@
           "finalUrl": "https://uic.or.kr/notify/noti06.do"
         }
       ],
-      "rejectionReasons": {},
+      "rejectionReasons": {
+        "detail body too short": 1
+      },
       "extractionDiagnostics": {
         "anchors": 429,
         "titleMatches": 1,
         "noUrl": 0,
-        "unsafeUrl": 1,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
+        "unsafeUrl": 0,
+        "accepted": 1,
+        "rowFallbackAccepted": 1,
         "titleSamples": [
           "2026년도 제2회 울산시설공단 신규직원 채용 공고"
         ],
-        "unsafeSamples": [
-          {
-            "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
-            "attrs": " href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003023').submit();\"",
-            "urls": [
-              "https://uic.or.kr/notify/noti06.do#noscript"
-            ]
-          }
-        ]
+        "unsafeSamples": []
       },
       "pipeline": {
-        "detailAttempted": 0,
+        "detailAttempted": 1,
         "detailValidated": 0,
         "attachmentsDiscovered": 0,
         "documentsAttempted": 0,
@@ -958,18 +1045,18 @@
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "https://www.uri.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://www.uri.re.kr/ => HTTP 403",
+      "error": "https://www.uri.re.kr/ => fetch failed (EAI_AGAIN) | https://www.uri.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT)",
       "accessAttempts": [
         {
           "url": "https://www.uri.re.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "error": "fetch failed (EAI_AGAIN)",
           "attempt": 1
         },
         {
           "url": "https://www.uri.re.kr/",
           "ok": false,
-          "error": "HTTP 403",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
           "attempt": 2
         }
       ],
@@ -1006,12 +1093,6 @@
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
-        {
-          "url": "https://www.uctf.or.kr/",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
-          "attempt": 1
-        },
         {
           "url": "https://www.uctf.or.kr/",
           "ok": true,
@@ -1143,43 +1224,40 @@
     },
     {
       "org": "울산광역시 타기관소식",
-      "ok": false,
-      "status": "failed",
-      "candidates": 0,
-      "listingPagesChecked": 0,
+      "ok": true,
+      "status": "healthy",
+      "candidates": 3,
+      "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
+      "rejected": 3,
       "detailFailures": 0,
-      "error": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://www.ulsan.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://www.ulsan.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+      "error": "",
       "accessAttempts": [
         {
           "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
-          "attempt": 1
-        },
-        {
-          "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
-          "attempt": 2
-        },
-        {
-          "url": "https://www.ulsan.go.kr/",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
-          "attempt": 1
-        },
-        {
-          "url": "https://www.ulsan.go.kr/",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
-          "attempt": 2
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000"
         }
       ],
-      "rejectionReasons": {},
-      "extractionDiagnostics": {},
+      "rejectionReasons": {
+        "expired deadline": 3
+      },
+      "extractionDiagnostics": {
+        "anchors": 795,
+        "titleMatches": 3,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 3,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [
+          "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+          "울산광역시체육회 기간제근로자(장애인) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
+        ],
+        "unsafeSamples": []
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,

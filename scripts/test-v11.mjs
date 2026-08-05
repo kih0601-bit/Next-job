@@ -78,3 +78,17 @@ console.log('v11.3 position-unit tests passed');
     throw new Error('v11.4 ALIO idx adapter test failed');
   }
 }
+
+// v11.8 ALIO row fallback: title is outside the clickable anchor.
+{
+  const { extractAlioCandidates } = await import('./collectors/alio-adapter.mjs');
+  const html = `<li><span>2026년도 일반직 신입직원 공개채용 공고</span><button onclick="recruitView('303192')">상세보기</button></li>`;
+  const rows = extractAlioCandidates(html, { org: '한국동서발전', url: 'https://job.alio.go.kr/mobile2021/recruit/recruit.do' }, {
+    validTitle: title => /채용/.test(title),
+    normalizeTitleForDedup: title => title
+  });
+  assert.equal(rows.length, 1, '앵커 밖 제목도 ALIO 상세 호출과 연결해야 함');
+  assert.match(rows[0].link, /idx=303192/);
+  assert.equal(rows[0].adapter, 'ALIO-row-fallback');
+}
+console.log('v11.8 extraction fallback tests passed');

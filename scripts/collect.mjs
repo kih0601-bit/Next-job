@@ -15,7 +15,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '11.7-candidate-attachment-scope';
+const DATA_VERSION = '11.8-alio-row-fallback-debug-samples';
 
 function validTitle(title) {
   if (!title || title.length < 6 || title.length > 220) return false;
@@ -252,7 +252,7 @@ async function fetchSource(source) {
     if (!html) throw lastError || new Error('empty source html');
     const listingUrls = source.alio ? [source.url] : discoverListingUrls(html, source);
     const candidateMap = new Map();
-    const extractionDiagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0 };
+    const extractionDiagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, titleSamples: [], unsafeSamples: [] };
     for (const listingUrl of listingUrls) {
       let listingHtml = listingUrl === source.url ? html : '';
       if (!listingHtml) {
@@ -262,7 +262,9 @@ async function fetchSource(source) {
       const listingSource = { ...source, url: listingUrl };
       const extracted = extractListCandidates(listingHtml, listingSource);
       if (extracted.diagnostics) {
-        for (const key of Object.keys(extractionDiagnostics)) extractionDiagnostics[key] += Number(extracted.diagnostics[key] || 0);
+        for (const key of ['anchors', 'titleMatches', 'noUrl', 'unsafeUrl', 'accepted', 'rowFallbackAccepted']) extractionDiagnostics[key] += Number(extracted.diagnostics[key] || 0);
+        for (const sample of extracted.diagnostics.titleSamples || []) if (extractionDiagnostics.titleSamples.length < 12) extractionDiagnostics.titleSamples.push(sample);
+        for (const sample of extracted.diagnostics.unsafeSamples || []) if (extractionDiagnostics.unsafeSamples.length < 12) extractionDiagnostics.unsafeSamples.push(sample);
       }
       for (const candidate of extracted) {
         const key = `${candidate.org}|${normalizeTitleForDedup(candidate.title)}|${canonicalJobUrl(candidate.link)}`;

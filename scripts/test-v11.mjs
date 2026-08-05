@@ -191,6 +191,9 @@ console.log('v12.6 document-backed classification tests passed');
   const { SOURCES } = await import('./collectors/source-registry.mjs');
   assert.ok(SOURCES.find(item => item.org === '근로복지공단').accessUrls.some(url => /comwel\.incruit\.com/.test(url)));
   assert.ok(SOURCES.find(item => item.org === '한국전력공사').accessUrls.some(url => /kepco\.co\.kr\/home\/about\/careers\.do/.test(url)));
-  assert.ok(SOURCES.find(item => item.org === '울산광역시 타기관소식').accessUrls.some(url => /contents\.do\?mId=001004001003000000/.test(url)));
+  const ulsanOtherNotices = SOURCES.find(item => item.org === '울산광역시 타기관소식');
+  assert.ok(ulsanOtherNotices.accessUrls.some(url => /contents\.do\?mId=001004001003000000/.test(url)));
+  assert.ok(ulsanOtherNotices.accessUrls.some(url => /ulsannamgu\.go\.kr\/cop\/bbs\/selectBoardList\.do\?bbsId=hireNotice2/.test(url)));
+  assert.ok(ulsanOtherNotices.accessUrls.some(url => /^https:\/\/job\.alio\.go\.kr\/?$/.test(url)));
 }
 console.log('v12.8 KPI endpoint/detail recovery tests passed');

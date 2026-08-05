@@ -1,10 +1,10 @@
 {
-  "version": "12.7-decision-trace",
+  "version": "12.8-kpi-pipeline-recovery",
   "rulesVersion": "2026-08-04.11.1-employment-context",
-  "sourceRegistryVersion": "12.2-final-access-endpoints",
+  "sourceRegistryVersion": "12.8-kpi-access-and-detail-endpoints",
   "qualityEngineVersion": "11.3.0-position-unit",
   "validatorVersion": "11.3.0-position-unit",
-  "updatedAt": "2026-08-05T05:30:37.651Z",
+  "updatedAt": "2026-08-05T06:03:46.742Z",
   "jobs": [],
   "sources": [
     {
@@ -259,55 +259,37 @@
     },
     {
       "org": "근로복지공단",
-      "ok": false,
-      "status": "failed",
+      "ok": true,
+      "status": "healthy",
       "candidates": 0,
-      "listingPagesChecked": 0,
+      "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "https://www.comwel.or.kr/comwel/noti/recruit.jsp => HTTP 400 / curl failed: HTTP 400 | https://www.comwel.or.kr/comwel/noti/recruit.jsp => HTTP 400 / curl failed: HTTP 400 | https://www.comwel.or.kr/ => HTTP 400 / curl failed: HTTP 400 | https://www.comwel.or.kr/ => HTTP 400 / curl failed: HTTP 400 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11003 ms: Timeout was reached",
+      "error": "",
       "accessAttempts": [
         {
-          "url": "https://www.comwel.or.kr/comwel/noti/recruit.jsp",
-          "ok": false,
-          "error": "HTTP 400 / curl failed: HTTP 400",
+          "url": "https://comwel.incruit.com/index_main.asp",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://comwel.incruit.com/index_main.asp",
+          "transport": "node-fetch",
+          "profile": "browser",
           "attempt": 1
-        },
-        {
-          "url": "https://www.comwel.or.kr/comwel/noti/recruit.jsp",
-          "ok": false,
-          "error": "HTTP 400 / curl failed: HTTP 400",
-          "attempt": 2
-        },
-        {
-          "url": "https://www.comwel.or.kr/",
-          "ok": false,
-          "error": "HTTP 400 / curl failed: HTTP 400",
-          "attempt": 1
-        },
-        {
-          "url": "https://www.comwel.or.kr/",
-          "ok": false,
-          "error": "HTTP 400 / curl failed: HTTP 400",
-          "attempt": 2
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached",
-          "attempt": 1
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11003 ms: Timeout was reached",
-          "attempt": 2
         }
       ],
       "rejectionReasons": {},
-      "extractionDiagnostics": {},
+      "extractionDiagnostics": {
+        "anchors": 22,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": []
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -390,21 +372,22 @@
       "count": 0,
       "retained": 0,
       "rejected": 2,
-      "detailFailures": 2,
+      "detailFailures": 0,
       "error": "",
       "accessAttempts": [
         {
           "url": "https://www.upa.or.kr/portal/contents.do?mid=0405000000",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785907312515",
+          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785909296200",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
         }
       ],
       "rejectionReasons": {
-        "final url is not a detail page": 2
+        "--> 채용공고: 인턴·기간제·계약직 등 제외 고용형태": 1,
+        "2026년 울산항만공사 연간 채용 계획 사전 안내: 인턴·기간제·계약직 등 제외 고용형태": 1
       },
       "extractionDiagnostics": {
         "anchors": 393,
@@ -421,63 +404,261 @@
       },
       "pipeline": {
         "detailAttempted": 2,
-        "detailValidated": 0,
-        "attachmentsDiscovered": 0,
-        "documentsAttempted": 0,
-        "documentsParsed": 0
+        "detailValidated": 2,
+        "attachmentsDiscovered": 3,
+        "documentsAttempted": 3,
+        "documentsParsed": 2
       },
       "vacancyStats": {
-        "detected": 0,
+        "detected": 2,
         "accepted": 0,
-        "rejected": 0
+        "rejected": 2
       },
       "documentDiagnostics": {
-        "byDetectedType": {},
-        "byContentType": {},
-        "byError": {}
+        "byDetectedType": {
+          "pdf": 2,
+          "unknown": 1
+        },
+        "byContentType": {
+          "application/x-msdownload;charset=UTF-8": 2,
+          "image/png;charset=UTF-8": 1
+        },
+        "byError": {
+          "extracted text too short": 1
+        }
       },
-      "documentSamples": [],
-      "vacancyDecisions": []
+      "documentSamples": [
+        {
+          "name": "첨부파일",
+          "url": "https://www.upa.or.kr/file/direct/download.do?filename=2025-1227%20%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EC%A0%91%EA%B7%BC%EC%84%B1%20%ED%92%88%EC%A7%88%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%9A%B8%EC%82%B0%ED%95%AD%EB%A7%8C%EA%B3%B5%EC%82%AC.pdf&path=/file",
+          "finalUrl": "https://www.upa.or.kr/file/direct/download.do?filename=2025-1227%20%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EC%A0%91%EA%B7%BC%EC%84%B1%20%ED%92%88%EC%A7%88%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%9A%B8%EC%82%B0%ED%95%AD%EB%A7%8C%EA%B3%B5%EC%82%AC.pdf&path=/file",
+          "hintedType": "pdf",
+          "detectedType": "pdf",
+          "detectionReason": "magic",
+          "contentType": "application/x-msdownload;charset=UTF-8",
+          "contentDisposition": "attachment; filename=2025-1227_%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EC%A0%91%EA%B7%BC%EC%84%B1_%ED%92%88%EC%A7%88%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%9A%B8%EC%82%B0%ED%95%AD%EB%A7%8C%EA%B3%B5%EC%82%AC.pdf",
+          "signature": "255044462d312e340a25aaabacad0a31",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 716910,
+          "textLength": 287,
+          "method": "pdftotext",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "첨부파일",
+          "url": "https://www.upa.or.kr/file/direct/download.do?filename=2025-1227%20%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EC%A0%91%EA%B7%BC%EC%84%B1%20%ED%92%88%EC%A7%88%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%9A%B8%EC%82%B0%ED%95%AD%EB%A7%8C%EA%B3%B5%EC%82%AC.pdf&path=/file",
+          "finalUrl": "https://www.upa.or.kr/file/direct/download.do?filename=2025-1227%20%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EC%A0%91%EA%B7%BC%EC%84%B1%20%ED%92%88%EC%A7%88%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%9A%B8%EC%82%B0%ED%95%AD%EB%A7%8C%EA%B3%B5%EC%82%AC.pdf&path=/file",
+          "hintedType": "pdf",
+          "detectedType": "pdf",
+          "detectionReason": "magic",
+          "contentType": "application/x-msdownload;charset=UTF-8",
+          "contentDisposition": "attachment; filename=2025-1227_%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EC%A0%91%EA%B7%BC%EC%84%B1_%ED%92%88%EC%A7%88%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%9A%B8%EC%82%B0%ED%95%AD%EB%A7%8C%EA%B3%B5%EC%82%AC.pdf",
+          "signature": "255044462d312e340a25aaabacad0a31",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 716910,
+          "textLength": 287,
+          "method": "pdftotext",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "공공누리 제4유형: 출처표시 + 상업적 이용 및 변경 금지",
+          "url": "https://www.upa.or.kr/common/img/KOGL/new_img_opentype04.png",
+          "finalUrl": "https://www.upa.or.kr/common/img/KOGL/new_img_opentype04.png",
+          "hintedType": "png",
+          "detectedType": "",
+          "contentType": "image/png;charset=UTF-8",
+          "contentDisposition": "",
+          "signature": "89504e470d0a1a0a0000000d49484452",
+          "transport": "node-fetch",
+          "size": 7659,
+          "ok": false,
+          "error": "extracted text too short",
+          "commandError": {
+            "message": "extracted text too short",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        }
+      ],
+      "vacancyDecisions": [
+        {
+          "candidateTitle": "--> 채용공고",
+          "candidateLink": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&id=0401000000&mid=0405000000&token=1785909296200",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "--> 채용공고",
+          "status": "excluded",
+          "reason": "인턴·기간제·계약직 등 제외 고용형태",
+          "analysis": {
+            "status": "제외",
+            "recommended": false,
+            "excluded": true,
+            "reviewNeeded": false,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "제외 고용형태",
+            "location": "울산",
+            "fitScore": 0,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "제외 고용형태",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "울산",
+              "documentLocation": "울산"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [
+              "인턴·기간제·계약직 등 제외 고용형태"
+            ],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "제외 고용형태",
+                "lines": [
+                  "2026년 하반기 체험형 청년인턴 채용 최종합격자 및 예비합격자 발표",
+                  "2026년 상반기 신입직원(채용형 인턴) 채용 최종합격자 및 예비합격자 발표",
+                  "2026년 하반기 체험형 청년인턴 채용 면접전형 응시 대상자 공고",
+                  "2026년 상반기 신입직원(채용형 인턴) 채용 면접전형 응시 대상자 공고"
+                ]
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산광역시 남구 장생포고래로 271",
+                  "울산항만공사 ULSAN PORT AUTHORITY",
+                  "울산항만공사를 소개합니다."
+                ]
+              },
+              "sources": {
+                "detailChars": 5536,
+                "documentChars": 296,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "2026년 울산항만공사 연간 채용 계획 사전 안내",
+          "candidateLink": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16232&mid=0405000000",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2026년 울산항만공사 연간 채용 계획 사전 안내",
+          "status": "excluded",
+          "reason": "인턴·기간제·계약직 등 제외 고용형태",
+          "analysis": {
+            "status": "제외",
+            "recommended": false,
+            "excluded": true,
+            "reviewNeeded": false,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "제외 고용형태",
+            "location": "울산",
+            "fitScore": 0,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "제외 고용형태",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "울산",
+              "documentLocation": "울산"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [
+              "인턴·기간제·계약직 등 제외 고용형태"
+            ],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "제외 고용형태",
+                "lines": [
+                  "(채용형 인턴)",
+                  "청년인턴",
+                  "'26년 하반기 청년인턴(10명)",
+                  "'27년 상반기 청년인턴(10명)"
+                ]
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "2026년 울산항만공사 연간 채용 계획 사전 안내",
+                  "공지 2026년 울산항만공사 연간 채용 계획 사전 안내 인사노무부 2026-04-10 4,42",
+                  "울산광역시 남구 장생포고래로 271",
+                  "울산항만공사 ULSAN PORT AUTHORITY"
+                ]
+              },
+              "sources": {
+                "detailChars": 5289,
+                "documentChars": 296,
+                "documentUsed": true
+              }
+            }
+          }
+        }
+      ]
     },
     {
       "org": "한국전력공사",
-      "ok": false,
-      "status": "failed",
+      "ok": true,
+      "status": "healthy",
       "candidates": 0,
-      "listingPagesChecked": 0,
+      "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "https://recruit.kepco.co.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached | https://recruit.kepco.co.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6003 ms: Timeout was reached | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached",
+      "error": "",
       "accessAttempts": [
         {
-          "url": "https://recruit.kepco.co.kr/",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached",
+          "url": "https://www.kepco.co.kr/home/about/careers.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.kepco.co.kr/home/about/careers.do",
+          "transport": "node-fetch",
+          "profile": "browser",
           "attempt": 1
-        },
-        {
-          "url": "https://recruit.kepco.co.kr/",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached",
-          "attempt": 2
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6003 ms: Timeout was reached",
-          "attempt": 1
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached",
-          "attempt": 2
         }
       ],
       "rejectionReasons": {},
-      "extractionDiagnostics": {},
+      "extractionDiagnostics": {
+        "anchors": 446,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": []
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -808,10 +989,10 @@
       "error": "",
       "accessAttempts": [
         {
-          "url": "https://uic.or.kr/notify/noti06.do",
+          "url": "https://www.uic.or.kr/notify/noti06.do",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://uic.or.kr/notify/noti06.do",
+          "finalUrl": "https://www.uic.or.kr/notify/noti06.do",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
@@ -869,7 +1050,7 @@
           "ok": true,
           "status": 200,
           "finalUrl": "https://www.uncmc.or.kr/",
-          "transport": "curl",
+          "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
         }
@@ -1020,21 +1201,21 @@
       "count": 0,
       "retained": 0,
       "rejected": 2,
-      "detailFailures": 0,
+      "detailFailures": 2,
       "error": "",
       "accessAttempts": [
         {
-          "url": "https://uipa.or.kr/webuser/recruit/list.html",
+          "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://uipa.or.kr/webuser/recruit/list.html",
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
         }
       ],
       "rejectionReasons": {
-        "HTTP 403": 2
+        "insufficient detail structure": 2
       },
       "extractionDiagnostics": {
         "anchors": 221,
@@ -1191,13 +1372,13 @@
         {
           "url": "http://www.uri.re.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: HTTP 403",
+          "error": "HTTP 403 / fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: HTTP 403",
           "attempt": 1
         },
         {
           "url": "http://www.uri.re.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / HTTP 403 / curl failed: HTTP 403",
+          "error": "HTTP 403 / fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: HTTP 403",
           "attempt": 2
         },
         {
@@ -1206,7 +1387,7 @@
           "status": 200,
           "finalUrl": "https://uill.uri.re.kr/",
           "transport": "node-fetch",
-          "profile": "browser",
+          "profile": "simple",
           "attempt": 1
         }
       ],
@@ -1418,12 +1599,36 @@
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
+      "error": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11003 ms: Timeout was reached | https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
       "accessAttempts": [
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11003 ms: Timeout was reached",
+          "attempt": 2
+        },
+        {
+          "url": "https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
+          "attempt": 2
+        },
         {
           "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
           "attempt": 1
         },
         {
@@ -1435,13 +1640,13 @@
         {
           "url": "https://www.ulsan.go.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
           "attempt": 1
         },
         {
           "url": "https://www.ulsan.go.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
           "attempt": 2
         }
       ],
@@ -1470,7 +1675,7 @@
   ],
   "stats": {
     "sourceCount": 22,
-    "success": 19,
+    "success": 21,
     "total": 0,
     "recommended": 0,
     "highSchoolSuitable": 0,
@@ -1481,16 +1686,16 @@
     "sourceRejected": 14,
     "sourceDetailFailures": 6,
     "degradedSources": 0,
-    "failedSources": 3,
+    "failedSources": 1,
     "retainedJobs": 0,
     "detailAttempts": 9,
-    "detailValidatedCandidates": 1,
-    "publicAttachmentsDiscovered": 2,
-    "documentsAttempted": 2,
-    "documentsParsed": 1,
-    "vacanciesDetected": 2,
+    "detailValidatedCandidates": 3,
+    "publicAttachmentsDiscovered": 5,
+    "documentsAttempted": 5,
+    "documentsParsed": 3,
+    "vacanciesDetected": 4,
     "vacanciesAccepted": 0,
-    "vacanciesRejected": 2,
+    "vacanciesRejected": 4,
     "qaPassed": true,
     "qaIssueCount": 0
   },

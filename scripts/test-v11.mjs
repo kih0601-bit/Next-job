@@ -92,3 +92,20 @@ console.log('v11.3 position-unit tests passed');
   assert.equal(rows[0].adapter, 'ALIO-row-fallback');
 }
 console.log('v11.8 extraction fallback tests passed');
+
+
+// v12 generic row-level detail URL recovery
+{
+  const { extractCandidatesForSource } = await import('./collectors/source-adapters.mjs');
+  const source = { org: '테스트기관', url: 'https://example.org/board/list.do?page=1', detail: true };
+  const helpers = {
+    validTitle: title => /채용/.test(title),
+    normalizeTitleForDedup: title => title.replace(/\s+/g, ' ').trim()
+  };
+  const html = `<table><tr data-nttId="7788"><td><a href="#">2026년 공무직 채용 공고</a></td><td><button data-url="/board/view.do?nttId=7788">상세</button></td></tr></table>`;
+  const jobs = extractCandidatesForSource(html, source, helpers);
+  assert.equal(jobs.length, 1);
+  assert.match(jobs[0].link, /view\.do\?nttId=7788/);
+  assert.equal(jobs.diagnostics.rowFallbackAccepted, 1);
+}
+console.log('v12 row-detail recovery tests passed');

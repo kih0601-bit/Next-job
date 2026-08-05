@@ -15,7 +15,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '11.8-alio-row-fallback-debug-samples';
+const DATA_VERSION = '12.0-generic-row-detail-recovery';
 
 function validTitle(title) {
   if (!title || title.length < 6 || title.length > 220) return false;

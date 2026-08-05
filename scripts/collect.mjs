@@ -1,4 +1,6 @@
 import fs from 'node:fs/promises';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { extractCandidatesForSource, canonicalJobUrl, discoverListingUrls } from './collectors/source-adapters.mjs';
 import { extractAlioCandidates } from './collectors/alio-adapter.mjs';
@@ -15,7 +17,8 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '12.0-generic-row-detail-recovery';
+const DATA_VERSION = '12.1-resilient-http-access';
+const execFileAsync = promisify(execFile);
 
 function validTitle(title) {
   if (!title || title.length < 6 || title.length > 220) return false;
@@ -103,45 +106,119 @@ function extractListCandidates(html, source) {
   return extractCandidatesForSource(html, source, helpers);
 }
 
-async function fetchHtml(url, timeoutMs = 15000, { referer = '' } = {}) {
+function buildRequestHeaders(profile = 'browser', referer = '') {
+  const headers = profile === 'simple'
+    ? {
+        'user-agent': 'Mozilla/5.0',
+        accept: 'text/html,*/*;q=0.8'
+      }
+    : {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+        'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.7,en;q=0.5',
+        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'cache-control': 'no-cache',
+        pragma: 'no-cache'
+      };
+  if (referer) headers.referer = referer;
+  return headers;
+}
+
+function validateHtmlResponse({ html, contentType = '' }) {
+  if (contentType && !/html|text\//i.test(contentType)) throw new Error(`unsupported content-type: ${contentType}`);
+  if (!html || html.trim().length < 80) throw new Error('response body too short');
+}
+
+async function fetchWithNode(url, timeoutMs, { referer = '', profile = 'browser' } = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const headers = {
-      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-      'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.7,en;q=0.5',
-      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-      'cache-control': 'no-cache',
-      pragma: 'no-cache',
-      'upgrade-insecure-requests': '1'
-    };
-    if (referer) headers.referer = referer;
-    const response = await fetch(url, { signal: controller.signal, redirect: 'follow', headers });
+    const response = await fetch(url, {
+      signal: controller.signal,
+      redirect: 'follow',
+      headers: buildRequestHeaders(profile, referer)
+    });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const contentType = response.headers.get('content-type') || '';
-    if (contentType && !/html|text\//i.test(contentType)) throw new Error(`unsupported content-type: ${contentType}`);
     const html = await response.text();
-    if (html.trim().length < 80) throw new Error('response body too short');
-    return { html, finalUrl: response.url || url, status: response.status, contentType };
+    validateHtmlResponse({ html, contentType });
+    return { html, finalUrl: response.url || url, status: response.status, contentType, transport: 'node-fetch', profile };
   } catch (error) {
     const cause = error?.cause?.code || error?.cause?.message || '';
     const message = error.name === 'AbortError' ? 'timeout' : error.message;
     throw new Error(cause ? `${message} (${cause})` : message);
-  } finally { clearTimeout(timer); }
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function fetchWithCurl(url, timeoutMs, { referer = '', insecure = false } = {}) {
+  const args = [
+    '--silent', '--show-error', '--location', '--compressed',
+    '--connect-timeout', String(Math.max(5, Math.floor(timeoutMs / 3000))),
+    '--max-time', String(Math.max(10, Math.ceil(timeoutMs / 1000))),
+    '--retry', '2', '--retry-delay', '1', '--retry-all-errors',
+    '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
+    '--header', 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    '--write-out', '\n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type}',
+  ];
+  if (referer) args.push('--referer', referer);
+  if (insecure) args.push('--insecure');
+  args.push(url);
+  try {
+    const { stdout } = await execFileAsync('curl', args, { maxBuffer: 12 * 1024 * 1024, timeout: timeoutMs + 5000 });
+    const marker = '\n__NEXTJOB_META__';
+    const markerIndex = stdout.lastIndexOf(marker);
+    if (markerIndex < 0) throw new Error('curl metadata missing');
+    const html = stdout.slice(0, markerIndex);
+    const [statusText, finalUrl, contentType = ''] = stdout.slice(markerIndex + marker.length).trim().split('|');
+    const status = Number(statusText);
+    if (!Number.isFinite(status) || status < 200 || status >= 400) throw new Error(`HTTP ${statusText || 'unknown'}`);
+    validateHtmlResponse({ html, contentType });
+    return { html, finalUrl: finalUrl || url, status, contentType, transport: insecure ? 'curl-insecure' : 'curl', profile: 'browser' };
+  } catch (error) {
+    const message = error?.stderr?.trim() || error.message;
+    throw new Error(`curl failed: ${message}`);
+  }
+}
+
+async function fetchHtml(url, timeoutMs = 15000, options = {}) {
+  const strategies = [
+    () => fetchWithNode(url, timeoutMs, { ...options, profile: 'browser' }),
+    () => fetchWithNode(url, timeoutMs, { ...options, profile: 'simple' }),
+    () => fetchWithCurl(url, timeoutMs, { ...options, insecure: false })
+  ];
+  if (options.allowInsecureTls) strategies.push(() => fetchWithCurl(url, timeoutMs, { ...options, insecure: true }));
+
+  const errors = [];
+  for (const run of strategies) {
+    try {
+      return await run();
+    } catch (error) {
+      errors.push(error.message);
+    }
+  }
+  throw new Error([...new Set(errors)].join(' / '));
 }
 
 async function fetchFirstAccessible(source) {
   const attempts = [];
   const urls = source.accessUrls?.length ? source.accessUrls : [source.url];
   for (const url of urls) {
+    const allowInsecureTls = /(^|\.)ucf\.or\.kr$/i.test(new URL(url).hostname);
     for (let attempt = 1; attempt <= 2; attempt += 1) {
       try {
-        const result = await fetchHtml(url, attempt === 1 ? 18000 : 30000, { referer: source.homepage || '' });
-        attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl });
+        const result = await fetchHtml(url, attempt === 1 ? 20000 : 35000, {
+          referer: source.homepage || '',
+          allowInsecureTls
+        });
+        attempts.push({
+          url, ok: true, status: result.status, finalUrl: result.finalUrl,
+          transport: result.transport, profile: result.profile, attempt
+        });
         return { ...result, requestedUrl: url, attempts };
       } catch (error) {
         attempts.push({ url, ok: false, error: error.message, attempt });
-        if (attempt === 1) await new Promise(resolve => setTimeout(resolve, 700));
+        if (attempt === 1) await new Promise(resolve => setTimeout(resolve, 1500));
       }
     }
   }
@@ -352,11 +429,11 @@ async function readPreviousPayload() {
 const previousPayload = await readPreviousPayload();
 const previousJobs = Array.isArray(previousPayload.jobs) ? previousPayload.jobs : [];
 const results = [];
-const ACCESS_CONCURRENCY = 4;
+const ACCESS_CONCURRENCY = 2;
 for (let index = 0; index < SOURCES.length; index += ACCESS_CONCURRENCY) {
   const batch = SOURCES.slice(index, index + ACCESS_CONCURRENCY);
   results.push(...await Promise.all(batch.map(fetchSource)));
-  if (index + ACCESS_CONCURRENCY < SOURCES.length) await new Promise(resolve => setTimeout(resolve, 500));
+  if (index + ACCESS_CONCURRENCY < SOURCES.length) await new Promise(resolve => setTimeout(resolve, 1200));
 }
 const dedupedJobs = new Map(), sources = [];
 const nowIso = new Date().toISOString();

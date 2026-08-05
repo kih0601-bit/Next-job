@@ -1,30 +1,5 @@
 const ALIO_BASE = 'https://job.alio.go.kr/mobile2021/recruit/recruit.do';
 
-const RAW_SOURCES = [
-  ['한국동서발전', 'https://www.ewp.co.kr/', 'alio'],
-  ['한국석유공사', 'https://www.knoc.co.kr/', 'alio'],
-  ['한국에너지공단', 'https://www.energy.or.kr/', 'alio'],
-  ['한국산업인력공단', 'https://www.hrdkorea.or.kr/', 'alio'],
-  ['근로복지공단', 'https://www.comwel.or.kr/', 'alio'],
-  ['한국산업안전보건공단', 'https://www.kosha.or.kr/', 'alio'],
-  ['울산항만공사', 'https://www.upa.or.kr/', 'alio'],
-  ['한국전력공사', 'https://recruit.kepco.co.kr/', 'alio'],
-  ['한국수력원자력', 'https://www.khnp.co.kr/recruit/', 'alio'],
-  ['울산도시공사', 'https://www.umca.co.kr/', 'direct'],
-  ['울산시설공단', 'https://uic.or.kr/notify/noti06.do', 'direct'],
-  ['울산남구도시관리공단', 'https://www.uncmc.or.kr/', 'direct'],
-  ['울산북구시설관리공단', 'https://www.ubimc.or.kr/', 'direct'],
-  ['울주군시설관리공단', 'https://www.uljusiseol.or.kr/', 'direct'],
-  ['울산정보산업진흥원', 'https://uipa.or.kr/webuser/recruit/list.html', 'direct'],
-  ['울산테크노파크', 'https://www.utp.or.kr/', 'direct'],
-  ['울산경제일자리진흥원', 'https://www.ubpi.or.kr/', 'direct'],
-  ['울산연구원', 'https://www.uri.re.kr/', 'direct'],
-  ['울산문화관광재단', 'https://www.uctf.or.kr/', 'direct'],
-  ['울산복지가족진흥사회서비스원', 'https://www.ulsanpass.or.kr/', 'direct'],
-  ['울주문화재단', 'https://www.ucf.or.kr/', 'direct'],
-  ['울산광역시 타기관소식', 'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000', 'direct']
-];
-
 function alioUrl(org) {
   const url = new URL(ALIO_BASE);
   url.searchParams.set('order', 'REG_DATE');
@@ -33,16 +8,66 @@ function alioUrl(org) {
   return url.href;
 }
 
-export const SOURCES = RAW_SOURCES.map(([org, homepage, mode]) => ({
-  org,
-  homepage,
-  url: mode === 'alio' ? alioUrl(org) : homepage,
-  mode,
-  alio: mode === 'alio',
-  detail: true,
-  requireValidDetail: true,
-  discoverListings: mode === 'direct' && !/\/(?:list|contents|noti06)\b/i.test(homepage),
-  maxListingPages: mode === 'direct' ? 4 : 1
-}));
+// urls are ordered from the institution's official recruitment board to broad fallbacks.
+// The collector tries every URL until one returns a usable HTML response.
+const RAW_SOURCES = [
+  { org: '한국동서발전', urls: [
+    'https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U',
+    'https://www.ewp.co.kr/', alioUrl('한국동서발전') ] },
+  { org: '한국석유공사', urls: [
+    'https://www.knoc.co.kr/sub01/sub01_7_9.jsp',
+    'https://m.knoc.co.kr/sub01/sub01_7_9.jsp',
+    'https://www.knoc.co.kr/', alioUrl('한국석유공사') ] },
+  { org: '한국에너지공단', urls: [
+    'https://www.energy.or.kr/front/board/etc/jobList.do',
+    'https://min24.energy.or.kr/job',
+    'https://www.energy.or.kr/', alioUrl('한국에너지공단') ] },
+  { org: '한국산업인력공단', urls: [
+    'https://www.hrdkorea.or.kr/3/1/2/2',
+    'https://www.hrdkorea.or.kr/', alioUrl('한국산업인력공단') ] },
+  { org: '근로복지공단', urls: [
+    'https://www.comwel.or.kr/comwel/noti/recruit.jsp',
+    'https://www.comwel.or.kr/', alioUrl('근로복지공단') ] },
+  { org: '한국산업안전보건공단', urls: [
+    'https://www.kosha.or.kr/kosha/intro/recruitment.do',
+    'https://www.kosha.or.kr/', alioUrl('한국산업안전보건공단') ] },
+  { org: '울산항만공사', urls: [
+    'https://www.upa.or.kr/portal/contents.do?mid=0405000000',
+    'https://www.upa.or.kr/', alioUrl('울산항만공사') ] },
+  { org: '한국전력공사', urls: [
+    'https://recruit.kepco.co.kr/', alioUrl('한국전력공사') ] },
+  { org: '한국수력원자력', urls: [
+    'https://www.khnp.co.kr/recruit/', alioUrl('한국수력원자력') ] },
+  { org: '울산도시공사', urls: ['https://www.umca.co.kr/'] },
+  { org: '울산시설공단', urls: ['https://uic.or.kr/notify/noti06.do', 'https://uic.or.kr/'] },
+  { org: '울산남구도시관리공단', urls: ['https://www.uncmc.or.kr/'] },
+  { org: '울산북구시설관리공단', urls: ['https://www.ubimc.or.kr/'] },
+  { org: '울주군시설관리공단', urls: ['https://www.uljusiseol.or.kr/'] },
+  { org: '울산정보산업진흥원', urls: ['https://uipa.or.kr/webuser/recruit/list.html', 'https://uipa.or.kr/'] },
+  { org: '울산테크노파크', urls: ['https://www.utp.or.kr/'] },
+  { org: '울산경제일자리진흥원', urls: ['https://www.ubpi.or.kr/'] },
+  { org: '울산연구원', urls: ['https://www.uri.re.kr/'] },
+  { org: '울산문화관광재단', urls: ['https://www.uctf.or.kr/'] },
+  { org: '울산복지가족진흥사회서비스원', urls: ['https://www.ulsanpass.or.kr/'] },
+  { org: '울주문화재단', urls: ['https://www.ucf.or.kr/'] },
+  { org: '울산광역시 타기관소식', urls: ['https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000', 'https://www.ulsan.go.kr/'] }
+];
 
-export const SOURCE_REGISTRY_VERSION = '11.2-public-source-registry';
+export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
+  const url = urls[0];
+  const directBoard = !/^(?:https:\/\/)?(?:www\.)?[^/]+\/?$/i.test(url);
+  return {
+    org,
+    homepage: urls.find(item => /^https:\/\/[^/]+\/?$/.test(item)) || url,
+    url,
+    accessUrls: [...new Set(urls)],
+    mode: 'direct',
+    alio: false,
+    detail: true,
+    requireValidDetail: true,
+    discoverListings: !directBoard,
+    maxListingPages: 4
+  };
+});
+
+export const SOURCE_REGISTRY_VERSION = '11.9-multi-endpoint-access';

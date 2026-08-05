@@ -17,7 +17,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '12.5-attachment-endpoint-recovery';
+const DATA_VERSION = '12.6-document-backed-classification';
 const execFileAsync = promisify(execFile);
 
 function validTitle(title) {
@@ -265,16 +265,28 @@ async function enrichCandidate(candidate, source) {
   const finalLink = canonicalJobUrl(detail.finalUrl || candidate.link);
   const jobs = [];
   const vacancyRejections = [];
+  const vacancyDecisions = [];
 
   for (const vacancy of vacancyAnalyses) {
     const result = vacancy.analysis;
     if (result.excluded) {
-      vacancyRejections.push(`${vacancy.name}: ${result.excludeReasons.join(', ') || 'classification excluded'}`);
+      const reason = result.excludeReasons.join(', ') || 'classification excluded';
+      vacancyRejections.push(`${vacancy.name}: ${reason}`);
+      vacancyDecisions.push({ vacancyId: vacancy.id, vacancyName: vacancy.name, status: 'excluded', reason, analysis: result });
       continue;
     }
     const quality = scoreJobQuality({ detail, documents, analysis: result, deadline, title: candidate.title, link: finalLink });
     if ((STRICT_TARGET_ONLY && !result.recommended) || !quality.passed) {
-      vacancyRejections.push(`${vacancy.name}: ${quality.penalties.join(', ') || 'quality score below threshold'}`);
+      const reason = quality.penalties.join(', ') || 'quality score below threshold';
+      vacancyRejections.push(`${vacancy.name}: ${reason}`);
+      vacancyDecisions.push({
+        vacancyId: vacancy.id,
+        vacancyName: vacancy.name,
+        status: result.reviewNeeded ? 'review-needed' : 'quality-rejected',
+        reason,
+        quality: { score: quality.score, threshold: quality.threshold, reasons: quality.reasons, penalties: quality.penalties },
+        analysis: result
+      });
       continue;
     }
 
@@ -322,6 +334,7 @@ async function enrichCandidate(candidate, source) {
     }
     job.validation = validation;
     jobs.push(job);
+    vacancyDecisions.push({ vacancyId: vacancy.id, vacancyName: vacancy.name, status: 'accepted', reason: '', quality: { score: quality.score, threshold: quality.threshold }, analysis: result });
   }
 
   return {
@@ -336,6 +349,7 @@ async function enrichCandidate(candidate, source) {
     },
     documentDiagnostics: documents.diagnostics || { byDetectedType: {}, byContentType: {}, byError: {} },
     documentResults: documents.results.map(({ text, ...meta }) => meta),
+    vacancyDecisions,
     vacancyStats: {
       detected: vacancyAnalyses.length,
       accepted: jobs.length,
@@ -412,7 +426,7 @@ async function fetchSource(source) {
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
-      rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples
+      rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions
     };
   } catch (error) {
     return { ok: false, source, jobs: [], candidates: 0, accessAttempts: error.accessAttempts || [], rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };

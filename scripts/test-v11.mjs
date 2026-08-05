@@ -154,3 +154,19 @@ console.log('v12.4 detail/document pipeline tests passed');
   assert.equal(files.some(file => /contents\.do/.test(file.url)), false, '뷰어 안내페이지를 첨부파일로 오인하면 안 됨');
   console.log('v12.5 attachment endpoint recovery tests passed');
 }
+
+
+// v12.6: parsed attachment text must participate in vacancy classification.
+{
+  const rows = analyzeVacancies({
+    title: '2026년 공무직 채용 공고',
+    detailText: '채용인원 1명\n접수기간 2026.08.01~2026.08.20',
+    documentText: '고용형태: 공무직\n학력: 학력무관\n근무예정지: 울산광역시 남구\n채용인원 1명',
+    detailOk: true
+  });
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].analysis.recommended, true, '첨부문서의 학력·고용형태·근무지 근거가 최종 판정에 반영되어야 함');
+  assert.equal(rows[0].analysis.decisionEvidence.sources.documentUsed, true);
+  assert.ok(rows[0].analysis.decisionEvidence.education.lines.some(line => /학력무관/.test(line)));
+}
+console.log('v12.6 document-backed classification tests passed');

@@ -109,3 +109,29 @@ console.log('v11.8 extraction fallback tests passed');
   assert.equal(jobs.diagnostics.rowFallbackAccepted, 1);
 }
 console.log('v12 row-detail recovery tests passed');
+
+
+// v12.4 attachment extraction: fragment placeholders must not be treated as files,
+// while JavaScript-built download URLs and form requests must be preserved.
+{
+  const { extractAttachments } = await import('./lib/detail-parser.mjs');
+  const html = `
+    <script>
+      function fileDown(fileId, fileSn) {
+        location.href = '/cmm/fms/FileDown.do?atchFileId=' + fileId + '&fileSn=' + fileSn;
+      }
+    </script>
+    <a href="#fileDownload" onclick="fileDown('FILE_123','2')">채용공고문.hwp</a>
+    <form action="/board/download.do" method="post" class="attachment-file-area">
+      <input type="hidden" name="fileId" value="FILE_456">
+      <input type="hidden" name="fileSn" value="1">
+      <button type="submit">첨부파일 다운로드</button>
+    </form>`;
+  const files = extractAttachments(html, 'https://example.org/board/view.do?no=10');
+  assert.equal(files.some(file => /#fileDownload$/.test(file.url)), false, '페이지 내부 앵커를 첨부파일로 오인하면 안 됨');
+  assert.ok(files.some(file => /FileDown\.do\?atchFileId=FILE_123&fileSn=2/.test(file.url)), 'JS 조합형 다운로드 URL을 복원해야 함');
+  const postFile = files.find(file => /board\/download\.do/.test(file.url));
+  assert.equal(postFile?.method, 'POST');
+  assert.match(postFile?.body || '', /fileId=FILE_456/);
+}
+console.log('v12.4 detail/document pipeline tests passed');

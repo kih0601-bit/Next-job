@@ -26,6 +26,8 @@ const RAW_SOURCES = [
     'https://www.hrdkorea.or.kr/3/1/2/2',
     'https://www.hrdkorea.or.kr/', alioUrl('한국산업인력공단') ] },
   { org: '근로복지공단', urls: [
+    'https://comwel.incruit.com/index_main.asp',
+    'https://comwel.saramin.co.kr/',
     'https://www.comwel.or.kr/comwel/noti/recruit.jsp',
     'https://www.comwel.or.kr/', alioUrl('근로복지공단') ] },
   { org: '한국산업안전보건공단', urls: [
@@ -35,15 +37,25 @@ const RAW_SOURCES = [
     'https://www.upa.or.kr/portal/contents.do?mid=0405000000',
     'https://www.upa.or.kr/', alioUrl('울산항만공사') ] },
   { org: '한국전력공사', urls: [
+    'https://www.kepco.co.kr/home/about/careers.do',
     'https://recruit.kepco.co.kr/', alioUrl('한국전력공사') ] },
   { org: '한국수력원자력', urls: [
     'https://www.khnp.co.kr/recruit/', alioUrl('한국수력원자력') ] },
   { org: '울산도시공사', urls: ['https://www.umca.co.kr/'] },
-  { org: '울산시설공단', urls: ['https://uic.or.kr/notify/noti06.do', 'https://uic.or.kr/'] },
+  { org: '울산시설공단', urls: [
+    'https://www.uic.or.kr/notify/noti06.do',
+    'https://uic.or.kr/notify/noti06.do',
+    'https://uic.or.kr/recruit/main/mainPage.do',
+    'https://uic.or.kr/' ] },
   { org: '울산남구도시관리공단', urls: ['https://www.uncmc.or.kr/'] },
   { org: '울산북구시설관리공단', urls: ['https://www.ubimc.or.kr/'] },
   { org: '울주군시설관리공단', urls: ['https://www.uljusiseol.or.kr/'] },
-  { org: '울산정보산업진흥원', urls: ['https://uipa.or.kr/webuser/recruit/list.html', 'https://uipa.or.kr/'] },
+  { org: '울산정보산업진흥원', urls: [
+    'https://www.uipa.or.kr/webuser/recruit/list.html',
+    'https://uipa.or.kr/webuser/recruit/list.html',
+    'https://uipa.careerlink.kr/',
+    'https://uipa.recruiter.co.kr/',
+    'https://uipa.or.kr/' ] },
   { org: '울산테크노파크', urls: ['https://www.utp.or.kr/'] },
   { org: '울산경제일자리진흥원', urls: ['https://www.ubpi.or.kr/'] },
   { org: '울산연구원', urls: [
@@ -57,7 +69,11 @@ const RAW_SOURCES = [
     'https://www.uwfdi.re.kr/webuser/employment/list.html',
     'https://www.uwfdi.re.kr/' ] },
   { org: '울주문화재단', urls: ['https://uljuculture.hubst.co.kr/', 'http://www.ucf.or.kr/', 'https://www.ucf.or.kr/'] },
-  { org: '울산광역시 타기관소식', urls: ['https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000', 'https://www.ulsan.go.kr/'] }
+  { org: '울산광역시 타기관소식', urls: [
+    'https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000',
+    'https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000',
+    'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000',
+    'https://www.ulsan.go.kr/' ] }
 ];
 
 export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
@@ -77,4 +93,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '12.2-final-access-endpoints';
+export const SOURCE_REGISTRY_VERSION = '12.8-kpi-access-and-detail-endpoints';

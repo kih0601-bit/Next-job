@@ -37,7 +37,12 @@ const SOURCE_PROFILES = {
   '울산광역시 타기관소식': {
     hosts: ['ulsan.go.kr'],
     detailPath: /(?:view|detail|read|select)/i,
-    detailParams: /^(?:nttId|dataSid|bbsSeq|articleNo|postNo)$/i
+    detailParams: /^(?:nttId|dataSid|bbsSeq|articleNo|postNo|dataId|bbsId)$/i
+  },
+  '울산항만공사': {
+    hosts: ['upa.or.kr'],
+    detailPath: /\/portal\/board\/post\/view\.do$/i,
+    detailParams: /^(?:idx|bcIdx)$/i
   }
 };
 
@@ -170,6 +175,35 @@ function urlsFromBlock(block = '', source) {
   return [...new Set(urls)];
 }
 
+
+function sourceSpecificDetailUrls(block = '', source) {
+  const urls = [];
+  const push = value => {
+    const link = absoluteUrl(value, source.url);
+    if (link && !urls.includes(link)) urls.push(link);
+  };
+
+  if (source.org === '울산항만공사') {
+    const idxValues = new Set();
+    for (const match of block.matchAll(/(?:\bidx\b|postView\s*\(|fnView\s*\(|view\s*\()\s*[=:,(]?\s*["']?(\d{2,})/gi)) {
+      idxValues.add(match[1]);
+    }
+    for (const idx of idxValues) {
+      push(`/portal/board/post/view.do?bcIdx=668&idx=${idx}&mid=0405000000`);
+    }
+  }
+
+  if (source.org === '울산광역시 타기관소식') {
+    const dataIds = new Set();
+    for (const match of block.matchAll(/(?:dataId|dataSid|nttId)\s*[=:,(]?\s*["']?(\d{2,})/gi)) dataIds.add(match[1]);
+    for (const dataId of dataIds) {
+      push(`/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=${dataId}&mId=001004001003000000`);
+    }
+  }
+
+  return urls;
+}
+
 function sourceAllows(link, source) {
   if (!link || FILE_OR_DOWNLOAD.test(link) || isListOrMain(link, source)) return false;
   try {
@@ -211,7 +245,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     let block = '';
     if (!urls.length || !urls.some(url => sourceAllows(url, source))) {
       block = enclosingBlock(html, match.index);
-      const rowUrls = urlsFromBlock(block, source);
+      const rowUrls = [...sourceSpecificDetailUrls(block, source), ...urlsFromBlock(block, source)];
       for (const url of rowUrls) if (!urls.includes(url)) urls.push(url);
       usedRowFallback = rowUrls.length > 0;
     }

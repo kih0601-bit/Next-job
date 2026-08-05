@@ -142,7 +142,7 @@ function sourceAllows(link, source) {
 export function extractCandidatesForSource(html, source, { validTitle, normalizeTitleForDedup }) {
   const jobs = [];
   const seen = new Set();
-  const diagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0 };
+  const diagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, titleSamples: [], unsafeSamples: [] };
   const anchorRegex = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
   for (const match of html.matchAll(anchorRegex)) {
     diagnostics.anchors += 1;
@@ -150,11 +150,16 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     const title = cleanHtml(match[2]).replace(/\s+/g, ' ').trim();
     if (!validTitle(title) || isRecruitmentDisclosure(title)) continue;
     diagnostics.titleMatches += 1;
+    if (diagnostics.titleSamples.length < 8) diagnostics.titleSamples.push(title);
 
     const urls = candidateUrls(attrs, source);
     if (!urls.length) { diagnostics.noUrl += 1; continue; }
     const link = urls.find(url => sourceAllows(url, source));
-    if (!link) { diagnostics.unsafeUrl += 1; continue; }
+    if (!link) {
+      diagnostics.unsafeUrl += 1;
+      if (diagnostics.unsafeSamples.length < 8) diagnostics.unsafeSamples.push({ title, attrs: attrs.slice(0, 500), urls: urls.slice(0, 5) });
+      continue;
+    }
     const canonical = canonicalJobUrl(link);
     const key = `${source.org}|${normalizeTitleForDedup(title)}|${canonical}`;
     if (seen.has(key)) continue;

@@ -1,63 +1,63 @@
 {
-  "version": "12.0-generic-row-detail-recovery",
+  "version": "12.1-resilient-http-access",
   "rulesVersion": "2026-08-04.11.1-employment-context",
-  "sourceRegistryVersion": "11.9-multi-endpoint-access",
+  "sourceRegistryVersion": "12.1-resilient-endpoints",
   "qualityEngineVersion": "11.3.0-position-unit",
   "validatorVersion": "11.3.0-position-unit",
-  "updatedAt": "2026-08-05T02:39:27.759Z",
+  "updatedAt": "2026-08-05T02:58:20.741Z",
   "jobs": [],
   "sources": [
     {
       "org": "한국동서발전",
-      "ok": false,
-      "status": "failed",
+      "ok": true,
+      "status": "healthy",
       "candidates": 0,
-      "listingPagesChecked": 0,
+      "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U => HTTP 502 | https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U => HTTP 502 | https://www.ewp.co.kr/ => HTTP 502 | https://www.ewp.co.kr/ => HTTP 502 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+      "error": "",
       "accessAttempts": [
         {
           "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
-          "ok": false,
-          "error": "HTTP 502",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+          "transport": "node-fetch",
+          "profile": "browser",
           "attempt": 1
-        },
-        {
-          "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
-          "ok": false,
-          "error": "HTTP 502",
-          "attempt": 2
-        },
-        {
-          "url": "https://www.ewp.co.kr/",
-          "ok": false,
-          "error": "HTTP 502",
-          "attempt": 1
-        },
-        {
-          "url": "https://www.ewp.co.kr/",
-          "ok": false,
-          "error": "HTTP 502",
-          "attempt": 2
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
-          "attempt": 1
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
-          "attempt": 2
         }
       ],
       "rejectionReasons": {},
-      "extractionDiagnostics": {},
+      "extractionDiagnostics": {
+        "anchors": 282,
+        "titleMatches": 2,
+        "noUrl": 0,
+        "unsafeUrl": 2,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [
+          "이전 채용공고",
+          "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안..."
+        ],
+        "unsafeSamples": [
+          {
+            "title": "이전 채용공고",
+            "attrs": " href=\"http://alio.go.kr/popSusi.do?apbaId=C0066&reportFormRootNo=B1020\" class=\"navy_btn blank\" target=\"_blank\" title=\"새 창 열림\"",
+            "urls": [
+              "http://alio.go.kr/popSusi.do?apbaId=C0066&reportFormRootNo=B1020"
+            ]
+          },
+          {
+            "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+            "attrs": " href=\"#\" onclick=\"view(44635); return false;\" title=\"2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안내\" class=\"ellipsis1\"",
+            "urls": [
+              "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U#n"
+            ]
+          }
+        ]
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -93,7 +93,10 @@
           "url": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp"
+          "finalUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
@@ -142,7 +145,10 @@
           "url": "https://www.energy.or.kr/front/board/etc/jobList.do",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do"
+          "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
@@ -211,7 +217,10 @@
           "url": "https://www.hrdkorea.or.kr/3/1/2/2",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.hrdkorea.or.kr/3/1/2/2"
+          "finalUrl": "https://www.hrdkorea.or.kr/3/1/2/2",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
@@ -246,55 +255,61 @@
     },
     {
       "org": "근로복지공단",
-      "ok": false,
-      "status": "failed",
+      "ok": true,
+      "status": "healthy",
       "candidates": 0,
-      "listingPagesChecked": 0,
+      "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "https://www.comwel.or.kr/comwel/noti/recruit.jsp => HTTP 400 | https://www.comwel.or.kr/comwel/noti/recruit.jsp => HTTP 400 | https://www.comwel.or.kr/ => HTTP 400 | https://www.comwel.or.kr/ => HTTP 400 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+      "error": "",
       "accessAttempts": [
         {
           "url": "https://www.comwel.or.kr/comwel/noti/recruit.jsp",
           "ok": false,
-          "error": "HTTP 400",
+          "error": "HTTP 400 / curl failed: HTTP 400",
           "attempt": 1
         },
         {
           "url": "https://www.comwel.or.kr/comwel/noti/recruit.jsp",
           "ok": false,
-          "error": "HTTP 400",
+          "error": "HTTP 400 / curl failed: HTTP 400",
           "attempt": 2
         },
         {
           "url": "https://www.comwel.or.kr/",
           "ok": false,
-          "error": "HTTP 400",
+          "error": "HTTP 400 / curl failed: HTTP 400",
           "attempt": 1
         },
         {
           "url": "https://www.comwel.or.kr/",
           "ok": false,
-          "error": "HTTP 400",
+          "error": "HTTP 400 / curl failed: HTTP 400",
           "attempt": 2
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+          "transport": "node-fetch",
+          "profile": "browser",
           "attempt": 1
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
-          "attempt": 2
         }
       ],
       "rejectionReasons": {},
-      "extractionDiagnostics": {},
+      "extractionDiagnostics": {
+        "anchors": 60,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": []
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -330,7 +345,10 @@
           "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do"
+          "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
@@ -379,7 +397,10 @@
           "url": "https://www.upa.or.kr/portal/contents.do?mid=0405000000",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785897443872"
+          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785898461832",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {
@@ -419,43 +440,62 @@
     },
     {
       "org": "한국전력공사",
-      "ok": false,
-      "status": "failed",
-      "candidates": 0,
-      "listingPagesChecked": 0,
+      "ok": true,
+      "status": "healthy",
+      "candidates": 1,
+      "listingPagesChecked": 4,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
+      "rejected": 1,
       "detailFailures": 0,
-      "error": "https://recruit.kepco.co.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://recruit.kepco.co.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+      "error": "",
       "accessAttempts": [
         {
           "url": "https://recruit.kepco.co.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached",
           "attempt": 1
         },
         {
           "url": "https://recruit.kepco.co.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11003 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached",
           "attempt": 2
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+          "transport": "node-fetch",
+          "profile": "browser",
           "attempt": 1
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
-          "attempt": 2
         }
       ],
-      "rejectionReasons": {},
-      "extractionDiagnostics": {},
+      "rejectionReasons": {
+        "closed notice text": 1
+      },
+      "extractionDiagnostics": {
+        "anchors": 77,
+        "titleMatches": 2,
+        "noUrl": 0,
+        "unsafeUrl": 1,
+        "accepted": 1,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [
+          "한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 진행중",
+          "1. 채용공고문.pdf"
+        ],
+        "unsafeSamples": [
+          {
+            "title": "1. 채용공고문.pdf",
+            "attrs": " href=\"https://www.alio.go.kr/download/download.json?fileNo=3066199\" target=\"_blank\"",
+            "urls": [
+              "https://www.alio.go.kr/download/download.json?fileNo=3066199"
+            ]
+          }
+        ]
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -491,7 +531,10 @@
           "url": "https://www.khnp.co.kr/recruit/",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.khnp.co.kr/recruit/"
+          "finalUrl": "https://www.khnp.co.kr/recruit/",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
@@ -540,7 +583,10 @@
           "url": "https://www.umca.co.kr/",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.umca.co.kr/umca/main.do"
+          "finalUrl": "https://www.umca.co.kr/umca/main.do",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {
@@ -696,7 +742,10 @@
           "url": "https://uic.or.kr/notify/noti06.do",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://uic.or.kr/notify/noti06.do"
+          "finalUrl": "https://uic.or.kr/notify/noti06.do",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {
@@ -749,7 +798,10 @@
           "url": "https://www.uncmc.or.kr/",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.uncmc.or.kr/"
+          "finalUrl": "https://www.uncmc.or.kr/",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
@@ -798,7 +850,10 @@
           "url": "https://www.ubimc.or.kr/",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.ubimc.or.kr/"
+          "finalUrl": "https://www.ubimc.or.kr/",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
@@ -847,7 +902,10 @@
           "url": "https://www.uljusiseol.or.kr/",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.uljusiseol.or.kr/"
+          "finalUrl": "https://www.uljusiseol.or.kr/",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
@@ -896,7 +954,10 @@
           "url": "https://uipa.or.kr/webuser/recruit/list.html",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://uipa.or.kr/webuser/recruit/list.html"
+          "finalUrl": "https://uipa.or.kr/webuser/recruit/list.html",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {
@@ -951,7 +1012,10 @@
           "url": "https://www.utp.or.kr/",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.utp.or.kr/"
+          "finalUrl": "https://www.utp.or.kr/",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
@@ -1000,7 +1064,10 @@
           "url": "https://www.ubpi.or.kr/",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.ubpi.or.kr/"
+          "finalUrl": "https://www.ubpi.or.kr/",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
@@ -1043,18 +1110,18 @@
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "https://www.uri.re.kr/ => fetch failed (EAI_AGAIN) | https://www.uri.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+      "error": "https://www.uri.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: HTTP 403 | https://www.uri.re.kr/ => HTTP 403 / curl failed: HTTP 403",
       "accessAttempts": [
         {
           "url": "https://www.uri.re.kr/",
           "ok": false,
-          "error": "fetch failed (EAI_AGAIN)",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: HTTP 403",
           "attempt": 1
         },
         {
           "url": "https://www.uri.re.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT)",
+          "error": "HTTP 403 / curl failed: HTTP 403",
           "attempt": 2
         }
       ],
@@ -1095,7 +1162,10 @@
           "url": "https://www.uctf.or.kr/",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.uctf.or.kr/"
+          "finalUrl": "https://www.uctf.or.kr/",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
@@ -1138,18 +1208,18 @@
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND) | https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND)",
+      "error": "https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr | https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr",
       "accessAttempts": [
         {
           "url": "https://www.ulsanpass.or.kr/",
           "ok": false,
-          "error": "fetch failed (ENOTFOUND)",
+          "error": "fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr",
           "attempt": 1
         },
         {
           "url": "https://www.ulsanpass.or.kr/",
           "ok": false,
-          "error": "fetch failed (ENOTFOUND)",
+          "error": "fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr",
           "attempt": 2
         }
       ],
@@ -1176,31 +1246,37 @@
     },
     {
       "org": "울주문화재단",
-      "ok": false,
-      "status": "failed",
+      "ok": true,
+      "status": "healthy",
       "candidates": 0,
-      "listingPagesChecked": 0,
+      "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "https://www.ucf.or.kr/ => fetch failed (ERR_TLS_CERT_ALTNAME_INVALID) | https://www.ucf.or.kr/ => fetch failed (ERR_TLS_CERT_ALTNAME_INVALID)",
+      "error": "",
       "accessAttempts": [
         {
-          "url": "https://www.ucf.or.kr/",
-          "ok": false,
-          "error": "fetch failed (ERR_TLS_CERT_ALTNAME_INVALID)",
+          "url": "https://uljuculture.hubst.co.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uljuculture.hubst.co.kr/",
+          "transport": "node-fetch",
+          "profile": "browser",
           "attempt": 1
-        },
-        {
-          "url": "https://www.ucf.or.kr/",
-          "ok": false,
-          "error": "fetch failed (ERR_TLS_CERT_ALTNAME_INVALID)",
-          "attempt": 2
         }
       ],
       "rejectionReasons": {},
-      "extractionDiagnostics": {},
+      "extractionDiagnostics": {
+        "anchors": 0,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": []
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -1236,7 +1312,10 @@
           "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000"
+          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {
@@ -1278,7 +1357,7 @@
   ],
   "stats": {
     "sourceCount": 22,
-    "success": 16,
+    "success": 20,
     "total": 0,
     "recommended": 0,
     "highSchoolSuitable": 0,
@@ -1286,10 +1365,10 @@
     "reviewNeeded": 0,
     "qualityPassed": 0,
     "averageQualityScore": 0,
-    "sourceRejected": 12,
+    "sourceRejected": 13,
     "sourceDetailFailures": 6,
     "degradedSources": 0,
-    "failedSources": 6,
+    "failedSources": 2,
     "retainedJobs": 0,
     "detailAttempts": 9,
     "detailValidatedCandidates": 1,

@@ -1,6 +1,6 @@
 {
-  "version": "12.0-generic-row-detail-recovery",
-  "updatedAt": "2026-08-05T02:39:27.759Z",
+  "version": "12.1-resilient-http-access",
+  "updatedAt": "2026-08-05T02:58:20.741Z",
   "reportPath": "data/debug-report.json",
   "documentAnalyzerVersion": "11.6-document-tool-diagnostics",
   "documentToolDiagnostics": {
@@ -53,10 +53,37 @@
   "sources": [
     {
       "org": "한국동서발전",
-      "status": "failed",
-      "listingPagesChecked": 0,
+      "status": "healthy",
+      "listingPagesChecked": 1,
       "candidates": 0,
-      "extractionDiagnostics": {},
+      "extractionDiagnostics": {
+        "anchors": 282,
+        "titleMatches": 2,
+        "noUrl": 0,
+        "unsafeUrl": 2,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [
+          "이전 채용공고",
+          "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안..."
+        ],
+        "unsafeSamples": [
+          {
+            "title": "이전 채용공고",
+            "attrs": " href=\"http://alio.go.kr/popSusi.do?apbaId=C0066&reportFormRootNo=B1020\" class=\"navy_btn blank\" target=\"_blank\" title=\"새 창 열림\"",
+            "urls": [
+              "http://alio.go.kr/popSusi.do?apbaId=C0066&reportFormRootNo=B1020"
+            ]
+          },
+          {
+            "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+            "attrs": " href=\"#\" onclick=\"view(44635); return false;\" title=\"2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안내\" class=\"ellipsis1\"",
+            "urls": [
+              "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U#n"
+            ]
+          }
+        ]
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -72,7 +99,7 @@
       "documentSamples": [],
       "rejected": 0,
       "rejectionReasons": {},
-      "error": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U => HTTP 502 | https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U => HTTP 502 | https://www.ewp.co.kr/ => HTTP 502 | https://www.ewp.co.kr/ => HTTP 502 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT)"
+      "error": ""
     },
     {
       "org": "한국석유공사",
@@ -192,10 +219,19 @@
     },
     {
       "org": "근로복지공단",
-      "status": "failed",
-      "listingPagesChecked": 0,
+      "status": "healthy",
+      "listingPagesChecked": 1,
       "candidates": 0,
-      "extractionDiagnostics": {},
+      "extractionDiagnostics": {
+        "anchors": 60,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": []
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -211,7 +247,7 @@
       "documentSamples": [],
       "rejected": 0,
       "rejectionReasons": {},
-      "error": "https://www.comwel.or.kr/comwel/noti/recruit.jsp => HTTP 400 | https://www.comwel.or.kr/comwel/noti/recruit.jsp => HTTP 400 | https://www.comwel.or.kr/ => HTTP 400 | https://www.comwel.or.kr/ => HTTP 400 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT)"
+      "error": ""
     },
     {
       "org": "한국산업안전보건공단",
@@ -284,10 +320,30 @@
     },
     {
       "org": "한국전력공사",
-      "status": "failed",
-      "listingPagesChecked": 0,
-      "candidates": 0,
-      "extractionDiagnostics": {},
+      "status": "healthy",
+      "listingPagesChecked": 4,
+      "candidates": 1,
+      "extractionDiagnostics": {
+        "anchors": 77,
+        "titleMatches": 2,
+        "noUrl": 0,
+        "unsafeUrl": 1,
+        "accepted": 1,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [
+          "한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 진행중",
+          "1. 채용공고문.pdf"
+        ],
+        "unsafeSamples": [
+          {
+            "title": "1. 채용공고문.pdf",
+            "attrs": " href=\"https://www.alio.go.kr/download/download.json?fileNo=3066199\" target=\"_blank\"",
+            "urls": [
+              "https://www.alio.go.kr/download/download.json?fileNo=3066199"
+            ]
+          }
+        ]
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -301,9 +357,11 @@
         "byError": {}
       },
       "documentSamples": [],
-      "rejected": 0,
-      "rejectionReasons": {},
-      "error": "https://recruit.kepco.co.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://recruit.kepco.co.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT)"
+      "rejected": 1,
+      "rejectionReasons": {
+        "closed notice text": 1
+      },
+      "error": ""
     },
     {
       "org": "한국수력원자력",
@@ -731,7 +789,7 @@
       "documentSamples": [],
       "rejected": 0,
       "rejectionReasons": {},
-      "error": "https://www.uri.re.kr/ => fetch failed (EAI_AGAIN) | https://www.uri.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT)"
+      "error": "https://www.uri.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: HTTP 403 | https://www.uri.re.kr/ => HTTP 403 / curl failed: HTTP 403"
     },
     {
       "org": "울산문화관광재단",
@@ -786,14 +844,23 @@
       "documentSamples": [],
       "rejected": 0,
       "rejectionReasons": {},
-      "error": "https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND) | https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND)"
+      "error": "https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr | https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr"
     },
     {
       "org": "울주문화재단",
-      "status": "failed",
-      "listingPagesChecked": 0,
+      "status": "healthy",
+      "listingPagesChecked": 1,
       "candidates": 0,
-      "extractionDiagnostics": {},
+      "extractionDiagnostics": {
+        "anchors": 0,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": []
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -809,7 +876,7 @@
       "documentSamples": [],
       "rejected": 0,
       "rejectionReasons": {},
-      "error": "https://www.ucf.or.kr/ => fetch failed (ERR_TLS_CERT_ALTNAME_INVALID) | https://www.ucf.or.kr/ => fetch failed (ERR_TLS_CERT_ALTNAME_INVALID)"
+      "error": ""
     },
     {
       "org": "울산광역시 타기관소식",

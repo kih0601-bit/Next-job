@@ -106,4 +106,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '13.1-phase1-wfps-official-fallbacks';
+export const SOURCE_REGISTRY_VERSION = '14.0-phase2-list-extraction';

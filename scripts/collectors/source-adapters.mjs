@@ -3,6 +3,7 @@ import { cleanHtml, absoluteUrl, decodeHtmlEntities } from '../lib/detail-parser
 const LIST_QUERY_KEYS = new Set(['pageIndex', 'page', 'searchCondition', 'searchKeyword', 'menuNo', 'mId', 'order', 'search_yn', 'org_name']);
 const DETAIL_PARAM = /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no|boardNo|board_no|noticeNo|notice_no|sn|id)$/i;
 const FILE_OR_DOWNLOAD = /\.(?:pdf|hwp|hwpx|docx?|xlsx?|zip)(?:$|[?#])|filedown|download|attach|atchfile|file_id|fileid/i;
+const LIST_NAVIGATION_TITLE = /^(?:--?>\s*)?(?:채용공고|채용정보|채용안내)(?:\s*(?:더보기|바로가기))?$/i;
 
 
 const NON_RECRUITMENT_DISCLOSURE = [
@@ -236,7 +237,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     diagnostics.anchors += 1;
     const attrs = match[1] || '';
     const title = cleanHtml(match[2]).replace(/\s+/g, ' ').trim();
-    if (!validTitle(title) || isRecruitmentDisclosure(title)) continue;
+    if (!validTitle(title) || isRecruitmentDisclosure(title) || LIST_NAVIGATION_TITLE.test(title)) continue;
     diagnostics.titleMatches += 1;
     if (diagnostics.titleSamples.length < 8) diagnostics.titleSamples.push(title);
 
@@ -249,15 +250,27 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       for (const url of rowUrls) if (!urls.includes(url)) urls.push(url);
       usedRowFallback = rowUrls.length > 0;
     }
-    if (!urls.length) {
-      diagnostics.noUrl += 1;
-      if (diagnostics.unsafeSamples.length < 8) diagnostics.unsafeSamples.push({ title, reason: 'no-url', row: (block || enclosingBlock(html, match.index)).slice(0, 1200) });
-      continue;
-    }
     const link = urls.find(url => sourceAllows(url, source));
     if (!link) {
-      diagnostics.unsafeUrl += 1;
-      if (diagnostics.unsafeSamples.length < 8) diagnostics.unsafeSamples.push({ title, attrs: attrs.slice(0, 500), urls: urls.slice(0, 5) });
+      // Phase 2 deliberately separates list extraction from detail URL recovery.
+      // A real recruitment row must still be counted even when its JavaScript
+      // detail action is not decoded yet; Phase 3 will resolve the final URL.
+      const row = (block || enclosingBlock(html, match.index));
+      const action = attrs.match(/\bonclick\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
+      const identity = action.match(/(?:view|fn_Detail|goView|fnView|detail)\s*\(\s*["']?([^"')\s,]+)/i)?.[1]
+        || row.match(/(?:data-)?(?:idx|seq|no|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo)\s*=\s*(["'])([^"']+)\1/i)?.[2]
+        || `row-${match.index}`;
+      const canonical = `${canonicalJobUrl(source.url)}#list-${encodeURIComponent(identity)}`;
+      const key = `${source.org}|${normalizeTitleForDedup(title)}|${canonical}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const listText = cleanHtml(row).replace(/\s+/g, ' ').trim();
+      jobs.push({ org: source.org, title, link: canonical, listText, adapter: source.org, listOnly: true, listIdentity: identity });
+      diagnostics.noUrl += urls.length ? 0 : 1;
+      diagnostics.unsafeUrl += urls.length ? 1 : 0;
+      diagnostics.accepted += 1;
+      if (diagnostics.unsafeSamples.length < 8) diagnostics.unsafeSamples.push({ title, reason: urls.length ? 'detail-url-pending' : 'no-url-detail-pending', identity, row: row.slice(0, 1200) });
+      if (jobs.length >= 30) break;
       continue;
     }
     const canonical = canonicalJobUrl(link);

@@ -170,3 +170,27 @@ console.log('v12.4 detail/document pipeline tests passed');
   assert.ok(rows[0].analysis.decisionEvidence.education.lines.some(line => /학력무관/.test(line)));
 }
 console.log('v12.6 document-backed classification tests passed');
+
+// v12.8: institution-specific endpoints and UPA detail URL reconstruction.
+{
+  const { extractCandidatesForSource } = await import('./collectors/source-adapters.mjs');
+  const helpers = {
+    validTitle: title => /채용/.test(title),
+    normalizeTitleForDedup: title => title.replace(/\s+/g, ' ').trim()
+  };
+  const source = {
+    org: '울산항만공사',
+    url: 'https://www.upa.or.kr/portal/contents.do?mid=0405000000',
+    detail: true
+  };
+  const html = `<table><tr><td><a href="#" onclick="postView(14905)">2026년 신입직원 채용 공고</a></td></tr></table>`;
+  const rows = extractCandidatesForSource(html, source, helpers);
+  assert.equal(rows.length, 1);
+  assert.match(rows[0].link, /\/portal\/board\/post\/view\.do\?bcIdx=668&idx=14905&mid=0405000000/);
+
+  const { SOURCES } = await import('./collectors/source-registry.mjs');
+  assert.ok(SOURCES.find(item => item.org === '근로복지공단').accessUrls.some(url => /comwel\.incruit\.com/.test(url)));
+  assert.ok(SOURCES.find(item => item.org === '한국전력공사').accessUrls.some(url => /kepco\.co\.kr\/home\/about\/careers\.do/.test(url)));
+  assert.ok(SOURCES.find(item => item.org === '울산광역시 타기관소식').accessUrls.some(url => /contents\.do\?mId=001004001003000000/.test(url)));
+}
+console.log('v12.8 KPI endpoint/detail recovery tests passed');

@@ -17,7 +17,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '12.6-document-backed-classification';
+const DATA_VERSION = '12.7-decision-trace';
 const execFileAsync = promisify(execFile);
 
 function validTitle(title) {
@@ -277,13 +277,23 @@ async function enrichCandidate(candidate, source) {
     }
     const quality = scoreJobQuality({ detail, documents, analysis: result, deadline, title: candidate.title, link: finalLink });
     if ((STRICT_TARGET_ONLY && !result.recommended) || !quality.passed) {
-      const reason = quality.penalties.join(', ') || 'quality score below threshold';
+      const missingTarget = [];
+      if (result.eligibility !== '고졸 가능') missingTarget.push(`학력=${result.eligibility}`);
+      if (!['정규직', '무기계약직', '공무직', '일반직', '상용직'].includes(result.employmentType)) missingTarget.push(`고용형태=${result.employmentType}`);
+      if (result.location !== '울산') missingTarget.push(`근무지=${result.location}`);
+      if (!detail.ok) missingTarget.push('상세페이지 검증 실패');
+      const reasonParts = [
+        ...(STRICT_TARGET_ONLY && !result.recommended ? missingTarget : []),
+        ...quality.penalties
+      ].filter(Boolean);
+      const reason = [...new Set(reasonParts)].join(', ') || 'quality score below threshold';
       vacancyRejections.push(`${vacancy.name}: ${reason}`);
       vacancyDecisions.push({
         vacancyId: vacancy.id,
         vacancyName: vacancy.name,
         status: result.reviewNeeded ? 'review-needed' : 'quality-rejected',
         reason,
+        missingTarget,
         quality: { score: quality.score, threshold: quality.threshold, reasons: quality.reasons, penalties: quality.penalties },
         analysis: result
       });
@@ -396,6 +406,7 @@ async function fetchSource(source) {
     const pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 };
     const documentDiagnostics = { byDetectedType: {}, byContentType: {}, byError: {} };
     const documentSamples = [];
+    const vacancyDecisions = [];
     for (const candidate of candidates) {
       const outcome = await enrichCandidate(candidate, source);
       if (outcome.pipeline) {
@@ -413,6 +424,13 @@ async function fetchSource(source) {
         vacancyStats.detected += outcome.vacancyStats.detected || 0;
         vacancyStats.accepted += outcome.vacancyStats.accepted || 0;
         vacancyStats.rejected += outcome.vacancyStats.rejected || 0;
+      }
+      if (outcome.vacancyDecisions?.length) {
+        vacancyDecisions.push(...outcome.vacancyDecisions.map(decision => ({
+          candidateTitle: candidate.title,
+          candidateLink: candidate.link,
+          ...decision
+        })));
       }
       if (outcome.jobs?.length) jobs.push(...outcome.jobs);
       else {
@@ -474,7 +492,8 @@ for (const result of results) {
     pipeline: result.pipeline || { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 },
     vacancyStats: result.vacancyStats || { detected: 0, accepted: 0, rejected: 0 },
     documentDiagnostics: result.documentDiagnostics || { byDetectedType: {}, byContentType: {}, byError: {} },
-    documentSamples: result.documentSamples || []
+    documentSamples: result.documentSamples || [],
+    vacancyDecisions: result.vacancyDecisions || []
   });
   for (const job of sourceJobs) {
     const normalizedTitle = normalizeTitleForDedup(job.title) || job.title.toLowerCase().replace(/\s+/g, ' ').trim();
@@ -566,6 +585,8 @@ const debugPayload = {
     pipeline: source.pipeline,
     documentDiagnostics: source.documentDiagnostics,
     documentSamples: source.documentSamples,
+    vacancyStats: source.vacancyStats,
+    vacancyDecisions: source.vacancyDecisions,
     rejected: source.rejected,
     rejectionReasons: source.rejectionReasons,
     error: source.error

@@ -1,10 +1,10 @@
 {
-  "version": "12.8-kpi-pipeline-recovery",
+  "version": "12.9-phase1-access-dns-fallback",
   "rulesVersion": "2026-08-04.11.1-employment-context",
   "sourceRegistryVersion": "12.8-kpi-access-and-detail-endpoints",
   "qualityEngineVersion": "11.3.0-position-unit",
   "validatorVersion": "11.3.0-position-unit",
-  "updatedAt": "2026-08-05T06:03:46.742Z",
+  "updatedAt": "2026-08-05T06:28:18.334Z",
   "jobs": [],
   "sources": [
     {
@@ -379,7 +379,7 @@
           "url": "https://www.upa.or.kr/portal/contents.do?mid=0405000000",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785909296200",
+          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785910527449",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
@@ -493,7 +493,7 @@
       "vacancyDecisions": [
         {
           "candidateTitle": "--> 채용공고",
-          "candidateLink": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&id=0401000000&mid=0405000000&token=1785909296200",
+          "candidateLink": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&id=0401000000&mid=0405000000&token=1785910527449",
           "vacancyId": "vacancy-1",
           "vacancyName": "--> 채용공고",
           "status": "excluded",
@@ -1051,7 +1051,7 @@
           "status": 200,
           "finalUrl": "https://www.uncmc.or.kr/",
           "transport": "node-fetch",
-          "profile": "browser",
+          "profile": "simple",
           "attempt": 1
         }
       ],
@@ -1372,13 +1372,13 @@
         {
           "url": "http://www.uri.re.kr/",
           "ok": false,
-          "error": "HTTP 403 / fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: HTTP 403",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / HTTP 403 / curl failed: HTTP 403",
           "attempt": 1
         },
         {
           "url": "http://www.uri.re.kr/",
           "ok": false,
-          "error": "HTTP 403 / fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: HTTP 403",
+          "error": "HTTP 403 / curl failed: HTTP 403",
           "attempt": 2
         },
         {
@@ -1599,24 +1599,24 @@
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11003 ms: Timeout was reached | https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
+      "error": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11003 ms: Timeout was reached | https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => resolved curl failed (210.99.24.200: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached) | https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => resolved curl failed (210.99.24.200: curl: (28) Failed to connect to ulsan.go.kr port 443 after 25002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 25002 ms: Timeout was reached) | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => resolved curl failed (210.99.24.200: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached) | https://www.ulsan.go.kr/ => resolved curl failed (210.99.24.200: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached)",
       "accessAttempts": [
         {
           "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
           "attempt": 1
         },
         {
           "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11003 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11003 ms: Timeout was reached",
           "attempt": 2
         },
         {
           "url": "https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
           "attempt": 1
         },
         {
@@ -1628,26 +1628,50 @@
         {
           "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
           "attempt": 1
         },
         {
           "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
           "attempt": 2
         },
         {
           "url": "https://www.ulsan.go.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
           "attempt": 1
         },
         {
           "url": "https://www.ulsan.go.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
           "attempt": 2
+        },
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": false,
+          "error": "resolved curl failed (210.99.24.200: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached)",
+          "attempt": "dns-fallback"
+        },
+        {
+          "url": "https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": false,
+          "error": "resolved curl failed (210.99.24.200: curl: (28) Failed to connect to ulsan.go.kr port 443 after 25002 ms: Timeout was reached\ncurl: (28) Failed to connect to ulsan.go.kr port 443 after 25002 ms: Timeout was reached)",
+          "attempt": "dns-fallback"
+        },
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+          "ok": false,
+          "error": "resolved curl failed (210.99.24.200: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached)",
+          "attempt": "dns-fallback"
+        },
+        {
+          "url": "https://www.ulsan.go.kr/",
+          "ok": false,
+          "error": "resolved curl failed (210.99.24.200: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached)",
+          "attempt": "dns-fallback"
         }
       ],
       "rejectionReasons": {},

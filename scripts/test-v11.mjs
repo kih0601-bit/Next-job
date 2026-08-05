@@ -195,5 +195,11 @@ console.log('v12.6 document-backed classification tests passed');
   assert.ok(ulsanOtherNotices.accessUrls.some(url => /contents\.do\?mId=001004001003000000/.test(url)));
   assert.ok(ulsanOtherNotices.accessUrls.some(url => /ulsannamgu\.go\.kr\/cop\/bbs\/selectBoardList\.do\?bbsId=hireNotice2/.test(url)));
   assert.ok(ulsanOtherNotices.accessUrls.some(url => /^https:\/\/job\.alio\.go\.kr\/?$/.test(url)));
+
+  const welfareFamilyService = SOURCES.find(item => item.org === '울산복지가족진흥사회서비스원');
+  assert.ok(welfareFamilyService.accessUrls.some(url => /wfps\.or\.kr\/webuser\/employment\/list\.html/.test(url)), '기관 공식 채용게시판을 주 경로로 유지해야 함');
+  assert.ok(welfareFamilyService.accessUrls.some(url => /ulsan\.go\.kr\/u\/rep\/contents\.(?:do|ulsan)\?mId=001004001003000000/.test(url)), '울산시 공식 타기관소식 경로를 대체 경로로 등록해야 함');
+  assert.ok(welfareFamilyService.accessUrls.some(url => /ulsannamgu\.go\.kr\/cop\/bbs\/selectBoardList\.do\?bbsId=hireNotice2/.test(url)), '공식 지방자치단체 채용게시판을 최종 가용성 경로로 등록해야 함');
 }
 console.log('v12.8 KPI endpoint/detail recovery tests passed');
+console.log('v13.1 Phase 1 welfare-service access fallback tests passed');

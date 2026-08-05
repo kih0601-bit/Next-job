@@ -103,21 +103,52 @@ function extractListCandidates(html, source) {
   return extractCandidatesForSource(html, source, helpers);
 }
 
-async function fetchHtml(url, timeoutMs = 15000) {
+async function fetchHtml(url, timeoutMs = 15000, { referer = '' } = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const response = await fetch(url, {
-      signal: controller.signal,
-      redirect: 'follow',
-      headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.5-debug-stage2)',
-        'accept-language': 'ko-KR,ko;q=0.9'
-      }
-    });
+    const headers = {
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.7,en;q=0.5',
+      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+      'cache-control': 'no-cache',
+      pragma: 'no-cache',
+      'upgrade-insecure-requests': '1'
+    };
+    if (referer) headers.referer = referer;
+    const response = await fetch(url, { signal: controller.signal, redirect: 'follow', headers });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    return await response.text();
+    const contentType = response.headers.get('content-type') || '';
+    if (contentType && !/html|text\//i.test(contentType)) throw new Error(`unsupported content-type: ${contentType}`);
+    const html = await response.text();
+    if (html.trim().length < 80) throw new Error('response body too short');
+    return { html, finalUrl: response.url || url, status: response.status, contentType };
+  } catch (error) {
+    const cause = error?.cause?.code || error?.cause?.message || '';
+    const message = error.name === 'AbortError' ? 'timeout' : error.message;
+    throw new Error(cause ? `${message} (${cause})` : message);
   } finally { clearTimeout(timer); }
+}
+
+async function fetchFirstAccessible(source) {
+  const attempts = [];
+  const urls = source.accessUrls?.length ? source.accessUrls : [source.url];
+  for (const url of urls) {
+    for (let attempt = 1; attempt <= 2; attempt += 1) {
+      try {
+        const result = await fetchHtml(url, attempt === 1 ? 18000 : 30000, { referer: source.homepage || '' });
+        attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl });
+        return { ...result, requestedUrl: url, attempts };
+      } catch (error) {
+        attempts.push({ url, ok: false, error: error.message, attempt });
+        if (attempt === 1) await new Promise(resolve => setTimeout(resolve, 700));
+      }
+    }
+  }
+  const summary = attempts.map(item => `${item.url} => ${item.error || item.status}`).join(' | ');
+  const failure = new Error(summary || 'all access URLs failed');
+  failure.accessAttempts = attempts;
+  throw failure;
 }
 
 async function enrichCandidate(candidate, source) {
@@ -243,23 +274,19 @@ function mergeCounts(target, source) {
 
 async function fetchSource(source) {
   try {
-    let html = '';
-    let lastError;
-    for (let attempt = 1; attempt <= 2; attempt += 1) {
-      try { html = await fetchHtml(source.url, attempt === 1 ? 15000 : 25000); break; }
-      catch (error) { lastError = error; if (attempt === 1) await new Promise(resolve => setTimeout(resolve, 800)); }
-    }
-    if (!html) throw lastError || new Error('empty source html');
-    const listingUrls = source.alio ? [source.url] : discoverListingUrls(html, source);
+    const access = await fetchFirstAccessible(source);
+    const html = access.html;
+    const activeSource = { ...source, url: access.finalUrl || access.requestedUrl };
+    const listingUrls = discoverListingUrls(html, activeSource);
     const candidateMap = new Map();
     const extractionDiagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, titleSamples: [], unsafeSamples: [] };
     for (const listingUrl of listingUrls) {
-      let listingHtml = listingUrl === source.url ? html : '';
+      let listingHtml = listingUrl === activeSource.url ? html : '';
       if (!listingHtml) {
-        try { listingHtml = await fetchHtml(listingUrl, 18000); }
+        try { listingHtml = (await fetchHtml(listingUrl, 22000, { referer: activeSource.url })).html; }
         catch { continue; }
       }
-      const listingSource = { ...source, url: listingUrl };
+      const listingSource = { ...activeSource, url: listingUrl };
       const extracted = extractListCandidates(listingHtml, listingSource);
       if (extracted.diagnostics) {
         for (const key of ['anchors', 'titleMatches', 'noUrl', 'unsafeUrl', 'accepted', 'rowFallbackAccepted']) extractionDiagnostics[key] += Number(extracted.diagnostics[key] || 0);
@@ -303,7 +330,7 @@ async function fetchSource(source) {
       }
     }
     return {
-      ok: true, source, jobs, candidates: candidates.length, listingPagesChecked: listingUrls.length,
+      ok: true, source: activeSource, jobs, candidates: candidates.length, listingPagesChecked: listingUrls.length, accessAttempts: access.attempts,
       rejected: Math.max(0, candidates.length - jobs.length),
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
@@ -311,7 +338,7 @@ async function fetchSource(source) {
       rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, accessAttempts: error.accessAttempts || [], rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPreviousPayload() {
@@ -324,7 +351,13 @@ async function readPreviousPayload() {
 
 const previousPayload = await readPreviousPayload();
 const previousJobs = Array.isArray(previousPayload.jobs) ? previousPayload.jobs : [];
-const results = await Promise.all(SOURCES.map(fetchSource));
+const results = [];
+const ACCESS_CONCURRENCY = 4;
+for (let index = 0; index < SOURCES.length; index += ACCESS_CONCURRENCY) {
+  const batch = SOURCES.slice(index, index + ACCESS_CONCURRENCY);
+  results.push(...await Promise.all(batch.map(fetchSource)));
+  if (index + ACCESS_CONCURRENCY < SOURCES.length) await new Promise(resolve => setTimeout(resolve, 500));
+}
 const dedupedJobs = new Map(), sources = [];
 const nowIso = new Date().toISOString();
 for (const result of results) {
@@ -344,6 +377,7 @@ for (const result of results) {
     rejected: result.rejected || 0,
     detailFailures: result.detailFailures || 0,
     error: result.error || '',
+    accessAttempts: result.accessAttempts || [],
     rejectionReasons: result.rejectionReasons || {},
     extractionDiagnostics: result.extractionDiagnostics || {},
     pipeline: result.pipeline || { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 },

@@ -135,3 +135,22 @@ console.log('v12 row-detail recovery tests passed');
   assert.match(postFile?.body || '', /fileId=FILE_456/);
 }
 console.log('v12.4 detail/document pipeline tests passed');
+
+// v12.5: common Korean public-board FileDown endpoint recovery and false-positive blocking.
+{
+  const html = `
+    <script>function fileDown(a,b,c){ /* external implementation on real sites */ }</script>
+    <form id="viewForm" action="/umca/bbs/list.do?bbsId=BBS_0000000000000002" method="post">
+      <input type="hidden" name="dataId" value="4434">
+    </form>
+    <div class="file-area">
+      <a href="#" onclick="fileDown('FILE_000000000006789','BBS_0000000000000002','0')">채용공고문.hwp</a>
+    </div>
+    <a href="/umca/contents.do?mId=001008004000000000">뷰어다운로드</a>
+  `;
+  const files = extractAttachments(html, 'https://www.umca.co.kr/umca/bbs/view.do?dataId=4434');
+  assert.ok(files.some(file => /\/umca\/bbs\/FileDown\.do\?/.test(file.url) && /atchFileId=FILE_000000000006789/.test(file.url)), 'FILE/BBS 식별값으로 실제 FileDown 주소를 복원해야 함');
+  assert.equal(files.some(file => /\/bbs\/list\.do/.test(file.url)), false, '일반 상세 폼을 첨부 다운로드로 오인하면 안 됨');
+  assert.equal(files.some(file => /contents\.do/.test(file.url)), false, '뷰어 안내페이지를 첨부파일로 오인하면 안 됨');
+  console.log('v12.5 attachment endpoint recovery tests passed');
+}

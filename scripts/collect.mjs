@@ -17,7 +17,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '12.4-detail-document-pipeline';
+const DATA_VERSION = '12.5-attachment-endpoint-recovery';
 const execFileAsync = promisify(execFile);
 
 function validTitle(title) {

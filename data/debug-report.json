@@ -1,6 +1,6 @@
 {
   "version": "12.1-resilient-http-access",
-  "updatedAt": "2026-08-05T02:58:20.741Z",
+  "updatedAt": "2026-08-05T03:11:00.126Z",
   "reportPath": "data/debug-report.json",
   "documentAnalyzerVersion": "11.6-document-tool-diagnostics",
   "documentToolDiagnostics": {
@@ -770,10 +770,19 @@
     },
     {
       "org": "울산연구원",
-      "status": "failed",
-      "listingPagesChecked": 0,
+      "status": "healthy",
+      "listingPagesChecked": 1,
       "candidates": 0,
-      "extractionDiagnostics": {},
+      "extractionDiagnostics": {
+        "anchors": 165,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": []
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -789,7 +798,7 @@
       "documentSamples": [],
       "rejected": 0,
       "rejectionReasons": {},
-      "error": "https://www.uri.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: HTTP 403 | https://www.uri.re.kr/ => HTTP 403 / curl failed: HTTP 403"
+      "error": ""
     },
     {
       "org": "울산문화관광재단",
@@ -825,10 +834,25 @@
     },
     {
       "org": "울산복지가족진흥사회서비스원",
-      "status": "failed",
-      "listingPagesChecked": 0,
-      "candidates": 0,
-      "extractionDiagnostics": {},
+      "status": "healthy",
+      "listingPagesChecked": 1,
+      "candidates": 5,
+      "extractionDiagnostics": {
+        "anchors": 293,
+        "titleMatches": 5,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 5,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [
+          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "울산광역시 제2시립노인복지관 2026년 직원 채용"
+        ],
+        "unsafeSamples": []
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -842,9 +866,11 @@
         "byError": {}
       },
       "documentSamples": [],
-      "rejected": 0,
-      "rejectionReasons": {},
-      "error": "https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr | https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr"
+      "rejected": 5,
+      "rejectionReasons": {
+        "expired deadline": 5
+      },
+      "error": ""
     },
     {
       "org": "울주문화재단",

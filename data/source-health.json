@@ -1,11 +1,11 @@
 {
   "version": "12.1-resilient-http-access",
-  "updatedAt": "2026-08-05T02:58:20.741Z",
+  "updatedAt": "2026-08-05T03:11:00.126Z",
   "summary": {
     "totalSources": 22,
-    "healthy": 20,
+    "healthy": 22,
     "degraded": 0,
-    "failed": 2,
+    "failed": 0,
     "retainedJobs": 0
   },
   "sources": [
@@ -399,7 +399,7 @@
           "url": "https://www.upa.or.kr/portal/contents.do?mid=0405000000",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785898461832",
+          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785899224264",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
@@ -455,13 +455,13 @@
         {
           "url": "https://recruit.kepco.co.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 6002 ms: Timeout was reached",
           "attempt": 1
         },
         {
           "url": "https://recruit.kepco.co.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11003 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to recruit.kepco.co.kr port 443 after 11002 ms: Timeout was reached",
           "attempt": 2
         },
         {
@@ -1104,31 +1104,49 @@
     },
     {
       "org": "울산연구원",
-      "ok": false,
-      "status": "failed",
+      "ok": true,
+      "status": "healthy",
       "candidates": 0,
-      "listingPagesChecked": 0,
+      "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "https://www.uri.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: HTTP 403 | https://www.uri.re.kr/ => HTTP 403 / curl failed: HTTP 403",
+      "error": "",
       "accessAttempts": [
         {
-          "url": "https://www.uri.re.kr/",
+          "url": "http://www.uri.re.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: HTTP 403",
+          "error": "HTTP 403 / curl failed: HTTP 403",
           "attempt": 1
         },
         {
-          "url": "https://www.uri.re.kr/",
+          "url": "http://www.uri.re.kr/",
           "ok": false,
           "error": "HTTP 403 / curl failed: HTTP 403",
           "attempt": 2
+        },
+        {
+          "url": "https://uill.uri.re.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uill.uri.re.kr/",
+          "transport": "node-fetch",
+          "profile": "browser",
+          "attempt": 1
         }
       ],
       "rejectionReasons": {},
-      "extractionDiagnostics": {},
+      "extractionDiagnostics": {
+        "anchors": 165,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": []
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -1202,31 +1220,45 @@
     },
     {
       "org": "울산복지가족진흥사회서비스원",
-      "ok": false,
-      "status": "failed",
-      "candidates": 0,
-      "listingPagesChecked": 0,
+      "ok": true,
+      "status": "healthy",
+      "candidates": 5,
+      "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
+      "rejected": 5,
       "detailFailures": 0,
-      "error": "https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr | https://www.ulsanpass.or.kr/ => fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr",
+      "error": "",
       "accessAttempts": [
         {
-          "url": "https://www.ulsanpass.or.kr/",
-          "ok": false,
-          "error": "fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr",
+          "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
+          "transport": "node-fetch",
+          "profile": "browser",
           "attempt": 1
-        },
-        {
-          "url": "https://www.ulsanpass.or.kr/",
-          "ok": false,
-          "error": "fetch failed (ENOTFOUND) / curl failed: curl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr\ncurl: (6) Could not resolve host: www.ulsanpass.or.kr",
-          "attempt": 2
         }
       ],
-      "rejectionReasons": {},
-      "extractionDiagnostics": {},
+      "rejectionReasons": {
+        "expired deadline": 5
+      },
+      "extractionDiagnostics": {
+        "anchors": 293,
+        "titleMatches": 5,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 5,
+        "rowFallbackAccepted": 0,
+        "titleSamples": [
+          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "울산광역시 제2시립노인복지관 2026년 직원 채용"
+        ],
+        "unsafeSamples": []
+      },
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,

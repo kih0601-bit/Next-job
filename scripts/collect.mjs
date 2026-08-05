@@ -17,7 +17,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '12.8-kpi-pipeline-recovery';
+const DATA_VERSION = '12.9-phase1-access-dns-fallback';
 const execFileAsync = promisify(execFile);
 
 function validTitle(title) {
@@ -151,6 +151,72 @@ async function fetchWithNode(url, timeoutMs, { referer = '', profile = 'browser'
   }
 }
 
+async function resolveHostWithDoh(hostname, timeoutMs = 8000) {
+  const endpoints = [
+    `https://dns.google/resolve?name=${encodeURIComponent(hostname)}&type=A`,
+    `https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(hostname)}&type=A`
+  ];
+  const errors = [];
+  for (const endpoint of endpoints) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(endpoint, {
+        signal: controller.signal,
+        headers: { accept: 'application/dns-json, application/json' }
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const payload = await response.json();
+      const ips = (payload.Answer || [])
+        .filter(item => item.type === 1 && /^\d{1,3}(?:\.\d{1,3}){3}$/.test(item.data || ''))
+        .map(item => item.data);
+      if (ips.length) return [...new Set(ips)];
+      throw new Error('no A records');
+    } catch (error) {
+      errors.push(`${new URL(endpoint).hostname}: ${error.name === 'AbortError' ? 'timeout' : error.message}`);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+  throw new Error(`DoH resolution failed (${errors.join(' / ')})`);
+}
+
+async function fetchWithCurlResolved(url, timeoutMs, { referer = '' } = {}) {
+  const parsed = new URL(url);
+  const port = parsed.protocol === 'http:' ? 80 : 443;
+  const ips = await resolveHostWithDoh(parsed.hostname);
+  const errors = [];
+  for (const ip of ips.slice(0, 3)) {
+    const args = [
+      '--silent', '--show-error', '--location', '--compressed', '--ipv4',
+      '--connect-timeout', String(Math.max(8, Math.floor(timeoutMs / 2000))),
+      '--max-time', String(Math.max(20, Math.ceil(timeoutMs / 1000))),
+      '--retry', '1', '--retry-delay', '2', '--retry-all-errors',
+      '--resolve', `${parsed.hostname}:${port}:${ip}`,
+      '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
+      '--header', 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      '--write-out', '\n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type}',
+    ];
+    if (referer) args.push('--referer', referer);
+    args.push(url);
+    try {
+      const { stdout } = await execFileAsync('curl', args, { maxBuffer: 12 * 1024 * 1024, timeout: timeoutMs + 10000 });
+      const marker = '\n__NEXTJOB_META__';
+      const markerIndex = stdout.lastIndexOf(marker);
+      if (markerIndex < 0) throw new Error('curl metadata missing');
+      const html = stdout.slice(0, markerIndex);
+      const [statusText, finalUrl, contentType = ''] = stdout.slice(markerIndex + marker.length).trim().split('|');
+      const status = Number(statusText);
+      if (!Number.isFinite(status) || status < 200 || status >= 400) throw new Error(`HTTP ${statusText || 'unknown'}`);
+      validateHtmlResponse({ html, contentType });
+      return { html, finalUrl: finalUrl || url, status, contentType, transport: 'curl-doh-resolve', profile: 'browser', resolvedIp: ip };
+    } catch (error) {
+      errors.push(`${ip}: ${error?.stderr?.trim() || error.message}`);
+    }
+  }
+  throw new Error(`resolved curl failed (${errors.join(' / ')})`);
+}
+
 async function fetchWithCurl(url, timeoutMs, { referer = '', insecure = false } = {}) {
   const args = [
     '--silent', '--show-error', '--location', '--compressed',
@@ -219,6 +285,20 @@ async function fetchFirstAccessible(source) {
       } catch (error) {
         attempts.push({ url, ok: false, error: error.message, attempt });
         if (attempt === 1) await new Promise(resolve => setTimeout(resolve, 1500));
+      }
+    }
+  }
+  if (source.org === '울산광역시 타기관소식') {
+    for (const url of urls.filter(item => /^https?:\/\/(?:www\.)?ulsan\.go\.kr\//i.test(item))) {
+      try {
+        const result = await fetchWithCurlResolved(url, 50000, { referer: source.homepage || '' });
+        attempts.push({
+          url, ok: true, status: result.status, finalUrl: result.finalUrl,
+          transport: result.transport, profile: result.profile, resolvedIp: result.resolvedIp, attempt: 'dns-fallback'
+        });
+        return { ...result, requestedUrl: url, attempts };
+      } catch (error) {
+        attempts.push({ url, ok: false, error: error.message, attempt: 'dns-fallback' });
       }
     }
   }

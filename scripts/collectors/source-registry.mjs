@@ -70,10 +70,14 @@ const RAW_SOURCES = [
     'https://www.uwfdi.re.kr/' ] },
   { org: '울주문화재단', urls: ['https://uljuculture.hubst.co.kr/', 'http://www.ucf.or.kr/', 'https://www.ucf.or.kr/'] },
   { org: '울산광역시 타기관소식', urls: [
+    // Primary source: Ulsan Metropolitan City other-organization notices.
     'https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000',
-    'https://ulsan.go.kr/u/rep/contents.do?mId=001004001003000000',
-    'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000',
-    'https://www.ulsan.go.kr/' ] }
+    // Official local-government fallback: subsidiary-agency recruitment notices.
+    // GitHub-hosted runners can be blocked at the TCP layer by ulsan.go.kr, so the
+    // collector must still have an official public route for Phase 1 availability.
+    'https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2',
+    // Official public-institution fallback. Phase 2 will validate listing coverage.
+    'https://job.alio.go.kr/' ] }
 ];
 
 export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
@@ -93,4 +97,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '12.8-kpi-access-and-detail-endpoints';
+export const SOURCE_REGISTRY_VERSION = '13.0-phase1-official-source-fallback';

@@ -49,7 +49,7 @@ const RAW_SOURCES = [
   { org: '울산연구원', urls: ['https://www.uri.re.kr/'] },
   { org: '울산문화관광재단', urls: ['https://www.uctf.or.kr/'] },
   { org: '울산복지가족진흥사회서비스원', urls: ['https://www.ulsanpass.or.kr/'] },
-  { org: '울주문화재단', urls: ['https://www.ucf.or.kr/'] },
+  { org: '울주문화재단', urls: ['https://uljuculture.hubst.co.kr/', 'http://www.ucf.or.kr/', 'https://www.ucf.or.kr/'] },
   { org: '울산광역시 타기관소식', urls: ['https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000', 'https://www.ulsan.go.kr/'] }
 ];
 
@@ -70,4 +70,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '11.9-multi-endpoint-access';
+export const SOURCE_REGISTRY_VERSION = '12.1-resilient-endpoints';

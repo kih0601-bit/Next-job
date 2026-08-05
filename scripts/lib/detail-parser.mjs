@@ -46,8 +46,10 @@ function looksLikeStaticAsset(rawUrl = '', name = '') {
   return false;
 }
 
-function addAttachment(attachments, seen, rawUrl, name, baseUrl, explicitType = '', context = '') {
-  const url = absoluteUrl(rawUrl, baseUrl);
+function addAttachment(attachments, seen, rawUrl, name, baseUrl, explicitType = '', context = '', request = {}) {
+  const decodedRaw = decodeHtmlEntities(rawUrl || '').trim();
+  if (!decodedRaw || decodedRaw === '#' || /^#/.test(decodedRaw) || /^javascript:/i.test(decodedRaw)) return;
+  const url = absoluteUrl(decodedRaw, baseUrl);
   if (!url || /^javascript:/i.test(url)) return;
   const probe = `${url} ${name} ${explicitType} ${context}`;
   const ext = probe.match(FILE_EXT)?.[1]?.toLowerCase() || String(explicitType || '').toLowerCase();
@@ -67,7 +69,12 @@ function addAttachment(attachments, seen, rawUrl, name, baseUrl, explicitType = 
   attachments.push({
     name: cleanHtml(name) || `첨부파일${ext ? `.${ext}` : ''}`,
     type: ext || 'unknown',
-    url
+    url,
+    referer: request.referer || baseUrl,
+    cookie: request.cookie || '',
+    method: String(request.method || 'GET').toUpperCase(),
+    body: request.body || '',
+    headers: request.headers || {}
   });
 }
 
@@ -83,7 +90,98 @@ function urlsFromJavascript(value = '') {
   return urls;
 }
 
-export function extractAttachments(html, baseUrl) {
+
+
+function splitJavascriptArgs(value = '') {
+  const args = [];
+  let current = '', quote = '', depth = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    const char = value[index];
+    if (quote) {
+      current += char;
+      if (char === quote && value[index - 1] !== '\\') quote = '';
+      continue;
+    }
+    if (char === '"' || char === "'") { quote = char; current += char; continue; }
+    if (char === '(' || char === '[' || char === '{') depth += 1;
+    if (char === ')' || char === ']' || char === '}') depth = Math.max(0, depth - 1);
+    if (char === ',' && depth === 0) { args.push(current.trim()); current = ''; continue; }
+    current += char;
+  }
+  if (current.trim()) args.push(current.trim());
+  return args;
+}
+
+function jsLiteral(value = '') {
+  const trimmed = String(value).trim();
+  const match = trimmed.match(/^(?:decodeURIComponent\()?(["'])([\s\S]*?)\1\)?$/);
+  return match ? decodeHtmlEntities(match[2].replace(/\\(["'])/g, '$1')) : trimmed;
+}
+
+function evaluateJsConcat(expression = '', variables = {}) {
+  const parts = splitJavascriptArgs(String(expression).replace(/\s*\+\s*/g, ',')).map(part => part.trim());
+  if (!parts.length) return '';
+  let output = '';
+  for (let part of parts) {
+    part = part.replace(/^(?:encodeURIComponent|decodeURIComponent)\(([^)]+)\)$/, '$1').trim();
+    if (/^["']/.test(part)) output += jsLiteral(part);
+    else if (Object.prototype.hasOwnProperty.call(variables, part)) output += variables[part];
+    else return '';
+  }
+  return output;
+}
+
+function javascriptDownloadCandidates(source = '', js = '') {
+  const call = decodeHtmlEntities(js).match(/\b([A-Za-z_$][\w$]*)\s*\(([^)]*)\)/);
+  if (!call) return [];
+  const functionName = call[1];
+  const callArgs = splitJavascriptArgs(call[2]).map(jsLiteral);
+  const escaped = functionName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const definition = source.match(new RegExp(`function\\s+${escaped}\\s*\\(([^)]*)\\)\\s*\\{([\\s\\S]{0,5000}?)\\}`, 'i'));
+  if (!definition) return [];
+  const params = definition[1].split(',').map(item => item.trim()).filter(Boolean);
+  const variables = Object.fromEntries(params.map((param, index) => [param, callArgs[index] || '']));
+  const body = definition[2];
+  const candidates = [];
+  for (const match of body.matchAll(/(?:location(?:\.href)?\s*=|window\.open\s*\(|\.action\s*=)\s*([^;\n]+?)(?:\)|;|$)/gi)) {
+    const value = evaluateJsConcat(match[1], variables) || jsLiteral(match[1]);
+    if (value && (FILE_SIGNAL.test(value) || FILE_EXT.test(value))) candidates.push(value);
+  }
+  return [...new Set(candidates)];
+}
+
+function extractFormAttachments(source, baseUrl, attachments, seen, request = {}) {
+  for (const match of source.matchAll(/<form\b([^>]*)>([\s\S]*?)<\/form>/gi)) {
+    const attrs = match[1] || '';
+    const bodyHtml = match[2] || '';
+    const context = `${attrs} ${bodyHtml.slice(0, 2000)}`;
+    const action = attrs.match(/\baction\s*=\s*["']([^"']+)["']/i)?.[1] || '';
+    if (!action || (!FILE_SIGNAL.test(context) && !FILE_SIGNAL.test(action))) continue;
+    const method = (attrs.match(/\bmethod\s*=\s*["']([^"']+)["']/i)?.[1] || 'GET').toUpperCase();
+    const params = new URLSearchParams();
+    for (const input of bodyHtml.matchAll(/<input\b([^>]*)>/gi)) {
+      const inputAttrs = input[1] || '';
+      const name = inputAttrs.match(/\bname\s*=\s*["']([^"']+)["']/i)?.[1];
+      const value = inputAttrs.match(/\bvalue\s*=\s*["']([^"']*)["']/i)?.[1] || '';
+      if (name) params.append(decodeHtmlEntities(name), decodeHtmlEntities(value));
+    }
+    let target = absoluteUrl(action, baseUrl);
+    if (!target) continue;
+    if (method === 'GET' && params.size) {
+      const url = new URL(target);
+      for (const [key, value] of params) url.searchParams.append(key, value);
+      target = url.href;
+    }
+    addAttachment(attachments, seen, target, cleanHtml(context).slice(0, 160) || '첨부파일', baseUrl, '', context, {
+      ...request,
+      method,
+      body: method === 'POST' ? params.toString() : '',
+      headers: method === 'POST' ? { 'content-type': 'application/x-www-form-urlencoded' } : {}
+    });
+  }
+}
+
+export function extractAttachments(html, baseUrl, request = {}) {
   const source = String(html);
   const attachments = [];
   const seen = new Set();
@@ -98,19 +196,19 @@ export function extractAttachments(html, baseUrl) {
     const anchorHasFileSignal = anchorHasDirectFile || FILE_SIGNAL.test(anchorProbe) || ATTACHMENT_CONTEXT.test(context);
 
     if (anchorHasFileSignal && href && href !== '#' && !/^javascript:/i.test(href)) {
-      addAttachment(attachments, seen, href, label, baseUrl, '', context);
+      addAttachment(attachments, seen, href, label, baseUrl, '', context, request);
     }
     const onclickMatch = attrs.match(/\bonclick\s*=\s*(["'])([\s\S]*?)\1/i);
     const js = onclickMatch?.[2] || (/^javascript:/i.test(href) ? href : '');
     const jsCandidates = urlsFromJavascript(js);
     if (anchorHasFileSignal || FILE_SIGNAL.test(js) || jsCandidates.some(candidate => FILE_EXT.test(candidate))) {
-      for (const candidate of jsCandidates) addAttachment(attachments, seen, candidate, label, baseUrl, '', context);
+      for (const candidate of [...jsCandidates, ...javascriptDownloadCandidates(source, js)]) addAttachment(attachments, seen, candidate, label, baseUrl, '', context, request);
     }
     for (const attr of ['data-url', 'data-href', 'data-file', 'data-download', 'value']) {
       const valueMatch = attrs.match(new RegExp(`\\b${attr}\\s*=\\s*(["'])((?:(?!\\1).)+)\\1`, 'i'));
       const value = valueMatch?.[2];
       if (value && (anchorHasFileSignal || /file|download/i.test(attr) || FILE_EXT.test(value))) {
-        addAttachment(attachments, seen, value, label, baseUrl, '', context);
+        addAttachment(attachments, seen, value, label, baseUrl, '', context, request);
       }
     }
   }
@@ -126,9 +224,10 @@ export function extractAttachments(html, baseUrl) {
     const explicit = FILE_SIGNAL.test(`${attrs} ${label} ${raw}`) || ATTACHMENT_CONTEXT.test(context);
     if (!raw) continue;
     if (tag === 'img' && !explicit) continue;
-    addAttachment(attachments, seen, raw, label, baseUrl, '', context);
+    addAttachment(attachments, seen, raw, label, baseUrl, '', context, request);
   }
 
+  extractFormAttachments(source, baseUrl, attachments, seen, request);
   return attachments.slice(0, 24);
 }
 
@@ -186,7 +285,10 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
     const finalParams = [...final.searchParams.keys()];
     const hasDetailPath = /(?:view|detail|read|select|article|boardView|recruitview|noticeView)/i.test(final.pathname);
     const hasDetailParam = finalParams.some(key => /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no)$/i.test(key));
-    const attachments = extractAttachments(html, finalUrl);
+    const cookie = typeof response.headers.getSetCookie === 'function'
+      ? response.headers.getSetCookie().map(value => value.split(';')[0]).join('; ')
+      : (response.headers.get('set-cookie') || '').split(/,(?=[^;,]+=)/).map(value => value.split(';')[0]).join('; ');
+    const attachments = extractAttachments(html, finalUrl, { referer: finalUrl, cookie });
     const hasStrongBody = /(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text);
     if ((!hasDetailPath && !hasDetailParam && !hasStrongBody) || (/(?:list|recruit\.do|contents\.ulsan|noti06\.do)$/i.test(final.pathname) && !hasDetailParam && !hasStrongBody)) {
       throw new Error('final url is not a detail page');

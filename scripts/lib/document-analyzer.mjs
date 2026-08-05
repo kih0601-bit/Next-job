@@ -5,7 +5,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '11.6-document-tool-diagnostics';
+const ANALYZER_VERSION = '12.4-request-aware-attachment-parser';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -127,18 +127,26 @@ async function detectActualType({ bytes, contentType, contentDisposition, finalU
   return { type: 'unsupported', reason: 'unknown-format' };
 }
 
-async function download(url, target, timeoutMs = 30000) {
+async function download(item, target, timeoutMs = 30000) {
+  const url = typeof item === 'string' ? item : item.url;
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
+    const method = String(item?.method || 'GET').toUpperCase();
+    const headers = {
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
+      'accept-language': 'ko-KR,ko;q=0.9',
+      accept: 'application/pdf,application/octet-stream,application/zip,image/*,*/*;q=0.8',
+      ...(item?.headers || {})
+    };
+    if (item?.referer) headers.referer = item.referer;
+    if (item?.cookie) headers.cookie = item.cookie;
     const response = await fetch(url, {
       signal: controller.signal,
       redirect: 'follow',
-      headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobDocumentAnalyzer/11.5)',
-        'accept-language': 'ko-KR,ko;q=0.9',
-        accept: 'application/pdf,application/octet-stream,application/zip,image/*,*/*;q=0.8'
-      }
+      method,
+      headers,
+      body: method === 'GET' || method === 'HEAD' ? undefined : (item?.body || undefined)
     });
     if (!response.ok) throw new Error(`download HTTP ${response.status}`);
     const length = Number(response.headers.get('content-length') || 0);
@@ -320,7 +328,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
       const tempFile = path.join(dir, `attachment-${index}.bin`);
       let meta = null;
       try {
-        meta = await download(item.url, tempFile);
+        meta = await download(item, tempFile);
         const detected = await detectActualType({
           bytes: meta.bytes,
           contentType: meta.contentType,
@@ -361,6 +369,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
           textLength: extracted.text.length,
           method: extracted.method,
           priority: documentPriority(item),
+          requestMethod: item.method || 'GET',
           text: extracted.text
         });
       } catch (error) {
@@ -377,7 +386,8 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
           ok: false,
           error: error.message,
           commandError: serializeCommandError(error),
-          priority: documentPriority(item)
+          priority: documentPriority(item),
+          requestMethod: item.method || 'GET'
         });
       }
     }

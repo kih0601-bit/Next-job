@@ -46,9 +46,16 @@ const RAW_SOURCES = [
   { org: '울산정보산업진흥원', urls: ['https://uipa.or.kr/webuser/recruit/list.html', 'https://uipa.or.kr/'] },
   { org: '울산테크노파크', urls: ['https://www.utp.or.kr/'] },
   { org: '울산경제일자리진흥원', urls: ['https://www.ubpi.or.kr/'] },
-  { org: '울산연구원', urls: ['https://www.uri.re.kr/'] },
+  { org: '울산연구원', urls: [
+    'http://www.uri.re.kr/',
+    'https://uill.uri.re.kr/',
+    'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000' ] },
   { org: '울산문화관광재단', urls: ['https://www.uctf.or.kr/'] },
-  { org: '울산복지가족진흥사회서비스원', urls: ['https://www.ulsanpass.or.kr/'] },
+  { org: '울산복지가족진흥사회서비스원', urls: [
+    'https://www.wfps.or.kr/webuser/employment/list.html',
+    'https://www.wfps.or.kr/',
+    'https://www.uwfdi.re.kr/webuser/employment/list.html',
+    'https://www.uwfdi.re.kr/' ] },
   { org: '울주문화재단', urls: ['https://uljuculture.hubst.co.kr/', 'http://www.ucf.or.kr/', 'https://www.ucf.or.kr/'] },
   { org: '울산광역시 타기관소식', urls: ['https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000', 'https://www.ulsan.go.kr/'] }
 ];
@@ -70,4 +77,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '12.1-resilient-endpoints';
+export const SOURCE_REGISTRY_VERSION = '12.2-final-access-endpoints';

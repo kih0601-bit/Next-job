@@ -1,7 +1,7 @@
 import { cleanHtml, absoluteUrl, decodeHtmlEntities } from '../lib/detail-parser.mjs';
 
 const LIST_QUERY_KEYS = new Set(['pageIndex', 'page', 'searchCondition', 'searchKeyword', 'menuNo', 'mId', 'order', 'search_yn', 'org_name']);
-const DETAIL_PARAM = /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no)$/i;
+const DETAIL_PARAM = /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no|boardNo|board_no|noticeNo|notice_no|sn|id)$/i;
 const FILE_OR_DOWNLOAD = /\.(?:pdf|hwp|hwpx|docx?|xlsx?|zip)(?:$|[?#])|filedown|download|attach|atchfile|file_id|fileid/i;
 
 
@@ -116,6 +116,60 @@ function candidateUrls(attrs = '', source) {
   return urls;
 }
 
+
+
+function enclosingBlock(html, index = 0) {
+  const before = html.slice(0, index);
+  const starts = [
+    ['tr', before.toLowerCase().lastIndexOf('<tr')],
+    ['li', before.toLowerCase().lastIndexOf('<li')],
+    ['div', before.toLowerCase().lastIndexOf('<div')]
+  ].filter(([, pos]) => pos >= 0).sort((a, b) => b[1] - a[1]);
+  for (const [tag, start] of starts) {
+    const close = html.toLowerCase().indexOf(`</${tag}>`, index);
+    if (close >= 0 && close - start <= 12000) return html.slice(start, close + tag.length + 3);
+  }
+  return html.slice(Math.max(0, index - 1200), Math.min(html.length, index + 4000));
+}
+
+function urlsFromBlock(block = '', source) {
+  const urls = [];
+  const push = value => {
+    const link = absoluteUrl(value, source.url);
+    if (link && !urls.includes(link)) urls.push(link);
+  };
+
+  for (const match of block.matchAll(/\b(?:href|data-href|data-url|action)\s*=\s*(["'])([\s\S]*?)\1/gi)) {
+    const value = decodeHtmlEntities(match[2]).trim();
+    if (value && value !== '#' && !/^javascript:/i.test(value)) push(value);
+    for (const link of urlsFromJavascript(value, source.url)) if (!urls.includes(link)) urls.push(link);
+  }
+  for (const match of block.matchAll(/\b(?:onclick|onmousedown)\s*=\s*(["'])([\s\S]*?)\1/gi)) {
+    for (const link of urlsFromJavascript(match[2], source.url)) if (!urls.includes(link)) urls.push(link);
+  }
+
+  // Common public-board pattern: the row carries a detail id in a hidden field or
+  // data attribute while the title anchor itself has no href.
+  const ids = [];
+  for (const match of block.matchAll(/\b(?:data-)?(idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|boardNo|noticeNo|sn|id)\s*=\s*(["'])([^"']+)\2/gi)) {
+    const key = match[1];
+    const value = decodeHtmlEntities(match[3]).trim();
+    if (/^[A-Za-z0-9_-]{1,80}$/.test(value)) ids.push([key, value]);
+  }
+  if (ids.length) {
+    try {
+      const base = new URL(source.url);
+      for (const [key, value] of ids) {
+        const detail = new URL(base.href);
+        for (const listKey of LIST_QUERY_KEYS) detail.searchParams.delete(listKey);
+        detail.searchParams.set(key, value);
+        urls.push(detail.href);
+      }
+    } catch { /* ignore malformed source */ }
+  }
+  return [...new Set(urls)];
+}
+
 function sourceAllows(link, source) {
   if (!link || FILE_OR_DOWNLOAD.test(link) || isListOrMain(link, source)) return false;
   try {
@@ -142,7 +196,7 @@ function sourceAllows(link, source) {
 export function extractCandidatesForSource(html, source, { validTitle, normalizeTitleForDedup }) {
   const jobs = [];
   const seen = new Set();
-  const diagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, titleSamples: [], unsafeSamples: [] };
+  const diagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, titleSamples: [], unsafeSamples: [] };
   const anchorRegex = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
   for (const match of html.matchAll(anchorRegex)) {
     diagnostics.anchors += 1;
@@ -152,8 +206,20 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     diagnostics.titleMatches += 1;
     if (diagnostics.titleSamples.length < 8) diagnostics.titleSamples.push(title);
 
-    const urls = candidateUrls(attrs, source);
-    if (!urls.length) { diagnostics.noUrl += 1; continue; }
+    let urls = candidateUrls(attrs, source);
+    let usedRowFallback = false;
+    let block = '';
+    if (!urls.length || !urls.some(url => sourceAllows(url, source))) {
+      block = enclosingBlock(html, match.index);
+      const rowUrls = urlsFromBlock(block, source);
+      for (const url of rowUrls) if (!urls.includes(url)) urls.push(url);
+      usedRowFallback = rowUrls.length > 0;
+    }
+    if (!urls.length) {
+      diagnostics.noUrl += 1;
+      if (diagnostics.unsafeSamples.length < 8) diagnostics.unsafeSamples.push({ title, reason: 'no-url', row: (block || enclosingBlock(html, match.index)).slice(0, 1200) });
+      continue;
+    }
     const link = urls.find(url => sourceAllows(url, source));
     if (!link) {
       diagnostics.unsafeUrl += 1;
@@ -170,6 +236,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     const listText = cleanHtml(html.slice(start, end)).replace(/\s+/g, ' ').trim();
     jobs.push({ org: source.org, title, link: canonical, listText, adapter: source.org });
     diagnostics.accepted += 1;
+    if (usedRowFallback) diagnostics.rowFallbackAccepted += 1;
     if (jobs.length >= 30) break;
   }
   Object.defineProperty(jobs, 'diagnostics', { value: diagnostics, enumerable: false });

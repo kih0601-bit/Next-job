@@ -298,9 +298,10 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
       signal: controller.signal,
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (compatible; NextJobCollector/11.7-candidate-attachment-scope)',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
         'accept-language': 'ko-KR,ko;q=0.9,en;q=0.5',
-        accept: 'text/html,application/xhtml+xml'
+        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        referer: new URL(url).origin + '/'
       }
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -324,7 +325,7 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
 
     const finalParams = [...final.searchParams.keys()];
     const hasDetailPath = /(?:view|detail|read|select|article|boardView|recruitview|noticeView)/i.test(final.pathname);
-    const hasDetailParam = finalParams.some(key => /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no)$/i.test(key));
+    const hasDetailParam = finalParams.some(key => /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|dataId|bbsId|bcIdx|boardSeq|contsId|recruitNo|recruit_no)$/i.test(key));
     const cookie = typeof response.headers.getSetCookie === 'function'
       ? response.headers.getSetCookie().map(value => value.split(';')[0]).join('; ')
       : (response.headers.get('set-cookie') || '').split(/,(?=[^;,]+=)/).map(value => value.split(';')[0]).join('; ');

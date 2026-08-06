@@ -51,11 +51,30 @@ jobs:
       - name: Run collector self-test
         run: node scripts/test-v11.mjs
 
+      - name: Preserve previous pipeline report
+        shell: bash
+        run: |
+          if [ -s data/pipeline-report.json ]; then
+            cp data/pipeline-report.json data/pipeline-report.previous.json
+          fi
+
       - name: Probe institution pipelines
         run: node scripts/pipeline-probe.mjs
 
-      - name: Run pipeline diagnostics
-        run: node scripts/pipeline-probe.mjs
+      - name: Build unified institution report
+        run: node scripts/build-unified-report.mjs
+
+      - name: Save diagnostic evidence
+        run: node scripts/save-diagnostic-evidence.mjs
+
+      - name: Compare with previous run
+        run: node scripts/compare-pipeline-reports.mjs
+
+      - name: Check regressions
+        run: node scripts/run-regression-check.mjs
+
+      - name: Update pipeline history
+        run: node scripts/update-pipeline-history.mjs
 
       - name: Collect job postings
         run: node scripts/collect.mjs
@@ -69,6 +88,19 @@ jobs:
           test -s data/jobs.json
           echo "debug-report bytes: $(wc -c < data/debug-report.json)"
           node -e "const r=require('./data/debug-report.json'); console.log(JSON.stringify(r.documentToolDiagnostics,null,2));"
+
+      - name: Upload diagnostic bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: next-job-diagnostics
+          path: |
+            data/pipeline-report.json
+            data/pipeline-diff.json
+            data/regression-report.json
+            data/pipeline-history.json
+            data/pipeline-artifacts.json
+            data/diagnostics/
+          retention-days: 14
 
       - name: Commit updated jobs and diagnostics
         shell: bash

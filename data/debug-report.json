@@ -1,6 +1,6 @@
 {
   "version": "15.0-phase5-list-selection",
-  "updatedAt": "2026-08-06T03:26:38.121Z",
+  "updatedAt": "2026-08-06T04:18:48.616Z",
   "reportPath": "data/debug-report.json",
   "documentAnalyzerVersion": "12.5-file-endpoint-and-transport-parser",
   "documentToolDiagnostics": {
@@ -55,16 +55,32 @@
       "org": "한국동서발전",
       "status": "healthy",
       "listingPagesChecked": 1,
-      "candidates": 0,
+      "candidates": 1,
       "extractionDiagnostics": {
-        "anchors": 53,
-        "titleMatches": 0,
+        "anchors": 282,
+        "titleMatches": 2,
         "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
+        "unsafeUrl": 2,
+        "accepted": 2,
         "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": []
+        "titleSamples": [
+          "이전 채용공고",
+          "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안..."
+        ],
+        "unsafeSamples": [
+          {
+            "title": "이전 채용공고",
+            "reason": "detail-url-pending",
+            "identity": "row-38521",
+            "row": "<div class=\"btn_area\">\r\n\t\t\t\t<a href=\"http://alio.go.kr/popSusi.do?apbaId=C0066&reportFormRootNo=B1020\" class=\"navy_btn blank\" target=\"_blank\" title=\"새 창 열림\"><span>이전 채용공고</span></a>\r\n\t\t\t</div>"
+          },
+          {
+            "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+            "reason": "detail-url-pending",
+            "identity": "44635",
+            "row": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>90</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44635); return false;\" title=\"2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안내\" class=\"ellipsis1\">2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.29 ~ 2026.05.05</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>5804</td>\r\n\t\t\t\t\t\t\t\t</tr>"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -84,9 +100,39 @@
         "accepted": 0,
         "rejected": 0
       },
-      "vacancyDecisions": [],
-      "rejected": 0,
-      "rejectionReasons": {},
+      "vacancyDecisions": [
+        {
+          "candidateTitle": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+          "candidateLink": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U#list-44635",
+          "vacancyId": "list-selection",
+          "vacancyName": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+          "status": "list-rejected",
+          "reason": "목록에 마감 문구가 명시됨",
+          "listSelection": {
+            "accepted": false,
+            "reasons": [
+              "목록에 마감 문구가 명시됨"
+            ],
+            "signals": [
+              "채용 제목 신호"
+            ],
+            "selectorVersion": "2026-08-06.1-phase5-list-selection"
+          }
+        },
+        {
+          "candidateTitle": "이전 채용공고",
+          "candidateLink": "",
+          "vacancyId": "list-only",
+          "vacancyName": "이전 채용공고",
+          "status": "list-extracted",
+          "reason": "phase2 list extracted; detail URL pending Phase 3",
+          "listIdentity": "row-38521"
+        }
+      ],
+      "rejected": 2,
+      "rejectionReasons": {
+        "phase2 list extracted; detail URL pending Phase 3": 1
+      },
       "error": ""
     },
     {
@@ -135,35 +181,16 @@
       "extractionDiagnostics": {
         "anchors": 658,
         "titleMatches": 3,
-        "noUrl": 3,
+        "noUrl": 0,
         "unsafeUrl": 0,
         "accepted": 3,
-        "rowFallbackAccepted": 0,
+        "rowFallbackAccepted": 3,
         "titleSamples": [
           "한국에너지공단 공무직(시설관리 일반) 채용 공고",
           "한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)",
           "한국에너지공단 전문경력직 채용 공고"
         ],
-        "unsafeSamples": [
-          {
-            "title": "한국에너지공단 공무직(시설관리 일반) 채용 공고",
-            "reason": "no-url-detail-pending",
-            "identity": "133",
-            "row": "<tr class=\"cnt_txt\">\r\n                                                <td class=\"col_tit\"><a href=\"javascript:void(0);\" onclick=\"javascript:fn_Detail('133');\" class=\"cnt_txt\"><span>한국에너지공단 공무직(시설관리 일반) 채용 공고</span></a></td>\r\n                                                <td class=\"tm_n\">신입및경력</td>\r\n                                                <td class=\"tm_n\">1</td>\r\n                                                <td class=\"tm_n\">울산</td>\r\n                                                <td class=\"tm_n\">무기계약직</td>\r\n                                                <td>2026-03-10~<br>2026-03-18</td>\r\n                                                <td class=\"tm_n\"> \r\n                                                \r\n                                                \t\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"tb_file\"><span class=\"skip\">첨부파일</span></p>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t</td>\r\n\t\t\t\t\t\t\t\t\t\t \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t                                                <td class=\"tm_n\">공고마감</td>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n                                            </tr>"
-          },
-          {
-            "title": "한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)",
-            "reason": "no-url-detail-pending",
-            "identity": "132",
-            "row": "<tr class=\"cnt_txt\">\r\n                                                <td class=\"col_tit\"><a href=\"javascript:void(0);\" onclick=\"javascript:fn_Detail('132');\" class=\"cnt_txt\"><span>한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)</span></a></td>\r\n                                                <td class=\"tm_n\">신입및경력</td>\r\n                                                <td class=\"tm_n\">1</td>\r\n                                                <td class=\"tm_n\">광주</td>\r\n                                                <td class=\"tm_n\">무기계약직</td>\r\n                                                <td>2026-03-10~<br>2026-03-18</td>\r\n                                                <td class=\"tm_n\"> \r\n                                                \r\n                                                \t\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"tb_file\"><span class=\"skip\">첨부파일</span></p>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t</td>\r\n\t\t\t\t\t\t\t\t\t\t \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t                                                <td class=\"tm_n\">공고마감</td>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n                                            </tr>"
-          },
-          {
-            "title": "한국에너지공단 전문경력직 채용 공고",
-            "reason": "no-url-detail-pending",
-            "identity": "130",
-            "row": "<tr class=\"cnt_txt\">\r\n                                                <td class=\"col_tit\"><a href=\"javascript:void(0);\" onclick=\"javascript:fn_Detail('130');\" class=\"cnt_txt\"><span>한국에너지공단 전문경력직 채용 공고</span></a></td>\r\n                                                <td class=\"tm_n\">경력</td>\r\n                                                <td class=\"tm_n\">4</td>\r\n                                                <td class=\"tm_n\">울산, 충북</td>\r\n                                                <td class=\"tm_n\">정규직</td>\r\n                                                <td>2026-03-10~<br>2026-03-25</td>\r\n                                                <td class=\"tm_n\"> \r\n                                                \r\n                                                \t\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"tb_file\"><span class=\"skip\">첨부파일</span></p>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t\t\r\n\t\t\t\t\t\t\t\t\t\t \t\t</td>\r\n\t\t\t\t\t\t\t\t\t\t \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t                                                <td class=\"tm_n\">공고마감</td>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n                                            </tr>"
-          }
-        ]
+        "unsafeSamples": []
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -183,38 +210,10 @@
         "accepted": 0,
         "rejected": 0
       },
-      "vacancyDecisions": [
-        {
-          "candidateTitle": "한국에너지공단 공무직(시설관리 일반) 채용 공고",
-          "candidateLink": "",
-          "vacancyId": "list-only",
-          "vacancyName": "한국에너지공단 공무직(시설관리 일반) 채용 공고",
-          "status": "list-extracted",
-          "reason": "phase2 list extracted; detail URL pending Phase 3",
-          "listIdentity": "133"
-        },
-        {
-          "candidateTitle": "한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)",
-          "candidateLink": "",
-          "vacancyId": "list-only",
-          "vacancyName": "한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)",
-          "status": "list-extracted",
-          "reason": "phase2 list extracted; detail URL pending Phase 3",
-          "listIdentity": "132"
-        },
-        {
-          "candidateTitle": "한국에너지공단 전문경력직 채용 공고",
-          "candidateLink": "",
-          "vacancyId": "list-only",
-          "vacancyName": "한국에너지공단 전문경력직 채용 공고",
-          "status": "list-extracted",
-          "reason": "phase2 list extracted; detail URL pending Phase 3",
-          "listIdentity": "130"
-        }
-      ],
+      "vacancyDecisions": [],
       "rejected": 3,
       "rejectionReasons": {
-        "phase2 list extracted; detail URL pending Phase 3": 3
+        "expired deadline": 3
       },
       "error": ""
     },
@@ -534,19 +533,10 @@
     },
     {
       "org": "한국수력원자력",
-      "status": "healthy",
-      "listingPagesChecked": 1,
+      "status": "failed",
+      "listingPagesChecked": 0,
       "candidates": 0,
-      "extractionDiagnostics": {
-        "anchors": 0,
-        "titleMatches": 0,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": []
-      },
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -568,7 +558,7 @@
       "vacancyDecisions": [],
       "rejected": 0,
       "rejectionReasons": {},
-      "error": ""
+      "error": "https://www.khnp.co.kr/recruit/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.khnp.co.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.khnp.co.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.khnp.co.kr port 443 after 6002 ms: Timeout was reached | https://www.khnp.co.kr/recruit/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.khnp.co.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.khnp.co.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.khnp.co.kr port 443 after 11002 ms: Timeout was reached | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached"
     },
     {
       "org": "울산도시공사",
@@ -970,23 +960,10 @@
     },
     {
       "org": "울산복지가족진흥사회서비스원",
-      "status": "healthy",
-      "listingPagesChecked": 1,
-      "candidates": 3,
-      "extractionDiagnostics": {
-        "anchors": 795,
-        "titleMatches": 3,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 3,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [
-          "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
-          "울산광역시체육회 기간제근로자(장애인) 채용 공고",
-          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
-        ],
-        "unsafeSamples": []
-      },
+      "status": "failed",
+      "listingPagesChecked": 0,
+      "candidates": 0,
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -1006,11 +983,9 @@
         "rejected": 0
       },
       "vacancyDecisions": [],
-      "rejected": 3,
-      "rejectionReasons": {
-        "expired deadline": 3
-      },
-      "error": ""
+      "rejected": 0,
+      "rejectionReasons": {},
+      "error": "https://www.wfps.or.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached | https://www.wfps.or.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached | https://www.wfps.or.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached | https://www.wfps.or.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached | https://www.uwfdi.re.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6001 ms: Timeout was reached | https://www.uwfdi.re.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached | https://www.uwfdi.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached | https://www.uwfdi.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001001000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001001000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached"
     },
     {
       "org": "울주문화재단",
@@ -1052,23 +1027,10 @@
     },
     {
       "org": "울산광역시 타기관소식",
-      "status": "healthy",
-      "listingPagesChecked": 1,
-      "candidates": 3,
-      "extractionDiagnostics": {
-        "anchors": 795,
-        "titleMatches": 3,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 3,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [
-          "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
-          "울산광역시체육회 기간제근로자(장애인) 채용 공고",
-          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
-        ],
-        "unsafeSamples": []
-      },
+      "status": "failed",
+      "listingPagesChecked": 0,
+      "candidates": 0,
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -1088,11 +1050,9 @@
         "rejected": 0
       },
       "vacancyDecisions": [],
-      "rejected": 3,
-      "rejectionReasons": {
-        "expired deadline": 3
-      },
-      "error": ""
+      "rejected": 0,
+      "rejectionReasons": {},
+      "error": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached | https://job.alio.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached | https://job.alio.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => resolved curl failed (210.99.24.200: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 25002 ms: Timeout was reached)"
     }
   ]
 }

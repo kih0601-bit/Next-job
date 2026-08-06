@@ -1,6 +1,6 @@
 {
-  "version": "14.0-phase2-list-extraction",
-  "updatedAt": "2026-08-05T22:30:27.367Z",
+  "version": "15.0-phase5-list-selection",
+  "updatedAt": "2026-08-06T01:26:05.264Z",
   "summary": {
     "totalSources": 22,
     "healthy": 22,
@@ -420,7 +420,7 @@
           "url": "https://www.upa.or.kr/portal/contents.do?mid=0405000000",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785968474747",
+          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785978980753",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
@@ -820,7 +820,7 @@
           "ok": true,
           "status": 200,
           "finalUrl": "https://www.uncmc.or.kr/",
-          "transport": "node-fetch",
+          "transport": "curl",
           "profile": "browser",
           "attempt": 1
         }
@@ -1144,7 +1144,7 @@
         {
           "url": "http://www.uri.re.kr/",
           "ok": false,
-          "error": "HTTP 403 / curl failed: HTTP 403",
+          "error": "fetch failed (ENOTFOUND) / HTTP 403 / curl failed: HTTP 403",
           "attempt": 1
         },
         {
@@ -1158,7 +1158,7 @@
           "ok": true,
           "status": 200,
           "finalUrl": "https://uill.uri.re.kr/",
-          "transport": "node-fetch",
+          "transport": "curl",
           "profile": "browser",
           "attempt": 1
         }
@@ -1212,7 +1212,7 @@
           "status": 200,
           "finalUrl": "https://www.uctf.or.kr/",
           "transport": "node-fetch",
-          "profile": "browser",
+          "profile": "simple",
           "attempt": 1
         }
       ],
@@ -1268,43 +1268,43 @@
         {
           "url": "https://www.wfps.or.kr/webuser/employment/list.html",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached",
-          "attempt": 2
-        },
-        {
-          "url": "https://www.wfps.or.kr/",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached",
-          "attempt": 1
-        },
-        {
-          "url": "https://www.wfps.or.kr/",
-          "ok": false,
           "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached",
           "attempt": 2
         },
         {
+          "url": "https://www.wfps.or.kr/",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.wfps.or.kr/",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11003 ms: Timeout was reached",
+          "attempt": 2
+        },
+        {
           "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached",
           "attempt": 1
         },
         {
           "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached",
           "attempt": 2
         },
         {
           "url": "https://www.uwfdi.re.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached",
           "attempt": 1
         },
         {
           "url": "https://www.uwfdi.re.kr/",
           "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached",
           "attempt": 2
         },
         {
@@ -1424,14 +1424,13 @@
           "ok": true,
           "status": 200,
           "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
-          "transport": "curl",
+          "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
         }
       ],
       "rejectionReasons": {
-        "fetch failed": 1,
-        "expired deadline": 2
+        "expired deadline": 3
       },
       "extractionDiagnostics": {
         "anchors": 795,
@@ -1448,7 +1447,7 @@
         "unsafeSamples": []
       },
       "pipeline": {
-        "detailAttempted": 1,
+        "detailAttempted": 0,
         "detailValidated": 0,
         "attachmentsDiscovered": 0,
         "documentsAttempted": 0,

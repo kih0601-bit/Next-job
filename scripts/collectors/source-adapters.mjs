@@ -212,6 +212,20 @@ function sourceSpecificDetailUrls(block = '', source) {
     }
   }
 
+  // Dedicated eGov recruitment boards whose title link calls a JavaScript helper.
+  // Recover the post id without issuing any extra request.
+  if (source.org === '울산북구시설관리공단') {
+    for (const match of block.matchAll(/fn_egov_inqire_notice\(\s*["'](\d+)["']\s*,\s*["']([^"']+)["']\s*\)/gi)) {
+      push(`/pageCont.do?menuNo=2040000&nttId=${match[1]}&bbsId=${match[2]}`);
+    }
+  }
+
+  if (source.org === '울산남구도시관리공단') {
+    const ids = new Set();
+    for (const match of block.matchAll(/(?:goBoardArticle\(\s*["']|[?&]nttId=)(\d+)/gi)) ids.add(match[1]);
+    for (const id of ids) push(`/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=${id}`);
+  }
+
   return urls;
 }
 
@@ -261,6 +275,8 @@ function visibleBoardRows(html = '') {
 
 function titleFromBoardRow(row) {
   const block = row.block || '';
+  const dedicatedCell = block.match(/<td\b[^>]*class\s*=\s*(["'])[^"']*(?:left|subject|title|tit|sj)[^"']*\1[^>]*>[\s\S]*?<a\b[^>]*>([\s\S]*?)<\/a>/i)?.[2];
+  if (dedicatedCell) return cleanHtml(dedicatedCell).replace(/\s+/g, ' ').trim();
   const preferred = block.match(/<a\b[^>]*(?:class\s*=\s*(["'])[^"']*(?:title|subject|sj|tit|ellipsis)[^"']*\1|title\s*=\s*(["'])[^"']+\2)[^>]*>([\s\S]*?)<\/a>/i)?.[3];
   if (preferred) return cleanHtml(preferred).replace(/\s+/g, ' ').trim();
   const anchors = [...block.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/gi)]
@@ -273,7 +289,22 @@ function titleFromBoardRow(row) {
 }
 
 export function countVisibleBoardPosts(html = '') {
-  return visibleBoardRows(html).length;
+  const rows = visibleBoardRows(html);
+  const seen = new Set();
+  for (const row of rows) {
+    const title = titleFromBoardRow(row);
+    const action = row.block.match(/\bonclick\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
+    const href = row.block.match(/<a\b[^>]*\bhref\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
+    const id = action.match(/(?:view|fn_Detail|goView|fnView|detail|fn_egov_inqire_notice|goBoardArticle)\s*\(\s*["']?([^"')\s,]+)/i)?.[1]
+      || href.match(/[?&](?:idx|seq|no|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo)=([^&#]+)/i)?.[1]
+      || normalizeBoardKey(title);
+    if (id) seen.add(`${normalizeBoardKey(title)}|${id}`);
+  }
+  return seen.size || rows.length;
+}
+
+function normalizeBoardKey(value = '') {
+  return cleanHtml(value).replace(/[^0-9a-zA-Z가-힣]+/g, ' ').replace(/\s+/g, ' ').trim().toLowerCase();
 }
 
 export function extractCandidatesForSource(html, source, { validTitle, normalizeTitleForDedup }) {

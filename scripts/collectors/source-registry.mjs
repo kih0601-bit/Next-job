@@ -47,9 +47,17 @@ const RAW_SOURCES = [
     'https://uic.or.kr/notify/noti06.do',
     'https://uic.or.kr/recruit/main/mainPage.do',
     'https://uic.or.kr/' ] },
-  { org: '울산남구도시관리공단', urls: ['https://www.uncmc.or.kr/'] },
-  { org: '울산북구시설관리공단', urls: ['https://www.ubimc.or.kr/'] },
-  { org: '울주군시설관리공단', urls: ['https://www.uljusiseol.or.kr/'] },
+  { org: '울산남구도시관리공단', urls: [
+    'https://recruit.incruit.com/uncmc/',
+    'https://uncmc.incruit.com/',
+    'https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2',
+    'https://www.uncmc.or.kr/' ] },
+  { org: '울산북구시설관리공단', urls: [
+    'https://www.ubimc.or.kr/pageCont.do?menuNo=2040000',
+    'https://ubimc.or.kr/pageCont.do?menuNo=2040000',
+    'https://www.ubimc.or.kr/' ] },
+  { org: '울주군시설관리공단', urls: [
+    'https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011' ] },
   { org: '울산정보산업진흥원', urls: [
     'https://www.uipa.or.kr/webuser/recruit/list.html',
     'https://uipa.or.kr/webuser/recruit/list.html',
@@ -57,12 +65,17 @@ const RAW_SOURCES = [
     'https://uipa.recruiter.co.kr/',
     'https://uipa.or.kr/' ] },
   { org: '울산테크노파크', urls: ['https://www.utp.or.kr/'] },
-  { org: '울산경제일자리진흥원', urls: ['https://www.ubpi.or.kr/'] },
+  { org: '울산경제일자리진흥원', urls: [
+    'https://www.ubpi.or.kr/sub/?mcode=0403080000',
+    'https://www.ubpi.or.kr/' ] },
   { org: '울산연구원', urls: [
     'http://www.uri.re.kr/',
     'https://uill.uri.re.kr/',
     'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000' ] },
-  { org: '울산문화관광재단', urls: ['https://www.uctf.or.kr/'] },
+  { org: '울산문화관광재단', urls: [
+    'https://uctf.or.kr/board/employment',
+    'https://www.uctf.or.kr/board/employment',
+    'https://uctf.or.kr/' ] },
   { org: '울산복지가족진흥사회서비스원', urls: [
     // Primary and legacy official recruitment boards.
     'https://www.wfps.or.kr/webuser/employment/list.html',
@@ -77,7 +90,12 @@ const RAW_SOURCES = [
     // Official local-government availability fallback. Phase 2 must verify
     // that institution-specific listing coverage is sufficient before parsing.
     'https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2' ] },
-  { org: '울주문화재단', urls: ['https://uljuculture.hubst.co.kr/', 'http://www.ucf.or.kr/', 'https://www.ucf.or.kr/'] },
+  { org: '울주문화재단', urls: [
+    'https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do',
+    'https://uljuculture.hubst.co.kr/',
+    'https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do',
+    'http://www.ucf.or.kr/',
+    'https://www.ucf.or.kr/' ] },
   { org: '울산광역시 타기관소식', urls: [
     // Primary source: Ulsan Metropolitan City other-organization notices.
     'https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000',
@@ -106,4 +124,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.3-phase5-institution-list-recovery';
+export const SOURCE_REGISTRY_VERSION = '15.4-phase1-verified-recruit-board-urls';

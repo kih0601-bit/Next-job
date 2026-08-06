@@ -106,4 +106,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.2-phase5-list-normalization';
+export const SOURCE_REGISTRY_VERSION = '15.3-phase5-institution-list-recovery';

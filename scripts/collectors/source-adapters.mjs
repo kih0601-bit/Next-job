@@ -1,4 +1,5 @@
 import { cleanHtml, absoluteUrl, decodeHtmlEntities } from '../lib/detail-parser.mjs';
+import { extractAlioCandidates } from './alio-adapter.mjs';
 
 const LIST_QUERY_KEYS = new Set(['pageIndex', 'page', 'searchCondition', 'searchKeyword', 'menuNo', 'mId', 'order', 'search_yn', 'org_name']);
 const DETAIL_PARAM = /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no|boardNo|board_no|noticeNo|notice_no|sn|id)$/i;
@@ -184,6 +185,18 @@ function sourceSpecificDetailUrls(block = '', source) {
     if (link && !urls.includes(link)) urls.push(link);
   };
 
+  if (source.org === '한국에너지공단') {
+    const ids = new Set();
+    for (const match of block.matchAll(/fn_Detail\s*\(\s*["']?(\d+)["']?\s*\)/gi)) ids.add(match[1]);
+    for (const id of ids) push(`/front/board/etc/jobView.do?seq=${id}`);
+  }
+
+  if (source.org === '한국산업인력공단') {
+    const keys = new Set();
+    for (const match of block.matchAll(/(?:[?&]k=|\bk\s*[=:,(]\s*["']?)(\d{3,})/gi)) keys.add(match[1]);
+    for (const key of keys) push(`/3/1/2/2?k=${key}`);
+  }
+
   if (source.org === '울산항만공사') {
     const idxValues = new Set();
     for (const match of block.matchAll(/(?:\bidx\b|postView\s*\(|fnView\s*\(|view\s*\()\s*[=:,(]?\s*["']?(\d{2,})/gi)) {
@@ -229,6 +242,13 @@ function sourceAllows(link, source) {
 }
 
 export function extractCandidatesForSource(html, source, { validTitle, normalizeTitleForDedup }) {
+  try {
+    const host = new URL(source.url).hostname;
+    if (host === 'job.alio.go.kr' || host.endsWith('.alio.go.kr')) {
+      return extractAlioCandidates(html, { ...source, alio: true }, { validTitle, normalizeTitleForDedup });
+    }
+  } catch { /* continue with institution adapter */ }
+
   const jobs = [];
   const seen = new Set();
   const diagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, clickableBlocksScanned: 0, clickableBlocksAccepted: 0, listOnlyAccepted: 0, titleSamples: [], unsafeSamples: [] };

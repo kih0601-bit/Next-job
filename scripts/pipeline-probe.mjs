@@ -1,9 +1,9 @@
 import fs from 'node:fs/promises';
 import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.mjs';
-import { extractCandidatesForSource, discoverListingUrls } from './collectors/source-adapters.mjs';
+import { extractCandidatesForSource, discoverListingUrls, countVisibleBoardPosts } from './collectors/source-adapters.mjs';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 
-const VERSION = '15.6-phase5-clear-stage-labels';
+const VERSION = '15.6-phase5-first-page-exact-list';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 10000;
@@ -121,11 +121,9 @@ async function probeSource(source, artifacts) {
   const report = {
     org: source.org,
     access: { ok: false, attempts: [] },
-    list: { ok: false, pagesChecked: 0, candidateCount: 0, detailUrlReady: 0, listOnlyCount: 0, extractionDiagnostics: [], samples: [], errors: [] },
+    list: { ok: false, status: 'unknown', pagesChecked: 0, visiblePostCount: null, candidateCount: 0, missingCount: null, extraCount: null, exactMatch: false, selectedUrl: '', detailUrlReady: 0, listOnlyCount: 0, extractionDiagnostics: [], samples: [], errors: [] },
     detail: { ok: false, attempted: 0, validated: 0, samples: [] },
-    attachment: { checked: false, ok: false, discovered: 0, samples: [] },
-    stageCode: '',
-    stageLabel: '',
+    attachment: { ok: false, discovered: 0, samples: [] },
     bottleneck: '',
     elapsedMs: 0
   };
@@ -134,7 +132,6 @@ async function probeSource(source, artifacts) {
     const first = access.pages[0];
     for (const page of access.pages) artifacts.push(pageArtifact(source, page, 'access'));
     report.access = { ok: true, requestedUrl: first.requestedUrl, finalUrl: first.finalUrl, status: first.status, contentType: first.contentType, attempts: access.attempts };
-    const all = [];
     const listingPages = [];
     for (const page of access.pages) {
       const activeSource = { ...source, url: page.finalUrl || page.requestedUrl };
@@ -145,6 +142,7 @@ async function probeSource(source, artifacts) {
         }
       }
     }
+    const pageResults = [];
     for (const item of listingPages.slice(0, MAX_LISTING_PAGES)) {
       const url = item.source.url;
       try {
@@ -153,17 +151,35 @@ async function probeSource(source, artifacts) {
         const pageSource = { ...item.source, url: page.finalUrl || url };
         artifacts.push(pageArtifact(pageSource, { ...page, requestedUrl: url }, 'listing'));
         const found = extractCandidatesForSource(page.html, pageSource, { validTitle: permissiveTitle, normalizeTitleForDedup: normalizeTitle });
-        report.list.extractionDiagnostics.push({ url: pageSource.url, ...(found.diagnostics || {}) });
-        for (const item of found) if (!all.some(existing => existing.link === item.link && existing.title === item.title)) all.push(item);
+        const visiblePostCount = countVisibleBoardPosts(page.html);
+        const candidateCount = found.length;
+        const exactMatch = visiblePostCount > 0 && candidateCount === visiblePostCount;
+        const diagnostic = { url: pageSource.url, visiblePostCount, candidateCount, exactMatch, ...(found.diagnostics || {}) };
+        report.list.extractionDiagnostics.push(diagnostic);
+        pageResults.push({ url: pageSource.url, found, visiblePostCount, candidateCount, exactMatch });
       } catch (error) {
         report.list.errors.push(`${url}: ${error.name === 'AbortError' ? 'timeout' : error.message}`);
       }
     }
+    // Select the real board page, not the homepage/navigation page. Exact matches
+    // win first; otherwise prefer the page with the largest visible board-row count.
+    const selected = pageResults.sort((a, b) => Number(b.exactMatch) - Number(a.exactMatch) || b.visiblePostCount - a.visiblePostCount || b.candidateCount - a.candidateCount)[0];
+    const all = selected?.found || [];
+    report.list.selectedUrl = selected?.url || '';
+    report.list.visiblePostCount = selected ? selected.visiblePostCount : null;
     report.list.candidateCount = all.length;
+    report.list.missingCount = selected && selected.visiblePostCount > all.length ? selected.visiblePostCount - all.length : 0;
+    report.list.extraCount = selected && all.length > selected.visiblePostCount ? all.length - selected.visiblePostCount : 0;
+    report.list.exactMatch = Boolean(selected?.exactMatch);
     report.list.detailUrlReady = all.filter(item => !item.listOnly).length;
     report.list.listOnlyCount = all.filter(item => item.listOnly).length;
     report.list.samples = all.slice(0, 20).map(item => ({ title: item.title, link: item.link, adapter: item.adapter || '' }));
-    report.list.ok = all.length > 0;
+    if (!selected) report.list.status = 'fetch-failed';
+    else if (selected.visiblePostCount === 0 && selected.candidateCount === 0) report.list.status = 'count-unavailable-or-empty';
+    else if (selected.exactMatch) report.list.status = 'exact';
+    else if (selected.candidateCount === 0) report.list.status = 'failed';
+    else report.list.status = 'partial';
+    report.list.ok = report.list.status === 'exact';
 
     const allowedHosts = [...new Set((source.accessUrls || [source.url]).map(url => { try { return new URL(url).hostname; } catch { return ''; } }).filter(Boolean))];
     for (const candidate of all.filter(item => !item.listOnly).slice(0, MAX_DETAIL_SAMPLES)) {
@@ -177,35 +193,17 @@ async function probeSource(source, artifacts) {
       }
     }
     report.detail.ok = report.detail.validated > 0;
-    report.attachment.checked = report.detail.validated > 0;
     report.attachment.ok = report.attachment.discovered > 0;
-
-    if (!report.access.ok) {
-      report.stageCode = 'ACCESS_FAILED';
-      report.stageLabel = '접속 실패';
-    } else if (!report.list.ok) {
-      report.stageCode = 'LIST_EMPTY_OR_FAILED';
-      report.stageLabel = `접속 완료 · 목록 글 0건`;
-    } else if (report.list.detailUrlReady === 0) {
-      report.stageCode = 'LIST_ONLY';
-      report.stageLabel = `목록 추출 완료 ${report.list.candidateCount}건 · 상세 이동정보 0건`;
-    } else if (!report.detail.ok) {
-      report.stageCode = 'DETAIL_FAILED';
-      report.stageLabel = `목록 추출 완료 ${report.list.candidateCount}건 · 상세페이지 검증 실패 (${report.detail.attempted}건 시도)`;
-    } else if (report.attachment.discovered === 0) {
-      report.stageCode = 'DETAIL_OK_NO_ATTACHMENT_IN_SAMPLE';
-      report.stageLabel = `상세페이지 추출 완료 ${report.detail.validated}건 · 확인 표본의 첨부 링크 0건`;
-    } else {
-      report.stageCode = 'ATTACHMENT_FOUND';
-      report.stageLabel = `상세페이지 추출 완료 ${report.detail.validated}건 · 첨부 링크 ${report.attachment.discovered}건 발견`;
-    }
-    report.bottleneck = report.stageLabel;
+    if (!report.access.ok) report.bottleneck = '접속';
+    else if (!report.list.ok) report.bottleneck = report.list.status === 'partial' ? `목록 부분 추출 (${report.list.candidateCount}/${report.list.visiblePostCount})` : report.list.status === 'count-unavailable-or-empty' ? '목록 글 수 판정 불가 또는 실제 0건' : '목록 추출 실패';
+    else if (report.list.detailUrlReady === 0) report.bottleneck = '상세 URL 복구';
+    else if (!report.detail.ok) report.bottleneck = '상세페이지 추출';
+    else if (!report.attachment.ok) report.bottleneck = '첨부파일 추출 또는 현재 표본에 첨부 없음';
+    else report.bottleneck = '기본 파이프라인 통과';
   } catch (error) {
     report.access.attempts = error.attempts || report.access.attempts;
     report.access.error = error.name === 'AbortError' ? 'timeout' : error.message;
-    report.stageCode = 'ACCESS_FAILED';
-    report.stageLabel = '접속 실패';
-    report.bottleneck = report.stageLabel;
+    report.bottleneck = '접속';
   }
   report.elapsedMs = Date.now() - startedAt;
   return report;
@@ -217,22 +215,21 @@ const CONCURRENCY = 4;
 for (let index = 0; index < SOURCES.length; index += CONCURRENCY) {
   const batch = await Promise.all(SOURCES.slice(index, index + CONCURRENCY).map(source => probeSource(source, artifacts)));
   results.push(...batch);
-  for (const result of batch) console.log(`${result.org}: ${result.stageLabel}`);
+  for (const result of batch) console.log(`${result.org}: ${result.bottleneck}`);
 }
 
 const payload = {
   version: VERSION,
   sourceRegistryVersion: SOURCE_REGISTRY_VERSION,
   generatedAt: new Date().toISOString(),
-  policy: '필터 없이 기관 채용 게시판의 모든 게시글 목록을 수집하고 접속 → 목록 → 상세 → 첨부 단계만 진단',
+  policy: '필터 없이 기관 채용 게시판 첫 페이지의 화면 게시글 수와 추출 수를 비교해 누락·오탐 0건일 때만 목록 성공으로 판정',
   summary: {
     sourceCount: results.length,
     accessOk: results.filter(item => item.access.ok).length,
     listOk: results.filter(item => item.list.ok).length,
     detailOk: results.filter(item => item.detail.ok).length,
-    attachmentChecked: results.filter(item => item.attachment.checked).length,
-    attachmentFound: results.filter(item => item.attachment.ok).length,
-    detailAndAttachmentCheckComplete: results.filter(item => item.access.ok && item.list.ok && item.detail.ok && item.attachment.checked).length
+    attachmentOk: results.filter(item => item.attachment.ok).length,
+    fullPipelineOk: results.filter(item => item.access.ok && item.list.ok && item.detail.ok && item.attachment.ok).length
   },
   sources: results
 };

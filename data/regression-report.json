@@ -1,0 +1,272 @@
+{
+  "generatedAt": "2026-08-06T11:32:48.760Z",
+  "mode": "warning",
+  "passed": false,
+  "regressionCount": 1,
+  "regressions": [
+    {
+      "org": "한국전력공사",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "list",
+        "status": "failed",
+        "code": "LIST_COUNTER_FAILED",
+        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+        "evidence": [
+          {
+            "url": "https://www.kepco.co.kr/home/about/careers.do",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 157,
+            "titleMatches": 147,
+            "noUrl": 3,
+            "unsafeUrl": 88,
+            "accepted": 100,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 91,
+            "titleSamples": [
+              "본문 바로가기",
+              "한국전력공사 로고",
+              "회사소개",
+              "KEPCO 소개 메뉴 열기",
+              "KEPCO 개요",
+              "CEO 인사말",
+              "경영방침",
+              "조직안내 메뉴 열기"
+            ],
+            "unsafeSamples": [
+              {
+                "title": "한국전력공사 로고",
+                "reason": "detail-url-pending",
+                "identity": "row-6969",
+                "row": "<div class=\"logo-wrap\">\r\n\t\t\t\t\t<h1>\r\n\t\t\t\t\t\t<a href=\"/home/index.do\" class=\"logo\" title=\"한국전력공사 로고\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_main');\">\r\n\t\t\t\t\t\t\t<span class=\"sr-only\">한국전력공사 로고</span>\r\n\t\t\t\t\t\t\t<svg width=\"144\" height=\"29\" viewBox=\"0 0 144 29\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t<path d=\"M72.9113 3.25391C69.5838 3.25391 66.6784 5.05837 65.0458 7.76149V3.26104H57.4156C54.2265 3.26104 51.418 4.90859 49.7508 7.42628V3.26104H44.0645V22.2899H49.7508V18.1247C51.418 20.6424 54.2265 22.297 57.4156 22.297H57.9206H65.0527V17.7894C66.6853 20.4926 69.5908 22.297 72.9182 22.297H73.4232H82.9973V17.1475H73.3194H73.3263C71.922 17.1475 70.6768 16.4415 69.909 15.3573H82.9973V10.2079H69.9228C70.6907 9.13089 71.9289 8.42479 73.3263 8.42479H73.9697L82.9973 8.41766V3.26817H72.9182L72.9113 3.25391ZM57.8099 17.1404H57.8168C55.4787 17.1404 53.5832 15.1933 53.5832 12.7826C53.5832 10.3719 55.4787 8.41766 57.8168 8.41766H58.4602L64.6792 8.41053C64.022 9.71573 63.6415 11.1992 63.6415 12.7755C63.6415 14.3517 64.022 15.8352 64.6792 17.1475H57.803L57.8099 17.1404Z\" fill=\"#0045C9\"/>\r\n\t\t\t\t\t\t\t\t<path d=\"M136.976 3.57304L136.63 3.48745C135.239 3.1451 133.787 2.9668 132.292 2.9668"
+              },
+              {
+                "title": "CEO 인사말",
+                "reason": "detail-url-pending",
+                "identity": "row-21220",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/introduce/ceo.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_ceo');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>CEO 인사말</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+              },
+              {
+                "title": "경영방침",
+                "reason": "detail-url-pending",
+                "identity": "row-21618",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/introduce/policy/ceo/conts.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_policy');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>경영방침</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+              },
+              {
+                "title": "조직안내 메뉴 열기",
+                "reason": "detail-url-pending",
+                "identity": "row-22431",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/orgaznization/orgchart/conts.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_org');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t조직안내\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<span class=\"sr-only\">메뉴 열기</span>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<i class=\"icon-mo\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M7 9L12 14L17 9\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"gnb-3depth\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+              },
+              {
+                "title": "해외지사·법인",
+                "reason": "detail-url-pending",
+                "identity": "row-24085",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/orgaznization/global/boardList.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_global');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>해외지사·법인</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+              },
+              {
+                "title": "출자회사",
+                "reason": "detail-url-pending",
+                "identity": "row-24503",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/orgaznization/subsidiaries/group-company/conts.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_subsidiary');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>출자회사</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+              },
+              {
+                "title": "전국 본부 · 사업소",
+                "reason": "detail-url-pending",
+                "identity": "row-24943",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/locations.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_branches_1');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t전국 본부 · 사업소\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t            <i class=\"icon-pc\">\r\n\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M9 17L14 12L9 7\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t"
+              },
+              {
+                "title": "투자정보 메뉴 열기",
+                "reason": "detail-url-pending",
+                "identity": "row-26226",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/invest/irinfo/irreport/boardList.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_ir');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t투자정보\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<span class=\"sr-only\">메뉴 열기</span>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<i class=\"icon-mo\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M7 9L12 14L17 9\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"gnb-3depth\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t"
+              }
+            ],
+            "actionSamples": [
+              {
+                "title": "한국전력공사 로고",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_main');"
+              },
+              {
+                "title": "CEO 인사말",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_ceo');"
+              },
+              {
+                "title": "경영방침",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_policy');"
+              },
+              {
+                "title": "조직안내 메뉴 열기",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_org');"
+              },
+              {
+                "title": "해외지사·법인",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_global');"
+              },
+              {
+                "title": "출자회사",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_subsidiary');"
+              },
+              {
+                "title": "전국 본부 · 사업소",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_branches_1');"
+              },
+              {
+                "title": "투자정보 메뉴 열기",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_ir');"
+              },
+              {
+                "title": "IR정보",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_ir_info');"
+              },
+              {
+                "title": "재무정보",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_finance_info');"
+              },
+              {
+                "title": "주식정보",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_stock_info');"
+              },
+              {
+                "title": "전자공고",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_electronic_announcement');"
+              }
+            ],
+            "candidateUrlSamples": [
+              {
+                "title": "한국전력공사 로고",
+                "url": "https://www.kepco.co.kr/home/index.do",
+                "allowed": false
+              },
+              {
+                "title": "회사소개",
+                "url": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+                "allowed": true
+              },
+              {
+                "title": "KEPCO 소개 메뉴 열기",
+                "url": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+                "allowed": true
+              },
+              {
+                "title": "KEPCO 개요",
+                "url": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+                "allowed": true
+              },
+              {
+                "title": "CEO 인사말",
+                "url": "https://www.kepco.co.kr/home/about/introduce/ceo.do",
+                "allowed": false
+              },
+              {
+                "title": "경영방침",
+                "url": "https://www.kepco.co.kr/home/about/introduce/policy/ceo/conts.do",
+                "allowed": false
+              },
+              {
+                "title": "조직안내 메뉴 열기",
+                "url": "https://www.kepco.co.kr/home/about/orgaznization/orgchart/conts.do",
+                "allowed": false
+              },
+              {
+                "title": "해외지사·법인",
+                "url": "https://www.kepco.co.kr/home/about/orgaznization/global/boardList.do",
+                "allowed": false
+              },
+              {
+                "title": "출자회사",
+                "url": "https://www.kepco.co.kr/home/about/orgaznization/subsidiaries/group-company/conts.do",
+                "allowed": false
+              },
+              {
+                "title": "전국 본부 · 사업소",
+                "url": "https://www.kepco.co.kr/home/about/locations.do",
+                "allowed": false
+              },
+              {
+                "title": "투자정보 메뉴 열기",
+                "url": "https://www.kepco.co.kr/home/about/invest/irinfo/irreport/boardList.do",
+                "allowed": false
+              },
+              {
+                "title": "IR정보",
+                "url": "https://www.kepco.co.kr/home/about/invest/irinfo/irreport/boardList.do",
+                "allowed": false
+              },
+              {
+                "title": "재무정보",
+                "url": "https://www.kepco.co.kr/home/about/invest/fininfo/finstatements/boardList.do",
+                "allowed": false
+              },
+              {
+                "title": "주식정보",
+                "url": "https://www.kepco.co.kr/home/about/invest/stinfo/capital/conts.do",
+                "allowed": false
+              },
+              {
+                "title": "전자공고",
+                "url": "https://www.kepco.co.kr/home/about/invest/announce/boardList.do",
+                "allowed": false
+              },
+              {
+                "title": "인재채용",
+                "url": "https://www.kepco.co.kr/home/about/careers.do",
+                "allowed": false
+              }
+            ],
+            "candidateCount": 100,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+            "anchors": 60,
+            "titleMatches": 30,
+            "noUrl": 6,
+            "unsafeUrl": 14,
+            "accepted": 10,
+            "rowFallbackAccepted": 0,
+            "visiblePostCount": null,
+            "candidateCount": 10,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
+        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 
-const VERSION = '15.9-list-root-cause-diagnostics';
+const VERSION = '16.0-passive-list-diagnostics';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 10000;
@@ -222,13 +222,14 @@ function attachRootCauses(report) {
 function safeName(value = '') { return String(value).replace(/[\\/:*?"<>|]/g, '_').replace(/\s+/g, '_').slice(0, 100) || 'unknown'; }
 
 async function writeListDiagnosticArtifacts(source, pageSource, page, rootCause, pageIndex) {
-  const dir = `data/diagnostics/${safeName(source.org)}/list`;
+  const org = source?.org || pageSource?.org || rootCause?.org || 'unknown';
+  const dir = `data/diagnostics/${safeName(org)}/list`;
   await fs.mkdir(dir, { recursive: true });
   const prefix = `page-${pageIndex + 1}`;
   await fs.writeFile(`${dir}/${prefix}-raw.html`, page.html || '', 'utf8');
   await fs.writeFile(`${dir}/${prefix}-root-cause.json`, `${JSON.stringify(rootCause, null, 2)}\n`, 'utf8');
   await fs.writeFile(`${dir}/${prefix}-rows.txt`, rootCause.rowTrace.map(row => `[${row.accepted ? 'ACCEPT' : 'REJECT'}] ${row.title || '(no title)'}${row.rejectionReason ? ` :: ${row.rejectionReason}` : ''}`).join('\n') + '\n', 'utf8');
-  return { htmlPath: `${dir}/${prefix}-raw.html`, diagnosisPath: `${dir}/${prefix}-root-cause.json`, rowsPath: `${dir}/${prefix}-rows.txt`, url: pageSource.url };
+  return { org, htmlPath: `${dir}/${prefix}-raw.html`, diagnosisPath: `${dir}/${prefix}-root-cause.json`, rowsPath: `${dir}/${prefix}-rows.txt`, url: pageSource.url };
 }
 
 async function probeSource(source, artifacts) {
@@ -271,9 +272,14 @@ async function probeSource(source, artifacts) {
         const found = inspection.candidates;
         const diagnostic = { url: pageSource.url, ...inspection.diagnostics };
         report.list.extractionDiagnostics.push(diagnostic);
-        const rootCause = buildListRootCauseDiagnostics({ html: page.html, source: pageSource, inspection, selectedCandidates: found });
+        const rootCause = buildListRootCauseDiagnostics({ html: page.html, source: { ...pageSource, org: source.org }, inspection, selectedCandidates: found });
         report.list.rootCauseDiagnostics.push(rootCause);
-        report.list.diagnosticFiles.push(await writeListDiagnosticArtifacts(source, pageSource, page, rootCause, pageIndex));
+        try {
+          report.list.diagnosticFiles.push(await writeListDiagnosticArtifacts(source, pageSource, page, rootCause, pageIndex));
+        } catch (diagnosticError) {
+          // Passive diagnostics must never alter collector or pipeline success/failure.
+          report.list.errors.push(`diagnostic-write-warning ${pageSource.url}: ${diagnosticError.message}`);
+        }
         pageResults.push({ url: pageSource.url, found, rootCause, ...inspection });
       } catch (error) {
         report.list.errors.push(`${url}: ${error.name === 'AbortError' ? 'timeout' : error.message}`);

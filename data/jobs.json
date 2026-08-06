@@ -4,19 +4,19 @@
   "sourceRegistryVersion": "15.3-phase5-institution-list-recovery",
   "qualityEngineVersion": "11.3.0-position-unit",
   "validatorVersion": "11.3.0-position-unit",
-  "updatedAt": "2026-08-06T04:35:41.245Z",
+  "updatedAt": "2026-08-06T05:55:34.560Z",
   "jobs": [],
   "sources": [
     {
       "org": "한국동서발전",
       "ok": true,
       "status": "healthy",
-      "candidates": 1,
+      "candidates": 0,
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 2,
-      "detailFailures": 1,
+      "rejected": 1,
+      "detailFailures": 0,
       "error": "",
       "accessAttempts": [
         {
@@ -29,27 +29,19 @@
           "attempt": 1
         }
       ],
-      "rejectionReasons": {
-        "phase2 list extracted; detail URL pending Phase 3": 1
-      },
+      "rejectionReasons": {},
       "extractionDiagnostics": {
         "anchors": 282,
         "titleMatches": 2,
         "noUrl": 0,
-        "unsafeUrl": 2,
-        "accepted": 2,
+        "unsafeUrl": 1,
+        "accepted": 1,
         "rowFallbackAccepted": 0,
         "titleSamples": [
           "이전 채용공고",
           "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안..."
         ],
         "unsafeSamples": [
-          {
-            "title": "이전 채용공고",
-            "reason": "detail-url-pending",
-            "identity": "row-38517",
-            "row": "<div class=\"btn_area\">\r\n\t\t\t\t<a href=\"http://alio.go.kr/popSusi.do?apbaId=C0066&reportFormRootNo=B1020\" class=\"navy_btn blank\" target=\"_blank\" title=\"새 창 열림\"><span>이전 채용공고</span></a>\r\n\t\t\t</div>"
-          },
           {
             "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
             "reason": "detail-url-pending",
@@ -94,15 +86,6 @@
             ],
             "selectorVersion": "2026-08-06.1-phase5-list-selection"
           }
-        },
-        {
-          "candidateTitle": "이전 채용공고",
-          "candidateLink": "",
-          "vacancyId": "list-only",
-          "vacancyName": "이전 채용공고",
-          "status": "list-extracted",
-          "reason": "phase2 list extracted; detail URL pending Phase 3",
-          "listIdentity": "row-38517"
         }
       ]
     },
@@ -381,11 +364,11 @@
       "org": "울산항만공사",
       "ok": true,
       "status": "healthy",
-      "candidates": 1,
+      "candidates": 2,
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 1,
+      "rejected": 2,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -393,46 +376,48 @@
           "url": "https://www.upa.or.kr/portal/contents.do?mid=0405000000",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785990814648",
+          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1785994595322",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
         }
       ],
       "rejectionReasons": {
+        "--> 채용공고: 인턴·기간제·계약직 등 제외 고용형태": 1,
         "2026년 울산항만공사 연간 채용 계획 사전 안내: 인턴·기간제·계약직 등 제외 고용형태": 1
       },
       "extractionDiagnostics": {
         "anchors": 393,
-        "titleMatches": 1,
+        "titleMatches": 2,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 1,
-        "rowFallbackAccepted": 1,
+        "accepted": 2,
+        "rowFallbackAccepted": 2,
         "titleSamples": [
+          "--> 채용공고",
           "2026년 울산항만공사 연간 채용 계획 사전 안내"
         ],
         "unsafeSamples": []
       },
       "pipeline": {
-        "detailAttempted": 1,
-        "detailValidated": 1,
-        "attachmentsDiscovered": 2,
-        "documentsAttempted": 2,
-        "documentsParsed": 1
+        "detailAttempted": 2,
+        "detailValidated": 2,
+        "attachmentsDiscovered": 3,
+        "documentsAttempted": 3,
+        "documentsParsed": 2
       },
       "vacancyStats": {
-        "detected": 1,
+        "detected": 2,
         "accepted": 0,
-        "rejected": 1
+        "rejected": 2
       },
       "documentDiagnostics": {
         "byDetectedType": {
-          "pdf": 1,
+          "pdf": 2,
           "unknown": 1
         },
         "byContentType": {
-          "application/x-msdownload;charset=UTF-8": 1,
+          "application/x-msdownload;charset=UTF-8": 2,
           "image/png;charset=UTF-8": 1
         },
         "byError": {
@@ -440,6 +425,24 @@
         }
       },
       "documentSamples": [
+        {
+          "name": "첨부파일",
+          "url": "https://www.upa.or.kr/file/direct/download.do?filename=2025-1227%20%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EC%A0%91%EA%B7%BC%EC%84%B1%20%ED%92%88%EC%A7%88%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%9A%B8%EC%82%B0%ED%95%AD%EB%A7%8C%EA%B3%B5%EC%82%AC.pdf&path=/file",
+          "finalUrl": "https://www.upa.or.kr/file/direct/download.do?filename=2025-1227%20%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EC%A0%91%EA%B7%BC%EC%84%B1%20%ED%92%88%EC%A7%88%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%9A%B8%EC%82%B0%ED%95%AD%EB%A7%8C%EA%B3%B5%EC%82%AC.pdf&path=/file",
+          "hintedType": "pdf",
+          "detectedType": "pdf",
+          "detectionReason": "magic",
+          "contentType": "application/x-msdownload;charset=UTF-8",
+          "contentDisposition": "attachment; filename=2025-1227_%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EC%A0%91%EA%B7%BC%EC%84%B1_%ED%92%88%EC%A7%88%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%9A%B8%EC%82%B0%ED%95%AD%EB%A7%8C%EA%B3%B5%EC%82%AC.pdf",
+          "signature": "255044462d312e340a25aaabacad0a31",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 716910,
+          "textLength": 287,
+          "method": "pdftotext",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
         {
           "name": "첨부파일",
           "url": "https://www.upa.or.kr/file/direct/download.do?filename=2025-1227%20%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EC%A0%91%EA%B7%BC%EC%84%B1%20%ED%92%88%EC%A7%88%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%9A%B8%EC%82%B0%ED%95%AD%EB%A7%8C%EA%B3%B5%EC%82%AC.pdf&path=/file",
@@ -485,6 +488,72 @@
         }
       ],
       "vacancyDecisions": [
+        {
+          "candidateTitle": "--> 채용공고",
+          "candidateLink": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&id=0401000000&mid=0405000000&token=1785994595322",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "--> 채용공고",
+          "status": "excluded",
+          "reason": "인턴·기간제·계약직 등 제외 고용형태",
+          "analysis": {
+            "status": "제외",
+            "recommended": false,
+            "excluded": true,
+            "reviewNeeded": false,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "제외 고용형태",
+            "location": "울산",
+            "fitScore": 0,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "제외 고용형태",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "울산",
+              "documentLocation": "울산"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [
+              "인턴·기간제·계약직 등 제외 고용형태"
+            ],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "제외 고용형태",
+                "lines": [
+                  "2026년 하반기 체험형 청년인턴 채용 최종합격자 및 예비합격자 발표",
+                  "2026년 상반기 신입직원(채용형 인턴) 채용 최종합격자 및 예비합격자 발표",
+                  "2026년 하반기 체험형 청년인턴 채용 면접전형 응시 대상자 공고",
+                  "2026년 상반기 신입직원(채용형 인턴) 채용 면접전형 응시 대상자 공고"
+                ]
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산광역시 남구 장생포고래로 271",
+                  "울산항만공사 ULSAN PORT AUTHORITY",
+                  "울산항만공사를 소개합니다."
+                ]
+              },
+              "sources": {
+                "detailChars": 5536,
+                "documentChars": 296,
+                "documentUsed": true
+              }
+            }
+          }
+        },
         {
           "candidateTitle": "2026년 울산항만공사 연간 채용 계획 사전 안내",
           "candidateLink": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16232&mid=0405000000",
@@ -571,7 +640,7 @@
           "ok": true,
           "status": 200,
           "finalUrl": "https://www.kepco.co.kr/home/about/careers.do",
-          "transport": "curl",
+          "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
         }
@@ -664,11 +733,11 @@
       "org": "울산도시공사",
       "ok": true,
       "status": "healthy",
-      "candidates": 3,
+      "candidates": 4,
       "listingPagesChecked": 4,
       "count": 0,
       "retained": 0,
-      "rejected": 3,
+      "rejected": 4,
       "detailFailures": 3,
       "error": "",
       "accessAttempts": [
@@ -683,16 +752,18 @@
         }
       ],
       "rejectionReasons": {
+        "모집분야 1: 인턴·기간제·계약직 등 제외 고용형태 | 모집분야 2: 인턴·기간제·계약직 등 제외 고용형태": 1,
         "HTTP 404": 3
       },
       "extractionDiagnostics": {
         "anchors": 1668,
-        "titleMatches": 3,
+        "titleMatches": 4,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 3,
-        "rowFallbackAccepted": 0,
+        "accepted": 4,
+        "rowFallbackAccepted": 1,
         "titleSamples": [
+          "채용공고 더보기",
           "2026년 울산도시공사 신입직원(보훈) 채용공고",
           "2026년 울산도시공사 신입직원(기록물) 채용공고",
           "기간제근로자(전기직) 채용 공고"
@@ -700,24 +771,207 @@
         "unsafeSamples": []
       },
       "pipeline": {
-        "detailAttempted": 3,
-        "detailValidated": 0,
-        "attachmentsDiscovered": 0,
-        "documentsAttempted": 0,
-        "documentsParsed": 0
+        "detailAttempted": 4,
+        "detailValidated": 1,
+        "attachmentsDiscovered": 2,
+        "documentsAttempted": 2,
+        "documentsParsed": 1
       },
       "vacancyStats": {
-        "detected": 0,
+        "detected": 2,
         "accepted": 0,
-        "rejected": 0
+        "rejected": 2
       },
       "documentDiagnostics": {
-        "byDetectedType": {},
-        "byContentType": {},
-        "byError": {}
+        "byDetectedType": {
+          "unknown": 1,
+          "hwp": 1
+        },
+        "byContentType": {
+          "text/html;charset=UTF-8": 1,
+          "application/x-msdownload": 1
+        },
+        "byError": {
+          "download returned HTML page": 1
+        }
       },
-      "documentSamples": [],
-      "vacancyDecisions": []
+      "documentSamples": [
+        {
+          "name": "기간제근로자(전기직) 채용 서류전형 합격자 및 면적시험 공고문.hwp (118.5KByte)",
+          "url": "https://www.umca.co.kr/umca",
+          "finalUrl": "https://www.umca.co.kr/umca/main.do",
+          "hintedType": "hwp",
+          "detectedType": "",
+          "contentType": "text/html;charset=UTF-8",
+          "contentDisposition": "",
+          "signature": "3c21444f43545950452068746d6c3e0d",
+          "transport": "node-fetch",
+          "size": 105120,
+          "ok": false,
+          "error": "download returned HTML page",
+          "commandError": {
+            "message": "download returned HTML page",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 70,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "기간제근로자(전기직) 채용 서류전형 합격자 및 면적시험 공고문.hwp (118.5KByte)",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000005975&bbsId=BBS_0000000000000002&fileSn=1",
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000005975&bbsId=BBS_0000000000000002&fileSn=1",
+          "hintedType": "hwp",
+          "detectedType": "hwp",
+          "detectionReason": "filename-or-hint",
+          "contentType": "application/x-msdownload",
+          "contentDisposition": "attachment; filename=\"%EA%B8%B0%EA%B0%84%EC%A0%9C%EA%B7%BC%EB%A1%9C%EC%9E%90(%EC%A0%84%EA%B8%B0%EC%A7%81) %EC%B1%84%EC%9A%A9 %EC%84%9C%EB%A5%98%EC%A0%84%ED%98%95 %ED%95%A9%EA%B2%A9%EC%9E%90 %EB%B0%8F %EB%A9%B4%EC%A0%81%EC%8B%9C%ED%97%98 %EA%B3%B5%EA%B3%A0%EB%AC%B8.hwp\"",
+          "signature": "d0cf11e0a1b11ae10000000000000000",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 121344,
+          "textLength": 907,
+          "method": "hwp5txt",
+          "priority": 70,
+          "requestMethod": "GET"
+        }
+      ],
+      "vacancyDecisions": [
+        {
+          "candidateTitle": "채용공고 더보기",
+          "candidateLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "모집분야 1",
+          "status": "excluded",
+          "reason": "인턴·기간제·계약직 등 제외 고용형태",
+          "analysis": {
+            "status": "제외",
+            "recommended": false,
+            "excluded": true,
+            "reviewNeeded": false,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "제외 고용형태",
+            "location": "울산",
+            "fitScore": 0,
+            "jobCategory": "시설",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "제외 고용형태",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "울산"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과",
+              "상세 본문이 너무 짧음"
+            ],
+            "excludeReasons": [
+              "인턴·기간제·계약직 등 제외 고용형태"
+            ],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "제외 고용형태",
+                "lines": [
+                  "※ 울산도시공사 기간제근로자 채용에 응시하여 주신 응시자 여러분께 감사드립니다."
+                ]
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 2026.07.08 채용공고 더보기 분양공고 2026.07. 28 울산미포국가산업단지 부곡용연지구 지원시설용지 분양 공고 공고대상 : 1필지(지원시설용지)※ 기타 자세한 내용은 첨부파일 확인 바랍니다. 울산 테크노일반산업단지 지원·주차장·단독주택용지 수의계약 공급공고 2026.07.09 <a href",
+                  "울산광역시도시공사 공고 제2026- 88호",
+                  "울산광역시도시공사 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 시간과 장소 등을 다음과 같이 공고합니다.",
+                  "3. 면접시험 장소 : 울산도시공사 2층 반구대홀 ※ 주소 : 울산 남구 두왕로 318"
+                ]
+              },
+              "sources": {
+                "detailChars": 92,
+                "documentChars": 963,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "채용공고 더보기",
+          "candidateLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434",
+          "vacancyId": "vacancy-2",
+          "vacancyName": "모집분야 2",
+          "status": "excluded",
+          "reason": "인턴·기간제·계약직 등 제외 고용형태",
+          "analysis": {
+            "status": "제외",
+            "recommended": false,
+            "excluded": true,
+            "reviewNeeded": false,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "제외 고용형태",
+            "location": "근무지 확인 필요",
+            "fitScore": 0,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "제외 고용형태",
+              "documentEmployment": "제외 고용형태",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "울산"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "근무지 원문 확인 필요",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [
+              "인턴·기간제·계약직 등 제외 고용형태"
+            ],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "제외 고용형태",
+                "lines": [
+                  "※ 울산도시공사 기간제근로자 채용에 응시하여 주신 응시자 여러분께 감사드립니다 .",
+                  "※ 울산도시공사 기간제근로자 채용에 응시하여 주신 응시자 여러분께 감사드립니다."
+                ]
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": [
+                  "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 2026.07.08 채용공고 더보기 분양공고 2026.07. 28 울산미포국가산업단지 부곡용연지구 지원시설용지 분양 공고 공고대상 : 1필지(지원시설용지)※ 기타 자세한 내용은 첨부파일 확인 바랍니다. 울산 테크노일반산업단지 지원·주차장·단독주택용지 수의계약 공급공고 2026.07.09 <a href",
+                  "3. 면접시험 장소 : 울산도시공사 2 층 반구대홀 ※ 주소 : 울산 남구 두왕로 318",
+                  "- 면접대기장 : 울산도시공사 2 층 소회의실",
+                  "다 . 서류전형 결과에 대한 이의 제기 및 기타 문의 사항은 울산광역시 도시공사 에너지사업팀 채용담당자 (052-219-8492) 에게 문의바랍니다 ."
+                ]
+              },
+              "sources": {
+                "detailChars": 929,
+                "documentChars": 963,
+                "documentUsed": true
+              }
+            }
+          }
+        }
+      ]
     },
     {
       "org": "울산시설공단",
@@ -794,7 +1048,7 @@
           "status": 200,
           "finalUrl": "https://www.uncmc.or.kr/",
           "transport": "node-fetch",
-          "profile": "browser",
+          "profile": "simple",
           "attempt": 1
         }
       ],
@@ -958,7 +1212,7 @@
         }
       ],
       "rejectionReasons": {
-        "closed notice text": 1,
+        "ICT/SW 사업운영·관리 (가급3~4호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | AI특화공동훈련센터 구축사업 운영 및 관리 (가급 5호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | AI선박 특화플랫폼 및 애플리케이션 개발 사업 운영 및 관리 (가급 3호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | 조선산업 핵심인재 디지털 양성 인프라 구축사업 운영 및 관리 (가급 3~4호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인": 1,
         "insufficient detail structure": 2
       },
       "extractionDiagnostics": {
@@ -977,34 +1231,574 @@
         "unsafeSamples": []
       },
       "pipeline": {
-        "detailAttempted": 2,
-        "detailValidated": 0,
-        "attachmentsDiscovered": 0,
-        "documentsAttempted": 0,
-        "documentsParsed": 0
+        "detailAttempted": 3,
+        "detailValidated": 1,
+        "attachmentsDiscovered": 5,
+        "documentsAttempted": 5,
+        "documentsParsed": 2
       },
       "vacancyStats": {
-        "detected": 0,
+        "detected": 5,
         "accepted": 0,
-        "rejected": 0
+        "rejected": 5
       },
       "documentDiagnostics": {
-        "byDetectedType": {},
-        "byContentType": {},
-        "byError": {}
+        "byDetectedType": {
+          "pdf": 2,
+          "unknown": 3
+        },
+        "byContentType": {
+          "file/unknown": 3,
+          "image/png": 1,
+          "image/jpeg": 1
+        },
+        "byError": {
+          "extracted text too short": 2,
+          "tesseract timeout after 45000ms": 1
+        }
       },
-      "documentSamples": [],
-      "vacancyDecisions": []
+      "documentSamples": [
+        {
+          "name": "직무기술서(2026-5차).pdf (107kbb)",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12180",
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12180",
+          "hintedType": "pdf",
+          "detectedType": "pdf",
+          "detectionReason": "magic",
+          "contentType": "file/unknown",
+          "contentDisposition": "attachment; filename=\"%EC%A7%81%EB%AC%B4%EA%B8%B0%EC%88%A0%EC%84%9C%282026-5%EC%B0%A8%29.pdf\"",
+          "signature": "255044462d312e340a25aaabacad0a31",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 109306,
+          "textLength": 12564,
+          "method": "pdftotext",
+          "priority": 100,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "서류,면접전형 평가표.pdf (62kbb)",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12181",
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12181",
+          "hintedType": "pdf",
+          "detectedType": "pdf",
+          "detectionReason": "magic",
+          "contentType": "file/unknown",
+          "contentDisposition": "attachment; filename=\"%EC%84%9C%EB%A5%98%2C%EB%A9%B4%EC%A0%91%EC%A0%84%ED%98%95+%ED%8F%89%EA%B0%80%ED%91%9C.pdf\"",
+          "signature": "255044462d312e340a25aaabacad0a31",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 63889,
+          "textLength": 675,
+          "method": "pdftotext",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "이의신청서.hwp (43kbb)",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12182",
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12182",
+          "hintedType": "hwp",
+          "detectedType": "",
+          "contentType": "file/unknown",
+          "contentDisposition": "attachment; filename=\"%EC%9D%B4%EC%9D%98%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp\"",
+          "signature": "d0cf11e0a1b11ae10000000000000000",
+          "transport": "node-fetch",
+          "size": 43520,
+          "ok": false,
+          "error": "extracted text too short",
+          "commandError": {
+            "message": "extracted text too short",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "파일 다운로드",
+          "url": "https://www.uipa.or.kr/webuser/img/ico_download.png",
+          "finalUrl": "https://www.uipa.or.kr/webuser/img/ico_download.png",
+          "hintedType": "png",
+          "detectedType": "",
+          "contentType": "image/png",
+          "contentDisposition": "",
+          "signature": "89504e470d0a1a0a0000000d49484452",
+          "transport": "node-fetch",
+          "size": 229,
+          "ok": false,
+          "error": "extracted text too short",
+          "commandError": {
+            "message": "extracted text too short",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "a9e2417408fe06324593d7904351f178.jpg",
+          "url": "https://www.uipa.or.kr/data/upload/board/2/24674/a9e2417408fe06324593d7904351f178.jpg",
+          "finalUrl": "https://www.uipa.or.kr/data/upload/board/2/24674/a9e2417408fe06324593d7904351f178.jpg",
+          "hintedType": "jpg",
+          "detectedType": "",
+          "contentType": "image/jpeg",
+          "contentDisposition": "",
+          "signature": "ffd8ffe20c584943435f50524f46494c",
+          "transport": "node-fetch",
+          "size": 4249305,
+          "ok": false,
+          "error": "tesseract timeout after 45000ms",
+          "commandError": {
+            "message": "tesseract timeout after 45000ms",
+            "code": "COMMAND_TIMEOUT",
+            "exitCode": null,
+            "command": "tesseract",
+            "args": [
+              "/tmp/nextjob-doc-1fLTMU/attachment-4.jpg",
+              "stdout",
+              "-l",
+              "kor+eng",
+              "--psm",
+              "6"
+            ],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        }
+      ],
+      "vacancyDecisions": [
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "ICT/SW 사업운영·관리 (가급3~4호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 ICT/SW 사업운영·관리 (가급3~4호)",
+                  "h class=\"m_hidden\">조회수 상태 공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 62 진행 265 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 62 진행</s",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1097,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-2",
+          "vacancyName": "울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "울산",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "h class=\"m_hidden\">조회수 상태 공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 62 진행 265 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 62 진행</s",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1141,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-3",
+          "vacancyName": "AI특화공동훈련센터 구축사업 운영 및 관리 (가급 5호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 AI특화공동훈련센터 구축사업 운영 및 관리 (가급 5호)",
+                  "h class=\"m_hidden\">조회수 상태 공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 62 진행 265 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 62 진행</s",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1155,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-4",
+          "vacancyName": "AI선박 특화플랫폼 및 애플리케이션 개발 사업 운영 및 관리 (가급 3호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 AI선박 특화플랫폼 및 애플리케이션 개발 사업 운영 및 관리 (가급 3호)",
+                  "h class=\"m_hidden\">조회수 상태 공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 62 진행 265 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 62 진행</s",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1167,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-5",
+          "vacancyName": "조선산업 핵심인재 디지털 양성 인프라 구축사업 운영 및 관리 (가급 3~4호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 조선산업 핵심인재 디지털 양성 인프라 구축사업 운영 및 관리 (가급 3~4호)",
+                  "h class=\"m_hidden\">조회수 상태 공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 62 진행 265 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 62 진행</s",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1201,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        }
+      ]
     },
     {
       "org": "울산테크노파크",
       "ok": true,
       "status": "healthy",
-      "candidates": 0,
+      "candidates": 8,
       "listingPagesChecked": 4,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
+      "rejected": 8,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -1018,36 +1812,870 @@
           "attempt": 1
         }
       ],
-      "rejectionReasons": {},
+      "rejectionReasons": {
+        "2026년 임직원 채용인원 및 친인척 해당자 공개: 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인": 1,
+        "2025년 임직원 채용인원 및 친인척 해당자 공개: 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인": 1,
+        "2024년 임직원 채용인원 및 친인척 해당자 공개: 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인": 1,
+        "2023년 임직원 채용인원 및 친인척 해당자 공개: 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인": 1,
+        "2022년 임직원 채용인원 및 친인척 해당자 공개: 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인": 1,
+        "2021년 임직원 채용인원 및 친인척 해당자 공개: 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인": 1,
+        "2020년 임직원 채용인원 및 친인척 해당자 공개: 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인": 1,
+        "2019년 임직원 채용인원 및 친인척 해당자 공개: 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인": 1
+      },
       "extractionDiagnostics": {
         "anchors": 1811,
-        "titleMatches": 0,
+        "titleMatches": 8,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 0,
+        "accepted": 8,
         "rowFallbackAccepted": 0,
-        "titleSamples": [],
+        "titleSamples": [
+          "2026년 임직원 채용인원 및 친인척 해당자 공개",
+          "2025년 임직원 채용인원 및 친인척 해당자 공개",
+          "2024년 임직원 채용인원 및 친인척 해당자 공개",
+          "2023년 임직원 채용인원 및 친인척 해당자 공개",
+          "2022년 임직원 채용인원 및 친인척 해당자 공개",
+          "2021년 임직원 채용인원 및 친인척 해당자 공개",
+          "2020년 임직원 채용인원 및 친인척 해당자 공개",
+          "2019년 임직원 채용인원 및 친인척 해당자 공개"
+        ],
         "unsafeSamples": []
       },
       "pipeline": {
-        "detailAttempted": 0,
-        "detailValidated": 0,
-        "attachmentsDiscovered": 0,
-        "documentsAttempted": 0,
-        "documentsParsed": 0
+        "detailAttempted": 8,
+        "detailValidated": 8,
+        "attachmentsDiscovered": 8,
+        "documentsAttempted": 8,
+        "documentsParsed": 8
       },
       "vacancyStats": {
-        "detected": 0,
+        "detected": 8,
         "accepted": 0,
-        "rejected": 0
+        "rejected": 8
       },
       "documentDiagnostics": {
-        "byDetectedType": {},
-        "byContentType": {},
+        "byDetectedType": {
+          "png": 1,
+          "jpg": 7
+        },
+        "byContentType": {
+          "image/png": 1,
+          "image/jpeg": 7
+        },
         "byError": {}
       },
-      "documentSamples": [],
-      "vacancyDecisions": []
+      "documentSamples": [
+        {
+          "name": "첨부파일.png",
+          "url": "http://utp.or.kr/upload/imageDir/2886730510_bvPChmAR_20260803130321.png",
+          "finalUrl": "https://utp.or.kr/upload/imageDir/2886730510_bvPChmAR_20260803130321.png",
+          "hintedType": "png",
+          "detectedType": "png",
+          "detectionReason": "magic",
+          "contentType": "image/png",
+          "contentDisposition": "",
+          "signature": "89504e470d0a1a0a0000000d49484452",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 16606,
+          "textLength": 67,
+          "method": "image-ocr",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "첨부파일.jpg",
+          "url": "http://www.utp.or.kr/upload/imageDir/2886730661_39GCPBRu_20251124094801.jpg",
+          "finalUrl": "https://www.utp.or.kr/upload/imageDir/2886730661_39GCPBRu_20251124094801.jpg",
+          "hintedType": "jpg",
+          "detectedType": "jpg",
+          "detectionReason": "magic",
+          "contentType": "image/jpeg",
+          "contentDisposition": "",
+          "signature": "ffd8ffe000104a464946000101010078",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 171293,
+          "textLength": 78,
+          "method": "image-ocr",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "첨부파일.jpg",
+          "url": "http://www.utp.or.kr/upload/imageDir/2886730675_4L8WVEBT_20251017144353.jpg",
+          "finalUrl": "https://www.utp.or.kr/upload/imageDir/2886730675_4L8WVEBT_20251017144353.jpg",
+          "hintedType": "jpg",
+          "detectedType": "jpg",
+          "detectionReason": "magic",
+          "contentType": "image/jpeg",
+          "contentDisposition": "",
+          "signature": "ffd8ffe000104a464946000101010060",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 42511,
+          "textLength": 48,
+          "method": "image-ocr",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "첨부파일.jpg",
+          "url": "http://www.utp.or.kr/upload/imageDir/2886730661_tivHr0R4_20240117181604.jpg",
+          "finalUrl": "https://www.utp.or.kr/upload/imageDir/2886730661_tivHr0R4_20240117181604.jpg",
+          "hintedType": "jpg",
+          "detectedType": "jpg",
+          "detectionReason": "magic",
+          "contentType": "image/jpeg",
+          "contentDisposition": "",
+          "signature": "ffd8ffe000104a464946000101010078",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 171961,
+          "textLength": 114,
+          "method": "image-ocr",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "첨부파일.jpg",
+          "url": "http://www.utp.or.kr/upload/imageDir/2886730573_RpSqO2Ma_20221220113303.jpg",
+          "finalUrl": "https://www.utp.or.kr/upload/imageDir/2886730573_RpSqO2Ma_20221220113303.jpg",
+          "hintedType": "jpg",
+          "detectedType": "jpg",
+          "detectionReason": "magic",
+          "contentType": "image/jpeg",
+          "contentDisposition": "",
+          "signature": "ffd8ffe000104a464946000101000001",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 83563,
+          "textLength": 100,
+          "method": "image-ocr",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "첨부파일.jpg",
+          "url": "http://www.utp.or.kr/upload/imageDir/2886730573_Tcv6WeJV_20220117102205.jpg",
+          "finalUrl": "https://www.utp.or.kr/upload/imageDir/2886730573_Tcv6WeJV_20220117102205.jpg",
+          "hintedType": "jpg",
+          "detectedType": "jpg",
+          "detectionReason": "magic",
+          "contentType": "image/jpeg",
+          "contentDisposition": "",
+          "signature": "ffd8ffe000104a464946000101000001",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 91339,
+          "textLength": 115,
+          "method": "image-ocr",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "첨부파일.jpg",
+          "url": "http://www.utp.or.kr/upload/imageDir/2886730573_M3RUka1Y_20210225170921.jpg",
+          "finalUrl": "https://www.utp.or.kr/upload/imageDir/2886730573_M3RUka1Y_20210225170921.jpg",
+          "hintedType": "jpg",
+          "detectedType": "jpg",
+          "detectionReason": "magic",
+          "contentType": "image/jpeg",
+          "contentDisposition": "",
+          "signature": "ffd8ffe000104a464946000101000001",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 95632,
+          "textLength": 136,
+          "method": "image-ocr",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "첨부파일.jpg",
+          "url": "http://www.utp.or.kr/upload/imageDir/2886730573_Bhbv97aK_20200504142510.jpg",
+          "finalUrl": "https://www.utp.or.kr/upload/imageDir/2886730573_Bhbv97aK_20200504142510.jpg",
+          "hintedType": "jpg",
+          "detectedType": "jpg",
+          "detectionReason": "magic",
+          "contentType": "image/jpeg",
+          "contentDisposition": "",
+          "signature": "ffd8ffe000104a464946000101010060",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 79348,
+          "textLength": 125,
+          "method": "image-ocr",
+          "priority": 40,
+          "requestMethod": "GET"
+        }
+      ],
+      "vacancyDecisions": [
+        {
+          "candidateTitle": "2026년 임직원 채용인원 및 친인척 해당자 공개",
+          "candidateLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=10",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2026년 임직원 채용인원 및 친인척 해당자 공개",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요",
+            "근무지=근무지 확인 필요"
+          ],
+          "quality": {
+            "score": 46,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 1개 분석",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "울산 단일 근무 미확인",
+              "허용 고용형태 미확인",
+              "마감일 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "근무지 확인 필요",
+            "fitScore": 35,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "근무지 원문 확인 필요",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": [
+                  "(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동",
+                  "울산테크노파크",
+                  "울산테크노파크 교육센터",
+                  "울산 R&D성과물정보 관리시스템"
+                ]
+              },
+              "sources": {
+                "detailChars": 2716,
+                "documentChars": 80,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "2025년 임직원 채용인원 및 친인척 해당자 공개",
+          "candidateLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=9",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2025년 임직원 채용인원 및 친인척 해당자 공개",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요",
+            "근무지=근무지 확인 필요"
+          ],
+          "quality": {
+            "score": 46,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 1개 분석",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "울산 단일 근무 미확인",
+              "허용 고용형태 미확인",
+              "마감일 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "근무지 확인 필요",
+            "fitScore": 35,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "근무지 원문 확인 필요",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": [
+                  "(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동",
+                  "울산테크노파크",
+                  "울산테크노파크 교육센터",
+                  "울산 R&D성과물정보 관리시스템"
+                ]
+              },
+              "sources": {
+                "detailChars": 2727,
+                "documentChars": 91,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "2024년 임직원 채용인원 및 친인척 해당자 공개",
+          "candidateLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=8",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2024년 임직원 채용인원 및 친인척 해당자 공개",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요",
+            "근무지=근무지 확인 필요"
+          ],
+          "quality": {
+            "score": 46,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 1개 분석",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "울산 단일 근무 미확인",
+              "허용 고용형태 미확인",
+              "마감일 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "근무지 확인 필요",
+            "fitScore": 35,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "근무지 원문 확인 필요",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": [
+                  "(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동",
+                  "울산테크노파크",
+                  "울산테크노파크 교육센터",
+                  "울산 R&D성과물정보 관리시스템"
+                ]
+              },
+              "sources": {
+                "detailChars": 2697,
+                "documentChars": 61,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "2023년 임직원 채용인원 및 친인척 해당자 공개",
+          "candidateLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=7",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2023년 임직원 채용인원 및 친인척 해당자 공개",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요",
+            "근무지=근무지 확인 필요"
+          ],
+          "quality": {
+            "score": 46,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 1개 분석",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "울산 단일 근무 미확인",
+              "허용 고용형태 미확인",
+              "마감일 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "근무지 확인 필요",
+            "fitScore": 35,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "근무지 원문 확인 필요",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": [
+                  "(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동",
+                  "울산테크노파크",
+                  "울산테크노파크 교육센터",
+                  "울산 R&D성과물정보 관리시스템"
+                ]
+              },
+              "sources": {
+                "detailChars": 2763,
+                "documentChars": 127,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "2022년 임직원 채용인원 및 친인척 해당자 공개",
+          "candidateLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=6",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2022년 임직원 채용인원 및 친인척 해당자 공개",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요",
+            "근무지=근무지 확인 필요"
+          ],
+          "quality": {
+            "score": 46,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 1개 분석",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "울산 단일 근무 미확인",
+              "허용 고용형태 미확인",
+              "마감일 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "근무지 확인 필요",
+            "fitScore": 35,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "근무지 원문 확인 필요",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": [
+                  "(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동",
+                  "울산테크노파크",
+                  "울산테크노파크 교육센터",
+                  "울산 R&D성과물정보 관리시스템"
+                ]
+              },
+              "sources": {
+                "detailChars": 2749,
+                "documentChars": 113,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "2021년 임직원 채용인원 및 친인척 해당자 공개",
+          "candidateLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=4",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2021년 임직원 채용인원 및 친인척 해당자 공개",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요",
+            "근무지=근무지 확인 필요"
+          ],
+          "quality": {
+            "score": 46,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 1개 분석",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "울산 단일 근무 미확인",
+              "허용 고용형태 미확인",
+              "마감일 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "근무지 확인 필요",
+            "fitScore": 35,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "근무지 원문 확인 필요",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": [
+                  "(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동",
+                  "울산테크노파크",
+                  "울산테크노파크 교육센터",
+                  "울산 R&D성과물정보 관리시스템"
+                ]
+              },
+              "sources": {
+                "detailChars": 2764,
+                "documentChars": 128,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "2020년 임직원 채용인원 및 친인척 해당자 공개",
+          "candidateLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=3",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2020년 임직원 채용인원 및 친인척 해당자 공개",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요",
+            "근무지=근무지 확인 필요"
+          ],
+          "quality": {
+            "score": 46,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 1개 분석",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "울산 단일 근무 미확인",
+              "허용 고용형태 미확인",
+              "마감일 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "근무지 확인 필요",
+            "fitScore": 35,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "근무지 원문 확인 필요",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": [
+                  "(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동",
+                  "울산테크노파크",
+                  "울산테크노파크 교육센터",
+                  "울산 R&D성과물정보 관리시스템"
+                ]
+              },
+              "sources": {
+                "detailChars": 2785,
+                "documentChars": 149,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "2019년 임직원 채용인원 및 친인척 해당자 공개",
+          "candidateLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=2",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2019년 임직원 채용인원 및 친인척 해당자 공개",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요",
+            "근무지=근무지 확인 필요"
+          ],
+          "quality": {
+            "score": 46,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 1개 분석",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "울산 단일 근무 미확인",
+              "허용 고용형태 미확인",
+              "마감일 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "근무지 확인 필요",
+            "fitScore": 35,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "근무지 원문 확인 필요",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": [
+                  "(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동",
+                  "울산테크노파크",
+                  "울산테크노파크 교육센터",
+                  "울산 R&D성과물정보 관리시스템"
+                ]
+              },
+              "sources": {
+                "detailChars": 2774,
+                "documentChars": 138,
+                "documentUsed": true
+              }
+            }
+          }
+        }
+      ]
     },
     {
       "org": "울산경제일자리진흥원",
@@ -1123,7 +2751,7 @@
         {
           "url": "http://www.uri.re.kr/",
           "ok": false,
-          "error": "timeout / HTTP 403 / curl failed: HTTP 403",
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / HTTP 403 / curl failed: HTTP 403",
           "attempt": 2
         },
         {
@@ -1169,37 +2797,31 @@
     },
     {
       "org": "울산문화관광재단",
-      "ok": true,
-      "status": "healthy",
+      "ok": false,
+      "status": "failed",
       "candidates": 0,
-      "listingPagesChecked": 2,
+      "listingPagesChecked": 0,
       "count": 0,
       "retained": 0,
       "rejected": 0,
       "detailFailures": 0,
-      "error": "",
+      "error": "https://www.uctf.or.kr/ => HTTP 500 / curl failed: HTTP 500 | https://www.uctf.or.kr/ => HTTP 500 / curl failed: HTTP 500",
       "accessAttempts": [
         {
           "url": "https://www.uctf.or.kr/",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://www.uctf.or.kr/",
-          "transport": "node-fetch",
-          "profile": "browser",
+          "ok": false,
+          "error": "HTTP 500 / curl failed: HTTP 500",
           "attempt": 1
+        },
+        {
+          "url": "https://www.uctf.or.kr/",
+          "ok": false,
+          "error": "HTTP 500 / curl failed: HTTP 500",
+          "attempt": 2
         }
       ],
       "rejectionReasons": {},
-      "extractionDiagnostics": {
-        "anchors": 767,
-        "titleMatches": 0,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": []
-      },
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -1222,45 +2844,115 @@
     },
     {
       "org": "울산복지가족진흥사회서비스원",
-      "ok": true,
-      "status": "healthy",
-      "candidates": 5,
-      "listingPagesChecked": 1,
+      "ok": false,
+      "status": "failed",
+      "candidates": 0,
+      "listingPagesChecked": 0,
       "count": 0,
       "retained": 0,
-      "rejected": 5,
+      "rejected": 0,
       "detailFailures": 0,
-      "error": "",
+      "error": "https://www.wfps.or.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached | https://www.wfps.or.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached | https://www.wfps.or.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached | https://www.wfps.or.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached | https://www.uwfdi.re.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached | https://www.uwfdi.re.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached | https://www.uwfdi.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached | https://www.uwfdi.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11003 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001001000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001001000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11003 ms: Timeout was reached",
       "accessAttempts": [
         {
           "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
-          "transport": "node-fetch",
-          "profile": "browser",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached",
           "attempt": 1
+        },
+        {
+          "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached",
+          "attempt": 2
+        },
+        {
+          "url": "https://www.wfps.or.kr/",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.wfps.or.kr/",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached",
+          "attempt": 2
+        },
+        {
+          "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached",
+          "attempt": 2
+        },
+        {
+          "url": "https://www.uwfdi.re.kr/",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.uwfdi.re.kr/",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached",
+          "attempt": 2
+        },
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
+          "attempt": 2
+        },
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11003 ms: Timeout was reached",
+          "attempt": 2
+        },
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001001000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001001000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
+          "attempt": 2
+        },
+        {
+          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11003 ms: Timeout was reached",
+          "attempt": 2
         }
       ],
-      "rejectionReasons": {
-        "expired deadline": 5
-      },
-      "extractionDiagnostics": {
-        "anchors": 293,
-        "titleMatches": 5,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 5,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [
-          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
-          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
-          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
-          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
-          "울산광역시 제2시립노인복지관 2026년 직원 채용"
-        ],
-        "unsafeSamples": []
-      },
+      "rejectionReasons": {},
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -1338,39 +3030,57 @@
       "org": "울산광역시 타기관소식",
       "ok": true,
       "status": "healthy",
-      "candidates": 3,
+      "candidates": 0,
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 3,
+      "rejected": 0,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
         {
           "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached",
+          "attempt": 2
+        },
+        {
+          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached",
+          "attempt": 1
+        },
+        {
+          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "ok": false,
+          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached",
+          "attempt": 2
+        },
+        {
+          "url": "https://job.alio.go.kr/",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+          "finalUrl": "https://job.alio.go.kr/",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
         }
       ],
-      "rejectionReasons": {
-        "expired deadline": 3
-      },
+      "rejectionReasons": {},
       "extractionDiagnostics": {
-        "anchors": 795,
-        "titleMatches": 3,
+        "anchors": 0,
+        "titleMatches": 0,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 3,
+        "accepted": 0,
         "rowFallbackAccepted": 0,
-        "titleSamples": [
-          "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
-          "울산광역시체육회 기간제근로자(장애인) 채용 공고",
-          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
-        ],
+        "titleSamples": [],
         "unsafeSamples": []
       },
       "pipeline": {
@@ -1396,7 +3106,7 @@
   ],
   "stats": {
     "sourceCount": 22,
-    "success": 22,
+    "success": 20,
     "total": 0,
     "recommended": 0,
     "highSchoolSuitable": 0,
@@ -1404,19 +3114,19 @@
     "reviewNeeded": 0,
     "qualityPassed": 0,
     "averageQualityScore": 0,
-    "sourceRejected": 21,
-    "sourceDetailFailures": 7,
+    "sourceRejected": 22,
+    "sourceDetailFailures": 6,
     "degradedSources": 0,
-    "failedSources": 0,
+    "failedSources": 2,
     "retainedJobs": 0,
-    "detailAttempts": 7,
-    "detailValidatedCandidates": 1,
-    "publicAttachmentsDiscovered": 2,
-    "documentsAttempted": 2,
-    "documentsParsed": 1,
-    "vacanciesDetected": 1,
+    "detailAttempts": 18,
+    "detailValidatedCandidates": 12,
+    "publicAttachmentsDiscovered": 18,
+    "documentsAttempted": 18,
+    "documentsParsed": 13,
+    "vacanciesDetected": 17,
     "vacanciesAccepted": 0,
-    "vacanciesRejected": 1,
+    "vacanciesRejected": 17,
     "qaPassed": true,
     "qaIssueCount": 0
   },

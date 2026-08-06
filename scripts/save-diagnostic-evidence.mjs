@@ -2,12 +2,15 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const MAX_TEXT = 120000;
-const slug = value => String(value || 'unknown').normalize('NFKD').replace(/[^a-zA-Z0-9가-힣_-]+/g, '-').replace(/^-+|-+$/g, '').slice(0,80) || 'unknown';
+const slug = value => String(value || 'unknown').normalize('NFC').replace(/[^a-zA-Z0-9가-힣_-]+/g, '-').replace(/^-+|-+$/g, '').slice(0,80) || 'unknown';
 const report = JSON.parse(await fs.readFile('data/pipeline-report.json','utf8'));
 let artifacts = { artifacts: [] };
 try { artifacts = JSON.parse(await fs.readFile('data/pipeline-artifacts.json','utf8')); } catch {}
-await fs.rm('data/diagnostics', { recursive: true, force: true });
+// Preserve passive list diagnostics produced by pipeline-probe.mjs.
+// This step only adds/updates diagnosis.json and evidence.json.
 await fs.mkdir('data/diagnostics', { recursive: true });
+// Remove only the legacy collision folder created by the old Hangul slug bug.
+await fs.rm('data/diagnostics/unknown', { recursive: true, force: true });
 for (const source of report.sources || []) {
   if (source.health === 'healthy') continue;
   const dir = path.join('data/diagnostics', slug(source.org));

@@ -51,6 +51,9 @@ jobs:
       - name: Run collector self-test
         run: node scripts/test-v11.mjs
 
+      - name: Probe institution pipelines
+        run: node scripts/pipeline-probe.mjs
+
       - name: Collect job postings
         run: node scripts/collect.mjs
 

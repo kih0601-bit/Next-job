@@ -1,61 +1,7 @@
 {
-  "generatedAt": "2026-08-06T12:40:56.429Z",
+  "generatedAt": "2026-08-06T13:10:50.546Z",
   "mode": "warning",
-  "passed": false,
-  "regressionCount": 1,
-  "regressions": [
-    {
-      "org": "한국동서발전",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "list",
-        "status": "failed",
-        "code": "LIST_COUNTER_FAILED",
-        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-        "evidence": [
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-            "anchors": 53,
-            "titleMatches": 27,
-            "noUrl": 6,
-            "unsafeUrl": 14,
-            "accepted": 7,
-            "rowFallbackAccepted": 0,
-            "visiblePostCount": null,
-            "candidateCount": 7,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/한국동서발전.mjs",
-        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": false,
-          "to": true,
-          "change": "improved"
-        },
-        "attachment": {
-          "from": false,
-          "to": true,
-          "change": "improved"
-        }
-      },
-      "improved": true,
-      "regressed": true
-    }
-  ]
+  "passed": true,
+  "regressionCount": 0,
+  "regressions": []
 }

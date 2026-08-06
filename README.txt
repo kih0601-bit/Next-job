@@ -21,3 +21,11 @@ GitHub Actions가 3시간마다 공고를 수집합니다.
 - 한국에너지공단 fn_Detail(id) 상세주소 복구
 - 한국산업인력공단 k 게시글 키 상세주소 복구
 - pipeline-probe는 첫 접속 성공 페이지에서 멈추지 않고 기관별 공식/대체 URL을 비교하여 목록 후보가 있는 페이지를 진단
+
+
+[15.4 기관별 심층 진단]
+- 실행: node scripts/pipeline-probe.mjs
+- 결과: data/pipeline-report.json
+- 원인 분석 자료: data/pipeline-artifacts.json
+- pipeline-artifacts.json에는 목록 HTML 앞부분, 채용 관련 행, JavaScript 상세 이동 함수, 후보 URL 판정이 용량 제한과 함께 저장됩니다.
+- 목적: 한 번의 GitHub Actions 실행으로 목록/상세/첨부 실패 원인을 최대한 확보하여 반복 패치 횟수를 줄입니다.

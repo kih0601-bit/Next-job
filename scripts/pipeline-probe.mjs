@@ -2,10 +2,11 @@ import fs from 'node:fs/promises';
 import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.mjs';
 import { discoverListingUrls } from './collectors/source-adapters.mjs';
 import { inspectListingPage } from './lib/list-pipeline.mjs';
+import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics.mjs';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 
-const VERSION = '15.8-http-recruit-verify-board-type';
+const VERSION = '15.9-list-root-cause-diagnostics';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 10000;
@@ -218,12 +219,24 @@ function attachRootCauses(report) {
   return report;
 }
 
+function safeName(value = '') { return String(value).replace(/[\\/:*?"<>|]/g, '_').replace(/\s+/g, '_').slice(0, 100) || 'unknown'; }
+
+async function writeListDiagnosticArtifacts(source, pageSource, page, rootCause, pageIndex) {
+  const dir = `data/diagnostics/${safeName(source.org)}/list`;
+  await fs.mkdir(dir, { recursive: true });
+  const prefix = `page-${pageIndex + 1}`;
+  await fs.writeFile(`${dir}/${prefix}-raw.html`, page.html || '', 'utf8');
+  await fs.writeFile(`${dir}/${prefix}-root-cause.json`, `${JSON.stringify(rootCause, null, 2)}\n`, 'utf8');
+  await fs.writeFile(`${dir}/${prefix}-rows.txt`, rootCause.rowTrace.map(row => `[${row.accepted ? 'ACCEPT' : 'REJECT'}] ${row.title || '(no title)'}${row.rejectionReason ? ` :: ${row.rejectionReason}` : ''}`).join('\n') + '\n', 'utf8');
+  return { htmlPath: `${dir}/${prefix}-raw.html`, diagnosisPath: `${dir}/${prefix}-root-cause.json`, rowsPath: `${dir}/${prefix}-rows.txt`, url: pageSource.url };
+}
+
 async function probeSource(source, artifacts) {
   const startedAt = Date.now();
   const report = {
     org: source.org,
     access: { ok: false, httpOk: false, recruitVerifyOk: false, attempts: [], boardType: { type: 'UNKNOWN', confidence: 'low', evidence: [] } },
-    list: { ok: false, status: 'unknown', pagesChecked: 0, visiblePostCount: null, candidateCount: 0, missingCount: null, extraCount: null, exactMatch: false, selectedUrl: '', detailUrlReady: 0, listOnlyCount: 0, extractionDiagnostics: [], samples: [], errors: [] },
+    list: { ok: false, status: 'unknown', pagesChecked: 0, visiblePostCount: null, candidateCount: 0, missingCount: null, extraCount: null, exactMatch: false, selectedUrl: '', detailUrlReady: 0, listOnlyCount: 0, extractionDiagnostics: [], rootCauseDiagnostics: [], diagnosticFiles: [], samples: [], errors: [] },
     detail: { ok: false, attempted: 0, validated: 0, samples: [] },
     attachment: { ok: false, discovered: 0, samples: [] },
     bottleneck: '',
@@ -247,7 +260,7 @@ async function probeSource(source, artifacts) {
       }
     }
     const pageResults = [];
-    for (const item of listingPages.slice(0, MAX_LISTING_PAGES)) {
+    for (const [pageIndex, item] of listingPages.slice(0, MAX_LISTING_PAGES).entries()) {
       const url = item.source.url;
       try {
         const page = item.page || await fetchHtml(url, LIST_TIMEOUT_MS, item.source.url);
@@ -258,7 +271,10 @@ async function probeSource(source, artifacts) {
         const found = inspection.candidates;
         const diagnostic = { url: pageSource.url, ...inspection.diagnostics };
         report.list.extractionDiagnostics.push(diagnostic);
-        pageResults.push({ url: pageSource.url, found, ...inspection });
+        const rootCause = buildListRootCauseDiagnostics({ html: page.html, source: pageSource, inspection, selectedCandidates: found });
+        report.list.rootCauseDiagnostics.push(rootCause);
+        report.list.diagnosticFiles.push(await writeListDiagnosticArtifacts(source, pageSource, page, rootCause, pageIndex));
+        pageResults.push({ url: pageSource.url, found, rootCause, ...inspection });
       } catch (error) {
         report.list.errors.push(`${url}: ${error.name === 'AbortError' ? 'timeout' : error.message}`);
       }
@@ -276,6 +292,7 @@ async function probeSource(source, artifacts) {
     report.list.detailUrlReady = all.filter(item => !item.listOnly).length;
     report.list.listOnlyCount = all.filter(item => item.listOnly).length;
     report.list.samples = all.slice(0, 20).map(item => ({ title: item.title, link: item.link, adapter: item.adapter || '' }));
+    report.list.selectedRootCause = selected?.rootCause || null;
     if (!selected) report.list.status = 'fetch-failed';
     else if (selected.status === 'empty-or-wrong-page' || selected.status === 'count-unavailable') report.list.status = 'count-unavailable-or-empty';
     else report.list.status = selected.status;

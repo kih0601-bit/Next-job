@@ -30,10 +30,10 @@
     "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
   },
   "diagnosis": {
-    "access": {
+    "http": {
       "status": "success",
-      "code": "ACCESS_PRIMARY_VERIFIED",
-      "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+      "code": "HTTP_OK",
+      "reason": "4개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -41,15 +41,37 @@
           "status": 200,
           "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
           "verification": {
+            "ok": true,
             "verified": true,
-            "broadRecruitFallback": true,
-            "code": "ACCESS_RECRUIT_BOARD_VERIFIED",
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
             "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
             "title": "한국에너지공단 | 공단소개 | 채용정보 | 채용공고",
             "orgMatched": true,
             "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
             "negativeHits": 0,
+            "negativeMatches": [],
             "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
             "textLength": 7174,
             "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
             "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -63,15 +85,37 @@
           "status": 200,
           "finalUrl": "https://min24.energy.or.kr/job/",
           "verification": {
+            "ok": true,
             "verified": true,
-            "broadRecruitFallback": true,
-            "code": "ACCESS_RECRUIT_BOARD_VERIFIED",
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
             "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
             "title": "채용시스템",
             "orgMatched": true,
             "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
             "negativeHits": 0,
+            "negativeMatches": [],
             "boardSignals": 2,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
             "textLength": 270,
             "requestedUrl": "https://min24.energy.or.kr/job",
             "finalUrl": "https://min24.energy.or.kr/job/",
@@ -85,15 +129,37 @@
           "status": 200,
           "finalUrl": "https://www.energy.or.kr/",
           "verification": {
+            "ok": true,
             "verified": true,
-            "broadRecruitFallback": true,
-            "code": "ACCESS_RECRUIT_BOARD_VERIFIED",
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
             "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
             "title": "한국에너지공단",
             "orgMatched": true,
             "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
             "negativeHits": 0,
+            "negativeMatches": [],
             "boardSignals": 1,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
             "textLength": 8452,
             "requestedUrl": "https://www.energy.or.kr/",
             "finalUrl": "https://www.energy.or.kr/",
@@ -107,15 +173,38 @@
           "status": 200,
           "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
           "verification": {
+            "ok": true,
             "verified": true,
-            "broadRecruitFallback": true,
-            "code": "ACCESS_RECRUIT_BOARD_VERIFIED",
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
             "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
             "title": "잡알리오",
             "orgMatched": true,
             "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보",
+              "recruit(?:ment)?"
+            ],
             "negativeHits": 0,
+            "negativeMatches": [],
             "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
             "textLength": 1581,
             "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
             "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
@@ -124,6 +213,49 @@
           }
         }
       ]
+    },
+    "recruitVerify": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "한국에너지공단",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 1,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 8452,
+        "requestedUrl": "https://www.energy.or.kr/",
+        "finalUrl": "https://www.energy.or.kr/",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      }
     },
     "list": {
       "status": "success",
@@ -551,6 +683,49 @@
           "error": ""
         }
       ]
+    },
+    "access": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "한국에너지공단",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 1,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 8452,
+        "requestedUrl": "https://www.energy.or.kr/",
+        "finalUrl": "https://www.energy.or.kr/",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      }
     }
   },
   "repairTarget": "scripts/collectors/institutions/한국에너지공단.mjs",
@@ -558,9 +733,11 @@
   "stages": {
     "access": {
       "ok": true,
-      "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
-      "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
-      "activeRecruitUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
+      "httpOk": true,
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://www.energy.or.kr/",
+      "finalUrl": "https://www.energy.or.kr/",
+      "activeRecruitUrl": "https://www.energy.or.kr/",
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
       "attempts": [
@@ -570,15 +747,37 @@
           "status": 200,
           "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
           "verification": {
+            "ok": true,
             "verified": true,
-            "broadRecruitFallback": true,
-            "code": "ACCESS_RECRUIT_BOARD_VERIFIED",
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
             "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
             "title": "한국에너지공단 | 공단소개 | 채용정보 | 채용공고",
             "orgMatched": true,
             "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
             "negativeHits": 0,
+            "negativeMatches": [],
             "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
             "textLength": 7174,
             "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
             "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -592,15 +791,37 @@
           "status": 200,
           "finalUrl": "https://min24.energy.or.kr/job/",
           "verification": {
+            "ok": true,
             "verified": true,
-            "broadRecruitFallback": true,
-            "code": "ACCESS_RECRUIT_BOARD_VERIFIED",
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
             "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
             "title": "채용시스템",
             "orgMatched": true,
             "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
             "negativeHits": 0,
+            "negativeMatches": [],
             "boardSignals": 2,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
             "textLength": 270,
             "requestedUrl": "https://min24.energy.or.kr/job",
             "finalUrl": "https://min24.energy.or.kr/job/",
@@ -614,15 +835,37 @@
           "status": 200,
           "finalUrl": "https://www.energy.or.kr/",
           "verification": {
+            "ok": true,
             "verified": true,
-            "broadRecruitFallback": true,
-            "code": "ACCESS_RECRUIT_BOARD_VERIFIED",
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
             "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
             "title": "한국에너지공단",
             "orgMatched": true,
             "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
             "negativeHits": 0,
+            "negativeMatches": [],
             "boardSignals": 1,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
             "textLength": 8452,
             "requestedUrl": "https://www.energy.or.kr/",
             "finalUrl": "https://www.energy.or.kr/",
@@ -636,15 +879,38 @@
           "status": 200,
           "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
           "verification": {
+            "ok": true,
             "verified": true,
-            "broadRecruitFallback": true,
-            "code": "ACCESS_RECRUIT_BOARD_VERIFIED",
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
             "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
             "title": "잡알리오",
             "orgMatched": true,
             "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보",
+              "recruit(?:ment)?"
+            ],
             "negativeHits": 0,
+            "negativeMatches": [],
             "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
             "textLength": 1581,
             "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
             "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
@@ -654,40 +920,327 @@
         }
       ],
       "verification": {
+        "ok": true,
         "verified": true,
-        "broadRecruitFallback": true,
-        "code": "ACCESS_RECRUIT_BOARD_VERIFIED",
-        "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
-        "title": "한국에너지공단 | 공단소개 | 채용정보 | 채용공고",
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "한국에너지공단",
         "orgMatched": true,
         "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보"
+        ],
         "negativeHits": 0,
-        "boardSignals": 5,
-        "textLength": 7174,
-        "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
-        "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
+        "negativeMatches": [],
+        "boardSignals": 1,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 8452,
+        "requestedUrl": "https://www.energy.or.kr/",
+        "finalUrl": "https://www.energy.or.kr/",
         "status": 200,
         "contentType": "text/html; charset=UTF-8"
       },
+      "boardType": {
+        "type": "IFRAME",
+        "confidence": "high",
+        "evidence": [
+          "iframe 태그 발견"
+        ]
+      },
       "diagnosis": {
         "ok": true,
-        "code": "ACCESS_PRIMARY_VERIFIED",
-        "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
-        "activeRecruitUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
-        "selectedRequestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
+        "code": "RECRUIT_VERIFY_FALLBACK_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+        "http": {
+          "ok": true,
+          "code": "HTTP_OK",
+          "reason": "4개 후보 URL HTTP 응답 성공",
+          "attempts": [
+            {
+              "url": "https://www.energy.or.kr/front/board/etc/jobList.do",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "한국에너지공단 | 공단소개 | 채용정보 | 채용공고",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "채용\\s*정보"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 5,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "textLength": 7174,
+                "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
+                "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              }
+            },
+            {
+              "url": "https://min24.energy.or.kr/job",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://min24.energy.or.kr/job/",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "채용시스템",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 2,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "textLength": 270,
+                "requestedUrl": "https://min24.energy.or.kr/job",
+                "finalUrl": "https://min24.energy.or.kr/job/",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              }
+            },
+            {
+              "url": "https://www.energy.or.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.energy.or.kr/",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "한국에너지공단",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "채용\\s*정보"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "IFRAME",
+                  "confidence": "high",
+                  "evidence": [
+                    "iframe 태그 발견"
+                  ]
+                },
+                "textLength": 8452,
+                "requestedUrl": "https://www.energy.or.kr/",
+                "finalUrl": "https://www.energy.or.kr/",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              }
+            },
+            {
+              "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "잡알리오",
+                "orgMatched": true,
+                "positiveHits": 3,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "채용\\s*정보",
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 3,
+                "boardType": {
+                  "type": "JOB_ALIO",
+                  "confidence": "high",
+                  "evidence": [
+                    "JOB-ALIO URL/본문 신호"
+                  ]
+                },
+                "textLength": 1581,
+                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              }
+            }
+          ]
+        },
+        "recruitVerify": {
+          "ok": true,
+          "code": "RECRUIT_VERIFY_FALLBACK_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
+          },
+          "evidence": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "한국에너지공단",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 8452,
+            "requestedUrl": "https://www.energy.or.kr/",
+            "finalUrl": "https://www.energy.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        },
+        "activeRecruitUrl": "https://www.energy.or.kr/",
+        "selectedRequestedUrl": "https://www.energy.or.kr/",
         "verification": {
+          "ok": true,
           "verified": true,
-          "broadRecruitFallback": true,
-          "code": "ACCESS_RECRUIT_BOARD_VERIFIED",
-          "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
-          "title": "한국에너지공단 | 공단소개 | 채용정보 | 채용공고",
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 1개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": true,
+            "meaningfulBody": true
+          },
+          "title": "한국에너지공단",
           "orgMatched": true,
           "positiveHits": 2,
+          "positiveMatches": [
+            "채용\\s*공고",
+            "채용\\s*정보"
+          ],
           "negativeHits": 0,
-          "boardSignals": 5,
-          "textLength": 7174,
-          "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
-          "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
+          "negativeMatches": [],
+          "boardSignals": 1,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
+          },
+          "textLength": 8452,
+          "requestedUrl": "https://www.energy.or.kr/",
+          "finalUrl": "https://www.energy.or.kr/",
           "status": 200,
           "contentType": "text/html; charset=UTF-8"
         }

@@ -1,0 +1,1456 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="type" content="website">
+	<title>�ѱ���������</title>
+	<link rel="stylesheet" href="/css/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="/css/default.css">
+	<link rel="stylesheet" type="text/css" href="/include/css/subpage.css" />
+
+	<link rel="stylesheet" href="/css/jquery.bxslider.css">
+
+    <script src="/js/jquery-3.5.1.min.js"></script>
+	<script src="/js/jquery.bxslider.js"></script>
+	<script src="/js/swiper.min.js"></script>
+	<script src="/js/swiper-bundle.min.js"></script>
+    <script src="/js/ui.js"></script>
+    <script type="text/javascript">
+		if (document.location.protocol == 'http:') {
+		//    document.location.href = document.location.href.replace('http:', 'https:');
+		}
+	</script> 
+	
+	<link href="/css/content.css" rel="stylesheet">
+	<link href="/css/layout.css" rel="stylesheet">
+	<script src="/js/jquery.min.js"></script>
+	
+	
+	 
+</head>
+<body>
+
+<div class="accessbility"><a href="#content">���� �ٷΰ���</a></div>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // ���� ȣ��Ʈ�� ��� Ȯ��
+    const header = document.getElementById('header');
+    const currentHost = window.location.host; // ex) m.knoc.co.kr
+    const currentPath = window.location.pathname; // ex) /sub01/page.jsp
+
+    
+    // ȣ��Ʈ�� m.knoc.co.kr�̰� ��ΰ� '/'�� �ƴ� ���
+    //���üҽ�
+   /* if (currentHost === "localhost:8080" && currentPath === "/") {
+   		header.classList.remove("sub_header");
+	} else {
+	    header.classList.add("sub_header");
+	}*/
+	//�Ǽ�������
+	 if (currentHost === "m.knoc.co.kr" && currentPath === "/") {
+	   		header.classList.remove("sub_header");
+		} else {
+		    header.classList.add("sub_header");
+		}
+	
+});
+</script>
+
+<!-- index-mobile -->
+	<div class="index-mobile-main">
+		<header id="header" class="header">
+			<div class="contain">
+				<h1 class="logo"><a href="/"><span class="hidden-text">�ѱ���������</span></a></h1>
+
+				<div class="btn-wrap">
+					<button type="button" class="sch-btn"><span class="hidden-text">�˻�</span></button>
+					<button type="button" class="menu"><span class="hidden-text">�޴�</span></button>
+				</div>
+				
+				
+			</div>
+			 
+
+			<!-- �˻�â -->
+			<form name="tsearchForm" id="tsearchForm" method="post" action="/search/list.jsp">
+			    <div class="sch-wrap">
+			        <div class="sch-bar">
+			            <label for="nsearch" class="hideDesc">�˻��ϱ�</label>
+			            <input type="text" id="nsearch" name="search" class="ipt" placeholder="�˻�� �Է��� �ּ���.">
+			            <a href="javascript:menu_search();" class="btn">
+			                <span class="hidden-text">�˻��ϱ�</span>
+			            </a>
+			        </div>
+			    </div>
+			</form>
+			<!-- //�˻�â -->
+			
+			
+			
+		</header>
+		<!-- //��� -->
+		<!-- ���̵�� -->
+		
+		<div class="gnb-wrap">
+		
+			<div class="gnb-header">
+				<ul class="utill">
+					
+					
+					<li><a href="javascript:menu_login();">�α���</a></li>
+					
+					
+					<li><a href="/member/sitemap.jsp">����Ʈ��</a></li>
+				</ul>
+				<ul class="btns">
+					<li class="home"><a href="/"><span class="hidden-text">Ȩ����</span></a></li>
+					<li class="close"><a href="#"><span class="hidden-text">�޴� �ݱ�</span></a></li>
+				</ul>
+			</div>
+
+	
+		<div class="gnb-menu">
+				<div class="menu-wrap">
+					<ul class="tab-list">
+						<li><button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-1">����Ұ�</button></li>
+						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-2">����Ұ�</button></li>
+						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-3">ESG�濵</button></li>
+						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-4">ȫ������</button></li>
+						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-5">��������</button></li>
+						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-6">��������</button></li>
+					</ul>
+				</div>
+
+				<div class="submenu-wrap">
+					<!-- ����Ұ� -->
+					<div id="panel-1" class="gnb-sub-list" role="tabpanel">
+						<ul>
+						    <li>
+								<a class="gnb-sub-trigger has-depth3" href="#">CEO</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a  href="/sub01/sub01_1_1.jsp">CEO �λ縻</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a class="gnb-sub-trigger" href="/sub01/sub01_5.jsp">������ �� �ֿ����</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub01/sub01_1_4.jsp">�ӿ� �� �濵��</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub01/sub01_4_2010.jsp">ȸ�翬��</a></li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">�����ȭ</a> 
+								<div class="depth3-wrap">
+									<ul>
+										<li><a  href="/sub01/sub01_10_1.jsp">���</a></li>
+										<li><a  href="/sub01/sub01_10_2.jsp">����</a></li>
+										<li><a  href="/sub01/sub01_12_1.jsp">�ٽɰ�ġ</a></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">CI</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a  href="/sub01/sub01_2_5_1.jsp">CI �Ұ�</a></li>
+										<li><a  href="/sub01/sub01_2_5_2.jsp">CI Ȱ��</a></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">ä������</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a  href="/sub01/sub01_7_1.jsp">�����</a></li>
+										<li><a  href="/sub01/sub01_7_2.jsp">��������</a></li>
+										<li><a  href="/sub01/sub01_7_3.jsp">�����Ļ�</a></li>
+										<li><a  href="/sub01/sub01_7_4.jsp">�������</a></li>
+										<li><a  href="/sub01/sub01_7_8.jsp?grp=REC5">ä��FAQ</a></li>
+										<li><a  href="/sub01/sub01_7_9.jsp">ä�����</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a class="gnb-sub-trigger" href="/sub01/sub01_9.jsp">ã�ƿ��ô� ��</a></li>
+						</ul>
+					</div>
+					<!-- //����Ұ� -->
+
+					<!-- ����Ұ� -->
+					<div id="panel-2" class="gnb-sub-list" role="tabpanel" hidden>
+						<ul>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">�������߻��</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">�������</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub03/sub03_1_1.jsp">��������� Ž�� ����</a></li>
+												<li><a href="/sub03/sub03_1_2.jsp">��������� Ž�� ��Ȳ</a></li>
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">�ؿܻ��</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub03/sub03_2_2.jsp">�������� ��Ȳ��</a></li>
+												<li><a href="/sub03/sub03_2_4_2018.jsp">�ؿ���ȸ�� �Ұ�</a></li>
+												<li><a href="/sub03/sub03_2_1.jsp">�������߻�� ����</a></li>
+												<li><a href="/sub03/sub03_2_3.jsp">�������� ����</a></li>
+												<li><a href="/sub03/sub03_3_3.jsp">������� �Ǽ�</a></li>
+											</ul>
+										</li>
+										<li><a class="depth3-trigger" href="#">�������</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub03/sub03_9_1.jsp">������� ����</a></li>
+												<li><a href="/sub03/sub03_9_2018.jsp">������� ����</a></li>
+												<li><a href="/sub03/sub03_9_1_1.jsp">����ڷ� ����</a></li>
+												<li><a href="/sub03/sub03_9_1_3.jsp">������� ����</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">����������</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a class="depth3-trigger" href="#">����������</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub03/sub03_4_3.jsp">������� � ��Ȳ</a></li>
+												<li><a href="/sub03/sub03_4_4.jsp">���������� ����</a></li>
+												<li><a href="/sub03/sub03_4_6.jsp">������ ���� ����</a></li>
+											</ul>
+										
+										
+										</li>
+										<li><a  href="/sub03/sub03_4_4_1.jsp">������ ������ ���� ���</a>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">�Ǽ����</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub03/sub03_3_1.jsp">�Ǽ���� ����</a></li>
+												<li><a href="/sub03/sub03_3_2.jsp">������� �Ǽ�</a></li>
+												<li><a href="/sub03/sub03_3_4.jsp">�ؿܻ�� ����</a></li>
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">�����������</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub03/sub03_8_2_1.jsp">�����������</a></li>
+												<li><a href="/sub03/sub03_8_2_2.jsp">������� �� ���ȿ��</a></li>
+												<li><a href="/sub03/sub03_8_2_3.jsp">��ũ�͹̳λ�� ���� ��Ȳ</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">���뱸���������</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">�˶������� ���</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub03/sub03_8_1_1.jsp">�˶������� ��� �Ұ�</a></li>
+												<li><a href="/sub03/sub03_8_1_2.jsp">�˶������� � ü��</a></li>
+												<li><a href="/sub03/sub03_8_1_3.jsp">�˶������� � ����</a></li>
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">�����������</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub03/sub03_6_1.jsp">������������</a></li>
+												<li><a href="/sub03/sub03_6_2_1.jsp">Petronet ���� �ȳ�</a></li>
+												<li><a href="/sub03/sub03_6_2_2.jsp">Petronet ȸ���ȳ�</a></li>
+												<li><a href="/sub03/sub03_6_4.jsp">Opinet</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">�ſ��������</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a href="/sub03/sub03_9.jsp">CCS ���</a></li>
+										<li><a href="/sub03/sub03_9_2.jsp">������ �ػ�ǳ�� ���</a></li> 
+										<li><a href="/sub03/sub03_9_3.jsp">��ź�� ���� �� �ϸ�Ͼ� ���</a>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- //����Ұ� -->
+
+					<!-- ESG�濵 -->
+					<div id="panel-3" class="gnb-sub-list" role="tabpanel" hidden>
+						<ul>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">ESG�濵</a> 
+								<div class="depth3-wrap">
+									<ul>
+										
+										<li><a  href="/sub13/sub13_1_1.jsp">ESG �ٽɼ���</a></li>
+										<li><a  href="/sub13/sub13_1_2.jsp">�濵����</a></li>
+										<li><a  href="/sub13/sub13_1_3.jsp">���Ӱ��ɰ濵������</a></li>
+										<li><a  href="/sub13/sub13_1_4.jsp">UNGC������</a></li>
+										<li><a  href="/sub13/sub13_1_5.jsp">���ذ����� ����</a></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">ȯ��</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">ģȯ��濵</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_2_1_1.jsp">�Ұ�</a></li>
+												<li><a href="/sub13/sub13_2_1_2_1.jsp">��Ȳ</a></li>
+												
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">�����������</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub03/sub03_9.jsp">CCS���</a></li>
+												<li><a href="/sub03/sub03_9_2.jsp">������ �ػ�ǳ�� ���</a></li>
+												<li><a href="/sub03/sub03_9_3.jsp">��ź�� ���� �� �ϸ�Ͼ� ���</a></li>
+												
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">��ȸ�о�</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">��ȸ����</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_3_1_1.jsp">����/����ü��</a></li>
+												<li><a href="/sub13/sub13_3_1_2.jsp">����� �Ұ�</a></li>
+												<li><a href="/sub13/sub13_3_1_4.jsp">Ȱ������</a></li>
+												<li><a href="/sub13/sub13_3_1_5.jsp">�������� ��Ȳ</a></li>
+												
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">���ݼ���</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_3_3_1.jsp">���ݼ��� �Ұ�</a></li>
+												<li><a href="/sub13/sub13_3_3_2_1.jsp">������� �ȳ�</a></li>
+												
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">�������ǰ濵</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_3_4_1_1.jsp">�Ұ�</a></li>
+												<li><a href="/sub13/sub13_3_4_2.jsp">������� �� ������� ��Ȳ</a></li>
+												<li><a href="/sub13/sub13_3_4_3.jsp">������� �������������</a></li>
+												
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">���ڸ�â��</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_3_5_1.jsp">��������</a></li>
+												<li><a href="/sub13/sub13_3_5_2.jsp">��������</a></li>
+												<li><a href="/sub13/sub13_3_5_3.jsp">��������</a></li>
+												<li><a href="/sub13/sub13_3_5_4.jsp">��� ������ ��������</a></li>
+												
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">���豸��</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">������豸��</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_4_1_1.jsp">�̻�ȸ �Ұ�</a></li>
+												<li><a href="/sub13/sub13_4_1_2.jsp">�̻�ȸ ��Ȳ</a></li>
+												<li><a href="/sub13/sub13_4_1_3_1.jsp">�̻�ȸ ���� ������ȸ ���Ȳ</a></li>
+												
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">��������</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_4_3.jsp">���� �ȳ�</a></li> 
+												
+											</ul>
+										</li>
+										<li><a href="/sub13/sub13_4_4.jsp">�����ȭ �Ұ�</a></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">�������αǰ濵</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">�����濵</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_4_2_1_1.jsp">�����濵 �Ұ�</a></li>
+												<li><a href="/sub13/sub13_4_2_2_2025.jsp">�����濵 ����Ȱ��</a></li>
+												<li><a href="/sub13/sub13_4_2_3.jsp">�����濵 �ڷ��</a></li>
+												<li><a href="/sub13/sub13_4_2_4_1.jsp">�����濵 ����</a></li>
+												<li><a href="/sub13/sub13_4_2_5_1.jsp">�����Թ�</a></li>
+												
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">�αǰ濵</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_3_2_5.jsp">�αǰ濵����</a></li>
+												<li><a href="/sub13/sub13_5_2_1.jsp">�αǰ濵�Թ�</a></li>
+												<li><a href="/sub13/sub13_5_2_2.jsp">�αǰ濵������</a></li>
+												<li><a href="/sub13/sub13_3_2_6.jsp">�αǻ�㼾��</a></li>
+												<li><a href="/sub13/sub13_3_2_7.jsp">����ա������� �Ű�</a></li>
+												<li><a href="/sub13/sub13_3_2_8.jsp">���� �� ������ �Ű�</a></li>
+												
+											</ul>
+										</li> 
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- //ESG�濵 -->
+
+					<!-- ȫ������ -->
+					<div id="panel-4" class="gnb-sub-list" role="tabpanel" hidden>
+						<ul>
+							<li><a class="gnb-sub-trigger" href="/sub11/sub11_1.jsp">�����ڷ�</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub11/sub11_2.jsp">���䴺��</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub11/sub11_10.jsp">���󴺽�</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub11/sub11_3.jsp">ȫ������</a></li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">ȫ�� ���๰</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a  href="/sub11/sub11_5_5.jsp">�������-���ڻ纸</a></li>
+										<li><a  href="/sub11/sub11_5_2.jsp">��ν���</a></li>
+										<li><a  href="/sub11/sub11_5_1.jsp">ȫ�� ������</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a class="gnb-sub-trigger" href="/sub11/sub11_4.jsp">����������</a></li>
+						</ul>
+					</div>
+					<!-- //ȫ������ -->
+
+					<!-- �������� -->
+					<div id="panel-5" class="gnb-sub-list" role="tabpanel" hidden>
+						<ul>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">������������</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a href="/sub05/sub05_13_1_1.jsp">�������������ȳ�</a></li>
+										<li><a href="/sub05/sub05_13_1_2.jsp">��������ó������</a></li>
+										<li><a href="/sub05/sub05_13_1_4.jsp">�Һ���������</a></li>
+										<li><a href="/sub05/sub05_13_1_5.jsp">å�Ӱ�/�ǹ������</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a class="gnb-sub-trigger" href="/sub05/sub05_13_2_1.jsp">�������� û��</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub05/sub05_13_1_3.jsp">������������</a></li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">����������ǥ</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">ī�װ����� ����</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=1">SHE</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=2">����</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=3">�濵</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=4">������</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=5">�������</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=6">��������</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=7">��������</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=8">�λ�</a> </li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=9">�繫</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=10">����ȭ</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=11">�ѹ�</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=12">ȫ�����������</a></li>
+											</ul>
+										</li>
+										<li><a href="/sub05/sub05_13_6_1.jsp">���ΰ�������</a></li>
+										<li><a href="/sub05/sub05_2.jsp">�������� ������</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a class="gnb-sub-trigger" href="/sub05/sub05_13_list.jsp">�������</a></li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">����������</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a href="/sub05/sub05_13_4_1.jsp">���������� ���� �ȳ�</a></li>
+										<li><a href="/sub05/sub05_13_4_2.jsp">���������� ���� ���</a></li>
+										<li><a href="/sub05/sub05_13_4_3.jsp">���������� ���� ��û</a></li>
+										<li><a href="/sub05/sub05_15.jsp">���������� ���� ä��</a></li>
+										<li><a href="/sub05/sub05_16.jsp">������������</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a class="gnb-sub-trigger" href="/sub05/sub05_14.jsp">����Ǹ���</a></li>
+						</ul>
+					</div>
+					<!-- //�������� -->
+
+					<!-- �������� -->
+					<div id="panel-6" class="gnb-sub-list" role="tabpanel" hidden>
+						<ul>
+							<li><a class="gnb-sub-trigger" href="/sub05/sub05_5_5.jsp">��������</a></li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">��������</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a href="/sub04/sub04_1_1.jsp">�������� ����</a></li>
+										<li><a href="/sub04/sub04_1_2.jsp">��������ǥ��</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a class="gnb-sub-trigger" href="/sub04/sub04_13.jsp">�Ű����ȼ���</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub04/sub04_14.jsp">�Ű�ä�� ���</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub04/sub04_2.jsp">��������</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub04/sub04_3.jsp">����/��������</a></li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">�ο�����</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a href="/sub04/sub04_5.jsp">���̹� �ο���</a></li>
+										<li><a href="https://www.epeople.go.kr/index.jsp" class="tBlank" target="_blank">���νŹ���<em>��â</em></a></li>
+					
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">���С����ͽŰ�</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a href="http://www.redwhistle.org/report/report.asp?organ=1511" class="tBlank" target="_blank">KNOC �͸��Ű�<em>��â</em></a></li>
+										<li><a href="/sub04/sub04_5_5.jsp">����(������)�Ű�</a></li>
+										<li><a href="/sub04/sub04_5_8.jsp">ûŹ������ �������� �Ű�</a></li>
+										<li><a href="/sub04/sub04_5_7.jsp">���ͽŰ�</a></li>
+										<li><a href="/sub04/sub04_5_6.jsp">�ҹ��ϵ��� �Ű�</a></li>
+										<li><a href="/sub04/sub04_4.jsp">������ ����û�� �Ű�</a></li>
+										<li><a href="/sub04/sub04_6.jsp">���곶��Ű�����</a></li>
+										<li><a href="https://ncp.clean.go.kr/cmn/secCtfcKMC.do?menuCode=acs&mapAcs=Y&insttCd=B410005" class="tBlank" target="_blank">û������ ���С����ͽŰ�<em>��â</em></a></li>
+										
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">����������伾��</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a href="/sub04/sub04_7.jsp">����������伾�� �Ұ�</a></li>
+										<li><a href="/sub04/sub04_7_2.jsp">�����ַ� �Ű�</a></li>
+										<li><a href="/sub04/sub04_7_3.jsp">����ο� ���ؽŰ�</a></li>
+										<li><a href="/sub04/sub04_12.jsp">����ο� ��ȣ����������</a></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="/sub04/sub04_18.jsp">�ΰ����� ��������</a>
+								<div class="depth3-wrap">
+									<ul>	
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">�ΰ���� �ؿ����� �����÷���</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub03/sub03_2_2.jsp">�ؿܻ�� �Ұ�</a></li>
+												<li><a href="/sub04/sub04_19.jsp">���� ��û</a></li>
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">Ư�� ���������� �÷���</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub04/sub04_21.jsp">���� ���� ��Ȱ��Ư��</a></li>
+												<li><a href="/sub04/sub04_20.jsp">Ư�� ���������� ��û</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">�˶�������</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a href="/sub04/sub04_8_1.jsp">��������</a></li>
+										<li><a href="/sub04/sub04_8_3.jsp">�ڷ��</a></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">���������ڿ�</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a href="/sub04/sub04_1_10.jsp">�ü����� �̿�ȳ�</a></li>
+										<li><a href="/sub04/sub04_8.jsp">�ü����� ������</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a class="gnb-sub-trigger" href="/sub12/sub12_2_2.jsp">KPA �������� ������û</a></li>
+							<!--<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">FAQ</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li><a href="/sub05/sub05_9_1.jsp?grp=SENSE">�������</a></li>
+										<li><a href="/sub05/sub05_9_2.jsp?grp=TECH">��������</a></li>
+										<li><a href="/sub05/sub05_9_3.jsp?grp=BICHUK">��������</a></li>
+										<li><a href="/sub05/sub05_9_4.jsp?grp=BASIC">�Ϲݻ���</a></li>
+									</ul>
+								</div>
+							</li>-->
+						</ul>
+					</div>
+					<!-- //�������� -->
+				</div>
+			</div>
+
+</div>
+
+<script>
+	$(document).ready(function() {
+	
+
+		var path = $(location).attr('pathname');
+		var search = $(location).attr('search').split("?");
+
+		if (path.replaceAll("/coding", "") === "/sub01/sub01_7_8.jsp") {
+			path += "?grp=REC5";
+		} else if (path.replaceAll("/coding", "") === "/sub05/sub05_9_1.jsp") {
+			path += "?grp=SENSE";
+		} else if (path.replaceAll("/coding", "") === "/sub05/sub05_9_2.jsp") {
+			path += "?grp=TECH";
+		} else if (path.replaceAll("/coding", "") === "/sub05/sub05_9_3.jsp") {
+			path += "?grp=BICHUK";
+		} else if (path.replaceAll("/coding", "") === "/sub05/sub05_9_4.jsp") {
+			path += "?grp=BASIC";
+		} else if (path.replaceAll("/coding", "") === "/sub05/sub05_12_list.jsp") {
+			if (search !== undefined && search !== null && search.length > 0) {
+				for (var i=0; i<search.length; i++) {
+					if (search[i].indexOf("gpk=") !== -1) {
+						path += "?" + search[i];
+					}
+				}
+			}
+		} else if (path.replaceAll("/coding", "").indexOf("/sub02/sub02_1_2_1_year") !== -1 || path.replaceAll("", "") === "/sub02/sub02_1_2_1_11.jsp") { // 2022.01.21 �����濵����Ȱ�� �޴� �� ó��
+			if (path.indexOf("") !== -1) {
+				path = "/sub02/sub02_1_2_1_year21.jsp";
+			} else {
+				path = "/sub02/sub02_1_2_1_year21.jsp";
+			}
+		} else if (path.replaceAll("/coding", "").indexOf("/sub02/sub02_1_3_1_") !== -1) {
+			path = "/sub02/sub02_1_3_1.jsp";
+		} else if (path.replaceAll("/coding", "") === "/sub02/sub02_4_5.jsp" || path.replaceAll("", "") === "/sub02/sub02_4_6.jsp") {
+			path = "/sub02/sub02_4_4.jsp";
+		} else if (path.replaceAll("/coding", "").indexOf("/sub02/sub02_8_1_1_year") !== -1) {
+			path = "/sub02/sub02_8_1_1_year2021.jsp";
+		} else if (path.replaceAll("/coding", "").indexOf("/sub11/sub11_7_1_7_") !== -1) {
+			path = "/sub11/sub11_7_1_7.jsp";
+		} else if (path.replaceAll("/coding", "").indexOf("/sub11/sub11_7_1_8_") !== -1) {
+			path = "/sub11/sub11_7_1_8.jsp";
+		} else if (path.replaceAll("/coding", "").indexOf("/sub03/sub03_1_4_") !== -1) {
+			path = "/sub03/sub03_1_4.jsp";
+		} else if (path.replaceAll("/coding", "").indexOf("/sub01/sub01_5_") !== -1) {
+			path = "/sub01/sub01_5.jsp";
+		} else if (path.replaceAll("/coding", "").indexOf("/sub03/sub03_2_2_") !== -1) {
+			path = "/sub03/sub03_2_2.jsp";
+		} else if (path.replaceAll("/coding", "").indexOf("/sub03/sub03_3_2_") !== -1) {
+			path = "/sub03/sub03_3_2.jsp";
+		} else if (path.replaceAll("/coding", "") === "/sub03/sub03_4_4_2.jsp" || path.replaceAll("/coding", "") === "/sub03/sub03_4_4_3.jsp") {
+			path = "/sub03/sub03_4_4_1.jsp";
+		} else if (path.replaceAll("/coding", "") === "/sub01/sub01_1_1_ceo2.jsp") {
+			path = "/sub01/sub01_1_1.jsp";
+		} else if (path.replaceAll("/coding", "") === "/sub03/sub03_4_5.jsp") {
+			path = "/sub03/sub03_4_4.jsp";
+		} else if (path.replaceAll("/coding", "").indexOf("/sub05/reader_participate_") != -1 ) {
+			path = "/sub11/sub11_5_5.jsp";
+		}
+
+		var el = $("#gnb").find("a[href='"+path+"']");
+		$(el).parent().addClass("this_active");
+
+		$('.gnbMenu').each(function(){
+			if($(this).find('.this_active').length != 0){
+				$(this).addClass('active');
+				$(this).find('>ul').addClass('on');
+				$('li.this_active').parent().show();
+				$('li.this_active').parent().prev().addClass('on');
+				$('.subMenu.this_active').parent().parent().show();
+				$('.subMenu.this_active').parent().parent().parent().find('a.active').addClass('on');
+				$('.subMenu.this_active').show();
+			}
+		});
+	});
+
+	// ���հ˻�
+	function menu_search() {
+		$("#tsearchForm").submit();
+	}
+	
+	
+	
+	// �޴����� �α��� �������� �̵�
+	function menu_login() {
+		location.href="/member/login.jsp?returnURL=" + $(location).attr('pathname');
+	}
+</script>
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+<section id="content">
+	<div id="subHead">
+		<h2>ä�����</h2>
+		<div class="locadv">
+			<a href="/" class="home">����</a>
+			<a href="/"><span>����Ұ�</span></a>
+			<a href="/"><span>ä������</span></a>
+            <span class="locanow">ä�����</span>
+		</div>
+	</div>
+
+	<div class="mgCont">
+		<div class="sabo-apply"><a href="/sub01/sub01_13.jsp" class="btn-TypeB"><em class="icon_apply">ä����� �˸��� </br>��û�ϱ�</em></a>
+		<a href="/sub01/sub01_14.jsp" class="btn-TypeB"><em class="icon_apply">ä����� �˸��� </br>����ϱ�</em></a></div>
+		
+
+
+
+
+
+<!--
+	�ڷ��01 ��� ��Ų
+-->
+
+
+
+
+
+<script type="text/javascript" src="/neoboard/js/comm.js"></script>
+<script type="text/javascript">
+	function group_change() {
+		var f = document.searchform;
+		f.submit();
+	}
+
+	function do_search() {
+		var f = document.searchform;
+		f.submit();
+	}
+
+	function changePsize() {
+		document.searchform.submit();
+	}
+</script>
+
+<!-- ��� : START -->
+<div class="boardList">
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">35</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=73&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2026.07.09</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=8101B5DC1543DD670AA7B1588C4E58CD&fno=CAA9D618E777DC49BED5FEB33CC93CBB&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�.pdf</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">1739</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">34</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=72&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026�� �Ϲݱ� ����(ü����) ä����� [����]</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2026.06.23</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&fno=C3C1D06546817246AB5A9EDE4A74D84C&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 1 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����.pdf</a><br />
+								 <a href="/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&fno=BFB2242E89D78821BD8EB06BA08E6073&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����_����.zip</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">7064</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">33</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=71&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2026.05.18</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=E0BAC17FDE31A0E0FC215445CD9E8A21&fno=641A4D1ACAD51B1A2E0986F21F479934&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> �ѱ��������� 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��).pdf</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">10701</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">32</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=70&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026�� ��ݱ� ����(�Ⱓ��) ä�� ���� ��� �ȳ�</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2026.04.07</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=3A9F6707F58C6889A60357E2583527BC&fno=C0E2BAAEBE6AE93B7806928947292F45&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2026�� ��ݱ� ����(�Ⱓ��) ä�� ������ ���� ��� �ȳ�.pdf</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">1784</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">31</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=69&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026�� ��ݱ� ����(�Ⱓ��) ä����� (����)</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2026.03.18</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=53122C0282B90D8259D2BE505CC14884&fno=34EF01CA28CFAFEC1B774AD090061B41&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> �ѱ��������� 2026�� ��ݱ� ����(�Ⱓ��) ä�����.pdf</a><br />
+								 <a href="/servlet/Download?num=53122C0282B90D8259D2BE505CC14884&fno=07CAE86A731DB4510E946917A6454484&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> �ѱ��������� 2026�� ��ݱ� ����(�Ⱓ��) ä�����_����.zip</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">3774</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">30</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=68&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2025�� �ѱ��������� ���� ����ä�� ���� (����)</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2025.04.24</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=97405E3903E5C413954A256E0139683B&fno=2F9CFE7970C5C025E12035DB024C1457&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2025�� �ѱ��������� ���� ����ä�� ����.pdf</a><br />
+								 <a href="/servlet/Download?num=97405E3903E5C413954A256E0139683B&fno=50F6C6217DBF3D6F50E455B7616711DC&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2025�� �ѱ��������� ���� ����ä�� ����_����.zip</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">65478</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">29</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=67&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">��2025�� ä����� �˸��̡� ���� ��û �ȳ� (����..</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2025.04.18</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">5127</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">28</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=66&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2025�⵵ �ѱ��������� ���� ä���ȹ(��)</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2025.02.04</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=3E9A44BEAAB7D496C3D6F3AF347539EC&fno=28BD578F27B7397FDDF5FB856D819FA8&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ����. 2025�� ä���ȹ(��)(Ȩ������ �Խÿ�).pdf</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">13673</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">27</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=65&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024�� �ѱ��������� �Ϲݱ� ���� ä�� ����</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2024.10.23</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=D37F0A32BA83977671A6CF2E36E00EB3&fno=997FA7C4D0094944B2DB47214E3078D7&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä�����.png</a><br />
+								 <a href="/servlet/Download?num=D37F0A32BA83977671A6CF2E36E00EB3&fno=08F6D2A65E8CC0B6E715DE504EC5B6AB&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä����� ��������.zip</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">17313</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">26</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=64&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024�� �ѱ��������� ����� ������ ���� ���� ä�� ..</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2024.10.23</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=31A0F88B6FDBBF02BADE309977162F99&fno=3BA97BE9F58A783A9FD075134DCEBDC7&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä�����(����� ������ ���� ����).png</a><br />
+								 <a href="/servlet/Download?num=31A0F88B6FDBBF02BADE309977162F99&fno=E007F81E9067428F9B77B7429CA22CF9&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä����� ��������.zip</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">3411</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">25</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=63&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024�� �ѱ��������� ���� ���� ä��</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2024.04.03</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=5A449D17DB3B501524D666E640E79670&fno=1B5E802E47D018F499CD92019C01C19B&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2024�� �����оߺ� ������+��������.zip</a><br />
+								 <a href="/servlet/Download?num=5A449D17DB3B501524D666E640E79670&fno=C658FD65C340D8A8E5D128CF53764A16&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2024�� �ѱ��������� ���� ����ä��.JPG</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">60491</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">24</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=61&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024�⵵ �ѱ��������� ���� ä���ȹ(��)</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2024.01.11</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=89F637BBCDFFB6BFA0BEFECB0B22A20B&fno=5D2454C827B7D27B9CE641B95E44D20B&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ����_Ȩ�������Խ�_2024�� ä���ȹ(��).pdf</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">12393</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">23</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=60&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2023�� �ѱ��������� ������(��ȣ��) ä�� ����</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2023.11.09</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=21FE9C46B8BCD4CF78247CD9AC9FDBDA&fno=72B20FDCE078A46BBD9013E8B933F576&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2023�� �ѱ��������� ������(��ȣ��) ä�� ������.png</a><br />
+								 <a href="/servlet/Download?num=21FE9C46B8BCD4CF78247CD9AC9FDBDA&fno=50AFB788961F4CC81C93BDCC2086AC6E&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä������� ��������_2023�� �ѱ��������� ������(��ȣ��) ä��.pdf</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">3945</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">22</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=59&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2023�� �ѱ��������� �Ⱓ�� ���� ä�� ����</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2023.09.12</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=BE59A2A767D3289686D541D27AAFDB11&fno=5D15B329B711D467245A8D77B8E19927&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2023��+�ѱ���������+�Ⱓ��+����+ä��+������.png</a><br />
+								 <a href="/servlet/Download?num=BE59A2A767D3289686D541D27AAFDB11&fno=BF1B9994318F819BB5B4C6283FA7EF29&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä������� ��������_2023�� �ѱ��������� �Ⱓ�� ���� ä��.pdf</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">6058</em>
+			</li>
+		</ul>
+
+		<ul class="list">
+		<li>
+			
+				
+			
+			<span class="tit">�۹�ȣ</span>
+			<em class="cont">21</em>
+			
+				
+			</li>
+		
+
+			<li>
+				<span class="tit">����</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=58&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2023�� �ѱ��������� ���� ä�� ����</a></em>
+			</li>
+			<li>
+				<span class="tit">����</span>
+				<em class="cont">����濵ó</em>
+			</li>
+			<li>
+				<span class="tit">�����</span>
+				<em class="cont">2023.05.26</em>
+			</li>
+			<li>
+				<span class="tit">÷��</span>
+				<em class="cont">
+					
+								 <a href="/servlet/Download?num=F141129F1581D6B66EAA2838A07DB955&fno=2819662D652400A81DF823F8BE2BC398&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2023�� �ѱ��������� ���� ä�� ������.JPG</a><br />
+								 <a href="/servlet/Download?num=F141129F1581D6B66EAA2838A07DB955&fno=3340CA22C38EE287496B8D213978E13D&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä������� ��������.zip</a>
+				</em>
+			</li>
+			
+			<li>
+				<span class="tit">��ȸ</span>
+				<em class="cont">48101</em>
+			</li>
+		</ul>
+
+</div>
+<!-- ��� : END -->
+
+<!-- ������ : START -->
+<div class="paging">
+	
+	<ul>
+		<!-- ������ : ó����ư : START -->
+		<li class="page-item first"><a href="/sub01/sub01_7_9.jsp?page=1&amp;field=&amp;text=&amp;mode=list&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15" class="page-link">ó��</a></li>
+		<!-- ������ : ó����ư : END -->
+
+		<!-- ������ : ������ư : START -->
+		<li class="prev"><a href="javascript:void(0);" class="page-link">����</a></li>
+		<!-- ������ : ������ư : END -->
+
+		<!-- ������ : ��������ư : START -->
+		
+		
+		
+		<li class="current"><a href="#" class="page-link">1</a></li>
+		
+		
+		
+		
+		<li><a href="/sub01/sub01_7_9.jsp?page=2&amp;field=&amp;text=&amp;mode=list&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15" class="page-link">2</a></li>
+		
+		
+		
+		
+		<li><a href="/sub01/sub01_7_9.jsp?page=3&amp;field=&amp;text=&amp;mode=list&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15" class="page-link">3</a></li>
+		
+		
+		
+		<!-- ������ : ��������ư : END -->
+
+		<!-- ������ : ������ư : START -->
+		<li class="next"><a href="/sub01/sub01_7_9.jsp?page=2&amp;field=&amp;text=&amp;mode=list&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15" class="page-link">����</a></li>
+		<!-- ������ : ������ư : END -->
+
+		<!-- ������ : ����ư : START -->
+		<li class="page-item last"><a href="/sub01/sub01_7_9.jsp?page=3&amp;field=&amp;text=&amp;mode=list&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15" class="page-link">��</a></li>
+		<!-- ������ : ����ư : END -->
+	</ul>
+</div>
+<!-- ������ : END -->
+
+
+<!-- search -->
+<form name="searchform" method="post" action="/sub01/sub01_7_9.jsp" onsubmit="do_search(this); return false;">
+	<input type="hidden" name="bid" value="RECRUIT" />
+	<input type="hidden" name="ses" value="USERSESSION" />
+	<input type="hidden" name="mode" value="list" />
+	<fieldset class="grid-jb searchIpt">
+		<legend>Search Box</legend>
+		
+
+		<select id="field" name="field" class="ipt">
+			<option value="subject">����</option>
+			<option value="name">����</option>
+			<option value="content">����</option>
+		</select>
+		<input type="text" value="" id="schinput" name="text" class="ipt">
+		<a href="javascript:do_search();" class="btn-TypeB"><em class="iconS">�˻�</em></a>
+	</fieldset>
+</form>
+	</div>
+
+	<ul class="update">
+		<li>���μ� : ����濵ó �λ���</li>
+		<li>����ó : 052-216-2703</li>
+	</ul>
+</section>
+
+
+
+
+
+
+<footer>
+	<div class="grid-jb link">
+		<a class="on" href="/member/privacy.jsp">��������ó����ħ</a>
+		<a class="on" href="/member/m_policy.jsp">������ ��������ó����ħ</a>
+		<a class="on" href="/member/c_policy.jsp">�̵��� ��������ó����ħ</a>
+		<a href="/member/mail.jsp">�̸��Ϲ��ܼ����ź�</a>
+		<a href="/sub01/sub01_9.jsp">ã�ƿ��ô� ��</a>
+	</div>
+	<div class="footlogo">Knoc KOREA NATIONAL OIL CORPORATION</div>
+	<address>
+		<span>����</span>
+		<span>��. 44538  ��걤���� �߱� ������ 305 �ѱ���������</span>
+		<span>��ǥ��ȭ.  052-216-2114</span>
+		<span>�ѽ�.  052-216-5900</span>
+	</address>
+	<p class="copy">COPYRIGHT (C) BY KOREA NATIONAL OIL CORPORATION.<br>
+		ALL RIGHTS RESERVED.</p>
+</footer>
+
+</body>
+</html>
+

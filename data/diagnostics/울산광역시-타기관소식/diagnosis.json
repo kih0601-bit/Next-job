@@ -1,0 +1,1759 @@
+{
+  "org": "울산광역시 타기관소식",
+  "health": "degraded",
+  "primaryCause": {
+    "stage": "detail",
+    "status": "failed",
+    "code": "DETAIL_EMPTY_BODY",
+    "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+    "evidence": [
+      {
+        "title": "(부산광역시) 위해축산물 긴급회수문 게재",
+        "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+        "ok": false,
+        "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "fetch failed"
+      },
+      {
+        "title": "울산시설공단 임원 공개모집 공고",
+        "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+        "ok": false,
+        "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "fetch failed"
+      }
+    ],
+    "repairTarget": "scripts/collectors/institutions/울산광역시 타기관소식.mjs",
+    "recommendedAction": "기관 전용 상세 본문 선택자 추가"
+  },
+  "diagnosis": {
+    "http": {
+      "status": "success",
+      "code": "HTTP_OK",
+      "reason": "3개 후보 URL HTTP 응답 성공",
+      "evidence": [
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록",
+            "orgMatched": false,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "textLength": 7823,
+            "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+            "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        },
+        {
+          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "산하기관 채용정보 | 울산광역시 남구청",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 7242,
+            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        {
+          "url": "https://job.alio.go.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": true,
+              "boardStructure": false,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "기획재정부 | 공공기관 채용정보 시스템",
+            "orgMatched": false,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 0,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "textLength": 21,
+            "requestedUrl": "https://job.alio.go.kr/",
+            "finalUrl": "https://job.alio.go.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        }
+      ]
+    },
+    "recruitVerify": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+        "score": 4,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": false,
+          "meaningfulBody": true
+        },
+        "title": "산하기관 채용정보 | 울산광역시 남구청",
+        "orgMatched": false,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보",
+          "직원\\s*채용"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 5,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 7242,
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      }
+    },
+    "list": {
+      "status": "success",
+      "code": "LIST_EXACT",
+      "reason": "화면 게시글 10건 = 추출 10건",
+      "evidence": [
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 795,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "(부산광역시) 위해축산물 긴급회수문 게재",
+            "울산시설공단 임원 공개모집 공고",
+            "울산테크노파크 직원(청년인턴) 채용 공고",
+            "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+            "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+            "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+            "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+            "울산광역시체육회 기간제근로자(장애인) 채용 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [
+            {
+              "title": "(부산광역시) 위해축산물 긴급회수문 게재",
+              "action": "fn_view('182862');return false;"
+            },
+            {
+              "title": "울산시설공단 임원 공개모집 공고",
+              "action": "fn_view('182860');return false;"
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고",
+              "action": "fn_view('182846');return false;"
+            },
+            {
+              "title": "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+              "action": "fn_view('182830');return false;"
+            },
+            {
+              "title": "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+              "action": "fn_view('182795');return false;"
+            },
+            {
+              "title": "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+              "action": "fn_view('182720');return false;"
+            },
+            {
+              "title": "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+              "action": "fn_view('182640');return false;"
+            },
+            {
+              "title": "울산광역시체육회 기간제근로자(장애인) 채용 공고",
+              "action": "fn_view('182613');return false;"
+            },
+            {
+              "title": "(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고",
+              "action": "fn_view('182595');return false;"
+            },
+            {
+              "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+              "action": "fn_view('182578');return false;"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 782,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": 10,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://job.alio.go.kr/",
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "visiblePostCount": null,
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ]
+    },
+    "detail": {
+      "status": "failed",
+      "code": "DETAIL_EMPTY_BODY",
+      "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+      "evidence": [
+        {
+          "title": "(부산광역시) 위해축산물 긴급회수문 게재",
+          "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+          "ok": false,
+          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "fetch failed"
+        },
+        {
+          "title": "울산시설공단 임원 공개모집 공고",
+          "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+          "ok": false,
+          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    "attachment": {
+      "status": "blocked",
+      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
+      "reason": "상세 단계 미통과로 첨부 진단 보류",
+      "evidence": []
+    },
+    "access": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+        "score": 4,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": false,
+          "meaningfulBody": true
+        },
+        "title": "산하기관 채용정보 | 울산광역시 남구청",
+        "orgMatched": false,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보",
+          "직원\\s*채용"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 5,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 7242,
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      }
+    }
+  },
+  "repairTarget": "scripts/collectors/institutions/울산광역시 타기관소식.mjs",
+  "recommendedAction": "기관 전용 상세 본문 선택자 추가",
+  "stages": {
+    "access": {
+      "ok": true,
+      "httpOk": true,
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+      "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+      "activeRecruitUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "attempts": [
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록",
+            "orgMatched": false,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "textLength": 7823,
+            "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+            "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        },
+        {
+          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "산하기관 채용정보 | 울산광역시 남구청",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 7242,
+            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        {
+          "url": "https://job.alio.go.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": true,
+              "boardStructure": false,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "기획재정부 | 공공기관 채용정보 시스템",
+            "orgMatched": false,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 0,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "textLength": 21,
+            "requestedUrl": "https://job.alio.go.kr/",
+            "finalUrl": "https://job.alio.go.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+        "score": 4,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": false,
+          "meaningfulBody": true
+        },
+        "title": "산하기관 채용정보 | 울산광역시 남구청",
+        "orgMatched": false,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보",
+          "직원\\s*채용"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 5,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 7242,
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      },
+      "boardType": {
+        "type": "IFRAME",
+        "confidence": "high",
+        "evidence": [
+          "iframe 태그 발견"
+        ]
+      },
+      "diagnosis": {
+        "ok": true,
+        "code": "RECRUIT_VERIFY_FALLBACK_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+        "http": {
+          "ok": true,
+          "code": "HTTP_OK",
+          "reason": "3개 후보 URL HTTP 응답 성공",
+          "attempts": [
+            {
+              "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+                "score": 4,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": true
+                },
+                "title": "울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록",
+                "orgMatched": false,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 5,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "textLength": 7823,
+                "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+                "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              }
+            },
+            {
+              "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+                "score": 4,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": true
+                },
+                "title": "산하기관 채용정보 | 울산광역시 남구청",
+                "orgMatched": false,
+                "positiveHits": 3,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "채용\\s*정보",
+                  "직원\\s*채용"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 5,
+                "boardType": {
+                  "type": "IFRAME",
+                  "confidence": "high",
+                  "evidence": [
+                    "iframe 태그 발견"
+                  ]
+                },
+                "textLength": 7242,
+                "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+                "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+                "status": 200,
+                "contentType": "text/html; charset=utf-8"
+              }
+            },
+            {
+              "url": "https://job.alio.go.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://job.alio.go.kr/",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 1,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": true,
+                  "boardStructure": false,
+                  "organizationMatch": false,
+                  "meaningfulBody": false
+                },
+                "title": "기획재정부 | 공공기관 채용정보 시스템",
+                "orgMatched": false,
+                "positiveHits": 1,
+                "positiveMatches": [
+                  "채용\\s*정보"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 0,
+                "boardType": {
+                  "type": "JOB_ALIO",
+                  "confidence": "high",
+                  "evidence": [
+                    "JOB-ALIO URL/본문 신호"
+                  ]
+                },
+                "textLength": 21,
+                "requestedUrl": "https://job.alio.go.kr/",
+                "finalUrl": "https://job.alio.go.kr/",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              }
+            }
+          ]
+        },
+        "recruitVerify": {
+          "ok": true,
+          "code": "RECRUIT_VERIFY_FALLBACK_OK",
+          "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+          "score": 4,
+          "maxScore": 5,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
+          },
+          "evidence": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "산하기관 채용정보 | 울산광역시 남구청",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 7242,
+            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        "activeRecruitUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+        "selectedRequestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+        "verification": {
+          "ok": true,
+          "verified": true,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+          "score": 4,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": false,
+            "meaningfulBody": true
+          },
+          "title": "산하기관 채용정보 | 울산광역시 남구청",
+          "orgMatched": false,
+          "positiveHits": 3,
+          "positiveMatches": [
+            "채용\\s*공고",
+            "채용\\s*정보",
+            "직원\\s*채용"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 5,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
+          },
+          "textLength": 7242,
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8"
+        }
+      }
+    },
+    "list": {
+      "ok": true,
+      "status": "exact",
+      "pagesChecked": 3,
+      "visiblePostCount": 10,
+      "candidateCount": 10,
+      "missingCount": 0,
+      "extraCount": 0,
+      "exactMatch": true,
+      "selectedUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+      "detailUrlReady": 10,
+      "listOnlyCount": 0,
+      "extractionDiagnostics": [
+        {
+          "url": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 795,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "(부산광역시) 위해축산물 긴급회수문 게재",
+            "울산시설공단 임원 공개모집 공고",
+            "울산테크노파크 직원(청년인턴) 채용 공고",
+            "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+            "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+            "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+            "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+            "울산광역시체육회 기간제근로자(장애인) 채용 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [
+            {
+              "title": "(부산광역시) 위해축산물 긴급회수문 게재",
+              "action": "fn_view('182862');return false;"
+            },
+            {
+              "title": "울산시설공단 임원 공개모집 공고",
+              "action": "fn_view('182860');return false;"
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고",
+              "action": "fn_view('182846');return false;"
+            },
+            {
+              "title": "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+              "action": "fn_view('182830');return false;"
+            },
+            {
+              "title": "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+              "action": "fn_view('182795');return false;"
+            },
+            {
+              "title": "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+              "action": "fn_view('182720');return false;"
+            },
+            {
+              "title": "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+              "action": "fn_view('182640');return false;"
+            },
+            {
+              "title": "울산광역시체육회 기간제근로자(장애인) 채용 공고",
+              "action": "fn_view('182613');return false;"
+            },
+            {
+              "title": "(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고",
+              "action": "fn_view('182595');return false;"
+            },
+            {
+              "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+              "action": "fn_view('182578');return false;"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 782,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": 10,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://job.alio.go.kr/",
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "visiblePostCount": null,
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산광역시 타기관소식",
+          "url": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+          "counts": {
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "rawTableRows": 10,
+            "sourceHtmlLength": 144136,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 11,
+            "li": 688,
+            "article": 0,
+            "[onclick]": 31,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 795
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [
+            "(부산광역시) 위해축산물 긴급회수문 게재",
+            "울산시설공단 임원 공개모집 공고",
+            "울산테크노파크 직원(청년인턴) 채용 공고",
+            "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+            "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+            "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+            "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+            "울산광역시체육회 기간제근로자(장애인) 채용 공고",
+            "(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
+          ],
+          "extractedTitles": [
+            "(부산광역시) 위해축산물 긴급회수문 게재",
+            "울산시설공단 임원 공개모집 공고",
+            "울산테크노파크 직원(청년인턴) 채용 공고",
+            "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+            "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+            "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+            "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+            "울산광역시체육회 기간제근로자(장애인) 채용 공고",
+            "(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
+          ],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "(부산광역시) 위해축산물 긴급회수문 게재",
+              "normalizedTitle": "부산광역시 위해축산물 긴급회수문 게재",
+              "text": "2366 (부산광역시) 위해축산물 긴급회수문 게재 2026.08.05 25",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182862",
+              "onclick": "fn_view('182862');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2366</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182862\" onclick=\"fn_view('182862');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t(부산광역시) 위해축산물 긴급회수문 게재</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.08.05</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">25</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+              "adapter": "울산광역시 타기관소식:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 1,
+              "title": "울산시설공단 임원 공개모집 공고",
+              "normalizedTitle": "울산시설공단 임원 공개모집 공고",
+              "text": "2365 울산시설공단 임원 공개모집 공고 2026.08.05 37",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182860",
+              "onclick": "fn_view('182860');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2365</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182860\" onclick=\"fn_view('182860');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산시설공단 임원 공개모집 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.08.05</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">37</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+              "adapter": "울산광역시 타기관소식:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 2,
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고",
+              "normalizedTitle": "울산테크노파크 직원 청년인턴 채용 공고",
+              "text": "2364 울산테크노파크 직원(청년인턴) 채용 공고 2026.08.04 19",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182846",
+              "onclick": "fn_view('182846');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2364</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182846\" onclick=\"fn_view('182846');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산테크노파크  직원(청년인턴) 채용 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.08.04</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">19</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182846",
+              "adapter": "울산광역시 타기관소식:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+              "normalizedTitle": "대통령 직속 빛의 위원회 빛의 혁명 기록물 수집",
+              "text": "2363 대통령 직속 빛의 위원회《빛의 혁명》기록물 수집 2026.08.04 14",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182830",
+              "onclick": "fn_view('182830');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2363</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182830\" onclick=\"fn_view('182830');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t대통령 직속 빛의 위원회《빛의 혁명》기록물 수집</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.08.04</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">14</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182830",
+              "adapter": "울산광역시 타기관소식:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 4,
+              "title": "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+              "normalizedTitle": "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+              "text": "2362 울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용 2026.08.03 19",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182795",
+              "onclick": "fn_view('182795');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2362</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182795\" onclick=\"fn_view('182795');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용 </a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.08.03</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">19</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182795",
+              "adapter": "울산광역시 타기관소식:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 5,
+              "title": "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+              "normalizedTitle": "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+              "text": "2361 울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고 2026.07.30 137",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182720",
+              "onclick": "fn_view('182720');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2361</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182720\" onclick=\"fn_view('182720');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.07.30</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">137</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182720",
+              "adapter": "울산광역시 타기관소식:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 6,
+              "title": "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+              "normalizedTitle": "2026년 ai디지털튜터 양성 교육 하반기 교육생 모집 안내",
+              "text": "2360 2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내 2026.07.28 100",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182640",
+              "onclick": "fn_view('182640');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2360</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182640\" onclick=\"fn_view('182640');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.07.28</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">100</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182640",
+              "adapter": "울산광역시 타기관소식:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 7,
+              "title": "울산광역시체육회 기간제근로자(장애인) 채용 공고",
+              "normalizedTitle": "울산광역시체육회 기간제근로자 장애인 채용 공고",
+              "text": "2359 울산광역시체육회 기간제근로자(장애인) 채용 공고 2026.07.27 82",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182613",
+              "onclick": "fn_view('182613');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2359</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182613\" onclick=\"fn_view('182613');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산광역시체육회 기간제근로자(장애인) 채용 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.07.27</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">82</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182613",
+              "adapter": "울산광역시 타기관소식:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 8,
+              "title": "(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고",
+              "normalizedTitle": "울산신용보증재단 울산신용보증재단 이사장 공개모집 재공고",
+              "text": "2358 (울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고 2026.07.24 43",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182595",
+              "onclick": "fn_view('182595');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2358</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182595\" onclick=\"fn_view('182595');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.07.24</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">43</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182595",
+              "adapter": "울산광역시 타기관소식:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 9,
+              "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+              "normalizedTitle": "울산광역시 사회서비스지원단 시설장 기간제 채용 공고",
+              "text": "2357 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.23 102",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182578",
+              "onclick": "fn_view('182578');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2357</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182578\" onclick=\"fn_view('182578');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산광역시 사회서비스지원단 시설장(기간제) 채용 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.07.23</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">102</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182578",
+              "adapter": "울산광역시 타기관소식:board-row",
+              "rejectionReason": ""
+            }
+          ]
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산광역시 타기관소식",
+          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+          "probableCause": "DETAIL_SIGNAL_NOT_EXPOSED_IN_ROWS",
+          "counts": {
+            "visiblePostCount": 10,
+            "candidateCount": 0,
+            "rawTableRows": 10,
+            "sourceHtmlLength": 181635,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 11,
+            "li": 637,
+            "article": 0,
+            "[onclick]": 42,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 782
+          },
+          "rejectReasonCounts": {
+            "TITLE_EMPTY": 10
+          },
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 21",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=529011",
+              "onclick": "goBoardArticle('529011'); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t231\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=529011\" onclick=\"goBoardArticle('529011'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t남구체육회 생활체육지도자 공개경쟁 채용 안내\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">체육지원과</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-08-03</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000256538&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000256538','0');return false;\" onkeypress=\"\" title=\"남구체육회 생활체육지도자 채용공고.hwpx 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_etc.gif\" alt=\"기타파일\">\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">21</td>\r\n\t\t\t\t     </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 1,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 505",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=525293",
+              "onclick": "goBoardArticle('525293'); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t230\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=525293\" onclick=\"goBoardArticle('525293'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-07-06</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000254755&amp;fileSn=1\" onclick=\"fn_egov_downFile('FILE_000000000254755','1');return false;\" onkeypress=\"\" title=\"2026년 제5회 기간제근로자 공개 채용 공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000254755&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000254755','0');return false;\" onkeypress=\"\" title=\"채용응시원서 및 자기소개서.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">505</td>\r\n\t\t\t\t     </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 2,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "229 2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고 울산광역시남구도시관리공단 2026-06-22 403",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=524281",
+              "onclick": "goBoardArticle('524281'); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t229\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=524281\" onclick=\"goBoardArticle('524281'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-06-22</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000254038&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000254038','0');return false;\" onkeypress=\"\" title=\"2026년 여름방학 성수기 대학생 청년인턴 채용 공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">403</td>\r\n\t\t\t\t     </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 3,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "228 2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고 고래문화재단 2026-06-11 364",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=523385",
+              "onclick": "goBoardArticle('523385'); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t228\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=523385\" onclick=\"goBoardArticle('523385'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">고래문화재단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-06-11</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000253514&amp;fileSn=2\" onclick=\"fn_egov_downFile('FILE_000000000253514','2');return false;\" onkeypress=\"\" title=\"1. 공고문.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000253514&amp;fileSn=1\" onclick=\"fn_egov_downFile('FILE_000000000253514','1');return false;\" onkeypress=\"\" title=\"2. 응시원서.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000253514&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000253514','0');return false;\" onkeypress=\"\" title=\"3. 채용 이의신청서.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">364</td>\r\n\t\t\t\t     </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 4,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 711",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=523070",
+              "onclick": "goBoardArticle('523070'); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t227\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=523070\" onclick=\"goBoardArticle('523070'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-06-07</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000253319&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000253319','0');return false;\" onkeypress=\"\" title=\"2026년 제2회 울산광역시남구도시관리공단 일반직， 무기계약직 채용 공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">711</td>\r\n\t\t\t\t     </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 5,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "226 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고 울산광역시남구도시관리공단 2026-05-20 523",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=520747",
+              "onclick": "goBoardArticle('520747'); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t226\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=520747\" onclick=\"goBoardArticle('520747'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-05-20</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000252462&amp;fileSn=1\" onclick=\"fn_egov_downFile('FILE_000000000252462','1');return false;\" onkeypress=\"\" title=\"채용응시원서 및 자기소개서.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000252462&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000252462','0');return false;\" onkeypress=\"\" title=\"2026년울산광역시남구도시관리공단제4회기간제근로자채용 재공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">523</td>\r\n\t\t\t\t     </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 6,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "225 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-05-12 403",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=520190",
+              "onclick": "goBoardArticle('520190'); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t225\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=520190\" onclick=\"goBoardArticle('520190'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-05-12</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000252040&amp;fileSn=1\" onclick=\"fn_egov_downFile('FILE_000000000252040','1');return false;\" onkeypress=\"\" title=\"2026년울산광역시남구도시관리공단제4회기간제근로자채용공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000252040&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000252040','0');return false;\" onkeypress=\"\" title=\"채용응시원서 및 자기소개서.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">403</td>\r\n\t\t\t\t     </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 7,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "224 2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고 울산광역시남구도시관리공단 2026-04-13 717",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=518116",
+              "onclick": "goBoardArticle('518116'); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t224\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=518116\" onclick=\"goBoardArticle('518116'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-04-13</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000250439&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000250439','0');return false;\" onkeypress=\"\" title=\"2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">717</td>\r\n\t\t\t\t     </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 8,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "223 2026년 제1회 울산광역시남구도시관리공단 일반직 직원 채용 재공고 울산광역시남구도시관리공단 2026-04-06 644",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=517639",
+              "onclick": "goBoardArticle('517639'); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t223\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=517639\" onclick=\"goBoardArticle('517639'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제1회 울산광역시남구도시관리공단 일반직 직원 채용 재공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-04-06</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000250079&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000250079','0');return false;\" onkeypress=\"\" title=\"2026년 울산광역시남구도시관리공단 제1회 일반직 채용 재공고 공고문.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">644</td>\r\n\t\t\t\t     </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 9,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "222 2026년 고래문화재단 기간제 근로자 채용 공고 고래문화재단 2026-04-06 407",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=517613",
+              "onclick": "goBoardArticle('517613'); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t222\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=517613\" onclick=\"goBoardArticle('517613'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 고래문화재단 기간제 근로자 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">고래문화재단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-04-06</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000250070&amp;fileSn=2\" onclick=\"fn_egov_downFile('FILE_000000000250070','2');return false;\" onkeypress=\"\" title=\"1. 공고문.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000250070&amp;fileSn=1\" onclick=\"fn_egov_downFile('FILE_000000000250070','1');return false;\" onkeypress=\"\" title=\"2. 응시원서.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000250070&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000250070','0');return false;\" onkeypress=\"\" title=\"3. 채용 이의신청서.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">407</td>\r\n\t\t\t\t     </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            }
+          ]
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산광역시 타기관소식",
+          "url": "https://job.alio.go.kr/",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "sourceHtmlLength": 515,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "울산광역시 타기관소식",
+          "htmlPath": "data/diagnostics/울산광역시_타기관소식/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/울산광역시_타기관소식/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/울산광역시_타기관소식/list/page-1-rows.txt",
+          "url": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000"
+        },
+        {
+          "org": "울산광역시 타기관소식",
+          "htmlPath": "data/diagnostics/울산광역시_타기관소식/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/울산광역시_타기관소식/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/울산광역시_타기관소식/list/page-2-rows.txt",
+          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2"
+        },
+        {
+          "org": "울산광역시 타기관소식",
+          "htmlPath": "data/diagnostics/울산광역시_타기관소식/list/page-3-raw.html",
+          "diagnosisPath": "data/diagnostics/울산광역시_타기관소식/list/page-3-root-cause.json",
+          "rowsPath": "data/diagnostics/울산광역시_타기관소식/list/page-3-rows.txt",
+          "url": "https://job.alio.go.kr/"
+        }
+      ],
+      "samples": [
+        {
+          "title": "(부산광역시) 위해축산물 긴급회수문 게재",
+          "link": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+          "adapter": "울산광역시 타기관소식:board-row"
+        },
+        {
+          "title": "울산시설공단 임원 공개모집 공고",
+          "link": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+          "adapter": "울산광역시 타기관소식:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고",
+          "link": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182846",
+          "adapter": "울산광역시 타기관소식:board-row"
+        },
+        {
+          "title": "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+          "link": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182830",
+          "adapter": "울산광역시 타기관소식:board-row"
+        },
+        {
+          "title": "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+          "link": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182795",
+          "adapter": "울산광역시 타기관소식:board-row"
+        },
+        {
+          "title": "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+          "link": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182720",
+          "adapter": "울산광역시 타기관소식:board-row"
+        },
+        {
+          "title": "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+          "link": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182640",
+          "adapter": "울산광역시 타기관소식:board-row"
+        },
+        {
+          "title": "울산광역시체육회 기간제근로자(장애인) 채용 공고",
+          "link": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182613",
+          "adapter": "울산광역시 타기관소식:board-row"
+        },
+        {
+          "title": "(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고",
+          "link": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182595",
+          "adapter": "울산광역시 타기관소식:board-row"
+        },
+        {
+          "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "link": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182578",
+          "adapter": "울산광역시 타기관소식:board-row"
+        }
+      ],
+      "errors": [],
+      "selectedRootCause": {
+        "version": "1.1-passive",
+        "mode": "passive",
+        "org": "울산광역시 타기관소식",
+        "url": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+        "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+        "counts": {
+          "visiblePostCount": 10,
+          "candidateCount": 10,
+          "rawTableRows": 10,
+          "sourceHtmlLength": 144136,
+          "missingRows": 0,
+          "extraCandidates": 0
+        },
+        "selectorCounts": {
+          "table tbody tr": 1,
+          "tr": 11,
+          "li": 688,
+          "article": 0,
+          "[onclick]": 31,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 795
+        },
+        "rejectReasonCounts": {},
+        "visibleTitles": [
+          "(부산광역시) 위해축산물 긴급회수문 게재",
+          "울산시설공단 임원 공개모집 공고",
+          "울산테크노파크 직원(청년인턴) 채용 공고",
+          "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+          "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+          "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+          "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+          "울산광역시체육회 기간제근로자(장애인) 채용 공고",
+          "(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
+        ],
+        "extractedTitles": [
+          "(부산광역시) 위해축산물 긴급회수문 게재",
+          "울산시설공단 임원 공개모집 공고",
+          "울산테크노파크 직원(청년인턴) 채용 공고",
+          "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+          "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+          "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+          "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+          "울산광역시체육회 기간제근로자(장애인) 채용 공고",
+          "(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
+        ],
+        "missingRows": [],
+        "extraCandidates": [],
+        "rowTrace": [
+          {
+            "index": 0,
+            "title": "(부산광역시) 위해축산물 긴급회수문 게재",
+            "normalizedTitle": "부산광역시 위해축산물 긴급회수문 게재",
+            "text": "2366 (부산광역시) 위해축산물 긴급회수문 게재 2026.08.05 25",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182862",
+            "onclick": "fn_view('182862');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2366</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182862\" onclick=\"fn_view('182862');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t(부산광역시) 위해축산물 긴급회수문 게재</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.08.05</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">25</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+            "adapter": "울산광역시 타기관소식:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 1,
+            "title": "울산시설공단 임원 공개모집 공고",
+            "normalizedTitle": "울산시설공단 임원 공개모집 공고",
+            "text": "2365 울산시설공단 임원 공개모집 공고 2026.08.05 37",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182860",
+            "onclick": "fn_view('182860');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2365</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182860\" onclick=\"fn_view('182860');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산시설공단 임원 공개모집 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.08.05</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">37</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+            "adapter": "울산광역시 타기관소식:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 2,
+            "title": "울산테크노파크 직원(청년인턴) 채용 공고",
+            "normalizedTitle": "울산테크노파크 직원 청년인턴 채용 공고",
+            "text": "2364 울산테크노파크 직원(청년인턴) 채용 공고 2026.08.04 19",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182846",
+            "onclick": "fn_view('182846');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2364</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182846\" onclick=\"fn_view('182846');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산테크노파크  직원(청년인턴) 채용 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.08.04</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">19</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182846",
+            "adapter": "울산광역시 타기관소식:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 3,
+            "title": "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+            "normalizedTitle": "대통령 직속 빛의 위원회 빛의 혁명 기록물 수집",
+            "text": "2363 대통령 직속 빛의 위원회《빛의 혁명》기록물 수집 2026.08.04 14",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182830",
+            "onclick": "fn_view('182830');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2363</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182830\" onclick=\"fn_view('182830');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t대통령 직속 빛의 위원회《빛의 혁명》기록물 수집</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.08.04</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">14</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182830",
+            "adapter": "울산광역시 타기관소식:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 4,
+            "title": "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+            "normalizedTitle": "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
+            "text": "2362 울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용 2026.08.03 19",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182795",
+            "onclick": "fn_view('182795');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2362</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182795\" onclick=\"fn_view('182795');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용 </a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.08.03</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">19</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182795",
+            "adapter": "울산광역시 타기관소식:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 5,
+            "title": "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+            "normalizedTitle": "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
+            "text": "2361 울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고 2026.07.30 137",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182720",
+            "onclick": "fn_view('182720');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2361</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182720\" onclick=\"fn_view('182720');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.07.30</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">137</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182720",
+            "adapter": "울산광역시 타기관소식:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 6,
+            "title": "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+            "normalizedTitle": "2026년 ai디지털튜터 양성 교육 하반기 교육생 모집 안내",
+            "text": "2360 2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내 2026.07.28 100",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182640",
+            "onclick": "fn_view('182640');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2360</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182640\" onclick=\"fn_view('182640');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.07.28</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">100</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182640",
+            "adapter": "울산광역시 타기관소식:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 7,
+            "title": "울산광역시체육회 기간제근로자(장애인) 채용 공고",
+            "normalizedTitle": "울산광역시체육회 기간제근로자 장애인 채용 공고",
+            "text": "2359 울산광역시체육회 기간제근로자(장애인) 채용 공고 2026.07.27 82",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182613",
+            "onclick": "fn_view('182613');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2359</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182613\" onclick=\"fn_view('182613');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산광역시체육회 기간제근로자(장애인) 채용 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.07.27</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">82</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182613",
+            "adapter": "울산광역시 타기관소식:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 8,
+            "title": "(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고",
+            "normalizedTitle": "울산신용보증재단 울산신용보증재단 이사장 공개모집 재공고",
+            "text": "2358 (울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고 2026.07.24 43",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182595",
+            "onclick": "fn_view('182595');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2358</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182595\" onclick=\"fn_view('182595');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.07.24</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">43</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182595",
+            "adapter": "울산광역시 타기관소식:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 9,
+            "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "normalizedTitle": "울산광역시 사회서비스지원단 시설장 기간제 채용 공고",
+            "text": "2357 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.23 102",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182578",
+            "onclick": "fn_view('182578');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">2357</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182578\" onclick=\"fn_view('182578');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t울산광역시 사회서비스지원단 시설장(기간제) 채용 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026.07.23</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">102</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182578",
+            "adapter": "울산광역시 타기관소식:board-row",
+            "rejectionReason": ""
+          }
+        ]
+      }
+    },
+    "detail": {
+      "ok": false,
+      "attempted": 2,
+      "validated": 0,
+      "samples": [
+        {
+          "title": "(부산광역시) 위해축산물 긴급회수문 게재",
+          "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+          "ok": false,
+          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "fetch failed"
+        },
+        {
+          "title": "울산시설공단 임원 공개모집 공고",
+          "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+          "ok": false,
+          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    "attachment": {
+      "ok": false,
+      "discovered": 0,
+      "samples": []
+    }
+  }
+}

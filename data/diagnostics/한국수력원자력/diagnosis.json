@@ -1,0 +1,1123 @@
+{
+  "org": "한국수력원자력",
+  "health": "degraded",
+  "primaryCause": {
+    "stage": "list",
+    "status": "failed",
+    "code": "LIST_COUNTER_FAILED",
+    "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+    "evidence": [
+      {
+        "url": "https://www.khnp.co.kr/recruit/",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 0,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [],
+        "candidateCount": 0,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
+      },
+      {
+        "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+        "anchors": 58,
+        "titleMatches": 30,
+        "noUrl": 6,
+        "unsafeUrl": 14,
+        "accepted": 10,
+        "rowFallbackAccepted": 0,
+        "visiblePostCount": null,
+        "candidateCount": 10,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
+      }
+    ],
+    "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
+    "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+  },
+  "diagnosis": {
+    "http": {
+      "status": "success",
+      "code": "HTTP_OK",
+      "reason": "2개 후보 URL HTTP 응답 성공",
+      "evidence": [
+        {
+          "url": "https://www.khnp.co.kr/recruit/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.khnp.co.kr/recruit/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 2,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "",
+            "orgMatched": false,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "textLength": 0,
+            "requestedUrl": "https://www.khnp.co.kr/recruit/",
+            "finalUrl": "https://www.khnp.co.kr/recruit/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "잡알리오",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*정보",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "textLength": 1854,
+            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        }
+      ]
+    },
+    "recruitVerify": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "잡알리오",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*정보",
+          "recruit(?:ment)?"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 3,
+        "boardType": {
+          "type": "JOB_ALIO",
+          "confidence": "high",
+          "evidence": [
+            "JOB-ALIO URL/본문 신호"
+          ]
+        },
+        "textLength": 1854,
+        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+        "status": 200,
+        "contentType": "text/html;charset=UTF-8"
+      }
+    },
+    "list": {
+      "status": "failed",
+      "code": "LIST_COUNTER_FAILED",
+      "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+      "evidence": [
+        {
+          "url": "https://www.khnp.co.kr/recruit/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+          "anchors": 58,
+          "titleMatches": 30,
+          "noUrl": 6,
+          "unsafeUrl": 14,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "visiblePostCount": null,
+          "candidateCount": 10,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ]
+    },
+    "detail": {
+      "status": "blocked",
+      "code": "DETAIL_BLOCKED_BY_LIST",
+      "reason": "목록 단계 미통과로 상세 진단 보류",
+      "evidence": []
+    },
+    "attachment": {
+      "status": "success",
+      "code": "ATTACHMENT_FOUND",
+      "reason": "검증 표본에서 첨부 링크 8개 발견",
+      "evidence": [
+        {
+          "name": "2026년도 제7차 경력사원(전문계약직) 모집공고.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064248"
+        },
+        {
+          "name": "2026년도 제7차 경력사원(전문계약직) 입사지원서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064249"
+        },
+        {
+          "name": "2026년도 제7차 경력사원(전문계약직) 직무명세서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064250"
+        },
+        {
+          "name": "2026년도 제7차 경력사원(전문계약직) 자기소개서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064251"
+        },
+        {
+          "name": "2026년도 제6차 경력사원(전문원·경력직원) 모집공고.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064244"
+        },
+        {
+          "name": "2026년도 제6차 경력사원(전문원·경력직원) 입사지원서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064245"
+        },
+        {
+          "name": "2026년도 제6차 경력사원(전문원·경력직원) 직무명세서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064246"
+        },
+        {
+          "name": "2026년도 제6차 경력사원(전문원·경력직원) 자기소개서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064247"
+        }
+      ]
+    },
+    "access": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "잡알리오",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*정보",
+          "recruit(?:ment)?"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 3,
+        "boardType": {
+          "type": "JOB_ALIO",
+          "confidence": "high",
+          "evidence": [
+            "JOB-ALIO URL/본문 신호"
+          ]
+        },
+        "textLength": 1854,
+        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+        "status": 200,
+        "contentType": "text/html;charset=UTF-8"
+      }
+    }
+  },
+  "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
+  "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정",
+  "stages": {
+    "access": {
+      "ok": true,
+      "httpOk": true,
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+      "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+      "activeRecruitUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+      "status": 200,
+      "contentType": "text/html;charset=UTF-8",
+      "attempts": [
+        {
+          "url": "https://www.khnp.co.kr/recruit/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.khnp.co.kr/recruit/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 2,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "",
+            "orgMatched": false,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "textLength": 0,
+            "requestedUrl": "https://www.khnp.co.kr/recruit/",
+            "finalUrl": "https://www.khnp.co.kr/recruit/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "잡알리오",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*정보",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "textLength": 1854,
+            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "잡알리오",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*정보",
+          "recruit(?:ment)?"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 3,
+        "boardType": {
+          "type": "JOB_ALIO",
+          "confidence": "high",
+          "evidence": [
+            "JOB-ALIO URL/본문 신호"
+          ]
+        },
+        "textLength": 1854,
+        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+        "status": 200,
+        "contentType": "text/html;charset=UTF-8"
+      },
+      "boardType": {
+        "type": "JOB_ALIO",
+        "confidence": "high",
+        "evidence": [
+          "JOB-ALIO URL/본문 신호"
+        ]
+      },
+      "diagnosis": {
+        "ok": true,
+        "code": "RECRUIT_VERIFY_FALLBACK_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+        "http": {
+          "ok": true,
+          "code": "HTTP_OK",
+          "reason": "2개 후보 URL HTTP 응답 성공",
+          "attempts": [
+            {
+              "url": "https://www.khnp.co.kr/recruit/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.khnp.co.kr/recruit/",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 2,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": false
+                },
+                "title": "",
+                "orgMatched": false,
+                "positiveHits": 1,
+                "positiveMatches": [
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "UNKNOWN",
+                  "confidence": "low",
+                  "evidence": [
+                    "명확한 게시판 구조 신호 없음"
+                  ]
+                },
+                "textLength": 0,
+                "requestedUrl": "https://www.khnp.co.kr/recruit/",
+                "finalUrl": "https://www.khnp.co.kr/recruit/",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              }
+            },
+            {
+              "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "잡알리오",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*정보",
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 3,
+                "boardType": {
+                  "type": "JOB_ALIO",
+                  "confidence": "high",
+                  "evidence": [
+                    "JOB-ALIO URL/본문 신호"
+                  ]
+                },
+                "textLength": 1854,
+                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              }
+            }
+          ]
+        },
+        "recruitVerify": {
+          "ok": true,
+          "code": "RECRUIT_VERIFY_FALLBACK_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "boardType": {
+            "type": "JOB_ALIO",
+            "confidence": "high",
+            "evidence": [
+              "JOB-ALIO URL/본문 신호"
+            ]
+          },
+          "evidence": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "잡알리오",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*정보",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "textLength": 1854,
+            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        },
+        "activeRecruitUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+        "selectedRequestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+        "verification": {
+          "ok": true,
+          "verified": true,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": true,
+            "meaningfulBody": true
+          },
+          "title": "잡알리오",
+          "orgMatched": true,
+          "positiveHits": 2,
+          "positiveMatches": [
+            "채용\\s*정보",
+            "recruit(?:ment)?"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 3,
+          "boardType": {
+            "type": "JOB_ALIO",
+            "confidence": "high",
+            "evidence": [
+              "JOB-ALIO URL/본문 신호"
+            ]
+          },
+          "textLength": 1854,
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+          "status": 200,
+          "contentType": "text/html;charset=UTF-8"
+        }
+      }
+    },
+    "list": {
+      "ok": false,
+      "status": "count-unavailable-or-empty",
+      "pagesChecked": 2,
+      "visiblePostCount": null,
+      "candidateCount": 10,
+      "missingCount": null,
+      "extraCount": null,
+      "exactMatch": false,
+      "selectedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+      "detailUrlReady": 10,
+      "listOnlyCount": 0,
+      "extractionDiagnostics": [
+        {
+          "url": "https://www.khnp.co.kr/recruit/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+          "anchors": 58,
+          "titleMatches": 30,
+          "noUrl": 6,
+          "unsafeUrl": 14,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "visiblePostCount": null,
+          "candidateCount": 10,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "한국수력원자력",
+          "url": "https://www.khnp.co.kr/recruit/",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "sourceHtmlLength": 190,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "한국수력원자력",
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 10,
+            "rawTableRows": 0,
+            "sourceHtmlLength": 55941,
+            "missingRows": 0,
+            "extraCandidates": 10
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 125,
+            "article": 0,
+            "[onclick]": 9,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 58
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [
+            "한국수력원자력(주) 2026년도 제7차 경력사원(전문계약직) 선발 전남광주 / 비정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+            "한국수력원자력(주) 2026년도 제6차 경력사원(전문원, 경력직원) 선발 경기 외 3 / 정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+            "한국수력원자력(주) 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 부산 외 8 / 정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+            "한국수력원자력(주) 2026년 제2차 체코원전사업처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+            "한국수력원자력(주) 2026년도 제3차 신입사원(대졸수준) 선발 부산 외 8 / 정규직 / 2026.07.22 ~ 26.08.06 / 마감",
+            "한국수력원자력(주) 2026년도 엘다바건설소 기간제근로자(러시아어 통·번역사) 채용 해외 / 비정규직 / 2026.07.15 ~ 26.07.30 / 마감",
+            "한국수력원자력(주) 2026년도 제2차 신입사원(청원경찰) 선발 울산 외 2 / 정규직 / 2026.06.30 ~ 26.07.15 / 마감",
+            "한국수력원자력(주) 2026년도 제5차 경력사원(한울본부 청경대장) 선발 경북 / 정규직 / 2026.06.29 ~ 26.07.14 / 마감",
+            "한국수력원자력(주) 2026년도 제4차 경력사원(전문계약직) 선발 울산 외 1 / 비정규직 / 2026.06.23 ~ 26.07.08 / 마감",
+            "한국수력원자력(주) 2026년 제2차 해외원전건설처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감"
+          ],
+          "missingRows": [],
+          "extraCandidates": [
+            {
+              "org": "한국수력원자력",
+              "title": "한국수력원자력(주) 2026년도 제7차 경력사원(전문계약직) 선발 전남광주 / 비정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303141",
+              "listText": "h();\"> 진행상태 진행중 마감 한국수력원자력(주) 2026년도 제7차 경력사원(전문계약직) 선발 전남광주 / 비정규직 / 2026.07.28 ~ 26.08.12 / 진행중 한국수력원자력(주) 2026년도 제6차 경력사원(전문원, 경력직원) 선발 경기 외 3 / 정규직 / 2026.07.28 ~ 26.08.12 / 진행중 <a href=\"/mobile2021/recruit/recruitView.do?id",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "한국수력원자력(주) 2026년도 제6차 경력사원(전문원, 경력직원) 선발 경기 외 3 / 정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303140",
+              "listText": "비정규직 / 2026.07.28 ~ 26.08.12 / 진행중 한국수력원자력(주) 2026년도 제6차 경력사원(전문원, 경력직원) 선발 경기 외 3 / 정규직 / 2026.07.28 ~ 26.08.12 / 진행중 한국수력원자력(주) 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 부산 외 8 / 정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "한국수력원자력(주) 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 부산 외 8 / 정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302994",
+              "listText": "정규직 / 2026.07.28 ~ 26.08.12 / 진행중 한국수력원자력(주) 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 부산 외 8 / 정규직 / 2026.07.23 ~ 26.08.07 / 진행중 한국수력원자력(주) 2026년 제2차 체코원전사업처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.07.23 ~ 26.08.07 / 진행중 한국수력원자력(주) 2026년도 제3차 신입사원(대졸수준) 선발</d",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "한국수력원자력(주) 2026년 제2차 체코원전사업처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302977",
+              "listText": "정규직 / 2026.07.23 ~ 26.08.07 / 진행중 한국수력원자력(주) 2026년 제2차 체코원전사업처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.07.23 ~ 26.08.07 / 진행중 한국수력원자력(주) 2026년도 제3차 신입사원(대졸수준) 선발 부산 외 8 / 정규직 / 2026.07.22 ~ 26.08.06 / 마감",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "한국수력원자력(주) 2026년도 제3차 신입사원(대졸수준) 선발 부산 외 8 / 정규직 / 2026.07.22 ~ 26.08.06 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302968",
+              "listText": "비정규직 / 2026.07.23 ~ 26.08.07 / 진행중 한국수력원자력(주) 2026년도 제3차 신입사원(대졸수준) 선발 부산 외 8 / 정규직 / 2026.07.22 ~ 26.08.06 / 마감 한국수력원자력(주) 2026년도 엘다바건설소 기간제근로자(러시아어 통·번역사) 채용 해외 / 비정규직 / 2026.07.15 ~ 26.07.30 / 마감 한국수력원자력(주) 2026년도 제2차 신입사원(청원경찰) 선발</d",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "한국수력원자력(주) 2026년도 엘다바건설소 기간제근로자(러시아어 통·번역사) 채용 해외 / 비정규직 / 2026.07.15 ~ 26.07.30 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302701",
+              "listText": "정규직 / 2026.07.22 ~ 26.08.06 / 마감 한국수력원자력(주) 2026년도 엘다바건설소 기간제근로자(러시아어 통·번역사) 채용 해외 / 비정규직 / 2026.07.15 ~ 26.07.30 / 마감 한국수력원자력(주) 2026년도 제2차 신입사원(청원경찰) 선발 울산 외 2 / 정규직 / 2026.06.30 ~ 26.07.15 / 마감 <div class=\"w",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "한국수력원자력(주) 2026년도 제2차 신입사원(청원경찰) 선발 울산 외 2 / 정규직 / 2026.06.30 ~ 26.07.15 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302128",
+              "listText": "비정규직 / 2026.07.15 ~ 26.07.30 / 마감 한국수력원자력(주) 2026년도 제2차 신입사원(청원경찰) 선발 울산 외 2 / 정규직 / 2026.06.30 ~ 26.07.15 / 마감 한국수력원자력(주) 2026년도 제5차 경력사원(한울본부 청경대장) 선발 경북 / 정규직 / 2026.06.29 ~ 26.07.14 / 마감 한국수력원자력(주) 2026년도 제4차 경력사원(전문계약직) 선발",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "한국수력원자력(주) 2026년도 제5차 경력사원(한울본부 청경대장) 선발 경북 / 정규직 / 2026.06.29 ~ 26.07.14 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302089",
+              "listText": "정규직 / 2026.06.30 ~ 26.07.15 / 마감 한국수력원자력(주) 2026년도 제5차 경력사원(한울본부 청경대장) 선발 경북 / 정규직 / 2026.06.29 ~ 26.07.14 / 마감 한국수력원자력(주) 2026년도 제4차 경력사원(전문계약직) 선발 울산 외 1 / 비정규직 / 2026.06.23 ~ 26.07.08 / 마감 한국수력원자력(주)",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "한국수력원자력(주) 2026년도 제4차 경력사원(전문계약직) 선발 울산 외 1 / 비정규직 / 2026.06.23 ~ 26.07.08 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301938",
+              "listText": "정규직 / 2026.06.29 ~ 26.07.14 / 마감 한국수력원자력(주) 2026년도 제4차 경력사원(전문계약직) 선발 울산 외 1 / 비정규직 / 2026.06.23 ~ 26.07.08 / 마감 한국수력원자력(주) 2026년 제2차 해외원전건설처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감 <img src=\"/jobalio/img/btn_page_prev_end.png\" alt=\"처음페이지",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "한국수력원자력(주) 2026년 제2차 해외원전건설처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301118",
+              "listText": "비정규직 / 2026.06.23 ~ 26.07.08 / 마감 한국수력원자력(주) 2026년 제2차 해외원전건설처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감 1 2 3 저작권정책 &emsp; 이메일무단수집거부",
+              "sourceType": "ALIO"
+            }
+          ],
+          "rowTrace": []
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "한국수력원자력",
+          "htmlPath": "data/diagnostics/한국수력원자력/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/한국수력원자력/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/한국수력원자력/list/page-1-rows.txt",
+          "url": "https://www.khnp.co.kr/recruit/"
+        },
+        {
+          "org": "한국수력원자력",
+          "htmlPath": "data/diagnostics/한국수력원자력/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/한국수력원자력/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/한국수력원자력/list/page-2-rows.txt",
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y"
+        }
+      ],
+      "samples": [
+        {
+          "title": "한국수력원자력(주) 2026년도 제7차 경력사원(전문계약직) 선발 전남광주 / 비정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303141",
+          "adapter": ""
+        },
+        {
+          "title": "한국수력원자력(주) 2026년도 제6차 경력사원(전문원, 경력직원) 선발 경기 외 3 / 정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303140",
+          "adapter": ""
+        },
+        {
+          "title": "한국수력원자력(주) 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 부산 외 8 / 정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302994",
+          "adapter": ""
+        },
+        {
+          "title": "한국수력원자력(주) 2026년 제2차 체코원전사업처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302977",
+          "adapter": ""
+        },
+        {
+          "title": "한국수력원자력(주) 2026년도 제3차 신입사원(대졸수준) 선발 부산 외 8 / 정규직 / 2026.07.22 ~ 26.08.06 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302968",
+          "adapter": ""
+        },
+        {
+          "title": "한국수력원자력(주) 2026년도 엘다바건설소 기간제근로자(러시아어 통·번역사) 채용 해외 / 비정규직 / 2026.07.15 ~ 26.07.30 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302701",
+          "adapter": ""
+        },
+        {
+          "title": "한국수력원자력(주) 2026년도 제2차 신입사원(청원경찰) 선발 울산 외 2 / 정규직 / 2026.06.30 ~ 26.07.15 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302128",
+          "adapter": ""
+        },
+        {
+          "title": "한국수력원자력(주) 2026년도 제5차 경력사원(한울본부 청경대장) 선발 경북 / 정규직 / 2026.06.29 ~ 26.07.14 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302089",
+          "adapter": ""
+        },
+        {
+          "title": "한국수력원자력(주) 2026년도 제4차 경력사원(전문계약직) 선발 울산 외 1 / 비정규직 / 2026.06.23 ~ 26.07.08 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301938",
+          "adapter": ""
+        },
+        {
+          "title": "한국수력원자력(주) 2026년 제2차 해외원전건설처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301118",
+          "adapter": ""
+        }
+      ],
+      "errors": [],
+      "selectedRootCause": {
+        "version": "1.1-passive",
+        "mode": "passive",
+        "org": "한국수력원자력",
+        "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
+        "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+        "counts": {
+          "visiblePostCount": null,
+          "candidateCount": 10,
+          "rawTableRows": 0,
+          "sourceHtmlLength": 55941,
+          "missingRows": 0,
+          "extraCandidates": 10
+        },
+        "selectorCounts": {
+          "table tbody tr": 0,
+          "tr": 0,
+          "li": 125,
+          "article": 0,
+          "[onclick]": 9,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 58
+        },
+        "rejectReasonCounts": {},
+        "visibleTitles": [],
+        "extractedTitles": [
+          "한국수력원자력(주) 2026년도 제7차 경력사원(전문계약직) 선발 전남광주 / 비정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+          "한국수력원자력(주) 2026년도 제6차 경력사원(전문원, 경력직원) 선발 경기 외 3 / 정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+          "한국수력원자력(주) 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 부산 외 8 / 정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+          "한국수력원자력(주) 2026년 제2차 체코원전사업처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+          "한국수력원자력(주) 2026년도 제3차 신입사원(대졸수준) 선발 부산 외 8 / 정규직 / 2026.07.22 ~ 26.08.06 / 마감",
+          "한국수력원자력(주) 2026년도 엘다바건설소 기간제근로자(러시아어 통·번역사) 채용 해외 / 비정규직 / 2026.07.15 ~ 26.07.30 / 마감",
+          "한국수력원자력(주) 2026년도 제2차 신입사원(청원경찰) 선발 울산 외 2 / 정규직 / 2026.06.30 ~ 26.07.15 / 마감",
+          "한국수력원자력(주) 2026년도 제5차 경력사원(한울본부 청경대장) 선발 경북 / 정규직 / 2026.06.29 ~ 26.07.14 / 마감",
+          "한국수력원자력(주) 2026년도 제4차 경력사원(전문계약직) 선발 울산 외 1 / 비정규직 / 2026.06.23 ~ 26.07.08 / 마감",
+          "한국수력원자력(주) 2026년 제2차 해외원전건설처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감"
+        ],
+        "missingRows": [],
+        "extraCandidates": [
+          {
+            "org": "한국수력원자력",
+            "title": "한국수력원자력(주) 2026년도 제7차 경력사원(전문계약직) 선발 전남광주 / 비정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303141",
+            "listText": "h();\"> 진행상태 진행중 마감 한국수력원자력(주) 2026년도 제7차 경력사원(전문계약직) 선발 전남광주 / 비정규직 / 2026.07.28 ~ 26.08.12 / 진행중 한국수력원자력(주) 2026년도 제6차 경력사원(전문원, 경력직원) 선발 경기 외 3 / 정규직 / 2026.07.28 ~ 26.08.12 / 진행중 <a href=\"/mobile2021/recruit/recruitView.do?id",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "한국수력원자력(주) 2026년도 제6차 경력사원(전문원, 경력직원) 선발 경기 외 3 / 정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303140",
+            "listText": "비정규직 / 2026.07.28 ~ 26.08.12 / 진행중 한국수력원자력(주) 2026년도 제6차 경력사원(전문원, 경력직원) 선발 경기 외 3 / 정규직 / 2026.07.28 ~ 26.08.12 / 진행중 한국수력원자력(주) 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 부산 외 8 / 정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "한국수력원자력(주) 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 부산 외 8 / 정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302994",
+            "listText": "정규직 / 2026.07.28 ~ 26.08.12 / 진행중 한국수력원자력(주) 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 부산 외 8 / 정규직 / 2026.07.23 ~ 26.08.07 / 진행중 한국수력원자력(주) 2026년 제2차 체코원전사업처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.07.23 ~ 26.08.07 / 진행중 한국수력원자력(주) 2026년도 제3차 신입사원(대졸수준) 선발</d",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "한국수력원자력(주) 2026년 제2차 체코원전사업처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.07.23 ~ 26.08.07 / 진행중",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302977",
+            "listText": "정규직 / 2026.07.23 ~ 26.08.07 / 진행중 한국수력원자력(주) 2026년 제2차 체코원전사업처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.07.23 ~ 26.08.07 / 진행중 한국수력원자력(주) 2026년도 제3차 신입사원(대졸수준) 선발 부산 외 8 / 정규직 / 2026.07.22 ~ 26.08.06 / 마감",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "한국수력원자력(주) 2026년도 제3차 신입사원(대졸수준) 선발 부산 외 8 / 정규직 / 2026.07.22 ~ 26.08.06 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302968",
+            "listText": "비정규직 / 2026.07.23 ~ 26.08.07 / 진행중 한국수력원자력(주) 2026년도 제3차 신입사원(대졸수준) 선발 부산 외 8 / 정규직 / 2026.07.22 ~ 26.08.06 / 마감 한국수력원자력(주) 2026년도 엘다바건설소 기간제근로자(러시아어 통·번역사) 채용 해외 / 비정규직 / 2026.07.15 ~ 26.07.30 / 마감 한국수력원자력(주) 2026년도 제2차 신입사원(청원경찰) 선발</d",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "한국수력원자력(주) 2026년도 엘다바건설소 기간제근로자(러시아어 통·번역사) 채용 해외 / 비정규직 / 2026.07.15 ~ 26.07.30 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302701",
+            "listText": "정규직 / 2026.07.22 ~ 26.08.06 / 마감 한국수력원자력(주) 2026년도 엘다바건설소 기간제근로자(러시아어 통·번역사) 채용 해외 / 비정규직 / 2026.07.15 ~ 26.07.30 / 마감 한국수력원자력(주) 2026년도 제2차 신입사원(청원경찰) 선발 울산 외 2 / 정규직 / 2026.06.30 ~ 26.07.15 / 마감 <div class=\"w",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "한국수력원자력(주) 2026년도 제2차 신입사원(청원경찰) 선발 울산 외 2 / 정규직 / 2026.06.30 ~ 26.07.15 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302128",
+            "listText": "비정규직 / 2026.07.15 ~ 26.07.30 / 마감 한국수력원자력(주) 2026년도 제2차 신입사원(청원경찰) 선발 울산 외 2 / 정규직 / 2026.06.30 ~ 26.07.15 / 마감 한국수력원자력(주) 2026년도 제5차 경력사원(한울본부 청경대장) 선발 경북 / 정규직 / 2026.06.29 ~ 26.07.14 / 마감 한국수력원자력(주) 2026년도 제4차 경력사원(전문계약직) 선발",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "한국수력원자력(주) 2026년도 제5차 경력사원(한울본부 청경대장) 선발 경북 / 정규직 / 2026.06.29 ~ 26.07.14 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302089",
+            "listText": "정규직 / 2026.06.30 ~ 26.07.15 / 마감 한국수력원자력(주) 2026년도 제5차 경력사원(한울본부 청경대장) 선발 경북 / 정규직 / 2026.06.29 ~ 26.07.14 / 마감 한국수력원자력(주) 2026년도 제4차 경력사원(전문계약직) 선발 울산 외 1 / 비정규직 / 2026.06.23 ~ 26.07.08 / 마감 한국수력원자력(주)",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "한국수력원자력(주) 2026년도 제4차 경력사원(전문계약직) 선발 울산 외 1 / 비정규직 / 2026.06.23 ~ 26.07.08 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301938",
+            "listText": "정규직 / 2026.06.29 ~ 26.07.14 / 마감 한국수력원자력(주) 2026년도 제4차 경력사원(전문계약직) 선발 울산 외 1 / 비정규직 / 2026.06.23 ~ 26.07.08 / 마감 한국수력원자력(주) 2026년 제2차 해외원전건설처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감 <img src=\"/jobalio/img/btn_page_prev_end.png\" alt=\"처음페이지",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "한국수력원자력(주) 2026년 제2차 해외원전건설처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301118",
+            "listText": "비정규직 / 2026.06.23 ~ 26.07.08 / 마감 한국수력원자력(주) 2026년 제2차 해외원전건설처 기간제근로자(통·번역사) 채용 경북 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감 1 2 3 저작권정책 &emsp; 이메일무단수집거부",
+            "sourceType": "ALIO"
+          }
+        ],
+        "rowTrace": []
+      }
+    },
+    "detail": {
+      "ok": true,
+      "attempted": 2,
+      "validated": 2,
+      "samples": [
+        {
+          "title": "한국수력원자력(주) 2026년도 제7차 경력사원(전문계약직) 선발 전남광주 / 비정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303141",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303141",
+          "textLength": 2725,
+          "attachmentCount": 4,
+          "error": ""
+        },
+        {
+          "title": "한국수력원자력(주) 2026년도 제6차 경력사원(전문원, 경력직원) 선발 경기 외 3 / 정규직 / 2026.07.28 ~ 26.08.12 / 진행중",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303140",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303140",
+          "textLength": 3783,
+          "attachmentCount": 4,
+          "error": ""
+        }
+      ]
+    },
+    "attachment": {
+      "ok": true,
+      "discovered": 8,
+      "samples": [
+        {
+          "name": "2026년도 제7차 경력사원(전문계약직) 모집공고.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064248"
+        },
+        {
+          "name": "2026년도 제7차 경력사원(전문계약직) 입사지원서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064249"
+        },
+        {
+          "name": "2026년도 제7차 경력사원(전문계약직) 직무명세서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064250"
+        },
+        {
+          "name": "2026년도 제7차 경력사원(전문계약직) 자기소개서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064251"
+        },
+        {
+          "name": "2026년도 제6차 경력사원(전문원·경력직원) 모집공고.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064244"
+        },
+        {
+          "name": "2026년도 제6차 경력사원(전문원·경력직원) 입사지원서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064245"
+        },
+        {
+          "name": "2026년도 제6차 경력사원(전문원·경력직원) 직무명세서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064246"
+        },
+        {
+          "name": "2026년도 제6차 경력사원(전문원·경력직원) 자기소개서.pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064247"
+        }
+      ]
+    }
+  }
+}

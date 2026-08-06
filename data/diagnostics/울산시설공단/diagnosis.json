@@ -1,0 +1,2463 @@
+{
+  "org": "울산시설공단",
+  "health": "degraded",
+  "primaryCause": {
+    "stage": "detail",
+    "status": "failed",
+    "code": "DETAIL_EMPTY_BODY",
+    "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+    "evidence": [
+      {
+        "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+        "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+        "ok": false,
+        "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "detail body too short"
+      },
+      {
+        "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+        "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+        "ok": false,
+        "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "detail body too short"
+      }
+    ],
+    "repairTarget": "scripts/collectors/institutions/울산시설공단.mjs",
+    "recommendedAction": "기관 전용 상세 본문 선택자 추가"
+  },
+  "diagnosis": {
+    "http": {
+      "status": "success",
+      "code": "HTTP_OK",
+      "reason": "4개 후보 URL HTTP 응답 성공",
+      "evidence": [
+        {
+          "url": "https://www.uic.or.kr/notify/noti06.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.uic.or.kr/notify/noti06.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "정규직(개방형 직위) 공고 &gt; 채용알림 &gt; 채용/강습위탁 &gt; 알림마당 &gt; 울산시설공단",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "textLength": 4841,
+            "requestedUrl": "https://www.uic.or.kr/notify/noti06.do",
+            "finalUrl": "https://www.uic.or.kr/notify/noti06.do",
+            "status": 200,
+            "contentType": "text/html;charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uic.or.kr/notify/noti06.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uic.or.kr/notify/noti06.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "정규직(개방형 직위) 공고 &gt; 채용알림 &gt; 채용/강습위탁 &gt; 알림마당 &gt; 울산시설공단",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "textLength": 4841,
+            "requestedUrl": "https://uic.or.kr/notify/noti06.do",
+            "finalUrl": "https://uic.or.kr/notify/noti06.do",
+            "status": 200,
+            "contentType": "text/html;charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uic.or.kr/recruit/main/mainPage.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uic.or.kr/recruit/main/mainPage.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산시설공단 채용 홈페이지에 오신것을 환영합니다.",
+            "orgMatched": true,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "textLength": 1036,
+            "requestedUrl": "https://uic.or.kr/recruit/main/mainPage.do",
+            "finalUrl": "https://uic.or.kr/recruit/main/mainPage.do",
+            "status": 200,
+            "contentType": "text/html;charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uic.or.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uic.or.kr/main/mainPage.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산시설공단 홈페이지에 오신것을 환영합니다.",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "채용\\s*공고"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 9681,
+            "requestedUrl": "https://uic.or.kr/",
+            "finalUrl": "https://uic.or.kr/main/mainPage.do",
+            "status": 200,
+            "contentType": "text/html;charset=utf-8"
+          }
+        }
+      ]
+    },
+    "recruitVerify": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산시설공단 홈페이지에 오신것을 환영합니다.",
+        "orgMatched": true,
+        "positiveHits": 1,
+        "positiveMatches": [
+          "채용\\s*공고"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 2,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 9681,
+        "requestedUrl": "https://uic.or.kr/",
+        "finalUrl": "https://uic.or.kr/main/mainPage.do",
+        "status": 200,
+        "contentType": "text/html;charset=utf-8"
+      }
+    },
+    "list": {
+      "status": "success",
+      "code": "LIST_EXACT",
+      "reason": "화면 게시글 10건 = 추출 10건",
+      "evidence": [
+        {
+          "url": "https://www.uic.or.kr/notify/noti06.do",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 429,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산시설공단 임원(비상임이사) 공개모집 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 제2회 울산시설공단 신규직원 채용 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [
+            {
+              "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003114').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003090').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003064').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003056').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003032').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003031').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003026').submit();"
+            },
+            {
+              "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003023').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003022').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003006').submit();"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://uic.or.kr/notify/noti06.do",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 429,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산시설공단 임원(비상임이사) 공개모집 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 제2회 울산시설공단 신규직원 채용 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [
+            {
+              "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003114').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003090').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003064').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003056').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003032').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003031').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003026').submit();"
+            },
+            {
+              "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003023').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003022').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003006').submit();"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://uic.or.kr/recruit/main/mainPage.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 63,
+          "titleMatches": 48,
+          "noUrl": 0,
+          "unsafeUrl": 6,
+          "accepted": 18,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 6,
+          "titleSamples": [
+            "본문 바로가기",
+            "주메뉴 바로가기",
+            "하단정보 바로가기",
+            "울산시설공단",
+            "인터넷 수강&middot;대관시스템",
+            "울산대공원",
+            "문수경기장",
+            "종합운동장"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026/08/04",
+              "reason": "detail-url-pending",
+              "identity": "EMPLOY_0000000003114",
+              "row": "<div class=\"notice_m n1\">\r\n\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003114','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">울산시설공단 임원(비상임이사) 공개모집 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/08/04</span>\r\n\t\t\t\t<p class=\"new\"><img src=\"/images/main/icon_new.gif\" alt=\"새글\" /></p></a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003090','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/07/03</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003064','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/06/23</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003056','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/m"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026/07/03",
+              "reason": "detail-url-pending",
+              "identity": "EMPLOY_0000000003090",
+              "row": "<div class=\"notice_m n1\">\r\n\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003114','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">울산시설공단 임원(비상임이사) 공개모집 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/08/04</span>\r\n\t\t\t\t<p class=\"new\"><img src=\"/images/main/icon_new.gif\" alt=\"새글\" /></p></a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003090','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/07/03</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003064','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/06/23</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003056','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/m"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026/06/23",
+              "reason": "detail-url-pending",
+              "identity": "EMPLOY_0000000003064",
+              "row": "<div class=\"notice_m n1\">\r\n\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003114','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">울산시설공단 임원(비상임이사) 공개모집 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/08/04</span>\r\n\t\t\t\t<p class=\"new\"><img src=\"/images/main/icon_new.gif\" alt=\"새글\" /></p></a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003090','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/07/03</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003064','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/06/23</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003056','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/m"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026/06/16",
+              "reason": "detail-url-pending",
+              "identity": "EMPLOY_0000000003056",
+              "row": "<div class=\"notice_m n1\">\r\n\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003114','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">울산시설공단 임원(비상임이사) 공개모집 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/08/04</span>\r\n\t\t\t\t<p class=\"new\"><img src=\"/images/main/icon_new.gif\" alt=\"새글\" /></p></a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003090','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/07/03</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003064','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/06/23</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003056','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/m"
+            },
+            {
+              "title": "알림사항 더보기",
+              "reason": "detail-url-pending",
+              "identity": "row-14712",
+              "row": "<div class=\"notice_m n1\">\r\n\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003114','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">울산시설공단 임원(비상임이사) 공개모집 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/08/04</span>\r\n\t\t\t\t<p class=\"new\"><img src=\"/images/main/icon_new.gif\" alt=\"새글\" /></p></a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003090','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/07/03</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003064','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/06/23</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003056','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/m"
+            },
+            {
+              "title": "부서별 전화번호",
+              "reason": "detail-url-pending",
+              "identity": "row-18022",
+              "row": "<li><a href=\"/introduction/intro03_3.do\">부서별 전화번호</a></li>"
+            }
+          ],
+          "actionSamples": [
+            {
+              "title": "울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026/08/04",
+              "action": "goNoti06View('EMPLOY_0000000003114','RT01');"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026/07/03",
+              "action": "goNoti06View('EMPLOY_0000000003090','RT01');"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026/06/23",
+              "action": "goNoti06View('EMPLOY_0000000003064','RT01');"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026/06/16",
+              "action": "goNoti06View('EMPLOY_0000000003056','RT01');"
+            }
+          ],
+          "candidateUrlSamples": [
+            {
+              "title": "채용안내",
+              "url": "https://uic.or.kr/recruit/notify/notify02.do",
+              "allowed": true
+            },
+            {
+              "title": "지원서 작성",
+              "url": "https://uic.or.kr/recruit/notify/recruit01.do",
+              "allowed": true
+            },
+            {
+              "title": "응시표 출력",
+              "url": "https://uic.or.kr/recruit/notify/recruit02.do",
+              "allowed": true
+            },
+            {
+              "title": "합격자 조회",
+              "url": "https://uic.or.kr/recruit/notify/recruit03.do",
+              "allowed": true
+            },
+            {
+              "title": "비밀번호 변경",
+              "url": "https://uic.or.kr/recruit/notify/recruit04.do",
+              "allowed": true
+            },
+            {
+              "title": "비밀번호 찾기",
+              "url": "https://uic.or.kr/recruit/notify/recruit05.do",
+              "allowed": true
+            },
+            {
+              "title": "채용 안내",
+              "url": "https://uic.or.kr/recruit/notify/notify02.do",
+              "allowed": true
+            },
+            {
+              "title": "지원 및 조회",
+              "url": "https://uic.or.kr/recruit/notify/notify03.do",
+              "allowed": true
+            },
+            {
+              "title": "지원서 작성",
+              "url": "https://uic.or.kr/recruit/notify/recruit01.do",
+              "allowed": true
+            },
+            {
+              "title": "지원서 수정",
+              "url": "https://uic.or.kr/recruit/notify/recruit01_2.do",
+              "allowed": true
+            },
+            {
+              "title": "응시표 출력",
+              "url": "https://uic.or.kr/recruit/notify/recruit02.do",
+              "allowed": true
+            },
+            {
+              "title": "합격자 조회",
+              "url": "https://uic.or.kr/recruit/notify/recruit03.do",
+              "allowed": true
+            },
+            {
+              "title": "비밀번호 변경",
+              "url": "https://uic.or.kr/recruit/notify/recruit04.do",
+              "allowed": true
+            },
+            {
+              "title": "비밀번호 찾기",
+              "url": "https://uic.or.kr/recruit/notify/recruit05.do",
+              "allowed": true
+            },
+            {
+              "title": "채용안내 온라인 채용절차 안내",
+              "url": "https://uic.or.kr/recruit/notify/notify02.do",
+              "allowed": true
+            },
+            {
+              "title": "지원서 작성 성공취업을 위한 첫걸음",
+              "url": "https://uic.or.kr/recruit/notify/recruit01.do",
+              "allowed": true
+            }
+          ],
+          "candidateCount": 18,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ]
+    },
+    "detail": {
+      "status": "failed",
+      "code": "DETAIL_EMPTY_BODY",
+      "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+      "evidence": [
+        {
+          "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+          "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "ok": false,
+          "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
+        },
+        {
+          "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+          "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "ok": false,
+          "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
+        }
+      ]
+    },
+    "attachment": {
+      "status": "blocked",
+      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
+      "reason": "상세 단계 미통과로 첨부 진단 보류",
+      "evidence": []
+    },
+    "access": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산시설공단 홈페이지에 오신것을 환영합니다.",
+        "orgMatched": true,
+        "positiveHits": 1,
+        "positiveMatches": [
+          "채용\\s*공고"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 2,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 9681,
+        "requestedUrl": "https://uic.or.kr/",
+        "finalUrl": "https://uic.or.kr/main/mainPage.do",
+        "status": 200,
+        "contentType": "text/html;charset=utf-8"
+      }
+    }
+  },
+  "repairTarget": "scripts/collectors/institutions/울산시설공단.mjs",
+  "recommendedAction": "기관 전용 상세 본문 선택자 추가",
+  "stages": {
+    "access": {
+      "ok": true,
+      "httpOk": true,
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://uic.or.kr/",
+      "finalUrl": "https://uic.or.kr/main/mainPage.do",
+      "activeRecruitUrl": "https://uic.or.kr/main/mainPage.do",
+      "status": 200,
+      "contentType": "text/html;charset=utf-8",
+      "attempts": [
+        {
+          "url": "https://www.uic.or.kr/notify/noti06.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.uic.or.kr/notify/noti06.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "정규직(개방형 직위) 공고 &gt; 채용알림 &gt; 채용/강습위탁 &gt; 알림마당 &gt; 울산시설공단",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "textLength": 4841,
+            "requestedUrl": "https://www.uic.or.kr/notify/noti06.do",
+            "finalUrl": "https://www.uic.or.kr/notify/noti06.do",
+            "status": 200,
+            "contentType": "text/html;charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uic.or.kr/notify/noti06.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uic.or.kr/notify/noti06.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "정규직(개방형 직위) 공고 &gt; 채용알림 &gt; 채용/강습위탁 &gt; 알림마당 &gt; 울산시설공단",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "textLength": 4841,
+            "requestedUrl": "https://uic.or.kr/notify/noti06.do",
+            "finalUrl": "https://uic.or.kr/notify/noti06.do",
+            "status": 200,
+            "contentType": "text/html;charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uic.or.kr/recruit/main/mainPage.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uic.or.kr/recruit/main/mainPage.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산시설공단 채용 홈페이지에 오신것을 환영합니다.",
+            "orgMatched": true,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "textLength": 1036,
+            "requestedUrl": "https://uic.or.kr/recruit/main/mainPage.do",
+            "finalUrl": "https://uic.or.kr/recruit/main/mainPage.do",
+            "status": 200,
+            "contentType": "text/html;charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uic.or.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uic.or.kr/main/mainPage.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산시설공단 홈페이지에 오신것을 환영합니다.",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "채용\\s*공고"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 9681,
+            "requestedUrl": "https://uic.or.kr/",
+            "finalUrl": "https://uic.or.kr/main/mainPage.do",
+            "status": 200,
+            "contentType": "text/html;charset=utf-8"
+          }
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산시설공단 홈페이지에 오신것을 환영합니다.",
+        "orgMatched": true,
+        "positiveHits": 1,
+        "positiveMatches": [
+          "채용\\s*공고"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 2,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 9681,
+        "requestedUrl": "https://uic.or.kr/",
+        "finalUrl": "https://uic.or.kr/main/mainPage.do",
+        "status": 200,
+        "contentType": "text/html;charset=utf-8"
+      },
+      "boardType": {
+        "type": "IFRAME",
+        "confidence": "high",
+        "evidence": [
+          "iframe 태그 발견"
+        ]
+      },
+      "diagnosis": {
+        "ok": true,
+        "code": "RECRUIT_VERIFY_FALLBACK_OK",
+        "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+        "http": {
+          "ok": true,
+          "code": "HTTP_OK",
+          "reason": "4개 후보 URL HTTP 응답 성공",
+          "attempts": [
+            {
+              "url": "https://www.uic.or.kr/notify/noti06.do",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.uic.or.kr/notify/noti06.do",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "정규직(개방형 직위) 공고 &gt; 채용알림 &gt; 채용/강습위탁 &gt; 알림마당 &gt; 울산시설공단",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 4,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "textLength": 4841,
+                "requestedUrl": "https://www.uic.or.kr/notify/noti06.do",
+                "finalUrl": "https://www.uic.or.kr/notify/noti06.do",
+                "status": 200,
+                "contentType": "text/html;charset=utf-8"
+              }
+            },
+            {
+              "url": "https://uic.or.kr/notify/noti06.do",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uic.or.kr/notify/noti06.do",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "정규직(개방형 직위) 공고 &gt; 채용알림 &gt; 채용/강습위탁 &gt; 알림마당 &gt; 울산시설공단",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 4,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "textLength": 4841,
+                "requestedUrl": "https://uic.or.kr/notify/noti06.do",
+                "finalUrl": "https://uic.or.kr/notify/noti06.do",
+                "status": 200,
+                "contentType": "text/html;charset=utf-8"
+              }
+            },
+            {
+              "url": "https://uic.or.kr/recruit/main/mainPage.do",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uic.or.kr/recruit/main/mainPage.do",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "울산시설공단 채용 홈페이지에 오신것을 환영합니다.",
+                "orgMatched": true,
+                "positiveHits": 3,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용",
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 3,
+                "boardType": {
+                  "type": "UL_LIST",
+                  "confidence": "medium",
+                  "evidence": [
+                    "ul/ol + li 구조 발견"
+                  ]
+                },
+                "textLength": 1036,
+                "requestedUrl": "https://uic.or.kr/recruit/main/mainPage.do",
+                "finalUrl": "https://uic.or.kr/recruit/main/mainPage.do",
+                "status": 200,
+                "contentType": "text/html;charset=utf-8"
+              }
+            },
+            {
+              "url": "https://uic.or.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uic.or.kr/main/mainPage.do",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "울산시설공단 홈페이지에 오신것을 환영합니다.",
+                "orgMatched": true,
+                "positiveHits": 1,
+                "positiveMatches": [
+                  "채용\\s*공고"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 2,
+                "boardType": {
+                  "type": "IFRAME",
+                  "confidence": "high",
+                  "evidence": [
+                    "iframe 태그 발견"
+                  ]
+                },
+                "textLength": 9681,
+                "requestedUrl": "https://uic.or.kr/",
+                "finalUrl": "https://uic.or.kr/main/mainPage.do",
+                "status": 200,
+                "contentType": "text/html;charset=utf-8"
+              }
+            }
+          ]
+        },
+        "recruitVerify": {
+          "ok": true,
+          "code": "RECRUIT_VERIFY_FALLBACK_OK",
+          "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
+          },
+          "evidence": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산시설공단 홈페이지에 오신것을 환영합니다.",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "채용\\s*공고"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 9681,
+            "requestedUrl": "https://uic.or.kr/",
+            "finalUrl": "https://uic.or.kr/main/mainPage.do",
+            "status": 200,
+            "contentType": "text/html;charset=utf-8"
+          }
+        },
+        "activeRecruitUrl": "https://uic.or.kr/main/mainPage.do",
+        "selectedRequestedUrl": "https://uic.or.kr/",
+        "verification": {
+          "ok": true,
+          "verified": true,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 1개 · 게시판 신호 2개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": true,
+            "meaningfulBody": true
+          },
+          "title": "울산시설공단 홈페이지에 오신것을 환영합니다.",
+          "orgMatched": true,
+          "positiveHits": 1,
+          "positiveMatches": [
+            "채용\\s*공고"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 2,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
+          },
+          "textLength": 9681,
+          "requestedUrl": "https://uic.or.kr/",
+          "finalUrl": "https://uic.or.kr/main/mainPage.do",
+          "status": 200,
+          "contentType": "text/html;charset=utf-8"
+        }
+      }
+    },
+    "list": {
+      "ok": true,
+      "status": "exact",
+      "pagesChecked": 3,
+      "visiblePostCount": 10,
+      "candidateCount": 10,
+      "missingCount": 0,
+      "extraCount": 0,
+      "exactMatch": true,
+      "selectedUrl": "https://www.uic.or.kr/notify/noti06.do",
+      "detailUrlReady": 10,
+      "listOnlyCount": 0,
+      "extractionDiagnostics": [
+        {
+          "url": "https://www.uic.or.kr/notify/noti06.do",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 429,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산시설공단 임원(비상임이사) 공개모집 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 제2회 울산시설공단 신규직원 채용 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [
+            {
+              "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003114').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003090').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003064').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003056').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003032').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003031').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003026').submit();"
+            },
+            {
+              "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003023').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003022').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003006').submit();"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://uic.or.kr/notify/noti06.do",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 429,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산시설공단 임원(비상임이사) 공개모집 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 제2회 울산시설공단 신규직원 채용 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [
+            {
+              "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003114').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003090').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003064').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003056').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003032').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003031').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003026').submit();"
+            },
+            {
+              "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003023').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003022').submit();"
+            },
+            {
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "action": "document.getElementById('subFormEMPLOY_0000000003006').submit();"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://uic.or.kr/recruit/main/mainPage.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 63,
+          "titleMatches": 48,
+          "noUrl": 0,
+          "unsafeUrl": 6,
+          "accepted": 18,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 6,
+          "titleSamples": [
+            "본문 바로가기",
+            "주메뉴 바로가기",
+            "하단정보 바로가기",
+            "울산시설공단",
+            "인터넷 수강&middot;대관시스템",
+            "울산대공원",
+            "문수경기장",
+            "종합운동장"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026/08/04",
+              "reason": "detail-url-pending",
+              "identity": "EMPLOY_0000000003114",
+              "row": "<div class=\"notice_m n1\">\r\n\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003114','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">울산시설공단 임원(비상임이사) 공개모집 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/08/04</span>\r\n\t\t\t\t<p class=\"new\"><img src=\"/images/main/icon_new.gif\" alt=\"새글\" /></p></a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003090','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/07/03</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003064','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/06/23</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003056','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/m"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026/07/03",
+              "reason": "detail-url-pending",
+              "identity": "EMPLOY_0000000003090",
+              "row": "<div class=\"notice_m n1\">\r\n\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003114','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">울산시설공단 임원(비상임이사) 공개모집 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/08/04</span>\r\n\t\t\t\t<p class=\"new\"><img src=\"/images/main/icon_new.gif\" alt=\"새글\" /></p></a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003090','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/07/03</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003064','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/06/23</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003056','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/m"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026/06/23",
+              "reason": "detail-url-pending",
+              "identity": "EMPLOY_0000000003064",
+              "row": "<div class=\"notice_m n1\">\r\n\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003114','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">울산시설공단 임원(비상임이사) 공개모집 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/08/04</span>\r\n\t\t\t\t<p class=\"new\"><img src=\"/images/main/icon_new.gif\" alt=\"새글\" /></p></a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003090','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/07/03</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003064','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/06/23</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003056','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/m"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026/06/16",
+              "reason": "detail-url-pending",
+              "identity": "EMPLOY_0000000003056",
+              "row": "<div class=\"notice_m n1\">\r\n\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003114','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">울산시설공단 임원(비상임이사) 공개모집 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/08/04</span>\r\n\t\t\t\t<p class=\"new\"><img src=\"/images/main/icon_new.gif\" alt=\"새글\" /></p></a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003090','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/07/03</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003064','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/06/23</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003056','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/m"
+            },
+            {
+              "title": "알림사항 더보기",
+              "reason": "detail-url-pending",
+              "identity": "row-14712",
+              "row": "<div class=\"notice_m n1\">\r\n\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003114','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">울산시설공단 임원(비상임이사) 공개모집 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/08/04</span>\r\n\t\t\t\t<p class=\"new\"><img src=\"/images/main/icon_new.gif\" alt=\"새글\" /></p></a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003090','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/07/03</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003064','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/main/notice_ico04.png\" alt=\"정규직(개방형 직위)\"></p>\r\n\t\t\t\t<span class=\"title\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</span>\r\n\t\t\t\t<span class=\"writer\">관리자</span>\r\n\t\t\t\t<span class=\"date\">2026/06/23</span>\r\n\t\t\t\t</a>\r\n\t\t<a href=\"#noscript\" onclick=\"goNoti06View('EMPLOY_0000000003056','RT01');\">\r\n\t\t\t\t<p class=\"subject\">\r\n\t\t\t\t<img src=\"/images/m"
+            },
+            {
+              "title": "부서별 전화번호",
+              "reason": "detail-url-pending",
+              "identity": "row-18022",
+              "row": "<li><a href=\"/introduction/intro03_3.do\">부서별 전화번호</a></li>"
+            }
+          ],
+          "actionSamples": [
+            {
+              "title": "울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026/08/04",
+              "action": "goNoti06View('EMPLOY_0000000003114','RT01');"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026/07/03",
+              "action": "goNoti06View('EMPLOY_0000000003090','RT01');"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026/06/23",
+              "action": "goNoti06View('EMPLOY_0000000003064','RT01');"
+            },
+            {
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026/06/16",
+              "action": "goNoti06View('EMPLOY_0000000003056','RT01');"
+            }
+          ],
+          "candidateUrlSamples": [
+            {
+              "title": "채용안내",
+              "url": "https://uic.or.kr/recruit/notify/notify02.do",
+              "allowed": true
+            },
+            {
+              "title": "지원서 작성",
+              "url": "https://uic.or.kr/recruit/notify/recruit01.do",
+              "allowed": true
+            },
+            {
+              "title": "응시표 출력",
+              "url": "https://uic.or.kr/recruit/notify/recruit02.do",
+              "allowed": true
+            },
+            {
+              "title": "합격자 조회",
+              "url": "https://uic.or.kr/recruit/notify/recruit03.do",
+              "allowed": true
+            },
+            {
+              "title": "비밀번호 변경",
+              "url": "https://uic.or.kr/recruit/notify/recruit04.do",
+              "allowed": true
+            },
+            {
+              "title": "비밀번호 찾기",
+              "url": "https://uic.or.kr/recruit/notify/recruit05.do",
+              "allowed": true
+            },
+            {
+              "title": "채용 안내",
+              "url": "https://uic.or.kr/recruit/notify/notify02.do",
+              "allowed": true
+            },
+            {
+              "title": "지원 및 조회",
+              "url": "https://uic.or.kr/recruit/notify/notify03.do",
+              "allowed": true
+            },
+            {
+              "title": "지원서 작성",
+              "url": "https://uic.or.kr/recruit/notify/recruit01.do",
+              "allowed": true
+            },
+            {
+              "title": "지원서 수정",
+              "url": "https://uic.or.kr/recruit/notify/recruit01_2.do",
+              "allowed": true
+            },
+            {
+              "title": "응시표 출력",
+              "url": "https://uic.or.kr/recruit/notify/recruit02.do",
+              "allowed": true
+            },
+            {
+              "title": "합격자 조회",
+              "url": "https://uic.or.kr/recruit/notify/recruit03.do",
+              "allowed": true
+            },
+            {
+              "title": "비밀번호 변경",
+              "url": "https://uic.or.kr/recruit/notify/recruit04.do",
+              "allowed": true
+            },
+            {
+              "title": "비밀번호 찾기",
+              "url": "https://uic.or.kr/recruit/notify/recruit05.do",
+              "allowed": true
+            },
+            {
+              "title": "채용안내 온라인 채용절차 안내",
+              "url": "https://uic.or.kr/recruit/notify/notify02.do",
+              "allowed": true
+            },
+            {
+              "title": "지원서 작성 성공취업을 위한 첫걸음",
+              "url": "https://uic.or.kr/recruit/notify/recruit01.do",
+              "allowed": true
+            }
+          ],
+          "candidateCount": 18,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산시설공단",
+          "url": "https://www.uic.or.kr/notify/noti06.do",
+          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+          "counts": {
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "rawTableRows": 10,
+            "sourceHtmlLength": 64202,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 11,
+            "li": 329,
+            "article": 0,
+            "[onclick]": 31,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 429
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [
+            "울산시설공단 임원(비상임이사) 공개모집 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고"
+          ],
+          "extractedTitles": [
+            "울산시설공단 임원(비상임이사) 공개모집 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고"
+          ],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+              "normalizedTitle": "울산시설공단 임원 비상임이사 공개모집 공고",
+              "text": "189 울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026-08-04 161",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003114').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">189</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003114\" id=\"subFormEMPLOY_0000000003114\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003114\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003114').submit();\">울산시설공단 임원(비상임이사) 공개모집 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /><img src=\"/images/common/icon_new.gif\" alt=\"새글\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-08-04</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">161</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 1,
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+              "text": "188 2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026-07-03 1891",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003090').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">188</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003090\" id=\"subFormEMPLOY_0000000003090\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003090\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003090').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-07-03</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1891</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 2,
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+              "text": "187 2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026-06-23 1481",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003064').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">187</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003064\" id=\"subFormEMPLOY_0000000003064\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003064\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003064').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-23</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1481</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 ai역량검사 면접시험 체력검정 실시공고",
+              "text": "186 2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026-06-16 1828",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003056').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">186</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003056\" id=\"subFormEMPLOY_0000000003056\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003056\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003056').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및  AI역량검사·면접시험(체력검정) 실시공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-16</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1828</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 4,
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+              "text": "185 2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고 관리자 2026-06-09 1614",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003032').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">185</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003032\" id=\"subFormEMPLOY_0000000003032\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003032\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003032').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-09</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1614</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 5,
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "text": "184 2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고 관리자 2026-06-02 2559",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003031').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">184</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003031\" id=\"subFormEMPLOY_0000000003031\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003031\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003031').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-02</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2559</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 6,
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+              "text": "183 2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고 관리자 2026-05-27 1852",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003026').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">183</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003026\" id=\"subFormEMPLOY_0000000003026\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003026\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003026').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-27</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1852</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 7,
+              "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+              "normalizedTitle": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+              "text": "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4861",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003023').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">182</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003023\" id=\"subFormEMPLOY_0000000003023\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003023\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003023').submit();\">2026년도 제2회 울산시설공단 신규직원 채용 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-19</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">4861</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 8,
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 ai역량검사 면접시험 체력검정 실시공고",
+              "text": "181 2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026-05-19 2235",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003022').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">181</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003022\" id=\"subFormEMPLOY_0000000003022\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003022\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003022').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-19</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2235</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 9,
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "text": "180 2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고 관리자 2026-05-08 3486",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003006').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">180</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003006\" id=\"subFormEMPLOY_0000000003006\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003006\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003006').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-08</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">3486</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            }
+          ]
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산시설공단",
+          "url": "https://uic.or.kr/notify/noti06.do",
+          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+          "counts": {
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "rawTableRows": 10,
+            "sourceHtmlLength": 64202,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 11,
+            "li": 329,
+            "article": 0,
+            "[onclick]": 31,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 429
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [
+            "울산시설공단 임원(비상임이사) 공개모집 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고"
+          ],
+          "extractedTitles": [
+            "울산시설공단 임원(비상임이사) 공개모집 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+            "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+            "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고"
+          ],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+              "normalizedTitle": "울산시설공단 임원 비상임이사 공개모집 공고",
+              "text": "189 울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026-08-04 161",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003114').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">189</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003114\" id=\"subFormEMPLOY_0000000003114\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"ec979412-4190-4b3e-8a34-0ae339b26094\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003114\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003114').submit();\">울산시설공단 임원(비상임이사) 공개모집 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /><img src=\"/images/common/icon_new.gif\" alt=\"새글\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-08-04</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">161</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 1,
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+              "text": "188 2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026-07-03 1891",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003090').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">188</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003090\" id=\"subFormEMPLOY_0000000003090\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"ec979412-4190-4b3e-8a34-0ae339b26094\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003090\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003090').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-07-03</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1891</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 2,
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+              "text": "187 2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026-06-23 1481",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003064').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">187</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003064\" id=\"subFormEMPLOY_0000000003064\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"ec979412-4190-4b3e-8a34-0ae339b26094\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003064\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003064').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-23</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1481</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 ai역량검사 면접시험 체력검정 실시공고",
+              "text": "186 2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026-06-16 1828",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003056').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">186</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003056\" id=\"subFormEMPLOY_0000000003056\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"ec979412-4190-4b3e-8a34-0ae339b26094\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003056\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003056').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및  AI역량검사·면접시험(체력검정) 실시공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-16</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1828</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 4,
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+              "text": "185 2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고 관리자 2026-06-09 1614",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003032').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">185</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003032\" id=\"subFormEMPLOY_0000000003032\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"ec979412-4190-4b3e-8a34-0ae339b26094\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003032\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003032').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-09</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1614</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 5,
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "text": "184 2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고 관리자 2026-06-02 2559",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003031').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">184</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003031\" id=\"subFormEMPLOY_0000000003031\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"ec979412-4190-4b3e-8a34-0ae339b26094\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003031\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003031').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-02</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2559</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 6,
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+              "text": "183 2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고 관리자 2026-05-27 1852",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003026').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">183</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003026\" id=\"subFormEMPLOY_0000000003026\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"ec979412-4190-4b3e-8a34-0ae339b26094\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003026\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003026').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-27</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1852</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 7,
+              "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+              "normalizedTitle": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+              "text": "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4861",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003023').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">182</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003023\" id=\"subFormEMPLOY_0000000003023\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"ec979412-4190-4b3e-8a34-0ae339b26094\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003023\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003023').submit();\">2026년도 제2회 울산시설공단 신규직원 채용 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-19</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">4861</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 8,
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+              "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 ai역량검사 면접시험 체력검정 실시공고",
+              "text": "181 2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026-05-19 2235",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003022').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">181</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003022\" id=\"subFormEMPLOY_0000000003022\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"ec979412-4190-4b3e-8a34-0ae339b26094\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003022\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003022').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-19</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2235</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 9,
+              "title": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+              "text": "180 2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고 관리자 2026-05-08 3486",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#noscript",
+              "onclick": "document.getElementById('subFormEMPLOY_0000000003006').submit();",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">180</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003006\" id=\"subFormEMPLOY_0000000003006\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"ec979412-4190-4b3e-8a34-0ae339b26094\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003006\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003006').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-08</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">3486</td>\r\n\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+              "adapter": "울산시설공단:board-row",
+              "rejectionReason": ""
+            }
+          ]
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산시설공단",
+          "url": "https://uic.or.kr/recruit/main/mainPage.do",
+          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 18,
+            "rawTableRows": 0,
+            "sourceHtmlLength": 18903,
+            "missingRows": 0,
+            "extraCandidates": 18
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 31,
+            "article": 0,
+            "[onclick]": 5,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 63
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [
+            "채용안내",
+            "지원서 작성",
+            "응시표 출력",
+            "합격자 조회",
+            "비밀번호 변경",
+            "비밀번호 찾기",
+            "채용 안내",
+            "지원 및 조회",
+            "지원서 수정",
+            "채용안내 온라인 채용절차 안내",
+            "지원서 작성 성공취업을 위한 첫걸음",
+            "합격자 조회 입사지원 결과 안내",
+            "울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026/08/04",
+            "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026/07/03",
+            "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026/06/23",
+            "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026/06/16",
+            "알림사항 더보기",
+            "부서별 전화번호"
+          ],
+          "missingRows": [],
+          "extraCandidates": [
+            {
+              "org": "울산시설공단",
+              "title": "채용안내",
+              "link": "https://uic.or.kr/recruit/notify/notify02.do",
+              "listText": "채용안내 지원서 작성 응시표 출력 합격자 조회 비밀번호 변경 비밀번호 찾기 <a href=\"/re",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "지원서 작성",
+              "link": "https://uic.or.kr/recruit/notify/recruit01.do",
+              "listText": "채용안내 지원서 작성 응시표 출력 합격자 조회 비밀번호 변경 비밀번호 찾기 채용안내",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "응시표 출력",
+              "link": "https://uic.or.kr/recruit/notify/recruit02.do",
+              "listText": "=\"gnbArea\"> 채용안내 지원서 작성 응시표 출력 합격자 조회 비밀번호 변경 비밀번호 찾기 채용안내 채용 안내 </",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "합격자 조회",
+              "link": "https://uic.or.kr/recruit/notify/recruit03.do",
+              "listText": "notify/notify02.do\" > 채용안내 지원서 작성 응시표 출력 합격자 조회 비밀번호 변경 비밀번호 찾기 채용안내 채용 안내 <a href=\"/r",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "비밀번호 변경",
+              "link": "https://uic.or.kr/recruit/notify/recruit04.do",
+              "listText": "tify/recruit01.do\" > 지원서 작성 응시표 출력 합격자 조회 비밀번호 변경 비밀번호 찾기 채용안내 채용 안내 지원 및 조회",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "비밀번호 찾기",
+              "link": "https://uic.or.kr/recruit/notify/recruit05.do",
+              "listText": "2.do\"> 응시표 출력 합격자 조회 비밀번호 변경 비밀번호 찾기 채용안내 채용 안내 지원 및 조회 지원서 작성 <",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "채용 안내",
+              "link": "https://uic.or.kr/recruit/notify/notify02.do",
+              "listText": "=\"/images/common/btn-menu-close.png\" alt=\"닫기\"> 채용안내 채용 안내 지원 및 조회 지원서 작성 지원서 수정 응시표 출력 합격자 조회 비밀번호 변경 비밀번호 찾기 <div class=\"top",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "지원 및 조회",
+              "link": "https://uic.or.kr/recruit/notify/notify03.do",
+              "listText": "o/info01.do\"> 채용안내 채용 안내 지원 및 조회 지원서 작성 지원서 수정 응시표 출력 합격자 조회 비밀번호 변경 비밀번호 찾기 <img src=\"/images/common/flag-m.gif\"",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "지원서 수정",
+              "link": "https://uic.or.kr/recruit/notify/recruit01_2.do",
+              "listText": "지원 및 조회 지원서 작성 지원서 수정 응시표 출력 합격자 조회 비밀번호 변경 비밀번호 찾기 패밀리사이트 울산시설공단 <a href=\"https:",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "채용안내 온라인 채용절차 안내",
+              "link": "https://uic.or.kr/recruit/notify/notify02.do",
+              "listText": "cont\"> 공단 인재상 UIC RIGHT PEOPEL 채용안내 온라인 채용절차 안내 지원서 작성 성공취업을 위한 첫걸음 합격자 조회 입사지원 결과 안내 채용 공고 울산시설공단 바로가기 메인 비쥬얼 <a href=\"#;",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "지원서 작성 성공취업을 위한 첫걸음",
+              "link": "https://uic.or.kr/recruit/notify/recruit01.do",
+              "listText": "GHT PEOPEL 채용안내 온라인 채용절차 안내 지원서 작성 성공취업을 위한 첫걸음 합격자 조회 입사지원 결과 안내 채용 공고 울산시설공단 바로가기 메인 비쥬얼 이전으로 일시정지 재생 다음으로 <div cla",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "합격자 조회 입사지원 결과 안내",
+              "link": "https://uic.or.kr/recruit/notify/recruit03.do",
+              "listText": "지원서 작성 성공취업을 위한 첫걸음 합격자 조회 입사지원 결과 안내 채용 공고 울산시설공단 바로가기 메인 비쥬얼 이전으로 일시정지 재생 다음으로 울산하늘공원 전경 이미지01 $(document).ready(function(){ var popCtrPrev = $(\".mSlide_control .btn_prev\"); var popCtrNext = $(\".mSlide_control .bt",
+              "adapter": "울산시설공단"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026/08/04",
+              "link": "https://uic.or.kr/recruit/main/mainPage.do#list-EMPLOY_0000000003114",
+              "listText": "울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026/08/04 2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026/07/03 2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026/06/23 2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026/06/16",
+              "adapter": "울산시설공단",
+              "listOnly": true,
+              "listIdentity": "EMPLOY_0000000003114"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026/07/03",
+              "link": "https://uic.or.kr/recruit/main/mainPage.do#list-EMPLOY_0000000003090",
+              "listText": "울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026/08/04 2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026/07/03 2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026/06/23 2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026/06/16",
+              "adapter": "울산시설공단",
+              "listOnly": true,
+              "listIdentity": "EMPLOY_0000000003090"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026/06/23",
+              "link": "https://uic.or.kr/recruit/main/mainPage.do#list-EMPLOY_0000000003064",
+              "listText": "울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026/08/04 2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026/07/03 2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026/06/23 2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026/06/16",
+              "adapter": "울산시설공단",
+              "listOnly": true,
+              "listIdentity": "EMPLOY_0000000003064"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026/06/16",
+              "link": "https://uic.or.kr/recruit/main/mainPage.do#list-EMPLOY_0000000003056",
+              "listText": "울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026/08/04 2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026/07/03 2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026/06/23 2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026/06/16",
+              "adapter": "울산시설공단",
+              "listOnly": true,
+              "listIdentity": "EMPLOY_0000000003056"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "알림사항 더보기",
+              "link": "https://uic.or.kr/recruit/main/mainPage.do#list-row-14712",
+              "listText": "울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026/08/04 2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026/07/03 2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026/06/23 2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026/06/16 알림사항 더보기",
+              "adapter": "울산시설공단",
+              "listOnly": true,
+              "listIdentity": "row-14712"
+            },
+            {
+              "org": "울산시설공단",
+              "title": "부서별 전화번호",
+              "link": "https://uic.or.kr/recruit/main/mainPage.do#list-row-18022",
+              "listText": "부서별 전화번호",
+              "adapter": "울산시설공단",
+              "listOnly": true,
+              "listIdentity": "row-18022"
+            }
+          ],
+          "rowTrace": []
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "울산시설공단",
+          "htmlPath": "data/diagnostics/울산시설공단/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/울산시설공단/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/울산시설공단/list/page-1-rows.txt",
+          "url": "https://www.uic.or.kr/notify/noti06.do"
+        },
+        {
+          "org": "울산시설공단",
+          "htmlPath": "data/diagnostics/울산시설공단/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/울산시설공단/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/울산시설공단/list/page-2-rows.txt",
+          "url": "https://uic.or.kr/notify/noti06.do"
+        },
+        {
+          "org": "울산시설공단",
+          "htmlPath": "data/diagnostics/울산시설공단/list/page-3-raw.html",
+          "diagnosisPath": "data/diagnostics/울산시설공단/list/page-3-root-cause.json",
+          "rowsPath": "data/diagnostics/울산시설공단/list/page-3-rows.txt",
+          "url": "https://uic.or.kr/recruit/main/mainPage.do"
+        }
+      ],
+      "samples": [
+        {
+          "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+          "link": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "adapter": "울산시설공단:board-row"
+        },
+        {
+          "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+          "link": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "adapter": "울산시설공단:board-row"
+        },
+        {
+          "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+          "link": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "adapter": "울산시설공단:board-row"
+        },
+        {
+          "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+          "link": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "adapter": "울산시설공단:board-row"
+        },
+        {
+          "title": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+          "link": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "adapter": "울산시설공단:board-row"
+        },
+        {
+          "title": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+          "link": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "adapter": "울산시설공단:board-row"
+        },
+        {
+          "title": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+          "link": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "adapter": "울산시설공단:board-row"
+        },
+        {
+          "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+          "link": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "adapter": "울산시설공단:board-row"
+        },
+        {
+          "title": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+          "link": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "adapter": "울산시설공단:board-row"
+        },
+        {
+          "title": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+          "link": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "adapter": "울산시설공단:board-row"
+        }
+      ],
+      "errors": [],
+      "selectedRootCause": {
+        "version": "1.1-passive",
+        "mode": "passive",
+        "org": "울산시설공단",
+        "url": "https://www.uic.or.kr/notify/noti06.do",
+        "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+        "counts": {
+          "visiblePostCount": 10,
+          "candidateCount": 10,
+          "rawTableRows": 10,
+          "sourceHtmlLength": 64202,
+          "missingRows": 0,
+          "extraCandidates": 0
+        },
+        "selectorCounts": {
+          "table tbody tr": 1,
+          "tr": 11,
+          "li": 329,
+          "article": 0,
+          "[onclick]": 31,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 429
+        },
+        "rejectReasonCounts": {},
+        "visibleTitles": [
+          "울산시설공단 임원(비상임이사) 공개모집 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+          "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+          "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+          "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+          "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+          "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고"
+        ],
+        "extractedTitles": [
+          "울산시설공단 임원(비상임이사) 공개모집 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+          "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+          "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+          "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+          "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+          "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고"
+        ],
+        "missingRows": [],
+        "extraCandidates": [],
+        "rowTrace": [
+          {
+            "index": 0,
+            "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+            "normalizedTitle": "울산시설공단 임원 비상임이사 공개모집 공고",
+            "text": "189 울산시설공단 임원(비상임이사) 공개모집 공고 관리자 2026-08-04 161",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#noscript",
+            "onclick": "document.getElementById('subFormEMPLOY_0000000003114').submit();",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">189</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003114\" id=\"subFormEMPLOY_0000000003114\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003114\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003114').submit();\">울산시설공단 임원(비상임이사) 공개모집 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /><img src=\"/images/common/icon_new.gif\" alt=\"새글\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-08-04</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">161</td>\r\n\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+            "adapter": "울산시설공단:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 1,
+            "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+            "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+            "text": "188 2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고 관리자 2026-07-03 1891",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#noscript",
+            "onclick": "document.getElementById('subFormEMPLOY_0000000003090').submit();",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">188</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003090\" id=\"subFormEMPLOY_0000000003090\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003090\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003090').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-07-03</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1891</td>\r\n\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+            "adapter": "울산시설공단:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 2,
+            "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+            "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+            "text": "187 2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고 관리자 2026-06-23 1481",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#noscript",
+            "onclick": "document.getElementById('subFormEMPLOY_0000000003064').submit();",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">187</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003064\" id=\"subFormEMPLOY_0000000003064\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003064\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003064').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-23</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1481</td>\r\n\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+            "adapter": "울산시설공단:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 3,
+            "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 ai역량검사 면접시험 체력검정 실시공고",
+            "text": "186 2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026-06-16 1828",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#noscript",
+            "onclick": "document.getElementById('subFormEMPLOY_0000000003056').submit();",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">186</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003056\" id=\"subFormEMPLOY_0000000003056\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003056\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003056').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및  AI역량검사·면접시험(체력검정) 실시공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-16</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1828</td>\r\n\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+            "adapter": "울산시설공단:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 4,
+            "title": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+            "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+            "text": "185 2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고 관리자 2026-06-09 1614",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#noscript",
+            "onclick": "document.getElementById('subFormEMPLOY_0000000003032').submit();",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">185</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003032\" id=\"subFormEMPLOY_0000000003032\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003032\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003032').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-09</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1614</td>\r\n\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+            "adapter": "울산시설공단:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 5,
+            "title": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "normalizedTitle": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "text": "184 2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고 관리자 2026-06-02 2559",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#noscript",
+            "onclick": "document.getElementById('subFormEMPLOY_0000000003031').submit();",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">184</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003031\" id=\"subFormEMPLOY_0000000003031\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003031\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003031').submit();\">2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-06-02</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2559</td>\r\n\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+            "adapter": "울산시설공단:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 6,
+            "title": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+            "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+            "text": "183 2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고 관리자 2026-05-27 1852",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#noscript",
+            "onclick": "document.getElementById('subFormEMPLOY_0000000003026').submit();",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">183</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003026\" id=\"subFormEMPLOY_0000000003026\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003026\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003026').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-27</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">1852</td>\r\n\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+            "adapter": "울산시설공단:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 7,
+            "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+            "normalizedTitle": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+            "text": "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4861",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#noscript",
+            "onclick": "document.getElementById('subFormEMPLOY_0000000003023').submit();",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">182</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003023\" id=\"subFormEMPLOY_0000000003023\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003023\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003023').submit();\">2026년도 제2회 울산시설공단 신규직원 채용 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-19</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">4861</td>\r\n\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+            "adapter": "울산시설공단:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 8,
+            "title": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 ai역량검사 면접시험 체력검정 실시공고",
+            "text": "181 2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고 관리자 2026-05-19 2235",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#noscript",
+            "onclick": "document.getElementById('subFormEMPLOY_0000000003022').submit();",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">181</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003022\" id=\"subFormEMPLOY_0000000003022\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003022\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003022').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-19</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2235</td>\r\n\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+            "adapter": "울산시설공단:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 9,
+            "title": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "normalizedTitle": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "text": "180 2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고 관리자 2026-05-08 3486",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#noscript",
+            "onclick": "document.getElementById('subFormEMPLOY_0000000003006').submit();",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t<td class=\"mobilehidden\">180</td>\r\n\t\t\t\t\t<td class=\"subject\">\r\n\t\t\t\t\t<form name=\"subFormEMPLOY_0000000003006\" id=\"subFormEMPLOY_0000000003006\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentArticle.do\">\r\n\t                    <input type=\"hidden\" name=\"bbsId\" value=\"BBSMSTR_000000000022\" />\r\n\t\t\t            <input type=\"hidden\" name=\"noticeRange\" value=\"\" />\r\n\t\t\t            <input type=\"hidden\" name=\"recruitGb\" value=\"RT01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"searchCnd\" value=\"\" />\r\n                        <input type=\"hidden\" name=\"searchWrd\" value=\"\" />                        \r\n\t\t\t            <input type=\"hidden\" name=\"_csrf\" value=\"6d2fd7ba-a79a-4a91-ac13-d88b84ab74c5\" />\t\t\t\t            \r\n\t\t                <input type=\"hidden\" name=\"employmentId\" value=\"EMPLOY_0000000003006\" />\t                        \r\n                        <input type=\"hidden\" name=\"pageIndex\"  value=\"1\" />\r\n                        <input type=\"hidden\" name=\"bbsTyCode\" value=\"BBST01\" />\r\n\t\t\t            <input type=\"hidden\" name=\"bbsAttrbCode\" value=\"BBSA03\" />\r\n\t\t\t            <input type=\"hidden\" name=\"authFlag\" value=\"Y\" />\t                    \r\n\t\t\t\t\t\t<span class=\"link\"><a href=\"#noscript\" onclick=\"document.getElementById('subFormEMPLOY_0000000003006').submit();\">2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고</a></span>\r\n\t\t\t\t\t\t<img src=\"/images/common/icon_file.gif\" alt=\"파일\" /></form>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t<td>관리자</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">2026-05-08</td>\r\n\t\t\t\t\t<td class=\"mobilehidden\">3486</td>\r\n\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+            "adapter": "울산시설공단:board-row",
+            "rejectionReason": ""
+          }
+        ]
+      }
+    },
+    "detail": {
+      "ok": false,
+      "attempted": 2,
+      "validated": 0,
+      "samples": [
+        {
+          "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+          "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "ok": false,
+          "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
+        },
+        {
+          "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+          "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "ok": false,
+          "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
+        }
+      ]
+    },
+    "attachment": {
+      "ok": false,
+      "discovered": 0,
+      "samples": []
+    }
+  }
+}

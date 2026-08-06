@@ -1,0 +1,1903 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="naver-site-verification" content="726949f43c25a1e991b4bc947bb897fcf914e3e1" />
+<title>울산광역시 북구 시설관리공단</title>
+<link rel="shortcut icon" href="/bukgu_favicon.ico;jsessionid=E5974BF964C39141CEE8FAA6E51AF119" type="image/x-icon">
+<link rel="icon" href="/bukgu_favicon.ico;jsessionid=E5974BF964C39141CEE8FAA6E51AF119" type="image/x-icon">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JG7MRPZF9Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JG7MRPZF9Y');
+</script>
+
+
+<meta name="robots" content="index, follow" /> 
+    <!-- 그 외 -->
+<meta name="keywords" content="울산북구시설관리공단,울산광역시 북구 시설관리공단,시설관리공단,울산시 북구" />
+<meta name ="description" content="울산광역시 북구 시설관리공단" />
+<meta property="og:type" content="website">
+<meta property="og:title" content="울산광역시 북구 시설관리공단">
+<meta property="og:description" content="울산광역시 북구 시설관리공단">
+<link rel="stylesheet" href="/css/base.css" type="text/css" />
+<link rel="stylesheet" href="/css/layout.css" type="text/css" />
+<link rel="stylesheet" href="/css/contents.css" type="text/css" />
+<link rel="stylesheet" href="/css/board.css" type="text/css" />
+<script src="/js/jquery-1.8.3.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<script src="/js/jquery-ui-1.11.4.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/jquery-ui-1.11.4.css">
+<script src="/js/jquery.cal.js"></script>
+<script src="/js/jquery.bxslider.min-4.1.1.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/jquery.bxslider-4.1.1.css">
+</head>
+
+<script type="text/javascript">
+<!--
+ 
+$(document).ready(function(){	
+
+	var currentDate = new Date();	
+
+	$.ajax({				
+		url : "/contpop/getAjaxDust.jsp",
+		type : "GET",
+//		cache: false,  
+		dataType : "text",	
+		success : function(data){
+			
+			var xValue;	//미세먼지 값
+			var xGrade;	//미세먼지 등급
+			var xState; //미세먼지 표시
+
+			var xValue25;	//초미세먼지 값
+			var xGrade25;	//초미세먼지 등급			
+			var xState25;	//초미세먼지 표시
+
+			var xml = $(data);
+			var list = xml.find('item');
+			var listLength = list.length;
+
+			if( listLength > 0 ){
+
+				//$(xml).find('car').each(function(){ });
+				$.each(list, function(){
+					if($(this).find('stationName').text() == "농소동"){
+				
+						//미세먼지
+						xValue = $(this).find('pm10Value').text();
+						xGrade = $(this).find('pm10Grade').text();
+
+						if(xGrade == 1) xState ="좋음";
+						else if (xGrade == 2) xState ="보통";
+						else if (xGrade == 3) xState ="나쁨";
+						else if (xGrade == 4) xState ="매우나쁨";	//4
+						else xState ="";
+
+						//초미세먼지
+						xValue25 = $(this).find('pm25Value').text();
+						xGrade25 = $(this).find('pm25Grade').text();
+
+						if(xGrade25 == 1) xState25 ="좋음";
+						else if (xGrade25 == 2) xState25 ="보통";
+						else if (xGrade25 == 3) xState25 ="나쁨";
+						else if (xGrade25 == 4) xState25 ="매우나쁨";	//4
+						else xState25 ="";
+
+						$('.wDust_v').html(xValue);						
+						$('.wDust_s').html(xState);
+
+						$('.wDust25_v').html(xValue25);						
+						$('.wDust25_s').html(xState25);
+					}	
+				});	
+			}	
+		},
+		error: function(xhr) {		
+		  console.log('실패 - ', xhr);		
+		}
+	});
+	
+
+
+	$.ajax({				
+		url : "/contpop/getAjaxWeather.jsp",
+		type : "GET",
+//		cache: false,  
+		dataType : "text",	
+		success : function(data){
+			
+			var xPreValue;	//현재온도 - 3시간
+			var xTmnValue;	//최저온도
+			var xTmxValue;	//최고온도
+			var xSkyValue;	//하늘상태
+			var xPtyValue;	//비,눈 표시
+			
+			var toTime = currentDate.getHours()+""+currentDate.getMinutes(); 
+
+			var xml = $(data);
+			var list = xml.find('item');
+			var listLength = list.length;
+
+			if( listLength > 0 ){
+
+				//$(xml).find('car').each(function(){ });
+				$.each(list, function(){
+					
+					if(toTime < "0900"){
+						if($(this).find('category').text() == "TMP" && $(this).find('fcstTime').text() == "0600"){
+							xPreValue = $(this).find('fcstValue').text();	
+							xPreValue = Math.round(xPreValue);
+							$('.wPre_v').html(xPreValue+"℃");
+						}
+
+						if($(this).find('category').text() == "SKY" && $(this).find('fcstTime').text() == "0600")
+							xSkyValue = $(this).find('fcstValue').text();	
+
+						if($(this).find('category').text() == "PTY" && $(this).find('fcstTime').text() == "0600")
+							xPtyValue = $(this).find('fcstValue').text();
+					}
+					else if(toTime >= "0900" && toTime < "1500"){
+						if($(this).find('category').text() == "TMP" && $(this).find('fcstTime').text() == "0900"){
+							xPreValue = $(this).find('fcstValue').text();
+							xPreValue = Math.round(xPreValue);
+							$('.wPre_v').html(xPreValue+"℃");
+						}
+
+						if($(this).find('category').text() == "SKY" && $(this).find('fcstTime').text() == "0900")
+							xSkyValue = $(this).find('fcstValue').text();	
+							
+
+						if($(this).find('category').text() == "PTY" && $(this).find('fcstTime').text() == "0900")
+							xPtyValue = $(this).find('fcstValue').text();	
+
+					}else if(toTime >= "1500" && toTime < "1800"){
+						
+						if($(this).find('category').text() == "TMP" && $(this).find('fcstTime').text() == "1500"){
+							xPreValue = $(this).find('fcstValue').text();	
+							xPreValue = Math.round(xPreValue);
+							$('.wPre_v').html(xPreValue+"℃");
+						}
+
+						if($(this).find('category').text() == "SKY" && $(this).find('fcstTime').text() == "1500")
+							xSkyValue = $(this).find('fcstValue').text();	
+
+						if($(this).find('category').text() == "PTY" && $(this).find('fcstTime').text() == "1500")
+							xPtyValue = $(this).find('fcstValue').text();	
+
+					}else if(toTime >= "1800" && toTime < "2100"){
+						
+						if($(this).find('category').text() == "TMP" && $(this).find('fcstTime').text() == "1800"){
+							xPreValue = $(this).find('fcstValue').text();	
+							xPreValue = Math.round(xPreValue);
+							$('.wPre_v').html(xPreValue+"℃");
+						}
+
+						if($(this).find('category').text() == "SKY" && $(this).find('fcstTime').text() == "1800")
+							xSkyValue = $(this).find('fcstValue').text();	
+
+						if($(this).find('category').text() == "PTY" && $(this).find('fcstTime').text() == "1800")
+							xPtyValue = $(this).find('fcstValue').text();	
+
+					}else{
+					
+						if($(this).find('category').text() == "TMP" && $(this).find('fcstTime').text() == "2100"){
+							xPreValue = $(this).find('fcstValue').text();	
+							xPreValue = Math.round(xPreValue);
+							$('.wPre_v').html(xPreValue+"℃");
+						}
+
+						if($(this).find('category').text() == "SKY" && $(this).find('fcstTime').text() == "2100")
+							xSkyValue = $(this).find('fcstValue').text();	
+
+						if($(this).find('category').text() == "PTY" && $(this).find('fcstTime').text() == "2100")
+							xPtyValue = $(this).find('fcstValue').text();	
+					}
+
+					if($(this).find('category').text() == "TMN"){	//최저
+				
+						xTmnValue = $(this).find('fcstValue').text();	
+						xTmnValue = Math.round(xTmnValue);
+						$('.wTmn_v').html(xTmnValue);
+					}
+
+					if($(this).find('category').text() == "TMX"){	//최고
+				
+						xTmxValue = $(this).find('fcstValue').text();	
+						xTmxValue = Math.round(xTmxValue);
+						$('.wTmx_v').html(xTmxValue);
+					}
+					//alert(xTmxValue);
+				
+				});	
+			}	
+			
+			//해,비 처리
+			if(xPtyValue == 1){	//비
+				$('.wSky_v').replaceWith('<img src="/images/main/rainy.png" alt="비" />');
+			}else if(xPtyValue == 2){	//눈,비
+				$('.wSky_v').replaceWith('<img src="/images/main/snowrain.png" alt="눈비" />');
+			}else if(xPtyValue == 3){	//눈
+				$('.wSky_v').replaceWith('<img src="/images/main/snow.png" alt="눈" />');
+			}else{	// 강수 없음.  - 하늘상태 표시
+				if(xSkyValue == 1)	
+					$('.wSky_v').replaceWith('<img src="/images/main/sunny.png" alt="맑음" />');
+				else if (xSkyValue == 4)	
+					$('.wSky_v').replaceWith('<img src="/images/main/cloud.png" alt="흐림" />');
+				else
+					$('.wSky_v').replaceWith('<img src="/images/main/suncloud.png" alt="구름많음" />');
+			}
+		},
+		error: function(xhr) {		
+		  console.log('실패 - ', xhr);		
+		}
+	});
+});
+
+//-->
+</script>
+
+<body>
+<div class="wrap">
+    <div id="skipNavi">
+    <a href="#h_mline">메인메뉴 바로가기</a>		
+		<a href="#leftm">왼쪽메뉴 바로가기</a>
+		<a href="#content_in">본문내용 바로가기</a>
+	</div>
+	<!--//#skipnavi-->
+
+	<header id="header">
+	 <div class="utill">
+	  <div class="utill_in">
+	  <a href="https://www.bukgu.ulsan.kr/index.do" title="새창" target="_blank"><img src="/images/common/h_logo.png" alt="울산광역시 북구 로고" class="mgr_5" /> 울산광역시북구청 바로가기</a>
+	  </div>
+	 </div>
+	 <!--//utill-->
+	 <div class="h_main">
+	<div class="bg_wth">
+	    <div class="wth_1"> 
+		  <a href="https://www.weather.go.kr/w/index.do" target="_blank" title="기상청 제공-날씨누리" class="weather w_img">
+		   <span class="wSky_v"><img src="/images/main/sunny.png" alt="맑음" /></span>
+		   <div class="warmth">
+		    <p class="temperature wPre_v"></p>
+		    <!-- <p class="hlt"><span class="wTmn_v"></span>˚/<span class="wTmx_v"></span>˚</p> -->
+			<p class="hlt"><span class="wTmn_v">-</span>˚/<span class="wTmx_v">-</span>˚</p>
+		   </div>
+	      </a>
+		 </div>
+		  <div class="dustmore">
+	      <a href="https://www.airkorea.or.kr/" target="_blank" title="데이터는 실시간 관측된 자료이며 측정소 현지 사정이나 데이터의 수신상태에 따라 미수신될 수 있습니다.(AirKorea 제공)" class="data">
+			<p class="weathe_cont">미세먼지 <em><span class="weater_color bold"><span class="wDust_v"></span>㎍/㎥</em></span><strong><span class="wDust_s"></span></strong></p>
+		  </a>
+		  <a href="https://www.airkorea.or.kr/" target="_blank" title="데이터는 실시간 관측된 자료이며 측정소 현지 사정이나 데이터의 수신상태에 따라 미수신될 수 있습니다.(AirKorea 제공)" class="data">
+			<p class="weathe_cont">초미세먼지 <em><span class="weater_color bold"><span class="wDust25_v"></span>㎍/㎥</em></span> <strong><span class="wDust25_s"></span></strong></p>
+		  </a>
+		   </a>
+		  </div>
+		 </div><!--bg_wth end-->
+	  <div class="main_logo"><a href="/"><img src="/images/common/logo.png" alt="울산북구시설관리공단" /></a></div>
+	  <div class="go_smap"><a href="/pageCont.do?menuNo=8040000"><img src="/images/common/m_menu.png" alt="사이트맵 바로가기" /></a></div>
+	  <div class="m_menu"><a href="/"><img src="/images/common/m_menu.png" alt="모바일 메뉴 보기" /></a></div>
+	 </div>
+	 <!--//h_main-->
+	 
+	<script >
+	<!--
+		// 상단 탑메뉴 
+		$(function(){
+		  $("#h_mline ul li a").mouseover(function(){
+			$("#h_smenu").slideDown("fast");    
+		  });
+		  $("#h_mline").mouseleave(function(){
+			closeMenu();
+		  });
+	
+		  $("#h_mline ul li a").focusin(function(){
+			$("#h_smenu").slideDown("fast");    
+		  });
+		});
+	
+		// 상단 메뉴 닫기
+		function closeMenu(){
+		  $("#h_smenu").slideUp("fast");
+		}
+	
+		$(document).ready(function(){
+			$(".m_menu a, .mclose").click(function(){
+				//$("#mobile_menu:not(:animated)").toggle("fast");
+				$("#mobile_menu:not(:animated)").toggle(50);
+				
+				return false;
+			});
+			
+			$("#h_smenu .hsm_box > li").on("mouseover focusin", function(){
+				var onMouseIndex = $("#h_smenu .hsm_box > li").index(this); //2차 메뉴의 0번째 li는 닫기 버튼임
+				$("#h_mline .hm_wrap li:nth-child("+onMouseIndex+")").addClass("on");
+			});
+			
+			$("#h_smenu .hsm_box > li").on("mouseleave focusout", function(){
+				$("#h_mline .hm_wrap li").removeClass("on");
+				
+				var curMenuIndex = "2";
+				curMenuIndex = curMenuIndex * 1;
+				
+				$("#h_mline .hm_wrap li:nth-child("+curMenuIndex+")").addClass("on");
+			});
+		});
+		
+		//상단 1차메뉴 클릭 이벤트
+		function goSecMenu(idx){
+			var goPage = $("#h_smenu > .hsm_box > .m" + idx + " > ul > li:nth-child(1) > a").attr("href");
+			location.href = goPage;
+		}
+	//-->
+	</script>
+	 
+	 <div id="h_mline">
+	  <ul class="hm_wrap">
+	   <li ><a href="javascript:goSecMenu(1)">공단소개</a></li>
+		<li class="on"><a href="javascript:goSecMenu(2)">알림마당</a></li>
+		<li ><a href="javascript:goSecMenu(3)">열린경영</a></li>
+		<li ><a href="javascript:goSecMenu(4)">시설안내</a></li>
+		<li ><a href="javascript:goSecMenu(5)">고객센터</a></li>
+		<li ><a href="javascript:goSecMenu(6)">정보공개</a></li>
+		</ul><!--1차메뉴-->
+	  <div id="h_smenu">
+	   <ul class="hsm_box">
+	     <li class="menu_close"><a href="javascript:closeMenu();"><img src="/images/common/mm_close.png" alt="메뉴닫기" /></a></li>
+	   
+	   	<!-- 2차메뉴만, 홈페이지안내 및 관리자 메뉴 제외 -->
+	   	<li class="m1"><ul></ul></li>
+	   		<li class="m2"><ul></ul></li>
+	   		<li class="m3"><ul></ul></li>
+	   		<li class="m4"><ul></ul></li>
+	   		<li class="m5"><ul></ul></li>
+	   		<li class="m6"><ul></ul></li>
+	   		<script>
+			<!--
+			var target_obj = ".m1 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=1010000'>이사장 인사말</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m5 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=5010000'>고객서비스헌장</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m8 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=8010000'>개인정보처리방침</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m6 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=6010000'>정보공개제도안내</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m3 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=3010100'>경영고시</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m4 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=4020100'>체육시설</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m2 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=2010000'>새소식</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m2 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=2020000'>고시·공고</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m1 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=1020000'>설립배경 및 연혁</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m4 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=4010100'>주차시설</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m5 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=5020000'>자주묻는질문</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m8 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=8020000'>이메일무단수집거부</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m3 > ul";
+			$(target_obj).append("<li><a href='https://ubimc.or.kr/law/index.html' title='새창으로 이동' target='_blank'>정관,규정,내규 등&nbsp;<img src='/images/common/new_tab.png' alt='새창열림' /></a></li>");
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m6 > ul";
+			$(target_obj).append("<li><a href='https://www.open.go.kr/' title='새창으로 이동' target='_blank'>정보공개신청&nbsp;<img src='/images/common/new_tab.png' alt='새창열림' /></a></li>");
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m2 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=2030000'>입찰공고</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m1 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=1060000'>New 미션 및 비전</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m5 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=5030000'>칭찬합니다</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m8 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=8030000'>영상정보처리기기 운영·관리 방침</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m3 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=3080100'>안전경영</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m4 > ul";
+			
+			$(target_obj).append("<li><a target='_blank' href='/pageCont.do?menuNo=4050100'>캠핑장&nbsp;<img src='/images/common/new_tab.png' alt='새창열림' /></a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m6 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=6030000'>행정정보공개</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m6 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=6040000'>사전정보공개</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m2 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=2040000'>채용공고</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m4 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=4030000'>이용안내</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m5 > ul";
+			$(target_obj).append("<li><a href='https://www.epeople.go.kr/index.jsp' title='새창으로 이동' target='_blank'>민원신청&nbsp;<img src='/images/common/new_tab.png' alt='새창열림' /></a></li>");
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m3 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=3040000'>경영성과, 업무실적</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m8 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=8040000'>사이트맵</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m3 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=3050000'>시설물 보수내역</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m6 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=6050000'>공공데이터 개방</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m1 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=1040000'>조직 및 업무안내</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m2 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=2050000'>공단사진방</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m4 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=4040000'>체육관대관</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m5 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=5050000'>열린혁신제안</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m5 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=5060000'>클린신고센터</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m3 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=3060100'>윤리경영</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m6 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=6060000'>정보공개 목록</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m1 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=1050000'>찾아오시는 길</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m5 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=5070000'>작업중지 요청제</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m2 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=2070000'>언론보도</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m3 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=3070100'>인권경영</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m5 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=5080000'>주민참여예산</a></li>");
+			
+			//-->
+			</script>
+			
+			<script>
+			<!--
+			var target_obj = ".m5 > ul";
+			
+			$(target_obj).append("<li><a href='/pageCont.do?menuNo=5090000'>소비자중심경영</a></li>");
+			
+			//-->
+			</script>
+			
+			</ul>
+	  </div>
+	  <!--//#h_smenu / 2차메뉴-->
+	 </div>
+	 <!--//h_mline-->
+	 <div id="mobile_menu">
+	  <div class="mmenu_list">
+	   <div class="m_utill">
+	    <a href="http://www.bukgu.ulsan.kr/index.do" title="새창" target="_blank">울산광역시북구청 바로가기</a>
+		<div class="m_tit">
+		 <span class="mtitle"><img src="/images/common/mobile_menu_logo.png" alt="울산광역시북구시설관리공단" /></span>
+		 <span class="mclose"><img src="/images/common/mm_close.png" alt="모바일메뉴 닫기" /></span>
+	    </div>
+	   </div>
+	   <!--//m_utill-->
+	   <div class="mm">
+	    <ul class="m_fm">
+	    <li class="m_fm_1"><div class="mm_in"><span>공단소개</span></div>
+	      <ul class="m_sm">
+	      <li>
+				<a href="/pageCont.do?menuNo=1010000" 
+	      			 >
+	      			<span>이사장 인사말</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=1020000" 
+	      			 >
+	      			<span>설립배경 및 연혁</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=1060000" 
+	      			class="longNameMenu" >
+	      			<span>New 미션 및 비전</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=1040000" 
+	      			 >
+	      			<span>조직 및 업무안내</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=1050000" 
+	      			 >
+	      			<span>찾아오시는 길</span>
+	      		</a>
+				</li>
+	      	</ul>
+		 </li>
+	    <li class="m_fm_2"><div class="mm_in"><span>알림마당</span></div>
+	      <ul class="m_sm">
+	      <li>
+				<a href="/pageCont.do?menuNo=2010000" 
+	      			 >
+	      			<span>새소식</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=2020000" 
+	      			 >
+	      			<span>고시·공고</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=2030000" 
+	      			 >
+	      			<span>입찰공고</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=2040000" 
+	      			 >
+	      			<span>채용공고</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=2050000" 
+	      			 >
+	      			<span>공단사진방</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=2070000" 
+	      			 >
+	      			<span>언론보도</span>
+	      		</a>
+				</li>
+	      	</ul>
+		 </li>
+	    <li class="m_fm_3"><div class="mm_in"><span>열린경영</span></div>
+	      <ul class="m_sm">
+	      <li>
+				<a href="/pageCont.do?menuNo=3010000" 
+	      			 >
+	      			<span>경영고시</span>
+	      		</a>
+				<ul class="m_tm"><li>
+						<a href="/pageCont.do?menuNo=3010100">경영평가결과</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=3010200">고객만족도결과</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=3010300">예산현황</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=3010400">결산현황</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=3010500">업무추진비공개</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=3010600">수의계약내역공개</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=3010800">감사결과공개</a>
+							</li>      			 	
+	      		 </ul></li>
+	      	<li>
+				<a href="https://ubimc.or.kr/law/index.html" target="_blank"
+	      			 >
+	      			<span>정관,규정,내규 등&nbsp;<img src="/images/common/new_tab.png" alt="새창열림"></span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=3080000" 
+	      			 >
+	      			<span>안전경영</span>
+	      		</a>
+				<ul class="m_tm"><li>
+						<a href="/pageCont.do?menuNo=3080100">안전보건경영방침</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=3080200">안전매뉴얼</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=3080300">안전보건예산</a>
+							</li>      			 	
+	      		 </ul></li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=3040000" 
+	      			 >
+	      			<span>경영성과, 업무실적</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=3050000" 
+	      			 >
+	      			<span>시설물 보수내역</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=3060000" 
+	      			 >
+	      			<span>윤리경영</span>
+	      		</a>
+				<ul class="m_tm"><li>
+						<a href="/pageCont.do?menuNo=3060100">중장기 경영계획</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=3060200">윤리헌장</a>
+							</li>      			 	
+	      		 </ul></li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=3070000" 
+	      			 >
+	      			<span>인권경영</span>
+	      		</a>
+				<ul class="m_tm"><li>
+						<a href="/pageCont.do?menuNo=3070100">인권경영헌장</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=3070200">인권침해신고센터</a>
+							</li>      			 	
+	      		 </ul></li>
+	      	</ul>
+		 </li>
+	    <li class="m_fm_4"><div class="mm_in"><span>시설안내</span></div>
+	      <ul class="m_sm">
+	      <li>
+				<a href="/pageCont.do?menuNo=4020000" 
+	      			 >
+	      			<span>체육시설</span>
+	      		</a>
+				<ul class="m_tm"><li>
+						<a href="/pageCont.do?menuNo=4020100">오토밸리복지센터</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=4020200">북구국민체육센터</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=4020300">쇠부리체육센터</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=4020500">호계문화체육센터</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=4020400">야외체육시설</a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=4020600">네트형체육시설</a>
+							</li>      			 	
+	      		 </ul></li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=4010000" 
+	      			 >
+	      			<span>주차시설</span>
+	      		</a>
+				<ul class="m_tm"><li>
+						<a href="/pageCont.do?menuNo=4010100">북구 공영주차장</a>
+							</li>      			 	
+	      		 </ul></li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=4050000" 
+	      			 >
+	      			<span>캠핑장</span>
+	      		</a>
+				<ul class="m_tm"><li>
+						<a href="/pageCont.do?menuNo=4050100" target="_blank">강동오토캠핑장&nbsp;<img src="/images/common/new_tab.png" alt="새창열림" /></a>
+							</li>      			 	
+	      		 <li>
+						<a href="/pageCont.do?menuNo=4050200" target="_blank">당사현대차오션캠프&nbsp;<img src="/images/common/new_tab.png" alt="새창열림" /></a>
+							</li>      			 	
+	      		 </ul></li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=4030000" 
+	      			 >
+	      			<span>이용안내</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=4040000" 
+	      			 >
+	      			<span>체육관대관</span>
+	      		</a>
+				</li>
+	      	</ul>
+		 </li>
+	    <li class="m_fm_5"><div class="mm_in"><span>고객센터</span></div>
+	      <ul class="m_sm">
+	      <li>
+				<a href="/pageCont.do?menuNo=5010000" 
+	      			 >
+	      			<span>고객서비스헌장</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=5020000" 
+	      			 >
+	      			<span>자주묻는질문</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=5030000" 
+	      			 >
+	      			<span>칭찬합니다</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="https://www.epeople.go.kr/index.jsp" target="_blank"
+	      			 >
+	      			<span>민원신청&nbsp;<img src="/images/common/new_tab.png" alt="새창열림"></span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=5050000" 
+	      			 >
+	      			<span>열린혁신제안</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=5060000" 
+	      			 >
+	      			<span>클린신고센터</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=5070000" 
+	      			 >
+	      			<span>작업중지 요청제</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=5080000" 
+	      			 >
+	      			<span>주민참여예산</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=5090000" 
+	      			 >
+	      			<span>소비자중심경영</span>
+	      		</a>
+				</li>
+	      	</ul>
+		 </li>
+	    <li class="m_fm_6"><div class="mm_in"><span>정보공개</span></div>
+	      <ul class="m_sm">
+	      <li>
+				<a href="/pageCont.do?menuNo=6010000" 
+	      			 >
+	      			<span>정보공개제도안내</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="https://www.open.go.kr/" target="_blank"
+	      			 >
+	      			<span>정보공개신청&nbsp;<img src="/images/common/new_tab.png" alt="새창열림"></span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=6030000" 
+	      			 >
+	      			<span>행정정보공개</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=6040000" 
+	      			 >
+	      			<span>사전정보공개</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=6050000" 
+	      			 >
+	      			<span>공공데이터 개방</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=6060000" 
+	      			 >
+	      			<span>정보공개 목록</span>
+	      		</a>
+				</li>
+	      	</ul>
+		 </li>
+	    <li class="m_fm_8"><div class="mm_in"><span>이용안내</span></div>
+	      <ul class="m_sm">
+	      <li>
+				<a href="/pageCont.do?menuNo=8010000" 
+	      			 >
+	      			<span>개인정보처리방침</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=8020000" 
+	      			 >
+	      			<span>이메일무단수집거부</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=8030000" 
+	      			class="longNameMenu" >
+	      			<span>영상정보처리기기 운영·관리 방침</span>
+	      		</a>
+				</li>
+	      	<li>
+				<a href="/pageCont.do?menuNo=8040000" 
+	      			 >
+	      			<span>사이트맵</span>
+	      		</a>
+				</li>
+	      	</ul>
+		 </li>
+	    </ul>
+	   </div><!--//mm-->
+	  </div>
+	  <div id="mm_bg"></div>
+	  </div>
+	  <!--//#mobile_menu-->
+	
+	
+<script>
+<!--
+	$(".m_tm").parent("li").addClass("mo"); //3차 메뉴가 있는 경우 2차메뉴에 클래스 추가
+		
+	//1차 메뉴 클릭 이벤트
+	$(".mm_in").click(function(){
+		if($(this).parent("li").hasClass("on")){ //이미 오픈 되어있는 메뉴인 경우
+			//메뉴 모두 닫기
+			$(".m_fm > li").removeClass("on");
+			$(".m_sm").hide();
+			$(".m_tm").hide(); $(".mo").removeClass("select");
+		}else{
+			//메뉴 모두 닫기
+			$(".m_fm > li").removeClass("on");
+			$(".m_sm").hide();
+			$(".m_tm").hide(); $(".mo").removeClass("select");
+			
+			$(this).parent("li").addClass("on");
+			$(this).parent("li").children(".m_sm").show();
+		}		
+	});
+	
+	//2차 메뉴 클릭 이벤트
+	$(".m_sm > li > a").click(function(){
+		if($(this).parent("li").hasClass("mo")){ //3차 메뉴가 있을 때
+			if($(this).parent("li").hasClass("select")){ //3차 메뉴가 이미 오픈 되어있는 경우
+				$(".m_tm").hide();
+				$(".mo").removeClass("select");
+			}else{
+				$(".m_tm").hide();
+				$(".mo").removeClass("select");
+				
+				$(this).parent("li").addClass("select");
+				$(this).parent("li").children(".m_tm").show();
+			}
+			
+			return false;
+		}
+	});
+	
+	//페이지로드시 현재메뉴 오픈
+	$(document).ready(function(){
+		var paramMenuNo = "2040000";
+		
+		if(paramMenuNo != ""){
+			var firstClass = ".m_fm_" + paramMenuNo.substring(0,1);
+			
+			$(firstClass).addClass("on");
+			$(firstClass + " > .m_sm").show();			
+		}
+	});
+//-->
+</script>	</header>
+	<!--//#header-->
+	
+	<form name="menuListForm" action ="#" method="post">
+        <input type="hidden" id="menuNo" name="menuNo" value="2000000" />
+        <input type="hidden" id="link" name="link" value="" />
+        <input type="hidden" name="tmp_menuNm" value="1000000|0|공단소개|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="3080100|3080000|안전보건경영방침|/|/|openman/openman08_1|" />
+        <input type="hidden" name="tmp_menuNm" value="4050100|4050000|강동오토캠핑장|/|/|sisulinfo/sisulinfo05_1|" />
+        <input type="hidden" name="tmp_menuNm" value="1010000|1000000|이사장 인사말|/|/|intro/intro01|" />
+        <input type="hidden" name="tmp_menuNm" value="3060100|3060000|중장기 경영계획|/|/|openman/openman06_1|" />
+        <input type="hidden" name="tmp_menuNm" value="5010000|5000000|고객서비스헌장|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000186|" />
+        <input type="hidden" name="tmp_menuNm" value="8010000|8000000|개인정보처리방침|/|/|homeinfo/homeinfo01_history|" />
+        <input type="hidden" name="tmp_menuNm" value="3070100|3070000|인권경영헌장|/|/|openman/openman07_1|" />
+        <input type="hidden" name="tmp_menuNm" value="4010100|4010000|북구 공영주차장|/|/|sisulinfo/sisulinfo01_1|" />
+        <input type="hidden" name="tmp_menuNm" value="6010000|6000000|정보공개제도안내|/|/|openinfo/openinfo01|" />
+        <input type="hidden" name="tmp_menuNm" value="3010000|3000000|경영고시|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="4020000|4000000|체육시설|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="2010000|2000000|새소식|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000001|" />
+        <input type="hidden" name="tmp_menuNm" value="3010100|3010000|경영평가결과|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000071|" />
+        <input type="hidden" name="tmp_menuNm" value="4020100|4020000|오토밸리복지센터|/|/|sisulinfo/sisulinfo02_1|" />
+        <input type="hidden" name="tmp_menuNm" value="2020000|2000000|고시·공고|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000041|" />
+        <input type="hidden" name="tmp_menuNm" value="3010200|3010000|고객만족도결과|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000081|" />
+        <input type="hidden" name="tmp_menuNm" value="4020200|4020000|북구국민체육센터|/|/|sisulinfo/sisulinfo02_2|" />
+        <input type="hidden" name="tmp_menuNm" value="3080200|3080000|안전매뉴얼|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000185|" />
+        <input type="hidden" name="tmp_menuNm" value="4050200|4050000|당사현대차오션캠프|/|/|sisulinfo/sisulinfo05_2|" />
+        <input type="hidden" name="tmp_menuNm" value="1020000|1000000|설립배경 및 연혁|/|/|intro/intro02|" />
+        <input type="hidden" name="tmp_menuNm" value="3060200|3060000|윤리헌장|/|/|openman/openman06_2|" />
+        <input type="hidden" name="tmp_menuNm" value="4010000|4000000|주차시설|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="5020000|5000000|자주묻는질문|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000021&sCaId01=021-01|" />
+        <input type="hidden" name="tmp_menuNm" value="8020000|8000000|이메일무단수집거부|/|/|homeinfo/homeinfo02|" />
+        <input type="hidden" name="tmp_menuNm" value="2000000|0|알림마당|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="3020000|3000000|정관,규정,내규 등|/|/|https://ubimc.or.kr/law/index.html|" />
+        <input type="hidden" name="tmp_menuNm" value="3070200|3070000|인권침해신고센터|/|/|openman/openman07_2|" />
+        <input type="hidden" name="tmp_menuNm" value="6020000|6000000|정보공개신청|/|/|https://www.open.go.kr/|" />
+        <input type="hidden" name="tmp_menuNm" value="2030000|2000000|입찰공고|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000051|" />
+        <input type="hidden" name="tmp_menuNm" value="3010300|3010000|예산현황|/|/|openman/openman01_3|" />
+        <input type="hidden" name="tmp_menuNm" value="4020300|4020000|쇠부리체육센터|/|/|sisulinfo/sisulinfo02_3|" />
+        <input type="hidden" name="tmp_menuNm" value="3080300|3080000|안전보건예산|||/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000221|" />
+        <input type="hidden" name="tmp_menuNm" value="1060000|1000000|New 미션 및 비전|/|/|intro/intro06|" />
+        <input type="hidden" name="tmp_menuNm" value="3000000|0|열린경영|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="5030000|5000000|칭찬합니다|/|/|/cop/bbs/anonymous/selectBoardList.do?bbsId=BBSMSTR_000000000151|" />
+        <input type="hidden" name="tmp_menuNm" value="8030000|8000000|영상정보처리기기 운영·관리 방침|/|/|homeinfo/homeinfo03|" />
+        <input type="hidden" name="tmp_menuNm" value="3080000|3000000|안전경영|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="4050000|4000000|캠핑장|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="6030000|6000000|행정정보공개|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000171|" />
+        <input type="hidden" name="tmp_menuNm" value="6040000|6000000|사전정보공개|/|/|/InfCodeList.do|" />
+        <input type="hidden" name="tmp_menuNm" value="2040000|2000000|채용공고|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000061|" />
+        <input type="hidden" name="tmp_menuNm" value="3010400|3010000|결산현황|/|/|openman/openman01_4|" />
+        <input type="hidden" name="tmp_menuNm" value="4000000|0|시설안내|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="4020500|4020000|호계문화체육센터|/|/|sisulinfo/sisulinfo02_5|" />
+        <input type="hidden" name="tmp_menuNm" value="4030000|4000000|이용안내|/|/|sisulinfo/sisulinfo03|" />
+        <input type="hidden" name="tmp_menuNm" value="5040000|5000000|민원신청|/|/|https://www.epeople.go.kr/index.jsp|" />
+        <input type="hidden" name="tmp_menuNm" value="3040000|3000000|경영성과, 업무실적|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000187|" />
+        <input type="hidden" name="tmp_menuNm" value="8040000|8000000|사이트맵|/|/|homeinfo/homeinfo04|" />
+        <input type="hidden" name="tmp_menuNm" value="3050000|3000000|시설물 보수내역|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000202|" />
+        <input type="hidden" name="tmp_menuNm" value="6050000|6000000|공공데이터 개방|/|/|openinfo/openinfo05|" />
+        <input type="hidden" name="tmp_menuNm" value="4020400|4020000|야외체육시설|/|/|sisulinfo/sisulinfo02_4|" />
+        <input type="hidden" name="tmp_menuNm" value="5000000|0|고객센터|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="1040000|1000000|조직 및 업무안내|/|/|intro/intro04|" />
+        <input type="hidden" name="tmp_menuNm" value="2050000|2000000|공단사진방|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000011|" />
+        <input type="hidden" name="tmp_menuNm" value="3010500|3010000|업무추진비공개|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000111|" />
+        <input type="hidden" name="tmp_menuNm" value="4040000|4000000|체육관대관|/|/|sisulinfo/sisulinfo04|" />
+        <input type="hidden" name="tmp_menuNm" value="5050000|5000000|열린혁신제안|/|/|/cop/bbs/anonymous/selectBoardList.do?bbsId=BBSMSTR_000000000161|" />
+        <input type="hidden" name="tmp_menuNm" value="5060000|5000000|클린신고센터|/|/|/cop/bbs/anonymous/selectBoardList.do?bbsId=BBSMSTR_000000000152|" />
+        <input type="hidden" name="tmp_menuNm" value="3060000|3000000|윤리경영|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="6060000|6000000|정보공개 목록|||/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000211|" />
+        <input type="hidden" name="tmp_menuNm" value="1050000|1000000|찾아오시는 길|/|/|intro/intro05|" />
+        <input type="hidden" name="tmp_menuNm" value="3010600|3010000|수의계약내역공개|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000121|" />
+        <input type="hidden" name="tmp_menuNm" value="4020600|4020000|네트형체육시설|/|/|sisulinfo/sisulinfo02_6|" />
+        <input type="hidden" name="tmp_menuNm" value="6000000|0|정보공개|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="5070000|5000000|작업중지 요청제|/|/|custom/custom07|" />
+        <input type="hidden" name="tmp_menuNm" value="2070000|2000000|언론보도|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000203|" />
+        <input type="hidden" name="tmp_menuNm" value="3070000|3000000|인권경영|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="5080000|5000000|주민참여예산|/|/|custom/custom08|" />
+        <input type="hidden" name="tmp_menuNm" value="8000000|0|이용안내|/|/|dir|" />
+        <input type="hidden" name="tmp_menuNm" value="3010800|3010000|감사결과공개|/|/|/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000141|" />
+        <input type="hidden" name="tmp_menuNm" value="5090000|5000000|소비자중심경영|/|/|custom/custom09|" />
+        </form>
+
+<div id="contents">
+	 
+     
+
+
+<script src="/js/egovframework/com/sym/mnu/mpm/EgovMainMenu.js;jsessionid=E5974BF964C39141CEE8FAA6E51AF119"></script>
+
+	 <div id="leftm">
+	  <div class="lm_top">
+	   <img src="/images/contents/lm_img2.png" alt=" " />
+	   <span>알림마당</span>
+	  </div>
+	  <div class="lm_list">
+	  	<script>
+		 var Tree = new Array;
+		 if(document.menuListForm.tmp_menuNm != null){
+			 for (var j = 0; j < document.menuListForm.tmp_menuNm.length; j++) {
+				 Tree[j] = document.menuListForm.tmp_menuNm[j].value;
+			 }
+		 }
+		 var leftStartMenuValue = document.getElementById("menuNo").value;
+		 if (leftStartMenuValue==null || leftStartMenuValue=="" || leftStartMenuValue=="null") leftStartMenuValue = '1000000';
+		 
+		 var sMenuNo = "2040000";
+		 var curMenuNo = sMenuNo;
+		 var tmpMenuNo = sMenuNo.substring(sMenuNo.length-3, sMenuNo.length);
+		 if(tmpMenuNo != "000") sMenuNo = Number(sMenuNo) - Number(tmpMenuNo);
+		 
+		 createTree(Tree, false, leftStartMenuValue, sMenuNo, curMenuNo); //하위 메뉴 전체 표시하려면 true
+	 	</script>
+	 	
+	   
+	  </div>
+	 </div>
+	 <!--//#leftm-->
+
+	 <script>
+	 <!--
+	 //메뉴명이 긴 경우 처리
+	 var cntSecMenu = $(".lm1 > li > a").length;
+
+	 for(i=1; i<=cntSecMenu; i++){
+		 var menuStr = $(".lm1 > li:nth-child("+i+") > a").text();
+		 if(menuStr.length > 10 && menuStr.length <= 15){
+			 $(".lm1 > li:nth-child("+i+") > a").addClass("longNameMenu");
+		 }else if(menuStr.length > 15){
+			 $(".lm1 > li:nth-child("+i+") > a").addClass("verylongNameMenu");
+		 }
+	 }
+
+	
+	 
+	 //-->
+
+	
+	 $("ul#4050000 > li > a").attr("target", "_blank");
+	 $("ul#4050000 > li > a").append("&nbsp;<img src='/images/common/new_tab.png' alt='새창열림' />");
+	 $("ul#4050000").parent("li").children("a").attr("onclick", "fLeftToggle('4050000'); return false;");
+
+	 function fLeftToggle(id){
+		 $("ul#" + id).toggle();
+		 if($("ul#" + id).css("display") != "none")
+			$("ul#" + id).parent("li").addClass("on");
+		 else
+			$("ul#" + id).parent("li").removeClass("on");
+	 }
+	 </script><div id="content_in">
+	  <div class="cont_title">
+	   <h1>채용공고</h1>
+	   <ul id="cont_navi">
+	    <li><img src="/images/contents/navi_icon.png" alt="home" /></li>
+		<li>알림마당</li>
+		<li>채용공고</li>
+		</ul>
+	  </div>
+	  <!--cont_title-->
+
+	  <div class="contents_box">
+
+
+
+<script src="/js/egovframework/com/cop/bbs/EgovBBSMng.js;jsessionid=E5974BF964C39141CEE8FAA6E51AF119" ></script>
+
+
+
+<script>
+<!--
+	function press(event) {
+		if (event.keyCode==13) {
+			fn_egov_select_noticeList('1');
+		}
+	}
+
+	function fn_egov_addNotice() {
+		document.frm.action = "/cop/bbs/addBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119";
+		document.frm.submit();
+	}
+
+	function fn_egov_select_noticeList(pageNo) {
+		document.frm.pageIndex.value = pageNo;
+		document.frm.action = "/cop/bbs/selectBoardList.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119";
+		document.frm.submit();
+	}
+
+	function fn_egov_inqire_notice(nttId, bbsId) {
+		 if(bbsId == "") return false; //20150508
+		 document.submitParam.nttId.value = nttId;
+		 document.submitParam.bbsId.value = bbsId;
+		 document.submitParam.action = "/cop/bbs/selectBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119";
+		 document.submitParam.submit();
+	}
+//-->
+</script>
+
+
+
+
+<div class="t_box">
+
+	<div class="board_search_wrap">
+		<div class="board_total">
+			<span class="total">
+				총 <span class="bold">293</span>건
+			</span>
+			<span class="page">
+				<span class="bold">1/30</span> 페이지
+			</span>
+		</div>
+
+		<div class="board_search">
+			<form name="frm" action ="/cop/bbs/selectBoardList.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119" method="post">
+			<input type="hidden" name="menuNo" value="2040000" />
+			<input type="hidden" name="bbsId" value="BBSMSTR_000000000061" />
+			<input type="hidden" name="nttId"  value="0" />
+			<input type="hidden" name="bbsTyCode" value="pds" />
+			<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
+			<input type="hidden" name="authFlag" value="Y" />
+			<input name="pageIndex" type="hidden" value="1"/>
+
+			<input type="hidden" name="sCaId01" value="" />
+			<input type="hidden" name="sCaId02" value="" />
+			
+			 
+			<label for="search_category" class="hide">검색항목</label>
+			<select id="search_category" name="searchCnd" title="검색항목을 선택하세요">
+			   <option value="0"  >제목</option>
+			   <option value="1"  >내용</option>
+			   
+			   <option value="2"  >작성자</option>
+			   
+			</select>
+	
+			<label class="hide" for="search_word">검색어를 입력하세요</label>
+			<input class="search_input_field" id="search_word" name="searchWrd" value="" placeholder="검색어를 입력하세요" onkeypress="press(event);" size="40" type="text">
+			<button type="button" class="btn_search" onclick="fn_egov_select_noticeList('1'); return false;"><span>검색</span></button>	
+			
+
+			</form>
+		</div>
+	</div>
+	
+	<form name="submitParam" method="post">
+	 	<input type="hidden" name="bbsId"  />
+		<input type="hidden" name="nttId"  />
+		<input type="hidden" name="menuNo" value="2040000" />
+
+		<input name="pageIndex" type="hidden" value="1" />
+		<input name="searchCnd" type="hidden" value="" />
+		<input name="searchWrd" type="hidden" value="" />
+		<input type="hidden" name="sCaId01" value="" />
+		<input type="hidden" name="sCaId02" value="" />
+ 	</form>
+
+	<table class="board_standard">
+	 <caption>
+		<span class="hide">공지사항 게시판 목록으로 번호, 제목, 작성자, 작성일, 조회수를 확인할 수 있습니다.</span>
+	 </caption>
+	 <colgroup>
+	  <col class="num">
+	  <col class="title_post">
+	  <col class="writer">
+	   
+	  <col class="date">
+	  
+	  <col class="count_post">
+	 </colgroup>
+
+	 <thead>
+	  <tr>
+	   <th scope="col">번호</th>
+	   <th scope="col">제목</th>
+	   <th scope="col">작성자</th>
+	    
+	   <th scope="col">작성일</th>
+	   
+	   <th scope="col">조회수</th>
+	  </tr>
+	 </thead>
+
+	 <tbody>
+	 
+	 
+	 
+	  <tr>
+	   <td class="num">	   	
+	   	<img src="/images/board/notice.gif;jsessionid=E5974BF964C39141CEE8FAA6E51AF119" alt="공지" class="noticeimg" />
+		
+	   </td>
+	   <td class="title_post">	   
+			
+	    		
+	    		
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119">
+						<input type="hidden" name="bbsTyCode" value="pds" />
+						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
+						<input type="hidden" name="authFlag" value="Y" />
+						<input name="pageIndex" type="hidden" value="1"/>
+				    	
+			    		<p class="title_this">
+			    			<a href="javascript:"  onclick="fn_egov_inqire_notice('4604', 'BBSMSTR_000000000061');">2026년 제3회 기간제근로자 채용 공고</a>
+			    			
+								<span class="board_file_icon">첨부파일</span>
+							
+			    		</p>
+			    	</form>
+	    		
+	    	
+	    	
+		</td>
+	   <td class="writer">관리자</td>
+	    
+	   <td class="date">2026-08-03</td>
+	   
+	   <td class="count_post">300</td>
+	  </tr>
+	 
+	  <tr>
+	   <td class="num">	   	
+	   	
+		292
+	   </td>
+	   <td class="title_post">	   
+			
+	    		
+	    		
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119">
+						<input type="hidden" name="bbsTyCode" value="pds" />
+						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
+						<input type="hidden" name="authFlag" value="Y" />
+						<input name="pageIndex" type="hidden" value="1"/>
+				    	
+			    		<p class="title_this">
+			    			<a href="javascript:"  onclick="fn_egov_inqire_notice('4581', 'BBSMSTR_000000000061');">2026년 제2회 기간제근로자 채용 최종합격자 공고</a>
+			    			
+								<span class="board_file_icon">첨부파일</span>
+							
+			    		</p>
+			    	</form>
+	    		
+	    	
+	    	
+		</td>
+	   <td class="writer">관리자</td>
+	    
+	   <td class="date">2026-06-18</td>
+	   
+	   <td class="count_post">890</td>
+	  </tr>
+	 
+	  <tr>
+	   <td class="num">	   	
+	   	
+		291
+	   </td>
+	   <td class="title_post">	   
+			
+	    		
+	    		
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119">
+						<input type="hidden" name="bbsTyCode" value="pds" />
+						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
+						<input type="hidden" name="authFlag" value="Y" />
+						<input name="pageIndex" type="hidden" value="1"/>
+				    	
+			    		<p class="title_this">
+			    			<a href="javascript:"  onclick="fn_egov_inqire_notice('4578', 'BBSMSTR_000000000061');">2026년 제2회 기간제근로자 채용 서류심사 합격자 및 면접시험 계획 공고</a>
+			    			
+								<span class="board_file_icon">첨부파일</span>
+							
+			    		</p>
+			    	</form>
+	    		
+	    	
+	    	
+		</td>
+	   <td class="writer">관리자</td>
+	    
+	   <td class="date">2026-06-01</td>
+	   
+	   <td class="count_post">1154</td>
+	  </tr>
+	 
+	  <tr>
+	   <td class="num">	   	
+	   	
+		290
+	   </td>
+	   <td class="title_post">	   
+			
+	    		
+	    		
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119">
+						<input type="hidden" name="bbsTyCode" value="pds" />
+						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
+						<input type="hidden" name="authFlag" value="Y" />
+						<input name="pageIndex" type="hidden" value="1"/>
+				    	
+			    		<p class="title_this">
+			    			<a href="javascript:"  onclick="fn_egov_inqire_notice('4577', 'BBSMSTR_000000000061');">체육센터 시간강사(프리랜서) 모집 최종위탁자 공고</a>
+			    			
+								<span class="board_file_icon">첨부파일</span>
+							
+			    		</p>
+			    	</form>
+	    		
+	    	
+	    	
+		</td>
+	   <td class="writer">관리자</td>
+	    
+	   <td class="date">2026-05-21</td>
+	   
+	   <td class="count_post">660</td>
+	  </tr>
+	 
+	  <tr>
+	   <td class="num">	   	
+	   	
+		289
+	   </td>
+	   <td class="title_post">	   
+			
+	    		
+	    		
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119">
+						<input type="hidden" name="bbsTyCode" value="pds" />
+						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
+						<input type="hidden" name="authFlag" value="Y" />
+						<input name="pageIndex" type="hidden" value="1"/>
+				    	
+			    		<p class="title_this">
+			    			<a href="javascript:"  onclick="fn_egov_inqire_notice('4565', 'BBSMSTR_000000000061');">체육센터 시간강사(프리랜서) 강좌 위·수탁 모집 공고</a>
+			    			
+								<span class="board_file_icon">첨부파일</span>
+							
+			    		</p>
+			    	</form>
+	    		
+	    	
+	    	
+		</td>
+	   <td class="writer">관리자</td>
+	    
+	   <td class="date">2026-05-07</td>
+	   
+	   <td class="count_post">443</td>
+	  </tr>
+	 
+	  <tr>
+	   <td class="num">	   	
+	   	
+		288
+	   </td>
+	   <td class="title_post">	   
+			
+	    		
+	    		
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119">
+						<input type="hidden" name="bbsTyCode" value="pds" />
+						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
+						<input type="hidden" name="authFlag" value="Y" />
+						<input name="pageIndex" type="hidden" value="1"/>
+				    	
+			    		<p class="title_this">
+			    			<a href="javascript:"  onclick="fn_egov_inqire_notice('4562', 'BBSMSTR_000000000061');">2026년 제2회 기간제근로자 채용 공고</a>
+			    			
+								<span class="board_file_icon">첨부파일</span>
+							
+			    		</p>
+			    	</form>
+	    		
+	    	
+	    	
+		</td>
+	   <td class="writer">관리자</td>
+	    
+	   <td class="date">2026-04-30</td>
+	   
+	   <td class="count_post">2519</td>
+	  </tr>
+	 
+	  <tr>
+	   <td class="num">	   	
+	   	
+		287
+	   </td>
+	   <td class="title_post">	   
+			
+	    		
+	    		
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119">
+						<input type="hidden" name="bbsTyCode" value="pds" />
+						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
+						<input type="hidden" name="authFlag" value="Y" />
+						<input name="pageIndex" type="hidden" value="1"/>
+				    	
+			    		<p class="title_this">
+			    			<a href="javascript:"  onclick="fn_egov_inqire_notice('4560', 'BBSMSTR_000000000061');">체육센터 시간강사(프리랜서) 모집 최종위탁자 공고</a>
+			    			
+								<span class="board_file_icon">첨부파일</span>
+							
+			    		</p>
+			    	</form>
+	    		
+	    	
+	    	
+		</td>
+	   <td class="writer">관리자</td>
+	    
+	   <td class="date">2026-04-21</td>
+	   
+	   <td class="count_post">310</td>
+	  </tr>
+	 
+	  <tr>
+	   <td class="num">	   	
+	   	
+		286
+	   </td>
+	   <td class="title_post">	   
+			
+	    		
+	    		
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119">
+						<input type="hidden" name="bbsTyCode" value="pds" />
+						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
+						<input type="hidden" name="authFlag" value="Y" />
+						<input name="pageIndex" type="hidden" value="1"/>
+				    	
+			    		<p class="title_this">
+			    			<a href="javascript:"  onclick="fn_egov_inqire_notice('4556', 'BBSMSTR_000000000061');">체육센터 시간강사(프리랜서) 강좌 위·수탁 모집 공고</a>
+			    			
+								<span class="board_file_icon">첨부파일</span>
+							
+			    		</p>
+			    	</form>
+	    		
+	    	
+	    	
+		</td>
+	   <td class="writer">관리자</td>
+	    
+	   <td class="date">2026-04-07</td>
+	   
+	   <td class="count_post">418</td>
+	  </tr>
+	 
+	  <tr>
+	   <td class="num">	   	
+	   	
+		285
+	   </td>
+	   <td class="title_post">	   
+			
+	    		
+	    		
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119">
+						<input type="hidden" name="bbsTyCode" value="pds" />
+						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
+						<input type="hidden" name="authFlag" value="Y" />
+						<input name="pageIndex" type="hidden" value="1"/>
+				    	
+			    		<p class="title_this">
+			    			<a href="javascript:"  onclick="fn_egov_inqire_notice('4545', 'BBSMSTR_000000000061');">체육센터 시간강사(프리랜서) 모집 최종위탁자 공고</a>
+			    			
+								<span class="board_file_icon">첨부파일</span>
+							
+			    		</p>
+			    	</form>
+	    		
+	    	
+	    	
+		</td>
+	   <td class="writer">관리자</td>
+	    
+	   <td class="date">2026-03-24</td>
+	   
+	   <td class="count_post">338</td>
+	  </tr>
+	 
+	  <tr>
+	   <td class="num">	   	
+	   	
+		284
+	   </td>
+	   <td class="title_post">	   
+			
+	    		
+	    		
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119">
+						<input type="hidden" name="bbsTyCode" value="pds" />
+						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
+						<input type="hidden" name="authFlag" value="Y" />
+						<input name="pageIndex" type="hidden" value="1"/>
+				    	
+			    		<p class="title_this">
+			    			<a href="javascript:"  onclick="fn_egov_inqire_notice('4544', 'BBSMSTR_000000000061');">2026년 제1회 기간제근로자 채용 최종합격자 공고</a>
+			    			
+								<span class="board_file_icon">첨부파일</span>
+							
+			    		</p>
+			    	</form>
+	    		
+	    	
+	    	
+		</td>
+	   <td class="writer">관리자</td>
+	    
+	   <td class="date">2026-03-19</td>
+	   
+	   <td class="count_post">822</td>
+	  </tr>
+	 
+	 </tbody>
+	 
+	</table>
+
+</div><!--t_box-->
+
+
+<div id="page_btn_field"> 
+	<ul>
+		<li><a href="javascript:" onclick="fn_egov_select_noticeList(1);return false; "><img src="/images/board/board_left_btn_first.png" alt="처음"   /></a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(1);return false; "><img src="/images/board/board_left_btn.png"    alt="이전"   /></a></li><li class=select><a href=javascript:void(0);>1</a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(2);return false; ">2</a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(3);return false; ">3</a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(4);return false; ">4</a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(5);return false; ">5</a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(6);return false; ">6</a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(7);return false; ">7</a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(8);return false; ">8</a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(9);return false; ">9</a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(10);return false; ">10</a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(11);return false; "><img src="/images/board/board_right_btn.png"    alt="다음"   /></a></li><li><a href="javascript:" onclick="fn_egov_select_noticeList(30);return false; "><img src="/images/board/board_right_btn_first.png" alt="마지막" /></a></li>
+
+	</ul>
+</div>
+
+<div id="btn_table">
+	<div class="btn">
+		<div class="floatleft">
+			<button id="list_back" onclick="javascript:fn_list(); return false;">목록</button>
+		</div>
+		
+		
+			
+			
+	</div>
+	
+	<script>
+	<!--
+	
+	function fn_list(){
+		location.href = "/pageCont.do;jsessionid=E5974BF964C39141CEE8FAA6E51AF119?menuNo=2040000";
+	}
+	
+	
+	
+	//-->
+	</script>
+</div>
+
+
+
+
+
+
+
+	 
+		  
+	  </div>
+	   <!--.contents_box-->
+
+	  
+	  <!--담당자 정보(최종수정일 있을 떄)-->
+	  <div id="cont_info">
+	   <ul>
+	    <li class="team"><span><img src="/images/common/pi_team.png" alt=" " /> 부서 : </span>경영지원팀</li>
+	    <li class="name"><span><img src="/images/common/pi_name.png" alt=" " /> 담당자 : </span>채용담당자</li>
+	    <li class="call"><span><img src="/images/common/pi_call.png" alt=" " /> 연락처 : </span><a href="tel:052-255-5523" title="담당자 연락처">052-255-5523</a></li>
+	    <li class="modi_date"><span><img src="/images/common/pi_md.png" alt=" " /> 최종수정일 : </span>2025.01.03.</li>
+	   </ul>
+	  </div>
+	  
+
+	  
+
+
+	 </div>
+	 <!--#content_in-->
+	</div>
+	<!--//#contents-->
+	
+
+	<footer id="footer">
+	 <div class="f_utill">
+	  <ul>
+	   <li><a href="/pageCont.do?menuNo=8010000" class="point">개인정보처리방침</a></li>
+	   <li><a href="/pageCont.do?menuNo=8020000">이메일무단수집거부</a></li>
+	   <li><a href="/pageCont.do?menuNo=8030000">영상정보처리기기 운영·관리 방침</a></li>
+	   <li><a href="/pageCont.do?menuNo=8040000">사이트맵</a></li>
+	  </ul>
+	 </div>
+	 <div class="f_wrap">
+	  <div class="f_logo">
+	   <img src="/images/common/f_logo_new.png" alt="울산광역시북구시설관리공단" />
+	  </div>
+	  <div class="address">
+	   <p>(44248) 울산광역시 북구 산업로 1020, 오토밸리복지센터 2층 <span>대표자 임정식</span><a href="tel:052-255-5500" title="052-255-5500" class="call_auto"><span>대표전화 052-255-5500</span></a></p>
+	   <p>Copyright 울산광역시 북구시설관리공단 All rights reserved.</p>
+	  </div>
+	  <div class="site_go">
+	   <label class="hide" for="f_sg">관련사이트 바로가기</label>
+	   <select id="f_sg" class="f_select">
+	    <option value>관련사이트 바로가기</option>
+	    <option value="https://www.bukgu.ulsan.kr">울산광역시 북구청</option>
+	    <option value="https://council.bukgu.ulsan.kr">울산광역시 북구의회</option>
+	    <option value="https://www.uic.or.kr/main/mainPage.do">울산시설공단</option>
+	    <option value="https://www.ujcmc.or.kr/">울산중구도시관리공단</option>
+	    <option value="https://www.uncmc.or.kr/">울산남구도시관리공단</option>
+	    <option value="https://www.uljusiseol.or.kr/portal/">울주군시설관리공단</option>
+	   </select>
+	   <button id="fs_go">GO</button>
+	  </div>
+	 </div>
+	</footer>
+	<!--#footer-->
+
+	<script>
+	<!--
+		$("#fs_go").click(function(){
+			var selectedUrl = $("#f_sg option:selected").val();
+			if(selectedUrl != ""){
+				window.open(selectedUrl);
+			}
+
+			return false;
+		});
+	//-->
+	</script>
+</div>
+<!--//wrap-->
+
+</body>
+</html>

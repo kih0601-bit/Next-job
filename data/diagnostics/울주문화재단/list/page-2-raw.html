@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script>
+
+function submitProcess(){
+	 var schema = "https";
+	 var serverName = "uljuculture.hubst.co.kr";
+	 if(serverName == "hubsss.co.kr" || serverName == "hubst.com"){
+		 serverName = serverName + ":8080";
+	 }
+	location.href=schema+"://"+serverName+"/applicantMain/goMainPage.do";	
+}
+
+
+
+$(function(){
+	submitProcess();	
+});
+</script>
+</head>
+<body>
+
+
+</body>
+</html>

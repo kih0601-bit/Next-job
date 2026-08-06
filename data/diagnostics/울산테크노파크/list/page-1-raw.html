@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>울산테크노파크</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="description" content="울산테크노파크 대표 홈페이지">
+<meta property="og:type" content="website">
+<meta property="og:title" content="울산테크노파크">
+<meta property="og:description" content="울산테크노파크 대표홈페이지">
+<meta property="og:image" content="https://www.utp.or.kr/images/main/logo.png">
+<meta property="og:url" content="https://www.utp.or.kr">
+<link rel="canonical" href="https://www.utp.or.kr/main.php">
+<link rel="stylesheet" href="./css/font-awesome.min.css" />
+<link rel="stylesheet" href="./css/style.css?version=2025081301" />
+<link rel="stylesheet" href="./css/sitemap.css" />
+<link rel="stylesheet" href="./css/newsletter.css" />
+<link rel="stylesheet" href="./css/result.css" />
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+// 자바스크립트에서 사용하는 전역변수 선언
+var g4_path      = ".";
+var g4_bbs       = "board";
+var g4_bbs_img   = "images";
+var g4_url       = "http://www.utp.or.kr";
+var g4_is_member = "";
+var g4_is_admin  = "";
+var g4_bo_table  = "";
+var g4_sca       = "";
+var g4_charset   = "utf-8";
+var g4_cookie_domain = "";
+var g4_is_gecko  = navigator.userAgent.toLowerCase().indexOf("gecko") != -1;
+var g4_is_ie     = navigator.userAgent.toLowerCase().indexOf("msie") != -1;
+</script>
+</head>
+<!--
+<body topmargin="0" leftmargin="0"   onload="window.open('/popup.php','','width=400px, height=300px, toolbar=0, status=yes, menubars=0, scrollbars=0, resizable=0, location=0, directories=0')">
+-->
+<body topmargin="0" leftmargin="0"   >
+
+<div id="wrap">
+<div id="top_wrap">
+    <script type="text/javascript">
+
+    var animateSpeed = 400;
+    var mobileAnimateSpeed = 200;
+
+    function ResizeBackground() {
+        $("#m_menu_wrap").height($("body").prop("scrollHeight"));
+        if($("body").prop("scrollWidth") < 1100) {
+            $("#menu_over_wrap").css({"height": "0px", "display": "none"});
+        } else {
+            $("#m_menu").css("left", "-250px");
+            $("#m_menu_wrap").css("display", "none");
+        }
+    }
+
+    $(function() {
+
+        // initialize screen
+        ResizeBackground();
+        $(window).resize(ResizeBackground);
+
+        // pc mouse over
+        $("#sub_menu_wrap").mouseover(function() {
+            $("#menu_over_wrap").stop().css({"display": "block"});
+            $("#menu_over_wrap").animate({"height" : "318px"}, animateSpeed, function() {
+            });
+        });
+
+        // pc mouse leave
+        $("#menu_over_wrap").mouseleave(function() {
+            var obj = $("#menu_over_wrap");
+            obj.stop();
+            obj.animate({"height": "0px"}, animateSpeed, function() {
+                obj.css("display", "none");
+            });
+        });
+
+        // mobile/tablet mouse over
+        $("#mobile_menu_open").click(function(ev) {
+            ev.preventDefault();
+            $("#m_menu_wrap").css("display", "block");
+            $("#m_menu").animate({"left": "0px"}, mobileAnimateSpeed);
+        });
+
+
+        // mobile/tablet mouse leave
+        $("#mobile_menu_close").click(function(ev) {
+            ev.preventDefault();
+            $("#m_menu").animate({"left": "-250px"}, mobileAnimateSpeed, function() {
+                $("#m_menu_wrap").css("display", "none");
+            });
+        });
+
+        // mobile/tablet menu control 2depth
+        $("#m_menu > ul.m_menu_depth01 > li > a").click(function(ev) {
+            var obj = $(this);
+            if(obj.parent().children("ul.m_menu_depth02").length > 0) {
+                ev.preventDefault();
+                $("ul.m_menu_depth02").not(obj.parent().children("ul.m_menu_depth02")).slideUp(mobileAnimateSpeed);
+                obj.parent().children("ul.m_menu_depth02").slideToggle(mobileAnimateSpeed);
+                return false;
+            } else {
+            }
+        });
+
+        // mobile/tablet menu control 3depth
+        $("#m_menu > ul.m_menu_depth01 > li > ul.m_menu_depth02 > li > a").click(function(ev) {
+            var obj = $(this);
+            if(obj.parent().children("ul.m_menu_depth03").length > 0) {
+                ev.preventDefault();
+                $("ul.m_menu_depth03").not(obj.parent().children("ul.m_menu_depth03")).slideUp(mobileAnimateSpeed);
+                obj.parent().children("ul.m_menu_depth03").slideToggle(mobileAnimateSpeed);
+                return false;
+            } else {
+            }
+        });
+
+        // mobile menu_opened
+        
+    });
+
+</script>
+<div id="main_header_wrap">
+    <div id="main_header">
+        <div class="global">
+<!-- 2017.07.24 담당자 요청으로 한글/영문 삭제
+            <ul class="lang">
+                <li><a href="#" title="" class="on">KOR</a></li>
+                <li><a href="#" title="">ENG</a></li>
+            </ul>
+-->
+
+            <ul class="main_login">
+                <li><a href="#" title="" id="btn_sitemap_open_top">SITEMAP</a></li>
+				<li><a href="https://english.utp.or.kr/" target="_blank" title="ENGLISH PAGE" class="mobile_show">ENGLISH</a></li>
+                            </ul>
+        </div>
+        <div class="section2">
+            <h2 id="allmenu"><a href="#" id="mobile_menu_open" title="모바일메뉴 열기 버튼"><img src="./images/main/allmenu.png" alt="모든메뉴보기 버튼" /></a></h2>
+            <h1 class="logo"><a href="./main.php" title="메인화면으로 이동"><img src="./images/main/logo.png" alt="울산테크노파크 로고" /></a></h1>
+			<!--only show in mobile -->
+            <!-- <a href="https://english.utp.or.kr/V2" target="_blank" id="engbtn">ENG</a> -->
+             <!--SEARCH BOX-->
+            <div class="search">
+                <div class="search_box">
+                    <form method="get" action="./board/search.php">
+                    	<input type="hidden" name="sfl" value="wr_subject||wr_content" />
+                        <input type="text" class="textbox" name="stx" value="" placeholder="검색어를 입력해주세요">
+                        <button class="btn_main_search" id="btnSearchKeyword" title="검색하기"><span></span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sub_menu_wrap">
+        <div class="sub_menu">
+            <ul>
+                            <!-- <li><a href="./include/contents.php?mnuno=" title="" class="on"></a></li> -->
+                            <!-- <li><a href="./board/board.php?bo_table=sub0201&mnuno=M0000017&amp;menu_group=1&amp;sno=0101" title="">지원사업</a></li> -->
+                <li><a href="./include/contents.php?mnuno=M0000017&amp;menu_group=1&amp;sno=0101" title="">사업안내</a></li>
+                <li><a href="./board/board.php?bo_table=sub0204_03_equip&amp;menu_group=2&amp;sno=0201&mnuno=M0000128&ontab=equip_tab15" title="">장비지원</a></li>
+                <li><a href="./include/contents.php?mnuno=M0000079&amp;menu_group=3&amp;sno=0301" title="">입주 및 부대시설</a></li>
+                <li><a href="./board/board.php?bo_table=sub0501&amp;menu_group=4&amp;sno=0401" title="">알림마당</a></li>
+                <li><a href="./include/contents.php?mnuno=M0000011&amp;menu_group=5&amp;sno=0501" title="">정보공개</a></li>
+                <!-- <li><a href="./include/contents.php?mnuno=M0000128&amp;menu_group=5&amp;sno=0501" title="">정보공개</a></li> -->
+                <li><a href="./board/board.php?bo_table=sub0902&amp;menu_group=9&amp;sno=0902" title="">공유마당</a></li>
+                <li><a href="./include/contents.php?mnuno=M0000002&amp;menu_group=6&amp;sno=0601" title="">TP소개</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- MENU MOUSE OVER -->
+<div id="menu_over_wrap" style="display:none; height:0px;">
+    <div class="menu_over" style="height: 318px;">
+    	<!-- <dl> -->
+
+    	<!-- 링크형식으로 변경_20190308 -->
+    	<!-- 기업지원 -->
+        <dl>
+        	<dt><a href="/include/contents.php?mnuno=M0000017&amp;menu_group=1&amp;sno=0101&amp;ontab=0101" title="부서별 주요 업무">부서별 주요 업무</a></dt>
+        	<dt><a href="/include/contents.php?mnuno=M0000018&amp;menu_group=1&amp;sno=0102" title="지원사업공고">지원사업공고</a></dt>
+            <!-- <dt><a href="/board/board.php?bo_table=sub0203_02&amp;menu_group=1&amp;sno=0103" title="지원사업전체">지원사업공고</a></dt> -->
+<!--        	<dt><a href="/board/board.php?bo_table=sub0203_02&amp;menu_group=1&amp;sno=0103" title="사업화지원사업">사업화지원사업</a></dt>
+        	<dt><a href="/board/board.php?bo_table=sub0204_02&amp;menu_group=1&amp;sno=0104" title="기술 및 장비지원">기술 및 장비지원</a></dt>
+        	<dt><a href="/board/board.php?bo_table=sub0205_02&amp;menu_group=1&amp;sno=0105" title="인력양성지원사업">인력양성지원사업</a></dt>
+        	<dt><a href="/board/board.php?bo_table=sub0206_02&amp;menu_group=1&amp;sno=0106" title="지식서비스지원사업">지식서비스지원사업</a></dt>
+        	<dt><a href="/board/board.php?bo_table=sub0207_02&amp;menu_group=1&amp;sno=0107" title="기술이전사업화지원사업">기술이전사업화지원사업</a></dt>-->
+            <!-- <dt><a href="/include/contents.php?mnuno=M0000102&amp;menu_group=1&amp;sno=0108" title="울산스마트공장사업안내">울산스마트공장사업안내</a></dt>
+            <dt><a href="/include/contents.php?mnuno=M0000120&amp;menu_group=1&amp;sno=0109" title="울산 지역스타기업">울산 지역스타기업</a></dt> -->
+        </dl>
+
+        <!-- 장비지원 -->
+        <dl>
+        	<dt><a href="/board/board.php?bo_table=sub0204_03_equip&amp;menu_group=2&amp;sno=0201&mnuno=M0000128&ontab=equip_tab15" title="장비지원(자동차)">장비지원<span class="text_small">(자동차)</span></a></dt>
+        	<dt><a href="/board/board.php?bo_table=sub0204_04_equip&amp;menu_group=2&amp;sno=0202&mnuno=M0000090" title="장비지원(정밀화학)">장비지원<span class="text_small">(정밀화학)</span></a></dt>
+        	<dt><a href="/board/board.php?bo_table=sub0204_05_equip&amp;menu_group=2&amp;sno=0203&mnuno=M0000095&ontab=equip_tab08" title="장비지원(에너지)">장비지원<span class="text_small">(에너지)</span></a></dt>
+            <dt><a href="/board/board.php?bo_table=sub0204_07_equip&amp;mnuno=M0000123&amp;&amp;menu_group=2&amp;sno=0204" title="장비지원(메이커 스페이스)">장비지원<span class="text_small">(메이커 스페이스)</span></a></dt>
+            <dt><a href="/board/board.php?bo_table=sub0204_08_equip&amp;menu_group=2&amp;sno=0205&mnuno=M0000096&ontab=equip_tab09" title="장비지원(이차전지)">장비지원<span class="text_small">(이차전지)</span></a></dt>
+            <!-- <dt><a href="/include/contents.php?mnuno=M0000122&amp;menu_group=2&amp;sno=0204" title="장비지원(메이커 스페이스)">장비지원(메이커 스페이스)</a></dt> -->
+        </dl>
+
+        <!-- 입주 및 부대시설 -->
+        <dl>
+        	<dt><a href="/include/contents.php?mnuno=M0000079&menu_group=3&amp;sno=0301" title="입주안내">입주안내</a></dt>
+			<dt><a href="/board/board.php?bo_table=sub0401_02&menu_group=3&amp;sno=0304" title="입주공고">입주공고</a></dt>
+        	 <!-- <dd><a href="/include/contents.php?mnuno=M0000079&menu_group=3&amp;sno=0301" title="입주안내">입주안내</a></dd>
+        	<dd><a href="/board/board.php?bo_table=sub0401_02&menu_group=3&amp;sno=0301" title="입주공고">입주공고</a></dd>
+        	<dd><a href="/board/board.php?bo_table=sub0401_03&menu_group=3&amp;sno=0301" title="입주문의">입주문의</a></dd -->
+        	<dt><a href="/include/contents.php?mnuno=M0000065&menu_group=3&amp;sno=0302" title="입주현황">입주현황</a></dt>
+        	<!--<dd><a href="/include/contents.php?mnuno=M0000065&menu_group=3&amp;sno=0302" title="기술혁신동">기술혁신동</a></dd>
+        	<dd><a href="/include/contents.php?mnuno=M0000066&menu_group=3&amp;sno=0302" title="정밀화학소재기술연구소">정밀화학소재기술연구소</a></dd>
+        	<dd><a href="/include/contents.php?mnuno=M0000067&menu_group=3&amp;sno=0302" title="자동차부품기술연구소">자동차부품기술연구소</a></dd>
+        	<dd><a href="/include/contents.php?mnuno=M0000068&menu_group=3&amp;sno=0302" title="울산종합비즈니스센터">울산종합비즈니스센터</a></dd>
+        	<dd><a href="/include/contents.php?mnuno=M0000069&menu_group=3&amp;sno=0302" title="울산그린카기술센터/울산과학기술진흥센터">울산그린카기술센터/울산과학기술진흥센터</a></dd>
+        	<dd><a href="/include/contents.php?mnuno=M0000070&menu_group=3&amp;sno=0302" title="자동차조선기술관">자동차조선기술관</a></dd>
+        	<dd><a href="/include/contents.php?mnuno=M0000074&menu_group=3&amp;sno=0302" title="에너지기술연구소(수소연료전지 실증화센터)">수소연료전지실증화센터</a></dd> -->
+        	<dt><a href="/include/contents.php?mnuno=M0000043&menu_group=3&amp;sno=0303" title="시설사용">부대시설사용</a></dt>
+        	<!--<dd><a href="/include/contents.php?mnuno=M0000043&menu_group=3&amp;sno=0303" title="시설현황">시설현황</a></dd>
+        	<dd><a href="/include/contents.php?mnuno=M0000044&menu_group=3&amp;sno=0303" title="신청절차">신청절차</a></dd>
+			<dt><a href="http://vr.utp.or.kr" target="_blank" title="VR보기(다운지구)">VR보기(다운지구)</a></dt> -->
+        </dl>
+
+        <!-- 알림마당 -->
+        <dl>
+        	<dt><a href="/board/board.php?bo_table=sub0501&amp;menu_group=4&amp;sno=0401" title="공지사항">공지사항</a></dt>
+        	<!--dt><a href="/board/board.php?bo_table=sub0502&amp;menu_group=4&amp;sno=0402" title="행사안내">행사안내</a></dt-->
+        	<!-- <dt><a href="/board/board.php?bo_table=sub0503&amp;menu_group=4&amp;sno=0403" title="보도자료">보도자료</a></dt> -->
+        	<!-- <dt><a href="/include/contents.php?mnuno=M0000033&amp;menu_group=4&amp;sno=0404" title="울산시정책동향">울산시정책동향</a></dt> -->
+        	<!-- <dt><a href="/board/board.php?bo_table=sub0504&amp;menu_group=4&amp;sno=0405" title="유관기관 소식">유관기관 소식</a></dt> -->
+        	<dt><a href="/board/board.php?bo_table=sub0505&amp;menu_group=4&amp;sno=0406" title="홍보관">홍보관</a></dt>
+            <dt><a href="/board/board.php?bo_table=sub0503&amp;menu_group=4&amp;sno=0407" title="보도자료">보도자료</a></dt>
+        	<!--dt><a href="/board/board.php?bo_table=sub0512&amp;menu_group=4&amp;sno=0407" title="정책제언365">정책제언365</a></dt -->
+        	<dt><a href="/board/board.php?bo_table=sub0603&amp;menu_group=4&amp;sno=0408" title="채용공고">채용공고</a></dt>
+        	<dt><a href="/include/contents.php?mnuno=M0000078&amp;menu_group=4&amp;sno=0410" title="전형결과">전형결과</a></dt> <!-- 추가 -->
+        	<!-- <dt><a href="/board/board.php?bo_table=sub0513&amp;menu_group=4&amp;sno=0409" title="뉴스레터">뉴스레터</a></dt> 추가 -->
+        </dl>
+
+        <!-- 정보공개 -->
+        <dl>
+        	<dt><a href="/include/contents.php?mnuno=M0000011&amp;menu_group=5&amp;sno=0501" title="경영공시">경영공시</a></dt>
+            <!-- <dt><a href="/include/contents.php?mnuno=M0000128&amp;menu_group=5&amp;sno=0501" title="경영공시">경영공시</a></dt> -->
+        	<dt><a href="/board/board.php?bo_table=sub0109_02&amp;menu_group=5&amp;sno=0502" title="업무추진비">업무추진비</a></dt>
+            <dt><a href="/include/contents.php?mnuno=M0000117&amp;menu_group=5&amp;sno=0512" title="ESG 경영">ESG 경영</a></dt>
+        	<dt><a href="/include/contents.php?mnuno=M0000013&amp;menu_group=5&amp;sno=0503" title="윤리경영">윤리경영</a></dt>
+            <dt><a href="/include/contents.php?mnuno=M0000098&amp;menu_group=5&amp;sno=0504" title="인권경영">인권경영</a></dt>
+            <dt><a href="/include/contents.php?mnuno=M0000147&amp;menu_group=5&amp;sno=0513" title="안전보건경영">안전보건경영</a></dt>
+            <dt><a href="/board/board.php?bo_table=sub0509&amp;menu_group=5&amp;sno=0505" title="계약/수의계약 공개">계약/수의계약 공개</a></dt>
+        	<!-- <dt><a href="/board/board.php?bo_table=sub0109_04&amp;menu_group=5&amp;sno=0505" title="수의계약공개">수의계약공개</a></dt> -->
+        	<dt><a href="/board/board.php?bo_table=sub0109_05&amp;menu_group=5&amp;sno=0506" title="기부금실적공개">기부금실적공개</a></dt>
+        	<dt><a href="/board/board.php?bo_table=sub0109_06&amp;menu_group=5&amp;sno=0507" title="상품권구매내역">상품권구매내역</a></dt>
+        	<dt><a href="/board/board.php?bo_table=sub0507&amp;menu_group=5&amp;sno=0508" title="신고/상담센터">신고/상담센터</a></dt>
+        	<!-- <dt><a href="/board/board.php?bo_table=sub0516&amp;menu_group=5&amp;sno=0510" title="정보자산공유센터">정보자산공유센터</a></dt> -->
+			<dt><a href="/board/board.php?bo_table=sub0109_07&amp;menu_group=5&amp;sno=0511" title="임직원 친인척 채용 공개">임직원 친인척 채용 공개</a></dt>
+            <dt><a href="/include/contents.php?mnuno=M0000149&amp;menu_group=5&amp;sno=0514" title="Talk With UTPian">Talk With UTPian</a></dt>
+        </dl>
+         <!-- 개방•공유마당 -->
+         <dl>
+            <dt><a href="/board/board.php?bo_table=sub0902&amp;menu_group=9&amp;sno=0902" title="U-IN1">U-IN1 정보</a></dt>
+            <dt><a href="/board/board.php?bo_table=sub0907&amp;menu_group=9&amp;sno=0903" title="최신기술정보 및 동향">최신기술정보 및 동향</a></dt>
+            <!-- <dt><a href="/board/board.php?bo_table=sub0906&amp;menu_group=9&amp;sno=0906" title="안전보건" target="_self">안전보건</a></dt> -->
+            <dt><a href="/include/contents.php?mnuno=M0000142&amp;menu_group=9&amp;sno=0904" title="시설 개방">시설 개방</a></dt><!-- 자원 개방 > 시설 개방에서 변경함. -->
+            <dt><a href="/include/contents.php?mnuno=M0000141&amp;menu_group=9&amp;sno=0905" title="편의시설">편의시설</a></dt>
+            <dt><a href="/board/board.php?bo_table=sub0901&amp;menu_group=9&amp;sno=0901" title="정보자원 공유 요청">공유자원 개방 요청</a></dt>
+
+        </dl>
+
+        <!-- TP소개 -->
+        <dl>
+        	<dt><a href="/include/contents.php?mnuno=M0000002&amp;menu_group=6&amp;sno=0601" title="목표 및 비전">목표 및 비전</a></dt>
+        	<dt><a href="/include/contents.php?mnuno=M0000003&amp;menu_group=6&amp;sno=0602" title="인사말">인사말</a></dt>
+        	<dt><a href="/include/contents.php?mnuno=M0000004&amp;menu_group=6&amp;sno=0603" title="연혁">연혁</a></dt>
+        	<dt><a href="/include/contents.php?mnuno=M0000005&amp;menu_group=6&amp;sno=0604" title="조직도">조직도</a></dt>
+        	<dt><a href="/include/contents.php?mnuno=M0000057&amp;menu_group=6&amp;sno=0605" title="인재상">인재상</a></dt>
+        	<dt><a href="/include/contents.php?mnuno=M0000006&amp;menu_group=6&amp;sno=0606" title="직원검색">직원검색</a></dt>
+        	<!-- <dt><a href="/include/contents.php?mnuno=M0000007&amp;menu_group=6&amp;sno=0607" title="오시는 길">오시는 길</a></dt> -->
+            <dt><a href="/include/contents.php?mnuno=M0000110&amp;menu_group=6&amp;sno=0607" title="오시는 길">건물소개 및 오시는길</a></dt>
+        	<dt><a href="/include/contents.php?mnuno=M0000008&amp;menu_group=6&amp;sno=0608" title="CI 소개">CI 소개</a></dt>
+        	<dt><a href="/include/contents.php?mnuno=M0000009&amp;menu_group=6&amp;sno=0609" title="국내 TP 현황">국내 TP 현황</a></dt>
+        </dl>
+        	<!-- </dl> -->
+    </div>
+</div>
+
+<!-- 모바일 메뉴부분 시작 -->
+<!--
+<div id="m_menu_wrap" style="display:none">
+    <div id="m_menu" style="left:-250px;">
+        <div class="m_menu_close"><a href="#" id="mobile_menu_close" title=""><img src="./images/common/icon_close.png" alt="메뉴닫기버튼" /></a></div>
+        <ul class="m_menu_depth01">
+        <li><a href="#" title="" target="_self" data-mnuno="M0000016">지원사업</a><ul class="m_menu_depth02 dpn"><li><a href="./include/contents.php?mnuno=M0000017" title="" target="_self" data-mnuno="M0000017">부서별 주요 업무</a></li><li><a href="./include/contents.php?mnuno=M0000019" title="" target="_self" data-mnuno="M0000019">사업화지원사업</a></li><li><a href="./include/contents.php?mnuno=M0000023" title="" target="_self" data-mnuno="M0000023">기술 및 장비지원</a></li><li><a href="./include/contents.php?mnuno=M0000027" title="" target="_self" data-mnuno="M0000027">인력양성지원사업</a></li><li><a href="./include/contents.php?mnuno=M0000060" title="" target="_self" data-mnuno="M0000060">지식서비스지원사업</a></li><li><a href="./include/contents.php?mnuno=M0000062" title="" target="_self" data-mnuno="M0000062">기술이전사업화지원사업</a></li><li><a href="./include/contents.php?mnuno=M0000102" title="" target="_self" data-mnuno="M0000102">울산스마트공장사업안내</a></li><li><a href="./include/contents.php?mnuno=M0000120" title="" target="_self" data-mnuno="M0000120">울산 지역스기업</a></li></ul></li><li><a href="#" title="" target="_self" data-mnuno="M0000072">장비지원</a><ul class="m_menu_depth02 dpn"><li><a href="./include/contents.php?mnuno=M0000026" title="" target="_self" data-mnuno="M0000026">장비현황(자동차)</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000086" title="" target="_self" data-mnuno="M0000086">차세대기술연구</a></li><li><a href="./include/contents.php?mnuno=M0000087" title="" target="_self" data-mnuno="M0000087">충돌안전시험</a></li><li><a href="./include/contents.php?mnuno=M0000127" title="" target="_self" data-mnuno="M0000127">충격안전시험</a></li><li><a href="./include/contents.php?mnuno=M0000088" title="" target="_self" data-mnuno="M0000088">시험평가</a></li><li><a href="./include/contents.php?mnuno=M0000089" title="" target="_self" data-mnuno="M0000089">생산기술</a></li></ul></li></li><li><a href="./include/contents.php?mnuno=M0000071" title="" target="_self" data-mnuno="M0000071">장비현황(정밀화학)</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000090" title="" target="_self" data-mnuno="M0000090">시험생산</a></li><li><a href="./include/contents.php?mnuno=M0000091" title="" target="_self" data-mnuno="M0000091">분석평가</a></li><li><a href="./include/contents.php?mnuno=M0000092" title="" target="_self" data-mnuno="M0000092">공정·분석평가</a></li><li><a href="./include/contents.php?mnuno=M0000096" title="" target="_self" data-mnuno="M0000096">전지실증화</a></li></ul></li></li><li><a href="./include/contents.php?mnuno=M0000094" title="" target="_self" data-mnuno="M0000094">장비지원(에너지)</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000095" title="" target="_self" data-mnuno="M0000095">수소기술</a></li><li><a href="./include/contents.php?mnuno=M0000103" title="" target="_self" data-mnuno="M0000103">스마트특성화</a></li><li><a href="./include/contents.php?mnuno=M0000104" title="" target="_self" data-mnuno="M0000104">이전공공기관연계</a></li></ul></li></li><li><a href="./include/contents.php?mnuno=M0000121" title="" target="_self" data-mnuno="M0000121">장비지원(메이커스페이스)</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000122" title="" target="_self" data-mnuno="M0000122">사업소개</a></li><li><a href="./include/contents.php?mnuno=M0000123" title="" target="_self" data-mnuno="M0000123">장비(CNC커팅기, 레이저커팅기, 평판기 )</a></li><li><a href="./include/contents.php?mnuno=M0000124" title="" target="_self" data-mnuno="M0000124">화학장비</a></li></ul></li></ul></li><li><a href="#" title="" target="_self" data-mnuno="M0000036">입주 및 부대시설</a><ul class="m_menu_depth02 dpn"><li><a href="#" title="" target="_self" data-mnuno="M0000037">입주안내</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000038" title="" target="_self" data-mnuno="M0000038">입주안내</a><ul class="m_menu_depth04 dpn"><li><a href="./include/contents.php?mnuno=M0000079" title="" target="_self" data-mnuno="M0000079">기술혁신동</a></li><li><a href="./include/contents.php?mnuno=M0000080" title="" target="_self" data-mnuno="M0000080">정밀화학소재기술연구소</a></li><li><a href="./include/contents.php?mnuno=M0000081" title="" target="_self" data-mnuno="M0000081">자동차부품기술연구소</a></li><li><a href="./include/contents.php?mnuno=M0000082" title="" target="_self" data-mnuno="M0000082">울산종합비즈니스센터</a></li><li><a href="./include/contents.php?mnuno=M0000083" title="" target="_self" data-mnuno="M0000083">울산그린카기술센터/울산과학기술진흥센터</a></li><li><a href="./include/contents.php?mnuno=M0000084" title="" target="_self" data-mnuno="M0000084">자동차조선기술관</a></li><li><a href="./include/contents.php?mnuno=M0000085" title="" target="_self" data-mnuno="M0000085">수소연료전지실증화센터</a></li></ul></li></li><li><a href="./include/contents.php?mnuno=M0000039" title="" target="_self" data-mnuno="M0000039">입주공고</a></li><li><a href="./include/contents.php?mnuno=M0000040" title="" target="_self" data-mnuno="M0000040">입주문의</a></li></ul></li></li><li><a href="#" title="" target="_self" data-mnuno="M0000064">입주현황</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000065" title="" target="_self" data-mnuno="M0000065">기술혁신동</a></li><li><a href="./include/contents.php?mnuno=M0000066" title="" target="_self" data-mnuno="M0000066">정밀화학소재기술연구소</a></li><li><a href="./include/contents.php?mnuno=M0000067" title="" target="_self" data-mnuno="M0000067">자동차부품기술연구소</a></li><li><a href="./include/contents.php?mnuno=M0000068" title="" target="_self" data-mnuno="M0000068">울산종합비즈니스센터</a></li><li><a href="./include/contents.php?mnuno=M0000069" title="" target="_self" data-mnuno="M0000069">울산그린카기술센터/울산과학기술진흥센터</a></li><li><a href="./include/contents.php?mnuno=M0000070" title="" target="_self" data-mnuno="M0000070">자동차조선기술관</a></li><li><a href="./include/contents.php?mnuno=M0000074" title="" target="_self" data-mnuno="M0000074">수소연료전지실증화센터</a></li></ul></li></li><li><a href="#" title="" target="_self" data-mnuno="M0000042">시설사용</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000043" title="" target="_self" data-mnuno="M0000043">시설현황</a></li><li><a href="./include/contents.php?mnuno=M0000044" title="" target="_self" data-mnuno="M0000044">신청절차</a></li></ul></li></ul></li><li><a href="#" title="" target="_self" data-mnuno="M0000045">알림마당</a><ul class="m_menu_depth02 dpn"><li><a href="./include/contents.php?mnuno=M0000046" title="" target="_self" data-mnuno="M0000046">공지사항</a></li><li><a href="./include/contents.php?mnuno=M0000047" title="" target="_self" data-mnuno="M0000047">행사안내</a></li><li><a href="./include/contents.php?mnuno=M0000051" title="" target="_self" data-mnuno="M0000051">홍보관</a></li><li><a href="./include/contents.php?mnuno=M0000048" title="" target="_self" data-mnuno="M0000048">보도자료</a></li><li><a href="./include/contents.php?mnuno=M0000054" title="" target="_self" data-mnuno="M0000054">청탁방지</a></li><li><a href="./include/contents.php?mnuno=M0000076" title="" target="_self" data-mnuno="M0000076">정책제언365</a></li><li><a href="./include/contents.php?mnuno=M0000059" title="" target="_self" data-mnuno="M0000059">채용공고</a></li><li><a href="./include/contents.php?mnuno=M0000078" title="" target="_self" data-mnuno="M0000078">전형결과</a></li></ul></li><li><a href="#" title="" target="_self" data-mnuno="M0000010">정보공개</a><ul class="m_menu_depth02 dpn"><li><a href="./include/contents.php?mnuno=M0000011" title="" target="_self" data-mnuno="M0000011">경영공시</a></li><li><a href="./include/contents.php?mnuno=M0000128" title="" target="_self" data-mnuno="M0000128">경영공시</a></li><li><a href="./include/contents.php?mnuno=M0000012" title="" target="_self" data-mnuno="M0000012">업무추진비</a></li><li><a href="./include/contents.php?mnuno=M0000013" title="" target="_self" data-mnuno="M0000013">윤리경영</a></li><li><a href="./include/contents.php?mnuno=M0000105" title="" target="_self" data-mnuno="M0000105">계약/수의계약  공개</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000014" title="" target="_self" data-mnuno="M0000014">수의계약공개</a></li><li><a href="./include/contents.php?mnuno=M0000055" title="" target="_self" data-mnuno="M0000055">계약공개</a></li></ul></li></li><li><a href="./include/contents.php?mnuno=M0000015" title="" target="_self" data-mnuno="M0000015">기부금실적공개</a></li><li><a href="./include/contents.php?mnuno=M0000075" title="" target="_self" data-mnuno="M0000075">상품권구매내역</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000118" title="" target="_self" data-mnuno="M0000118">클린신고센터</a></li><li><a href="./include/contents.php?mnuno=M0000119" title="" target="_self" data-mnuno="M0000119">안전신고센터</a></li><li><a href="./include/contents.php?mnuno=M0000073" title="" target="_self" data-mnuno="M0000073">성희롱상담센터</a></li></ul></li></li><li><a href="./include/contents.php?mnuno=M0000129" title="" target="_self" data-mnuno="M0000129">정보자산공유센터</a></li><li><a href="./include/contents.php?mnuno=M0000093" title="" target="_self" data-mnuno="M0000093">임직원 친인척 채용 공개</a></li><li><a href="./include/contents.php?mnuno=M0000097" title="" target="_self" data-mnuno="M0000097">인권경영</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000098" title="" target="_self" data-mnuno="M0000098">인권경영선언문</a></li><li><a href="./include/contents.php?mnuno=M0000099" title="" target="_self" data-mnuno="M0000099">인권경영지침</a></li><li><a href="./include/contents.php?mnuno=M0000100" title="" target="_self" data-mnuno="M0000100">인권경영위원회&자료실</a></li><li><a href="./include/contents.php?mnuno=M0000101" title="" target="_self" data-mnuno="M0000101">인권침해신고센터</a></li></ul></li></li><li><a href="./include/contents.php?mnuno=M0000106" title="" target="_self" data-mnuno="M0000106">ESG 경영</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000117" title="" target="_self" data-mnuno="M0000117">ESG경영 목표 및 전략</a></li><li><a href="./include/contents.php?mnuno=M0000107" title="" target="_self" data-mnuno="M0000107">ESG경영 선언문</a></li><li><a href="./include/contents.php?mnuno=M0000108" title="" target="_self" data-mnuno="M0000108">ESG경영위원회&자료실</a></li></ul></li></li><li><a href="./include/contents.php?mnuno=M0000147" title="" target="_self" data-mnuno="M0000147">안전보건경영</a></li></ul></li><li><a href="#" title="" target="_self" data-mnuno="M0000001">TP소개</a><ul class="m_menu_depth02 dpn"><li><a href="./include/contents.php?mnuno=M0000002" title="" target="_self" data-mnuno="M0000002">목표 및 비전</a></li><li><a href="./include/contents.php?mnuno=M0000003" title="" target="_self" data-mnuno="M0000003">인사말</a></li><li><a href="./include/contents.php?mnuno=M0000004" title="" target="_self" data-mnuno="M0000004">연혁</a></li><li><a href="./include/contents.php?mnuno=M0000005" title="" target="_self" data-mnuno="M0000005">조직도</a></li><li><a href="./include/contents.php?mnuno=M0000057" title="" target="_self" data-mnuno="M0000057">인재상</a></li><li><a href="./include/contents.php?mnuno=M0000006" title="" target="_self" data-mnuno="M0000006">직원검색</a></li><li><a href="./include/contents.php?mnuno=M0000007" title="" target="_self" data-mnuno="M0000007">오시는 길</a></li><li><a href="./include/contents.php?mnuno=M0000008" title="" target="_self" data-mnuno="M0000008">CI 소개</a></li><li><a href="./include/contents.php?mnuno=M0000009" title="" target="_self" data-mnuno="M0000009">국내 TP 현황</a></li><li><a href="./include/contents.php?mnuno=M0000109" title="" target="_self" data-mnuno="M0000109">건물소개</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000110" title="" target="_self" data-mnuno="M0000110">전체</a></li><li><a href="./include/contents.php?mnuno=M0000111" title="" target="_self" data-mnuno="M0000111">울산테크노파크</a></li><li><a href="./include/contents.php?mnuno=M0000113" title="" target="_self" data-mnuno="M0000113">자동차부품기술연구소</a></li><li><a href="./include/contents.php?mnuno=M0000114" title="" target="_self" data-mnuno="M0000114">울산과학기술진흥센터,울산그린카기술센터</a></li><li><a href="./include/contents.php?mnuno=M0000112" title="" target="_self" data-mnuno="M0000112">정밀화학소재기술연구소</a></li><li><a href="./include/contents.php?mnuno=M0000115" title="" target="_self" data-mnuno="M0000115">울산종합비즈니스센터</a></li><li><a href="./include/contents.php?mnuno=M0000116" title="" target="_self" data-mnuno="M0000116">수소연료전지실증화센터</a></li><li><a href="./include/contents.php?mnuno=M0000125" title="" target="_self" data-mnuno="M0000125">3D프린팅품질평가센터</a></li><li><a href="./include/contents.php?mnuno=M0000126" title="" target="_self" data-mnuno="M0000126">이차전지종합기술센터</a></li></ul></li></ul></li><li><a href="#" title="" target="_self" data-mnuno="M0000056">인재와 채용</a><li><a href="#" title="" target="_self" data-mnuno="M0000130">개방•공유마당</a><ul class="m_menu_depth02 dpn"><li><a href="./include/contents.php?mnuno=M0000131" title="" target="_self" data-mnuno="M0000131">정보자원 공유 요청</a></li><li><a href="./include/contents.php?mnuno=M0000134" title="" target="_self" data-mnuno="M0000134">U-IN1 정보</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000136" title="" target="_self" data-mnuno="M0000136">TP소식</a></li><li><a href="./include/contents.php?mnuno=M0000140" title="" target="_self" data-mnuno="M0000140">브로슈어</a></li><li><a href="./include/contents.php?mnuno=M0000148" title="" target="_self" data-mnuno="M0000148">재단교육정보</a></li></ul></li></li><li><a href="./include/contents.php?mnuno=M0000132" title="" target="_self" data-mnuno="M0000132">최신 기술정보 및 동향</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000145" title="" target="_self" data-mnuno="M0000145">기술소개서(SMK)</a></li><li><a href="./include/contents.php?mnuno=M0000139" title="" target="_self" data-mnuno="M0000139">정부정책</a></li><li><a href="./include/contents.php?mnuno=M0000146" title="" target="_self" data-mnuno="M0000146">최신기술정보</a></li><li><a href="./include/contents.php?mnuno=M0000138" title="" target="_self" data-mnuno="M0000138">발간자료</a></li></ul></li></li><li><a href="./include/contents.php?mnuno=M0000135" title="" target="_self" data-mnuno="M0000135">시설자원 개방</a><ul class="m_menu_depth03 dpn"><li><a href="./include/contents.php?mnuno=M0000142" title="" target="_self" data-mnuno="M0000142">시설개방</a></li><li><a href="./include/contents.php?mnuno=M0000143" title="" target="_self" data-mnuno="M0000143">장비개방</a></li></ul></li></li><li><a href="./include/contents.php?mnuno=M0000133" title="" target="_self" data-mnuno="M0000133">연구장비 공유 및 개방</a></li><li><a href="./include/contents.php?mnuno=M0000141" title="" target="_self" data-mnuno="M0000141">편의시설</a></li><li><a href="./include/contents.php?mnuno=M0000144" title="" target="_self" data-mnuno="M0000144">안전보건</a>            </li>
+        </ul>
+    </div>
+</div>
+ -->
+
+<!-- TABLE & MOBILE MENU -->
+<div id="m_menu_wrap" style="display:none">
+    <div id="m_menu" style="left:-250px;">
+        <div class="m_menu_close"><a href="#" id="mobile_menu_close" title=""><img src="./images/common/icon_close.png" alt="메뉴닫기버튼" /></a></div>
+        <ul class="m_menu_depth01">
+            <li>
+            <li>
+                <a href="./include/contents.php?mnuno=M0000017&amp;menu_group=1&amp;sno=0101&amp;ontab=0101" title="" target="_self">사업안내</a>
+                <ul class="m_menu_depth02 dpn">
+                    <li><a href="./include/contents.php?mnuno=M0000017&amp;menu_group=1&amp;sno=0101&amp;ontab=0101" title="부서별 주요 업무">부서별 주요 업무</a></li>
+                    <li><a href="./include/contents.php?mnuno=M0000018&amp;menu_group=1&amp;sno=0102" title="지원사업공고" target="_self">지원사업공고</a></li>
+                    <!-- <li><a href="./board/board.php?bo_table=sub0203_02&amp;menu_group=1&amp;sno=0103" title="지원사업공고" target="_self">지원사업공고</a></li> -->
+                <!--	<li><a href="./include/contents.php?mnuno=M0000019&amp;menu_group=1&amp;sno=0103" title="사업화지원사업" target="_self">사업화지원사업</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000023&amp;menu_group=1&amp;sno=0104" title="기술 및 장비지원" target="_self">기술 및 장비지원</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000027&amp;menu_group=1&amp;sno=0105" title="인력양성지원사업" target="_self">인력양성지원사업</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000061&amp;menu_group=1&amp;sno=0106" title="지식서비스지원사업" target="_self">지식서비스지원사업</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000062&amp;menu_group=1&amp;sno=0107" title="기술이전사업화지원사업" target="_self">기술이전사업화지원사업</a></li> -->
+                    <!-- <li><a href="./include/contents.php?mnuno=M0000102&amp;menu_group=1&amp;sno=0108" title="울산스마트공장사업안내">울산스마트공장사업안내</a></li>
+                    <li><a href="./include/contents.php?mnuno=M0000120&amp;menu_group=1&amp;sno=0109" title="울산 지역스타기업">울산 지역스타기업</a></li> -->
+                </ul>
+            </li>
+            <li>
+                <a href="./board/board.php?bo_table=sub0204_03_equip&amp;menu_group=2&amp;sno=0201" title="">장비지원</a>
+                <ul class="m_menu_depth02 dpn">
+                    <li><a href="./board/board.php?bo_table=sub0204_03_equip&amp;menu_group=2&amp;sno=0201&mnuno=M0000086" title="장비지원(자동차)" target="_self">장비지원(자동차)</a></li>
+                	<li><a href="./board/board.php?bo_table=sub0204_04_equip&amp;menu_group=2&amp;sno=0202&mnuno=M0000091" title="장비지원(정밀화학)" target="_self">장비지원(정밀화학)</a></li>
+                	<li><a href="./board/board.php?bo_table=sub0204_05_equip&amp;menu_group=2&amp;sno=0203&mnuno=M0000095&ontab=equip_tab08" title="장비지원(에너지)" target="_self">장비지원(에너지)</a></li>
+                    <li><a href="./board/board.php?bo_table=sub0204_07_equip&amp;mnuno=M0000123&amp;&amp;menu_group=2&amp;sno=0204" title="장비지원(메이커 스페이스)">장비지원(메이커 스페이스)</a></li>
+                    <li><a href="./board/board.php?bo_table=sub0204_08_equip&amp;menu_group=2&amp;sno=0205&mnuno=M0000096&ontab=equip_tab09" title="장비지원(이차전지)">장비지원<span class="text_small">(이차전지)</span></a></li>
+                    <!-- <li><a href="./include/contents.php?mnuno=M0000122&amp;menu_group=2&amp;sno=0204" title="장비지원(메이커 스페이스)">장비지원(메이커 스페이스)</a></li> -->
+                </ul>
+            </li>
+            <li>
+                <a href="./include/contents.php?mnuno=M0000079&menu_group=3&amp;sno=0301" title="">입주 및 부대시설</a>
+                <ul class="m_menu_depth02 dpn">
+                   	<li><a href="./include/contents.php?mnuno=M0000079&menu_group=3&amp;sno=0301" title="입주안내"  target="_self">입주안내</a></li>
+					<li><a href="./board/board.php?bo_table=sub0401_02&amp;menu_group=3&amp;sno=0304" title="입주공고" target="_self">입주공고</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000065&menu_group=3&amp;sno=0302" title="입주현황"  target="_self">입주현황</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000043&menu_group=3&amp;sno=0303" title="시설사용"  target="_self">시설사용</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="./board/board.php?bo_table=sub0501&amp;menu_group=4&amp;sno=0401" title="">알림마당</a>
+                <ul class="m_menu_depth02 dpn">
+                    <li><a href="./board/board.php?bo_table=sub0501&amp;menu_group=4&amp;sno=0401" title="공지사항" target="_self">공지사항</a></li>
+                	<!--li><a href="./board/board.php?bo_table=sub0502&amp;menu_group=4&amp;sno=0402" title="행사안내" target="_self">행사안내</a></li -->
+                	
+                	<!-- <li><a href="./include/contents.php?mnuno=M0000033&amp;menu_group=4&amp;sno=0404" title="울산시정책동향" target="_self">울산시정책동향</a></li> -->
+                	<!-- <li><a href="./board/board.php?bo_table=sub0504&amp;menu_group=4&amp;sno=0405" title="유관기관 소식" target="_self">유관기관 소식</a></li> -->
+                	<li><a href="./board/board.php?bo_table=sub0505&amp;menu_group=4&amp;sno=0406" title="홍보관" target="_self">홍보관</a></li>
+                    <li><a href="./board/board.php?bo_table=sub0503&amp;menu_group=4&amp;sno=0407" title="보도자료" target="_self">보도자료</a></li>
+                	<!--li><a href="./board/board.php?bo_table=sub0512&amp;menu_group=4&amp;sno=0407" title="정책제언365" target="_self">정책제언365</a></li-->
+                	<li><a href="./board/board.php?bo_table=sub0603&amp;menu_group=4&amp;sno=0408" title="채용공고" target="_self">채용공고</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000078&amp;menu_group=4&amp;sno=0410" title="전형결과" target="_self">전형결과</a></li> <!-- 추가 -->
+                	<!-- <li><a href="./board/board.php?bo_table=sub0513&amp;menu_group=4&amp;sno=0409" title="뉴스레터" target="_self">뉴스레터</a></li> 추가 -->
+                </ul>
+            </li>
+            
+            <li>
+                <a href="./include/contents.php?mnuno=M0000011&amp;menu_group=5&amp;sno=0501" title="">정보공개</a>
+                <ul class="m_menu_depth02 dpn">
+                    <li><a href="./include/contents.php?mnuno=M0000011&amp;menu_group=5&amp;sno=0501" title="경영공시" target="_self">경영공시</a></li>
+                    <!-- <li><a href="./include/contents.php?mnuno=M0000128&amp;menu_group=5&amp;sno=0501" title="경영공시" target="_self">경영공시</a></li> -->
+                <li><a href="./board/board.php?bo_table=sub0109_02&amp;menu_group=5&amp;mnuno=M0000012" title="업무추진비" target="_self">업무추진비</a></li>
+                    <li><a href="./include/contents.php?mnuno=M0000117&amp;menu_group=5&amp;sno=0512" title="ESG 경영" target="_self">ESG 경영</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000013&amp;menu_group=5&amp;sno=0503" title="윤리경영" target="_self">윤리경영</a></li>
+                    <li><a href="./include/contents.php?mnuno=M0000098&amp;menu_group=5&amp;sno=0504" title="인권경영">인권경영</a></li>
+                    <li><a href="./include/contents.php?mnuno=M0000147&amp;menu_group=5&amp;sno=0513" title="안전보건경영">안전보건경영</a></li>
+                    <li><a href="./board/board.php?bo_table=sub0509&amp;menu_group=5&amp;sno=0505" title="계약/수의계약 공개" target="_self">계약/수의계약 공개</a></li>
+                	<li><a href="./board/board.php?bo_table=sub0109_05&amp;menu_group=5&amp;sno=0506" title="기부금실적공개" target="_self">기부금실적공개</a></li>
+                	<li><a href="./board/board.php?bo_table=sub0109_06&amp;menu_group=5&amp;sno=0507" title="상품권구매내역" target="_self">상품권구매내역</a></li>
+                	<li><a href="./board/board.php?bo_table=sub0507&amp;menu_group=5&amp;sno=0508" title="신고/상담센터" target="_self">신고/상담센터</a></li>
+                	<!-- <li><a href="./board/board.php?bo_table=sub0516&amp;menu_group=5&amp;sno=0510" title="정보자산공유센터" target="_self">정보자산공유센터</a></li> -->
+				    <li><a href="./board/board.php?bo_table=sub0109_07&amp;menu_group=5&amp;sno=0511" title="임직원 친인척 채용 공개">임직원 친인척 채용 공개</a></li>
+                    <li><a href="./include/contents.php?mnuno=M0000149&amp;menu_group=5&amp;sno=0514" title="Talk With UTPian" target="_self">Talk With UTPian</a></li>
+                </ul>
+            </li>
+            <!-- 개방•공유마당 -->
+            <li>
+                <a href="./board/board.php?bo_table=sub0902&amp;menu_group=9&amp;sno=0902" title="공유마당" >공유마당</a>
+                <ul class="m_menu_depth02 dpn">
+                    <li><a href="./board/board.php?bo_table=sub0902&amp;menu_group=9&amp;sno=0902" title="U-IN1 정보" target="_self">U-IN1 정보</a></li>
+                    <li><a href="./board/board.php?bo_table=sub0907&amp;menu_group=9&amp;sno=0903" title="최신기술정보 및 동향" target="_self">최신기술정보 및 동향</a></li>
+                    <!-- <li><a href="./board/board.php?bo_table=sub0906&amp;menu_group=9&amp;sno=0906" title="안전보건" target="_self">안전보건</a></li> -->
+                    <li><a href="./include/contents.php?mnuno=M0000142&amp;menu_group=9&amp;sno=0904" title="시설 개방" target="_self">시설 개방</a></li>
+                    <li><a href="./include/contents.php?mnuno=M0000141&amp;menu_group=9&amp;sno=0905" title="편의시설">편의시설</a></li>
+                    <li><a href="./board/board.php?bo_table=sub0901&amp;menu_group=9&amp;sno=0901" title="정보자원 공유 요청" target="_self">공유자원 개방 요청</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="./include/contents.php?mnuno=M0000002&amp;menu_group=6&amp;sno=0601" title="">TP소개</a>
+                <ul class="m_menu_depth02 dpn">
+                    <li><a href="./include/contents.php?mnuno=M0000002&amp;menu_group=6&amp;sno=0601" title="목표 및 비전" target="_self">목표 및 비전</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000003&amp;menu_group=6&amp;sno=0602" title="인사말" target="_self">인사말</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000004&amp;menu_group=6&amp;sno=0603" title="연혁" target="_self">연혁</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000005&amp;menu_group=6&amp;sno=0604" title="조직도" target="_self">조직도</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000057&amp;menu_group=6&amp;sno=0605" title="인재상" target="_self">인재상</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000006&amp;menu_group=6&amp;sno=0606" title="직원검색" target="_self">직원검색</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000110&amp;menu_group=6&amp;sno=0607" title="건물소개 및 오시는길" target="_self">건물소개 및 오시는길</a></li>
+                    <!-- <li><a href="./include/contents.php?mnuno=M0000007&amp;menu_group=6&amp;sno=0607" title="오시는 길" target="_self">오시는 길</a></li> -->
+                	<li><a href="./include/contents.php?mnuno=M0000008&amp;menu_group=6&amp;sno=0608" title="CI 소개" target="_self">CI 소개</a></li>
+                	<li><a href="./include/contents.php?mnuno=M0000009&amp;menu_group=6&amp;sno=0609" title="국내 TP 현황" target="_self">국내 TP 현황</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- 모바일 메뉴부분 끝 -->
+</div>
+<div style="clear:both;"></div><style type="text/css">
+/* main image css */
+div#main_img_swap_btn {
+    text-align: right;
+    margin-top: -30px;
+    z-index: 10;
+}
+
+div#main_img_swap_btn a span {
+    padding: 5px;
+    background-color: transparent;
+    color: #fff;
+}
+
+div#main_img_swap_btn a span.on {
+    background-color: transparent;
+    color: #026ebf;
+}
+
+div#main_img_swap_btn a span:hover {
+    background-color: transparent;
+    color: #228edf;
+}
+
+.m_info2 ul li.blind {
+    border: 1px solid transparent;
+    list-style: none;
+    background: none;
+}
+
+.m_info2 ul li.blind:last-child {
+    border: 0px solid transparent;
+    list-style: none;
+    background: none;
+}
+</style>
+
+<script type="text/javascript">
+var oTimer = null;
+var oTimerA = null;
+var bannerNo = 0;
+var bannerCnt = 0;
+var bannerNoA = 0;
+var bannerCntA = 0;
+var banner1Paused = false;
+var animationSpeed = 750;
+var animateDuration = 5000;
+
+function pauseBanner1() {
+    if (oTimerA) {
+        clearInterval(oTimerA);
+        oTimerA = null;
+    }
+    banner1Paused = true;
+}
+function playBanner1() {
+    if (!oTimerA && bannerCntA > 0) {
+        oTimerA = setInterval("showNextBanner1()", animateDuration);
+    }
+    banner1Paused = false;
+}
+
+function showNextBanner() {
+    if (bannerCnt > 0) {
+        bannerNo = (bannerNo + 1 >= bannerCnt) ? 0 : bannerNo + 1;
+    }
+    rollBanner();
+}
+
+function showPrevBanner() {
+    if (bannerCnt > 0) {
+        bannerNo = (bannerNo + 1 >= bannerCnt) ? 0 : bannerNo + 1;
+    }
+    rollBanner();
+}
+
+function showSpecifiedBanner(bNo) {
+    bannerNo = bNo;
+    rollBanner();
+}
+
+
+
+function showNextBanner1() {
+    if (bannerCntA > 0) {
+        bannerNoA = (bannerNoA + 1 >= bannerCntA) ? 0 : bannerNoA + 1;
+    }
+    rollBanner1();
+}
+
+function showPrevBanner1() {
+    if (bannerCntA > 0) {
+        bannerNoA = (bannerNoA + 1 >= bannerCntA) ? 0 : bannerNoA + 1;
+    }
+    rollBanner1();
+}
+
+function showSpecifiedBanner1(bNoA) {
+    bannerNoA = bNoA;
+    rollBanner1();
+}
+
+
+
+function rollBanner() {
+    jQuery("#banner_line_wrap a.js_show_image").finish().animate({
+        "opacity": "0"
+    }, animationSpeed, "swing", function() {
+        jQuery("#banner_line_wrap a.js_show_image").css("display", "none");
+        jQuery("#banner_line_wrap ul.num > li > a").removeClass("num_on").removeClass("num").addClass("num");
+        jQuery("#banner_line_wrap a.js_show_image:eq(" + bannerNo + ")").css({
+            "opacity": "0",
+            "display": "block"
+        });
+        jQuery("#banner_line_wrap ul.num > li > a:eq(" + bannerNo + ")").removeClass("num").addClass("num_on");
+        jQuery("#banner_line_wrap a.js_show_image:eq(" + bannerNo + ")").animate({
+            "opacity": "1"
+        }, animationSpeed);
+    });
+}
+
+function rollBanner1() {
+    jQuery("#banner_line_wrap1 div.js_show_image").finish().animate({
+        "opacity": "0"
+    }, animationSpeed, "swing", function() {
+        jQuery("#banner_line_wrap1 div.js_show_image").css("display", "none");
+        jQuery("#banner_line_wrap1 ul.num > li > a").removeClass("num_on").removeClass("num").addClass("num");
+        jQuery("#banner_line_wrap1 div.js_show_image:eq(" + bannerNoA + ")").css({
+            "opacity": "0",
+            "display": "block"
+        });
+        jQuery("#banner_line_wrap1 ul.num > li > a:eq(" + bannerNoA + ")").removeClass("num").addClass(
+            "num_on");
+        jQuery("#banner_line_wrap1 div.js_show_image:eq(" + bannerNoA + ")").animate({
+            "opacity": "1"
+        }, animationSpeed);
+    });
+}
+
+jQuery(function() {
+
+    bannerCnt = jQuery("#banner_line_wrap a.js_show_image").length;
+    oTimer = setInterval("showNextBanner()", animateDuration);
+
+
+    bannerCntA = jQuery("#banner_line_wrap1 div.js_show_image").length;
+    oTimerA = setInterval("showNextBanner1()", animateDuration);
+
+    jQuery("#banner1_toggle_btn").on("click", function(ev) {
+        ev.preventDefault();
+        var $icon = jQuery("#banner1_toggle_icon");
+        if (banner1Paused) {
+            playBanner1();
+            $icon.removeClass("fa-play").addClass("fa-pause");
+            jQuery(this).attr("title", "일시정지");
+        } else {
+            pauseBanner1();
+            $icon.removeClass("fa-pause").addClass("fa-play");
+            jQuery(this).attr("title", "재생");
+        }
+    });
+
+    jQuery("#banner_line_wrap a.js_show_image").click(function(ev) {
+        ev.preventDefault();
+        return false;
+    });
+
+    jQuery("#banner_line_wrap ul.num > li > a").click(function(ev) {
+        ev.preventDefault();
+        var obj = $(this);
+
+        showSpecifiedBanner(obj.parent().index());
+    });
+
+
+
+    jQuery("#banner_line_wrap1 div.js_show_image").click(function(ev) {
+        ev.preventDefault();
+        return false;
+    });
+
+    jQuery("#banner_line_wrap1 ul.num > li > a").click(function(ev) {
+        ev.preventDefault();
+        var obj = $(this);
+
+        showSpecifiedBanner1(obj.parent().index());
+    });
+
+
+
+
+    // 사업공지 탭
+    // $("#business_notice_tab a[data-name]").click(function(ev) {
+    //     ev.preventDefault();
+
+    //     $(this).parent().parent().children("li").children("a").removeClass("on");
+    //     $(this).addClass("on");
+
+    //     $("#notice0102_wrap > div").css("display", "none");
+    //     $("#" + $(this).attr("data-name")).css("display", "block");
+    // });
+    // $("#notice0102_more").click(function(ev) {
+    //     ev.preventDefault();
+    //     var dnObj = $("#business_notice_tab a.on");
+    //     location.href = dnObj.attr("href");
+    // });
+
+    // NOTICE 탭
+    $("#notice_notice_tab a[data-name]").click(function(ev) {
+        ev.preventDefault();
+
+        $(this).parent().parent().children("li").children("a").removeClass("on");
+        $(this).addClass("on");
+
+        $("#notice0304_wrap > div").css("display", "none");
+        $("#" + $(this).attr("data-name")).css("display", "block");
+    });
+    $("#notice0304_more").click(function(ev) {
+        ev.preventDefault();
+        var dnObj = $("#notice_notice_tab a.on");
+        location.href = dnObj.attr("href");
+    });
+
+    // NEWS 탭
+    $("#news_notice_tab a[data-name]").click(function(ev) {
+        ev.preventDefault();
+
+        $(this).parent().parent().children("li").children("a").removeClass("on");
+        $(this).addClass("on");
+
+        $("#notice0506_wrap > div").css("display", "none");
+        $("#" + $(this).attr("data-name")).css("display", "block");
+    });
+    $("#notice0506_more").click(function(ev) {
+        ev.preventDefault();
+        var dnObj = $("#news_notice_tab a.on");
+        location.href = dnObj.attr("href");
+    });
+});
+
+// 임시팝업기능추가 2017.08.09
+// window.open('/popup.php','','width=400px, height=300px, toolbar=0, status=yes, menubars=0, scrollbars=0, resizable=0, location=0, directories=0');
+</script>
+
+<!-- MAIN VISUAL -->
+<div id="main_visual_wrap">
+    <div class="main_visual">
+        <div class="main_visual_text">
+            <b>기업의 희망, 울산의 미래</b>
+            <div class="ut">
+                <span class="u">ULSAN</span>
+                <span class="t">TECHNOPARK</span>
+            </div>
+            <p>
+                "새로 만드는 위대한 울산"을 향해 나아가기 위하여
+                <br />
+                울산의 주력산업구조고도화와 새로운 융복합 신산업육성에 최선을 다할 것입니다.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- 2024.09 팝업 윈도우 출력 후 삭제요청 
+<div class="main_notice_pop" name="popup1" style="position:fixed; left:100px; top:200px; z-index:999;background-color:#FFFFFF; display:none; border: 1px solid black; padding-bottom: 10px;">
+    <div style="width: 500px;height:394px;"><img src="/data/popup/2024_fall_popup.png"></div>         
+    <input type="checkbox" name="today_close1" id="today_close1" /> <label for="today_close1">오늘만 이 창을 열지 않음</label>
+    &nbsp;&nbsp;&nbsp;
+    <a href="#" class="btn btn_close_popup">닫기</a>
+</div> 
+-->
+<!-- css for popup -->
+<!--  
+<style type="text/css">
+    /* .main_notice_pop .btn_close_popup {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+    } */
+    .main_notie_pop .btn_close_popup {
+        display : inline-block;
+        margin-left:auto;
+    }
+</style> 
+-->
+
+<!-- javascript for popup -->
+<!--  
+<script>
+    $(document).ready(function () {
+        // 팝업창에 주어진 이름을 변수로 던져 저장된 쿠키가 있는지 확인 
+        var popup1 = getCookie('popup1');
+
+        // 변수가 없을경우 팝업 출력 
+        if (!popup1) {
+            popUpAction('popup1');
+        }
+    });
+
+    // 쿠키 가져오기 
+    function getCookie(name) {
+        var nameOfCookie = name + "=";
+        var x = 0;
+        while (x <= document.cookie.length) {
+            var y = (x + nameOfCookie.length);
+
+            if (document.cookie.substring(x, y) == nameOfCookie) {
+                if ((endOfCookie = document.cookie.indexOf(";", y)) == -1)
+                    endOfCookie = document.cookie.length;
+                return unescape(document.cookie.substring(y, endOfCookie));
+            }
+
+            x = document.cookie.indexOf(" ", x) + 1;
+
+            if (x == 0) break;
+        }
+
+        return "";
+    } // 24시간 기준 쿠키 설정하기 
+
+    // expiredays 후의 클릭한 시간까지 쿠키 설정 
+    function setCookie24(name, value, expiredays) {
+        var todayDate = new Date();
+
+        todayDate.setDate(todayDate.getDate() + expiredays);
+
+        document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+    }
+
+    // 00:00 시 기준 쿠키 설정하기 // expiredays 의 새벽 00:00:00 까지 쿠키 설정 
+    function setCookie00(name, value, expiredays) {
+        var todayDate = new Date(); todayDate = new Date(parseInt(todayDate.getTime() / 86400000) * 86400000 + 54000000);
+
+        if (todayDate > new Date()) {
+            expiredays = expiredays - 1;
+        }
+
+        todayDate.setDate(todayDate.getDate() + expiredays);
+
+        document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+    }
+
+    // 팝업출력
+    function popUpAction(name) {
+        // name으로 해당 팝업창 열기 
+        $("div[name=" + name + "]").fadeIn();
+    }
+
+    // 닫기버튼 클릭 이벤트 
+    $('.btn_close_popup').click(function () {
+        $(this).parent('.main_notice_pop').fadeOut();
+
+        // 오늘하루 보지않기 체크 확인 
+        if ($("input:checkbox[name=today_close1]").is(":checked") == true) {
+            setCookie00('popup1', "done", 1);
+        }
+
+        // name으로 해당 팝업창 닫기 
+        $(this).parent("div[name=" + name + "]").fadeOut();
+    }) 
+</script>
+-->
+
+<div id="cont_wrap">
+    <div class="contents">
+        <div id="cont_left">
+            <div class="biz-notice">
+                <div class="title">
+                    <a href="./include/contents.php?mnuno=M0000018&menu_group=1&sno=0102" title="지원사업공고 더보기">
+                        <h1><b>지</b>원사업공고</h1>
+                    </a>
+                    
+                    <a href="./include/contents.php?mnuno=M0000018&menu_group=1&sno=0102"
+                        title="지원사업공고 더보기" class="more" id="notice0102_more"><img
+                            src="./images/main/icon_more.png" alt="지원사업공고 더보기" /></a>
+                </div>
+
+                <div class="info_list_wrap" id="notice0102_wrap">
+                    <div id="notice01_list">
+                                                    <dl class="info_list">
+                                <dt class="list">
+                                    <a href="./include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=569">2026년도 방폭안전관리 대상사업장 모집 추가공고</a>
+                                </dt>
+                                <dd class="date">
+                                    <span class="d_day">D-14</span>                                    2026.08.05 ~ 2026.08.21                                </dd>                        
+                            </dl>
+                                                    <dl class="info_list">
+                                <dt class="list">
+                                    <a href="./include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=568">2026년도 지역주력산업육성(지역특화 프로젝트  2.0 『레전드 50+』) 지원모집 3차 공고</a>
+                                </dt>
+                                <dd class="date">
+                                    <span class="d_day">D-12</span>                                    2026.08.04 ~ 2026.08.19                                </dd>                        
+                            </dl>
+                                                    <dl class="info_list">
+                                <dt class="list">
+                                    <a href="./include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=566">2026년도 지역주력산업육성(지역특화 프로젝트 『레전드 50+』) 지원모집 3차 공고</a>
+                                </dt>
+                                <dd class="date">
+                                    <span class="d_day">D-12</span>                                    2026.08.04 ~ 2026.08.19                                </dd>                        
+                            </dl>
+                                                    <dl class="info_list">
+                                <dt class="list">
+                                    <a href="./include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=567">[울산 암모니아 벙커링 규제자유특구] 2026년 규제자유특구혁신사업육성 책임보험료 지원 및  사업화지원사업 모집 공고</a>
+                                </dt>
+                                <dd class="date">
+                                    <span class="d_day">D-14</span>                                    2026.08.03 ~ 2026.08.21                                </dd>                        
+                            </dl>
+                                                    <dl class="info_list">
+                                <dt class="list">
+                                    <a href="./include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=565">「2026년 중소기업 밀집지역 위기대응 체계 구축사업」 Stand-up 맞춤지원 모집 공고(하반기)</a>
+                                </dt>
+                                <dd class="date">
+                                    <span class="d_day">D-115</span>                                    2026.08.03 ~ 2026.11.30                                </dd>                        
+                            </dl>
+                                                    <dl class="info_list">
+                                <dt class="list">
+                                    <a href="./include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=563">「K-함정 융합 플랫폼 구축사업」 R&amp;D 과제기획 수요기업 모집 공고</a>
+                                </dt>
+                                <dd class="date">
+                                    <span class="d_day">D-7</span>                                    2026.08.03 ~ 2026.08.14                                </dd>                        
+                            </dl>
+                                                    <dl class="info_list">
+                                <dt class="list">
+                                    <a href="./include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=562">울산 암모니아 벙커링 규제자유특구 책임보험 가입 관련 보험사 모집 공고</a>
+                                </dt>
+                                <dd class="date">
+                                    <span class="d_day">D-0</span>                                    2026.07.31 ~ 2026.08.07                                </dd>                        
+                            </dl>
+                                                                    </div>
+            </div>
+        </div>
+
+        <div class="notice">
+            <div class="title">
+                <h1><b>N</b>OTICE</h1>
+                <ul class="bbs_tab" id="notice_notice_tab">
+                    <li><a href="./board/board.php?bo_table=sub0501&amp;menu_group=4&amp;sno=0401"
+                            class="on" target="_self" title="공지사항" data-name="notice06_list">공지사항</a></li>
+                    <!--li><a href="./board/board.php?bo_table=sub0509&amp;menu_group=5&amp;sno=0508" target="_self" title="계약공개" data-name="notice07_list">계약공개</a></li -->
+                </ul>
+                <a href="." title="페이지이동" class="more" id="notice0304_more"><img
+                        src="./images/main/icon_more.png" alt="해당페이지 이동" /></a>
+            </div>
+            <div class="info_list_wrap" id="notice0304_wrap">
+                <div id="notice06_list">
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0501&amp;menu_group=4&amp;sno=0401&wr_id=40206&mnuno=M0000046">[ 긴급 ] 울산TP 직원 사칭 사기 관련 안내</a>
+                        </dt>
+                        <dd class="date">26.07.29</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0501&amp;menu_group=4&amp;sno=0401&wr_id=40209&mnuno=M0000046">[울산대학교] UbiCam 2026학년도 8월 여름학기 교육 안내</a>
+                        </dt>
+                        <dd class="date">26.08.04</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0501&amp;menu_group=4&amp;sno=0401&wr_id=40208&mnuno=M0000046">[중소벤처기업진흥공단] 2026 탄소무역규제대응 아카데미</a>
+                        </dt>
+                        <dd class="date">26.08.04</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0501&amp;menu_group=4&amp;sno=0401&wr_id=40207&mnuno=M0000046">[방송미디어통신위원회] 「2026 국민안전 LBS 솔루션 대상」</a>
+                        </dt>
+                        <dd class="date">26.07.30</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0501&amp;menu_group=4&amp;sno=0401&wr_id=40206&mnuno=M0000046">[ 긴급 ] 울산TP 직원 사칭 사기 관련 안내</a>
+                        </dt>
+                        <dd class="date">26.07.29</dd>
+                    </dl>
+                                                        </div>
+                <div id="notice07_list" style="display:none;">
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0509&amp;menu_group=5&amp;sno=0508&wr_id=212&mnuno=M0000055">2026 해외(베트남) 판로개척 및 수출지원사업 제안서 평가결과</a>
+                        </dt>
+                        <dd class="date">26.08.06</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0509&amp;menu_group=5&amp;sno=0508&wr_id=211&mnuno=M0000055">울산테크노파크 구내식당 및 매점(다운 및 학남지구) 위탁운영업체 선정 제안서 평가결과</a>
+                        </dt>
+                        <dd class="date">26.08.05</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0509&amp;menu_group=5&amp;sno=0508&wr_id=210&mnuno=M0000055">유무기 복합시편제조 평가장치 제안서 평가결과</a>
+                        </dt>
+                        <dd class="date">26.08.04</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0509&amp;menu_group=5&amp;sno=0508&wr_id=209&mnuno=M0000055">비대기 X선 회절분석 시스템 제안서 평가결과</a>
+                        </dt>
+                        <dd class="date">26.07.24</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0509&amp;menu_group=5&amp;sno=0508&wr_id=208&mnuno=M0000055">2026 베트남 InnoEX 글로벌 프로그램 제안서 평가결과</a>
+                        </dt>
+                        <dd class="date">26.07.08</dd>
+                    </dl>
+                                                        </div>
+            </div>
+        </div>
+
+        <div class="news">
+            <div class="title">
+                <h1><b>N</b>EWS</h1>
+                <ul class="bbs_tab" id="news_notice_tab">
+                    <li><a href="./board/board.php?bo_table=sub0603&amp;menu_group=4&amp;sno=0408"
+                            class="on" target="_self" title="채용공고" data-name="notice08_list">채용공고</a></li>
+                    <!-- <li><a href="./board/board.php?bo_table=sub0504&amp;menu_group=4&amp;sno=0405" target="_self" title="유관기관소식" data-name="notice09_list">유관기관소식</a></li> -->
+                </ul>
+                <a href="." title="페이지이동" class="more" id="notice0506_more"><img
+                        src="./images/main/icon_more.png" alt="해당페이지 이동" /></a>
+            </div>
+            <div class="info_list_wrap" id="notice0506_wrap">
+                <div id="notice08_list">
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0603&amp;menu_group=4&amp;sno=0408&wr_id=39252&mnuno=M0000048">울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내</a>
+                        </dt>
+                        <dd class="date">26.08.06</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0603&amp;menu_group=4&amp;sno=0408&wr_id=39251&mnuno=M0000048">울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)</a>
+                        </dt>
+                        <dd class="date">26.08.04</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0603&amp;menu_group=4&amp;sno=0408&wr_id=39250&mnuno=M0000048">울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표</a>
+                        </dt>
+                        <dd class="date">26.07.24</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0603&amp;menu_group=4&amp;sno=0408&wr_id=39249&mnuno=M0000048">울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)</a>
+                        </dt>
+                        <dd class="date">26.07.22</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0603&amp;menu_group=4&amp;sno=0408&wr_id=39248&mnuno=M0000048">울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제출 안내</a>
+                        </dt>
+                        <dd class="date">26.07.20</dd>
+                    </dl>
+                                                        </div>
+                <div id="notice09_list" style="display:none;">
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0504&amp;menu_group=4&amp;sno=0405&wr_id=38867&mnuno=M0000049">[중소벤처기업부] 2019년 스마트공장 보급·확산사업 공고</a>
+                        </dt>
+                        <dd class="date">19.04.16</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0504&amp;menu_group=4&amp;sno=0405&wr_id=38866&mnuno=M0000049">[중소벤처기업진흥공단] 19년 중소기업컨설팅(화학물질등록-사전신고) 지원사업 안내</a>
+                        </dt>
+                        <dd class="date">19.04.12</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0504&amp;menu_group=4&amp;sno=0405&wr_id=38865&mnuno=M0000049">[중소벤처기업부] 2019 동남권 지역 중소기업 R&D 산업인턴지원사업 참여기업 모집</a>
+                        </dt>
+                        <dd class="date">19.04.11</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0504&amp;menu_group=4&amp;sno=0405&wr_id=38864&mnuno=M0000049">[한국테크노파크진흥회] 「테크노파크 혁신성장 우수사례집 발간」 용역 입찰 공고</a>
+                        </dt>
+                        <dd class="date">19.04.11</dd>
+                    </dl>
+                                        <dl class="info_list">
+                        <dt class="list"><a
+                                href="./board/board.php?bo_table=sub0504&amp;menu_group=4&amp;sno=0405&wr_id=38863&mnuno=M0000049">[울산지역인적자원개발위원회] 울산 조선산업 사내협력사 채용박람회 개최</a>
+                        </dt>
+                        <dd class="date">19.04.10</dd>
+                    </dl>
+                                                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cont_right">
+        <div class="banner">
+            <div class="title">
+                <h1><b>B</b>ANNER</h1>
+            </div>
+
+            <div id="banner_line_wrap1">
+                <div class="banner_line1">
+                    <div class="industry1">
+                        <dl>
+                            <div class="banner1_img_outer" style="position:relative;">
+                                                        <div class="js_show_image" onclick="openWin('https://www.utp.or.kr/board/board.php?bo_table=sub0501&amp;wr_id=40110&amp;page=0&amp;mnuno=&amp;menu_group=4&amp;sno=0401&amp;ontab=&amp;sca=&amp;sfl=&amp;stx=&amp;sst=&amp;sod=&amp;spt=0&amp;page=0');" style="cursor:pointer;">
+                                <dt><img src="./data/banner/banner_20260207024907_4e0d8781.jpeg" alt="직원 사칭 사건 발생에 따른 협조 요청" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('https://www.kiat.or.kr/front/board/boardContentsView.do?board_id=90&amp;contents_id=3e88c2fc2b2a4b098fd9fe00e9f93c3c&amp;MenuId=b159c9dac684471b87256f1e25404f5e');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_20260207022944_a61221f3.jpg" alt="친환경차 보급촉진을 위한 이차보전사업" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('https://www.mois.go.kr/frt/sub/a03/corruptionDeclareInfo/screen.do');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_250411.png" alt="공직선거비리 익명신고" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('http://www.nzchallengex.go.kr/');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_20260207023927_3ae5c8aa.jpg" alt="넷제로 챌린지" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('https://www.mois.go.kr/frt/sub/a03/corruptionDeclareInfo/screen.do');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_230530.jpg" alt="행정안전부 공직비리 익명신고" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('https://www.mois.go.kr/frt/sub/a05/reSafetySystem/screen.do');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_230317.png" alt="모두의 일상이 안전한 대한민국" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_221114.jpg" alt="사칭에 주의하세요" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('https://www.clean.go.kr/index.es?sid=a1');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_220727.png" alt="국민권익위원회 부패 공익 신고" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('/data/popup/20200605.html');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_covid19_2006.jpg" alt="코로나19를 이기는 개인방역 핵심수칙" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('/data/popup/20200330.html');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_support_cvid.png" alt="코로나19" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('https://www.utp.or.kr/board/board.php?bo_table=sub0501&amp;wr_id=38961&amp;mnuno=M0000046&amp;menu_group=4&amp;sno=0401');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_191101.jpg" alt="자동차조선기술관 입주기업(기관)모집" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('http://www.simpan.go.kr');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner1.jpg" alt="온라인 행정심판 안내" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('http://oico.kr/main/main.php');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner2.jpg" alt="산업융합촉진옴부즈만" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('/data/popup/20170928.html');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner3.jpg" alt="공익신고란" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('https://www.sandbox.or.kr/');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner4.jpg" alt="신속처리힘시허가제도" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('https://www.utp.or.kr/board/board.php?bo_table=sub0203_02&amp;wr_id=311&amp;mnuno=M0000019&amp;sfl=wr_subject&amp;stx=2021%EB%85%84%EB%8F%84&amp;menu_group=1&amp;sno=0103');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_190109.png" alt="중소기업 스마트 제조혁신 스마트공장 더 나은 내일이 보인다 자세한 내용 보러가기" width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/190118.jpg" alt="국민이 지킨 역사 국민이 이끌 나라 평화와 번영을 위한 100년의 여망, 우리가 이어갑니다." width="330" height="260" /></dt>
+                            </div>
+                                                        <div class="js_show_image" onclick="openWin('https://www.utp.or.kr/include/contents.php?mnuno=M0000102&amp;menu_group=1&amp;sno=0108');" style="display:none; cursor:pointer;">
+                                <dt><img src="./data/banner/banner_190425.png" alt="울산광역시 스마트제조혁신센터" width="330" height="260" /></dt>
+                            </div>
+                                                        <script type="text/javascript">
+                                function MM_openBrWindow(theURL, winName, features) { //v2.0
+                                    window.open(theURL, winName, features);
+                                }
+                                function myhref(web) { window.location.href = web; }
+                                var newName, n = 0;
+                                function newWindow(value) { n = n + 1; newName = value + n; }
+                                function openWin(theURL) {
+                                    newWindow("utpWindow");
+                                    window.open(theURL, newName, "menubar=yes, toolbar=yes, location=yes, status=yes, resizable=yes, scrollbars=yes");
+                                }
+                            </script>
+                            <div class="banner1_ctl" style="position:absolute; right:8px; bottom:8px; z-index:2;">
+                                <button type="button" id="banner1_toggle_btn" title="일시정지" class="banner1_ctl_btn" style="width:28px; height:28px; padding:0; border:none; border-radius:4px; background:rgba(0,0,0,0.5); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center;"><i class="fa fa-pause" id="banner1_toggle_icon" aria-hidden="true"></i></button>
+                            </div>
+                            </div>
+                            <ul class="num">
+                                                                <li style="margin-right: 3px;"><a href="." title="페이지 이동" class="num_on">1</a></li>
+                                                                <li style="margin-right: 3px;"><a href="." title="페이지 이동" class="num">2</a></li>
+                                                                <li style="margin-right: 3px;"><a href="." title="페이지 이동" class="num">3</a></li>
+                                                                <li style="margin-right: 3px;"><a href="." title="페이지 이동" class="num">4</a></li>
+                                                                <li style="margin-right: 3px;"><a href="." title="페이지 이동" class="num">5</a></li>
+                                                                <li style="margin-right: 3px;"><a href="." title="페이지 이동" class="num">6</a></li>
+                                                                <li style="margin-right: 3px;"><a href="." title="페이지 이동" class="num">7</a></li>
+                                                                <li style="margin-right: 3px;"><a href="." title="페이지 이동" class="num">8</a></li>
+                                                                <li style="margin-right: 3px;"><a href="." title="페이지 이동" class="num">9</a></li>
+                                                                <li style="margin-right: 3px;"><a href="." title="페이지 이동" class="num">10</a></li>
+                                                                <li style="margin-right: 2px;"><a href="." title="페이지 이동" class="num">11</a></li>
+                                                                <li style="margin-right: 2px;"><a href="." title="페이지 이동" class="num">12</a></li>
+                                                                <li style="margin-right: 2px;"><a href="." title="페이지 이동" class="num">13</a></li>
+                                                                <li style="margin-right: 2px;"><a href="." title="페이지 이동" class="num">14</a></li>
+                                                                <li style="margin-right: 2px;"><a href="." title="페이지 이동" class="num">15</a></li>
+                                                                <li style="margin-right: 2px;"><a href="." title="페이지 이동" class="num">16</a></li>
+                                                                <li style="margin-right: 2px;"><a href="." title="페이지 이동" class="num">17</a></li>
+                                                                <li style="margin-right: 2px;"><a href="." title="페이지 이동" class="num">18</a></li>
+                                                            </ul>
+                                                    </dl>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="prvideo">
+            <div class="title">
+                <a href="/board/board.php?bo_table=sub0505&mnuno=M0000051&menu_group=4&sno=0406"><h1><b>홍</b>보동영상</h1></a>
+                <a href="/board/board.php?bo_table=sub0505&menu_group=4&sno=0406" title="페이지이동" class="more" id="notice0506_more"><img src="./images/main/icon_more.png" alt="홍보동영상 더보기" /></a>
+            </div>
+            <div class="video-wrap">
+                <video style="display:block; max-width:100%; height:auto;" controls="true" src="/data/file/sub0505/promotion_small.mp4" type="video/mp4"></video> 
+                <!-- <video style="display:block; max-width:100%; height:auto;" controls="true" src="/data/file/sub0505/2024_festival_small.mp4" type="video/mp4"></video> -->
+            </div>
+            <!-- <a href="https://www.utp.or.kr/board/board.php?bo_table=sub0505&mnuno=M0000051&menu_group=4&sno=0406"
+                title="페이지이동" class="cont_right" target="_self">
+                <img src="./images/main/prvideo.gif" alt="" />
+            </a> -->
+        </div>
+    </div>
+</div>
+<!--
+    <div id="banner_line_wrap">
+        <div class="banner_line">
+            <div class="industry">
+                <h2 class="title02">신특화산업<span>NEW SPECIALIZED INDUSTRY</span></h2>
+                <dl>
+                    <a href="#" title="페이지이동" class="js_show_image">
+                        <dt><img src="./images/main/ind_pro02.png" alt="" /></dt>
+                        <dd>
+                            <h3>수송기계융합부품산업<span>Component Industry</span></h3>
+                            <p>
+                                수송기계를 구성하는 고효율/고기능/친환경 자동차 부품과 기자재를
+                                IT, NT 등의 신기술을 접목하여 제조하거나 조립하는 산업
+                            </p>
+                        </dd>
+                    </a>
+                    <a href="#" title="페이지이동" class="js_show_image" style="display:none;">
+                        <dt><img src="./images/main/ind_pro01.png" alt="" /></dt>
+                        <dd>
+                            <h3>엔지니어링플랜트산업<span>Engineering Industry</span></h3>
+                            <p>
+                                에너지, 화공, 발전, 환경 등의 플랜트를 제조하기 위한 뿌리기술과
+                                연계된 기계장치와 설계 및 엔지니어링 등 소프트웨어가 결합된 산업
+                            </p>
+                        </dd>
+                    </a>
+                    <a href="#" title="페이지이동" class="js_show_image" style="display:none;">
+                        <dt><img src="./images/main/ind_pro03.png" alt="" /></dt>
+                        <dd>
+                            <h3>정밀화학산업<span>Chemistry Industry</span></h3>
+                            <p>
+                                석유화학산업 등으로부터 생산되는 기초화학 중간체 및 원제를 합성·가공하며
+                                섬유, 자동차, 전기전자, 반도체 등 타 산업에서 필요로 하는 중간재 및 제품을 생산하는
+                                가공형·중간형 산업
+                            </p>
+                        </dd>
+                    </a>
+                    <a href="#" title="페이지이동" class="js_show_image" style="display:none;">
+                        <dt><img src="./images/main/ind_pro04.png" alt="" /></dt>
+                        <dd>
+                            <h3>에너지소재산업<span>Energy Industry</span></h3>
+                            <p>
+                                에너지를 생산, 변환, 저장하는 부품 및 기자재와 관련된
+                                핵심소재를 공급하는 산업
+                            </p>
+                        </dd>
+                    </a>
+                    <a href="#" title="페이지이동" class="js_show_image" style="display:none;">
+                        <dt><img src="./images/main/ind_pro05.png" alt="" /></dt>
+                        <dd>
+                            <h3>환경산업<span>Environmental Industry</span></h3>
+                            <p>
+                                생산공정에서 발생하는 부산물을 제어하고 생산공정 개선을 통하여
+                                사전오염을 예방·관리하는 종합산업
+                            </p>
+                        </dd>
+                    </a>
+                    <ul class="num">
+                        <li><a href="." title="페이지 이동" class="num_on">1</a></li>
+                        <li><a href="." title="페이지 이동" class="num">2</a></li>
+                        <li><a href="." title="페이지 이동" class="num">3</a></li>
+                        <li><a href="." title="페이지 이동" class="num">4</a></li>
+                        <li><a href="." title="페이지 이동" class="num">5</a></li>
+                    </ul>
+                </dl>
+            </div>
+
+            <div class="recruit">
+                <a href="./include/contents.php?mnuno=M0000057&menu_group=6&sno=0605" title="페이지 이동"  target="_self">
+                    <h2 class="title02">
+                        인재 채용소식
+                        <div>울산테크노파크 인재 채용소식 바로가기 <img src="./images/main/icon_arrow.png" alt="인재 채용소식 이동" /></div>
+                    </h2>
+                </a>
+            </div>
+        </div>
+    </div>
+-->
+
+</div>
+    <script type="text/javascript">
+        // quickmenu control
+        $(function() {
+            $(window).scroll(function() {
+                var topPx = ($(document).scrollTop() <= 200 ? 200 : $(document).scrollTop() + 100);
+                //var topPx = $(document).scrollTop() + 178;
+                var obj = $("#quickmenu");
+                obj.stop();
+                obj.animate({ "top": topPx }, 200);
+            });
+
+            // footer selectbox control
+            $("#sitelink_opener").click(function(ev) {
+                ev.preventDefault();
+                if($("#sitelink_box").css("display") == "none") {
+                    $("#sitelink_box").css("display", "block");
+                } else {
+                    $("#sitelink_box").css("display", "none");
+                }
+            });
+
+            // footer selectbox control
+            $("#sitelink_opener2").click(function(ev) {
+                ev.preventDefault();
+                if($("#sitelink_box2").css("display") == "none") {
+                    $("#sitelink_box2").css("display", "block");
+                } else {
+                    $("#sitelink_box2").css("display", "none");
+                }
+            });
+
+        });
+    </script>
+
+<div id="foot_whole_wrap">
+	<div id="foot_wrap">
+		<div class="foot">
+			<ul>
+				<li><a href="./sub_etc/utpetc01.php">개인정보보호정책</a></li>
+				<li><a href="./sub_etc/utpetc05.php">영상정보처리기기 운영&middot;관리방침</a></li>
+				<li><a href="./sub_etc/utpetc02.php">이메일무단수집거부</a></li>
+				<li><a href="./sub_etc/utpetc03.php">이용약관</a></li>
+				<li><a href="./sitemap.php" id="btn_sitemap_open_footer">사이트맵</a></li>
+				<!-- <li class="no-mobile"><a href="./sub_etc/utpetc04.php">CONTACT US</a></li> -->
+			</ul>
+			<address>
+				<b>(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동</b>
+				<b class="tel">울산테크노파크 </b> 
+				<b class="tel" style="padding-left: 1.5em" > 대표번호 : <a href="tel:052-219-8500" alt="전화걸기">052-219-8500</a></b>
+				<b class="tel" style="padding-left: 1.5em"> FAX : <a href="tel:052-219-8509" alt="팩스보내기">052-219-8509</a></b>
+				<b class="tel" style="padding-left: 1.5em"> E-mail : <a href="mailto:info@utp.or.kr" alt="메일보내기">info@utp.or.kr</a></b>
+				<br/>
+				<b class="tel">전국테크노파크 </b>
+				<b class="tel" style="padding-left: 1.5em" ></span> 대표번호 : <a id="" href="tel:1877-8972" alt="전화걸기">1877-8972</a></b>
+			</address>
+			<p>Copyright 2016 <strong>ULSAN TECHNOPARK.</strong> All Rights Reserved.</p>
+
+
+			<div class="sitelink_wrap">
+				<div class="sitelink">
+					<ul class="sitelink_go">
+						<li><a href="." target="_blank" title="새창열림" id="sitelink_opener" class="sel_site">UTP 관련사이트</a></li>
+					</ul>
+				</div>
+				<div id="sitelink_box" class="sitelink_box" style="display:none">
+					<ul class="select">
+						<li><a href="http://platform.utp.or.kr/" target="_blank" title="새창열림">기업지원사업 관리 시스템</a></li>
+						<li><a href="http://edu.utp.or.kr/" target="_blank" title="새창열림">울산테크노파크 교육센터</a></li>
+						<li><a href="http://rnd.utp.or.kr/" target="_blank" title="새창열림">울산 R&D성과물정보 관리시스템</a></li>
+						<li><a href="https://platform.utp.or.kr/lend_equip/" target="_blank" title="새창열림">장비이용신청 온라인시스템</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="sitelink_wrap02">
+				<div class="sitelink02">
+					<ul class="sitelink_go02">
+						<li><a href="." target="_blank" title="새창열림" id="sitelink_opener2" class="sel_site">UTP 유관기관</a></li>
+					</ul>
+				</div>
+				<div id="sitelink_box2" class="sitelink_box02" style="display:none">
+					<ul class="select">
+						<li><a href="http://www.smba.go.kr/" target="_blank" title="새창열림">중소벤처기업부</a></li>
+						<li><a href="http://www.motie.go.kr/" target="_blank" title="새창열림">산업통상자원부</a></li>
+						<li><a href="http://www.msit.go.kr/" target="_blank" title="새창열림">과학기술정보통신부</a></li>
+						<li><a href="http://www.ulsan.go.kr/" target="_blank" title="새창열림">울산광역시</a></li>
+						<li><a href="http://www.kipo.go.kr/" target="_blank" title="새창열림">특허청</a></li>
+						<li><a href="http://www.keit.re.kr/" target="_blank" title="새창열림">한국산업기술평가관리원</a></li>
+						<li><a href="http://www.kiat.or.kr/" target="_blank" title="새창열림">한국산업기술진흥원</a></li>
+						<li><a href="http://www.acrc.go.kr/" target="_blank" title="새창열림">국민권익위원회</a></li>
+						<li><a href="http://www.ftc.go.kr/" target="_blank" title="새창열림">공정거래위원회</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div><!--foot_wrap-->
+</div>
+
+
+<!--########## QUICK MENU ##########-->
+<div id="quickmenu_wrap">
+	<div id="quickmenu">
+		<dl class="q_menu">
+			<a href="http://edu.utp.or.kr/" title="새창으로 열기" target="_blank">
+				<dt class="q_menu"><img src="./images/common/q_menu01.png" alt="교육센터" /></dt><!-- 이미지사이즈 35*30 -->
+				<dd class="q_menu">교육센터</dd>
+			</a>
+		</dl>
+		<!--
+		<dl class="q_menu">
+			<a href="http://www.g2chem.or.kr/" title="새창으로 열기" target="_blank">
+				<dt class="q_menu"><img src="./images/common/q_menu02.png" alt="마케팅홍보관" /></dt>
+				<dd class="q_menu">마케팅홍보관</dd>
+			</a>
+		</dl>
+		
+		<dl class="q_menu">
+			<a href="http://www.redis.go.kr/route/main_home.do" title="새창으로 열기" target="_blank">
+				<dt class="q_menu"><img src="./images/common/q_menu03.png" alt="RENET" /></dt>
+				<dd class="q_menu">RENET</dd>
+			</a>
+		</dl>
+		-->
+		<!-- <dl class="q_menu">
+			<a href="./include/contents.php?mnuno=M0000079&amp;menu_group=3&amp;sno=0301" title="새창으로열기" target="_blank">
+				<dt class="q_menu"><img src="./images/common/q_menu08.png" alt="입주안내" /></dt>
+				<dd class="q_menu">입주안내</dd>
+			</a>
+		</dl> -->
+
+		<!--	<dl class="q_menu">
+			<a href="./board/board.php?bo_table=sub0401_02&mnuno=M0000037&menu_group=3&amp;sno=0301" title="새창으로열기" target="_blank">
+				<dt class="q_menu"><img src="./images/common/q_menu02.png" alt="입주공고" /></dt>
+				<dd class="q_menu">입주공고</dd>
+			</a>
+		</dl> -->
+
+		<!-- <dl class="q_menu">
+			<a href="./include/contents.php?mnuno=M0000043&menu_group=3&amp;sno=0303" title="새창으로열기" target="_blank">
+				<dt class="q_menu"><img src="./images/common/q_menu09.png" alt="시설현황" /></dt>
+				<dd class="q_menu">시설현황</dd>
+			</a>
+		</dl> -->
+
+		<!-- <dl class="q_menu">
+			<a href="./board/board.php?bo_table=sub0603&menu_group=4&sno=0408" title="새창으로 열기" target="_blank">
+				<dt class="q_menu"><img src="./images/common/q_menu12.png" alt="RENET" /></dt>
+				<dd class="q_menu">인재채용</dd>
+			</a>
+		</dl> -->
+
+		<!-- <dl class="q_menu">
+			<a href="./board/board.php?bo_table=sub0204_03_equip&amp;menu_group=2&amp;sno=0201&amp;mnuno=M0000086" title="새창으로열기" target="_blank">
+				<dt class="q_menu"><img src="./images/common/q_menu11.png" alt="장비지원" /></dt>
+				<dd class="q_menu">장비지원</dd>
+			</a>
+		</dl> -->
+		
+		<dl class="q_menu_green">
+			<a href="./board/board.php?bo_table=sub0507&amp;menu_group=5&amp;sno=0508">
+				<dt class="q_menu"><img src="./images/common/q_menu05.png" alt="클린신고센터" /></dt>
+				<dd class="q_menu">클린신고센터</dd>
+			</a>
+		</dl>
+
+		<dl class="q_menu_green">
+			<a href="./board/board.php?bo_table=sub0515&amp;menu_group=5&amp;sno=0508">
+				<dt class="q_menu"><img src="./images/common/q_menu05_02.png" alt="안전신고센터" /></dt>
+				<dd class="q_menu">안전신고센터</dd>
+			</a>
+		</dl>
+		<!-- <dl class="q_menu_green">
+			<a href="./board/board.php?bo_table=sub0516&amp;menu_group=5&amp;sno=0510">
+				<dt class="q_menu"><img src="./images/common/q_menu05_03.png" alt="정보자산공유센터" /></dt>
+				<dd class="q_menu">정보자산공유센터</dd>
+			</a>
+		</dl> -->
+
+		<!--
+		<dl class="q_menu">
+			<a href="http://vr.utp.or.kr" title="새창으로 열기" target="_blank">
+				<dt class="q_menu"><img src="./images/common/q_menu07.png" alt="VR보기(다운지구)" /></dt>
+				<dd class="q_menu">VR보기(다운지구)</dd>
+			</a>
+		</dl> -->
+		
+		<style>
+			.q_link li a {
+				 padding-top: 9px;
+				word-break: keep-all;
+				color: #222f3e;
+			}
+			.q_link li {
+				background-image: linear-gradient(90deg, rgb(144 144 144) 0%, rgb(255 255 255) 6%, rgb(232 232 232) 100%) !important;
+    			border-left: 0 !important;
+			}
+		</style>
+		<ul class="q_link">
+			<li><a href="http://platform.utp.or.kr/" title="새창으로 열기" target="_blank">기업지원사업  관리시스템</a></li>
+			<li><a href="https://hichem-platform.utp.or.kr/V1/" title="새창으로 열기" target="_blank">통합정보<br/>지원시스템</a></li>
+			<li><a href="/include/contents.php?mnuno=M0000102" title="페이지 이동" target="_self">울산스마트공장 사업안내</a></li>
+			<li><a href="/include/contents.php?mnuno=M0000120" title="페이지 이동" target="_self">울산<br/> 지역스타기업</a></li>
+			<li><a href="https://vr.utp.or.kr/" title="새창으로 열기" target="_blank">VR투어</a></li>
+			<li><a href="https://platform.utp.or.kr/lend_equip/" title="새창으로 열기" target="_blank">장비이용신청 온라인시스템</a></li>
+<!--			<li><a href="./include/contents.php?mnuno=M0000011" title="새창으로 열기" target="_blank"><img src="./images/common/q_link01.png" alt="정부 3.0" /></a></li>  -->
+			<!-- <li><a href="http://www.korea.go.kr/main" title="" target="_blank"><img src="./images/common/q_link02.png" alt="대한민국 정부" /></a></li> -->			
+			<!-- <li><a href="http://www.dongnambiz.kr/kor/" title="새창으로 열기" target="_blank"><img src="./images/common/q_link04.png" alt="부산·울산·경남 비즈니스 라운지" /></a></li> -->			
+		</ul>
+		<dl class="q_menu_02">
+			<a href="http://mail.utp.or.kr " title="새창으로 열기" target="_blank">
+				<dd class="q_menu"><img src="./images/common/q_menu04_05.png" alt="웹메일" />웹메일</dd>
+			</a>
+		</dl>
+		<dl class="q_menu_02">
+			<a href="http://bizflow.utp.or.kr/" title="새창으로 열기" target="_blank">
+				<dd class="q_menu"><img src="./images/common/q_menu04_06.png" alt="전자결제" />전자결재</dd>
+			</a>
+		</dl>
+	<!-- <dl class="q_menu_02">
+		<a href="http://www.minwon.go.kr/main?a=AA020InfoMainApp" title="새창으로 열기" target="_blank"> -->
+				<!--<dt class="q_menu"><img src="./images/common/q_menu04.png" alt="전자민원" /></dt>-->
+				<!-- <dd class="q_menu"><img src="./images/common/q_menu04_02.png" alt="전자민원" />전자민원</dd>
+			</a>
+		 </dl> -->
+		<!--<dl class="q_menu_02">
+			<a href="http://www.juso.go.kr/openIndexPage.do" title="새창으로 열기" target="_blank">
+				<dt class="q_menu"><img src="./images/common/q_menu06_01.png" alt="새주소안내" /></dt>
+				<dd class="q_menu"><img src="./images/common/q_menu06_02.png" alt="새주소안내" />새주소안내</dd>
+			</a>
+		</dl>-->
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+    function SitemapResize() {
+        //if($("body").prop("scrollWidth") >= 768) {
+            $("#sitemap_cont div.sitemap_contents").height(
+                $("#sitemap_cont").height() - $("#sitemap_cont div.sitemap_title").height()
+            );
+        //}
+    }
+
+    $(function() {
+        $("#sitemap_btnClose").click(function(ev) {
+            ev.preventDefault();
+            $("#sitemap").css("display", "none");
+            $("html").css("overflow", "auto");
+        });
+
+        $("#btn_sitemap_open_footer").add("#btn_sitemap_open_top").click(function(ev) {
+            ev.preventDefault();
+            $("#sitemap").css("display", "block");
+            $("html").css("overflow", "hidden");
+            SitemapResize();
+        });
+
+        $(window).resize(SitemapResize);
+    });
+
+</script>
+
+		<div id="sitemap" style="display:none;">
+			<div id="sitemap_cont">
+				<div class="sitemap_title">
+					<h3>SITEMAP</h3>
+					<a href="." alt="사이트맵 창닫기" id="sitemap_btnClose"><img src="./images/common/icon_close_wh.png" alt="창닫기 아이콘" title="창닫기" /></a>
+				</div>
+				<div class="sitemap_contents">
+					<div class="sitemap_depth1">
+						<h4>사업안내</h4>
+						<ul class="sitemap_menu">
+							<li><a href="./include/contents.php?mnuno=M0000017" title="부서별 주요 업무">부서별 주요 업무</a></li>
+							<!-- <li><a href="./board/board.php?bo_table=sub0203_02&amp;menu_group=1&amp;sno=0103" title="지원사업공고" target="_self">지원사업공고</a></li> -->
+							<li><a href="./include/contents.php?mnuno=M0000018&amp;menu_group=1&amp;sno=0102" title="지원사업공고" target="_self">지원사업공고</a></li>
+						</ul>
+					</div>
+					<div class="sitemap_depth1">
+						<h4>장비지원</h4>
+						<ul class="sitemap_menu">
+						<li><a href="./board/board.php?bo_table=sub0204_03_equip&amp;menu_group=2&amp;sno=0201&mnuno=M0000086" title="장비지원(자동차)" target="_self">장비지원(자동차)</a></li>
+						<li><a href="./board/board.php?bo_table=sub0204_04_equip&amp;menu_group=2&amp;sno=0202&mnuno=M0000091" title="장비지원(정밀화학)" target="_self">장비지원(정밀화학)</a></li>
+						<li><a href="./board/board.php?bo_table=sub0204_05_equip&amp;menu_group=2&amp;sno=0203&mnuno=M0000095&ontab=equip_tab08" title="장비지원(에너지)" target="_self">장비지원(에너지)</a></li>
+						<li><a href="./board/board.php?bo_table=sub0204_07_equip&mnuno=M0000123&&menu_group=2&sno=0204" title="장비지원(메이커 스페이스)" target="_self">장비지원(메이커 스페이스)</a></li>
+						<li><a href="./board/board.php?bo_table=sub0204_08_equip&amp;menu_group=2&amp;sno=0205&mnuno=M0000096" title="장비지원(이차전지)" target="_self">장비지원(이차전지)</a></li>
+						</ul>
+					</div>
+					<div class="sitemap_depth1">
+						<h4>입주 및 부대시설</h4>
+						<ul class="sitemap_menu">
+							<li>
+								<a href="./include/contents.php?mnuno=M0000079&menu_group=3&sno=0301" title="입주안내 페이지로 이동">입주안내</a>
+								<ul class="sitemap_menu02">
+									<li><a href="./include/contents.php?mnuno=M0000079&menu_group=3&sno=0301" title="기술혁신동 페이지로 이동">기술혁신동</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000080&menu_group=3&sno=0301" title="정밀화학소재기술연구소 페이지로 이동">정밀화학소재기술연구소</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000081&menu_group=3&sno=0301" title="자동차부품기술연구소 페이지로 이동">자동차부품기술연구소</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000082&menu_group=3&sno=0301" title="울산종합비즈니스센터 페이지로 이동">울산종합비즈니스센터</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000083&menu_group=3&sno=0301" title="울산그린카기술센터 페이지로 이동">울산그린카기술센터/울산과학기술진흥센터</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000084&menu_group=3&sno=0301" title="자동차조선기술관 페이지로 이동">자동차조선기술관</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000085&menu_group=3&sno=0301" title="수소연료전지실증화센터 페이지로 이동">수소연료전지실증화센터</a></li>
+								</ul>
+							</li>
+							<li><a href="./board/board.php?bo_table=sub0401_02&amp;menu_group=3&amp;sno=0304" title="입주공고" target="_self">입주공고</a></li>
+							<li>
+								<a href="./include/contents.php?mnuno=M0000065&menu_group=3&sno=0302" title="입주현황 페이지로 이동">입주현황</a>
+								<ul class="sitemap_menu02">
+									<li><a href="./include/contents.php?mnuno=M0000065&menu_group=3&sno=0302" title="기술혁신동 페이지로 이동">기술혁신동</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000066&menu_group=3&sno=0302" title="정밀화학소재기술연구소 페이지로 이동">정밀화학소재기술연구소</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000067&menu_group=3&sno=0302" title="자동차부품기술연구소 페이지로 이동">자동차부품기술연구소</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000068&menu_group=3&sno=0302" title="울산종합비즈니스센터 페이지로 이동">울산종합비즈니스센터</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000069&menu_group=3&sno=0302" title="울산그린카기술센터 페이지로 이동">울산그린카기술센터/울산과학기술진흥센터</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000070&menu_group=3&sno=0302" title="자동차조선기술관 페이지로 이동">자동차조선기술관</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000074&menu_group=3&sno=0302" title="수소연료전지실증화센터 페이지로 이동">수소연료전지실증화센터</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="./include/contents.php?mnuno=M0000043&menu_group=3&sno=0303" title="시설사용 페이지로 이동">부대시설사용</a>
+								<ul class="sitemap_menu02">
+									<li><a href="./include/contents.php?mnuno=M0000043&menu_group=3&sno=0303" title="시설현황 페이지로 이동">시설현황</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000044&menu_group=3&sno=0303" title="신청절차 페이지로 이동">신청절차</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="sitemap_depth1">
+						<h4>알림마당</h4>
+						<ul class="sitemap_menu">
+							<li><a href="./board/board.php?bo_table=sub0501&menu_group=4&sno=0401" title="공지사항 페이지로 이동">공지사항</a></li>
+							<!-- li><a href="./board/board.php?bo_table=sub0502&menu_group=4&sno=0402" title="행사안내 페이지로 이동">행사안내</a></li -->
+							<!-- <li><a href="./board/board.php?bo_table=sub0504&amp;menu_group=4&amp;sno=0405" title="유관기관 소식 페이지로 이동" target="_self">유관기관 소식</a></li> -->
+							<li><a href="./board/board.php?bo_table=sub0505&amp;menu_group=4&amp;sno=0406" title="홍보관 페이지로 이동"  target="_self">홍보관</a></li>
+							<li><a href="./board/board.php?bo_table=sub0503&menu_group=4&sno=0407" title="보도자료 페이지로 이동">보도자료</a></li>
+							<!-- li><a href="./board/board.php?bo_table=sub0512&menu_group=4&sno=0407" title="정책제언365 페이지로 이동">정책제언365</a></li -->
+							<li><a href="./board/board.php?bo_table=sub0603&amp;menu_group=4&amp;sno=0408" title="채용공고 페이지로 이동" target="_self">채용공고</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000078&menu_group=4&sno=0410" title="전형결과 페이지로 이동">전형결과</a></li>
+							<!-- <li><a href="./board/board.php?bo_table=sub0513&menu_group=4&sno=0409" title="뉴스레터 페이지로 이동">뉴스레터</a></li> -->
+						</ul>
+					</div>
+					<div class="sitemap_depth1">
+						<h4>정보공개</h4>
+						<ul class="sitemap_menu">
+							<li><a href="./include/contents.php?mnuno=M0000011&menu_group=5&sno=0501" title="경영공시 페이지로 이동">경영공시</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000012&menu_group=5&sno=0502" title="업무추진비 페이지로 이동">업무추진비</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000117&amp;menu_group=5&amp;sno=0512" title="ESG 경영 페이지로 이동" target="_self">ESG 경영</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000013&menu_group=5&sno=0503" title="윤리경영 페이지로 이동">윤리경영</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000013&menu_group=5&sno=0504" title="인권경영 페이지로 이동">인권경영</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000147&menu_group=5&sno=0513" title="안전보건경영 페이지로 이동">안전보건경영</a></li>
+							<li><a href="./board/board.php?bo_table=sub0509&amp;menu_group=5&amp;sno=0505" title="계약/수의계약공개 페이지로 이동">계약/수의계약 공개</a></li>
+							<li><a href="./board/board.php?bo_table=sub0109_05&menu_group=5&sno=0506" title="기부금실적공개 페이지로 이동">기부금실적공개</a></li>
+							<li><a href="./board/board.php?bo_table=sub0109_06&menu_group=5&sno=0507" title="상품권구매내역 페이지로 이동">상품권구매내역</a></li>
+							<li>
+								<a href="./board/board.php?bo_table=sub0507&menu_group=5&sno=0508" title="신고/상담센터 페이지로 이동">신고/상담센터</a>
+								<ul class="sitemap_menu02">
+									<li><a href="./board/board.php?bo_table=sub0507&menu_group=5&sno=0508" title="클린신고센터 페이지로 이동">클린신고센터</a></li>
+									<li><a href="./board/board.php?bo_table=sub0515&menu_group=5&sno=0508" title="안전신고센터 페이지로 이동">안전신고센터</a></li>
+									<li><a href="./board/board.php?bo_table=sub0511&menu_group=5&sno=0508" title="성희롱상담센터 페이지로 이동">성희롱상담센터</a></li>
+								</ul>
+							</li>
+							<!-- <li><a href="./board/board.php?bo_table=sub0516&menu_group=5&sno=0510" title="정보자산공유센터 페이지로 이동">정보자산공유센터</a></li> -->
+							<li><a href="./board/board.php?bo_table=sub0109_07&menu_group=5&sno=0511" title="임직원 친인척 채용 공개 페이지로 이동">임직원 친인척 채용 공개</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000149&amp;menu_group=5&amp;sno=0514" title="Talk With UTPian">Talk With UTPian</a></li>
+						</ul>
+					</div>
+					<div class="sitemap_depth1">
+						<h4>공유마당</h4>
+						<ul class=sitemap_menu>
+							<li>
+								<a href="./board/board.php?bo_table=sub0902&menu_group=9&sno=0902" title="지원사업 정보공유 페이지로 이동">지원사업 정보공유</a>
+								<ul class="sitemap_menu02">
+									<li><a href="./board/board.php?bo_table=sub0902&menu_group=9&sno=0902" title="TP소식 페이지로 이동">TP소식</a></li>
+									<li><a href="./board/board.php?bo_table=sub0903&menu_group=9&sno=0902" title="지원사업 페이지로 이동">지원사업</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="./board/board.php?bo_table=sub0907&menu_group=9&sno=0903" title="최신기술정보 및 동향 페이지로 이동">최신기술정보 및 동향</a>
+								<ul class="sitemap_menu02">
+									<!-- <li><a href="./board/board.php?bo_table=sub0904&menu_group=9&sno=0903" title="발간자료 페이지로 이동">발간자료</a></li> -->
+									
+									<li><a href="./board/board.php?bo_table=sub0907&menu_group=9&sno=0903" title="기술소개서(SMK) 페이지로 이동">기술소개서(SMK)</a></li>
+									<li><a href="./board/board.php?bo_table=sub0905&menu_group=9&sno=0903" title="정부정책 페이지로 이동">정부정책</a></li>
+									<li><a href="./board/board.php?bo_table=sub0908&menu_group=9&sno=0903" title="최신기술정보 페이지로 이동">최신기술정보</a></li>
+									<li><a href="./include/contents.php?mnuno=M0000140&menu_group=9&sno=0903" title="브로슈어 페이지로 이동">브로슈어</a></li>
+								</ul>
+							</li>
+							<li><a href="./include/contents.php?mnuno=M0000142&menu_group=9&sno=0904" title="시설개방 페이지로 이동">시설개방</a></li>
+							<li>
+								<a href="./include/contents.php?mnuno=M0000141&menu_group=9&sno=0905" title="편의시설 페이지로 이동">편의시설</a>
+								<ul class="sitemap_menu02">
+									<li><a href="./include/contents.php?mnuno=M0000141&menu_group=9&sno=0905" title="만남의장소 페이지로 이동">만남의장소</a></li>
+									<!-- <li><a href="./include/contents.php?mnuno=M0000141&menu_group=9&sno=0905&cate_no=1" title="구내식당 페이지로 이동">구내식당</a></li> -->
+									<li><a href="./include/contents.php?mnuno=M0000141&menu_group=9&sno=0905&cate_no=2" title="편의시설 페이지로 이동">편의시설</a></li>
+								</ul>
+							</li>
+							<li><a href="./board/board.php?bo_table=sub0901&menu_group=9&sno=0901" title="공유자원 개방요청 페이지로 이동">공유자원 개방요청</a></li>
+						</ul>
+					</div>
+					<div class="sitemap_depth1">
+						<h4>TP소개</h4>
+						<ul class="sitemap_menu">
+							<li><a href="./include/contents.php?mnuno=M0000002&menu_group=6&sno=0601" title="목표 및 비전 페이지로 이동">목표 및 비전</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000003&menu_group=6&sno=0602" title="인사말 페이지로 이동">인사말</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000004&menu_group=6&sno=0603" title="연혁 페이지로 이동">연혁</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000005&menu_group=6&sno=0604" title="조직도 페이지로 이동">조직도</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000057&menu_group=6&sno=0605" title="인재상 페이지로 이동">인재상</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000006&menu_group=6&sno=0606" title="직원검색 페이지로 이동">직원검색</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000110&menu_group=6&sno=0607" title="오시는 길 페이지로 이동">건물소개 및 오시는 길</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000008&menu_group=6&sno=0608" title="CI 소개 페이지로 이동">CI 소개</a></li>
+							<li><a href="./include/contents.php?mnuno=M0000009&menu_group=6&sno=0609" title="국내 테크노파크 현황 페이지로 이동">국내 TP 현황</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="sitemap_bg"></div>
+		</div>
+<script type="text/javascript" src="./js/wrest.js"></script>
+
+<!-- 새창 대신 사용하는 iframe -->
+<iframe width=0 height=0 name='hiddenframe' style='display:none;'></iframe>
+
+</body>
+</html>

@@ -1,7 +1,107 @@
 {
-  "generatedAt": "2026-08-06T15:11:01.333Z",
+  "generatedAt": "2026-08-06T15:24:51.867Z",
   "mode": "warning",
-  "passed": true,
-  "regressionCount": 0,
-  "regressions": []
+  "passed": false,
+  "regressionCount": 2,
+  "regressions": [
+    {
+      "org": "울주군시설관리공단",
+      "health": "failed",
+      "primaryCause": {
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011",
+            "ok": false,
+            "error": "fetch failed"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
+    {
+      "org": "울산광역시 타기관소식",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "detail",
+        "status": "failed",
+        "code": "DETAIL_EMPTY_BODY",
+        "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+        "evidence": [
+          {
+            "title": "(부산광역시) 위해축산물 긴급회수문 게재",
+            "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+            "ok": false,
+            "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "error": "fetch failed"
+          },
+          {
+            "title": "울산시설공단 임원 공개모집 공고",
+            "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+            "ok": false,
+            "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "error": "fetch failed"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산광역시 타기관소식.mjs",
+        "recommendedAction": "기관 전용 상세 본문 선택자 추가"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    }
+  ]
 }

@@ -1,0 +1,367 @@
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="robots" content="index,follow">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<!-- jQuery ver1-->
+<script src="/js/commonFunc.js" type="text/javascript"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.serializeObject.min.js"></script>
+<!DOCTYPE html>
+<html lang="ko">
+<title>(재)울주문화재단 접수홈페이지</title>
+<head>
+<link href="/css/applicant/main/menuBar.css" rel="stylesheet" type="text/css">
+<link href="/css/applicant/main/footer.css" rel="stylesheet" type="text/css">
+<link href="/css/applicant/main/subCommon.css" rel="stylesheet" type="text/css">
+<link href="/css/applicant/board/subNoticePage.css" rel="stylesheet" type="text/css">
+<script src="/js/applicant/main/mainFunc.js"></script>
+<script src="/js/commonFunc.js"></script>
+<script>
+var fontFamily = "NotoSans";
+
+function retrieveNoticeDetailPage(){		
+	var frm = document.mainFrm
+	frm.action = "/applicantMain/goNoticePageDetail.do";
+	frm.submit();		
+}
+
+function retrieveNoticePage(){		
+	var frm = document.mainFrm
+	frm.action = "/applicantMain/goNoticePage.do";
+	frm.submit();		
+}
+
+$(document).ready(function(){
+	changeFont();
+		
+	$(".rowArea").click(function(){		
+		$("#postIdx").val($(this).attr("postIdx"));
+		retrieveNoticeDetailPage();
+	});
+	
+	$("#opnIdx").change(function(){
+		retrieveNoticePage();
+	});
+	
+	if($(".txtAlignCenter").length){
+		$("#contentArea").attr("class","hasSubImg");
+	}else{
+		$("#contentArea").attr("class","noSubImg");
+	}
+});
+</script>
+</head>
+<body>	
+	<form name="mainFrm" id="mainFrm" method="post">
+		<input type="hidden" id="orgIdx" name="orgIdx" value="1090" />	
+		<input type="hidden" id="postIdx" name="postIdx" value="" />
+		<input type="hidden" id="boardType" name="boardType" value="1" />				
+	
+	<!-- MENU BAR -->
+	<div id="menuArea">
+		
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="robots" content="index,follow">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<!-- jQuery ver1-->
+<script src="/js/commonFunc.js" type="text/javascript"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.serializeObject.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+<script>
+	$(document).ready(function(){
+		$(".menuLi, #subMenuBar").hover(function(){			
+			if($(this).attr("class") == "menuLi"){
+				$(".hiddenArea").each(function(){					
+					$(this).css("display", "none");
+				});	
+			}			
+			
+			if($(this).attr("leafNode") == "false"){
+				if($(this).attr("class") == "menuLi"){
+					var id = "#subArea"+$(this).attr("mstIdx");					
+					$(id).css("display", "block");
+				}
+				animateMoveVertical($("#subMenuBar"),"80px");	
+			}			
+		});
+		$(".menuLi, #subMenuBar").mouseleave(function(){
+			if($(this).attr("leafNode") == "false"){				
+				animateMoveVertical($("#subMenuBar"),"-140px");
+			}
+		});
+		$(".subText, .subComment").click(function(){
+			var subId = $(this).attr("subId");
+						
+			if(subId > 6){
+				goMovePage(subId);
+			}else{
+				goLinkPage($(this).attr("linkUrl"));	
+			}
+		});
+	});
+</script>
+</head>
+<body>
+
+	<input type="hidden" id="focusMenu" value="">
+	<!-- 공고 메뉴 -->
+	<div id="menuBar">
+		<div class="centerArea">
+			<div id="compLogo">
+				<a href="javascript:goMovePage('');">
+					
+					<img id="logoImg" src="/outside/logo/1090/logoFile.jpg?ver=8399297" />									
+				</a>
+			</div>		
+				
+			<ul id="menuUl" >
+									
+					<li class="menuLi" id="menuLi1" leafNode="true" mstIdx="1310">
+						
+							<!-- subId
+								 1:회사소개, 2:오시는길, 3:복리후생, 4:인사제도, 5:인재상, 6:업무분야, 7:채용공고, 8:채용문의, 9:FAQ, 10:공지사항, 11:마이페이지, 12:합격자조회
+							 -->
+								
+								
+									 <!-- 외부링크 팝업 -->
+										<a leafNode="true" href="javascript:goLinkPage('https://www.ucf.or.kr:478/#');">재단소개</a></li>
+																
+									
+								
+								
+								
+								
+								
+								
+								
+							
+							
+						
+						
+					</li>
+									
+					<li class="menuLi" id="menuLi2" leafNode="true" mstIdx="1314">
+						
+							<!-- subId
+								 1:회사소개, 2:오시는길, 3:복리후생, 4:인사제도, 5:인재상, 6:업무분야, 7:채용공고, 8:채용문의, 9:FAQ, 10:공지사항, 11:마이페이지, 12:합격자조회
+							 -->
+								
+								
+								
+								
+								
+								
+								
+								
+																
+									<!-- 내부데이터 조회 -->
+										<a leafNode="true" href="javascript:goMovePage('7');">채용공고</a></li>
+									
+								
+							
+							
+						
+						
+					</li>
+									
+					<li class="menuLi" id="menuLi3" leafNode="true" mstIdx="1313">
+						
+							<!-- subId
+								 1:회사소개, 2:오시는길, 3:복리후생, 4:인사제도, 5:인재상, 6:업무분야, 7:채용공고, 8:채용문의, 9:FAQ, 10:공지사항, 11:마이페이지, 12:합격자조회
+							 -->
+								
+								
+								
+								
+								
+								
+																
+									<!-- 내부데이터 조회 -->
+										<a leafNode="true" href="javascript:goMovePage('10');">공지사항</a></li>
+									
+								
+								
+								
+							
+							
+						
+						
+					</li>
+									
+					<li class="menuLi" id="menuLi4" leafNode="true" mstIdx="1312">
+						
+							<!-- subId
+								 1:회사소개, 2:오시는길, 3:복리후생, 4:인사제도, 5:인재상, 6:업무분야, 7:채용공고, 8:채용문의, 9:FAQ, 10:공지사항, 11:마이페이지, 12:합격자조회
+							 -->
+								
+								
+								
+								
+																
+									<!-- 내부데이터 조회 -->
+										<a leafNode="true" href="javascript:goMovePage('8');">문의사항</a></li>
+									
+								
+								
+								
+								
+								
+							
+							
+						
+						
+					</li>
+				
+			</ul>
+					
+		</div>
+	</div>
+</body>
+</html>
+	</div>
+	
+	<div id="middleArea">
+		<div id="titleArea">
+			
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="robots" content="index,follow">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<!-- jQuery ver1-->
+<script src="/js/commonFunc.js" type="text/javascript"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.serializeObject.min.js"></script>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>
+	
+</script>
+</head>
+<body>	
+	
+		<div class="txtAlignCenter">
+			<div id="subImgArea">
+				
+				<img id="subImg" src="/outside/recruitSubImg/1090/subImg.jpg?a=973174115">		
+			</div>
+		</div>
+		
+	
+		
+		<div id="subTitleArea">			
+			<div class="centerArea">
+				<div id="subTitle">
+					
+						
+					
+						
+					
+						
+					
+						
+					
+					
+						공지사항
+					
+					
+				</div>
+				<div id="slogan"></div>
+			</div>
+		</div>
+	
+</body>
+</html>
+		</div>
+		
+		<!-- CONTENT-->
+		<div id="contentArea">
+			
+			<div class="inputType">
+				<select class="noBorder grayFont" id="opnIdx" name="opnIdx" flag="select">
+					<option value="">공고선택</option>
+					
+						<option value="14483" selected >(재)울주문화재단 2026년도 제2차 직원 채용 재공고</option>
+												
+				</select>
+				<div class="imgArrow" ></div>
+			</div>
+			
+			<div id="tableList">			
+				
+					
+						 
+						
+							<div class="rowArea h50 bdTop" postIdx="10315">
+								
+								<div class="tblNoticeNo">1</div>
+								<div class="tblRecruitTitle ftBlue">2024년도 제1차 직원 채용 공고</div>
+								<div class="tblNoticeTitle">필기전형 상세안내</div>				
+								<div class="tblDate">2024.03.19</div>
+							</div>
+						
+					
+					
+										
+			</div>
+		</div>
+	</div>	
+	
+	<!-- FOOTER -->
+	<div id="footerArea">
+		
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="robots" content="index,follow">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<!-- jQuery ver1-->
+<script src="/js/commonFunc.js" type="text/javascript"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.serializeObject.min.js"></script>
+
+	<!-- footer -->
+	<ul id="footer">
+		<li class="centerArea">
+			<ul>
+				<li>
+					<span id="personInfor" onclick="javascript:footerPopup(1);">개인정보처리방침</span>
+					<span class="emailInfo grayFont" onclick="javascript:footerPopup(2);">이메일주소 무단수집거부</span>
+					<span class="floatR grayFont">ⓒ KPDI HR Co.,Ltd.</span>
+					<span class="floatR grayFont mgR40">HUBST</span>
+										
+				</li>
+				
+			</ul>
+			
+			
+		</li>
+	</ul>
+	
+	</div>
+	
+	</form>		
+</body>
+</html>

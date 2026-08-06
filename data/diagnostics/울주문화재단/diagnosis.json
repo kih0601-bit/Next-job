@@ -1,0 +1,1132 @@
+{
+  "org": "울주문화재단",
+  "health": "degraded",
+  "primaryCause": {
+    "stage": "list",
+    "status": "failed",
+    "code": "LIST_COUNTER_FAILED",
+    "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+    "evidence": [
+      {
+        "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 5,
+        "titleMatches": 4,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [
+          "재단소개",
+          "채용공고",
+          "공지사항",
+          "문의사항"
+        ],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [],
+        "candidateCount": 0,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
+      },
+      {
+        "url": "https://uljuculture.hubst.co.kr/",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 0,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [],
+        "candidateCount": 0,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
+      },
+      {
+        "url": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 5,
+        "titleMatches": 4,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [
+          "재단소개",
+          "채용공고",
+          "공지사항",
+          "문의사항"
+        ],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [],
+        "candidateCount": 0,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
+      }
+    ],
+    "repairTarget": "scripts/collectors/institutions/울주문화재단.mjs",
+    "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+  },
+  "diagnosis": {
+    "http": {
+      "status": "success",
+      "code": "HTTP_OK",
+      "reason": "3개 후보 URL HTTP 응답 성공",
+      "evidence": [
+        {
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "(재)울주문화재단 접수홈페이지",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "job\\s*opening"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "textLength": 181,
+            "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+            "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        },
+        {
+          "url": "https://uljuculture.hubst.co.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uljuculture.hubst.co.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 0,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": false,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 0,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "textLength": 0,
+            "requestedUrl": "https://uljuculture.hubst.co.kr/",
+            "finalUrl": "https://uljuculture.hubst.co.kr/",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        },
+        {
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "(재)울주문화재단 접수홈페이지",
+            "orgMatched": false,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "textLength": 167,
+            "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+            "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        },
+        {
+          "url": "http://www.ucf.or.kr/",
+          "ok": false,
+          "error": "response body too short"
+        },
+        {
+          "url": "https://www.ucf.or.kr/",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    "recruitVerify": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+        "score": 3,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": false,
+          "meaningfulBody": false
+        },
+        "title": "(재)울주문화재단 접수홈페이지",
+        "orgMatched": false,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용",
+          "job\\s*opening"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 1,
+        "boardType": {
+          "type": "UL_LIST",
+          "confidence": "medium",
+          "evidence": [
+            "ul/ol + li 구조 발견"
+          ]
+        },
+        "textLength": 181,
+        "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+        "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+        "status": 200,
+        "contentType": "text/html;charset=UTF-8"
+      }
+    },
+    "list": {
+      "status": "failed",
+      "code": "LIST_COUNTER_FAILED",
+      "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+      "evidence": [
+        {
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 5,
+          "titleMatches": 4,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "재단소개",
+            "채용공고",
+            "공지사항",
+            "문의사항"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://uljuculture.hubst.co.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 5,
+          "titleMatches": 4,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "재단소개",
+            "채용공고",
+            "공지사항",
+            "문의사항"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ]
+    },
+    "detail": {
+      "status": "blocked",
+      "code": "DETAIL_BLOCKED_BY_LIST",
+      "reason": "목록 단계 미통과로 상세 진단 보류",
+      "evidence": []
+    },
+    "attachment": {
+      "status": "blocked",
+      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
+      "reason": "상세 단계 미통과로 첨부 진단 보류",
+      "evidence": []
+    },
+    "access": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+        "score": 3,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": false,
+          "meaningfulBody": false
+        },
+        "title": "(재)울주문화재단 접수홈페이지",
+        "orgMatched": false,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용",
+          "job\\s*opening"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 1,
+        "boardType": {
+          "type": "UL_LIST",
+          "confidence": "medium",
+          "evidence": [
+            "ul/ol + li 구조 발견"
+          ]
+        },
+        "textLength": 181,
+        "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+        "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+        "status": 200,
+        "contentType": "text/html;charset=UTF-8"
+      }
+    }
+  },
+  "repairTarget": "scripts/collectors/institutions/울주문화재단.mjs",
+  "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정",
+  "stages": {
+    "access": {
+      "ok": true,
+      "httpOk": true,
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+      "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+      "activeRecruitUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+      "status": 200,
+      "contentType": "text/html;charset=UTF-8",
+      "attempts": [
+        {
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "(재)울주문화재단 접수홈페이지",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "job\\s*opening"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "textLength": 181,
+            "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+            "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        },
+        {
+          "url": "https://uljuculture.hubst.co.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uljuculture.hubst.co.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 0,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": false,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 0,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "textLength": 0,
+            "requestedUrl": "https://uljuculture.hubst.co.kr/",
+            "finalUrl": "https://uljuculture.hubst.co.kr/",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        },
+        {
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "(재)울주문화재단 접수홈페이지",
+            "orgMatched": false,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "textLength": 167,
+            "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+            "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        },
+        {
+          "url": "http://www.ucf.or.kr/",
+          "ok": false,
+          "error": "response body too short"
+        },
+        {
+          "url": "https://www.ucf.or.kr/",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+        "score": 3,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": false,
+          "meaningfulBody": false
+        },
+        "title": "(재)울주문화재단 접수홈페이지",
+        "orgMatched": false,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용",
+          "job\\s*opening"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 1,
+        "boardType": {
+          "type": "UL_LIST",
+          "confidence": "medium",
+          "evidence": [
+            "ul/ol + li 구조 발견"
+          ]
+        },
+        "textLength": 181,
+        "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+        "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+        "status": 200,
+        "contentType": "text/html;charset=UTF-8"
+      },
+      "boardType": {
+        "type": "UL_LIST",
+        "confidence": "medium",
+        "evidence": [
+          "ul/ol + li 구조 발견"
+        ]
+      },
+      "diagnosis": {
+        "ok": true,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+        "http": {
+          "ok": true,
+          "code": "HTTP_OK",
+          "reason": "3개 후보 URL HTTP 응답 성공",
+          "attempts": [
+            {
+              "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+                "score": 3,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": false
+                },
+                "title": "(재)울주문화재단 접수홈페이지",
+                "orgMatched": false,
+                "positiveHits": 3,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용",
+                  "job\\s*opening"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "UL_LIST",
+                  "confidence": "medium",
+                  "evidence": [
+                    "ul/ol + li 구조 발견"
+                  ]
+                },
+                "textLength": 181,
+                "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+                "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              }
+            },
+            {
+              "url": "https://uljuculture.hubst.co.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uljuculture.hubst.co.kr/",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 0,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": false,
+                  "boardStructure": false,
+                  "organizationMatch": false,
+                  "meaningfulBody": false
+                },
+                "title": "",
+                "orgMatched": false,
+                "positiveHits": 0,
+                "positiveMatches": [],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 0,
+                "boardType": {
+                  "type": "UNKNOWN",
+                  "confidence": "low",
+                  "evidence": [
+                    "명확한 게시판 구조 신호 없음"
+                  ]
+                },
+                "textLength": 0,
+                "requestedUrl": "https://uljuculture.hubst.co.kr/",
+                "finalUrl": "https://uljuculture.hubst.co.kr/",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              }
+            },
+            {
+              "url": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+                "score": 3,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": false
+                },
+                "title": "(재)울주문화재단 접수홈페이지",
+                "orgMatched": false,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 2,
+                "boardType": {
+                  "type": "UL_LIST",
+                  "confidence": "medium",
+                  "evidence": [
+                    "ul/ol + li 구조 발견"
+                  ]
+                },
+                "textLength": 167,
+                "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+                "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              }
+            },
+            {
+              "url": "http://www.ucf.or.kr/",
+              "ok": false,
+              "error": "response body too short"
+            },
+            {
+              "url": "https://www.ucf.or.kr/",
+              "ok": false,
+              "error": "fetch failed"
+            }
+          ]
+        },
+        "recruitVerify": {
+          "ok": true,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+          "score": 3,
+          "maxScore": 5,
+          "boardType": {
+            "type": "UL_LIST",
+            "confidence": "medium",
+            "evidence": [
+              "ul/ol + li 구조 발견"
+            ]
+          },
+          "evidence": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "(재)울주문화재단 접수홈페이지",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "job\\s*opening"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "textLength": 181,
+            "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+            "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        },
+        "activeRecruitUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+        "selectedRequestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+        "verification": {
+          "ok": true,
+          "verified": true,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
+          "score": 3,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": false,
+            "meaningfulBody": false
+          },
+          "title": "(재)울주문화재단 접수홈페이지",
+          "orgMatched": false,
+          "positiveHits": 3,
+          "positiveMatches": [
+            "채용\\s*공고",
+            "직원\\s*채용",
+            "job\\s*opening"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 1,
+          "boardType": {
+            "type": "UL_LIST",
+            "confidence": "medium",
+            "evidence": [
+              "ul/ol + li 구조 발견"
+            ]
+          },
+          "textLength": 181,
+          "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+          "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+          "status": 200,
+          "contentType": "text/html;charset=UTF-8"
+        }
+      }
+    },
+    "list": {
+      "ok": false,
+      "status": "count-unavailable-or-empty",
+      "pagesChecked": 3,
+      "visiblePostCount": null,
+      "candidateCount": 0,
+      "missingCount": null,
+      "extraCount": null,
+      "exactMatch": false,
+      "selectedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+      "detailUrlReady": 0,
+      "listOnlyCount": 0,
+      "extractionDiagnostics": [
+        {
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 5,
+          "titleMatches": 4,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "재단소개",
+            "채용공고",
+            "공지사항",
+            "문의사항"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://uljuculture.hubst.co.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 5,
+          "titleMatches": 4,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "재단소개",
+            "채용공고",
+            "공지사항",
+            "문의사항"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울주문화재단",
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "sourceHtmlLength": 8279,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 5,
+            "article": 0,
+            "[onclick]": 2,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 5
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울주문화재단",
+          "url": "https://uljuculture.hubst.co.kr/",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "sourceHtmlLength": 485,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울주문화재단",
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "sourceHtmlLength": 8168,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 5,
+            "article": 0,
+            "[onclick]": 2,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 5
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "울주문화재단",
+          "htmlPath": "data/diagnostics/울주문화재단/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/울주문화재단/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/울주문화재단/list/page-1-rows.txt",
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do"
+        },
+        {
+          "org": "울주문화재단",
+          "htmlPath": "data/diagnostics/울주문화재단/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/울주문화재단/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/울주문화재단/list/page-2-rows.txt",
+          "url": "https://uljuculture.hubst.co.kr/"
+        },
+        {
+          "org": "울주문화재단",
+          "htmlPath": "data/diagnostics/울주문화재단/list/page-3-raw.html",
+          "diagnosisPath": "data/diagnostics/울주문화재단/list/page-3-root-cause.json",
+          "rowsPath": "data/diagnostics/울주문화재단/list/page-3-rows.txt",
+          "url": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do"
+        }
+      ],
+      "samples": [],
+      "errors": [],
+      "selectedRootCause": {
+        "version": "1.1-passive",
+        "mode": "passive",
+        "org": "울주문화재단",
+        "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+        "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+        "counts": {
+          "visiblePostCount": null,
+          "candidateCount": 0,
+          "rawTableRows": 0,
+          "sourceHtmlLength": 8279,
+          "missingRows": 0,
+          "extraCandidates": 0
+        },
+        "selectorCounts": {
+          "table tbody tr": 0,
+          "tr": 0,
+          "li": 5,
+          "article": 0,
+          "[onclick]": 2,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 5
+        },
+        "rejectReasonCounts": {},
+        "visibleTitles": [],
+        "extractedTitles": [],
+        "missingRows": [],
+        "extraCandidates": [],
+        "rowTrace": []
+      }
+    },
+    "detail": {
+      "ok": false,
+      "attempted": 0,
+      "validated": 0,
+      "samples": []
+    },
+    "attachment": {
+      "ok": false,
+      "discovered": 0,
+      "samples": []
+    }
+  }
+}

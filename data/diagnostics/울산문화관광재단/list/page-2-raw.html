@@ -1,0 +1,2288 @@
+<!DOCTYPE html>
+<html>
+
+
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta property="og:image" content="https://uctf.or.kr/img/about/logo.png">
+        <title>울산문화관광재단</title>
+
+        <link rel="stylesheet" href="/css/reset.css">
+        <link rel="stylesheet" href="/css/basic.css">
+        <link rel="stylesheet" href="/css/swiper.min.css">
+        <link rel="stylesheet" href="/css/trigger.css">
+        <link rel="stylesheet" href="/css/common.css">
+        <!--//공통-->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/subComm.css">
+        <link rel="stylesheet" href="/css/about.css">
+        <link rel="stylesheet" href="/css/ucation.css">
+        <link rel="stylesheet" href="/css/subComm2.css">
+        <link rel="stylesheet" href="/css/tour.css">
+        <link rel="stylesheet" href="/css/operate.css">
+        <link rel="stylesheet" href="/css/style_e.css">
+        <link rel="stylesheet" href="/css/business.css">
+        <!--//페이지용-->
+    </head>
+
+    <body>
+
+        <header id="header">
+            <div class="pcHeader pc_view">
+
+                <div class="top">
+                    <div class="inner inner1804 m_center flex alc">
+                        <ul class="sns flex">
+                            <li>
+                                <a href="https://www.youtube.com/channel/UCozQIFHMVgG5yK3IjESYA_w?view_as=subscriber"
+                                    target="_blank" class="inblock">
+                                    <img src="/img/common/ic_sns_youtube.svg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/uctf.or.kr" target="_blank" class="inblock">
+                                    <img src="/img/common/ic_sns_facebook.svg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/uctf.or.kr/" target="_blank" class="inblock">
+                                    <img src="/img/common/ic_sns_insta.svg" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="menu flex fc2 alc t_center pc-login-box">
+                            <li class="lst memb_lst fs14 h-login-button"><a href="/login">로그인</a></li>
+                            <li class="lst memb_lst fs14 h-join-button"><a href="/login">회원가입</a></li>
+                            <li class="lst memb_lst fs14"><a href="/info/정보공개제도">정보공개</a></li>
+                            <!--<li class="lst lang fs14 flex alc rel justy_cnt">
+                                <span class="pointer lang-select"></span>
+                                <img src="/img/common/ic_down.svg" alt="">
+                                <div class="slcLang abs x_center w100">
+                                    <ul class="fs14 fc2 bc0">
+                                        <li><a href="?lang=ko">KR</a></li>
+                                        <li><a href="?lang=en">EN</a></li>
+                                        <li><a href="?lang=cn">CN</a></li>
+                                        <li><a href="?lang=ja_jp">JP</a></li>
+                                    </ul>
+                                    
+                                </div>
+                                <div id="google_translate_element">
+                                        
+                                </div>
+                            </li>-->
+                            <li class="lst fs14 flex alc rel justy_cnt" style="margin-left: 2.4rem;">
+                                <div id="google_translate_element">
+
+                                </div>
+                            </li>
+                            <li class="lst search pointer" onclick="searchModalShow();">
+                                <span style="font-size: 1.3rem; color: #ffffff;">
+                                    통합검색
+                                    <img src="/img/common/ic_head_search.svg" alt="" style="margin-left: 12px;">
+                                </span>
+                            </li>
+                        </ul>
+                        <div class="txtSize flex fs13 fc2 flex alc">
+                            <span class="minus font-minus-button"></span>
+                            글자크기
+                            <label class="t-size-label">100%</label>
+                            <span class="plus font-plus-button"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav">
+                    <div class="inner inner1804 m_center flex alc">
+
+                        <h1 class="logo">
+                            <a href="/">
+                                <img src="/img/common/logo.svg" alt="">
+                            </a>
+                        </h1>
+
+                        <ul class="gnbArea flex fs18 ns fwtbold">
+                            <li class="gnbLst">
+                                <a href="/intro/greetings" class="block ns fs18 fwtbold">
+                                    재단소개
+                                </a>
+                            </li>
+                            <li class="gnbLst">
+                                <a href="/business/culture-art/view/id" class="block ns fs18 fwtbold">
+                                    사업안내
+                                </a>
+                            </li>
+                            <li class="gnbLst">
+                                <a href="/facility/ueco/intro" class="block ns fs18 fwtbold">
+                                    운영시설
+                                </a>
+                            </li>
+                            <li class="gnbLst">
+                                <a href="/board/notice" class="block ns fs18 fwtbold">
+                                    재단소식
+                                </a>
+                            </li>
+                            <li class="gnbLst">
+                                <a href="/customer/voc" class="block ns fs18 fwtbold">
+                                    고객의 소리
+                                </a>
+                            </li>
+
+                            <li class="gnbLst">
+                                <a href="/info/정보공개제도" class="block ns fs18 fwtbold">
+                                    정보공개
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="menuBtn flex fxwrap pointer">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </div>
+
+                    <div class="lnbWrap abs w100">
+
+                        <div class="lnbArea lnbArea1">
+                            <ul class="lnb flex fxwrap ns fs16 fc4">
+                                <li><a href="/intro/greetings">인사말</a></li>
+                                <li><a href="/intro/vision">비전 - 전략체계</a></li>
+                                <li><a href="/intro/history">연혁</a></li>
+                                <li><a href="/intro/mark">인증현황</a></li>
+                                <li><a href="/intro/ci">CI</a></li>
+                                <li><a href="/intro/character">캐릭터·키비주얼</a></li>
+                                <li><a href="/intro/organization">조직 안내</a></li>
+                                <li><a href="/intro/map/ueco">오시는 길</a></li>
+                                <li><a href="/intro/ideology/01">경영이념</a></li>
+                            </ul>
+                            <div class="box box1 abs top0 left0">
+                                <div class="txt">
+                                    <div class="tit gm fs34 fc0 fwt500">
+                                        재단소개
+                                    </div>
+                                    <div class="wrt fs16 fwt300">
+                                        울산문화관광재단을 소개합니다.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lnbArea lnbArea2">
+                            <ul class="lnb flex fxwrap ns fs16 fc4">
+                                <li><a href="/business/culture-art/view/id">문화예술사업</a></li>
+                                <li><a href="/business/tour-mice/smart01">관광마이스사업</a></li>
+                            </ul>
+                            <div class="box box2 abs top0 left0">
+                                <div class="txt">
+                                    <div class="tit gm fs34 fc0 fwt500">
+                                        문화관광사업안내
+                                    </div>
+                                    <div class="wrt fs16 fwt300">
+                                        울산문화관광재단의 문화관광사업안내.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lnbArea lnbArea3">
+                            <ul class="lnb flex fxwrap ns fs16 fc4">
+                                <li><a href="/facility/ueco/intro">유에코(UECO)</a></li>
+                                <li><a href="/facility/tour-center/intro">울산관광기업지원센터</a></li>
+                                <li><a href="/facility/encore-center/intro">아르코공연연습센터@울산</a></li>
+                                <li style="display: none;" aria-hidden="true"><a
+                                        href="/facility/festival-center/intro">울산공업축제추진위원회<br>사무국</a>
+                                </li>
+                            </ul>
+                            <div class="box box3 abs top0 left0">
+                                <div class="txt">
+                                    <div class="tit gm fs34 fc0 fwt500">
+                                        운영시설
+                                    </div>
+                                    <div class="wrt fs16 fc3 fwt300">
+                                        울산문화관광재단의 문화관광공간안내.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lnbArea lnbArea4">
+                            <ul class="lnb flex fxwrap ns fs16 fc4">
+                                <li><a href="/board/notice">공지사항</a></li>
+                                <li><a href="/board/bid">공모 및 입찰</a></li>
+                                <li><a href="/board/employment">채용</a></li>
+                                <!--<li><a href="/board/festival">축제,행사,교육</a></li>-->
+                                <li><a href="/board/sns/insta">재단 SNS</a></li>
+                                <li><a href="/board/press">보도자료</a></li>
+                                <li><a href="/board/archive">자료실</a></li>
+                                <li><a href="/board/relate">그 밖의 소식</a></li>
+                                <li><a href="/board/newsletter">뉴스레터</a></li>
+                            </ul>
+                            <div class="box box4 abs top0 left0">
+                                <div class="txt">
+                                    <div class="tit gm fs34 fc0 fwt500">
+                                        재단소식
+                                    </div>
+                                    <div class="wrt fs16 fc3 fwt300">
+                                        울산문화관광재단의 새소식을 확인해 보세요.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lnbArea lnbArea5">
+                            <ul class="lnb flex fxwrap ns fs16 fc4">
+                                <li><a href="/customer/voc">고객소리함</a></li>
+                                <li><a href="/customer/public01">공익신고</a></li>
+                                <li><a href="/customer/survey">온라인 설문조사</a></li>
+                            </ul>
+                            <div class="box box5 abs top0 left0">
+                                <div class="txt">
+                                    <div class="tit gm fs34 fc0 fwt500">
+                                        고객의 소리
+                                    </div>
+                                    <div class="wrt fs16 fc3 fwt300">
+                                        고객과 함께하는 울산문화관광재단입니다.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lnbArea lnbArea6">
+                            <ul class="lnb flex fxwrap ns fs16 fc4">
+                                <li><a href="/info/정보공개제도">정보공개제도</a></li>
+                                <li><a href="/info/사전정보공표">사전정보공표</a></li>
+                                <li><a href="/info/일반현황">경영공시</a></li>
+                            </ul>
+                            <div class="box box6 abs top0 left0">
+                                <div class="txt">
+                                    <div class="tit gm fs34 fc0 fwt500">
+                                        정보공개
+                                    </div>
+                                    <div class="wrt fs16 fc3 fwt300">
+                                        울산문화관광재단의 정보공개
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="fullWrap abs w100 top0">
+                    <div class="inner flex">
+
+                        <!--재단소개-->
+                        <div class="fullLst fullLst1">
+                            <div class="title ns fs22 fwtbold">재단소개</div>
+                            <ul class="dep1 fs18">
+                                <li class="dep1_lst">
+                                    <a href="/intro/greetings" class="tit">
+                                        인사말
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/intro/vision" class="tit">
+                                        비전 - 전략체계
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/intro/history" class="tit">
+                                        연혁
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/intro/mark" class="tit">
+                                        인증현황
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/intro/ci" class="tit">
+                                        CI
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/intro/character" class="tit">
+                                        캐릭터·키비주얼
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/intro/organization" class="tit">
+                                        조직 안내
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <span class="tit plus">
+                                        오시는 길
+                                        <img src="/img/common/ic_menu_plus.svg" alt="">
+                                    </span>
+                                    <ul class="dep2 fs16">
+                                        <li class="dep2_lst">
+                                            <a href="/intro/map/ueco">
+                                                유에코(본사무실, 관광기업지원센터)
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/intro/map/encore-center">
+                                                아르코공연연습센터@울산
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/intro/map/festival-office">
+                                                울산공업축제추진위원회사무국
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep1_lst">
+                                    <span class="tit plus">
+                                        경영이념
+                                        <img src="/img/common/ic_menu_plus.svg" alt="">
+                                    </span>
+                                    <ul class="dep2 fs16">
+                                        <li class="dep2_lst">
+                                            <a href="/intro/ideology/01">
+                                                SHARE MANAGEMENT
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/intro/ideology/02">
+                                                인권경영선언
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/intro/ideology/03">
+                                                청렴경영선언
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/intro/ideology/04">
+                                                안전경영선언
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!--사업안내-->
+                        <div class="fullLst fullLst2">
+                            <div class="title ns fs22 fwtbold">사업안내</div>
+                            <ul class="dep1 fs18">
+                                <li class="dep1_lst">
+                                    <span class="tit plus">
+                                        문화예술사업
+                                        <img src="/img/common/ic_menu_plus.svg" alt="">
+                                    </span>
+                                    <ul class="dep2 fs16">
+                                        <li class="dep2_lst">
+                                            <a href="/business/culture-art/view/id">
+                                                지속 가능한 예술생태계 조성
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/business/culture-art/view/id2">
+                                                일상 속 시민 문화감수성 향상
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/business/culture-art/view/id3">
+                                                문화도시 위상 강화
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep1_lst">
+                                    <span class="tit plus">
+                                        관광마이스사업
+                                        <img src="/img/common/ic_menu_plus.svg" alt="">
+                                    </span>
+                                    <ul class="dep2 fs16 ">
+                                        <li class="dep2_lst">
+                                            <span class="dep2_tit plus">
+                                                울산 체류형 관광 활성화
+                                                <img src="/img/common/ic_down.svg" alt="">
+                                            </span>
+                                            <ul class="dep3 fs15">
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/smart01">스마트관광플랫폼 활성화</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/smart03">울산시티투어 운영</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/infra04">울산관광택시 운영</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/smart08">반구천 암각화 셔틀버스 운영</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/nambu">남부권 광역관광개발 특화진흥</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a
+                                                        href="/tour-mice/ucation/intro">울산에서 일하며 여행하기&#39;유케이션&#39; 운영</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/smart02">울산의 밤, 스토리 야시장 운영</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <span class="dep2_tit plus">
+                                                지역 특화 관광콘텐츠 개발
+                                                <img src="/img/common/ic_down.svg" alt="">
+                                            </span>
+                                            <ul class="dep3 fs15 ">
+                                                <li class="dep3_lst">
+                                                    <span class="dep3_tit plus">
+                                                        울산 무장애 관광 연계성 강화 사업
+                                                        <img src="/img/common/ic_down.svg" alt="">
+                                                    </span>
+                                                    <ul class="dep4">
+                                                        <li class="dep4_lst bc0">
+                                                            <a
+                                                                href="/business/tour-mice/smart04">무장애 관광이란?</a>
+                                                            <a
+                                                                href="/business/tour-mice/smart05">사업소개</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/infra01">울산관광기업지원센터 운영</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/infra02">반려동물 친화관광도시 조성</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a
+                                                        href="/business/tour-mice/smart07">울산마차 운영</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a
+                                                        href="/business/tour-mice/smart06">기업과 함께하는 울산유람단</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a
+                                                        href="/business/tour-mice/infra05">울산광역시 관광기념품 공모전</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <span class="dep2_tit plus">
+                                                울산 마이스산업 성장 견인
+                                                <img src="/img/common/ic_down.svg" alt="">
+                                            </span>
+                                            <ul class="dep3 fs15">
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/wave">WAVE(울산세계미래산업박람회)</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/mice-forum">지속가능한 MICE(마이스)·관광 울산포럼</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/ecology-forum">울산 생태관광 포럼</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/mice-district">울산국제회의지구</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/mice-arcademy">울산 MICE(마이스) 아카데미</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/display03">울산 MICE(마이스) 유치․홍보․개최 지원</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/uma">울산 MICE(마이스) 얼라이언스(UMA)</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/facility-intro">울산 MICE(마이스) 시설</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <span class="dep2_tit plus">
+                                                유에코 마이스 플랫폼 경쟁력 강화
+                                                <img src="/img/common/ic_down.svg" alt="">
+                                            </span>
+                                            <ul class="dep3 fs15">
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/ueco01">유에코 관리 운영</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/ueco02">유에코 시설 개선</a>
+                                                </li>
+                                                <li class="dep3_lst">
+                                                    <a href="/business/tour-mice/ueco03">유에코 전시회 개최지원</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!--운영시설-->
+                        <div class="fullLst fullLst3" data-dev-menu-root="encore-operate">
+                            <div class="title ns fs22 fwtbold">운영시설</div>
+                            <ul class="dep1 fs18">
+                                <li class="dep1_lst" data-dev-menu-group="encore-operate" style="display: none;" aria-hidden="true">
+                                    <span class="tit plus">
+                                        유에코(UECO)
+                                        <img src="/img/common/ic_menu_plus.svg" alt="">
+                                    </span>
+                                    <ul class="dep2 fs16">
+                                        <li class="dep2_lst">
+                                            <a href="/facility/ueco/intro">
+                                                유에코 소개
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/facility/ueco/location">
+                                                오시는 길
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep1_lst" data-dev-menu-group="encore-operate">
+                                    <span class="tit plus">
+                                        울산관광기업지원센터
+                                        <img src="/img/common/ic_menu_plus.svg" alt="">
+                                    </span>
+                                    <ul class="dep2 fs16">
+                                        <li class="dep2_lst">
+                                            <a href="/facility/tour-center/intro">
+                                                센터 소개
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/facility/tour-center/location">
+                                                오시는길
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep1_lst" data-dev-menu-group="encore-operate">
+                                    <span class="tit plus">
+                                        아르코공연연습센터<br>@울산
+                                        <img src="/img/common/ic_menu_plus.svg" alt="">
+                                    </span>
+                                    <ul class="dep2 fs16">
+                                        <li class="dep2_lst">
+                                            <a href="/facility/encore-center/intro" data-dev-menu-keep="true">
+                                                센터 소개
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/facility/encore-center/information" data-dev-menu-keep="true">
+                                                대관 신청방법 안내
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/facility/encore-center/location" data-dev-menu-keep="true">
+                                                오시는길
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep1_lst" data-dev-menu-group="encore-operate">
+                                    <span class="tit plus">
+                                        울산공업축제추진위원회<br>사무국
+                                        <img src="/img/common/ic_menu_plus.svg" alt="">
+                                    </span>
+                                    <ul class="dep2 fs16">
+                                        <li class="dep2_lst">
+                                            <a href="/facility/festival-center/intro">
+                                                공간 소개
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/facility/festival-center/location">
+                                                오시는 길
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!--재단소식-->
+                        <div class="fullLst fullLst4">
+                            <div class="title ns fs22 fwtbold">재단소식</div>
+                            <ul class="dep1 fs18">
+                                <li class="dep1_lst">
+                                    <a href="/board/notice" class="tit">
+                                        공지사항
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/board/bid" class="tit">
+                                        공모 및 입찰
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/board/employment" class="tit">
+                                        채용
+                                    </a>
+                                </li>
+                                <!--<li class="dep1_lst">
+                                    <a href="/board/festival" class="tit">
+                                        축제,행사,교육
+                                    </a>
+                                </li>-->
+                                <li class="dep1_lst">
+                                    <a href="/board/sns/insta" class="tit">
+                                        재단 SNS
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/board/press" class="tit">
+                                        보도자료
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/board/archive" class="tit">
+                                        자료실
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <span class="tit flex alc justy_btw pointer plus">
+                                        그 밖의 소식
+                                        <img src="/img/common/ic_menu_plus.svg" alt="">
+                                    </span>
+                                    <ul class="dep2 fs16">
+                                        <li class="dep2_lst">
+                                            <a href="/board/relate">
+                                                유관기관 소식
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/board/newsletter" class="tit">
+                                        뉴스레터
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!--고객의 소리-->
+                        <div class="fullLst fullLst5">
+                            <div class="title ns fs22 fwtbold">고객의 소리</div>
+                            <ul class="dep1 fs18">
+                                <li class="dep1_lst">
+                                    <a href="/customer/voc" class="tit">
+                                        고객소리함
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <span class="tit flex alc justy_btw pointer plus">
+                                        공익신고
+                                        <img src="/img/common/ic_menu_plus.svg" alt="">
+                                    </span>
+                                    <ul class="dep2 fs16">
+                                        <li class="dep2_lst">
+                                            <a href="/customer/public01">
+                                                부패신고
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/customer/public02">
+                                                갑질신고
+                                            </a>
+                                        </li>
+                                        <li class="dep2_lst">
+                                            <a href="/customer/public03">
+                                                인권침해신고
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/customer/survey" class="tit">
+                                        온라인 설문조사
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!--정보공개-->
+                        <div class="fullLst fullLst6">
+                            <div class="title ns fs22 fwtbold">정보공개</div>
+                            <ul class="dep1 fs18">
+                                <li class="dep1_lst">
+                                    <a href="/info/정보공개제도" class="tit">
+                                        정보공개제도
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/info/사전정보공표" class="tit">
+                                        사전정보공표
+                                    </a>
+                                </li>
+                                <li class="dep1_lst">
+                                    <a href="/info/일반현황" class="tit">
+                                        경영공시
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <img src="/img/common/ico_close.svg" alt="" class="closeBtn abs">
+                </div>
+
+            </div>
+
+            <div class="moHeader mo_view">
+
+                <div class="moHead">
+                    <div class="inner m_center flex">
+                        <h1 class="logo">
+                            <a href="/" class="img">
+                                <img src="/img/common/logo.svg" alt="">
+                            </a>
+                        </h1>
+                        <div class="lang">
+                            <span class="inblock fs14">KR</span>
+                            <ul>
+                                <li><a href="?lang=ko">KR</a></li>
+                                <li><a href="?lang=en">EN</a></li>
+                                <li><a href="?lang=cn">CN</a></li>
+                                <li><a href="?lang=ja_jp">JP</a></li>
+                            </ul>
+                        </div>
+                        <div class="menuBtn flex fxwrap pointer">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menuWrap fixed w100">
+
+                    <div class="topArea">
+                        <div class="inner m_center flex alc justy_btw">
+                            <div class="txtSize flex fs14 flex alc">
+                                <span class="minus" onclick="siteControl.requestFontDown()"></span>
+                                글자크기
+                                <label class="t-size-label-m">100%</label>
+                                <span class="plus" onclick="siteControl.requestFontUp()"></span>
+                            </div>
+                            <ul class="loginArea flex fs14 mo-login-box">
+                                <li class="h-login-button">
+                                    <a href="/login">로그인</a>
+                                </li>
+                                <li class="h-join-button">
+                                    <a href="/login">회원가입</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="contArea flex">
+
+                        <div class="gnbArea">
+                            <ul class="gnb fs18 ns">
+                                <li class="on">재단소개</li>
+                                <li>사업안내</li>
+                                <li>운영시설</li>
+                                <li>재단소식</li>
+                                <li>고객의 소리</li>
+                                <li>정보공개</li>
+                            </ul>
+                        </div>
+
+                        <div class="tabArea">
+
+                            <div class="tabBox tabBox1">
+                                <ul class="lnb fs16">
+                                    <li class="dep1">
+                                        <a href="/intro/greetings">인사말</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/intro/vision">비전 - 전략체계</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/intro/history">연혁</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/intro/mark">인증현황</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/intro/ci">CI</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/intro/character">캐릭터·키비주얼</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/intro/organization">조직 안내</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <span class="dep1_tit">오시는 길 <i></i></span>
+                                        <ul class="dep2Area typeA">
+                                            <li class="dep2">
+                                                <a href="/intro/map/ueco">유에코(본사무실, 관광기업지원센터)</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/intro/map/encore-center">아르코공연연습센터@울산</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/intro/map/festival-office">울산공업축제추진위원회사무국</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep1">
+                                        <span class="dep1_tit">경영이념 <i></i></span>
+                                        <ul class="dep2Area typeA">
+                                            <li class="dep2">
+                                                <a href="/intro/ideology/01">SHARE MANAGEMENT</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/intro/ideology/02">인권경영선언</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/intro/ideology/03">청렴경영선언</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/intro/ideology/04">안전경영선언</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="tabBox tabBox2">
+                                <ul class="lnb fs16">
+                                    <li class="dep1">
+                                        <span class="dep1_tit">문화예술사업 <i></i></span>
+                                        <ul class="dep2Area typeA">
+                                            <li class="dep2">
+                                                <a href="/business/culture-art/view/id1">지속 가능한 예술생태계 조성</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/business/culture-art/view/id2">일상 속 시민 문화감수성 향상</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/business/culture-art/view/id3">문화도시 위상 강화</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep1">
+                                        <span class="dep1_tit">관광마이스사업 <i></i></span>
+                                        <ul class="dep2Area typeB">
+                                            <li class="dep2">
+                                                <span class="dep2_tit">울산 체류형 관광 활성화 <i></i></span>
+                                                <ul class="dep3Area">
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/smart01">스마트관광플랫폼 활성화</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/smart03">울산시티투어 운영</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/infra04">울산관광택시 운영</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/smart08">반구천 암각화 셔틀버스 운영</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a
+                                                            href="/business/tour-mice/nambu">남부권 광역관광개발 특화진흥</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <span class="dep3_tit">
+                                                            <span>울산에서 일하며 여행하기<br> &#39;유케이션&#39; 운영</span>
+                                                            <i></i>
+                                                        </span>
+                                                        <ul class="dep4Area">
+                                                            <li>
+                                                                <div class="dep4Tit">
+                                                                    유케이션 소개
+                                                                </div>
+                                                                <div class="dep4Cont">
+                                                                    <a
+                                                                        href="/tour-mice/ucation/intro">유케이션이란?</a>
+                                                                    <a
+                                                                        href="/tour-mice/ucation/information">참가방법</a>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="dep4Tit">
+                                                                    프로그램
+                                                                </div>
+                                                                <div class="dep4Cont">
+                                                                    <a
+                                                                        href="/tour-mice/ucation/program01">프로그램 소개</a>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="dep4Tit">
+                                                                    알림마당
+                                                                </div>
+                                                                <div class="dep4Cont">
+                                                                    <a
+                                                                        href="/tour-mice/ucation/notice">공지사항</a>
+                                                                    <a
+                                                                        href="/tour-mice/ucation/inquiry">문의하기</a>
+                                                                    <a
+                                                                        href="/tour-mice/ucation/gallery">갤러리</a>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/smart02">울산의 밤, 스토리 야시장 운영</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="dep2">
+                                                <span class="dep2_tit">지역 특화 관광콘텐츠 개발 <i></i></span>
+                                                <ul class="dep3Area">
+                                                    <li class="dep3">
+                                                        <span class="dep3_tit">
+                                                            <span>울산 무장애 관광 연계성 강화 사업</span>
+                                                            <i></i>
+                                                        </span>
+                                                        <ul class="dep4Area">
+                                                            <li>
+                                                                <div class="dep4Cont">
+                                                                    <a
+                                                                        href="/business/tour-mice/smart04">무장애 관광이란?</a>
+                                                                    <a
+                                                                        href="/business/tour-mice/smart05">사업소개</a>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a
+                                                            href="/business/tour-mice/infra01">울산관광기업지원센터 운영</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a
+                                                            href="/business/tour-mice/infra02">반려동물 친화관광도시 조성</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a
+                                                            href="/business/tour-mice/smart07">울산마차 운영</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a
+                                                            href="/business/tour-mice/smart06">기업과 함께하는 울산유람단</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a
+                                                            href="/business/tour-mice/infra05">울산광역시 관광기념품 공모전</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="dep2">
+                                                <span class="dep2_tit">울산 마이스산업 성장 견인 <i></i></span>
+                                                <ul class="dep3Area">
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/wave">WAVE(울산세계미래산업박람회)</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/mice-forum">지속가능한 MICE(마이스)·관광
+                                                            울산포럼</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/ecology-forum">울산 생태관광 포럼</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/mice-district">울산국제회의지구</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/mice-arcademy">울산 MICE(마이스)
+                                                            아카데미</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/display03">울산 MICE(마이스) 유치․홍보․개최
+                                                            지원</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/uma">울산 MICE(마이스) 얼라이언스(UMA)</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/facility-intro">울산 MICE(마이스) 시설</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="dep2">
+                                                <span class="dep2_tit">유에코 마이스 플랫폼 경쟁력 강화 <i></i></span>
+                                                <ul class="dep3Area">
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/ueco01">유에코 관리 운영</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/ueco02">유에코 시설 개선</a>
+                                                    </li>
+                                                    <li class="dep3">
+                                                        <a href="/business/tour-mice/ueco03">유에코 전시회 개최지원</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="tabBox tabBox3" data-dev-menu-root="encore-operate">
+                                <ul class="lnb fs16">
+                                    <li class="dep1" data-dev-menu-group="encore-operate" style="display: none;" aria-hidden="true">
+                                        <span class="dep1_tit">유에코(UECO) <i></i></span>
+                                        <ul class="dep2Area typeA">
+                                            <li class="dep2">
+                                                <a href="/facility/ueco/intro">유에코 소개</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/facility/ueco/location">오시는 길</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep1" data-dev-menu-group="encore-operate">
+                                        <span class="dep1_tit">울산관광기업지원센터 <i></i></span>
+                                        <ul class="dep2Area typeA">
+                                            <li class="dep2">
+                                                <a href="/facility/tour-center/intro">센터 소개</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/facility/tour-center/location">오시는길</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep1" data-dev-menu-group="encore-operate">
+                                        <span class="dep1_tit">아르코공연연습센터<br>@울산 <i></i></span>
+                                        <ul class="dep2Area typeA">
+                                            <li class="dep2">
+                                                <a href="/facility/encore-center/intro" data-dev-menu-keep="true">센터 소개</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/facility/encore-center/information" data-dev-menu-keep="true">대관 신청방법 안내</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/facility/encore-center/location" data-dev-menu-keep="true">오시는길</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep1" data-dev-menu-group="encore-operate">
+                                        <span class="dep1_tit">울산공업축제추진위원회<br>사무국 <i></i></span>
+                                        <ul class="dep2Area typeA">
+                                            <li class="dep2">
+                                                <a href="/facility/festival-center/intro">공간 소개</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/facility/festival-center/location">오시는 길</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="tabBox tabBox4">
+                                <ul class="lnb fs16">
+                                    <li class="dep1">
+                                        <a href="/board/notice">공지사항</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/board/bid">공모 및 입찰</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/board/employment">채용</a>
+                                    </li>
+                                    <!--<li class="dep1">
+                                        <a href="/board/festival">축제,행사,교육</a>
+                                    </li>-->
+                                    <li class="dep1">
+                                        <a href="/board/sns/insta">재단 SNS</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/board/press">보도자료</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/board/archive">자료실</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <span class="dep1_tit">그 밖의 소식 <i></i></span>
+                                        <ul class="dep2Area typeA">
+                                            <li class="dep2">
+                                                <a href="/board/relate">유관기관 소식</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/board/newsletter">뉴스레터</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="tabBox tabBox5">
+                                <ul class="lnb fs16">
+                                    <li class="dep1">
+                                        <a href="/customer/voc">고객의 소리</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <span class="dep1_tit">공익신고 <i></i></span>
+                                        <ul class="dep2Area typeA">
+                                            <li class="dep2">
+                                                <a href="/customer/public01">부패신고</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/customer/public02">갑질신고</a>
+                                            </li>
+                                            <li class="dep2">
+                                                <a href="/customer/public03">인권침해신고</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/customer/survey">온라인 설문조사</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="tabBox tabBox6">
+                                <ul class="lnb fs16">
+                                    <li class="dep1">
+                                        <a href="/info/정보공개제도">정보공개제도</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/info/사전정보공표">사전정보공표</a>
+                                    </li>
+                                    <li class="dep1">
+                                        <a href="/info/일반현황">경영공시</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </header>
+        <script>
+            //mfontSize = document.querySelector('html').style.fontSize
+        </script>
+
+        <script src="/js/jquery-1.12.4.min.js"></script>
+        <script>
+            class SiteControl {
+                constructor() {
+                    var _this = this;
+                    this.fontSize = this.getCookie("fontSize");
+                    if (this.fontSize == null) {
+                        this.fontSize = 10;
+                    }
+                    console.log("font-size: " + _this.fontSize);
+
+                    document.querySelector(".font-plus-button").onclick = function () {
+                        _this.requestFontUp();
+                    }
+                    document.querySelector(".font-minus-button").onclick = function () {
+                        _this.requestFontDown();
+                    }
+                    /*
+                    if(this.getCookie("lang") == null || this.getCookie("lang") == "ko"){
+                        document.querySelector(".lang-select").innerHTML = "KR";
+                    }else if(this.getCookie("lang") == "en"){
+                        document.querySelector(".lang-select").innerHTML = "EN";
+                    }else if(this.getCookie("lang") == "cn"){
+                        document.querySelector(".lang-select").innerHTML = "CN";
+                    }else if(this.getCookie("lang") == "ja-JP"){
+                        document.querySelector(".lang-select").innerHTML = "JP";
+                    }
+                    */
+                    if (document.querySelector("#sideMenu")) {
+                        let currentMenu = $(".gnb_lst").eq(0);
+                        currentMenu.addClass("on");
+
+                        $('.moSideMenu .current span').text($(".gnb_lst").eq(0).text());
+                    }
+
+                    if (this.getCookie("username") && this.getCookie("userno")) {
+                        document.querySelectorAll(".h-login-button").forEach(function (e) {
+                            e.remove();
+                        });
+
+                        document.querySelectorAll(".h-join-button").forEach(function (e) {
+                            e.remove();
+                        });
+                        $(".pc-login-box").prepend(`<li class="lst memb_lst fs14 h-logout-button"><a href="/logout">로그아웃</a></li>`);
+                        $(".pc-login-box").prepend(`<li class="lst memb_lst fs14 user-name"><a>` + this.getCookie("username") + `님 환영합니다.</a></li>`);
+                        $(".mo-login-box").prepend(`<li class="user-name">
+                                    <a>` + this.getCookie("username") + `님 환영합니다.</a>
+                                </li>`);
+                        $(".mo-login-box").append(`<li class="h-logout-button"><a href="/logout">로그아웃</a></li>`);
+                    }
+                }
+
+                getCookie(name) {
+                    let matches = document.cookie.match(new RegExp(
+                        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                    ));
+                    return matches ? decodeURIComponent(matches[1]) : null;
+                }
+
+                requestFontUp() {
+                    var _this = this;
+                    this.fontSize += 1;
+                    document.querySelector(".t-size-label").innerHTML = Math.floor((_this.fontSize / 10) * 100) + "%";
+                    document.querySelector(".t-size-label-m").innerHTML = Math.floor((_this.fontSize / 10) * 100) + "%";
+                    document.querySelector("html").style.fontSize = this.fontSize + "px";
+                }
+                requestFontDown() {
+                    this.fontSize -= 1;
+                    document.querySelector(".t-size-label").innerHTML = Math.floor((this.fontSize / 10) * 100) + "%";
+                    document.querySelector(".t-size-label-m").innerHTML = Math.floor((this.fontSize / 10) * 100) + "%";
+                    document.querySelector("html").style.fontSize = this.fontSize + "px";
+                }
+            }
+
+            var siteControl = new SiteControl();
+        </script>
+
+
+<main id="sub">
+
+    <div id="subVisual" class="rel">
+        <div class="bgImg">
+            <div class="img pc_view">
+                <img src="/img/subComm/visual_site.jpg" alt="" />
+            </div>
+            <div class="img mo_view">
+                <img src="/img/subComm/visual_site_mo.jpg" alt="" />
+            </div>
+        </div>
+        <div class="txtArea abs w100 t_center w_center">
+            <div class="title fc0 fs50 fwtbold gm">
+                재단소식
+            </div>
+            <div class="menuLst flex justy_cnt fs14">
+                <img src="/img/subComm/ic_visual.svg" alt="">
+                <div class="txt fc0">
+                     ＞ 재단소식 ＞ 채용
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--- //서브비쥬얼 --->
+
+    <div id="subWrap" class="siteWrap">
+
+        
+<aside id="sideMenu">
+    <div class="sideMenu siteMenu">
+
+        <div class="mnCont">
+
+            <div class="mnTitle fs22 fwt500 gm">
+                재단소식
+            </div>
+
+            <ul class="mnGnb ns">
+
+                <li class="gnb_lst fs16">
+                    <a href="/board/notice" class="gnb_tit">공지사항</a>
+                </li>
+
+                <li class="gnb_lst fs16">
+                    <a href="/board/bid" class="gnb_tit">공모 및 입찰</a>
+                </li>
+
+                <li class="gnb_lst fs16">
+                    <a href="/board/employment" class="gnb_tit">채용</a>
+                </li>
+
+                <li class="gnb_lst" style="display: none;" aria-hidden="true"></li>
+
+                <li class="gnb_lst fs16">
+                    <a href="/board/sns/insta" class="gnb_tit">재단 SNS</a>
+                </li>
+
+                <li class="gnb_lst fs16">
+                    <a href="/board/press" class="gnb_tit">보도자료</a>
+                </li>
+
+                <li class="gnb_lst fs16">
+                    <a href="/board/archive" class="gnb_tit">자료실</a>
+                </li>
+
+                <li class="gnb_lst fs16">
+                    <span class="gnb_tit slide_tit">그 밖의 소식</span>
+                    <ul class="mnLnb">
+                        <li class="lnb_lst fs15">
+                            <a href="/board/relate">유관기관 소식</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="gnb_lst fs16">
+                    <a href="/board/newsletter" class="gnb_tit">뉴스레터</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="moSideMenu siteMenu">
+        <div class="current flex alc fs16 fwtbold fc0 ns">
+            <span>공지사항</span>
+            <img src="/img/subComm/ic_menu_down.svg" alt="">
+        </div>
+        <ul class="moSideGnb fs16">
+            <li class="gnbLst">
+                <a href="/board/notice">공지사항</a>
+            </li>
+            <li class="gnbLst">
+                <a href="/board/bid">공모 및 입찰</a>
+            </li>
+            <li class="gnbLst">
+                <a href="/board/employment">채용</a>
+            </li>
+            <!--<li class="gnbLst">
+                <a href="/board/festival">축제,행사,교육</a>
+            </li>-->
+            <li class="gnbLst">
+                <a href="/board/sns/insta">재단 SNS</a>
+            </li>
+            <li class="gnbLst">
+                <a href="/board/press">보도자료</a>
+            </li>
+            <li class="gnbLst">
+                <a href="/board/archive">자료실</a>
+            </li>
+            <li class="gnbLst">
+                <a href="/board/relate">그 밖의 소식</a>
+            </li>
+            <li class="gnbLst">
+                <a href="/board/newsletter">뉴스레터</a>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                let currentMenu = $('.gnb_lst').eq(2)
+                currentMenu.addClass('on');
+                currentMenu.find('.mnLnb').show();
+
+                $('.moSideMenu .current span').text('채용');                
+            })
+        </script>
+        <!--- //사이드메뉴 --->
+
+        <div id="subContent">
+
+            <div class="subContTitle">
+                <div class="subTit ns fs16">재단소식</div>
+                <div class="title flex justy_btw alc">
+                    <div class="tit gm fs32 fwtbold">채용</div>
+                    <div class="btnArea">
+                        <a href="#" class="shareBtn"><span></span></a>
+                        <a href="#" class="printBtn"><span></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="subContWrt fs18 fc11">
+                울산문화관광재단의 채용 소식을 확인해보세요.
+            </div>
+            <!--- //서브 공통 타이틀 --->
+
+            <!--- 서브 작업영역 - 여기에 작업해주세요 ~~~~~~~~~~~~~ --->
+            <div class="subContArea page_operate">
+                <div class="site_noticeList_ui site_notice_ui site_custom_ui">
+                    <fieldset class="site_boardSearch_g">
+                        <legend>게시판 내 검색</legend>
+                        <label for="site_fAraeSearch">카테고리</label>
+                        <div class="col_left summary">
+                            <p class="site_total">전체 <span v-cloak>{{count}}</span>건</p>
+                        </div>
+                        <div class="site_col_right employment-search-bar">
+                            <select name="" id="">
+                                <option value="제목">제목</option>
+                            </select>
+                            <div class="site_search_wrap">
+                                <label for="site_fAraeSearch">검색어</label>
+                                <input type="text" id="fkeySearch" v-model="keyword" placeholder="검색어를 입력하세요">
+                                <button class="site_btn_search" type="button" v-on:click="requestSearch()">검색</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="site_table_wrap">
+                        <table>
+                            <colgroup>
+                                <col style="width: 5.5%;">
+                                <col class="pc_ver" style="width: 7.9%;">
+                                <col style="width: auto;">
+                                <col style="width: 7.9%;">
+                                <col style="width: 15.8%;">
+                                <col style="width: 7.9%;">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th class="site_num">번호</th>
+                                    <th class="site_status pc_ver">상태</th>
+                                    <th class="site_tit">제목</th>
+                                    <th class="site_file">첨부</th>
+                                    <th class="site_date">등록일</th>
+                                    <th class="site_view">조회수</th>
+                                </tr>
+                            </thead>
+                            <tbody class="employment-list">
+                                <tr :class="{'site_notice_fix': item.notice}" v-for="(item, i) in itemList">
+                                    <td class="site_num" v-if="!item.notice" v-cloak>{{item.number}}</td>
+                                    <td class="site_num" v-if="item.notice">
+                                        <span class="nt_fix">
+                                            <img src="/img/site/ic_notice.png" alt="공지글">
+                                        </span>
+                                    </td>
+                                    <td class="site_status pc_ver" v-cloak>{{item.state}}</td>
+                                    <td class="site_tit" v-on:click="requestGoingEmploymentDetail(i)" style="cursor: pointer;" v-cloak>{{item.title}}</td>
+                                    <td class="site_file">
+                                    <img src="/img/site/ic_file.png" alt="첨부파일" v-if="item.file">
+                                    </td>
+                                    <td class="site_date" v-cloak>{{item.registrationDatetime}}</td>
+                                    <td class="site_view" v-cloak>{{item.hit}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="site_btm_wrap">
+                        <div class="site_btng" style="display: none">
+                            <a href="#" class="site_btn_write">글쓰기</a>
+                        </div>
+                        <div class="site_paging">
+                            <ul class="employment-pagenation">
+                                <li class="site_first" v-on:click="requestGoingPage(0)"><a>
+                                    <img src="/img/site/btn_first.png" alt="처음으로">
+                                </a></li>
+                                <li class="site_prev" v-on:click="requestGoingPrevPage()"><a>
+                                    <img src="/img/site/btn_prev.png" alt="이전으로">
+                                </a></li>
+                                <ul>
+                                    <li v-for="(item, i) in itemList" v-on:click="requestGoingPage(item)" :class="{'site_on': currentPage === item}" ><a v-cloak>{{item + 1}}</a></li>
+                                </ul>
+                                <li class="site_next" v-on:click="requestGoingNextPage()"><a>
+                                    <img src="/img/site/btn_next.png" alt="다음으로">
+                                </a></li>
+                                <li class="site_last" v-on:click="requestGoingPage(lastPage)"><a>
+                                    <img src="/img/site/btn_last.png" alt="맨끝으로">
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--- //서브 작업영역 - 여기에 작업해주세요 ~~~~~~~~~~~~~  --->
+
+        </div>
+        <!--- //서브 콘텐츠 --->
+
+    </div>
+
+</main>
+
+    
+    <!-- 플로팅 -->
+    <div id="floating">
+        <ul class="fBtnArea fixed flex column alend">
+            <li class="chat rel pointer pc_view" id="custom-button-1" matchmedia1="(max-width:920px)" matchstyle1="width: 0; height: 0; display:none !important;">
+                <img src="/img/common/ic_side_bot.svg" alt="" class="y_center">
+                <div class="txt fs16 fc0 abs y_center">챗봇</div>
+            </li>
+            <li class="site rel pointer" onclick="familyPopShow();">
+                <img src="/img/common/ic_side_site.svg" alt="" class="y_center">
+                <div class="txt fs16 fc0 abs y_center">패밀리 사이트</div>
+            </li>
+                <!--<li class="top rel">
+                    <a href="#section1" class="block h100">
+                        <img src="/img/common/ic_side_top.svg" alt="" class="y_center">
+                    </a>
+                </li>-->
+                <li class="top rel">
+                    <a class="block h100" onclick="
+                        if(location.href.includes('/#')){
+                            location.href='#section1';
+                        }else{
+                            location.href='#';
+                        }
+                    ">
+                        <img src="/img/common/ic_side_top.svg" alt="" class="y_center">
+                    </a>
+                </li>
+        </ul>
+
+        <ul class="fBtnAreaMo fixed w100 bottom0 left0">
+            <li class="moSearch" onclick="searchModalShow();">
+                <img src="/img/common/ic_moFloat_search.svg" alt="">
+            </li>
+            <li class="moSite" onclick="familyPopShow();">
+                <img src="/img/common/ic_moFloat_site.svg" alt="">
+            </li>
+            <li class="moBot" onclick="document.querySelector('#custom-button-1').click()">
+                <img src="/img/common/ic_moFloat_bot.svg" alt="">
+            </li>
+            <!--<li class="moTop rel">
+                <a href="#section1" class="block h100">
+                    <img src="/img/common/ic_moFloat_top.svg" alt="" class="y_center">
+                </a>
+            </li>-->
+            <li class="moTop rel">
+                <a class="block h100" onclick="
+                    if(location.href.includes('/#')){
+                        location.href='#section1';
+                    }else{
+                        location.href='#';
+                    }
+                ">
+                    <img src="/img/common/ic_moFloat_top.svg" alt="" class="y_center">
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <!-- //플로팅 -->
+
+    <!-- 패밀리사이트 -->
+    <div id="familySite">
+        <div class="inner">
+            <div class="titArea ns t_center">
+                <div class="tit fs35 fwt800">
+                    UCTF FAMILY SITE
+                </div>
+                <div class="subt fs18">
+                    울산문화관광재단 패밀리사이트 바로가기
+                </div>
+            </div>
+
+            <div class="lstWrap">
+                <ul class="lstArea flex fxwrap">
+                    <li><a target="_blank" href="http://ueco.or.kr/" class="block">
+                        <img src="/img/common/family_img_off_1.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_1.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_1.png" alt="" class="mover">
+                    </a></li>
+                    <li><a target="_blank" href="https://www.ulsanculture.kr/webuser/page/main.html" class="block">
+                        <img src="/img/common/family_img_off_2.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_2.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_2.png" alt="" class="mover">
+                    </a></li>
+                    <li><a target="_blank" href="https://www.mnuri.kr/main/main.do" class="block">
+                        <img src="/img/common/family_img_off_10.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_10.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_10.png" alt="" class="mover">
+                    </a></li>
+                    <li><a target="_blank" href="https://www.usarte.or.kr/webuser/page/main.html" class="block">
+                        <img src="/img/common/family_img_off_3.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_3.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_3.png" alt="" class="mover">
+                    </a></li>
+                    
+                    <li><a target="_blank" href="https://community.uacf.or.kr/webuser/page/main.html" class="block">
+                        <img src="/img/common/family_img_off_6.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_6.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_6.png" alt="" class="mover">
+                    </a></li>
+                    <li><a target="_blank" href="https://www.usculture.or.kr/" class="block">
+                        <img src="/img/common/family_img_off_4.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_4.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_4.png" alt="" class="mover">
+                    </a></li>
+                    <li><a target="_blank" href="https://tuium.or.kr/web/index.do" class="block">
+                        <img src="/img/common/family_img_off_5.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_5.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_5.png" alt="" class="mover">
+                    </a></li>
+                    <li><a target="_blank" href="https://whataulsan.com/" class="block">
+                        <img src="/img/common/family_img_off_8.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_8.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_8.png" alt="" class="mover">
+                    </a></li>
+                    <li><a target="_blank" href="https://go-tago.whataulsan.com/pc" class="block">
+                        <img src="/img/common/family_img_off_7.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_7.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_7.png" alt="" class="mover">
+                    </a></li>
+                    <li><a target="_blank" href="https://go-tago.whataulsan.com/taxi" class="block">
+                        <img src="/img/common/family_img_off_12.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_12.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_12.png" alt="" class="mover">
+                    </a></li>
+                    <li><a target="_blank" href="https://tourbiz.uctf.or.kr/web/index.do" class="block">
+                        <img src="/img/common/family_img_off_9.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_9.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_9.png" alt="" class="mover">
+                    </a></li>
+                    <!--<li><a href="/tour-mice/ucation/intro" class="block">
+                        <img src="/img/common/family_img_off_14.png" alt="" class="comm">
+                        <img src="/img/common/family_img_on_14.png" alt="" class="hover">
+                        <img src="/img/common/family_img_mo_14.png" alt="" class="mover">
+                    </a></li>-->
+                </ul>
+            </div>
+
+            <span class="inblock closeBtn" onclick="familyPopClose();"></span>
+        </div>
+    </div>
+    <!-- //패밀리사이트 -->
+
+    <!-- 패밀리사이트 -->
+    <div id="searchModal">
+        <div class="inner">
+            <div class="cont flex column alc entire-search-bar">
+                <div class="title ns fs34">
+                    울산문화관광재단 <b class="fwt800">통합검색</b>
+                </div>
+                <div class="inpBox">
+                    <input type="text" name="" value="" v-model="keyword" style="font-size: 16px;" @keypress="enter">
+                    <button type="button" name="button" v-on:click="requestSearch()">
+                        <a></a>
+                    </button>
+                </div>
+                <ul class="lst flex fs14">
+                    <li class="tit">
+                        <span>관심검색어</span>
+                    </li>
+                    <li v-for="(item, i) in keywordList"><a v-on:click="requestKeywordSearch(i)" v-cloak>{{item}}</a></li>
+                </ul>
+            </div>
+            <span class="inblock closeBtn" onclick="searchModalClose();"></span>
+        </div>
+    </div>
+
+    <!-- 하단 심볼 로고 -->
+    <div id="ftSymbol" class="commonFtSymbol">
+        <div class="rollingArea flex ov_h">
+            <div class="rollList">
+
+                <ul class="flex justy_cnt">
+                    <li class="img">
+                        <img src="/img/common/ft_symbol_1.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('http://ueco.or.kr/', '_blank')">
+                    </li>
+                    <li class="img">
+                        <img src="/img/common/ft_symbol_2.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('https://www.ulsanculture.kr/webuser/page/main.html', '_blank')">
+                    </li>
+                    <li class="img">
+                        <img src="/img/common/ft_symbol_4.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('https://whataulsan.com/', '_blank')">
+                    </li>
+                    <li class="img">
+                        <img src="/img/common/ft_symbol_5.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('https://go-tago.whataulsan.com/taxi', '_blank')">
+                    </li>
+                    <li class="img">
+                        <img src="/img/common/ft_symbol_6.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('https://tourbiz.uctf.or.kr/', '_blank')">
+                    </li>
+                    <li class="img">
+                        <img src="/img/common/ft_symbol_7.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('https://www.ulsan.go.kr/u/rep/main.ulsan', '_blank')">
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <!-- //하단 심볼 로고 -->
+
+    <!-- 푸터 -->
+    <div id="footer" class="commonFooter">
+        <div class="inner inner1620 m_center rel">
+
+            <div class="topArea flex justy_btw alc">
+                <ul class="fMenu fs16 fc0 flex">
+                    <li>
+                        <a onclick="window.open('/privacy', '_blank')">개인정보처리방침</a>
+                    </li>
+                    <li>
+                        <span onclick="$('#opinionPop').show()">홈페이지 개선의견</span>
+                    </li>
+                    <li>
+                        <a href="/board/newsletter">뉴스레터</a>
+                    </li>
+                    <li>
+                        <a href="/sitemap">사이트맵</a>
+                    </li>
+                </ul>
+                <div class="rightCont flex alc">
+                    <div class="snsLst flex alc">
+                        <a target="_blank" href="https://www.youtube.com/channel/UCozQIFHMVgG5yK3IjESYA_w?view_as=subscriber"  class="g_center">
+                            <img src="/img/common/ic_ft_sns_1.png" alt="">
+                        </a>
+                        <a target="_blank" href="https://www.facebook.com/uctf.or.kr"  class="g_center">
+                            <img src="/img/common/ic_ft_sns_2.png" alt="">
+                        </a>
+                        <a target="_blank" href="https://www.instagram.com/uctf.or.kr/"  class="g_center">
+                            <img src="/img/common/ic_ft_sns_3.png" alt="">
+                        </a>
+                    </div>
+                    <div class="siteLst flex alc">
+                        <div class="site site1 flex alc fs14 fc6 justy_btw pointer">
+                            패밀리사이트
+                            <img src="/img/common/ic_down.svg" alt="">
+                        </div>
+                        <div class="site site2 flex alc fs14 fc6 justy_btw pointer">
+                            유관기관
+                            <img src="/img/common/ic_down.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="botArea">
+                <div class="fLogo">
+                    <img src="/img/common/logo_ft.svg" alt="">
+                </div>
+                <div class="infoArea flex alend justy_btw">
+                    <div class="cont">
+                        <div class="info fs14 fc5">
+                            <!--|  대표자 : 오경탁-->
+                            재단법인 울산문화관광재단  |<br class="mo_view">  주소 : (44951)울산광역시 울주군 삼남읍 울산역로 255<br>
+                            대표번호 : 052-255-1800  |<br class="mo_view">  팩스 : 052-256-9303  |  운영시간 : 09:00~18:00
+                        </div>
+                        <div class="copy fs14 fc6">
+                            Copyright © 울산문화관광재단. All rights reserved
+                        </div>
+                    </div>
+                    <div class="mark">
+                        <img src="/img/common/ft_web_logo.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="siteModal siteModal1 bc0 abs w100">
+                <div class="inner">
+                    <div class="siteBox">
+                        <div class="titArea flex alc justy_btw">
+                            <div class="tit fs20 ns fwt800 fc4">패밀리사이트</div>
+                            <img src="/img/common/ic_ft_arr_1.svg" alt="" class="ico">
+                        </div>
+                        <ul class="siteLst flex fxwrap fc6 t_center fs18">
+                            <li><a target="_blank" href="http://ueco.or.kr/">유에코</a></li>
+                            <li><a target="_blank" href="https://www.ulsanculture.kr/webuser/page/main.html">울산문화24</a></li>
+                            <li><a target="_blank" href="https://www.usarte.or.kr/webuser/page/main.html">울산문화예술교육지원센터</a></li>
+                            <li><a target="_blank" href="https://community.uacf.or.kr/webuser/page/main.html">생활문화동호회</a></li>
+                            <li><a target="_blank" href="https://www.usculture.or.kr/">꿈꾸는 문화도시 울산</a></li>
+                            <li><a target="_blank" href="https://tuium.or.kr/web/index.do">울산문화틔움</a></li>
+                            <li><a target="_blank" href="https://whataulsan.com/">왔어울산</a></li>
+                            <li><a target="_blank" href="https://go-tago.whataulsan.com/pc">울산시티투어</a></li>
+                            <li><a target="_blank" href="https://tourbiz.uctf.or.kr/">울산관광기업지원센터</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="siteModal siteModal2 bc0 abs w100">
+                <div class="inner flex alstart justy_btw">
+                    <div class="siteBox">
+                        <div class="titArea flex alc justy_btw">
+                            <div class="tit fs20 ns fwt800 fc4">울산유관기관</div>
+                        </div>
+                        <ul class="siteLst flex fxwrap fc6 t_center fs18">
+                            <li><a target="_blank" href="https://www.ulsan.go.kr/u/rep/main.ulsan">울산광역시청</a></li>
+                            <li><a target="_blank" href="https://www.ulju.ulsan.kr/ulju/main.do">울주군청</a></li>
+                            <li><a target="_blank" href="https://use.go.kr/use/intro.do">울산광역시교육청</a></li>
+                            <li><a target="_blank" href="https://www.ulsan.go.kr/s/museum/main.ulsan">울산박물관</a></li>
+                            <li><a target="_blank" href="https://use.go.kr/usm/index.do;jsessionid=5CC31AEC2B1C925994958F56344D67D9">울산과학관</a></li>
+                            <li><a target="_blank" href="http://www.uill.or.kr/UR/main/main.do?rbsIdx=1">울산광역시평생교육진흥원</a></li>
+                            <li><a target="_blank" href="https://www.gokams.or.kr/main/main.aspx">예술경영지원센터</a></li>
+                            <li><a target="_blank" href="http://ucac.ulsan.go.kr/">울산문화예술회관</a></li>
+                            <li><a target="_blank" href="https://www.bukgu.ulsan.kr/art/main.mo">북구문화예술회관</a></li>
+                            <li><a target="_blank" href="https://artscenter.junggu.ulsan.kr/main/main.do">중구문화의전당</a></li>
+                            <li><a target="_blank" href="https://www.ucf.or.kr:478/uljuart/index.html">울주문화예술회관</a></li>
+                            <li><a target="_blank" href="https://www.hhiarts.co.kr/main/">현대예술관</a></li>
+                            <li><a target="_blank" href="https://www.uwcf.or.kr/">고래문화재단</a></li>
+                            <li><a target="_blank" href="http://www.soeburi.org/">울산쇠부리축제</a></li>
+                            <li><a target="_blank" href="https://www.onggi.or.kr/">울산옹기축제</a></li>
+                            <li><a target="_blank" href="https://www.umff.kr/kor/">울주산악영화제</a></li>
+                            <li><a target="_blank" href="http://www.ulsanart.or.kr/">울산예총</a></li>
+                            <li><a target="_blank" href="https://ulsanart.quv.kr/">울산민예총</a></li>
+                            <li><a target="_blank" href="http://www.ulsanmunhwa.com/">울산문화원연합회</a></li>
+                            <li><a target="_blank" href="http://www.ng518.kr/main.html">울산남구문화원</a></li>
+                            <li><a target="_blank" href="http://www.munhwa21.org/pages/main.php">울산중구문화원</a></li>
+                            <li><a target="_blank" href="http://www.udcc.or.kr/index.php">울산동구문화원</a></li>
+                            <li><a target="_blank" href="https://www.ubcc.or.kr">울산북구문화원</a></li>
+                            <li><a href="#">울주문화원</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="siteBox">
+                        <div class="titArea flex alc justy_btw">
+                            <div class="tit fs20 ns fwt800 fc4">전국문화관광재단</div>
+                        </div>
+                        <ul class="siteLst flex fxwrap fc6 t_center fs18">
+                            <li><a target="_blank" href="https://www.sfac.or.kr/index.do">서울문화재단</a></li>
+                            <li><a target="_blank" href="https://www.ggcf.kr">경기문화재단</a></li>
+                            <li><a target="_blank" href="https://www.ggcf.kr">인천문화재단</a></li>
+                            <li><a target="_blank" href="https://www.gwcf.or.kr">강원문화재단</a></li>
+                            <li><a target="_blank" href="https://www.cbfc.or.kr">충북문화재단</a></li>
+                            <li><a target="_blank" href="https://www.cacf.or.kr">충남문화재단</a></li>
+                            <li><a target="_blank" href="https://dcaf.or.kr">대전문화재단</a></li>
+                            <li><a target="_blank" href="https://www.sjcf.or.kr">세종시문화재단</a></li>
+                            <li><a target="_blank" href="https://dgfca.or.kr">대구문화재단</a></li>
+                            <li><a target="_blank" href="https://www.bscf.or.kr">부산문화재단</a></li>
+                            <li><a target="_blank" href="https://gcaf.or.kr">경남문화예술진흥원</a></li>
+                            <li><a target="_blank" href="https://www.jbct.or.kr">전라북도문화관광재단</a></li>
+                            <li><a target="_blank" href="https://ijnto.or.kr">전라남도문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.gjcf.or.kr">광주문화재단</a></li>
+                            <li><a target="_blank" href="https://www.jfac.kr">제주문화예술재단</a></li>
+                            
+                            <li><a target="_blank" href="https://www.jbct.or.kr/">전북특별자치도문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.sjcf.or.kr/index.do">세종시문화관광재단</a></li>
+                            <li><a target="_blank" href="https://jjct.or.kr/">진주문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.mycf.or.kr/main/">밀양문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.chilgokctf.or.kr/ctf/main.do">칠곡문화관광재단</a></li>
+                            <li><a target="_blank" href="https://cjcf.or.kr/">충주문화관광재단</a></li>
+                            <li><a target="_blank" href="http://www.yctf.or.kr/">영주문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.cacf.or.kr/site/index.php">충남문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.ghct.or.kr/home/main">김해문화관광재단</a></li>
+                            <li><a target="_blank" href="https://yctf.kr/">예천문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.ictf.or.kr/2022/inner.php?sMenu=main&pre_url=https%3A%2F%2Fwww.google.com%2F">익산문화관광재단</a></li>
+                            <li><a target="_blank" href="http://hfct.or.kr/index.do?S=S01">화순군문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.dctf.or.kr/dhct_new/index.php">동해문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.pcfac.or.kr/">포천문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.gongjucf.or.kr/intro.do">공주문화관광재단</a></li>
+                            <li><a target="_blank" href="http://sokchocf.or.kr/sokchocf">속초문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.ywcf.or.kr/">영월문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.jbct.or.kr/d_index.php">전북문화관광재단</a></li>
+                            <li><a target="_blank" href="http://yctf.or.kr/index.php">영주문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.ydct.org/">영덕문화관광재단</a></li>
+                            <li><a target="_blank" href="https://yacf.or.kr/index.cs">영암문화관광재단</a></li>
+                            <li><a target="_blank" href="https://jjct.or.kr/">진주문화관광재단</a></li>
+                            <li><a target="_blank" href="http://www.gctf.or.kr/">고창문화관광재단</a></li>
+                            <li><a target="_blank" href="https://gunwi3964.org/intro.htm">군위문화관광재단</a></li>
+                            <li><a target="_blank" href="http://www.gangjin.or.kr/">강진군문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.cctf.or.kr/">청송문화관광재단</a></li>
+                            <li><a target="_blank" href="https://hscf.or.kr/">횡성문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.namhaetour.org/main.web">남해문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.ydct.org/">영덕문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.ywcf.or.kr/">영월문화관광재단</a></li>
+                            <li><a target="_blank" href="https://gdctf.or.kr/">광주동구문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.haenamct.or.kr/main/">해남문화관광재단</a></li>
+                            <li><a target="_blank" href="https://hongju.or.kr/">홍주문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.yjcf.or.kr/yjcf">여주세종문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.gcfct.org/">계룡시문화관광재단</a></li>
+                            <li><a target="_blank" href="http://cjartdb.co.kr/">충주문화관광재단</a></li>
+                            <li><a target="_blank" href="https://yctf.kr/">예천문화관광재단</a></li>
+                            <li><a target="_blank" href="http://hfct.or.kr/index.do?S=S01">화순군문화관광재단</a></li>
+                            <li><a target="_blank" href="http://sokchocf.or.kr/sokchocf">속초문화관광재단</a></li>
+                            <li><a target="_blank" href="http://www.gangjin.or.kr/index.asp">강진군문화관광재단</a></li>
+                            <li><a target="_blank" href="https://www.sto.or.kr/index">서울관광재단</a></li>
+                            <li><a target="_blank" href="https://www.gwto.or.kr/www/index.do">강원관광재단</a></li>
+                            <li><a target="_blank" href="https://ijnto.or.kr/">전남관광재단</a></li>
+                            <li><a target="_blank" href="https://sftf.or.kr/">순창발효관광재단</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- //푸터 -->
+
+    <!-- 개선의견 팝업 -->
+    <div id="opinionPop" class="opinion-form">
+        <div class="popup_suggestion">
+            <div class="inner">
+                <h3>울산문화관광재단 홈페이지 개선 의견</h3>
+                <p class="memo">
+                    울산문화관광재단 홈페이지를 방문해 주셔서 감사합니다.<br>
+                    더 나은 서비스를 제공하기 위해 홈페이지 개선에 대한 의견을 수집하고 있습니다.<br>
+                    다양한 의견을 남겨주세요.
+                </p>
+                <button class="btn_close" onclick="$('#opinionPop').hide()">
+                    <img src="/img/ucation/btn_close.png" alt="닫기">
+                </button>
+                <div class="input_box">
+                    <form action="">
+                        <p class="tit">내용</p>
+                        <textarea name="" id="" cols="30" rows="10" placeholder="예시 : 앱 접속이 불안정합니다." v-model="content"></textarea>
+                    </form>
+                </div>
+                <div class="btn_g">
+                    <button v-on:click="requestSubmit()">의견 제출하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //개선의견 팝업 -->
+
+    <script src="/js/vue.js"></script>
+    <script src="/js/jquery-1.12.4.min.js"></script>
+    <script src="/js/prefixfree.min.js"></script>
+    <script src="/js/ScrollTrigger.min.js"></script>
+    <script src="/js/swiper.min.js"></script>
+    <script src="/js/trigger.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/sub.js"></script>
+    <script src="/js/crypto-js.min.js"></script>
+    <script src="/js/dayjs.min.js"></script>
+    <script src="/js/axios.min.js"></script>
+    
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d84135aafb7043b029d1c08d12d47b51"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement(
+            {
+              pageLanguage: "ko",
+              includedLanguages: "en,ja,zh-CN,zh-TW",
+              layout: google.translate.TranslateElement.InlineLayout.none, // none or HORIZONTAL, SIMPLE
+            },
+            "google_translate_element"
+          );
+        }
+  </script>
+    <script>
+        (function () {
+            const DEV_MODE_KEY = "mode";
+            const DEV_MODE_VALUE = "dev";
+            const DEV_APPLY_URL = "https://www.arko.or.kr/pspace/";
+            function isDevMode() {
+                try {
+                    return window.localStorage && window.localStorage.getItem(DEV_MODE_KEY) === DEV_MODE_VALUE;
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            function applyRestrictedMenuVisibility() {
+                document.querySelectorAll('[data-dev-menu-group="encore-operate"]').forEach(function (group) {
+                    const hasRestrictedLinks = group.querySelector('a[data-dev-menu-keep="true"]');
+                    if (!hasRestrictedLinks) {
+                        return;
+                    }
+
+                    group.querySelectorAll("li").forEach(function (item) {
+                        if (item.querySelector('a[data-dev-menu-keep="true"]')) {
+                            return;
+                        }
+
+                        if (item.querySelector("a")) {
+                            item.style.display = "none";
+                        }
+                    });
+                });
+            }
+
+            function rewriteApplyLinksToExternal() {
+                document.querySelectorAll('a[href*="/facility/encore-center/apply"]').forEach(function (anchor) {
+                    const text = (anchor.textContent || "").replace(/\s+/g, " ").trim();
+
+                    if (!text || !/신청/.test(text) || /내역|목록|이전단계/.test(text)) {
+                        return;
+                    }
+
+                    anchor.href = DEV_APPLY_URL;
+                });
+            }
+
+            function applyEncoreMode() {
+                if (isDevMode()) {
+                    return;
+                }
+
+                applyRestrictedMenuVisibility();
+                rewriteApplyLinksToExternal();
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", applyEncoreMode);
+            } else {
+                applyEncoreMode();
+            }
+        })();
+    </script>
+</body>    
+
+<script>
+class VisitorStat{
+    constructor(){
+        var _this = this;
+        Kakao.init('d84135aafb7043b029d1c08d12d47b51');
+        this.entireSearchBarView = new Vue({
+            el: ".entire-search-bar",
+            data: {
+                keyword: "",
+                keywordList: []
+            },
+            methods: {
+                requestSearch: function(){
+                    location.href="/search?keyword=" + this.keyword;
+                },
+                requestKeywordSearch: function(i){
+                    location.href="/search?keyword=" + this.keywordList[i];
+                },
+                enter: function(e){
+                    if(e.keyCode == 13){
+                        location.href="/search?keyword=" + this.keyword;
+                    }
+                },
+            }
+        });
+
+        axios.get("/api/interests").then(function(r){
+            _this.entireSearchBarView.keywordList = r.data.split("/");
+        });
+
+        this.opinionFormView = new Vue({
+            el: ".opinion-form",
+            data: {
+                content: ""
+            },
+            methods: {
+                requestSubmit: async function(){
+                    var _this = this;
+                    if(confirm("제출하시겠습니까?")){
+                        var id = (await axios.get("/api/ids")).data;
+                        axios.post("/api/opinions", {
+                            id: id,
+                            content: _this.content,
+                            registrationDatetime: dayjs().format("YYYY-MM-DD HH:mm:ss")
+                        }, {
+                            headers:{
+                                "Content-Type": "application/x-www-form-urlencoded"
+                            }
+                        }).then(function(r){
+                            alert("제출되었습니다.");
+                            location.reload();
+                        });
+                    }
+                }
+            }
+        });
+
+        var referrer = document.referrer;
+        var userAgent = window.navigator.userAgent.toLowerCase();
+
+        var naver = "naver";
+        var youtube = "naver";
+        var facebook = "naver";
+        var instagram = "instagram";
+
+        this.inflow = "";
+        this.device = "";
+        this.browser = "";
+
+        if(referrer.includes(naver)){
+            this.inflow = "네이버";
+        }else if(referrer.includes(youtube)) {
+            this.inflow = "유튜브";
+        }else if(referrer.includes(facebook)) {
+            this.inflow = "페이스북";
+        }else if(referrer.includes(instagram)) {
+            this.inflow = "인스타그램";
+        }else{
+            this.inflow = "검색";
+        }
+
+        if(navigator.userAgent.match(/iPhone/i)) {
+            this.device = "아이폰";
+        }else if(navigator.userAgent.match(/Android/i)) {
+            this.device = "안드로이드";
+        }else{
+            this.device = "PC";
+        }
+
+        if(userAgent.includes("chrome")){
+            this.browser = "크롬";
+        }else if(userAgent.includes("edge")){
+            this.browser = "엣지";
+        }else if(userAgent.includes("safari")){
+            this.browser = "사파리";
+        }else{
+            this.browser = "기타";
+        }
+
+        this.createVisitorStat();
+        
+        document.querySelectorAll(".shareBtn").forEach(function(e){
+            e.onclick = function(){
+                var currentURL = window.location.href;
+
+                Kakao.Link.sendDefault({
+                    objectType: 'feed',
+                    content: {
+                        title: "울산문화관광재단",
+                        description: "울산문화관광재단",
+                        imageUrl: "",
+                        link: {
+                            mobileWebUrl: currentURL,
+                            webUrl: currentURL,
+                        },
+                    },
+                    buttons: [
+                        {
+                            title: '웹으로 보기',
+                            link: {
+                                mobileWebUrl: currentURL,
+                                webUrl: currentURL,
+                            },
+                        },
+                    ],
+                    // 카카오톡 미설치 시 카카오톡 설치 경로이동
+                    installTalk: true,
+                });
+            
+            }
+        })
+        if(document.querySelector(".shareBtn")){
+            
+        }
+
+        if(document.querySelector(".printBtn")){
+            document.querySelector(".printBtn").onclick = function(){
+                window.print();
+            }
+        }
+    }
+
+    async createVisitorStat(){
+        var _this = this;
+        var id = (await axios.get("/api/ids")).data;
+        axios.post("/api/visitor-stats", {
+            id: id,
+            inflow: _this.inflow,
+            device: _this.device,
+            browser: _this.browser,
+            registrationDatetime: dayjs().format("YYYY-MM-DD HH:mm:ss")
+        },{
+            headers:{
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        })
+    }
+}
+var visitorStat = new VisitorStat();
+</script>
+
+<script>
+(function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+
+ChannelIO('boot', {
+    "pluginKey": "f536ea6c-019c-4c78-b0fa-432c58a09d7e"
+});
+ChannelIO('boot', {
+    "pluginKey": "f536ea6c-019c-4c78-b0fa-432c58a09d7e",
+    "customLauncherSelector": "#custom-button-1",
+    "hideChannelButtonOnBoot": true
+});
+</script>
+
+
+
+<script>
+class Employment{
+    constructor(){
+        var _this = this;
+        this.employmentList = [];
+        var urlSearch = new URLSearchParams(location.search);
+        this.page = urlSearch.get('page')??0;
+
+        this.summaryView = new Vue({
+            el: ".summary",
+            data: {count: 0}
+        })
+
+        this.searchView = new Vue({
+            el: ".employment-search-bar",
+            data: {
+                keyword: ""
+            },
+            methods: {
+                requestSearch: function(){
+                    _this.getEmploymentList(0, this.keyword);
+                }
+            }
+        });
+
+        this.employmentListView = new Vue({
+            el: ".employment-list",
+            data: {
+                itemList: []
+            },
+            methods: {
+                requestGoingEmploymentDetail: function(i){
+                    location.href = "/board/employment/view/" + this.itemList[i].id;
+                }
+            }
+        });
+
+        this.pagenationView = new Vue({
+            el: ".employment-pagenation",
+            data: {
+                currentPage: _this.page,
+                lastPage: 0,
+                itemList: []
+            },
+            methods: {
+                requestGoingPrevPage: function(){
+                    this.requestGoingPage(this.currentPage - 1);
+                },
+                requestGoingNextPage: function(){
+                    if(this.currentPage + 1 > this.lastPage) return;
+                    this.requestGoingPage(this.currentPage + 1);
+                },
+                requestGoingPage: function(i){
+                    _this.getEmploymentList(i, _this.searchView.keyword);
+                    document.querySelector(".employment-list").scrollIntoView({behavior : 'smooth', block: "center"});
+                }
+            }
+        });
+
+        this.getEmploymentList(_this.page);
+    }
+
+    getEmploymentList(page, keyword){
+        var _this = this;
+        axios.get("/api/notices", {
+            params: {
+                page: page,
+                keyword: keyword,
+                category: ["채용"]
+            }
+        }).then(function(r){
+            _this.pagenationView.itemList = [];
+            _this.employmentListView.itemList = [];
+                
+            _this.summaryView.count = r.data.totalElements;
+
+            _this.pagenationView.currentPage = r.data.number;
+            _this.pagenationView.lastPage = r.data.totalPages - 1;
+            for(let i = Math.floor(r.data.number / 5) * 5; i < r.data.totalPages && i < (Math.floor(r.data.number / 5) * 5) + 5; i++){
+                _this.pagenationView.itemList.push(i);
+            }
+
+            r.data.content.forEach((e, i) => {
+                _this.employmentListView.itemList.push({
+                    number: r.data.totalElements - ((r.data.number * r.data.size) + i),
+                    id: e.id,
+                    title: e.title,
+                    category: e.category,
+                    state: e.state,
+                    notice: e.notice,
+                    hit: e.hit,
+                    file: e.filePath != null,
+                    registrationDatetime: e.registrationDatetime.split(" ")[0]
+                });
+            });
+            history.pushState(null, null, '?page=' + page);
+        });
+    }
+}
+
+var employment = new Employment();
+</script>

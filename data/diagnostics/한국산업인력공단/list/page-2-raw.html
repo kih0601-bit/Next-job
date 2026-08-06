@@ -1,0 +1,2820 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="euc-kr">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="HRDK �ѱ�����η�" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="HRDK �ѱ�����η�" />
+    <meta property="og:url" content="https://www.hrdkorea.or.kr/" />
+    <meta property="og:image" content="/images/main1.png" />
+    <meta property="og:description" content="HRDK �ѱ�����η�, �����ΰ� ����� �Բ��ϴ� ���� ���� ��Ʈ���Դϴ�." />
+
+    <meta name="title" content="HRDK �ѱ�����η�" />
+    <meta name="author" content="https://www.hrdkorea.or.kr/">
+    <meta name="description" content="HRDK �ѱ�����η�, �����ΰ� ����� �Բ��ϴ� ���� ���� ��Ʈ���Դϴ�." />
+    <meta name="keywords" content="HRDK, �ѱ�����η�, �ɷ°���, �ɷ���, ���������ɷ�ǥ��, NCS" />
+
+    <meta name="format-detection" content="telephone=no">
+
+    <title>HRDK �ѱ�����η°���</title>
+
+    <link rel="icon" href="/design5/images/favicon_32_blue.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/design5/images/favicon_180_icon.ico" sizes="180x180" />
+
+    <link rel=stylesheet type="text/css" href="/design5/css/swiper-bundle.min.css">
+    <link rel=stylesheet type="text/css" href="/design5/css/common.css">
+    <link rel=stylesheet type="text/css" href="/design5/css/chatbot.css">
+    <link rel=stylesheet type="text/css" href="/design5/css/main.css">
+
+
+    <script src="/design5/js/jquery.min.js"></script>
+    <script src="/design5/js/swiper.min.js"></script><!-- 2021-11-16 ���� -->
+    <script src="/design5/js/main.js?v=20260807122308"></script><!-- 2021-11-13 �߰� -->
+
+    <script src="/main/js/ark_main.js"></script> <!--�ڵ��ϼ�  -->
+
+    <script type="text/javascript">
+    	$(function(){
+		$.ajax({
+			url : "/NewNotice.hrd"
+			, type : "post"
+			, dataType : "html"
+			, success : function(html){
+				$(".mainNoti1").html(html);
+			}
+		});
+	});
+    </script>
+	<script type="application/ld+json">
+	{
+	"@context" : "http://schema.org",
+	"@type": "Organization",
+	"name": "�ѱ�����η°���",
+	"url":  "https://www.hrdkorea.or.kr",
+	"sameAs": [
+	           "https://www.facebook.com/hrdkorea2020",
+	           "https://www.instagram.com/hrdkorea_official",
+			   "https://www.youtube.com/user/HRDKorea"
+	           ]
+	}
+</script>
+	<script>
+     //ê��
+	function chatOpen() {
+		//window.open('https://chatbot.hrdkorea.or.kr/static/plugin/conversations/chats/hrd_chat.html?key=MTowN2MzMjM5Ny04Yzg0LTQ2M2YtYTljMy1hYjcyNDg1MDNiNzV8c2NlbmFyaW8%3D&userNm=&userId=&langs=ko', 'chatbot', 'width=450px,height=750px,top=50px,right=50px')
+		const popupWidth = 450;
+		const popupHeight = 800;
+
+		// ���� â ���� ��ġ + ȭ�� ũ�� Ȱ��
+// 		const left = window.screenX + window.outerWidth - popupWidth;
+// 		const top = window.screenY + (window.outerHeight - popupHeight) / 2;
+
+		const left = (window.screenX + window.outerWidth - popupWidth - 50);
+		//console.log('left',window.screenX, window.outerWidth, popupWidth  );
+
+		const top = window.screenY + (window.outerHeight - popupHeight) / 2;
+		//console.log('top',window.screenY, window.outerHeight, popupHeight  );
+		//debugger;
+		//console.log(left, top);
+
+		window.open(
+		'https://chatbot.hrdkorea.or.kr/static/plugin/conversations/chats/hrd_chat.html?key=MTowN2MzMjM5Ny04Yzg0LTQ2M2YtYTljMy1hYjcyNDg1MDNiNzV8c2NlbmFyaW8%3D&userNm=&userId=&langs=ko',
+		'chatbot',"width=450,height=700,left="+ left + ",top=" + top
+		);
+	}
+
+		//���հ˻��� üũ
+		function searchFormChk(f){
+			//let f = document.searchForm;
+			var RegExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
+
+			let str = $(f).find("input[name='search-text']").val().trim();
+			if (str == "") {
+				alert("�˻�� �Է��ϼ���");
+				return false;
+			}
+			if(RegExp.test(str)) {
+				alert("Ư�����ڴ� �Է� �Ұ��մϴ�.");
+				return false;
+		  	}
+
+			const bannedWords =["����","����", "�ڱ�", "�ڱݼ�Ź", "�ڷ�", "�ǽ�", "����", "���������Ǹ�",
+				                   "������������", "DB�Ǹ�", "�ڷ�", "�ڱ�", "�ڷ�����", "�ڹ���"
+				                   ];
+			 for(var i=0; i < bannedWords.length; i++){
+				 if(str.indexOf(bannedWords[i])!=-1){
+					 alert("�ش�ܾ�� �˻��ϽǼ� �����ϴ�.");
+					return false;
+				 }
+			 }
+		}
+
+		//20240926 �� ���ټ� ���� - ��� �޴��� �˻� ���� ������ ��ư �� �̺�Ʈ
+		$(function(){
+			$(".srchFormBox .btnSrch").on("keydown", function(event){
+				if(event.keyCode == "9"){
+					//event.stop();
+							event.preventDefault();
+					$(".gnbWrap .btnSrchToggle").focus();
+
+					//������ ��ư�� �ӽ� Ŭ���� �߰�
+					$(".srchFormBox .btnSrch").addClass("tmpClsFo");
+
+					//��� �޴� ������ �˻����� ��� ��ư ��Ŀ�� �ƿ� �̺�Ʈ
+					$(".gnbWrap .btnSrchToggle").on("focusout", function(){
+						//���� �ӽ� Ŭ������ �����ϰ� �˻� ������ ���̴� ���̶�� �ݱ�
+						if($(".srchFormBox .btnSrch").hasClass("tmpClsFo") && $(".gnbWrap .btnSrchToggle").hasClass("on")){
+							$(".gnbWrap .btnSrchToggle").trigger("click");
+
+							//������ ��ư �ӽ� Ŭ���� ����
+							$(".srchFormBox .btnSrch").removeClass("tmpClsFo");
+						}
+					});
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+	<!--main POPUPgroup Modal -->
+    <div class="mainPopupModal" id="mainPopup_modalWrap">
+      <div class="modalPopup-centered">
+        <div id="mainPopupAR">
+            <!-- <span id="mainPopup_closeBtn">&times;</span> -->
+            <div class="mainPopup_modal_group">
+            <!-- <div class="mainNoti2"> -->
+                <div class="swiper popSwiper">
+                    <div class="swiper-wrapper">
+                    	
+
+                    	
+
+                    	
+
+                        <!--������� ������ ��Ī, ��ũ����-->
+                        
+                            <div class="swiper-slide">
+                                <a href="https://www.hrdkorea.or.kr/3/1/1?k=55303&pageNo=&searchType=&searchText=" title="������� ������ ��Ī ��� ����, ��������ȳ� �Խñ۷� �̵��ϱ�">
+                                 <img src="/main/popup/images/20260126popup.jpg" alt="������� ������ ��Ī ��� ����, �������" />
+                                </a>
+                            </div>
+                        
+                        
+                        <!--�����ɷ����� Ȱ�� ������ ������-->
+                         
+                            <div class="swiper-slide">
+                                <a href="https://bank.ncs.go.kr/ctr/ctr1000e" title="�����ӿ������̻� ��������" target="_blank">
+                                 <img src="/main/popup/images/20260723popup.jpg" alt="�����ɷ����� Ȱ�� ������ ������, �Խñ۷� �̵��Ͽ� �ڼ�������" />
+                                </a>
+                            </div>
+                        
+                        
+                        <!--�����ӿ������̻� ��������-->
+                         
+                         
+                        <!--�ܱ��ΰ�������(�����㰡�� ������)-->
+                        
+                            <div class="swiper-slide">
+                                <a href="https://www.hrdkorea.or.kr/3/1/1" title="�ܱ��ΰ������� �����㰡�� ������ �̵��ϱ�">
+                                 <img src="/main/popup/images/20260713popup.jpg" alt="�ܱ��ΰ������� �����㰡�� ������" />
+                                </a>
+                            </div>
+                        
+                        
+                        <!--HRDK���󳻿�-->
+                        
+
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next btn-swiper"></div>
+                <div class="swiper-button-prev btn-swiper"></div>
+                <div class="swiper_cookie">
+                	<input title="���� �Ϸ� �˾�â�� �׸� ���ڽ��ϴ�" type="checkbox" value="" onclick="closeMainPop();" />���� �Ϸ� �˾�â�� �׸� ���ڽ��ϴ�
+                </div>
+
+                <!-- </div> -->
+            </div>
+            <a id="mainPopup_closeBtn" href="javascript:" onclick="fMainPopupClose();" title="�˾� �ݱ�">&times;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- skip -->
+    <div id="accessibility">
+        <a href="#container">���� �ٷΰ���</a>
+    </div>
+    <!-- // skip -->
+    <!-- mainWrap -->
+    <div class="mainWrap">
+        <!-- header -->
+        <header class="header" id="header">
+            <div class="inner">
+                <form name="searchForm" action="/search/search.jsp" method="POST" onsubmit="return searchFormChk(this);">
+                    <input type="hidden" id="isArk" value="t"/>
+                <div class="headerSrch moShow">
+                    <button type="button" class="btnSrchToggle"><span class="ir">�˻� �Է��� ����</span></button><!-- �˻� �� Ȱ��ȭ �϶� on class -->
+                    <div class="headerSrchForm">
+                        <div class="inpBox">
+                        	<label for="search" class="hidden">�˻��� �Է�</label><!-- 2022.05.03 -->
+                            <input type="text" id="search" name="search-text" placeholder="������ ã���ó���?" autocomplete="off">
+							<!-- <div class="auto-completeWarp">
+								<div class="autocomplete-box">
+									<ul class="auto-complete" tabindex="0">
+									</ul>
+									<div class="autocomplete-btm">
+										<a href="#autocompleteToggle" ><span id="autocompleteText">�ڵ��ϼ� ����</span></a>
+									</div>
+								</div>
+							</div> -->
+                            <button type="submit" class="btnSrch"><span class="ir">�˻�</span></button>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                <h1 class="headerLogo">
+                    <a href="/"><i class="ir">HRDK �ѱ�����η°���</i></a>
+                </h1>
+                <div class="headerUtil pcShow">
+                    <ul>
+					    <li>
+                            <a href="https://webzine.hrdkorea.or.kr" target="_blank" title="��â ����">�¶���ȫ������</a>
+                        </li>
+                        <li>
+                            <a href="/ksh/1/3/1">����Ʈ��</a>
+                        </li>
+                        <li>
+                            <a href="/ksh/1/1/1">�̿�ȳ�</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="headerAllMenu moShow">
+                    <button type="button" class="btnAllMenu"><span class="ir">��ü �޴� ����</span></button>
+                </div>
+            </div>
+        </header>
+        <!-- // header -->
+
+        <!-- Mobile ��ü�޴� -->
+        <div class="moGnbWrap moShow">
+            <div class="gnbHeader">
+                <p class="gnbLogo"><img src="/design5/images/logo.svg" alt="HRDK �ѱ�����η°��� Human Resources Development Service of Korea"></span></p>
+                <button type="button" class="btnGnbClose"><span class="ir">��ü�޴� �ݱ�</span></button>
+            </div>
+            <ul class="gnbDep1">
+                <li class="dep1">
+                    <a href="#none" class="on"><span>����Ұ�</span></a>
+                    <ul class="gnbDep2"><!-- 2021-11-13 on class ���� -->
+                        <li class="dep2"><!-- 2021-11-13 on class ���� -->
+                            <a href="#none"><span>�ɷ°���</span></a><!-- 2021-11-13 on class ���� -->
+                            <ul class="gnbDep3"><!-- 2021-11-13 on class ���� -->
+                                <li class="dep3">
+                                    <a href="/1/1/1">����Ұ�</a>
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/1/1/2">�����ɷ°����Ʒ� ����</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+										<li class="dep4">
+                                            <a href="/1/1/2/1">�ɷ°���������ġ��</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/1/2/2">����� �����ɷ°����Ʒ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/1/2/3">ü���� ���� �Ʒ�(S-OJT)</a>
+                                        </li>
+                                        <!-- <li class="dep4">
+                                            <a href="/1/1/2/4">�߼ұ�� �н�����ȭ</a>
+                                        </li> -->
+                                        <li class="dep4">
+                                            <a href="/1/1/2/4">���н�����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/1/2/5/1">���������ڿ��������ҽþ�</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/1/1/3">HRD Ȯ�ꡤ������ ����</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/1/1/3/1">�����ɷ°��� ������������</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/1/3/2">�����ڿ����� ������ ����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/1/3/3">�����ɷ��� �� ���</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/1/3/4">�ɷ°������� HRD4U</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/1/3/5">�Ʒ�ǰ����� ����͸�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/1/3/6">����� �����ڿ� ��������ȸ(ISC) � ����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/1/3/7">���ѹα�������屳��</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3">
+                                    <a href="/1/1/4">�ڷ��</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>�ɷ���</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/1/2/1">����Ұ�</a>
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/1/2/2">��������ڰݽ���</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/1/2/2/1">���� �Ұ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/2/2/2">����� ����</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3">
+                                    <a href="/1/2/3">���������ڰݽ���</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/1/2/4">���������ڰ�</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/1/2/5">���н����� �ܺ���</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/1/2/6">�ڷ��</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>�ܱ��ΰ�������</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/1/3/1">����Ұ�</a>
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/1/3/2">����� ����</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/1/3/2/1">����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/3/2/2">���� ����</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/1/3/3">�ܱ��αٷ�������</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/1/3/3/1">�Ա�/�ͱ�����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/3/3/2">EPS-TOPIK</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/3/3/3">���谡��</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/3/3/4">�ܱ��η»�㼾��</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3">
+                                    <a href="/1/3/4">�ڷ��</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>�ؿ��������</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/1/4/1">����Ұ�</a>
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/1/4/2">����/���α׷�</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/1/4/2/1">�ؿ���� ����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/4/2/2">�ؿ���� �˼�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/4/2/3">�ؿ���� ����������</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/4/2/4">�ؿ��ϰ����������(WELL)</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3">
+                                    <a href="/1/4/3">�ڷ��</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>������������</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/1/5/1">����Ұ�</a>
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/1/5/2">��������</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/1/5/2/1">����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/5/2/2">�����ⱸ</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/5/2/3">���� �� �ڰݻ�ȣ���� ����</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/1/5/3">��������</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/1/5/3/1">���� HRD ��Ź���</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/5/3/2">�ܱ��� ��û����</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3">
+                                    <a href="/1/5/4">�ڷ��</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>���ñ��</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/1/6/1">����Ұ�</a>
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/1/6/2">���ñ������</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/1/6/2/1">����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/6/2/2">����ѱ��� �߱�/ȫ��</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/1/6/3">���ñ������</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/1/6/3/1">����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/6/3/2">���丵 �</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4">
+                                    <a href="/1/6/4">��ɰ���ȸ</a>
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/1/6/4/1">������ɰ���ȸ</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/1/6/4/2">������ɿø��ȴ�ȸ</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/1/6/5">�ڷ��</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>���������ɷ�ǥ��(NCS)</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/1/7/1">����Ұ�</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/1/7/2">�ڷ��</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>û��̷��÷���</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/1/9/1">����Ұ�</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/1/9/2">�ڷ��</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>��� ����������</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/1/8/1">�ڷ��</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dep1">
+                    <a href="#none"><span>��������</span></a>
+                    <ul class="gnbDep2">
+                        <li class="dep2">
+                            <a href="#none"><span>���������濵</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/2/1/1">��������</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/2/1/1/1">������������</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/1/1/2">��������ǥ��</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3">
+                                    <a href="/2/1/2">����Ī�����</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>������ �Ҹ�</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/2/2/1">������ �Ҹ� �ݿ���</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/2/2/2">���� �� �ο�</a>
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/2/2/3">�ο� ��û�ϱ�</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/2/2/3/1">�����ϴ� ����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/2/3/2">�Ϲݹο� ��û�ϱ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/2/3/3">�ڰ��� �ҹ��뿩 �Ű�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/2/3/4">�����Ʒ� ���� �Ű�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/2/3/5">���� �����ϱ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/2/3/6">���� Ī���ϱ�</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/2/2/4">�ù�e�̻�ȸ</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/2/2/4/1">�Ұ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/2/4/2">�ǰ� ����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/2/4/3">���� �Ȱ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/2/4/4">���� �Ȱ�</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4">
+                                    <a href="/2/2/5">���С����ͽŰ�</a>
+                                    <ul class="gnbDep4">
+										<li class="dep4">
+											<a href="/2/2/5/1">���С����ͽŰ�(û������)</a>
+										</li>
+                                        <li class="dep4">
+                                            <a href="https://www.kbei.org/center/?c=hrdkorea&ch=CH-JX5M-E" target="_blank">Ŭ���Ű�����(�͸��Ű�)</a>
+                                        </li>
+                                        <li class="dep4">
+											<a href="/2/2/5/3">�Ƚ�������ȣ�� �Ű�</a>
+										</li>
+									</ul>
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/2/2/6">���α���</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/2/2/6/1">���� �������� ����</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>����������伾��</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/2/3/1">����������伾��</a>
+                                </li>
+								<li class="dep3 hasDep4">
+                                    <a href="/2/3/2">������� ���� ICT ���� ���̵�</a>
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/2/3/2/1">��� ���� ��� �������� ���</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/3/2/2">���� ���̵� ����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/3/2/3">���� ������ ���� ���� ���ǿ� �亯</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/3/2/4">���� �о� ����� ���� ���� ������� ����</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep3 hasDep4">
+                                    <a href="/2/3/3">���� ICT ��� AI Ȱ�� ����</a>
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/2/3/3/1">���� ����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/2/3/3/2">���� ���</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+						<li class="dep2">
+                            <a href="#none"><span>â��/����Ȱ��ȭ ��������</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/2/4/1">HRDK ���⡤���� ������</a>
+                                </li>
+								<li class="dep3">
+                                    <a href="/2/4/2">HRDK Ư�� Ȱ�� ��������</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dep1">
+                    <a href="#none"><span>HRDK<br> �ҽġ�ȫ��</span></a>
+                    <ul class="gnbDep2">
+                        <li class="dep2">
+                            <a href="#none"><span>�ҽ�</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/3/1/1">��������</a>
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/3/1/2">����ä��</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/3/1/2/1">ä������</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/3/1/2/2">ä�����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/3/1/2/3">�����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/3/1/2/4">�λ米������</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/3/1/2/5">���� ���� ����</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <!--
+                                <li class="dep3">
+                                    <a href="/3/1/3">���ȼ� �򰡰��</a>
+                                </li>
+                                <li class="dep3 hasDep4">-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� --
+                                    <a href="/3/1/4">�ؿܿ�������</a>
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/3/1/4/1">���� ��ȹ��</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/3/1/4/2">���� ���������</a>
+                                        </li>
+                                    </ul> // 2021-12-01 4���� �߰�
+                                </li>-->
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>ȫ��</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/3/2/1">HRDK ������</a>
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/3/2/2">HRDK ȫ��</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/3/2/2/1">CI�Ұ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/3/2/2/2">ĳ���� �Ұ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="http://webzine.hrdkorea.or.kr" target="_blank" title="��â ����">�¶��� ȫ�� ����</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+				<li class="dep1">
+                    <a href="#none"><span>HRDK ESG</span></a>
+                    <ul class="gnbDep2">
+                        <li class="dep2">
+                            <a href="#none"><span>ESG �濵</span></a>
+                            <ul class="gnbDep3">
+								<li class="dep3">
+									<a href="/6/1/1">ESG �濵</a>
+								</li>
+								<li class="dep3">
+									<a href="/6/1/2">ESG ����</a>
+								</li>
+							</ul>
+                        </li>
+                        <li class="dep2">
+							<a href="#none"><span>E(Environment) ȯ��</span></a>
+							<ul class="gnbDep3">
+								<li class="dep3">
+									<a href="/6/2/1">E(Environment) ȯ��</a>
+								</li>
+							</ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>S(Social)��ȸ</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3 hasDep4">
+                                    <!-- 2021-12-01 4������ ���� ��� 2021-12-12  .hasDep4 class �߰� -->
+                                    <a href="/6/3/1">HRDK ��ȸ����</a>
+                                    <!-- 2021-12-12 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/6/3/1/1">��ȸ ���� �Ұ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/6/3/1/2">��ȸ ���� Ȱ��</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/6/3/1/3">������ �����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/6/3/1/4">��������� ���</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-12 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4">
+                                    <!-- 2021-12-01 4������ ���� ��� 2021-12-12  .hasDep4 class �߰� -->
+                                    <a href="/6/3/2">��������</a>
+                                    <!-- 2021-12-12 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/6/3/2/1">�������� �Ұ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/6/3/2/2">�ұ����� �Ű�</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-12 4���� �߰� -->
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>G(Governance)���豸��</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3 hasDep4">
+                                    <!-- 2021-12-01 4������ ���� ��� 2021-12-12  .hasDep4 class �߰� -->
+                                    <a href="/6/4/1">�����α�</a>
+                                    <!-- 2021-12-12 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/6/4/1/1">�濵�Ұ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/6/4/1/2">�����α� �濵</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/6/4/1/3">�濵��õ</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/6/4/1/4">�Ű���ǰó����� ���� �Խ���</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/6/4/1/5">�ݺ��� û������</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-12 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4">
+                                    <!-- 2021-12-01 4������ ���� ��� 2021-12-12  .hasDep4 class �߰� -->
+                                    <a href="/6/4/2">�гθ���</a>
+                                    <!-- 2021-12-12 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/6/4/2/1">�̻�ȸ Ŀ�´�Ƽ</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-12 4���� �߰� -->
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>ESG �濵����</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/6/5/1">ESG �濵����</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dep1">
+                    <a href="#none"><span>���ܼҰ�</span></a>
+                    <ul class="gnbDep2">
+                        <li class="dep2">
+                            <a href="#none"><span>HRDK �Ұ�</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/4/1/1">�Ұ�</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/4/1/1/1">�λ縻</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/4/1/1/2">�̼ǰ� ����</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/4/1/1/3">����� �濵���� ü��</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/4/1/1/4">����</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/4/1/2">�����ȳ�</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/4/1/2/1">��ü ������</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/4/1/2/2">���� ����ó</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/4/1/3">�ֿ� ���󳻿�</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/4/1/3/1">2025��</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/4/1/3/2">2024��</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/4/1/3/3">2023��</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3">
+                                    <a href="/4/1/4">ã�ƿ��ô� ��</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dep1">
+                    <a href="#none"><span>����<br>���Ρ�����</span></a>
+                    <ul class="gnbDep2">
+                        <li class="dep2">
+                            <a href="#none"><span>�������Ρ�����</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/5/1/1">�������Ρ�����</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dep1">
+                    <a href="#none"><span>��������</span></a>
+                    <ul class="gnbDep2">
+                        <li class="dep2">
+                            <a href="#none"><span>�������� �ȳ�</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/7/1/1">�������� ����</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/7/1/1/1">�������� �Ұ�</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/7/1/1/2">�������� ���</a>
+                                        </li>
+									</ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                                <li class="dep3 hasDep4"><!-- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -->
+                                    <a href="/7/1/2">ó������ �� ��û</a>
+                                    <!-- 2021-12-01 4���� �߰� -->
+                                    <ul class="gnbDep4">
+                                        <li class="dep4">
+                                            <a href="/7/1/2/1">ó������</a>
+                                        </li>
+                                        <li class="dep4">
+                                            <a href="/7/1/2/2">��û�ϱ�</a>
+                                        </li>
+                                    </ul>
+                                    <!-- // 2021-12-01 4���� �߰� -->
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>����������ǥ</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/7/2/1">����������ǥ</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/7/2/2">����������ǥ������</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>����������</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/7/3/1">�Ұ�</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/7/3/2">���� ���</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/7/3/3">��������</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/7/3/4">FAQ</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>����Ǹ���</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/7/4/1">�ڷ��</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dep2">
+                            <a href="#none"><span>�濵����</span></a>
+                            <ul class="gnbDep3">
+                                <li class="dep3">
+                                    <a href="/7/5/1">�Ϲ���Ȳ �� ����</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/7/5/2">�ֿ��� �� �濵����</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/7/5/3">�볻����</a>
+                                </li>
+                                <li class="dep3">
+                                    <a href="/7/5/4">��������</a>
+                                </li>
+                                <li class="dep3 hasDep4">
+                                    <a href="/7/5/5">��Ÿ����</a>
+                                      <!-- 2021-12-12 4���� �߰� -->
+									<ul class="gnbDep4">
+										<li class="dep4">
+											<a href="/7/5/5/1">���� û�ŵ� �򰡰��</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/2">���ΰ濵�򰡰��</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/3">�ֿ� ���󳻿�</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/4">������</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/5">MOU ü����Ȳ</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/6">�ֿ����� ������</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/7">�ֿ��� ����ó������</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/8">�ֿ����� ���</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/9">����ī���μ�Ƽ��</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/10">���������� ����</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/11">����ȸ ȸ�� ���</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/12">ģ��ô ä���ο� ����</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/13">���ȼ� �򰡰��</a>
+										</li>
+										<li class="dep4">
+											<a href="/7/5/5/14">�ؿܿ�������</a>
+										</li>
+                                        <li class="dep4">
+											<a href="/7/5/5/15">�����νĵ� ������</a>
+										</li>
+									</ul>
+								<!-- // 2021-12-12 4���� �߰� -->
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- // Mobile ��ü�޴� -->
+
+        <!-- main visual -->
+        <div class="mainVisual">
+            <div class="swiper mainVisualSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide n1">
+                        <div class="inner">
+                            <strong class="visualTit">������ ����ɷ°��߰�<br> �Բ��ϴ� HRDK</strong>
+                            <p class="visualTxt">��ȭ�ϴ� �츮�� ����, �����ϴ� HRDK�� �̷�,<br> ��¦��¦ �ɷ°��� �̷��� �̾��ִ� ���ڸ�</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide n2">
+                        <div class="inner">
+                            <strong class="visualTit">������ �ɷ��� �߰��ؼ�<br> ���߱���</strong>
+                            <p class="visualTxt">����� ���ٸ� �ɷ���,<br> �ɷ°����� ������ HRDK�� �Բ� ����� ���ϴ�.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide n3">
+                        <div class="inner">
+                            <strong class="visualTit">E�̷ο�, S������,<br> G�׸��� HRDK</strong>
+                            <p class="visualTxt">HRDK�� ESG�濵 ��õ�� ���� ����ϰ� �ֽ��ϴ�.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next btnSwiper"></div>
+                <div class="swiper-button-prev btnSwiper"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="mainVisualCont">
+                <div class="inner">
+                    <form name="searchForm" action="/search/search.jsp" method="POST" onsubmit="return searchFormChk(this);">
+                    <input type="hidden" id="isArk" value="t"/>
+                    <div class="mainSrchFrom pcShow">
+                    	<label for="search-text" class="hidden">�˻��� �Է�</label><!-- 2022.05.03 -->
+                        <input type="text" id="search-text" name="search-text" placeholder="������ ã���ó���?" autocomplete="off">
+                        <!-- <div class="auto-completeWarp">
+							<div class="autocomplete-box"> 
+								<ul class="auto-complete" tabindex="0">
+								</ul>
+								<div class="autocomplete-btm">
+									<a href="#autocompleteToggle" ><span id="autocompleteText">�ڵ��ϼ� ����</span></a>
+								</div>
+							</div>
+						</div> -->
+                        <button type="submit" class="mainSrchBtn"><span class="ir">�˻�</span></button>
+                    </div>
+                    </form>
+                    <div class="mainTapWrap">
+                    	<!-- 2022.05.03 -->
+                        <ul class="mainTab">
+                            <li class="tabList on"><a href="#mainTab1" title="���õ� ��">û��</a></li><!-- Ȱ��ȭ �϶� on -->
+                            <li class="tabList"><a href="#mainTab2">���</a></li>
+                            <li class="tabList"><a href="#mainTab3">�ٷ���</a></li>
+                            <li class="tabList"><a href="#mainTab4">����<br> �Ʒñ��</a></li>
+                        </ul>
+                        <div class="mainTabCont on" id="mainTab1"><!-- Ȱ��ȭ �϶� on -->
+                        	<h4 class="ir">û�� ���</h4>
+                            <div class="swiper mainTabSwiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <a href="/1/4/1">�ؿ�<br class="moShow"> ���</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/7">��������<br class="moShow">�ɷ�ǥ��<br>(NCS)</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/2/4">���н�����</a>
+                                    </div>
+                                    <!-- <div class="swiper-slide">
+                                        <a href="/1/1/3/1">JOBPLUS<br class="moShow">TV</a>
+                                    </div> -->
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/3/3/2">HRD ���۷���</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="http://www.q-net.or.kr/man001.do?imYn=Y&gSite=Q" class="arrow" target="_blank" title="��â ����">����<br class="moShow">�ڰݽ���<br> (Q-Net)</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/2/4">��������<br class="moShow"> �ڰ�</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="https://meister.hrdkorea.or.kr/sub/1/1/1/20160512100402856100_view.do" class="arrow" target="_blank" title="��â ����">�������<br class="moShow">�����<br class="pcShow">����</a><!-- 2021-11-13 .moShow .pcShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/9/1">û��<br class="moShow">�̷��÷���</a>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination moShow"></div>
+                            </div>
+                        </div>
+                        <div class="mainTabCont" id="mainTab2">
+                        	<h4 class="ir">��� ���</h4>
+                            <div class="swiper mainTabSwiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <a href="/1/7">��������<br class="moShow">�ɷ�ǥ��<br>(NCS)</a><!-- 2021-11-13 .moShow .pcShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/2/4">���н�����</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/2/5/1">���������ڿ����� ���ҽþ�</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/2/2">�����<br class="moShow"> �����ɷ°����Ʒ�</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/2/3">���� ������<br>ü���� �Ʒ�<br>(S-OJT)</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/3/2">�����ڿ�����<br>����������</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="https://eps.hrdkorea.or.kr/main/intro.do" class="arrow" target="_blank" title="��â ����">�ܱ���<br> �ٷ��� �������<br> �ý���(EPS)</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="https://meister.hrdkorea.or.kr/sub/2/7/1/org/org_apply.do" class="arrow" target="_blank" title="��â ����">���ñ�����<br> ������ü ����</a>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination moShow"></div>
+                            </div>
+                        </div>
+                        <div class="mainTabCont" id="mainTab3">
+                        	<h4 class="ir">�ٷ��� ���</h4>
+                            <div class="swiper mainTabSwiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/2/2">�����<br class="moShow"> �����ɷ°����Ʒ�</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/3/4/3">�ɷ°��� <br>������ �η�Ǯ</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/3/7">���ѹα�<br>�������<br class="moShow">����</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="http://www.q-net.or.kr/man001.do?imYn=Y&gSite=Q" class="arrow" target="_blank" title="��â ����">����<br class="moShow">�ڰݽ���<br> (Q-Net)</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="https://meister.hrdkorea.or.kr/sub/2/3/1/engineer/engineer_apply.do" class="arrow" target="_blank" title="��â ����">�������<br class="moShow">�����<br> ����</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/3/1">JOBPLUS<br class="moShow">TV</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination moShow"></div>
+                            </div>
+                        </div>
+                        <div class="mainTabCont" id="mainTab4">
+                        	<h4 class="ir">����  �Ʒñ�� ���</h4>
+                            <div class="swiper mainTabSwiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <a href="/1/7">��������<br class="moShow">�ɷ�ǥ��<br>(NCS)</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/2/5/1">���������ڿ�����<br>���ҽþ�</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/2/5/2">������� ������<br>�η¾缺 ���</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/3/5">�Ʒ�ǰ�����<br> ����͸�</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/1/3/3/2">HRD ���۷���</a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="http://www.q-net.or.kr/man001.do?imYn=Y&gSite=Q" class="arrow" target="_blank" title="��â ����">����<br class="moShow">�ڰݽ���<br> (Q-Net)</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="/1/2/4">��������<br class="moShow">�ڰ�</a><!-- 2021-11-13 .moShow class �߰� -->
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination moShow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- // main visual -->
+
+        <!-- pc gnb -->
+        <div class="gnbWrap pcShow">
+            <div class="inner"><!-- 2021-11-13 inner div �߰� -->
+                <ul class="gnbDep1">
+                    <li class="dep1">
+                        <a href="/1">����Ұ�</a>
+                        <div class="gnbSubGroup">
+                            <ul class="gnbDep2">
+                                <li class="dep2">
+                                    <a href="/1/1">�ɷ°���</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/1/1/1">����Ұ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/1/2">�����ɷ°����Ʒ� ����</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/1/3">HRD Ȯ�ꡤ������ ����</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="1/1/4">�ڷ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/1/3">�ܱ��ΰ�������</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/1/3/1">����Ұ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/3/2">����� ����</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/3/3">�ܱ��αٷ�������</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/3/4">�ڷ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/1/5">������������</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/1/5/1">����Ұ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/5/2">��������</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/5/3">��������</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/5/4">�ڷ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/1/7">���������ɷ�ǥ��(NCS)</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/1/7/1">����Ұ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/7/2">�ڷ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/1/2">�ɷ���</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/1/2/1">����Ұ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/2/2">��������ڰݽ���</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/2/3">���������ڰݽ���</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/2/4">���������ڰ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/2/5">���н����� �ܺ���</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/2/6">�ڷ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/1/4">�ؿ��������</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/1/4/1">����Ұ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/4/2">����/���α׷�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/4/3">�ڷ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/1/6">���ñ��</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/1/6/1">����Ұ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/6/2">���ñ������</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/6/3">���ñ������</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/6/4">��ɰ���ȸ</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/6/5">�ڷ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/1/9">û��̷��÷���</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/1/9/1">����Ұ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/1/9/2">�ڷ��</a>
+                                        </li>
+                                    </ul><br/>
+                                    <a href="/1/8">��� ����������</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/1/8/1">�ڷ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dep1">
+                        <a href="/2">��������</a>
+                        <div class="gnbSubGroup">
+                            <ul class="gnbDep2">
+                                <li class="dep2">
+                                    <a href="/2/1">���������濵</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/2/1/1">��������</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/2/1/2">����Ī�����</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/2/2">������ �Ҹ�</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/2/2/1">������ �Ҹ� �ݿ���</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/2/2/2">���� �� �ο�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/2/2/3">�ο� ��û�ϱ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/2/2/4">�ù�e�̻�ȸ</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/2/2/5">���С����ͽŰ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/2/2/6">���α���</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/2/3">����������伾��</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/2/3/1">����������伾��</a>
+                                        </li>
+										<li class="dep3">
+                                            <a href="/2/3/2">������� ���� ICT ���� ���̵�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/2/3/3">���� ICT ��� AI Ȱ�� ����</a>
+                                        </li>
+                                    </ul>
+                                </li>
+								<li class="dep2">
+                                    <a href="/2/4">â��/����Ȱ��ȭ ��������</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/2/4/1">HRDK ���⡤���� ������</a>
+                                        </li>
+										<li class="dep3">
+                                            <a href="/2/4/2">HRDK Ư�� Ȱ�� ��������</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dep1">
+                        <a href="/3">HRDK �ҽġ�ȫ��</a>
+                        <div class="gnbSubGroup">
+                            <ul class="gnbDep2">
+                                <li class="dep2">
+                                    <a href="/3/1">�ҽ�</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/3/1/1">��������</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/3/1/2">����ä��</a>
+                                        </li>
+                                        <!-- <li class="dep3">
+                                            <a href="/3/1/3">���ȼ� �򰡰��</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/3/1/4">�ؿܿ�������</a>
+                                        </li> -->
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/3/2">ȫ��</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/3/2/1">HRDK ������</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/3/2/2">HRDK ȫ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+					<li class="dep1">
+                        <a href="/6">HRDK ESG</a>
+                        <div class="gnbSubGroup">
+                            <ul class="gnbDep2">
+                                <li class="dep2">
+                                    <a href="/6/1">ESG �濵</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/6/1/1">ESG �濵</a>
+                                        </li>
+										<li class="dep3">
+                                            <a href="/6/1/2">ESG ����</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/6/2"><span>E(Environment) ȯ��</span></a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/6/2/1">E(Environment) ȯ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/6/3"><span>S(Social)��ȸ</span></a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3 hasDep4">
+                                            <a href="/6/3/1">HRDK ��ȸ����</a>
+                                        </li>
+                                        <li class="dep3 hasDep4">
+                                            <a href="/6/3/2">��������</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/6/4"><span>G(Governance)���豸��</span></a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/6/4/1">�����α�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/6/4/2">�гθ���</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/6/5"><span>ESG �濵����</span></a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/6/5/1">ESG �濵����</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dep1">
+                        <a href="/4">���ܼҰ�</a>
+                        <div class="gnbSubGroup">
+                            <ul class="gnbDep2">
+                                <li class="dep2">
+                                    <a href="/4/1">HRDK �Ұ�</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/4/1/1">�Ұ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/4/1/2">�����ȳ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/4/1/3">�ֿ� ���󳻿�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/4/1/4">ã�ƿ��ô� ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dep1">
+                        <a href="/5">�������Ρ�����</a>
+                        <div class="gnbSubGroup">
+                            <ul class="gnbDep2">
+                                <li class="dep2">
+                                    <a href="/5/1">�������Ρ�����</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/5/1/1">�������Ρ�����</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dep1">
+                        <a href="/7">��������</a>
+                        <div class="gnbSubGroup">
+                            <ul class="gnbDep2">
+                                <li class="dep2">
+                                    <a href="/7/1">�������� �ȳ�</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/7/1/1">�������� ����</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/7/1/2">ó������ �� ��û</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/7/2">����������ǥ</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/7/2/1">����������ǥ</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/7/2/2">����������ǥ������</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/7/3">����������</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/7/3/1">�Ұ�</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/7/3/2">���� ���</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/7/3/3">��������</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/7/3/4">FAQ</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/7/4">����Ǹ���</a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/7/4/1">�ڷ��</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dep2">
+                                    <a href="/7/5"><span>�濵����</span></a>
+                                    <ul class="gnbDep3">
+                                        <li class="dep3">
+                                            <a href="/7/5/1">�Ϲ���Ȳ �� ����</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/7/5/2">�ֿ��� �� �濵����</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/7/5/3">�볻����</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/7/5/4">��������</a>
+                                        </li>
+                                        <li class="dep3">
+                                            <a href="/7/5/5">��Ÿ����</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <button type="button" class="btnSrchToggle"><span class="ir">�˻� �Է��� ����</span></button>
+                <button type="button" class="btnAllMenu"><span class="ir">��ü�޴�</span></button><!-- 2021-11-13 ���� ���� -->
+            </div>
+            <!-- 2021-11-13 �Է��� ��ġ ���� -->
+            <form name="searchForm" action="/search/search.jsp" method="POST" onsubmit="return searchFormChk(this);">
+            	<input type="hidden" id="isArk" value="t"/>
+            <div class="gnbSrchForm">
+                <div class="srchFormBox"><!-- 2021-11-13 .srchFormBox �߰� -->
+                	<label for="search-text" class="hidden">�˻��� �Է�</label><!-- 2022.05.03 -->
+                    <input type="text" id="search-text" name="search-text" placeholder="�˻�� �Է��� �ּ���." autocomplete="off">
+					<!-- <div class="auto-completeWarp">
+						<div class="autocomplete-box">
+							<ul class="auto-complete" tabindex="0">
+							</ul>
+							<div class="autocomplete-btm">
+								<a href="#autocompleteToggle" ><span id="autocompleteText">�ڵ��ϼ� ����</span></a>
+							</div>
+						</div>
+					</div> -->
+                    <button type="submit" id="middleSearchId" name="middleSearchButton" class="btnSrch"><span class="ir">�˻�</span></button>
+                </div>
+            </div>
+            </form>
+            <!-- // 2021-11-13 �Է��� ��ġ ���� -->
+        </div>
+        <!-- // pc gnb -->
+
+        <!-- ��ü �޴� -->
+        <div class="fullLayerPop">
+            <div class="layerHeader">
+                <div class="inner"><!-- 2021-11-13 .inner �߰� -->
+                    <h2 class="layerTit">��ü�޴�</h2>
+                </div>
+            </div>
+            <div class="layerCont bgHrdk">
+                <div class="inner">
+                    <ul class="snsList">
+                        <li class="youtube">
+                            <a href="https://www.youtube.com/user/HRDKorea" target="_blank" title="youtube�� ��â�̵�"><img src="/design5/images/main/icon_youtube.png" alt="youtube"></a>
+                        </li>
+                        <li class="facebook">
+                            <a href="http://www.facebook.com/hrdkorea2020" target="_blank" title="facebook���� ��â�̵�"><img src="/design5/images/main/icon_facebook.png" alt="facebook"></a>
+                        </li>
+                        <li class="instagram">
+                            <a href="https://www.instagram.com/hrdkorea_official" target="_blank" title="instagram���� ��â�̵�"><img src="/design5/images/main/icon_instagram.png" alt="instagram"></a>
+                        </li>
+                    </ul>
+                    <div class="allMenuWrap">
+                        <ul class="allMenuDep1">
+                            <li class="dep1 on">
+                                <a href="#none">����Ұ�</a>
+                                <ul class="allMenuDep2">
+                                    <li class="dep2">
+                                        <a href="/1/1">�ɷ°���</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/1/1/1">����Ұ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/1/2">�����ɷ°����Ʒ� ����</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/1/3">HRD Ȯ�ꡤ������ ����</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/1/4">�ڷ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/1/3">�ܱ��ΰ�������</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/1/3/1">����Ұ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/3/2">����� ����</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/3/3">�ܱ��αٷ�������</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/3/4">�ڷ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/1/5">������������</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/1/5/1">����Ұ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/5/2">��������</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/5/3">��������</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/5/4">�ڷ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/1/7">���������ɷ�ǥ��(NCS)</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/1/7/1">����Ұ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/7/2">�ڷ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/1/2">�ɷ���</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/1/2/1">����Ұ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/2/2">��������ڰݽ���</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/2/3">���������ڰݽ���</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/2/4">���������ڰ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/2/5">���н����� �ܺ���</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/2/6">�ڷ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/1/4">�ؿ��������</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/1/4/1">����Ұ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/4/2">����/���α׷�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/4/3">�ڷ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/1/6">���ñ��</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/1/6/1">����Ұ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/6/2">���ñ������</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/6/3">���ñ������</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/6/4">��ɰ���ȸ</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/6/5">�ڷ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/1/9">û��̷��÷���</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/1/9/1">����Ұ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/1/9/2">�ڷ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/1/8">��� ����������</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/1/8/1">�ڷ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dep1">
+                                <a href="#none">��������</a>
+                                <ul class="allMenuDep2">
+                                    <li class="dep2">
+                                        <a href="/2/1">���������濵</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/2/1/1">��������</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/2/1/2">����Ī�����</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/2/2">������ �Ҹ�</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/2/2/1">������ �Ҹ� �ݿ���</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/2/2/2">���� �� �ο�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/2/2/3">�ο� ��û�ϱ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/2/2/4">�ù�e�̻�ȸ</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/2/2/5">���С����ͽŰ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/2/2/6">���α���</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/2/3">����������伾��</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/2/3/1">����������伾��</a>
+                                            </li>
+											<li class="dep3">
+                                                <a href="/2/3/2">������� ���� ICT ���� ���̵�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/2/3/3">���� ICT ��� AI Ȱ�� ����</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+									<li class="dep2">
+                                        <a href="/2/4">â��/����Ȱ��ȭ ��������</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/2/4/1">HRDK ���⡤���� ������</a>
+                                            </li>
+											<li class="dep3">
+                                                <a href="/2/4/2">HRDK Ư�� Ȱ�� ��������</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dep1">
+                                <a href="#none">HRDK �ҽġ�ȫ��</a>
+                                <ul class="allMenuDep2">
+                                    <li class="dep2">
+                                        <a href="/3/1">�ҽ�</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/3/1/1">��������</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/3/1/2">����ä��</a>
+                                            </li>
+                                            <!-- <li class="dep3">
+                                                <a href="/3/1/3">���ȼ� �򰡰��</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/3/1/4">�ؿܿ�������</a>
+                                            </li> -->
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/3/2">ȫ��</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/3/2/1">HRDK ������</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/3/2/2">HRDK ȫ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+							<li class="dep1">
+                                <a href="#none">HRDK ESG</a>
+                                <ul class="allMenuDep2">
+                                    <li class="dep2">
+                                        <a href="/6/1">ESG �濵</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/6/1/1">ESG �濵</a>
+                                            </li>
+											<li class="dep3">
+                                                <a href="/6/1/2">ESG ����</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/6/2">E(Environment) ȯ��</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/6/2/1">E(Environment) ȯ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="#none"><span>S(Social)��ȸ</span></a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/6/3/1">HRDK ��ȸ����</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/6/3/2">��������</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="#none"><span>G(Governance)���豸��</span></a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/6/4/1">�����α�</a>
+                                            </li>
+                                            <li class="dep3 hasDep4">
+                                                <a href="/6/4/2">�гθ���</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="#none"><span>ESG �濵����</span></a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/6/5/1">ESG �濵����</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dep1">
+                                <a href="#none">���ܼҰ�</a>
+                                <ul class="allMenuDep2">
+                                    <li class="dep2">
+                                        <a href="/4/1">HRDK �Ұ�</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/4/1/1">�Ұ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/4/1/2">�����ȳ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/4/1/3">�ֿ� ���󳻿�</a>
+                                            </li>
+											<li class="dep3">
+                                                <a href="/4/1/4">ã�ƿ��ô� ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dep1">
+                                <a href="#none">�������Ρ�����</a>
+                                <ul class="allMenuDep2">
+                                    <li class="dep2">
+                                        <a href="/5/1">�������Ρ�����</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/5/1/1">�������Ρ�����</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dep1">
+                                <a href="#none">��������</a>
+                                <ul class="allMenuDep2">
+                                    <li class="dep2">
+                                        <a href="/7/1">�������� �ȳ�</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/7/1/1">�������� ����</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/7/1/2">ó������ �� ��û</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/7/2">����������ǥ</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/7/2/1">����������ǥ</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/7/2/2">����������ǥ������</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/7/3">����������</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/7/3/1">�Ұ�</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/7/3/2">���� ���</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/7/3/3">��������</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/7/3/4">FAQ</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/7/4">����Ǹ���</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/7/4/1">�ڷ��</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dep2">
+                                        <a href="/7/5">�濵����</a>
+                                        <ul class="allMenuDep3">
+                                            <li class="dep3">
+                                                <a href="/7/5/1">�Ϲ���Ȳ �� ����</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/7/5/2">�ֿ��� �� �濵����</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/7/5/3">�볻����</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/7/5/4">��������</a>
+                                            </li>
+                                            <li class="dep3">
+                                                <a href="/7/5/5">��Ÿ����</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        	<button type="button" class="btnLayerClose"><span class="ir">��ü�޴� �ݱ�</span></button>
+        </div>
+        <!-- // ��ü �޴� -->
+
+        <!-- main container -->
+        <div class="container" id="container">
+            <div class="contents">
+                <div class="mainSec1">
+                    <div class="inner">
+                        <div class="mainInfo">
+                            <div class="mainNoti1">
+                            </div>
+                            <div class="mainNoti2">
+                            	<!-- 2022.05.03 -->
+                                <h2 class="subTit">�˸�����</h2>
+                                <div class="swiper notiSwiper">
+                                    <div class="swiper-wrapper">
+                                        
+
+                                        <!--�����ɷ����� Ȱ�� ������ ������-->
+                                         
+                                            <div class="swiper-slide">
+                                                <a href="https://bank.ncs.go.kr/ctr/ctr1000e" target="_blank" title="�����ɷ����� Ȱ�� ������ ������, �Խñ۷� �̵��Ͽ� �ڼ�������">
+                                                    <img src="/design5/images/main/img_temp20260723.jpg" alt="" />
+                                                   </a>
+                                            </div>
+                                        
+                                        
+                                         <!--2026�� �����ӿ� �����̻� ��������-->
+                                         
+                                        
+                                        <!--�ܱ��ΰ�������(�����㰡�� ������)-->
+                                        
+                                            <div class="swiper-slide">
+                                                <a href="https://www.hrdkorea.or.kr/3/1/1" title="�����㰡�� ������ �̵��ϱ�" target="_blank">
+                                                <img src="/design5/images/main/img_temp20260713.jpg" alt="�ܱ��ΰ�������(�����㰡�� ������)" />
+                                                </a>
+                                            </div>
+                                        
+                                        
+                                        <!--������ ���� ����ȯ�� �� ȫ���ڷ��� ������������ �̵��ϱ�-->
+                                        
+                                            <div class="swiper-slide">
+                                                <a href="https://hrdkorea.or.kr/3/1/1?k=55822&pageNo=&searchType=&searchText=" title="������ ���� ����ȯ�� �� ȫ���ڷ��� ������������ �̵��ϱ�">
+                                                    <img src="/design5/images/main/img_temp20260526.jpg" alt="" />
+                                                </a>
+                                            </div>
+                                        
+
+                                        <!--����� �����ɷ°����Ʒ� �����Ʒ� ���� �͸��Ű�����-->
+                                        
+                                            <div class="swiper-slide">
+                                                <a href="https://cloud.kbei.org/center/?c=hrdkmon" title="����� �����ɷ°����Ʒ� �����Ʒ� ���� �͸��Ű�����, �Ű����ͷ� �̵��ϱ�" target="_blank">
+                                                <img src="/design5/images/main/img_temp20260708.jpg" alt="����� �����ɷ°����Ʒ� �����Ʒ� ���� �͸��Ű�����" />
+                                                </a>
+                                            </div>
+                                        
+                                        
+                                        <!--ã�� ���� ��Ȱ��������-->
+                                        
+                                            <div class="swiper-slide">
+                                                <a href="https://www.easylaw.go.kr" title="ã�� ���� ��Ȱ��������, ��ǥ�Խñ۷� �̵��ϱ�" target="_blank">
+                                                <img src="/design5/images/main/img_temp20260604.png" alt="ã�� ���� ��Ȱ��������" />
+                                                </a>
+                                            </div>
+                                        
+
+                                        <!--������� ������ ��Ī ��� ����-->
+                                         
+                                            <div class="swiper-slide">
+                                                <a href="https://www.hrdkorea.or.kr/3/1/1?k=55303&pageNo=&searchType=&searchText=" target="_blank" title="����� ������ ��Ī ��� ����, ��������ȳ� �Խñ۷� �̵��ϱ�">
+                                                    <img src="/design5/images/main/img_temp20260413.jpg" alt="������� ������ ��Ī ��� ����, �������" />
+                                                   </a>
+                                            </div>
+                                        
+
+                                        <!--20240131���/�ֿ���󳻿�-->
+										
+                                            <div class="swiper-slide">
+                                                <a href="https://www.hrdkorea.or.kr/4/1/3/1" title="HRDK ��� ���� �� �ֿ� ���� �������� �̵��ϱ�">
+                                                    <img src="/design5/images/main/hrdk_award_banner.jpg" alt="��ܼ��� �� �ֿ伺�� �ȳ� ���ο��� ���� ����޴� �ѱ�����η°����� �ǰڽ��ϴ�!" >
+                                                     <div class="ir">
+                                                        <strong>��ܼ��� �� �ֿ伺���ȳ�</strong>
+														<p>���ο��� ���� ����޴� �ѱ�����η°����� �ǰڽ��ϴ�!</p>
+                                                    </div>
+                                                 </a>
+                                            </div>
+                                        
+
+                                        <!--20251230 2025�� ����û�ŵ� �� ��� -->
+                                         
+                                            <div class="swiper-slide">
+                                                <a href="/7/5/5/1?k=55207" title="2025�� ����û�ŵ� �� ��� �󼼺���">
+                                                    <img src="/design5/images/main/img_temp20251230.jpg" alt="2025�� ����û�ŵ� �� ��� �󼼺���">
+                                                </a>
+                                            </div>
+                                        
+
+
+
+
+                                     </div>
+									<div class="swiper-button-next btn-swiper"></div>
+                                	<div class="swiper-button-prev btn-swiper"></div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mainBusiness">
+                            <p class="subTxt">HRDK �ֿ���</p>
+                            <h2 class="subTit">� <strong class="txtBlue">��� ����</strong>�� �ʿ��ϼ���?</h2>
+                            <div class="swiper businessSwiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide item01">
+                                        <a href="/1/1">
+                                            <strong class="tit">�ɷ°���</strong>
+                                            <p class="txt">�ɷ��� ��ȸ�� ����� ������ ����.</p>
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide item02">
+                                        <a href="/1/2">
+                                            <strong class="tit">�ɷ���</strong>
+                                            <p class="txt">������ �ɷ��� ü���<br class="pcShow"> ȿ���� ���縦 �缺�ϴ�.</p>
+                                        </a><!-- 2021-11-13 br.pcShow �߰�-->
+                                    </div>
+                                    <div class="swiper-slide item03">
+                                        <a href="/1/3">
+                                            <strong class="tit">�ܱ��ΰ�������</strong>
+                                            <p class="txt">�߼ұ�� ������ �ذŸ�����<br class="pcShow"> �η³��� �ؼ��ϴ�.</p>
+                                        </a><!-- 2021-11-13 br.pcShow �߰�-->
+                                    </div>
+                                    <div class="swiper-slide item04">
+                                        <a href="/1/5">
+                                            <strong class="tit">������������</strong>
+                                            <p class="txt">�����ڿ������� �����ϴ�<br class="pcShow"> ���������� ��갡 �Ǵ�.</p>
+                                        </a><!-- 2021-11-13 br.pcShow �߰�-->
+                                    </div>
+                                    <div class="swiper-slide item05">
+                                        <a href="/1/4">
+                                            <strong class="tit">�ؿ��������</strong>
+                                            <p class="txt">�ؿܳ뵿���� ������ ����<br class="pcShow"> �۷ι� ���縦 �缺�ϴ�.</p>
+                                        </a><!-- 2021-11-13 br.pcShow �߰�-->
+                                    </div>
+                                    <div class="swiper-slide item06">
+                                        <a href="/1/6">
+                                            <strong class="tit">���ñ������</strong>
+                                            <p class="txt">���õ� �����<br> ���������� ���̴�.</p>
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide item07">
+                                        <a href="/1/7">
+                                            <strong class="tit">���������ɷ�ǥ��</strong><!-- 2021-11-13 ���� ���� -->
+                                            <p class="txt">�ɷ� �߽��� ���� ��ȸ����<br class="pcShow"> ����, NCS�� �����ϴ�.</p>
+                                        </a><!-- 2021-11-13 br.pcShow �߰�-->
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next btn-swiper"></div>
+                                <div class="swiper-button-prev btn-swiper"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mainSec2">
+                    <div class="inner">
+                        <div class="mainPromote">
+                            <p class="subTxt">HRDK ȫ������</p>
+                            <h2 class="subTit"><strong class="txtBlue">HRDK</strong> �ҽ���<br> ��Ų� ���մϴ�.</h2>
+                            <div class="promoteCont">
+                                <ul class="snsList">
+                                    <li class="youtube">
+                                        <!-- <a href="https://www.youtube.com/user/HRDKorea" target="_blank"><img src="/design5/images/main/icon_youtube.png" alt="youtube"></a> -->
+                                        <!-- <a href="https://www.youtube.com/watch?v=vwwsxxeD0X4" target="_blank" title="��â ����"><img src="/design5/images/main/icon_youtube.png" alt="youtube"></a> -->
+                                        <a href="https://www.youtube.com/watch?v=JvKZiIMn1Ss&t=4s" target="_blank" title="��â ����"><img src="/design5/images/main/icon_youtube.png" alt="youtube"></a>
+                                     </li>
+                                    <li class="instagram">
+                                        <a href="https://www.instagram.com/hrdkorea_official" target="_blank" title="��â ����"><img src="/design5/images/main/icon_instagram.png" alt="instagram"></a>
+                                    </li>
+                                    <li class="facebook">
+                                        <a href="http://www.facebook.com/hrdkorea2020" target="_blank" title="��â ����"><img src="/design5/images/main/icon_facebook.png" alt="facebook"></a>
+                                    </li>
+								</ul>
+                                <p class="linkMore"><a href="http://webzine.hrdkorea.or.kr" target="_blank" title="��â ����">HRDK ȫ������ �ٷΰ���</a></p>
+                                <!-- 2022.05.03 �߰� -->
+                                <div class="videoCont">
+	                                <!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/vwwsxxeD0X4?si=vPijqycekYkV_wrH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                                    <iframe width="100%" height="345" src="https://www.youtube.com/embed/JvKZiIMn1Ss?si=oAmkuiwtmyGrElnB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	                                <textarea class="video_txt" title="�ѱ�����η°��� ���� ȫ������ ����" readonly>
+                                        ���� ��ȭ�� ���۵Ǿ����ϴ�.
+
+                                        ����� ����, ������ ��ȯ, �ʰ���ȭ ��ȸ ����
+                                        ��ȭ�� ���ε鵵 ������ ���Ӱ� �����ϰ� ����.
+
+                                        ������ �� �������� ������ �ʴ� �� �ϳ��� ��ġ ,"���"
+
+                                        ��� ��ȭ�� ������Լ� ���۵ǰ�
+                                        �ϵ� ����� �߽����� ��ȭ�ؾ� �ϴϱ�.
+
+                                        ������  �Ͽ� ������ ���� ���ϴ�
+                                        �ѱ�����η°���.
+
+                                        �츮�� ����� ��������ɷ��� ������
+                                        �޺��ϴ� ȯ�濡�� ��鸲���� �����ϴ�
+                                        ���ѹα� ����η��� Ű��ϴ�.
+
+                                        ������ɿø��� �ְ����� ����,
+                                        �۷ι� ���ұ���� ��� �����,
+                                        �츮 ������ �Ѹ��� �߼ұ�� ������ �����ϸ�
+                                        �Բ� �׾ƿ� �ð�.
+
+                                        ���� �츮�� ���η� �۷ι� �����ڿ����� ��Ʈ�ʶ��
+                                        �� ū ������ ���� �츮�� �Ͽ� ���ο� ���� �̾�ϴ�.
+                                        �ɷ��߽ɻ�ȸ�� ���� ����� �ٶ��� ����� �����ڿ����� ���Ͽ츦 ����
+                                        ���� ������ ����η��̶��
+                                        ���ѹα� �ְ��� �ڻ��� �ϱ��� �� ����.
+
+                                        �߼ұ���� �ٷ����� ����� ������ �������� ����� ����
+                                        �ɷ°��� ������ ���񽺸� �����ϰ�,
+                                        ���ϴ� ������� ����� �������� �ŵ쳯 �� �ֵ��� �ڰݽ��������� ��ϸ鼭,
+                                        ����� �ٷ���, ����� �Բ� ������ �� �ִ�
+                                        ��ȸ�� ���ɼ��� ���� ���ϴ�.
+
+                                        �߼ұ����
+                                        ���� �� �ִ� �ܱ��� �η��� �����ϴ� �Ͽ���
+                                        ����� �ɷ��� Ű���� �츮�� ������ ���ϰ� ����.
+
+                                        �׷���, ���õ� ����η��� ������ �����
+                                        ���ο� Ȱ���� �Ҿ���� �� �ֵ���,
+
+                                        �츮�� �� ū ����� ����Ǿ�
+                                        ��ΰ� ���ϴ� ���� �̷��� �׷����ϴ�.
+                                     </textarea>
+								</div>
+
+                                <!-- 2021-11-13 ����
+                                <div class="swiper promoteSwiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <a href="#none">
+                                                <img src="/design5/images/main/img_temp_mo02.jpg" alt="Korea �츮�� ������ �ʴ� �������� ���ѹα��� ���� �� ũ�� �׷����ϴ�." class="moShow">
+                                                <img src="/design5/images/main/img_temp_pc02.jpg" alt="Korea �츮�� ������ �ʴ� �������� ���ѹα��� ���� �� ũ�� �׷����ϴ�." class="pcShow">
+                                            </a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="#none">
+                                                <img src="/design5/images/main/img_temp_mo02.jpg" alt="Korea �츮�� ������ �ʴ� �������� ���ѹα��� ���� �� ũ�� �׷����ϴ�." class="moShow">
+                                                <img src="/design5/images/main/img_temp_pc02.jpg" alt="Korea �츮�� ������ �ʴ� �������� ���ѹα��� ���� �� ũ�� �׷����ϴ�." class="pcShow">
+                                            </a>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <a href="#none">
+                                                <img src="/design5/images/main/img_temp_mo02.jpg" alt="Korea �츮�� ������ �ʴ� �������� ���ѹα��� ���� �� ũ�� �׷����ϴ�." class="moShow">
+                                                <img src="/design5/images/main/img_temp_pc02.jpg" alt="Korea �츮�� ������ �ʴ� �������� ���ѹα��� ���� �� ũ�� �׷����ϴ�." class="pcShow">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                 -->
+                            </div>
+                        </div>
+                        <div class="mainCustomerSvc">
+                            <p class="subTxt">HRDK ������ �Ҹ�</p>
+                            <h2 class="subTit">������ ���� �ǰ߿���<br> �� ����̴� <strong class="txtBlue">HRDK.</strong></h2>
+                            <div class="csCont">
+
+
+                                <!---------------------------------------------->
+                                <!--20230214 �������� ã�� �� ESG ��ũ���� �߰�-->
+                                <!---------------------------------------------->
+                                <div class="csBanner">
+                                    <!--��������-->
+                                   <div class="bannerList">
+                                    <a href="tel:1644-8000" title="�������� 1644-8000 ��ȭ�����ϱ�" >
+                                        <div class="bannericon bgWhite"><p class="bg01 "></p></div>
+                                        <div class="bannertxt">
+                                          <h3 class="textLightBlue">��������</h3>
+                                          <p class="telephone">1644-8000</p>
+                                          <p>��ð� ���� 09:00~18:00</p>
+                                        </div>
+                                    </a>
+                                   </div>
+                                   <!--��������ã��-->
+                                   <div class="bannerList">
+                                    <a href="/5/1/1" title="�������� �� ���� ã�ƺ��� �������� �̵��ϱ�">
+                                        <div class="bannericon bgBlue"><p class="bg02"></p></div>
+                                        <div class="bannertxt">
+                                          <h3 class="branchTitle">����η°���<br/>�������� �� ���� ã�ƺ���</h3>
+                                          <p class="branchInfo"><span class="textLightBlue">6��</span>�������� <span class="textLightBlue">26��</span>����</p>
+                                        </div>
+                                    </a>
+                                  </div>
+                                  <!--HRDK ESG��ũ-->
+                                  <div class="bannerList">
+                                    <a href="/6/1/1" title="HRDK ESG �濵 �������� �̵��ϱ�">
+                                        <div class="bannericon bgWhite"><p class="bg03"></p></div>
+                                        <div class="bannertxt">
+                                          <h3 class="textLightBlue">HRDK ESG</h3>
+                                          <p>û���� ��ġ �ֿ켱 ����&middot;�αǰ濵 �������</p>
+                                        </div>
+                                    </a>
+                                   </div>
+                                </div>
+                                <!--//-->
+                                <!---------------------------------------------->
+
+                                <div class="csMenu">
+                                    <ul>
+                                        <li class="csMenuLi01">
+                                            <a href="/2/2/3/2">�ο�<br class="moShow"> ��û�ϱ�</a><!-- 2021-11-13 .moShow class �߰� -->
+                                        </li>
+                                        <li class="csMenuLi02">
+                                            <a href="/2/2/3/1">�����ϴ�<br class="moShow"> ����</a><!-- 2021-11-13 .moShow class �߰� -->
+                                        </li>
+                                        <li class="csMenuLi03">
+                                            <a href="/2/2/3/6">����<br class="moShow"> Ī���ϱ�</a><!-- 2021-11-13 .moShow class �߰� -->
+                                        </li>
+                                        <li class="csMenuLi04">
+                                            <a href="/2/2/3/5">����<br class="moShow"> �����ϱ�</a><!-- 2021-11-13 .moShow class �߰� -->
+                                        </li>
+                                        <li class="csMenuLi05">
+                                            <a href="/2/2/5">���С�����<br class="moShow">�Ű�</a><!-- 2021-11-13 .moShow class �߰� -->
+                                        </li>
+                                        <li class="csMenuLi06">
+                                            <a href="/2/2/4">�ù�<br class="moShow">e�̻�ȸ</a><!-- 2021-11-13 .moShow class �߰� -->
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mainSec3">
+                    <div class="inner">
+                        <div class="swiper companySwiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <a href="https://openapi.hrdkorea.or.kr/main" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci01.png" alt="HRDK ���� API"></a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="https://www.worldjob.or.kr" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci02.png" alt="WORLDJOB+ �ؿ�����������"></a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="https://www.ncs.go.kr/index.do" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci03.png" alt="NCS ���������ɷ�ǥ��"></a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="http://www.q-net.or.kr" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci04.png" alt="�ڰ��� ���� Q-Net �ڰݰ���"></a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="https://c.q-net.or.kr" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci05.png" alt="CQ-Net ���������ڰ� ���н�����"></a>
+                                </div>
+                                <!-- <div class="swiper-slide">
+                                    <a href="http://www.q-net.or.kr/man001.do?imYn=Y&gSite=Q" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci04.png" alt="�ڰ��� ���� Net �ڰݰ���"></a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="https://c.q-net.or.kr/cmn/com/main.do" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci05.png" alt="CQ-Net ���������ڰ� ���н�����"></a>
+                                </div> -->
+                                <div class="swiper-slide">
+                                    <a href="https://eps.hrdkorea.or.kr/main/intro.do" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci06.png" alt="�����㰡�����ռ��� EPS.hrdkorea.or.kr"></a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="https://meister.hrdkorea.or.kr/main/main.do" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci07.png" alt="���̽��ͳ� ���ñ��������"></a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="http://www.jobplustv.or.kr" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci08.png" alt="JOBPLUSTV"></a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="https://bank.ncs.go.kr" target="_blank"
+                                    ><img src="/design5/images/main/img_ci09.png" alt="�����ɷ�����"></a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="https://www.hrd4u.or.kr/hrd4u/main.do" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci10.png" alt="HRD4U"></a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="https://pdms.ncs.go.kr/index.jsp" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci11.png" alt="���н�����PDMS"></a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- <a href="https://www.hrd.go.kr/hrdp/ma/pmmao/indexNew.do" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci12.png" alt="�����Ʒ�����+ HRD-Net"></a> -->
+									<a href="https://www.work24.go.kr" target="_blank" title="��â ����"><img src="/design5/images/main/img_ci12.png" alt="�����Ʒ�����+ HRD-Net ����24"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- // main container -->
+    </div>
+    <!-- // mainWrap -->
+
+	<div class="chatbot-wrap">
+        <!--div class="chatbot-bubble">ê�� ��� ����</div-->
+        <a href="#open_chatbot" title="��â" class="chatbot-fab" aria-label="ê�� ����" onclick="chatOpen();">
+          <img src="/design5/images/common/chatbot.png" alt="ê�� ������" />
+        </a>
+    </div>
+
+
+    <footer>
+    
+	<!-- ���̹� ����  -->
+		<span itemscope="" itemtype="http://schema.org/Organization" style="display: none">
+		<link itemprop="url" herf="https://www.hrdkorea.or.kr">
+		<a itemprop="sameAs" href="https://www.youtube.com/user/HRDKorea"></a>
+		<a itemprop="sameAs" href="https://www.facebook.com/hrdkorea2020"></a>
+		<a itemprop="sameAs" href="https://www.instagram.com/hrdkorea_official"></a>
+		</span>
+		<div id="footMenuSet">
+		    <div class="inner">
+		        <ul id="footMenu">
+		            <li><a href="/ksh/1/2"><b style="color: gold;">�������� ó����ħ</b></a></li>
+		            <li><a href="/ksh/1/3/2">���۱Ǻ�ȣ��å</a></li>
+		            <li><a href="/4/1/4">ã�ƿ��ô� ��</a></li>
+		            <li><a href="http://www.juso.go.kr" target="_blank">���θ��ּҾȳ�</a></li>
+		        </ul>
+		        <ul id="snsSet">
+		            <li><a href="https://www.youtube.com/user/HRDKorea" target="_blank" title="��â ����"><span class="blind">youtube</span></a></li>
+		            <li><a href="https://www.instagram.com/hrdkorea_official" target="_blank" title="��â ����"><span class="blind">instagram</span></a></li>
+		            <li><a href="https://www.facebook.com/hrdkorea2020" target="_blank" title="��â ����"><span class="blind">facebook</span></a></li>
+				</ul>
+		    </div>
+		</div>
+
+		<div class="inner">
+		    <h2 class="desktop"><a href="#"><span class="blind">�ѱ�����η°���</span></a></h2>
+
+		    <div id="tel">
+		        <h3 class="tit">��������<span class="txt">(����)</span></h3>
+		        <div>
+                    <a href="tel:1644-8000"><strong>1644-8000</strong></a>
+                    <p class="time">��ð� ���� <span>09:00 - 18:00</span></p>
+                </div>
+		    </div>
+		    <address>
+		        (44538) ��걤���� �߱� ������ 345 �ѱ�����η°���<br>
+		        Copyright&copy;2021 All rights reserved. <br class="mobile">Human Resources Development Service of Korea
+		    </address>
+
+		    <div id="foot_site">
+		    	<!-- 2022.05.03 -->
+		    	<a href="#" class="footLink">
+		    		<h3>������� ����Ʈ</h3>
+		    	</a>
+		        <ul>
+		            <li><a href="http://www.moel.go.kr/" target="_blank">����뵿��</a></li>
+		            <li><a href="https://www.kli.re.kr/" target="_blank">�ѱ��뵿������</a></li>
+		            <li><a href="https://www.keli.kr/" target="_blank">�ѱ�����뵿������</a></li>
+		            <li><a href="https://www.koreatech.ac.kr/" target="_blank">�ѱ�����������б�</a></li>
+		            <li><a href="https://www.keis.or.kr/" target="_blank">�ѱ�����������</a></li>
+		            <!-- <li><a href="https://www.hrd.go.kr/" target="_blank">�����Ʒ�����</a></li> -->
+		            <li><a href="http://www.nlrc.go.kr/" target="_blank">�߾ӳ뵿����ȸ</a></li>
+		            <!-- <li><a href="https://www.work.go.kr/" target="_blank">��ũ��</a></li> -->
+					<li><a href="https://www.work24.go.kr/" target="_blank">����24</a></li>
+		            <li><a href="https://www.comwel.or.kr/comwel/landing.jsp" target="_blank">�ٷκ�������</a></li>
+		            <li><a href="https://www.kopo.ac.kr/" target="_blank">�ѱ������ش���</a></li>
+		            <li><a href="https://www.krivet.re.kr/" target="_blank">�ѱ������ɷ¿�����</a></li>
+		            <li><a href="https://www.kead.or.kr/" target="_blank">�ѱ�����ΰ������</a></li>
+		            <li><a href="https://www.kosha.or.kr/" target="_blank">�������ǰ���</a></li>
+		            <li><a href="https://www.ksqa.or.kr/" target="_blank">�����ɷ½ɻ��򰡿�</a></li>
+		        </ul>
+		        <!-- 2022.05.03 -->
+		        <div class="footlogo">
+		            <img src="/design5/images/foot_logo1.png" alt="���α�������ȸ�� �Բ��ϴ� û���Ѽ���">
+		            <p>
+		            	<a href="/7/5/5/1?k=55207">2025�⵵ ���� û�ŵ� �򰡰��</a><br>
+		            </p>
+		        </div>
+		    </div>
+		    <ul id="siteListSet" class="desktop">
+		        <li>
+
+                    <!--2025�� 11�� 7�� ���� -->
+                    <a href="http://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110" alt="WA �����ټ� ǰ������ ��ũ" title="���б��������ź� WA �����ټ� ǰ������ ��ũ (����ġ) ��ȿ�Ⱓ: 2025.11.09 ~ 2026.11.08, ����ġ Ȩ������ ��â ����" target="_blank">
+                        <span class="ir">�����ټ� �������Ʈ</span>
+                    </a>
+
+                </li>
+				<li><a href="javascript:void();" title="��â����_�ѱ�����η°��� �ݺ��� û�ű�� �˾�â" onclick="window.open('/main/popup/openPop.html', 'popup', 'width=950,height=800,top=150,left=150,scrollbars=yes'); return false;"><span class="blind">�ѱ�����η°��� �ݺ��� û�ű��</span></a></li>
+		    </ul>
+		</div>
+
+    	<script type="text/javascript" src="/design5/js/footer.js"></script>
+
+    </footer>
+
+    <!-- <script type="text/javascript" src="../../js/sub.js"></script> -->
+
+    <script>
+        // 2021-11-13 js/main.js�� ��ũ��Ʈ �и�
+
+
+  	//��¥üũ
+    function chkDate(){
+    	var now = new Date();
+    	var today = now.getFullYear();
+
+    	if(now.getMonth()+1 <= 9)	{ today +=  '0' + (now.getMonth()+1); }
+    	else						{ today += '' + (now.getMonth()+1); }
+
+    	if(now.getDate() <= 9)		{ today +=  '0' + now.getDate(); }
+    	else						{ today += '' + now.getDate(); }
+
+    	//if(today >= 20170213 && today <= 20170227) {
+    	if(today < 20200113) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    /* ********************************************************
+     * ��Ű��������
+     ******************************************************** */
+    function getCookie(name) {
+        var Found = false;
+        var start, end;
+        var i = 0;
+        while(i <= document.cookie.length) {
+            start = i;
+            end = start + name.length;
+            if(document.cookie.substring(start, end) == name) {
+                Found = true;
+                break;
+            }
+            i++;
+        }
+        if(Found == true) {
+            start = end + 1;
+            end = document.cookie.indexOf(";", start);
+            if(end < start)
+                end = document.cookie.length;
+            return document.cookie.substring(start, end);
+        }
+        return "";
+    }
+    /* ********************************************************
+     * �˾�ȭ�� ����
+     ******************************************************** */
+    if(chkDate() == true) {
+        wWidth = 650;
+        wHight = 670;
+        wX = (window.screen.width - wWidth) / 2;
+        wY = (window.screen.height - wHight) / 2;
+
+    	var urlInfo = "/popup.do";
+
+        var noticeCookie1 = getCookie("gEpsHomeWin");  // ��Ű���� ����
+        if (noticeCookie1 != "no") {
+        	window.open(urlInfo, 'gEpsHomeWin', "directories=0,scrollbars=0,resizable=0,toolbar=0,left="+wX+",top="+wY+",width="+wWidth+",height="+wHight);
+        }
+    }
+	 // ������
+	    var now = new Date();
+	    var year = now.getFullYear(); // ���� �⵵ ��������
+	    var month = now.getMonth() + 1; // ���� �� ��������
+	    if ((month + "").length < 2) {// ���� ���ڸ� ���� ��� (1,3,5) �տ� 0 ���δ� 01,03,05
+	    	month = "0" + month;
+	    }
+	    var date = now.getDate(); // ���� ��¥ ��������
+	    if ((date + "").length < 2) {// ���� ���ڸ� ���� ��� (1,3,5) �տ� 0 ���δ� 01,03,05
+	    	date = "0" + date;
+	    }
+	    var time = now.getHours(); // ���� �ð�
+	    if ((time + "").length < 2) {// ���� ���ڸ� ���� ��� (1,3,5) �տ� 0 ���δ� 01,03,05
+	    	time = "0" + time;
+	    }
+	    var minutes = now.getMinutes(); // ���� ��
+	    if ((minutes + "").length < 2) {// ���� ���ڸ� ���� ��� (1,3,5) �տ� 0 ���δ� 01,03,05
+	    	minutes = "0" + minutes;
+	    }
+	    var today = year + "" + month + "" + date + "" + time + "" + minutes;
+
+
+
+       	// �ֿ� ���󳻿� (�׻���� �˾����� ����)
+        
+
+
+    </script>
+
+    <script>
+    <!--
+    	
+    	//��Ű ����
+    	function setCookie( name, value, expiredays )  {
+			var todayDate = new Date();
+			todayDate.setDate( todayDate.getDate() + expiredays );
+			document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+		}
+
+    	//�ݱ� ��ư
+        function fMainPopupClose(){
+        	$("#mainPopup_modalWrap").hide();
+        }
+
+      	//���� �Ϸ� �����ʱ�
+    	function closeMainPop(){
+    		setCookie("mainPopupCookie", "done" , 1);
+    		fMainPopupClose();
+    	}
+
+        $(document).ready(function(){
+        	//��Ű���� ����
+        	let mainPopupCookie = getCookie("mainPopupCookie");
+
+        	//�����̵� ����
+        	const mainPopupSlideCnt = $("#mainPopup_modalWrap .swiper-slide").length;
+
+        	//��Ű �� �����̵� ���� üũ
+        	if (mainPopupCookie != "done" && mainPopupSlideCnt > 0){
+        		$("#mainPopup_modalWrap").show();
+
+				let popSwiper = new Swiper(".mainPopup_modal_group .popSwiper", {
+					slidesPerView: 'auto',
+					spaceBetween: 10,
+					pagination: {
+						el: ".mainPopup_modal_group .swiper-pagination",
+						clickable: true,
+					},
+					loop: false,
+					navigation: {
+						nextEl: ".mainPopup_modal_group .swiper-button-next",
+						prevEl: ".mainPopup_modal_group .swiper-button-prev",
+					},
+					a11y: {
+						prevSlideMessage: '���� �����̵�',
+						nextSlideMessage: '���� �����̵�',
+						SlideLabelMessage: '�� {{slidesLength}}���� �����̵� �� {{index}}�� �����̵� �Դϴ�.',
+					},
+					runCallbacksOnInit:false
+				});
+        	}
+        });
+    //-->
+    </script>
+
+</body>
+</html>

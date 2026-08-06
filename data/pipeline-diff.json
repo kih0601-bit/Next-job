@@ -1,12 +1,55 @@
 {
-  "generatedAt": "2026-08-06T15:11:01.255Z",
+  "generatedAt": "2026-08-06T15:24:51.790Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 1,
-    "regressed": 0,
-    "unchanged": 21
+    "improved": 0,
+    "regressed": 2,
+    "unchanged": 20
   },
   "changes": [
+    {
+      "org": "울주군시설관리공단",
+      "health": "failed",
+      "primaryCause": {
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011",
+            "ok": false,
+            "error": "fetch failed"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
     {
       "org": "울산남구도시관리공단",
       "health": "degraded",
@@ -996,187 +1039,6 @@
       "regressed": false
     },
     {
-      "org": "울주군시설관리공단",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "list",
-        "status": "failed",
-        "code": "LIST_COUNTER_FAILED",
-        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-        "evidence": [
-          {
-            "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 233,
-            "titleMatches": 215,
-            "noUrl": 1,
-            "unsafeUrl": 3,
-            "accepted": 48,
-            "rowFallbackAccepted": 2,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 4,
-            "titleSamples": [
-              "브라우저에서 자바스크립트를 활성화하는 방법",
-              "주요메뉴로 건너뛰기",
-              "본문으로가기",
-              "공공시설예약서비스",
-              "울주시네마 예매시스템",
-              "울주군시설관리공단",
-              "페이스북",
-              "카카오톡"
-            ],
-            "unsafeSamples": [
-              {
-                "title": "주요메뉴로 건너뛰기",
-                "reason": "detail-url-pending",
-                "identity": "row-6610",
-                "row": "<li><a  class=\"accessibility\" href=\"#gnb\">주요메뉴로 건너뛰기</a></li>"
-              },
-              {
-                "title": "본문으로가기",
-                "reason": "detail-url-pending",
-                "identity": "row-6676",
-                "row": "<li><a  class=\"accessibility\" href=\"#container\">본문으로가기</a></li>"
-              },
-              {
-                "title": "홍보영상",
-                "reason": "no-url-detail-pending",
-                "identity": "row-13332",
-                "row": "<li class=\"promo\"><a href=\"#\" onClick=\"show_promo();\"><span class=\"sns_txt\">홍보영상</span></a></li>"
-              },
-              {
-                "title": "관련사이트",
-                "reason": "detail-url-pending",
-                "identity": "row-75722",
-                "row": "<li>\r\n\t\t\t\t\t\t\t\t<a href=\"#LINK\" class=\"flink\">관련사이트</a>\r\n\t\t\t\t\t\t\t\t<ul  class=\"foot_link\">\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"https://www.uljusiseol.or.kr/portal\" target=\"_blank\">울주군시설관리공단</a></li>"
-              }
-            ],
-            "actionSamples": [
-              {
-                "title": "홍보영상",
-                "action": "show_promo();"
-              }
-            ],
-            "candidateUrlSamples": [
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "http://www.enable-javascript.com/ko/",
-                "allowed": false
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://cdn.rawgit.com/young-ha/webfont-archive/master/css/Godo.css",
-                "allowed": false
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/PageLink.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4",
-                "allowed": false
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/;jsessionid=BF9D8DD8AE5040DDE552B835239831E4",
-                "allowed": false
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011#gnb",
-                "allowed": false
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011&id=securitynttidheader",
-                "allowed": true
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011&id=securitybbsidheader",
-                "allowed": true
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011&id=skip_nav",
-                "allowed": true
-              },
-              {
-                "title": "주요메뉴로 건너뛰기",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011#gnb",
-                "allowed": false
-              },
-              {
-                "title": "본문으로가기",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011#container",
-                "allowed": false
-              },
-              {
-                "title": "고객소통",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000048",
-                "allowed": true
-              },
-              {
-                "title": "고객의 소리",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000048",
-                "allowed": true
-              },
-              {
-                "title": "군민제안방",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000050",
-                "allowed": true
-              },
-              {
-                "title": "재난 및 안전",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000045",
-                "allowed": true
-              },
-              {
-                "title": "체육시설서식자료실",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000046",
-                "allowed": true
-              },
-              {
-                "title": "주민참여예산",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000049",
-                "allowed": true
-              }
-            ],
-            "candidateCount": 48,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
-        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
       "org": "울주문화재단",
       "health": "degraded",
       "primaryCause": {
@@ -1733,6 +1595,62 @@
       "regressed": false
     },
     {
+      "org": "울산광역시 타기관소식",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "detail",
+        "status": "failed",
+        "code": "DETAIL_EMPTY_BODY",
+        "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+        "evidence": [
+          {
+            "title": "(부산광역시) 위해축산물 긴급회수문 게재",
+            "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+            "ok": false,
+            "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "error": "fetch failed"
+          },
+          {
+            "title": "울산시설공단 임원 공개모집 공고",
+            "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+            "ok": false,
+            "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "error": "fetch failed"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산광역시 타기관소식.mjs",
+        "recommendedAction": "기관 전용 상세 본문 선택자 추가"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
+    {
       "org": "울산시설공단",
       "health": "degraded",
       "primaryCause": {
@@ -2030,19 +1948,19 @@
               {
                 "title": "정보공개청구",
                 "reason": "detail-url-pending",
-                "identity": "row-36044",
+                "identity": "row-36043",
                 "row": "<div class=\"list01\"><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새 창 열림\">정보공개청구</a></div>"
               },
               {
                 "title": "웹접근성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49223",
+                "identity": "row-49222",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               },
               {
                 "title": "웹개방성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49374",
+                "identity": "row-49373",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               }
             ],
@@ -2294,43 +2212,6 @@
       "regressed": false
     },
     {
-      "org": "울산광역시 타기관소식",
-      "health": "healthy",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산광역시 타기관소식.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
       "org": "울산도시공사",
       "health": "healthy",
       "primaryCause": {
@@ -2455,27 +2336,27 @@
       },
       "stages": {
         "access": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "detail": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "attachment": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="icon" href="/job/common/home/assets/images/brand/tab01.gif" type="image/x-icon" />
+<link rel="shortcut icon" href="/job/common/home/assets/images/brand/tab01.gif" type="image/x-icon" />
+<title>채용시스템</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!-- LOGIN & FIRST-PAGE CSS -->
+	<link href="/job/common/home/assets/css/login.css" rel="stylesheet" />
+	<link href="/job/common/home/assets/css/first-page.css" rel="stylesheet" />
+
+	<!-- DASHBOARD CSS -->
+	<link href="/job/common/home/assets/css/dashboard.css" rel="stylesheet" />
+	<link href="/job/common/home/assets/css/style-modes.css" rel="stylesheet" />
+
+	<!-- SINGLE-PAGE CSS -->
+	<link href="/job/common/home/assets/plugins/single-page/css/main.css" rel="stylesheet" type="text/css">
+
+	<!--C3.JS CHARTS PLUGIN -->
+	<link href="/job/common/home/assets/plugins/charts-c3/c3-chart.css" rel="stylesheet" />
+
+	<!-- CUSTOM SCROLL BAR CSS-->
+	<link href="/job/common/home/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css" rel="stylesheet" />
+
+	<!--- FONT-ICONS CSS -->
+	<link href="/job/common/home/assets/css/icons.css" rel="stylesheet" />
+
+	<!-- SELECT2 CSS -->
+	<link href="/job/common/home/assets/plugins/select2/select2.min.css" rel="stylesheet" />
+
+	<!-- Skin css-->
+	<link href="/job/common/home/assets/skins/skins-modes/custom.css" id="theme" rel="stylesheet" type="text/css" media="all" />
+
+	<link href="/job/common/home/assets/js/customDatatable/datatable-custom.css" rel="stylesheet" />
+	<link href="/job/common/home/assets/plugins/datatable/jquery.dataTables.min.css" rel="stylesheet" />
+
+	<!-- ========================================JS======================================================================== -->
+	<!-- JQUERY SCRIPTS ( BASIC ) -->
+	<script src="/job/common/home/assets/js/vendors/jquery-3.2.1.min.js"></script>
+	<!-- BOOTSTRAP SCRIPTS ( BASIC ) -->
+	<script defer src="/job/common/home/assets/js/vendors/bootstrap.bundle.min.js"></script>
+	<!-- LEFT-MENU ( BASIC ) -->
+	<script defer src="/job/common/home/assets/plugins/sidemenu-toggle/sidemenu-toggle.js"></script>
+	<!-- BASIC-CUSTOM ( BASIC ) -->
+	<script defer src="/job/common/home/assets/js/basic-custom.js"></script>
+	<!-- <script defer src="/job/common/home/assets/js/basic-test.js"></script> -->
+
+	<!-- CUSTOM JS ( BASIC ) -->
+	<script defer src="/job/common/home/assets/js/custom.js"></script>
+
+	<!-- DATEPICKER JS -->
+	<script defer src="/job/common/home/assets/plugins/date-picker/spectrum.js"></script>
+	<script defer src="/job/common/home/assets/plugins/date-picker/jquery-ui.js"></script>
+	<script defer src="/job/common/home/assets/plugins/input-mask/jquery.maskedinput.js"></script>
+	<!-- DATA TABLE -->
+	<script defer src="/job/common/home/assets/plugins/datatable/js/jquery.dataTables.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/js/dataTables.bootstrap4.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/js/buttons.bootstrap4.min.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/js/jszip.min.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/js/pdfmake.min.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/js/vfs_fonts.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/js/buttons.html5.min.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/js/buttons.print.min.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/js/buttons.colVis.min.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/dataTables.responsive.min.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/responsive.bootstrap4.min.js"></script>
+	<script defer src="/job/common/home/assets/plugins/datatable/datatable.js"></script>
+	<!-- WYSIWYG Editor js -->
+	<script defer src="/job/common/home/assets/plugins/wysiwyag/jquery.richtext.js"></script>
+	<script defer src="/job/common/home/assets/plugins/wysiwyag/wysiwyag.js"></script>
+
+	<!-- CUSTOM DATATABLE -->
+	<script defer src="/job/common/home/assets/js/customDatatable/datatable-custom.js"></script>
+	<!-- ========================================JS END==================================================================== -->
+	<script defer src="/job/common/js/Jquery-C2R-custom.js" type="text/javascript"></script>
+	<script defer src="/job/common/js/UI-C2R-custom.js"></script>
+	<script defer src="/job/common/js/CommonUtil-C2R-custom.js" type="text/javascript"></script>
+	<script defer src="/job/common/js/Datatables-C2R-custom.js"></script>
+	</head>
+<body style="font-family: 'GongGothicLight';">
+
+
+
+
+
+
+<script type="text/javascript">
+	
+	var rootCtx = "/job/";
+	if( rootCtx == "/" )	rootCtx = "";
+
+	$(document).ready(function(){
+
+		fn_InitGrid1();
+		fn_InitGrid2();
+		fn_InitGrid3();
+
+	});
+
+	//[Fn] 그리드 Init
+	function fn_InitGrid1(){
+		G_FormParamInit("frm",["","BBS001","","","","","","",""]);
+		//[2]그리드 초기화
+		G_DT.init({
+			//그리드 표출 컬럼 정의
+			arrColModel : [
+				{
+					data:"titl",
+					className:"text-left",
+					orderable:false,
+		        	render:function(data,type,row){
+		        		return "<a href=\"javascript:void(0);\" onclick=\"fn_Detail('"+row.bbsNo+"')\" style=\"cursor:pointer\">"+data+"</a>";
+		        	}
+				},
+		        {
+					data:"crtDtm",
+					className:"text-center",
+					orderable:false,
+		        	render:function(data,type,row){
+		        		return "<a href=\"javascript:void(0);\" onclick=\"fn_Detail('"+row.bbsNo+"')\" style=\"cursor:pointer\">"+data+"</a>";
+		        	}
+				}
+			],
+			buttons  : false,		//버튼 사용하지 않음(Excel,PDF)
+			gridId   : "dataTableA",	//그리드 테이블 ID
+			formId   : "frm",		//그리드 Form ID
+			order    : [[0,"asc"]],	//정렬배열
+			url      : "/job/admmgr/mng/BS/BSLGridList.do",//Server Side URL
+			dblclick : false,		//더블클릭여부(true시 callback함수명 고정 : fn_DTGridDBClick)
+			checkbox : false,
+			lengthChange : false
+		});
+	}
+	//[Fn] 그리드 Init
+	function fn_InitGrid2(){
+		G_FormParamInit("frm",["","","","","","","","",""]);
+		//[2]그리드 초기화
+		G_DT.init({
+			//그리드 표출 컬럼 정의
+			arrColModel : [
+				{
+					data:"title",
+					className:"text-left",
+					orderable:false,
+		        	render:function(data,type,row){
+		        		return "<a href=\"javascript:void(0);\" onclick=\"fn_Recrute('"+row.notiNo+"')\" style=\"cursor:pointer\">["+row.recuFieldNm+"]"+row.title+"</a>";
+		        	}
+				},
+		        {
+					data:"regDt",
+					className:"text-center",
+					orderable:false,
+		        	render:function(data,type,row){
+		        		return "<a href=\"javascript:void(0);\" onclick=\"fn_Recrute('"+row.notiNo+"')\" style=\"cursor:pointer\">"+data+"</a>";
+		        	}
+				}
+			],
+			buttons  : false,		//버튼 사용하지 않음(Excel,PDF)
+			gridId   : "dataTableB",	//그리드 테이블 ID
+			formId   : "frm",		//그리드 Form ID
+			order    : [[0,"asc"]],	//정렬배열
+			url      : "/job/front/recrute/recruteGridList.do",//Server Side URL
+			dblclick : false,		//더블클릭여부(true시 callback함수명 고정 : fn_DTGridDBClick)
+			checkbox : false,
+			lengthChange : false
+		});
+	}
+
+	//[Fn] 그리드 Init
+	function fn_InitGrid3(){
+		G_FormParamInit("frm",["","","","","","","","",""]);
+		//[2]그리드 초기화
+		G_DT.init({
+			//그리드 표출 컬럼 정의
+			arrColModel : [
+				{
+					data:"title",
+					className:"text-left",
+					orderable:false,
+		        	render:function(data,type,row){
+		        		return "<a href=\"javascript:void(0);\" onclick=\"fn_Recrute3('"+row.notiNo+"')\" style=\"cursor:pointer\">["+row.recuFieldNm+"]"+row.title+"</a>";
+		        	}
+				},
+		        {
+					data:"regDt",
+					className:"text-center",
+					orderable:false,
+		        	render:function(data,type,row){
+		        		return "<a href=\"javascript:void(0);\" onclick=\"fn_Recrute3('"+row.notiNo+"')\" style=\"cursor:pointer\">"+data+"</a>";
+		        	}
+				}
+			],
+			buttons  : false,		//버튼 사용하지 않음(Excel,PDF)
+			gridId   : "dataTableC",	//그리드 테이블 ID
+			formId   : "frm",		//그리드 Form ID
+			order    : [[0,"asc"]],	//정렬배열
+			url      : "/job/front/recrute/resultGridList.do",//Server Side URL
+			dblclick : false,		//더블클릭여부(true시 callback함수명 고정 : fn_DTGridDBClick)
+			checkbox : false,
+			lengthChange : false
+		});
+	}
+
+
+
+	
+	function fn_Detail(bbsNo) {
+		G_UI.modalPage({
+	    	url   : "/job/front/BS/BSView.do",
+	    	param : {
+	    		title        : "게시글 상세보기",
+	    		bbsNo        : bbsNo
+	    	}
+		});
+	}
+
+	
+	function fn_Recrute(notiNo) {
+		G_UI.modalPage({
+	    	url   : "/job/front/recrute/recruteView.do",
+	    	param : {
+	    		title        : "채용공고 상세보기",
+	    		notiNo        : notiNo
+	    	}
+		});
+	}
+
+	function fn_Recrute3(notiNo) {
+		G_UI.modalPage({
+	    	url   : "/job/front/recrute/recruteView3.do",
+	    	param : {
+	    		title        : "채용결과 상세보기",
+	    		notiNo        : notiNo
+	    	}
+		});
+	}
+
+
+	
+	function fnRecruteList(){
+		$("#frm").attr("action","/job/front/recrute/recruteList.do");
+	    $("#frm").submit();
+	}
+	
+	function fnRecruteDetail(num){
+		var arrFormParam = new Array();
+	    arrFormParam.push(num);
+	    G_FormParamInit("frm",arrFormParam);
+	    $("#frm").attr("action","/job/front/recrute/recruteView.do");
+	    $("#frm").submit();
+	}
+	
+	$(document).on("click","#btnRecruteMore",function(){
+		fnRecruteList();
+	});
+	
+	function fnRecruteDetail(num){
+		var arrFormParam = new Array();
+	    arrFormParam.push(num);
+	    arrFormParam.push("");
+	    arrFormParam.push("");
+	    arrFormParam.push("");
+	    arrFormParam.push("");
+	    arrFormParam.push("");
+	    arrFormParam.push("");
+	    G_FormParamInit("frm",arrFormParam);
+	    $("#frm").attr("action","/job/front/recrute/recruteView.do");
+	    $("#frm").submit();
+	}
+</script>
+<form id="frm" method="post" action="javascript:;" autocomplete="off">
+	<input type="hidden" id="workType" name="workType" value="LIST"/>
+</form>
+<div class="container back-img" style="max-width: 100%;">
+	<div class="row">
+		<div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 p-0" style="background: #d8e8f1;">
+			<img src="/job/common/home/assets/images/brand/tab3.gif" class="header-brand-img desktop-logo custom-logo">
+		</div>
+		<div class="col-xl-8 col-lg-6 col-md-9 col-sm-12 p-0">
+			<h6 class="main-h6">한국에너지공단 신입직원 채용</h6>
+		</div>
+		<div class="col-xl-2 col-lg-3 col-md-0 col-sm-0 p-0" style="background: #d8e8f1;">
+			<!-- none -->
+		</div>
+
+		<div class="col-xl-12">
+			<div class="card overflow-hidden" style="background-color: #ffffff00 !important;">
+				<div class="card-body p-0">
+					<div class="row">
+						<div class="col-xl-2 col-lg-1"></div>
+
+						<div class="col-xl-4 col-lg-5 col-md-6 col-sm-12 p-0 sub-img"></div>
+
+						<div class="col-xl-6 col-lg-6 col-md-6" style="align-self: center;">
+							<h6 class="sub-h6-right">채용공고</h6>
+							<div class="card overflow-hidden mb-0">
+								<div class="card-body pt-0">
+									<table id="dataTableB" class="table responsive nowrap" style="width:100%">
+										<thead class="text-left">
+											<tr>
+												<th class="text-center">제목</th>
+												<th class="text-center">날짜</th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+							</div>
+							<div class="card overflow-hidden">
+								<div class="card-body pt-0">
+									<div class="fs-12 mb-3 mt-2 sub-cont1">* 해당공고를 클릭하시면 채용공고문, 지원서 제출 및 수정 확인이 가능합니다.</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-xl-6 col-lg-6">
+			<h6 class="sub-h6-left">공지사항</h6>
+			<div class="card overflow-hidden">
+				<div class="card-body pt-0">
+					<table id="dataTableA" class="table nowrap" style="width:100%">
+						<thead class="text-left">
+							<tr>
+								<th class="text-center">제목</th>
+								<th class="text-center">날짜</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xl-6 col-lg-6">
+			<h6 class="sub-h6-left">채용결과</h6>
+			<div class="card overflow-hidden">
+				<div class="card-body pt-0">
+					<table id="dataTableC" class="table nowrap" style="width:100%">
+						<thead class="text-left">
+							<tr>
+								<th class="text-center">제목</th>
+								<th class="text-center">날짜</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xl-6 col-lg-6">
+			<h6 class="sub-h6-left">담당부서 및 연락처</h6>
+			<div class="card overflow-hidden">
+				<div class="card-body pt-0">
+					<div class="fs-17 mb-6 mt-4 sub-cont1">· 경영지원실 - 한다희 (☎ 052-920-0268)</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+<div class="card-footer text-center">
+	<b class="fs-11" style="font-weight: 100 !important"> 주소: 44538 / 울산광역시 중구 종가로 323 (우정동 528-1) 우 44538 | 대표전화:
+		052-920-0114 </b><br />
+	<b class="fs-10" style="font-weight: 100 !important"> Copyright © 2021 Korea Energy Agency · All Rights
+		Reserved. </b>
+</div></body>
+</html>

@@ -1,0 +1,2145 @@
+{
+  "org": "울산정보산업진흥원",
+  "health": "degraded",
+  "primaryCause": {
+    "stage": "list",
+    "status": "partial",
+    "code": "LIST_MISSING_POSTS",
+    "reason": "화면 11건 중 10건 추출 · 1건 누락",
+    "evidence": [
+      {
+        "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
+        "visiblePostCount": 11,
+        "rowMode": true,
+        "anchors": 221,
+        "titleMatches": 10,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 10,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [
+          "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고"
+        ],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [],
+        "candidateCount": 10,
+        "exactMatch": false,
+        "missingCount": 1,
+        "extraCount": 0,
+        "countSource": "visible-board-rows"
+      },
+      {
+        "url": "https://uipa.or.kr/webuser/recruit/list.html",
+        "visiblePostCount": 11,
+        "rowMode": true,
+        "anchors": 221,
+        "titleMatches": 10,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 10,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [
+          "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고"
+        ],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [],
+        "candidateCount": 10,
+        "exactMatch": false,
+        "missingCount": 1,
+        "extraCount": 0,
+        "countSource": "visible-board-rows"
+      },
+      {
+        "url": "https://uipa.careerlink.kr/",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 0,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [],
+        "candidateCount": 0,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
+      }
+    ],
+    "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
+    "recommendedAction": "누락 행 원문을 기준으로 기관 전용 행 선택자 보강"
+  },
+  "diagnosis": {
+    "http": {
+      "status": "success",
+      "code": "HTTP_OK",
+      "reason": "5개 후보 URL HTTP 응답 성공",
+      "evidence": [
+        {
+          "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산정보산업진흥원",
+            "orgMatched": true,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "textLength": 2531,
+            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uipa.or.kr/webuser/recruit/list.html",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uipa.or.kr/webuser/recruit/list.html",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산정보산업진흥원",
+            "orgMatched": true,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "textLength": 2531,
+            "requestedUrl": "https://uipa.or.kr/webuser/recruit/list.html",
+            "finalUrl": "https://uipa.or.kr/webuser/recruit/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uipa.careerlink.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uipa.careerlink.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": false
+            },
+            "title": "울산정보산업진흥원 | 채용 홈페이지",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "careers?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "SPA",
+              "confidence": "medium",
+              "evidence": [
+                "SPA 신호 2개",
+                "초기 HTML 텍스트 19자"
+              ]
+            },
+            "textLength": 19,
+            "requestedUrl": "https://uipa.careerlink.kr/",
+            "finalUrl": "https://uipa.careerlink.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uipa.recruiter.co.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uipa.recruiter.co.kr/appsite/company/index",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": false
+            },
+            "title": "울산정보산업진흥원 채용",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "API",
+              "confidence": "low",
+              "evidence": [
+                "클라이언트 API 호출 코드 발견"
+              ]
+            },
+            "textLength": 12,
+            "requestedUrl": "https://uipa.recruiter.co.kr/",
+            "finalUrl": "https://uipa.recruiter.co.kr/appsite/company/index",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        },
+        {
+          "url": "https://uipa.or.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uipa.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": false,
+              "organizationMatch": true,
+              "meaningfulBody": false
+            },
+            "title": "울산정보산업진흥원",
+            "orgMatched": true,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 0,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 9,
+            "requestedUrl": "https://uipa.or.kr/",
+            "finalUrl": "https://uipa.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        }
+      ]
+    },
+    "recruitVerify": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산정보산업진흥원",
+        "orgMatched": true,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용",
+          "recruit(?:ment)?"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 5,
+        "boardType": {
+          "type": "HTML_TABLE",
+          "confidence": "high",
+          "evidence": [
+            "table/tr 구조 발견"
+          ]
+        },
+        "textLength": 2531,
+        "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+        "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      }
+    },
+    "list": {
+      "status": "partial",
+      "code": "LIST_MISSING_POSTS",
+      "reason": "화면 11건 중 10건 추출 · 1건 누락",
+      "evidence": [
+        {
+          "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
+          "visiblePostCount": 11,
+          "rowMode": true,
+          "anchors": 221,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": false,
+          "missingCount": 1,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://uipa.or.kr/webuser/recruit/list.html",
+          "visiblePostCount": 11,
+          "rowMode": true,
+          "anchors": 221,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": false,
+          "missingCount": 1,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://uipa.careerlink.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ]
+    },
+    "detail": {
+      "status": "blocked",
+      "code": "DETAIL_BLOCKED_BY_LIST",
+      "reason": "목록 단계 미통과로 상세 진단 보류",
+      "evidence": []
+    },
+    "attachment": {
+      "status": "success",
+      "code": "ATTACHMENT_FOUND",
+      "reason": "검증 표본에서 첨부 링크 5개 발견",
+      "evidence": [
+        {
+          "name": "직무기술서(2026-5차).pdf (107kbb)",
+          "type": "pdf",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12180"
+        },
+        {
+          "name": "서류,면접전형 평가표.pdf (62kbb)",
+          "type": "pdf",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12181"
+        },
+        {
+          "name": "이의신청서.hwp (43kbb)",
+          "type": "hwp",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12182"
+        },
+        {
+          "name": "파일 다운로드",
+          "type": "png",
+          "url": "https://www.uipa.or.kr/webuser/img/ico_download.png"
+        },
+        {
+          "name": "a9e2417408fe06324593d7904351f178.jpg",
+          "type": "jpg",
+          "url": "https://www.uipa.or.kr/data/upload/board/2/24674/a9e2417408fe06324593d7904351f178.jpg"
+        }
+      ]
+    },
+    "access": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산정보산업진흥원",
+        "orgMatched": true,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용",
+          "recruit(?:ment)?"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 5,
+        "boardType": {
+          "type": "HTML_TABLE",
+          "confidence": "high",
+          "evidence": [
+            "table/tr 구조 발견"
+          ]
+        },
+        "textLength": 2531,
+        "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+        "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      }
+    }
+  },
+  "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
+  "recommendedAction": "누락 행 원문을 기준으로 기관 전용 행 선택자 보강",
+  "stages": {
+    "access": {
+      "ok": true,
+      "httpOk": true,
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+      "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+      "activeRecruitUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "attempts": [
+        {
+          "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산정보산업진흥원",
+            "orgMatched": true,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "textLength": 2531,
+            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uipa.or.kr/webuser/recruit/list.html",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uipa.or.kr/webuser/recruit/list.html",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산정보산업진흥원",
+            "orgMatched": true,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "textLength": 2531,
+            "requestedUrl": "https://uipa.or.kr/webuser/recruit/list.html",
+            "finalUrl": "https://uipa.or.kr/webuser/recruit/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uipa.careerlink.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uipa.careerlink.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": false
+            },
+            "title": "울산정보산업진흥원 | 채용 홈페이지",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "careers?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "SPA",
+              "confidence": "medium",
+              "evidence": [
+                "SPA 신호 2개",
+                "초기 HTML 텍스트 19자"
+              ]
+            },
+            "textLength": 19,
+            "requestedUrl": "https://uipa.careerlink.kr/",
+            "finalUrl": "https://uipa.careerlink.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        {
+          "url": "https://uipa.recruiter.co.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uipa.recruiter.co.kr/appsite/company/index",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": false
+            },
+            "title": "울산정보산업진흥원 채용",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "API",
+              "confidence": "low",
+              "evidence": [
+                "클라이언트 API 호출 코드 발견"
+              ]
+            },
+            "textLength": 12,
+            "requestedUrl": "https://uipa.recruiter.co.kr/",
+            "finalUrl": "https://uipa.recruiter.co.kr/appsite/company/index",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        },
+        {
+          "url": "https://uipa.or.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uipa.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": false,
+              "organizationMatch": true,
+              "meaningfulBody": false
+            },
+            "title": "울산정보산업진흥원",
+            "orgMatched": true,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 0,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 9,
+            "requestedUrl": "https://uipa.or.kr/",
+            "finalUrl": "https://uipa.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산정보산업진흥원",
+        "orgMatched": true,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용",
+          "recruit(?:ment)?"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 5,
+        "boardType": {
+          "type": "HTML_TABLE",
+          "confidence": "high",
+          "evidence": [
+            "table/tr 구조 발견"
+          ]
+        },
+        "textLength": 2531,
+        "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+        "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      },
+      "boardType": {
+        "type": "HTML_TABLE",
+        "confidence": "high",
+        "evidence": [
+          "table/tr 구조 발견"
+        ]
+      },
+      "diagnosis": {
+        "ok": true,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+        "http": {
+          "ok": true,
+          "code": "HTTP_OK",
+          "reason": "5개 후보 URL HTTP 응답 성공",
+          "attempts": [
+            {
+              "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "울산정보산업진흥원",
+                "orgMatched": true,
+                "positiveHits": 3,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용",
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 5,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "textLength": 2531,
+                "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+                "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+                "status": 200,
+                "contentType": "text/html; charset=utf-8"
+              }
+            },
+            {
+              "url": "https://uipa.or.kr/webuser/recruit/list.html",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uipa.or.kr/webuser/recruit/list.html",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "울산정보산업진흥원",
+                "orgMatched": true,
+                "positiveHits": 3,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용",
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 5,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "textLength": 2531,
+                "requestedUrl": "https://uipa.or.kr/webuser/recruit/list.html",
+                "finalUrl": "https://uipa.or.kr/webuser/recruit/list.html",
+                "status": 200,
+                "contentType": "text/html; charset=utf-8"
+              }
+            },
+            {
+              "url": "https://uipa.careerlink.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uipa.careerlink.kr/",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 3,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": false
+                },
+                "title": "울산정보산업진흥원 | 채용 홈페이지",
+                "orgMatched": true,
+                "positiveHits": 1,
+                "positiveMatches": [
+                  "careers?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "SPA",
+                  "confidence": "medium",
+                  "evidence": [
+                    "SPA 신호 2개",
+                    "초기 HTML 텍스트 19자"
+                  ]
+                },
+                "textLength": 19,
+                "requestedUrl": "https://uipa.careerlink.kr/",
+                "finalUrl": "https://uipa.careerlink.kr/",
+                "status": 200,
+                "contentType": "text/html; charset=utf-8"
+              }
+            },
+            {
+              "url": "https://uipa.recruiter.co.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uipa.recruiter.co.kr/appsite/company/index",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 3,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": false
+                },
+                "title": "울산정보산업진흥원 채용",
+                "orgMatched": true,
+                "positiveHits": 1,
+                "positiveMatches": [
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "API",
+                  "confidence": "low",
+                  "evidence": [
+                    "클라이언트 API 호출 코드 발견"
+                  ]
+                },
+                "textLength": 12,
+                "requestedUrl": "https://uipa.recruiter.co.kr/",
+                "finalUrl": "https://uipa.recruiter.co.kr/appsite/company/index",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              }
+            },
+            {
+              "url": "https://uipa.or.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uipa.or.kr/",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 1,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": false,
+                  "boardStructure": false,
+                  "organizationMatch": true,
+                  "meaningfulBody": false
+                },
+                "title": "울산정보산업진흥원",
+                "orgMatched": true,
+                "positiveHits": 0,
+                "positiveMatches": [],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 0,
+                "boardType": {
+                  "type": "IFRAME",
+                  "confidence": "high",
+                  "evidence": [
+                    "iframe 태그 발견"
+                  ]
+                },
+                "textLength": 9,
+                "requestedUrl": "https://uipa.or.kr/",
+                "finalUrl": "https://uipa.or.kr/",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              }
+            }
+          ]
+        },
+        "recruitVerify": {
+          "ok": true,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "boardType": {
+            "type": "HTML_TABLE",
+            "confidence": "high",
+            "evidence": [
+              "table/tr 구조 발견"
+            ]
+          },
+          "evidence": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산정보산업진흥원",
+            "orgMatched": true,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "textLength": 2531,
+            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        "activeRecruitUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+        "selectedRequestedUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+        "verification": {
+          "ok": true,
+          "verified": true,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 3개 · 게시판 신호 5개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": true,
+            "meaningfulBody": true
+          },
+          "title": "울산정보산업진흥원",
+          "orgMatched": true,
+          "positiveHits": 3,
+          "positiveMatches": [
+            "채용\\s*공고",
+            "직원\\s*채용",
+            "recruit(?:ment)?"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 5,
+          "boardType": {
+            "type": "HTML_TABLE",
+            "confidence": "high",
+            "evidence": [
+              "table/tr 구조 발견"
+            ]
+          },
+          "textLength": 2531,
+          "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8"
+        }
+      }
+    },
+    "list": {
+      "ok": false,
+      "status": "partial",
+      "pagesChecked": 3,
+      "visiblePostCount": 11,
+      "candidateCount": 10,
+      "missingCount": 1,
+      "extraCount": 0,
+      "exactMatch": false,
+      "selectedUrl": "https://www.uipa.or.kr/webuser/recruit/list.html",
+      "detailUrlReady": 10,
+      "listOnlyCount": 0,
+      "extractionDiagnostics": [
+        {
+          "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
+          "visiblePostCount": 11,
+          "rowMode": true,
+          "anchors": 221,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": false,
+          "missingCount": 1,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://uipa.or.kr/webuser/recruit/list.html",
+          "visiblePostCount": 11,
+          "rowMode": true,
+          "anchors": 221,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": false,
+          "missingCount": 1,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://uipa.careerlink.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산정보산업진흥원",
+          "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
+          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+          "counts": {
+            "visiblePostCount": 11,
+            "candidateCount": 10,
+            "rawTableRows": 11,
+            "sourceHtmlLength": 50576,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 12,
+            "li": 161,
+            "article": 0,
+            "[onclick]": 2,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 220
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [
+            "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 공고"
+          ],
+          "extractedTitles": [
+            "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 공고"
+          ],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+              "text": "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 106 진행",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24674&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"notice\">\n        <td class=\"no m_hidden\" ><span class=\"notice\">공지</span></td>\n                <td class=\"subject\">\n                        <a href=\"./view.html?bd_id=24674&page=1\">울산정보산업진흥원 2026년 5차 직원 채용 공고</a>\n                        <img src=\"https://www.uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />            <img src=\"https://www.uipa.or.kr/webuser/img/ico_new.png\" alt=\"새글\" />        </td>\n                <td>2026.08.05</td>\n                <td  class=\"m_hidden\">106</td>\n                <td><strong class=\"bd_state_P\">진행</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 1,
+              "title": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+              "text": "265 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 106 진행",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24674&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">265</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24674&page=1\">울산정보산업진흥원 2026년 5차 직원 채용 공고</a>\n                        <img src=\"https://www.uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />            <img src=\"https://www.uipa.or.kr/webuser/img/ico_new.png\" alt=\"새글\" />        </td>\n                <td>2026.08.05</td>\n                <td  class=\"m_hidden\">106</td>\n                <td class=\"state\"><strong class=\"bd_state_P\">진행</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 2,
+              "title": "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+              "text": "264 울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고 2026.07.31 51 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24664&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">264</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24664&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고</a>\n                                    <img src=\"https://www.uipa.or.kr/webuser/img/ico_new.png\" alt=\"새글\" />        </td>\n                <td>2026.07.31</td>\n                <td  class=\"m_hidden\">51</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24664",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+              "text": "263 울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고 2026.07.27 147 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24631&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">263</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24631&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고</a>\n                        <img src=\"https://www.uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />                    </td>\n                <td>2026.07.27</td>\n                <td  class=\"m_hidden\">147</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24631",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 4,
+              "title": "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+              "text": "262 울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고 2026.07.16 210 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24543&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">262</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24543&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고</a>\n                                            </td>\n                <td>2026.07.16</td>\n                <td  class=\"m_hidden\">210</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24543",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 5,
+              "title": "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+              "text": "261 울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고 2026.06.30 199 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24388&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">261</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24388&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고</a>\n                                            </td>\n                <td>2026.06.30</td>\n                <td  class=\"m_hidden\">199</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24388",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 6,
+              "title": "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+              "text": "260 울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고 2026.06.30 354 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24381&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">260</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24381&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고</a>\n                                            </td>\n                <td>2026.06.30</td>\n                <td  class=\"m_hidden\">354</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24381",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 7,
+              "title": "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+              "text": "259 울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고 2026.06.23 374 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24321&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">259</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24321&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고</a>\n                        <img src=\"https://www.uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />                    </td>\n                <td>2026.06.23</td>\n                <td  class=\"m_hidden\">374</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24321",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 8,
+              "title": "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+              "text": "258 울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고 2026.06.15 404 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24246&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">258</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24246&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고</a>\n                                            </td>\n                <td>2026.06.15</td>\n                <td  class=\"m_hidden\">404</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24246",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 9,
+              "title": "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+              "text": "257 울산정보산업진흥원 2026년 4차 직원 채용 공고 2026.06.04 1,415 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24160&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">257</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24160&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 공고</a>\n                                            </td>\n                <td>2026.06.04</td>\n                <td  class=\"m_hidden\">1,415</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24160",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 10,
+              "title": "울산정보산업진흥원 2026년 3차 직원 채용 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 공고",
+              "text": "256 울산정보산업진흥원 2026년 3차 직원 채용 공고 2026.05.22 1,546 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24051&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">256</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24051&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 공고</a>\n                                            </td>\n                <td>2026.05.22</td>\n                <td  class=\"m_hidden\">1,546</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24051",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            }
+          ]
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산정보산업진흥원",
+          "url": "https://uipa.or.kr/webuser/recruit/list.html",
+          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+          "counts": {
+            "visiblePostCount": 11,
+            "candidateCount": 10,
+            "rawTableRows": 11,
+            "sourceHtmlLength": 50376,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 12,
+            "li": 161,
+            "article": 0,
+            "[onclick]": 2,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 220
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [
+            "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 공고"
+          ],
+          "extractedTitles": [
+            "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+            "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+            "울산정보산업진흥원 2026년 3차 직원 채용 공고"
+          ],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+              "text": "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 106 진행",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24674&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"notice\">\n        <td class=\"no m_hidden\" ><span class=\"notice\">공지</span></td>\n                <td class=\"subject\">\n                        <a href=\"./view.html?bd_id=24674&page=1\">울산정보산업진흥원 2026년 5차 직원 채용 공고</a>\n                        <img src=\"https://uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />            <img src=\"https://uipa.or.kr/webuser/img/ico_new.png\" alt=\"새글\" />        </td>\n                <td>2026.08.05</td>\n                <td  class=\"m_hidden\">106</td>\n                <td><strong class=\"bd_state_P\">진행</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 1,
+              "title": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+              "text": "265 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 106 진행",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24674&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">265</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24674&page=1\">울산정보산업진흥원 2026년 5차 직원 채용 공고</a>\n                        <img src=\"https://uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />            <img src=\"https://uipa.or.kr/webuser/img/ico_new.png\" alt=\"새글\" />        </td>\n                <td>2026.08.05</td>\n                <td  class=\"m_hidden\">106</td>\n                <td class=\"state\"><strong class=\"bd_state_P\">진행</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 2,
+              "title": "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+              "text": "264 울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고 2026.07.31 51 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24664&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">264</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24664&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고</a>\n                                    <img src=\"https://uipa.or.kr/webuser/img/ico_new.png\" alt=\"새글\" />        </td>\n                <td>2026.07.31</td>\n                <td  class=\"m_hidden\">51</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uipa.or.kr/webuser/recruit/view.html?bd_id=24664",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+              "text": "263 울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고 2026.07.27 147 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24631&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">263</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24631&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고</a>\n                        <img src=\"https://uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />                    </td>\n                <td>2026.07.27</td>\n                <td  class=\"m_hidden\">147</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uipa.or.kr/webuser/recruit/view.html?bd_id=24631",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 4,
+              "title": "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+              "text": "262 울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고 2026.07.16 210 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24543&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">262</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24543&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고</a>\n                                            </td>\n                <td>2026.07.16</td>\n                <td  class=\"m_hidden\">210</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uipa.or.kr/webuser/recruit/view.html?bd_id=24543",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 5,
+              "title": "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+              "text": "261 울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고 2026.06.30 199 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24388&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">261</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24388&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고</a>\n                                            </td>\n                <td>2026.06.30</td>\n                <td  class=\"m_hidden\">199</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uipa.or.kr/webuser/recruit/view.html?bd_id=24388",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 6,
+              "title": "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+              "text": "260 울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고 2026.06.30 354 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24381&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">260</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24381&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고</a>\n                                            </td>\n                <td>2026.06.30</td>\n                <td  class=\"m_hidden\">354</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uipa.or.kr/webuser/recruit/view.html?bd_id=24381",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 7,
+              "title": "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+              "text": "259 울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고 2026.06.23 374 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24321&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">259</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24321&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고</a>\n                        <img src=\"https://uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />                    </td>\n                <td>2026.06.23</td>\n                <td  class=\"m_hidden\">374</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uipa.or.kr/webuser/recruit/view.html?bd_id=24321",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 8,
+              "title": "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+              "text": "258 울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고 2026.06.15 404 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24246&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">258</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24246&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고</a>\n                                            </td>\n                <td>2026.06.15</td>\n                <td  class=\"m_hidden\">404</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uipa.or.kr/webuser/recruit/view.html?bd_id=24246",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 9,
+              "title": "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+              "text": "257 울산정보산업진흥원 2026년 4차 직원 채용 공고 2026.06.04 1,415 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24160&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">257</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24160&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 공고</a>\n                                            </td>\n                <td>2026.06.04</td>\n                <td  class=\"m_hidden\">1,415</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uipa.or.kr/webuser/recruit/view.html?bd_id=24160",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 10,
+              "title": "울산정보산업진흥원 2026년 3차 직원 채용 공고",
+              "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 공고",
+              "text": "256 울산정보산업진흥원 2026년 3차 직원 채용 공고 2026.05.22 1,546 종료",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?bd_id=24051&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">256</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24051&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 공고</a>\n                                            </td>\n                <td>2026.05.22</td>\n                <td  class=\"m_hidden\">1,546</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uipa.or.kr/webuser/recruit/view.html?bd_id=24051",
+              "adapter": "울산정보산업진흥원:board-row",
+              "rejectionReason": ""
+            }
+          ]
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산정보산업진흥원",
+          "url": "https://uipa.careerlink.kr/",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "sourceHtmlLength": 85784,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 2,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "울산정보산업진흥원",
+          "htmlPath": "data/diagnostics/울산정보산업진흥원/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/울산정보산업진흥원/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/울산정보산업진흥원/list/page-1-rows.txt",
+          "url": "https://www.uipa.or.kr/webuser/recruit/list.html"
+        },
+        {
+          "org": "울산정보산업진흥원",
+          "htmlPath": "data/diagnostics/울산정보산업진흥원/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/울산정보산업진흥원/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/울산정보산업진흥원/list/page-2-rows.txt",
+          "url": "https://uipa.or.kr/webuser/recruit/list.html"
+        },
+        {
+          "org": "울산정보산업진흥원",
+          "htmlPath": "data/diagnostics/울산정보산업진흥원/list/page-3-raw.html",
+          "diagnosisPath": "data/diagnostics/울산정보산업진흥원/list/page-3-root-cause.json",
+          "rowsPath": "data/diagnostics/울산정보산업진흥원/list/page-3-rows.txt",
+          "url": "https://uipa.careerlink.kr/"
+        }
+      ],
+      "samples": [
+        {
+          "title": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "link": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "adapter": "울산정보산업진흥원:board-row"
+        },
+        {
+          "title": "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+          "link": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24664",
+          "adapter": "울산정보산업진흥원:board-row"
+        },
+        {
+          "title": "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+          "link": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24631",
+          "adapter": "울산정보산업진흥원:board-row"
+        },
+        {
+          "title": "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+          "link": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24543",
+          "adapter": "울산정보산업진흥원:board-row"
+        },
+        {
+          "title": "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+          "link": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24388",
+          "adapter": "울산정보산업진흥원:board-row"
+        },
+        {
+          "title": "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+          "link": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24381",
+          "adapter": "울산정보산업진흥원:board-row"
+        },
+        {
+          "title": "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+          "link": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24321",
+          "adapter": "울산정보산업진흥원:board-row"
+        },
+        {
+          "title": "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+          "link": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24246",
+          "adapter": "울산정보산업진흥원:board-row"
+        },
+        {
+          "title": "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+          "link": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24160",
+          "adapter": "울산정보산업진흥원:board-row"
+        },
+        {
+          "title": "울산정보산업진흥원 2026년 3차 직원 채용 공고",
+          "link": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24051",
+          "adapter": "울산정보산업진흥원:board-row"
+        }
+      ],
+      "errors": [],
+      "selectedRootCause": {
+        "version": "1.1-passive",
+        "mode": "passive",
+        "org": "울산정보산업진흥원",
+        "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
+        "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+        "counts": {
+          "visiblePostCount": 11,
+          "candidateCount": 10,
+          "rawTableRows": 11,
+          "sourceHtmlLength": 50576,
+          "missingRows": 0,
+          "extraCandidates": 0
+        },
+        "selectorCounts": {
+          "table tbody tr": 1,
+          "tr": 12,
+          "li": 161,
+          "article": 0,
+          "[onclick]": 2,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 220
+        },
+        "rejectReasonCounts": {},
+        "visibleTitles": [
+          "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 공고"
+        ],
+        "extractedTitles": [
+          "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 공고"
+        ],
+        "missingRows": [],
+        "extraCandidates": [],
+        "rowTrace": [
+          {
+            "index": 0,
+            "title": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "normalizedTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "text": "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 106 진행",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?bd_id=24674&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr class=\"notice\">\n        <td class=\"no m_hidden\" ><span class=\"notice\">공지</span></td>\n                <td class=\"subject\">\n                        <a href=\"./view.html?bd_id=24674&page=1\">울산정보산업진흥원 2026년 5차 직원 채용 공고</a>\n                        <img src=\"https://www.uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />            <img src=\"https://www.uipa.or.kr/webuser/img/ico_new.png\" alt=\"새글\" />        </td>\n                <td>2026.08.05</td>\n                <td  class=\"m_hidden\">106</td>\n                <td><strong class=\"bd_state_P\">진행</strong></td>    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+            "adapter": "울산정보산업진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 1,
+            "title": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "normalizedTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+            "text": "265 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 106 진행",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?bd_id=24674&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">265</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24674&page=1\">울산정보산업진흥원 2026년 5차 직원 채용 공고</a>\n                        <img src=\"https://www.uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />            <img src=\"https://www.uipa.or.kr/webuser/img/ico_new.png\" alt=\"새글\" />        </td>\n                <td>2026.08.05</td>\n                <td  class=\"m_hidden\">106</td>\n                <td class=\"state\"><strong class=\"bd_state_P\">진행</strong></td>    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+            "adapter": "울산정보산업진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 2,
+            "title": "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+            "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+            "text": "264 울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고 2026.07.31 51 종료",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?bd_id=24664&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">264</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24664&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고</a>\n                                    <img src=\"https://www.uipa.or.kr/webuser/img/ico_new.png\" alt=\"새글\" />        </td>\n                <td>2026.07.31</td>\n                <td  class=\"m_hidden\">51</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24664",
+            "adapter": "울산정보산업진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 3,
+            "title": "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+            "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+            "text": "263 울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고 2026.07.27 147 종료",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?bd_id=24631&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">263</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24631&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고</a>\n                        <img src=\"https://www.uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />                    </td>\n                <td>2026.07.27</td>\n                <td  class=\"m_hidden\">147</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24631",
+            "adapter": "울산정보산업진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 4,
+            "title": "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+            "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+            "text": "262 울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고 2026.07.16 210 종료",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?bd_id=24543&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">262</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24543&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고</a>\n                                            </td>\n                <td>2026.07.16</td>\n                <td  class=\"m_hidden\">210</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24543",
+            "adapter": "울산정보산업진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 5,
+            "title": "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+            "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+            "text": "261 울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고 2026.06.30 199 종료",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?bd_id=24388&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">261</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24388&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고</a>\n                                            </td>\n                <td>2026.06.30</td>\n                <td  class=\"m_hidden\">199</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24388",
+            "adapter": "울산정보산업진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 6,
+            "title": "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+            "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+            "text": "260 울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고 2026.06.30 354 종료",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?bd_id=24381&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">260</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24381&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고</a>\n                                            </td>\n                <td>2026.06.30</td>\n                <td  class=\"m_hidden\">354</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24381",
+            "adapter": "울산정보산업진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 7,
+            "title": "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+            "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+            "text": "259 울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고 2026.06.23 374 종료",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?bd_id=24321&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">259</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24321&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고</a>\n                        <img src=\"https://www.uipa.or.kr/webuser/img/ico_file.png\" alt=\"첨부파일\" />                    </td>\n                <td>2026.06.23</td>\n                <td  class=\"m_hidden\">374</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24321",
+            "adapter": "울산정보산업진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 8,
+            "title": "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+            "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
+            "text": "258 울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고 2026.06.15 404 종료",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?bd_id=24246&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">258</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24246&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고</a>\n                                            </td>\n                <td>2026.06.15</td>\n                <td  class=\"m_hidden\">404</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24246",
+            "adapter": "울산정보산업진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 9,
+            "title": "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+            "normalizedTitle": "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+            "text": "257 울산정보산업진흥원 2026년 4차 직원 채용 공고 2026.06.04 1,415 종료",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?bd_id=24160&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr class=\"list_tr_0\">\n        <td class=\"no m_hidden\">257</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24160&page=1\">울산정보산업진흥원 2026년 4차 직원 채용 공고</a>\n                                            </td>\n                <td>2026.06.04</td>\n                <td  class=\"m_hidden\">1,415</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24160",
+            "adapter": "울산정보산업진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 10,
+            "title": "울산정보산업진흥원 2026년 3차 직원 채용 공고",
+            "normalizedTitle": "울산정보산업진흥원 2026년 3차 직원 채용 공고",
+            "text": "256 울산정보산업진흥원 2026년 3차 직원 채용 공고 2026.05.22 1,546 종료",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?bd_id=24051&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr class=\"list_tr_1\">\n        <td class=\"no m_hidden\">256</td>\n                <td class=\"subject\">\n                            <a href=\"./view.html?bd_id=24051&page=1\">울산정보산업진흥원 2026년 3차 직원 채용 공고</a>\n                                            </td>\n                <td>2026.05.22</td>\n                <td  class=\"m_hidden\">1,546</td>\n                <td class=\"state\"><strong class=\"bd_state_E\">종료</strong></td>    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24051",
+            "adapter": "울산정보산업진흥원:board-row",
+            "rejectionReason": ""
+          }
+        ]
+      }
+    },
+    "detail": {
+      "ok": true,
+      "attempted": 2,
+      "validated": 1,
+      "samples": [
+        {
+          "title": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "ok": true,
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "textLength": 2287,
+          "attachmentCount": 5,
+          "error": ""
+        },
+        {
+          "title": "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+          "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24664",
+          "ok": false,
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24664",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "insufficient detail structure"
+        }
+      ]
+    },
+    "attachment": {
+      "ok": true,
+      "discovered": 5,
+      "samples": [
+        {
+          "name": "직무기술서(2026-5차).pdf (107kbb)",
+          "type": "pdf",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12180"
+        },
+        {
+          "name": "서류,면접전형 평가표.pdf (62kbb)",
+          "type": "pdf",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12181"
+        },
+        {
+          "name": "이의신청서.hwp (43kbb)",
+          "type": "hwp",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12182"
+        },
+        {
+          "name": "파일 다운로드",
+          "type": "png",
+          "url": "https://www.uipa.or.kr/webuser/img/ico_download.png"
+        },
+        {
+          "name": "a9e2417408fe06324593d7904351f178.jpg",
+          "type": "jpg",
+          "url": "https://www.uipa.or.kr/data/upload/board/2/24674/a9e2417408fe06324593d7904351f178.jpg"
+        }
+      ]
+    }
+  }
+}

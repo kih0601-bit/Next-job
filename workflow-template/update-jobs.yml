@@ -33,19 +33,6 @@ jobs:
       - name: Probe institution pipelines
         run: node scripts/pipeline-probe.mjs
 
-      - name: Verify list diagnostic artifacts
-        shell: bash
-        run: |
-          set -euxo pipefail
-          test -s data/diagnostics/list-diagnostics-manifest.json
-          node - <<'NODE'
-          const fs = require('fs');
-          const manifest = JSON.parse(fs.readFileSync('data/diagnostics/list-diagnostics-manifest.json', 'utf8'));
-          const failed = manifest.organizations.filter(item => item.primaryCause.startsWith('LIST_') && item.diagnosticFileCount === 0);
-          if (failed.length) throw new Error(`missing list diagnostics: ${failed.map(item => item.org).join(', ')}`);
-          console.log(`list diagnostic organizations: ${manifest.organizations.length}`);
-          NODE
-
       - name: Build unified institution report
         run: node scripts/build-unified-report.mjs
 

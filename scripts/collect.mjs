@@ -2,8 +2,8 @@ import fs from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
-import { extractCandidatesForSource, canonicalJobUrl, discoverListingUrls } from './collectors/source-adapters.mjs';
-import { extractAlioCandidates } from './collectors/alio-adapter.mjs';
+import { canonicalJobUrl, discoverListingUrls } from './collectors/source-adapters.mjs';
+import { inspectListingPage } from './lib/list-pipeline.mjs';
 import { analyzeVacancies } from './lib/classifier.mjs';
 import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
 import { analyzeAttachments, getDocumentToolDiagnostics } from './lib/document-analyzer.mjs';
@@ -101,10 +101,8 @@ function isExpired(deadline) {
   return end.getTime() < now.getTime();
 }
 
-function extractListCandidates(html, source) {
-  const helpers = { validTitle, normalizeTitleForDedup };
-  if (source.alio) return extractAlioCandidates(html, source, helpers);
-  return extractCandidatesForSource(html, source, helpers);
+function inspectListPage(html, source) {
+  return inspectListingPage(html, source);
 }
 
 function buildRequestHeaders(profile = 'browser', referer = '') {
@@ -469,11 +467,15 @@ async function fetchSource(source) {
         catch { continue; }
       }
       const listingSource = { ...activeSource, url: listingUrl };
-      const extracted = extractListCandidates(listingHtml, listingSource);
-      if (extracted.diagnostics) {
-        for (const key of ['anchors', 'titleMatches', 'noUrl', 'unsafeUrl', 'accepted', 'rowFallbackAccepted']) extractionDiagnostics[key] += Number(extracted.diagnostics[key] || 0);
-        for (const sample of extracted.diagnostics.titleSamples || []) if (extractionDiagnostics.titleSamples.length < 12) extractionDiagnostics.titleSamples.push(sample);
-        for (const sample of extracted.diagnostics.unsafeSamples || []) if (extractionDiagnostics.unsafeSamples.length < 12) extractionDiagnostics.unsafeSamples.push(sample);
+      const inspection = inspectListPage(listingHtml, listingSource);
+      const extracted = inspection.candidates;
+      const pageDiagnostics = inspection.diagnostics || {};
+      if (pageDiagnostics) {
+        for (const key of ['anchors', 'titleMatches', 'noUrl', 'unsafeUrl', 'accepted', 'rowFallbackAccepted']) extractionDiagnostics[key] += Number(pageDiagnostics[key] || 0);
+        for (const sample of pageDiagnostics.titleSamples || []) if (extractionDiagnostics.titleSamples.length < 12) extractionDiagnostics.titleSamples.push(sample);
+        for (const sample of pageDiagnostics.unsafeSamples || []) if (extractionDiagnostics.unsafeSamples.length < 12) extractionDiagnostics.unsafeSamples.push(sample);
+        extractionDiagnostics.pages ||= [];
+        extractionDiagnostics.pages.push({ url: listingUrl, visiblePostCount: inspection.visiblePostCount, candidateCount: inspection.candidateCount, exactMatch: inspection.exactMatch, missingCount: inspection.missingCount, extraCount: inspection.extraCount, status: inspection.status, countSource: pageDiagnostics.countSource || 'unavailable' });
       }
       for (const candidate of extracted) {
         const key = `${candidate.org}|${normalizeTitleForDedup(candidate.title)}|${canonicalJobUrl(candidate.link)}`;
@@ -481,7 +483,8 @@ async function fetchSource(source) {
       }
     }
     const rawCandidates = [...candidateMap.values()];
-    const listSelection = selectListCandidates(rawCandidates);
+    const collectionCandidates = rawCandidates.filter(candidate => validTitle(candidate.title));
+    const listSelection = selectListCandidates(collectionCandidates);
     const candidates = listSelection.accepted;
     const jobs = [];
     const rejectionReasons = {};
@@ -544,7 +547,7 @@ async function fetchSource(source) {
       }
     }
     return {
-      ok: true, source: activeSource, jobs, candidates: candidates.length, rawCandidates: rawCandidates.length, listSelection, listingPagesChecked: listingUrls.length, accessAttempts: access.attempts,
+      ok: true, source: activeSource, jobs, candidates: candidates.length, rawCandidates: rawCandidates.length, collectionCandidates: collectionCandidates.length, listSelection, listingPagesChecked: listingUrls.length, accessAttempts: access.attempts,
       rejected: Math.max(0, rawCandidates.length - jobs.length),
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
@@ -552,7 +555,7 @@ async function fetchSource(source) {
       rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPreviousPayload() {

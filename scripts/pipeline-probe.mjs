@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.mjs';
-import { extractCandidatesForSource, discoverListingUrls, countVisibleBoardPosts } from './collectors/source-adapters.mjs';
+import { discoverListingUrls } from './collectors/source-adapters.mjs';
+import { inspectListingPage } from './lib/list-pipeline.mjs';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 
 const VERSION = '15.7-phase5-root-cause-diagnostics';
@@ -175,6 +176,27 @@ function classifyAttachment(report) {
   return { status: 'unknown', code: 'ATTACHMENT_ZERO_UNRESOLVED', reason: '첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함', evidence: report.detail.samples || [] };
 }
 
+function remediationFor(code = '', org = '') {
+  const institutionAdapter = `scripts/collectors/institutions/${org}.mjs`;
+  const map = {
+    ACCESS_TIMEOUT_ALL: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '기관별 접속 URL과 timeout/fallback 순서를 확인' },
+    ACCESS_404: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '기관별 공식 채용 게시판 URL을 최신 주소로 교체' },
+    ACCESS_FORBIDDEN: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 헤더·쿠키·요청 방식 또는 공식 대체 출처 적용' },
+    LIST_COUNTER_FAILED: { repairTarget: institutionAdapter, recommendedAction: '기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정' },
+    LIST_EMPTY_OR_WRONG_PAGE: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '현재 URL이 채용 게시판인지 확인하고 기관별 목록 URL 교체' },
+    LIST_TITLE_NOT_FOUND: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 제목 선택자 또는 행 텍스트 규칙 추가' },
+    LIST_DETAIL_SIGNAL_MISSING: { repairTarget: institutionAdapter, recommendedAction: '기관 onclick/data 속성/게시글 ID에서 상세 이동정보 복구' },
+    LIST_URL_REJECTED: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 허용 호스트와 상세 URL 생성 규칙 수정' },
+    LIST_MISSING_POSTS: { repairTarget: institutionAdapter, recommendedAction: '누락 행 원문을 기준으로 기관 전용 행 선택자 보강' },
+    LIST_EXTRA_POSTS: { repairTarget: institutionAdapter, recommendedAction: '오탐 행 원문을 기준으로 메뉴·첨부·중복 제외 규칙 추가' },
+    DETAIL_URL_NOT_READY: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 상세 URL 생성 규칙 구현' },
+    DETAIL_404: { repairTarget: institutionAdapter, recommendedAction: '기관 상세 URL 파라미터·POST 규칙 수정' },
+    DETAIL_EMPTY_BODY: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 상세 본문 선택자 추가' },
+    ATTACHMENT_ZERO_UNRESOLVED: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가' }
+  };
+  return map[code] || { repairTarget: institutionAdapter, recommendedAction: '진단 evidence를 기준으로 기관 전용 Adapter 확인' };
+}
+
 function attachRootCauses(report) {
   report.diagnosis = {
     access: classifyAccess(report),
@@ -185,20 +207,10 @@ function attachRootCauses(report) {
   const order = ['access', 'list', 'detail', 'attachment'];
   const first = order.map(stage => ({ stage, ...report.diagnosis[stage] })).find(item => item.status === 'failed' || item.status === 'partial' || item.status === 'unknown');
   report.primaryCause = first || { stage: 'complete', status: 'success', code: 'PIPELINE_SAMPLE_OK', reason: '현재 진단 표본에서 실패 원인 없음', evidence: [] };
+  Object.assign(report.primaryCause, remediationFor(report.primaryCause.code, report.org));
   report.stageLabel = `${report.primaryCause.stage}:${report.primaryCause.code}`;
   report.bottleneck = report.primaryCause.reason;
   return report;
-}
-
-function permissiveTitle(title = '') {
-  const text = cleanHtml(title).replace(/\s+/g, ' ').trim();
-  if (text.length < 4 || text.length > 260) return false;
-  if (/^(?:홈|메인|목록|이전|다음|처음|마지막|더보기|바로가기)$/i.test(text)) return false;
-  return true;
-}
-
-function normalizeTitle(title = '') {
-  return cleanHtml(title).replace(/[^0-9a-zA-Z가-힣]+/g, ' ').replace(/\s+/g, ' ').trim().toLowerCase();
 }
 
 async function probeSource(source, artifacts) {
@@ -235,35 +247,31 @@ async function probeSource(source, artifacts) {
         report.list.pagesChecked += 1;
         const pageSource = { ...item.source, url: page.finalUrl || url };
         artifacts.push(pageArtifact(pageSource, { ...page, requestedUrl: url }, 'listing'));
-        const found = extractCandidatesForSource(page.html, pageSource, { validTitle: permissiveTitle, normalizeTitleForDedup: normalizeTitle });
-        const visiblePostCount = countVisibleBoardPosts(page.html);
-        const candidateCount = found.length;
-        const exactMatch = visiblePostCount > 0 && candidateCount === visiblePostCount;
-        const diagnostic = { url: pageSource.url, visiblePostCount, candidateCount, exactMatch, ...(found.diagnostics || {}) };
+        const inspection = inspectListingPage(page.html, pageSource);
+        const found = inspection.candidates;
+        const diagnostic = { url: pageSource.url, ...inspection.diagnostics };
         report.list.extractionDiagnostics.push(diagnostic);
-        pageResults.push({ url: pageSource.url, found, visiblePostCount, candidateCount, exactMatch });
+        pageResults.push({ url: pageSource.url, found, ...inspection });
       } catch (error) {
         report.list.errors.push(`${url}: ${error.name === 'AbortError' ? 'timeout' : error.message}`);
       }
     }
     // Select the real board page, not the homepage/navigation page. Exact matches
     // win first; otherwise prefer the page with the largest visible board-row count.
-    const selected = pageResults.sort((a, b) => Number(b.exactMatch) - Number(a.exactMatch) || b.visiblePostCount - a.visiblePostCount || b.candidateCount - a.candidateCount)[0];
+    const selected = pageResults.sort((a, b) => Number(b.exactMatch) - Number(a.exactMatch) || (b.visiblePostCount ?? -1) - (a.visiblePostCount ?? -1) || b.candidateCount - a.candidateCount)[0];
     const all = selected?.found || [];
     report.list.selectedUrl = selected?.url || '';
     report.list.visiblePostCount = selected ? selected.visiblePostCount : null;
     report.list.candidateCount = all.length;
-    report.list.missingCount = selected && selected.visiblePostCount > all.length ? selected.visiblePostCount - all.length : 0;
-    report.list.extraCount = selected && all.length > selected.visiblePostCount ? all.length - selected.visiblePostCount : 0;
+    report.list.missingCount = selected?.missingCount ?? null;
+    report.list.extraCount = selected?.extraCount ?? null;
     report.list.exactMatch = Boolean(selected?.exactMatch);
     report.list.detailUrlReady = all.filter(item => !item.listOnly).length;
     report.list.listOnlyCount = all.filter(item => item.listOnly).length;
     report.list.samples = all.slice(0, 20).map(item => ({ title: item.title, link: item.link, adapter: item.adapter || '' }));
     if (!selected) report.list.status = 'fetch-failed';
-    else if (selected.visiblePostCount === 0 && selected.candidateCount === 0) report.list.status = 'count-unavailable-or-empty';
-    else if (selected.exactMatch) report.list.status = 'exact';
-    else if (selected.candidateCount === 0) report.list.status = 'failed';
-    else report.list.status = 'partial';
+    else if (selected.status === 'empty-or-wrong-page' || selected.status === 'count-unavailable') report.list.status = 'count-unavailable-or-empty';
+    else report.list.status = selected.status;
     report.list.ok = report.list.status === 'exact';
 
     const allowedHosts = [...new Set((source.accessUrls || [source.url]).map(url => { try { return new URL(url).hostname; } catch { return ''; } }).filter(Boolean))];

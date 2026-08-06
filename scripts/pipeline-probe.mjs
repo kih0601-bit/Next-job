@@ -3,7 +3,7 @@ import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.m
 import { extractCandidatesForSource, discoverListingUrls } from './collectors/source-adapters.mjs';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 
-const VERSION = '15.1-phase5-pipeline-probe';
+const VERSION = '15.2-phase5-list-normalization';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 7000;
@@ -64,7 +64,7 @@ async function probeSource(source) {
   const report = {
     org: source.org,
     access: { ok: false, attempts: [] },
-    list: { ok: false, pagesChecked: 0, candidateCount: 0, samples: [], errors: [] },
+    list: { ok: false, pagesChecked: 0, candidateCount: 0, detailUrlReady: 0, listOnlyCount: 0, extractionDiagnostics: [], samples: [], errors: [] },
     detail: { ok: false, attempted: 0, validated: 0, samples: [] },
     attachment: { ok: false, discovered: 0, samples: [] },
     bottleneck: '',
@@ -85,17 +85,20 @@ async function probeSource(source) {
         report.list.pagesChecked += 1;
         const pageSource = { ...activeSource, url: page.finalUrl || url };
         const found = extractCandidatesForSource(page.html, pageSource, { validTitle: permissiveTitle, normalizeTitleForDedup: normalizeTitle });
-        for (const item of found) if (!all.some(existing => existing.link === item.link)) all.push(item);
+        report.list.extractionDiagnostics.push({ url: pageSource.url, ...(found.diagnostics || {}) });
+        for (const item of found) if (!all.some(existing => existing.link === item.link && existing.title === item.title)) all.push(item);
       } catch (error) {
         report.list.errors.push(`${url}: ${error.name === 'AbortError' ? 'timeout' : error.message}`);
       }
     }
     report.list.candidateCount = all.length;
+    report.list.detailUrlReady = all.filter(item => !item.listOnly).length;
+    report.list.listOnlyCount = all.filter(item => item.listOnly).length;
     report.list.samples = all.slice(0, 8).map(item => ({ title: item.title, link: item.link, adapter: item.adapter || '' }));
     report.list.ok = all.length > 0;
 
     const allowedHosts = [...new Set((source.accessUrls || [source.url]).map(url => { try { return new URL(url).hostname; } catch { return ''; } }).filter(Boolean))];
-    for (const candidate of all.slice(0, MAX_DETAIL_SAMPLES)) {
+    for (const candidate of all.filter(item => !item.listOnly).slice(0, MAX_DETAIL_SAMPLES)) {
       report.detail.attempted += 1;
       const detail = await fetchDetail(candidate.link, { expectedTitle: candidate.title, sourceOrg: source.org, allowedHosts });
       if (detail.ok) report.detail.validated += 1;
@@ -109,6 +112,7 @@ async function probeSource(source) {
     report.attachment.ok = report.attachment.discovered > 0;
     if (!report.access.ok) report.bottleneck = '접속';
     else if (!report.list.ok) report.bottleneck = '목록 추출';
+    else if (report.list.detailUrlReady === 0) report.bottleneck = '상세 URL 복구';
     else if (!report.detail.ok) report.bottleneck = '상세페이지 추출';
     else if (!report.attachment.ok) report.bottleneck = '첨부파일 추출 또는 현재 표본에 첨부 없음';
     else report.bottleneck = '기본 파이프라인 통과';

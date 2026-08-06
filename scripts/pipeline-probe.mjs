@@ -3,12 +3,64 @@ import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.m
 import { extractCandidatesForSource, discoverListingUrls } from './collectors/source-adapters.mjs';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 
-const VERSION = '15.2-phase5-list-normalization';
+const VERSION = '15.4-phase5-deep-diagnostics';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 10000;
 const LIST_TIMEOUT_MS = 10000;
 const MAX_ACCESS_URLS = 6;
+const MAX_HTML_EXCERPT = 18000;
+const MAX_RELEVANT_SNIPPETS = 24;
+const MAX_SCRIPT_SNIPPETS = 12;
+
+
+function compactText(value = '', max = MAX_HTML_EXCERPT) {
+  return String(value).replace(/\u0000/g, '').slice(0, max);
+}
+
+function relevantSnippets(html = '') {
+  const text = String(html);
+  const snippets = [];
+  const patterns = [
+    /<tr\b[\s\S]{0,6000}?(?:채용|모집|공고|recruit)[\s\S]{0,6000}?<\/tr>/gi,
+    /<(?:li|article|div)\b[\s\S]{0,5000}?(?:채용|모집|공고|recruit)[\s\S]{0,5000}?<\/(?:li|article|div)>/gi,
+    /(?:onclick|href|data-url|data-href)\s*=\s*(["'])[\s\S]{0,1000}?(?:view|detail|recruit|board|bbs|post)[\s\S]{0,1000}?\1/gi
+  ];
+  for (const pattern of patterns) {
+    for (const match of text.matchAll(pattern)) {
+      const value = compactText(match[0], 9000);
+      if (!snippets.includes(value)) snippets.push(value);
+      if (snippets.length >= MAX_RELEVANT_SNIPPETS) return snippets;
+    }
+  }
+  return snippets;
+}
+
+function scriptSnippets(html = '') {
+  const snippets = [];
+  for (const match of String(html).matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)) {
+    const body = match[1] || '';
+    if (!/(?:function\s+\w*(?:view|detail|recruit|board)|(?:view|detail|recruit|board)\s*=|location\.|window\.open|\.submit\s*\()/i.test(body)) continue;
+    snippets.push(compactText(body, 12000));
+    if (snippets.length >= MAX_SCRIPT_SNIPPETS) break;
+  }
+  return snippets;
+}
+
+function pageArtifact(source, page, stage = 'access') {
+  return {
+    org: source.org,
+    stage,
+    requestedUrl: page.requestedUrl || source.url,
+    finalUrl: page.finalUrl || source.url,
+    status: page.status || 0,
+    contentType: page.contentType || '',
+    htmlLength: page.html?.length || 0,
+    htmlHead: compactText(page.html || ''),
+    relevantSnippets: relevantSnippets(page.html || ''),
+    scriptSnippets: scriptSnippets(page.html || '')
+  };
+}
 
 function headers(referer = '') {
   return {
@@ -64,7 +116,7 @@ function normalizeTitle(title = '') {
   return cleanHtml(title).replace(/[^0-9a-zA-Z가-힣]+/g, ' ').replace(/\s+/g, ' ').trim().toLowerCase();
 }
 
-async function probeSource(source) {
+async function probeSource(source, artifacts) {
   const startedAt = Date.now();
   const report = {
     org: source.org,
@@ -78,6 +130,7 @@ async function probeSource(source) {
   try {
     const access = await accessiblePages(source);
     const first = access.pages[0];
+    for (const page of access.pages) artifacts.push(pageArtifact(source, page, 'access'));
     report.access = { ok: true, requestedUrl: first.requestedUrl, finalUrl: first.finalUrl, status: first.status, contentType: first.contentType, attempts: access.attempts };
     const all = [];
     const listingPages = [];
@@ -96,6 +149,7 @@ async function probeSource(source) {
         const page = item.page || await fetchHtml(url, LIST_TIMEOUT_MS, item.source.url);
         report.list.pagesChecked += 1;
         const pageSource = { ...item.source, url: page.finalUrl || url };
+        artifacts.push(pageArtifact(pageSource, { ...page, requestedUrl: url }, 'listing'));
         const found = extractCandidatesForSource(page.html, pageSource, { validTitle: permissiveTitle, normalizeTitleForDedup: normalizeTitle });
         report.list.extractionDiagnostics.push({ url: pageSource.url, ...(found.diagnostics || {}) });
         for (const item of found) if (!all.some(existing => existing.link === item.link && existing.title === item.title)) all.push(item);
@@ -138,9 +192,10 @@ async function probeSource(source) {
 }
 
 const results = [];
+const artifacts = [];
 const CONCURRENCY = 4;
 for (let index = 0; index < SOURCES.length; index += CONCURRENCY) {
-  const batch = await Promise.all(SOURCES.slice(index, index + CONCURRENCY).map(probeSource));
+  const batch = await Promise.all(SOURCES.slice(index, index + CONCURRENCY).map(source => probeSource(source, artifacts)));
   results.push(...batch);
   for (const result of batch) console.log(`${result.org}: ${result.bottleneck}`);
 }
@@ -162,5 +217,6 @@ const payload = {
 };
 await fs.mkdir('data', { recursive: true });
 await fs.writeFile('data/pipeline-report.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+await fs.writeFile('data/pipeline-artifacts.json', `${JSON.stringify({ version: VERSION, generatedAt: payload.generatedAt, sourceCount: SOURCES.length, artifacts }, null, 2)}\n`, 'utf8');
 console.log(payload.summary);
-console.log({ reportPath: 'data/pipeline-report.json' });
+console.log({ reportPath: 'data/pipeline-report.json', artifactsPath: 'data/pipeline-artifacts.json' });

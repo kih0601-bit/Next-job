@@ -596,7 +596,7 @@ for (const result of results) {
     activeRecruitUrl: diagnostic?.access?.activeRecruitUrl || result.activeRecruitUrl || '',
     diagnosis: diagnostic?.diagnosis || null,
     primaryCause: diagnostic?.primaryCause || null,
-    diagnosticStages: diagnostic ? { access: diagnostic.access, list: diagnostic.list, detail: diagnostic.detail, attachment: diagnostic.attachment } : null,
+    diagnosticStages: diagnostic ? { http: diagnostic.diagnosis?.http || null, recruitVerify: diagnostic.diagnosis?.recruitVerify || null, access: diagnostic.access, list: diagnostic.list, detail: diagnostic.detail, attachment: diagnostic.attachment } : null,
     listingPagesChecked: result.listingPagesChecked || 0,
     count: result.jobs.length,
     retained: retained.length,

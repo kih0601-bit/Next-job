@@ -5,7 +5,7 @@ import { inspectListingPage } from './lib/list-pipeline.mjs';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 
-const VERSION = '15.7-phase5-root-cause-diagnostics';
+const VERSION = '15.8-http-recruit-verify-board-type';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 10000;
@@ -111,27 +111,25 @@ async function accessiblePages(source) {
 
 
 
-function classifyAccess(report) {
+function classifyHttp(report) {
+  const diagnosis = report.access?.diagnosis?.http || {};
   const attempts = report.access?.attempts || [];
-  if (report.access?.diagnosis?.ok) {
-    return { status: 'success', code: report.access.diagnosis.code, reason: report.access.diagnosis.reason, evidence: attempts };
-  }
-  if (report.access?.ok && !report.access?.diagnosis?.ok) {
-    return { status: 'failed', code: report.access?.diagnosis?.code || 'ACCESS_RESPONDED_BUT_NOT_RECRUIT', reason: report.access?.diagnosis?.reason || '응답 페이지가 채용 게시판으로 검증되지 않음', evidence: attempts };
-  }
-  if (!attempts.length) return { status: 'failed', code: 'ACCESS_NO_ATTEMPT', reason: '접속 시도 기록이 없음', evidence: [] };
-  const errors = attempts.map(item => String(item.error || ''));
-  if (errors.every(value => value === 'timeout')) return { status: 'failed', code: 'ACCESS_TIMEOUT_ALL', reason: `후보 URL ${attempts.length}개가 모두 시간 초과`, evidence: attempts };
-  if (attempts.some(item => /HTTP 404/.test(item.error || ''))) return { status: 'failed', code: 'ACCESS_404', reason: '저장된 후보 URL 중 404 주소가 있음', evidence: attempts };
-  if (attempts.some(item => /HTTP 403/.test(item.error || ''))) return { status: 'failed', code: 'ACCESS_FORBIDDEN', reason: '서버가 자동 접속을 거부함(HTTP 403)', evidence: attempts };
-  if (attempts.some(item => /HTTP 5\d\d/.test(item.error || ''))) return { status: 'failed', code: 'ACCESS_SERVER_ERROR', reason: '기관 서버 오류(HTTP 5xx)', evidence: attempts };
-  return { status: 'failed', code: 'ACCESS_ALL_FAILED', reason: '등록된 모든 접속 후보 URL이 실패함', evidence: attempts };
+  if (diagnosis.ok) return { status: 'success', code: diagnosis.code || 'HTTP_OK', reason: diagnosis.reason || 'HTTP 응답 성공', evidence: attempts };
+  return { status: 'failed', code: diagnosis.code || 'HTTP_FAILED', reason: diagnosis.reason || '모든 후보 URL HTTP 접속 실패', evidence: attempts };
+}
+
+function classifyRecruitVerify(report) {
+  const diagnosis = report.access?.diagnosis?.recruitVerify || {};
+  if (!report.access?.httpOk) return { status: 'blocked', code: 'RECRUIT_VERIFY_BLOCKED_BY_HTTP', reason: 'HTTP 실패로 채용 게시판 검증 불가', evidence: [] };
+  if (diagnosis.ok) return { status: 'success', code: diagnosis.code || 'RECRUIT_VERIFY_OK', reason: diagnosis.reason || '채용 게시판 검증 성공', evidence: diagnosis.evidence || report.access?.verification || null };
+  return { status: 'failed', code: diagnosis.code || 'RECRUIT_VERIFY_FAILED', reason: diagnosis.reason || 'HTTP 응답은 성공했지만 채용 게시판으로 검증되지 않음', evidence: diagnosis.evidence || report.access?.verification || null };
 }
 
 function classifyList(report) {
   const list = report.list || {};
   const diagnostics = list.extractionDiagnostics || [];
-  if (!report.access?.ok) return { status: 'blocked', code: 'LIST_BLOCKED_BY_ACCESS', reason: '접속 실패로 목록 진단 불가', evidence: [] };
+  if (!report.access?.httpOk) return { status: 'blocked', code: 'LIST_BLOCKED_BY_HTTP', reason: 'HTTP 실패로 목록 진단 불가', evidence: [] };
+  if (!report.access?.recruitVerifyOk) return { status: 'blocked', code: 'LIST_BLOCKED_BY_RECRUIT_VERIFY', reason: '채용 게시판 검증 실패로 목록 진단 보류', evidence: report.access?.verification || [] };
   if (list.status === 'fetch-failed') return { status: 'failed', code: 'LIST_PAGE_FETCH_FAILED', reason: `목록 후보 페이지를 가져오지 못함: ${(list.errors || []).join(' | ')}`, evidence: list.errors || [] };
   if (!diagnostics.length) return { status: 'failed', code: 'LIST_NO_DIAGNOSTIC_PAGE', reason: '목록 후보 페이지를 확보했지만 분석 결과가 없음', evidence: [] };
   if (list.status === 'exact') return { status: 'success', code: 'LIST_EXACT', reason: `화면 게시글 ${list.visiblePostCount}건 = 추출 ${list.candidateCount}건`, evidence: diagnostics };
@@ -180,9 +178,12 @@ function classifyAttachment(report) {
 function remediationFor(code = '', org = '') {
   const institutionAdapter = `scripts/collectors/institutions/${org}.mjs`;
   const map = {
-    ACCESS_TIMEOUT_ALL: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '기관별 접속 URL과 timeout/fallback 순서를 확인' },
-    ACCESS_404: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '기관별 공식 채용 게시판 URL을 최신 주소로 교체' },
-    ACCESS_FORBIDDEN: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 헤더·쿠키·요청 방식 또는 공식 대체 출처 적용' },
+    HTTP_TIMEOUT_ALL: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '기관별 접속 URL과 timeout/fallback 순서를 확인' },
+    HTTP_404: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '기관별 공식 채용 게시판 URL을 최신 주소로 교체' },
+    HTTP_FORBIDDEN: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 헤더·쿠키·요청 방식 또는 공식 대체 출처 적용' },
+    HTTP_SERVER_ERROR: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '서버 오류 재시도·대체 URL 순서를 확인' },
+    RECRUIT_VERIFY_FAILED: { repairTarget: 'scripts/lib/recruit-verify.mjs', recommendedAction: '기관별 채용 키워드·게시판 검증 근거를 확인' },
+    RECRUIT_VERIFY_ERROR_PAGE: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '오류·차단 페이지가 아닌 실제 채용 게시판 URL로 교체' },
     LIST_COUNTER_FAILED: { repairTarget: institutionAdapter, recommendedAction: '기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정' },
     LIST_EMPTY_OR_WRONG_PAGE: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '현재 URL이 채용 게시판인지 확인하고 기관별 목록 URL 교체' },
     LIST_TITLE_NOT_FOUND: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 제목 선택자 또는 행 텍스트 규칙 추가' },
@@ -200,12 +201,15 @@ function remediationFor(code = '', org = '') {
 
 function attachRootCauses(report) {
   report.diagnosis = {
-    access: classifyAccess(report),
+    http: classifyHttp(report),
+    recruitVerify: classifyRecruitVerify(report),
     list: classifyList(report),
     detail: classifyDetail(report),
     attachment: classifyAttachment(report)
   };
-  const order = ['access', 'list', 'detail', 'attachment'];
+  // Backward-compatible alias for older report consumers.
+  report.diagnosis.access = report.diagnosis.recruitVerify;
+  const order = ['http', 'recruitVerify', 'list', 'detail', 'attachment'];
   const first = order.map(stage => ({ stage, ...report.diagnosis[stage] })).find(item => item.status === 'failed' || item.status === 'partial' || item.status === 'unknown');
   report.primaryCause = first || { stage: 'complete', status: 'success', code: 'PIPELINE_SAMPLE_OK', reason: '현재 진단 표본에서 실패 원인 없음', evidence: [] };
   Object.assign(report.primaryCause, remediationFor(report.primaryCause.code, report.org));
@@ -218,7 +222,7 @@ async function probeSource(source, artifacts) {
   const startedAt = Date.now();
   const report = {
     org: source.org,
-    access: { ok: false, attempts: [] },
+    access: { ok: false, httpOk: false, recruitVerifyOk: false, attempts: [], boardType: { type: 'UNKNOWN', confidence: 'low', evidence: [] } },
     list: { ok: false, status: 'unknown', pagesChecked: 0, visiblePostCount: null, candidateCount: 0, missingCount: null, extraCount: null, exactMatch: false, selectedUrl: '', detailUrlReady: 0, listOnlyCount: 0, extractionDiagnostics: [], samples: [], errors: [] },
     detail: { ok: false, attempted: 0, validated: 0, samples: [] },
     attachment: { ok: false, discovered: 0, samples: [] },
@@ -229,8 +233,9 @@ async function probeSource(source, artifacts) {
     const access = await accessiblePages(source);
     const first = access.selected || access.pages[0];
     for (const page of access.pages) artifacts.push(pageArtifact(source, page, 'access'));
-    report.access = { ok: Boolean(access.diagnosis?.ok), requestedUrl: first.requestedUrl, finalUrl: first.finalUrl, activeRecruitUrl: access.diagnosis?.activeRecruitUrl || '', status: first.status, contentType: first.contentType, attempts: access.attempts, verification: first.verification, diagnosis: access.diagnosis };
-    if (!report.access.ok) throw Object.assign(new Error(access.diagnosis?.reason || '채용 게시판 검증 실패'), { attempts: access.attempts });
+    report.access = { ok: Boolean(access.diagnosis?.ok), httpOk: Boolean(access.diagnosis?.http?.ok), recruitVerifyOk: Boolean(access.diagnosis?.recruitVerify?.ok), requestedUrl: first.requestedUrl, finalUrl: first.finalUrl, activeRecruitUrl: access.diagnosis?.activeRecruitUrl || '', status: first.status, contentType: first.contentType, attempts: access.attempts, verification: first.verification, boardType: first.verification?.boardType || { type: 'UNKNOWN', confidence: 'low', evidence: [] }, diagnosis: access.diagnosis };
+    if (!report.access.httpOk) throw Object.assign(new Error(access.diagnosis?.reason || 'HTTP 접속 실패'), { attempts: access.attempts });
+    if (!report.access.recruitVerifyOk) throw Object.assign(new Error(access.diagnosis?.reason || '채용 게시판 검증 실패'), { attempts: access.attempts, recruitVerifyFailed: true });
     const listingPages = [];
     for (const page of access.pages) {
       const activeSource = { ...source, url: page.finalUrl || page.requestedUrl };
@@ -298,7 +303,7 @@ async function probeSource(source, artifacts) {
   } catch (error) {
     report.access.attempts = error.attempts || report.access.attempts;
     report.access.error = error.name === 'AbortError' ? 'timeout' : error.message;
-    report.bottleneck = '접속';
+    report.bottleneck = error.recruitVerifyFailed ? '채용게시판 검증' : 'HTTP 접속';
   }
   report.elapsedMs = Date.now() - startedAt;
   return attachRootCauses(report);
@@ -317,14 +322,16 @@ const payload = {
   version: VERSION,
   sourceRegistryVersion: SOURCE_REGISTRY_VERSION,
   generatedAt: new Date().toISOString(),
-  policy: '기관별·단계별로 성공 여부뿐 아니라 실패 원인 코드, 근거와 1차 원인을 기록',
+  policy: 'HTTP·채용게시판 검증·목록·상세·첨부를 분리하고 기관 유형과 수정 우선순위를 기록',
   summary: {
     sourceCount: results.length,
-    accessOk: results.filter(item => item.access.ok).length,
+    httpOk: results.filter(item => item.access.httpOk).length,
+    recruitVerifyOk: results.filter(item => item.access.recruitVerifyOk).length,
+    accessOk: results.filter(item => item.access.recruitVerifyOk).length,
     listOk: results.filter(item => item.list.ok).length,
     detailOk: results.filter(item => item.detail.ok).length,
     attachmentOk: results.filter(item => item.attachment.ok).length,
-    fullPipelineOk: results.filter(item => item.access.ok && item.list.ok && item.detail.ok && item.attachment.ok).length,
+    fullPipelineOk: results.filter(item => item.access.recruitVerifyOk && item.list.ok && item.detail.ok && item.attachment.ok).length,
     causeCounts: results.reduce((acc, item) => { const key = item.primaryCause?.code || 'UNKNOWN'; acc[key] = (acc[key] || 0) + 1; return acc; }, {})
   },
   sources: results

@@ -673,28 +673,6 @@ const payload = {
   qa,
   note: '공개 본문·첨부문서를 확인한 뒤 한 공고 안의 모집 직군을 분리하여, 직군별 학력·고용형태·근무지를 연결 검증하고 지원 가능한 직군만 노출합니다.'
 };
-const healthPayload = {
-  version: payload.version,
-  updatedAt: nowIso,
-  summary: pipelineReport.payload ? {
-    totalSources: pipelineReport.payload.summary?.sourceCount ?? SOURCES.length,
-    healthy: pipelineReport.payload.summary?.accessOk ?? successfulSources,
-    degraded: 0,
-    failed: (pipelineReport.payload.summary?.sourceCount ?? SOURCES.length) - (pipelineReport.payload.summary?.accessOk ?? successfulSources),
-    retainedJobs,
-    accessOk: pipelineReport.payload.summary?.accessOk ?? 0,
-    listOk: pipelineReport.payload.summary?.listOk ?? 0,
-    detailOk: pipelineReport.payload.summary?.detailOk ?? 0,
-    attachmentOk: pipelineReport.payload.summary?.attachmentOk ?? 0,
-    fullPipelineOk: pipelineReport.payload.summary?.fullPipelineOk ?? 0,
-    reportConsistency: 'pipeline-report.json 기준으로 일원화',
-    collection: { successfulSources, degradedSources, failedSources }
-  } : {
-    totalSources: SOURCES.length, healthy: successfulSources, degraded: degradedSources, failed: failedSources, retainedJobs,
-    reportConsistency: 'pipeline-report.json 없음; collect 자체 결과 사용'
-  },
-  sources
-};
 await fs.mkdir('data', { recursive: true });
 const documentToolDiagnostics = await getDocumentToolDiagnostics();
 const debugPayload = {
@@ -721,7 +699,6 @@ const debugPayload = {
 };
 await Promise.all([
   fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8'),
-  fs.writeFile('data/source-health.json', `${JSON.stringify(healthPayload, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, ...qa }, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/debug-report.json', `${JSON.stringify(debugPayload, null, 2)}\n`, 'utf8')
 ]);

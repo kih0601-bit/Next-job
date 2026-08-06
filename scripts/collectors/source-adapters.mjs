@@ -251,7 +251,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
 
   const jobs = [];
   const seen = new Set();
-  const diagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, clickableBlocksScanned: 0, clickableBlocksAccepted: 0, listOnlyAccepted: 0, titleSamples: [], unsafeSamples: [] };
+  const diagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, clickableBlocksScanned: 0, clickableBlocksAccepted: 0, listOnlyAccepted: 0, titleSamples: [], unsafeSamples: [], actionSamples: [], candidateUrlSamples: [] };
   const anchorRegex = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
   for (const match of html.matchAll(anchorRegex)) {
     diagnostics.anchors += 1;
@@ -270,6 +270,10 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       for (const url of rowUrls) if (!urls.includes(url)) urls.push(url);
       usedRowFallback = rowUrls.length > 0;
     }
+    for (const url of urls) {
+      if (diagnostics.candidateUrlSamples.length >= 16) break;
+      diagnostics.candidateUrlSamples.push({ title, url, allowed: sourceAllows(url, source) });
+    }
     const link = urls.find(url => sourceAllows(url, source));
     if (!link) {
       // Phase 2 deliberately separates list extraction from detail URL recovery.
@@ -277,6 +281,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       // detail action is not decoded yet; Phase 3 will resolve the final URL.
       const row = (block || enclosingBlock(html, match.index));
       const action = attrs.match(/\bonclick\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
+      if (action && diagnostics.actionSamples.length < 12) diagnostics.actionSamples.push({ title, action: decodeHtmlEntities(action).slice(0, 600) });
       const identity = action.match(/(?:view|fn_Detail|goView|fnView|detail)\s*\(\s*["']?([^"')\s,]+)/i)?.[1]
         || row.match(/(?:data-)?(?:idx|seq|no|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo)\s*=\s*(["'])([^"']+)\1/i)?.[2]
         || `row-${match.index}`;
@@ -330,7 +335,13 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     }
     if (!validTitle(title) || isRecruitmentDisclosure(title) || LIST_NAVIGATION_TITLE.test(title)) continue;
 
+    const blockAction = attrs.match(/\b(?:onclick|onmousedown)\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
+    if (blockAction && diagnostics.actionSamples.length < 12) diagnostics.actionSamples.push({ title, action: decodeHtmlEntities(blockAction).slice(0, 600) });
     const urls = [...candidateUrls(attrs, source), ...sourceSpecificDetailUrls(block, source), ...urlsFromBlock(block, source)];
+    for (const url of urls) {
+      if (diagnostics.candidateUrlSamples.length >= 16) break;
+      diagnostics.candidateUrlSamples.push({ title, url, allowed: sourceAllows(url, source) });
+    }
     const link = urls.find(url => sourceAllows(url, source));
     const identity = attrs.match(/\b(?:data-)?(?:idx|seq|no|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo|sn|id)\s*=\s*(["'])([^"']+)\1/i)?.[2]
       || attrs.match(/(?:view|fn_Detail|goView|fnView|detail)\s*\(\s*["']?([^"')\s,]+)/i)?.[1]

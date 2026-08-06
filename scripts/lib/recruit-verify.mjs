@@ -1,0 +1,90 @@
+import { detectBoardType } from './board-type-detector.mjs';
+
+const POSITIVE = [
+  /채용\s*공고/i, /채용\s*정보/i, /인재\s*채용/i, /직원\s*채용/i, /직원\s*모집/i,
+  /recruit(?:ment)?/i, /careers?/i, /employment/i, /job\s*opening/i
+];
+const NEGATIVE = [
+  /페이지를\s*찾을\s*수\s*없/i, /존재하지\s*않는\s*페이지/i, /접근이\s*제한/i,
+  /서비스\s*점검/i, /오류가\s*발생/i, /not\s*found/i, /access\s*denied/i,
+  /captcha/i, /cloudflare/i
+];
+
+function textOnly(html = '') {
+  return String(html).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ').replace(/&amp;/gi, '&').replace(/\s+/g, ' ').trim();
+}
+function titleOf(html = '') {
+  return (String(html).match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+function matchedPatterns(text, patterns) {
+  return patterns.filter(pattern => pattern.test(text)).map(pattern => pattern.source);
+}
+
+export function verifyRecruitPage({ html = '', requestedUrl = '', finalUrl = '', status = 0, contentType = '', org = '' } = {}) {
+  const title = titleOf(html);
+  const text = textOnly(html).slice(0, 120000);
+  const urlText = `${requestedUrl} ${finalUrl}`;
+  const target = `${title} ${text.slice(0, 30000)} ${urlText}`;
+  const positiveMatches = matchedPatterns(target, POSITIVE);
+  const negativeMatches = matchedPatterns(`${title} ${text.slice(0, 12000)}`, NEGATIVE);
+  const boardSignals = [
+    /<table\b/i.test(html), /<tbody\b/i.test(html),
+    /(?:board|bbs|notice|recruit|채용)/i.test(urlText),
+    /(?:번호|제목|등록일|작성일|조회수)/.test(text.slice(0, 40000)),
+    /(?:다음|이전|페이지|pageIndex|pagination)/i.test(html)
+  ].filter(Boolean).length;
+  const isHtml = /html|xhtml/i.test(contentType || '') || /<html\b|<!doctype\s+html/i.test(html);
+  const orgToken = String(org).replace(/[()㈜주식회사\s]/g, '').slice(0, 8);
+  const orgMatched = orgToken.length >= 2 && text.replace(/\s/g, '').includes(orgToken);
+  const boardType = detectBoardType({ html, url: finalUrl || requestedUrl, contentType });
+  const errorLike = negativeMatches.length > 0 || Number(status) >= 400 || !isHtml || text.length < 40;
+
+  const checks = {
+    httpDocument: !errorLike,
+    recruitKeyword: positiveMatches.length > 0,
+    boardStructure: boardSignals > 0,
+    organizationMatch: orgMatched,
+    meaningfulBody: text.length >= 200
+  };
+  const score = Object.values(checks).filter(Boolean).length;
+  const maxScore = Object.keys(checks).length;
+  const verified = checks.httpDocument && checks.recruitKeyword && checks.boardStructure;
+  const fallback = !verified && checks.httpDocument && checks.recruitKeyword;
+
+  let code = 'RECRUIT_VERIFY_FAILED';
+  let reason = `채용 게시판 검증 점수 ${score}/${maxScore} · 필수 조건 미충족`;
+  if (verified) {
+    code = 'RECRUIT_VERIFY_OK';
+    reason = `채용 키워드 ${positiveMatches.length}개 · 게시판 신호 ${boardSignals}개 확인`;
+  } else if (fallback) {
+    code = 'RECRUIT_VERIFY_FALLBACK';
+    reason = '채용 관련 페이지는 확인했으나 게시판 구조 신호가 부족함';
+  } else if (errorLike) {
+    code = 'RECRUIT_VERIFY_ERROR_PAGE';
+    reason = `오류·차단·비HTML 신호 ${negativeMatches.length}개`;
+  }
+
+  return {
+    ok: verified || fallback,
+    verified,
+    fallback,
+    code,
+    reason,
+    score,
+    maxScore,
+    checks,
+    title,
+    orgMatched,
+    positiveHits: positiveMatches.length,
+    positiveMatches,
+    negativeHits: negativeMatches.length,
+    negativeMatches,
+    boardSignals,
+    boardType,
+    textLength: text.length,
+    requestedUrl,
+    finalUrl,
+    status,
+    contentType
+  };
+}

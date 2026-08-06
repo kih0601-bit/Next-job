@@ -1,6 +1,6 @@
 {
   "version": "15.0-phase5-list-selection",
-  "updatedAt": "2026-08-06T07:43:26.567Z",
+  "updatedAt": "2026-08-06T08:04:35.197Z",
   "summary": {
     "totalSources": 22,
     "healthy": 22,
@@ -17,39 +17,15 @@
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
+      "rejected": 9,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
         {
           "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
-          "ok": false,
-          "error": "HTTP 502 / curl failed: HTTP 502",
-          "attempt": 1
-        },
-        {
-          "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
-          "ok": false,
-          "error": "HTTP 502 / curl failed: HTTP 502",
-          "attempt": 2
-        },
-        {
-          "url": "https://www.ewp.co.kr/",
-          "ok": false,
-          "error": "HTTP 502 / curl failed: HTTP 502",
-          "attempt": 1
-        },
-        {
-          "url": "https://www.ewp.co.kr/",
-          "ok": false,
-          "error": "HTTP 502 / curl failed: HTTP 502",
-          "attempt": 2
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
@@ -57,14 +33,35 @@
       ],
       "rejectionReasons": {},
       "extractionDiagnostics": {
-        "anchors": 53,
-        "titleMatches": 0,
-        "noUrl": 0,
+        "anchors": 282,
+        "titleMatches": 10,
+        "noUrl": 10,
         "unsafeUrl": 0,
-        "accepted": 0,
+        "accepted": 10,
         "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": []
+        "titleSamples": [
+          "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+          "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+          "영덕해맞이풍력발전(주) 대표이사 모집공고",
+          "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+          "한국동서발전(주) 비상임이사 후보자 모집공고",
+          "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+          "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+          "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별..."
+        ],
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -84,7 +81,26 @@
         "byError": {}
       },
       "documentSamples": [],
-      "vacancyDecisions": []
+      "vacancyDecisions": [
+        {
+          "candidateTitle": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+          "candidateLink": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U#list-44635",
+          "vacancyId": "list-selection",
+          "vacancyName": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+          "status": "list-rejected",
+          "reason": "목록에 마감 문구가 명시됨",
+          "listSelection": {
+            "accepted": false,
+            "reasons": [
+              "목록에 마감 문구가 명시됨"
+            ],
+            "signals": [
+              "채용 제목 신호"
+            ],
+            "selectorVersion": "2026-08-06.1-phase5-list-selection"
+          }
+        }
+      ]
     },
     {
       "org": "한국석유공사",
@@ -94,7 +110,7 @@
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
+      "rejected": 15,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -111,13 +127,34 @@
       "rejectionReasons": {},
       "extractionDiagnostics": {
         "anchors": 141,
-        "titleMatches": 0,
+        "titleMatches": 15,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 0,
+        "accepted": 15,
         "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": []
+        "titleSamples": [
+          "2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�",
+          "2026�� �Ϲݱ� ����(ü����) ä����� [����]",
+          "2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)",
+          "2026�� ��ݱ� ����(�Ⱓ��) ä�� ���� ��� �ȳ�",
+          "2026�� ��ݱ� ����(�Ⱓ��) ä����� (����)",
+          "2025�� �ѱ��������� ���� ����ä�� ���� (����)",
+          "��2025�� ä����� �˸��̡� ���� ��û �ȳ� (����..",
+          "2025�⵵ �ѱ��������� ���� ä���ȹ(��)"
+        ],
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp",
+            "visiblePostCount": 15,
+            "candidateCount": 15,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -147,7 +184,7 @@
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 3,
+      "rejected": 7,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -162,24 +199,41 @@
         }
       ],
       "rejectionReasons": {
-        "expired deadline": 3
+        "timeout": 1,
+        "expired deadline": 2
       },
       "extractionDiagnostics": {
         "anchors": 658,
-        "titleMatches": 3,
+        "titleMatches": 7,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 3,
+        "accepted": 7,
         "rowFallbackAccepted": 0,
         "titleSamples": [
+          "한국에너지공단 공무직(미화) 채용(사회형평인재 제한경쟁)",
+          "한국에너지공단 청년인턴(체험형) 채용 공고",
           "한국에너지공단 공무직(시설관리 일반) 채용 공고",
           "한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)",
-          "한국에너지공단 전문경력직 채용 공고"
+          "한국에너지공단 공무직(미화) 채용(사회형평인재 제한경쟁)",
+          "한국에너지공단 전문경력직 채용 공고",
+          "한국에너지공단 신입직원(채용형 인턴) 채용 공고"
         ],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.energy.or.kr/front/board/etc/jobList.do",
+            "visiblePostCount": 7,
+            "candidateCount": 7,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          }
+        ]
       },
       "pipeline": {
-        "detailAttempted": 0,
+        "detailAttempted": 1,
         "detailValidated": 0,
         "attachmentsDiscovered": 0,
         "documentsAttempted": 0,
@@ -206,7 +260,7 @@
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
+      "rejected": 1,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -223,13 +277,27 @@
       "rejectionReasons": {},
       "extractionDiagnostics": {
         "anchors": 497,
-        "titleMatches": 0,
+        "titleMatches": 1,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 0,
+        "accepted": 1,
         "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": []
+        "titleSamples": [
+          "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����"
+        ],
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.hrdkorea.or.kr/3/1/2/2",
+            "visiblePostCount": 1,
+            "candidateCount": 1,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -259,7 +327,7 @@
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
+      "rejected": 2,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -276,13 +344,41 @@
       "rejectionReasons": {},
       "extractionDiagnostics": {
         "anchors": 22,
-        "titleMatches": 0,
+        "titleMatches": 15,
         "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
+        "unsafeUrl": 1,
+        "accepted": 2,
         "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": []
+        "titleSamples": [
+          "���� Ȩ������",
+          "���� �Ұ��ڷ�",
+          "�����",
+          "���� �� ����",
+          "����",
+          "�ٽɰ�ġ",
+          "�濵��ħ",
+          "����� �濵����"
+        ],
+        "unsafeSamples": [
+          {
+            "title": "�����",
+            "reason": "detail-url-pending",
+            "identity": "row-2450",
+            "row": "<li class=\"nav-list__item depth1\">\r\n\t\t\t\t\t\t\t<a href=\"https://www.comwel.or.kr/recruit/hp/ablman/ablmanView.do\" target=\"_blank\" class=\"link\">�����</a>\r\n\t\t\t\t\t\t</li>"
+          }
+        ],
+        "pages": [
+          {
+            "url": "https://comwel.incruit.com/index_main.asp",
+            "visiblePostCount": null,
+            "candidateCount": 2,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "count-unavailable",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -335,7 +431,19 @@
         "accepted": 0,
         "rowFallbackAccepted": 0,
         "titleSamples": [],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "empty-or-wrong-page",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -365,7 +473,7 @@
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 1,
+      "rejected": 11,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -373,7 +481,7 @@
           "url": "https://www.upa.or.kr/portal/contents.do?mid=0405000000",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1786001678037",
+          "finalUrl": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1786003260954",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
@@ -384,15 +492,34 @@
       },
       "extractionDiagnostics": {
         "anchors": 393,
-        "titleMatches": 1,
+        "titleMatches": 11,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 1,
+        "accepted": 11,
         "rowFallbackAccepted": 0,
         "titleSamples": [
-          "2026년 울산항만공사 연간 채용 계획 사전 안내"
+          "2026년 울산항만공사 연간 채용 계획 사전 안내",
+          "2026년 하반기 체험형 청년인턴 채용 최종합격자 및 예비합격자 발표",
+          "2026년 상반기 신입직원(채용형 인턴) 채용 최종합격자 및 예비합격자 발표",
+          "2026년 하반기 체험형 청년인턴 채용 면접전형 응시 대상자 공고",
+          "2026년 상반기 신입직원(채용형 인턴) 채용 면접전형 응시 대상자 공고",
+          "2026년 하반기 체험형 청년인턴 채용 필기전형 예비합격자 공고",
+          "2026년 하반기 체험형 청년인턴 채용 필기전형 합격자 공고",
+          "2026년 상반기 신입직원(채용형 인턴) 채용 필기전형 예비합격자 공고"
         ],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1786003260954",
+            "visiblePostCount": 11,
+            "candidateCount": 11,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 1,
@@ -519,7 +646,7 @@
                 "result": "울산",
                 "lines": [
                   "2026년 울산항만공사 연간 채용 계획 사전 안내",
-                  "공지 2026년 울산항만공사 연간 채용 계획 사전 안내 인사노무부 2026-04-10 4,466",
+                  "공지 2026년 울산항만공사 연간 채용 계획 사전 안내 인사노무부 2026-04-10 4,468",
                   "울산광역시 남구 장생포고래로 271",
                   "울산항만공사 ULSAN PORT AUTHORITY"
                 ]
@@ -542,7 +669,7 @@
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
+      "rejected": 100,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -552,20 +679,90 @@
           "status": 200,
           "finalUrl": "https://www.kepco.co.kr/home/about/careers.do",
           "transport": "node-fetch",
-          "profile": "browser",
+          "profile": "simple",
           "attempt": 1
         }
       ],
       "rejectionReasons": {},
       "extractionDiagnostics": {
-        "anchors": 446,
-        "titleMatches": 0,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
+        "anchors": 157,
+        "titleMatches": 147,
+        "noUrl": 3,
+        "unsafeUrl": 88,
+        "accepted": 100,
         "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": []
+        "titleSamples": [
+          "본문 바로가기",
+          "한국전력공사 로고",
+          "회사소개",
+          "KEPCO 소개 메뉴 열기",
+          "KEPCO 개요",
+          "CEO 인사말",
+          "경영방침",
+          "조직안내 메뉴 열기"
+        ],
+        "unsafeSamples": [
+          {
+            "title": "한국전력공사 로고",
+            "reason": "detail-url-pending",
+            "identity": "row-6969",
+            "row": "<div class=\"logo-wrap\">\r\n\t\t\t\t\t<h1>\r\n\t\t\t\t\t\t<a href=\"/home/index.do\" class=\"logo\" title=\"한국전력공사 로고\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_main');\">\r\n\t\t\t\t\t\t\t<span class=\"sr-only\">한국전력공사 로고</span>\r\n\t\t\t\t\t\t\t<svg width=\"144\" height=\"29\" viewBox=\"0 0 144 29\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t<path d=\"M72.9113 3.25391C69.5838 3.25391 66.6784 5.05837 65.0458 7.76149V3.26104H57.4156C54.2265 3.26104 51.418 4.90859 49.7508 7.42628V3.26104H44.0645V22.2899H49.7508V18.1247C51.418 20.6424 54.2265 22.297 57.4156 22.297H57.9206H65.0527V17.7894C66.6853 20.4926 69.5908 22.297 72.9182 22.297H73.4232H82.9973V17.1475H73.3194H73.3263C71.922 17.1475 70.6768 16.4415 69.909 15.3573H82.9973V10.2079H69.9228C70.6907 9.13089 71.9289 8.42479 73.3263 8.42479H73.9697L82.9973 8.41766V3.26817H72.9182L72.9113 3.25391ZM57.8099 17.1404H57.8168C55.4787 17.1404 53.5832 15.1933 53.5832 12.7826C53.5832 10.3719 55.4787 8.41766 57.8168 8.41766H58.4602L64.6792 8.41053C64.022 9.71573 63.6415 11.1992 63.6415 12.7755C63.6415 14.3517 64.022 15.8352 64.6792 17.1475H57.803L57.8099 17.1404Z\" fill=\"#0045C9\"/>\r\n\t\t\t\t\t\t\t\t<path d=\"M136.976 3.57304L136.63 3.48745C135.239 3.1451 133.787 2.9668 132.292 2.9668"
+          },
+          {
+            "title": "CEO 인사말",
+            "reason": "detail-url-pending",
+            "identity": "row-21220",
+            "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/introduce/ceo.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_ceo');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>CEO 인사말</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "경영방침",
+            "reason": "detail-url-pending",
+            "identity": "row-21618",
+            "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/introduce/policy/ceo/conts.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_policy');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>경영방침</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "조직안내 메뉴 열기",
+            "reason": "detail-url-pending",
+            "identity": "row-22431",
+            "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/orgaznization/orgchart/conts.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_org');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t조직안내\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<span class=\"sr-only\">메뉴 열기</span>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<i class=\"icon-mo\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M7 9L12 14L17 9\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"gnb-3depth\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+          },
+          {
+            "title": "해외지사·법인",
+            "reason": "detail-url-pending",
+            "identity": "row-24085",
+            "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/orgaznization/global/boardList.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_global');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>해외지사·법인</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "출자회사",
+            "reason": "detail-url-pending",
+            "identity": "row-24503",
+            "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/orgaznization/subsidiaries/group-company/conts.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_subsidiary');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>출자회사</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "전국 본부 · 사업소",
+            "reason": "detail-url-pending",
+            "identity": "row-24943",
+            "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/locations.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_branches_1');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t전국 본부 · 사업소\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t            <i class=\"icon-pc\">\r\n\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M9 17L14 12L9 7\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t"
+          },
+          {
+            "title": "투자정보 메뉴 열기",
+            "reason": "detail-url-pending",
+            "identity": "row-26226",
+            "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/invest/irinfo/irreport/boardList.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_ir');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t투자정보\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<span class=\"sr-only\">메뉴 열기</span>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<i class=\"icon-mo\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M7 9L12 14L17 9\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"gnb-3depth\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t"
+          }
+        ],
+        "pages": [
+          {
+            "url": "https://www.kepco.co.kr/home/about/careers.do",
+            "visiblePostCount": null,
+            "candidateCount": 100,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "count-unavailable",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -618,7 +815,19 @@
         "accepted": 0,
         "rowFallbackAccepted": 0,
         "titleSamples": [],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.khnp.co.kr/recruit/",
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "empty-or-wrong-page",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -648,7 +857,7 @@
       "listingPagesChecked": 4,
       "count": 0,
       "retained": 0,
-      "rejected": 4,
+      "rejected": 66,
       "detailFailures": 3,
       "error": "",
       "accessAttempts": [
@@ -668,18 +877,81 @@
       },
       "extractionDiagnostics": {
         "anchors": 1668,
-        "titleMatches": 4,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 4,
-        "rowFallbackAccepted": 1,
+        "titleMatches": 410,
+        "noUrl": 2,
+        "unsafeUrl": 2,
+        "accepted": 67,
+        "rowFallbackAccepted": 15,
         "titleSamples": [
-          "채용공고 더보기",
-          "2026년 울산도시공사 신입직원(보훈) 채용공고",
-          "2026년 울산도시공사 신입직원(기록물) 채용공고",
-          "기간제근로자(전기직) 채용 공고"
+          "브라우저에서 자바스크립트를 활성화하는 방법",
+          "본문으로가기",
+          "주요 메뉴로 건너뛰기",
+          "울산도시공사",
+          "메뉴보기",
+          "공지/공고",
+          "공지사항",
+          "채용공고",
+          "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+          "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+          "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+          "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고"
         ],
-        "unsafeSamples": []
+        "unsafeSamples": [
+          {
+            "title": "정보공개신청",
+            "reason": "detail-url-pending",
+            "identity": "row-21899",
+            "row": "<li><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새창\" class=\"tm_tit02 m_3dep open_win\"><span>정보공개신청</span></a>\r\n\t\t\t                          \t\t\t\t</li>"
+          },
+          {
+            "title": "정보공개신청",
+            "reason": "detail-url-pending",
+            "identity": "row-47652",
+            "row": "<li><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새창\" class=\"tm_tit02 open_win\"><span>정보공개신청</span></a>\r\n\t\t                          \t\t\t\t</li>"
+          }
+        ],
+        "pages": [
+          {
+            "url": "https://www.umca.co.kr/umca/main.do",
+            "visiblePostCount": null,
+            "candidateCount": 55,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "count-unavailable",
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://www.umca.co.kr/umca/contents.do?mId=001001002000000000",
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          },
+          {
+            "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&mId=001001002000000000&dataId=4477",
+            "visiblePostCount": 1,
+            "candidateCount": 1,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          },
+          {
+            "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&mId=001001002000000000&dataId=4468",
+            "visiblePostCount": 1,
+            "candidateCount": 1,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 4,
@@ -892,7 +1164,7 @@
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 1,
+      "rejected": 10,
       "detailFailures": 1,
       "error": "",
       "accessAttempts": [
@@ -911,15 +1183,34 @@
       },
       "extractionDiagnostics": {
         "anchors": 429,
-        "titleMatches": 1,
+        "titleMatches": 10,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 1,
+        "accepted": 10,
         "rowFallbackAccepted": 0,
         "titleSamples": [
+          "울산시설공단 임원(비상임이사) 공개모집 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+          "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+          "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+          "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
           "2026년도 제2회 울산시설공단 신규직원 채용 공고"
         ],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.uic.or.kr/notify/noti06.do",
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 1,
@@ -972,7 +1263,19 @@
         "accepted": 0,
         "rowFallbackAccepted": 0,
         "titleSamples": [],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.uncmc.or.kr/",
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "empty-or-wrong-page",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -1025,7 +1328,19 @@
         "accepted": 0,
         "rowFallbackAccepted": 0,
         "titleSamples": [],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.ubimc.or.kr/",
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "empty-or-wrong-page",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -1078,7 +1393,19 @@
         "accepted": 0,
         "rowFallbackAccepted": 0,
         "titleSamples": [],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.uljusiseol.or.kr/",
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "empty-or-wrong-page",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -1108,7 +1435,7 @@
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 3,
+      "rejected": 10,
       "detailFailures": 2,
       "error": "",
       "accessAttempts": [
@@ -1123,42 +1450,599 @@
         }
       ],
       "rejectionReasons": {
-        "closed notice text": 1,
+        "ICT/SW 사업운영·관리 (가급3~4호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | AI특화공동훈련센터 구축사업 운영 및 관리 (가급 5호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | AI선박 특화플랫폼 및 애플리케이션 개발 사업 운영 및 관리 (가급 3호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | 조선산업 핵심인재 디지털 양성 인프라 구축사업 운영 및 관리 (가급 3~4호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인": 1,
         "insufficient detail structure": 2
       },
       "extractionDiagnostics": {
         "anchors": 221,
-        "titleMatches": 3,
+        "titleMatches": 10,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 3,
+        "accepted": 10,
         "rowFallbackAccepted": 0,
         "titleSamples": [
           "울산정보산업진흥원 2026년 5차 직원 채용 공고",
-          "울산정보산업진흥원 2026년 4차 직원 채용 공고",
-          "울산정보산업진흥원 2026년 3차 직원 채용 공고"
+          "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
+          "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
+          "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고"
         ],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
+            "visiblePostCount": 11,
+            "candidateCount": 10,
+            "exactMatch": false,
+            "missingCount": 1,
+            "extraCount": 0,
+            "status": "partial",
+            "countSource": "visible-board-rows"
+          }
+        ]
       },
       "pipeline": {
-        "detailAttempted": 2,
-        "detailValidated": 0,
-        "attachmentsDiscovered": 0,
-        "documentsAttempted": 0,
-        "documentsParsed": 0
+        "detailAttempted": 3,
+        "detailValidated": 1,
+        "attachmentsDiscovered": 5,
+        "documentsAttempted": 5,
+        "documentsParsed": 2
       },
       "vacancyStats": {
-        "detected": 0,
+        "detected": 5,
         "accepted": 0,
-        "rejected": 0
+        "rejected": 5
       },
       "documentDiagnostics": {
-        "byDetectedType": {},
-        "byContentType": {},
-        "byError": {}
+        "byDetectedType": {
+          "pdf": 2,
+          "unknown": 3
+        },
+        "byContentType": {
+          "file/unknown": 3,
+          "image/png": 1,
+          "image/jpeg": 1
+        },
+        "byError": {
+          "extracted text too short": 2,
+          "tesseract timeout after 45000ms": 1
+        }
       },
-      "documentSamples": [],
-      "vacancyDecisions": []
+      "documentSamples": [
+        {
+          "name": "직무기술서(2026-5차).pdf (107kbb)",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12180",
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12180",
+          "hintedType": "pdf",
+          "detectedType": "pdf",
+          "detectionReason": "magic",
+          "contentType": "file/unknown",
+          "contentDisposition": "attachment; filename=\"%EC%A7%81%EB%AC%B4%EA%B8%B0%EC%88%A0%EC%84%9C%282026-5%EC%B0%A8%29.pdf\"",
+          "signature": "255044462d312e340a25aaabacad0a31",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 109306,
+          "textLength": 12564,
+          "method": "pdftotext",
+          "priority": 100,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "서류,면접전형 평가표.pdf (62kbb)",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12181",
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12181",
+          "hintedType": "pdf",
+          "detectedType": "pdf",
+          "detectionReason": "magic",
+          "contentType": "file/unknown",
+          "contentDisposition": "attachment; filename=\"%EC%84%9C%EB%A5%98%2C%EB%A9%B4%EC%A0%91%EC%A0%84%ED%98%95+%ED%8F%89%EA%B0%80%ED%91%9C.pdf\"",
+          "signature": "255044462d312e340a25aaabacad0a31",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 63889,
+          "textLength": 675,
+          "method": "pdftotext",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "이의신청서.hwp (43kbb)",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12182",
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12182",
+          "hintedType": "hwp",
+          "detectedType": "",
+          "contentType": "file/unknown",
+          "contentDisposition": "attachment; filename=\"%EC%9D%B4%EC%9D%98%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp\"",
+          "signature": "d0cf11e0a1b11ae10000000000000000",
+          "transport": "node-fetch",
+          "size": 43520,
+          "ok": false,
+          "error": "extracted text too short",
+          "commandError": {
+            "message": "extracted text too short",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "파일 다운로드",
+          "url": "https://www.uipa.or.kr/webuser/img/ico_download.png",
+          "finalUrl": "https://www.uipa.or.kr/webuser/img/ico_download.png",
+          "hintedType": "png",
+          "detectedType": "",
+          "contentType": "image/png",
+          "contentDisposition": "",
+          "signature": "89504e470d0a1a0a0000000d49484452",
+          "transport": "node-fetch",
+          "size": 229,
+          "ok": false,
+          "error": "extracted text too short",
+          "commandError": {
+            "message": "extracted text too short",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "a9e2417408fe06324593d7904351f178.jpg",
+          "url": "https://www.uipa.or.kr/data/upload/board/2/24674/a9e2417408fe06324593d7904351f178.jpg",
+          "finalUrl": "https://www.uipa.or.kr/data/upload/board/2/24674/a9e2417408fe06324593d7904351f178.jpg",
+          "hintedType": "jpg",
+          "detectedType": "",
+          "contentType": "image/jpeg",
+          "contentDisposition": "",
+          "signature": "ffd8ffe20c584943435f50524f46494c",
+          "transport": "node-fetch",
+          "size": 4249305,
+          "ok": false,
+          "error": "tesseract timeout after 45000ms",
+          "commandError": {
+            "message": "tesseract timeout after 45000ms",
+            "code": "COMMAND_TIMEOUT",
+            "exitCode": null,
+            "command": "tesseract",
+            "args": [
+              "/tmp/nextjob-doc-kg20RD/attachment-4.jpg",
+              "stdout",
+              "-l",
+              "kor+eng",
+              "--psm",
+              "6"
+            ],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        }
+      ],
+      "vacancyDecisions": [
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "ICT/SW 사업운영·관리 (가급3~4호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 ICT/SW 사업운영·관리 (가급3~4호)",
+                  "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 78 진행",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1097,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-2",
+          "vacancyName": "울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "울산",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 78 진행",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1141,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-3",
+          "vacancyName": "AI특화공동훈련센터 구축사업 운영 및 관리 (가급 5호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 AI특화공동훈련센터 구축사업 운영 및 관리 (가급 5호)",
+                  "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 78 진행",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1155,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-4",
+          "vacancyName": "AI선박 특화플랫폼 및 애플리케이션 개발 사업 운영 및 관리 (가급 3호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 AI선박 특화플랫폼 및 애플리케이션 개발 사업 운영 및 관리 (가급 3호)",
+                  "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 78 진행",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1167,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-5",
+          "vacancyName": "조선산업 핵심인재 디지털 양성 인프라 구축사업 운영 및 관리 (가급 3~4호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 조선산업 핵심인재 디지털 양성 인프라 구축사업 운영 및 관리 (가급 3~4호)",
+                  "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 78 진행",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1201,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        }
+      ]
     },
     {
       "org": "울산테크노파크",
@@ -1168,7 +2052,7 @@
       "listingPagesChecked": 4,
       "count": 0,
       "retained": 0,
-      "rejected": 8,
+      "rejected": 31,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -1194,22 +2078,99 @@
       },
       "extractionDiagnostics": {
         "anchors": 1811,
-        "titleMatches": 8,
+        "titleMatches": 812,
         "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 8,
-        "rowFallbackAccepted": 0,
+        "unsafeUrl": 5,
+        "accepted": 33,
+        "rowFallbackAccepted": 4,
         "titleSamples": [
-          "2026년 임직원 채용인원 및 친인척 해당자 공개",
-          "2025년 임직원 채용인원 및 친인척 해당자 공개",
-          "2024년 임직원 채용인원 및 친인척 해당자 공개",
-          "2023년 임직원 채용인원 및 친인척 해당자 공개",
-          "2022년 임직원 채용인원 및 친인척 해당자 공개",
-          "2021년 임직원 채용인원 및 친인척 해당자 공개",
-          "2020년 임직원 채용인원 및 친인척 해당자 공개",
-          "2019년 임직원 채용인원 및 친인척 해당자 공개"
+          "SITEMAP",
+          "ENGLISH",
+          "지원사업",
+          "사업안내",
+          "장비지원",
+          "입주 및 부대시설",
+          "알림마당",
+          "정보공개",
+          "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표",
+          "2026년 임직원 채용인원 및 친인척 해당자 공개"
         ],
-        "unsafeSamples": []
+        "unsafeSamples": [
+          {
+            "title": "CONTACT US",
+            "reason": "detail-url-pending",
+            "identity": "row-51113",
+            "row": "<li class=\"no-mobile\"><a href=\"../sub_etc/utpetc04.php\">CONTACT US</a></li>"
+          },
+          {
+            "title": "052-219-8500",
+            "reason": "detail-url-pending",
+            "identity": "row-51340",
+            "row": "<li class=\"no-mobile\"><a href=\"../sub_etc/utpetc04.php\">CONTACT US</a></li> -->\r\n\t\t\t</ul>\r\n\t\t\t<address>\r\n\t\t\t\t<b>(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동</b>\r\n\t\t\t\t<b class=\"tel\">울산테크노파크 </b> \r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\" > 대표번호 : <a href=\"tel:052-219-8500\" alt=\"전화걸기\">052-219-8500</a></b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\"> FAX : <a href=\"tel:052-219-8509\" alt=\"팩스보내기\">052-219-8509</a></b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\"> E-mail : <a href=\"mailto:info@utp.or.kr\" alt=\"메일보내기\">info@utp.or.kr</a></b>\r\n\t\t\t\t<br/>\r\n\t\t\t\t<b class=\"tel\">전국테크노파크 </b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\" ></span> 대표번호 : <a id=\"\" href=\"tel:1877-8972\" alt=\"전화걸기\">1877-8972</a></b>\r\n\t\t\t</address>\r\n\t\t\t<p>Copyright 2016 <strong>ULSAN TECHNOPARK.</strong> All Rights Reserved.</p>\r\n\r\n\r\n\t\t\t<div class=\"sitelink_wrap\">\r\n\t\t\t\t<div class=\"sitelink\">\r\n\t\t\t\t\t<ul class=\"sitelink_go\">\r\n\t\t\t\t\t\t<li><a href=\"..\" target=\"_blank\" title=\"새창열림\" id=\"sitelink_opener\" class=\"sel_site\">UTP 관련사이트</a></li>"
+          },
+          {
+            "title": "052-219-8509",
+            "reason": "detail-url-pending",
+            "identity": "row-51454",
+            "row": "<li class=\"no-mobile\"><a href=\"../sub_etc/utpetc04.php\">CONTACT US</a></li> -->\r\n\t\t\t</ul>\r\n\t\t\t<address>\r\n\t\t\t\t<b>(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동</b>\r\n\t\t\t\t<b class=\"tel\">울산테크노파크 </b> \r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\" > 대표번호 : <a href=\"tel:052-219-8500\" alt=\"전화걸기\">052-219-8500</a></b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\"> FAX : <a href=\"tel:052-219-8509\" alt=\"팩스보내기\">052-219-8509</a></b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\"> E-mail : <a href=\"mailto:info@utp.or.kr\" alt=\"메일보내기\">info@utp.or.kr</a></b>\r\n\t\t\t\t<br/>\r\n\t\t\t\t<b class=\"tel\">전국테크노파크 </b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\" ></span> 대표번호 : <a id=\"\" href=\"tel:1877-8972\" alt=\"전화걸기\">1877-8972</a></b>\r\n\t\t\t</address>\r\n\t\t\t<p>Copyright 2016 <strong>ULSAN TECHNOPARK.</strong> All Rights Reserved.</p>\r\n\r\n\r\n\t\t\t<div class=\"sitelink_wrap\">\r\n\t\t\t\t<div class=\"sitelink\">\r\n\t\t\t\t\t<ul class=\"sitelink_go\">\r\n\t\t\t\t\t\t<li><a href=\"..\" target=\"_blank\" title=\"새창열림\" id=\"sitelink_opener\" class=\"sel_site\">UTP 관련사이트</a></li>"
+          },
+          {
+            "title": "info@utp.or.kr",
+            "reason": "detail-url-pending",
+            "identity": "row-51572",
+            "row": "<li class=\"no-mobile\"><a href=\"../sub_etc/utpetc04.php\">CONTACT US</a></li> -->\r\n\t\t\t</ul>\r\n\t\t\t<address>\r\n\t\t\t\t<b>(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동</b>\r\n\t\t\t\t<b class=\"tel\">울산테크노파크 </b> \r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\" > 대표번호 : <a href=\"tel:052-219-8500\" alt=\"전화걸기\">052-219-8500</a></b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\"> FAX : <a href=\"tel:052-219-8509\" alt=\"팩스보내기\">052-219-8509</a></b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\"> E-mail : <a href=\"mailto:info@utp.or.kr\" alt=\"메일보내기\">info@utp.or.kr</a></b>\r\n\t\t\t\t<br/>\r\n\t\t\t\t<b class=\"tel\">전국테크노파크 </b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\" ></span> 대표번호 : <a id=\"\" href=\"tel:1877-8972\" alt=\"전화걸기\">1877-8972</a></b>\r\n\t\t\t</address>\r\n\t\t\t<p>Copyright 2016 <strong>ULSAN TECHNOPARK.</strong> All Rights Reserved.</p>\r\n\r\n\r\n\t\t\t<div class=\"sitelink_wrap\">\r\n\t\t\t\t<div class=\"sitelink\">\r\n\t\t\t\t\t<ul class=\"sitelink_go\">\r\n\t\t\t\t\t\t<li><a href=\"..\" target=\"_blank\" title=\"새창열림\" id=\"sitelink_opener\" class=\"sel_site\">UTP 관련사이트</a></li>"
+          },
+          {
+            "title": "1877-8972",
+            "reason": "detail-url-pending",
+            "identity": "row-51747",
+            "row": "<li class=\"no-mobile\"><a href=\"../sub_etc/utpetc04.php\">CONTACT US</a></li> -->\r\n\t\t\t</ul>\r\n\t\t\t<address>\r\n\t\t\t\t<b>(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동</b>\r\n\t\t\t\t<b class=\"tel\">울산테크노파크 </b> \r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\" > 대표번호 : <a href=\"tel:052-219-8500\" alt=\"전화걸기\">052-219-8500</a></b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\"> FAX : <a href=\"tel:052-219-8509\" alt=\"팩스보내기\">052-219-8509</a></b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\"> E-mail : <a href=\"mailto:info@utp.or.kr\" alt=\"메일보내기\">info@utp.or.kr</a></b>\r\n\t\t\t\t<br/>\r\n\t\t\t\t<b class=\"tel\">전국테크노파크 </b>\r\n\t\t\t\t<b class=\"tel\" style=\"padding-left: 1.5em\" ></span> 대표번호 : <a id=\"\" href=\"tel:1877-8972\" alt=\"전화걸기\">1877-8972</a></b>\r\n\t\t\t</address>\r\n\t\t\t<p>Copyright 2016 <strong>ULSAN TECHNOPARK.</strong> All Rights Reserved.</p>\r\n\r\n\r\n\t\t\t<div class=\"sitelink_wrap\">\r\n\t\t\t\t<div class=\"sitelink\">\r\n\t\t\t\t\t<ul class=\"sitelink_go\">\r\n\t\t\t\t\t\t<li><a href=\"..\" target=\"_blank\" title=\"새창열림\" id=\"sitelink_opener\" class=\"sel_site\">UTP 관련사이트</a></li>"
+          }
+        ],
+        "pages": [
+          {
+            "url": "https://www.utp.or.kr/",
+            "visiblePostCount": null,
+            "candidateCount": 17,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "count-unavailable",
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408",
+            "visiblePostCount": 15,
+            "candidateCount": 3,
+            "exactMatch": false,
+            "missingCount": 12,
+            "extraCount": 0,
+            "status": "partial",
+            "countSource": "visible-board-rows"
+          },
+          {
+            "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&sno=0511",
+            "visiblePostCount": 8,
+            "candidateCount": 8,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          },
+          {
+            "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000057&menu_group=6&sno=0605",
+            "visiblePostCount": null,
+            "candidateCount": 5,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "count-unavailable",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 8,
@@ -2078,7 +3039,19 @@
         "accepted": 0,
         "rowFallbackAccepted": 0,
         "titleSamples": [],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.ubpi.or.kr/",
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "empty-or-wrong-page",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -2108,7 +3081,7 @@
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
+      "rejected": 43,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -2121,7 +3094,7 @@
         {
           "url": "http://www.uri.re.kr/",
           "ok": false,
-          "error": "HTTP 403 / curl failed: HTTP 403",
+          "error": "HTTP 403 / timeout / curl failed: HTTP 403",
           "attempt": 2
         },
         {
@@ -2137,13 +3110,53 @@
       "rejectionReasons": {},
       "extractionDiagnostics": {
         "anchors": 165,
-        "titleMatches": 0,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": []
+        "titleMatches": 142,
+        "noUrl": 1,
+        "unsafeUrl": 2,
+        "accepted": 43,
+        "rowFallbackAccepted": 6,
+        "titleSamples": [
+          "본문 바로가기",
+          "온라인 교육",
+          "온국민 배움터",
+          "G-SEEK",
+          "K-MOOC",
+          "울산연구원",
+          "울산연구원",
+          "평생교육연구실"
+        ],
+        "unsafeSamples": [
+          {
+            "title": "문해교육센터",
+            "reason": "detail-url-pending",
+            "identity": "row-12458",
+            "row": "<li><a class=\"depth1-accordion\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"문해교육센터\">문해교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"문해교육센터 소개\">문해교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "울산지역경제교육센터",
+            "reason": "detail-url-pending",
+            "identity": "row-17317",
+            "row": "<li><a class=\"depth1-accordion\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산지역경제교육센터\">울산지역경제교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"울산지역경제교육센터 소개\">울산지역경제교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "메뉴닫기",
+            "reason": "no-url-detail-pending",
+            "identity": "row-21564",
+            "row": "<li class=\"side-menu-close-button\"><a\r\n\t\t\t\t\t\thref=\"javascript:void(0)\" onclick=\"closeSideMenu()\" title=\"메뉴닫기\"><span\r\n\t\t\t\t\t\t\tstyle=\"display: none;\">메뉴닫기</span></a></li>"
+          }
+        ],
+        "pages": [
+          {
+            "url": "https://uill.uri.re.kr/",
+            "visiblePostCount": null,
+            "candidateCount": 43,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "count-unavailable",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -2173,7 +3186,7 @@
       "listingPagesChecked": 2,
       "count": 0,
       "retained": 0,
-      "rejected": 0,
+      "rejected": 22,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -2190,13 +3203,103 @@
       "rejectionReasons": {},
       "extractionDiagnostics": {
         "anchors": 767,
-        "titleMatches": 0,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
+        "titleMatches": 639,
+        "noUrl": 8,
+        "unsafeUrl": 1,
+        "accepted": 28,
         "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": []
+        "titleSamples": [
+          "정보공개",
+          "재단소개",
+          "사업안내",
+          "운영시설",
+          "재단소식",
+          "고객의 소리",
+          "정보공개",
+          "비전 - 전략체계",
+          "정보공개",
+          "재단소개",
+          "사업안내",
+          "운영시설"
+        ],
+        "unsafeSamples": [
+          {
+            "title": "홈페이지 개선의견",
+            "reason": "no-url-detail-pending",
+            "identity": "row-88196",
+            "row": "<li>\n                            <a onclick=\"document.querySelector('#opinionPop').style.setProperty('display', 'block', 'important')\">홈페이지 개선의견</a>\n                        </li>"
+          },
+          {
+            "title": "통합검색",
+            "reason": "clickable-block-detail-url-pending",
+            "identity": "block-4022",
+            "row": "<li class=\"lst search pointer\" onclick=\"searchModalShow();\">\n                                <span style=\"font-size: 1.3rem; color: #ffffff;\">\n                                    통합검색\n                                    <img src=\"/img/common/ic_head_search.svg\" alt=\"\" style=\"margin-left: 12px;\">\n                                </span>\n                            </li>"
+          },
+          {
+            "title": "유에코 (UECO)",
+            "reason": "clickable-block-detail-url-pending",
+            "identity": "block-82150",
+            "row": "<li class=\"on\" onclick=\"m5Change(1)\">\n\t\t\t\t\t\t유에코 <br class=\"mo_view\">(UECO)\n\t\t\t\t\t</li>"
+          },
+          {
+            "title": "관광기업 지원센터",
+            "reason": "clickable-block-detail-url-pending",
+            "identity": "block-82241",
+            "row": "<li onclick=\"m5Change(2)\">\n\t\t\t\t\t\t관광기업<br class=\"mo_view\">지원센터\n\t\t\t\t\t</li>"
+          },
+          {
+            "title": "아르코공연 연습센터@울산",
+            "reason": "clickable-block-detail-url-pending",
+            "identity": "block-82319",
+            "row": "<li onclick=\"m5Change(3)\">\n\t\t\t\t\t\t아르코공연<br class=\"mo_view\">연습센터@울산\n\t\t\t\t\t</li>"
+          },
+          {
+            "title": "패밀리 사이트",
+            "reason": "clickable-block-detail-url-pending",
+            "identity": "block-102500",
+            "row": "<li class=\"site rel pointer\" onclick=\"familyPopShow();\">\n                <img src=\"/img/common/ic_side_site.svg\" alt=\"\" class=\"y_center\">\n                <div class=\"txt fs16 fc0 abs y_center\">패밀리 사이트</div>\n            </li>"
+          },
+          {
+            "title": "개인정보처리방침",
+            "reason": "detail-url-pending",
+            "identity": "row-93567",
+            "row": "<li>\n                        <a onclick=\"window.open('/privacy', '_blank')\">개인정보처리방침</a>\n                    </li>"
+          },
+          {
+            "title": "통합검색",
+            "reason": "clickable-block-detail-url-pending",
+            "identity": "block-4022",
+            "row": "<li class=\"lst search pointer\" onclick=\"searchModalShow();\">\n                                <span style=\"font-size: 1.3rem; color: #ffffff;\">\n                                    통합검색\n                                    <img src=\"/img/common/ic_head_search.svg\" alt=\"\" style=\"margin-left: 12px;\">\n                                </span>\n                            </li>"
+          },
+          {
+            "title": "패밀리 사이트",
+            "reason": "clickable-block-detail-url-pending",
+            "identity": "block-82986",
+            "row": "<li class=\"site rel pointer\" onclick=\"familyPopShow();\">\n                <img src=\"/img/common/ic_side_site.svg\" alt=\"\" class=\"y_center\">\n                <div class=\"txt fs16 fc0 abs y_center\">패밀리 사이트</div>\n            </li>"
+          }
+        ],
+        "pages": [
+          {
+            "url": "https://www.uctf.or.kr/",
+            "visiblePostCount": null,
+            "candidateCount": 19,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "count-unavailable",
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://www.uctf.or.kr/board/employment",
+            "visiblePostCount": null,
+            "candidateCount": 9,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "count-unavailable",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -2222,88 +3325,57 @@
       "org": "울산복지가족진흥사회서비스원",
       "ok": true,
       "status": "healthy",
-      "candidates": 3,
+      "candidates": 5,
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 3,
+      "rejected": 13,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
         {
           "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached",
-          "attempt": 1
-        },
-        {
-          "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached",
-          "attempt": 2
-        },
-        {
-          "url": "https://www.wfps.or.kr/",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached",
-          "attempt": 1
-        },
-        {
-          "url": "https://www.wfps.or.kr/",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11003 ms: Timeout was reached",
-          "attempt": 2
-        },
-        {
-          "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached",
-          "attempt": 1
-        },
-        {
-          "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached",
-          "attempt": 2
-        },
-        {
-          "url": "https://www.uwfdi.re.kr/",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached",
-          "attempt": 1
-        },
-        {
-          "url": "https://www.uwfdi.re.kr/",
-          "ok": false,
-          "error": "fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached",
-          "attempt": 2
-        },
-        {
-          "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+          "finalUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
           "transport": "node-fetch",
           "profile": "browser",
           "attempt": 1
         }
       ],
       "rejectionReasons": {
-        "expired deadline": 3
+        "expired deadline": 5
       },
       "extractionDiagnostics": {
-        "anchors": 795,
-        "titleMatches": 3,
+        "anchors": 293,
+        "titleMatches": 13,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 3,
+        "accepted": 13,
         "rowFallbackAccepted": 0,
         "titleSamples": [
-          "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
-          "울산광역시체육회 기간제근로자(장애인) 채용 공고",
+          "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+          "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+          "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
           "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
         ],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "visiblePostCount": 13,
+            "candidateCount": 13,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -2356,7 +3428,19 @@
         "accepted": 0,
         "rowFallbackAccepted": 0,
         "titleSamples": [],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://uljuculture.hubst.co.kr/",
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "status": "empty-or-wrong-page",
+            "countSource": "unavailable"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,
@@ -2386,7 +3470,7 @@
       "listingPagesChecked": 1,
       "count": 0,
       "retained": 0,
-      "rejected": 3,
+      "rejected": 10,
       "detailFailures": 0,
       "error": "",
       "accessAttempts": [
@@ -2405,17 +3489,34 @@
       },
       "extractionDiagnostics": {
         "anchors": 795,
-        "titleMatches": 3,
+        "titleMatches": 10,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 3,
+        "accepted": 10,
         "rowFallbackAccepted": 0,
         "titleSamples": [
+          "(부산광역시) 위해축산물 긴급회수문 게재",
+          "울산시설공단 임원 공개모집 공고",
+          "울산테크노파크 직원(청년인턴) 채용 공고",
+          "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
+          "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
           "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
-          "울산광역시체육회 기간제근로자(장애인) 채용 공고",
-          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
+          "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
+          "울산광역시체육회 기간제근로자(장애인) 채용 공고"
         ],
-        "unsafeSamples": []
+        "unsafeSamples": [],
+        "pages": [
+          {
+            "url": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "status": "exact",
+            "countSource": "visible-board-rows"
+          }
+        ]
       },
       "pipeline": {
         "detailAttempted": 0,

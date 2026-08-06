@@ -1,12 +1,12 @@
 {
   "version": "15.0-phase5-list-selection",
-  "updatedAt": "2026-08-06T13:41:57.063Z",
+  "updatedAt": "2026-08-06T14:38:54.627Z",
   "reportPath": "data/debug-report.json",
   "documentAnalyzerVersion": "12.5-file-endpoint-and-transport-parser",
   "documentToolDiagnostics": {
     "analyzerVersion": "12.5-file-endpoint-and-transport-parser",
     "platform": "linux",
-    "node": "v22.23.1",
+    "node": "v22.23.2",
     "tools": {
       "pdftotext": {
         "available": true,
@@ -53,109 +53,10 @@
   "sources": [
     {
       "org": "한국동서발전",
-      "status": "healthy",
-      "listingPagesChecked": 1,
-      "candidates": 10,
-      "extractionDiagnostics": {
-        "anchors": 282,
-        "titleMatches": 10,
-        "noUrl": 10,
-        "unsafeUrl": 0,
-        "accepted": 10,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [
-          "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
-          "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
-          "영덕해맞이풍력발전(주) 대표이사 모집공고",
-          "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
-          "한국동서발전(주) 비상임이사 후보자 모집공고",
-          "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
-          "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
-          "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별..."
-        ],
-        "unsafeSamples": [],
-        "pages": [
-          {
-            "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
-            "visiblePostCount": 10,
-            "candidateCount": 10,
-            "exactMatch": true,
-            "missingCount": 0,
-            "extraCount": 0,
-            "status": "exact",
-            "countSource": "visible-board-rows"
-          }
-        ]
-      },
-      "pipeline": {
-        "detailAttempted": 0,
-        "detailValidated": 0,
-        "attachmentsDiscovered": 0,
-        "documentsAttempted": 0,
-        "documentsParsed": 0
-      },
-      "documentDiagnostics": {
-        "byDetectedType": {},
-        "byContentType": {},
-        "byError": {}
-      },
-      "documentSamples": [],
-      "vacancyStats": {
-        "detected": 0,
-        "accepted": 0,
-        "rejected": 0
-      },
-      "vacancyDecisions": [
-        {
-          "candidateTitle": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
-          "candidateLink": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U#list-44635",
-          "vacancyId": "list-selection",
-          "vacancyName": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
-          "status": "list-rejected",
-          "reason": "목록에 마감 문구가 명시됨",
-          "listSelection": {
-            "accepted": false,
-            "reasons": [
-              "목록에 마감 문구가 명시됨"
-            ],
-            "signals": [
-              "채용 제목 신호"
-            ],
-            "selectorVersion": "2026-08-06.1-phase5-list-selection"
-          }
-        }
-      ],
-      "rejected": 9,
-      "rejectionReasons": {},
-      "error": ""
-    },
-    {
-      "org": "한국석유공사",
-      "status": "healthy",
-      "listingPagesChecked": 1,
-      "candidates": 15,
-      "extractionDiagnostics": {
-        "anchors": 48,
-        "titleMatches": 22,
-        "noUrl": 6,
-        "unsafeUrl": 14,
-        "accepted": 2,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": [],
-        "pages": [
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%84%9D%EC%9C%A0%EA%B3%B5%EC%82%AC&search_yn=Y",
-            "visiblePostCount": null,
-            "candidateCount": 2,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "status": "count-unavailable",
-            "countSource": "unavailable"
-          }
-        ]
-      },
+      "status": "failed",
+      "listingPagesChecked": 0,
+      "candidates": 0,
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -175,9 +76,38 @@
         "rejected": 0
       },
       "vacancyDecisions": [],
-      "rejected": 2,
+      "rejected": 0,
       "rejectionReasons": {},
-      "error": ""
+      "error": "HTTP_SERVER_ERROR: 기관 서버 오류(HTTP 5xx) | https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U => HTTP 502 / curl failed: HTTP 502 | https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U => HTTP 502 / curl failed: HTTP 502 | https://www.ewp.co.kr/ => HTTP 502 / curl failed: HTTP 502 | https://www.ewp.co.kr/ => HTTP 502 / curl failed: HTTP 502 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached"
+    },
+    {
+      "org": "한국석유공사",
+      "status": "failed",
+      "listingPagesChecked": 0,
+      "candidates": 0,
+      "extractionDiagnostics": {},
+      "pipeline": {
+        "detailAttempted": 0,
+        "detailValidated": 0,
+        "attachmentsDiscovered": 0,
+        "documentsAttempted": 0,
+        "documentsParsed": 0
+      },
+      "documentDiagnostics": {
+        "byDetectedType": {},
+        "byContentType": {},
+        "byError": {}
+      },
+      "documentSamples": [],
+      "vacancyStats": {
+        "detected": 0,
+        "accepted": 0,
+        "rejected": 0
+      },
+      "vacancyDecisions": [],
+      "rejected": 0,
+      "rejectionReasons": {},
+      "error": "RECRUIT_VERIFY_FAILED: 3개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음 | https://www.knoc.co.kr/sub01/sub01_7_9.jsp => 200 | https://m.knoc.co.kr/sub01/sub01_7_9.jsp => 200 | https://www.knoc.co.kr/ => 200 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%84%9D%EC%9C%A0%EA%B3%B5%EC%82%AC&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%84%9D%EC%9C%A0%EA%B3%B5%EC%82%AC&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11003 ms: Timeout was reached"
     },
     {
       "org": "한국에너지공단",
@@ -241,31 +171,10 @@
     },
     {
       "org": "한국산업인력공단",
-      "status": "healthy",
-      "listingPagesChecked": 1,
-      "candidates": 1,
-      "extractionDiagnostics": {
-        "anchors": 57,
-        "titleMatches": 30,
-        "noUrl": 6,
-        "unsafeUrl": 14,
-        "accepted": 10,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": [],
-        "pages": [
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "visiblePostCount": null,
-            "candidateCount": 10,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "status": "count-unavailable",
-            "countSource": "unavailable"
-          }
-        ]
-      },
+      "status": "failed",
+      "listingPagesChecked": 0,
+      "candidates": 0,
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -284,78 +193,17 @@
         "accepted": 0,
         "rejected": 0
       },
-      "vacancyDecisions": [
-        {
-          "candidateTitle": "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
-          "candidateLink": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303146",
-          "vacancyId": "list-selection",
-          "vacancyName": "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
-          "status": "list-rejected",
-          "reason": "목록에 마감 문구가 명시됨",
-          "listSelection": {
-            "accepted": false,
-            "reasons": [
-              "목록에 마감 문구가 명시됨"
-            ],
-            "signals": [
-              "대상 고용형태 신호",
-              "울산 근무 신호",
-              "채용 제목 신호"
-            ],
-            "selectorVersion": "2026-08-06.1-phase5-list-selection"
-          }
-        },
-        {
-          "candidateTitle": "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
-          "candidateLink": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300001",
-          "vacancyId": "list-selection",
-          "vacancyName": "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
-          "status": "list-rejected",
-          "reason": "목록에 마감 문구가 명시됨",
-          "listSelection": {
-            "accepted": false,
-            "reasons": [
-              "목록에 마감 문구가 명시됨"
-            ],
-            "signals": [
-              "대상 고용형태 신호",
-              "채용 제목 신호"
-            ],
-            "selectorVersion": "2026-08-06.1-phase5-list-selection"
-          }
-        }
-      ],
-      "rejected": 10,
+      "vacancyDecisions": [],
+      "rejected": 0,
       "rejectionReasons": {},
-      "error": ""
+      "error": "RECRUIT_VERIFY_FAILED: 2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음 | https://www.hrdkorea.or.kr/3/1/2/2 => 200 | https://www.hrdkorea.or.kr/ => 200 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached"
     },
     {
       "org": "근로복지공단",
-      "status": "healthy",
-      "listingPagesChecked": 1,
-      "candidates": 10,
-      "extractionDiagnostics": {
-        "anchors": 60,
-        "titleMatches": 30,
-        "noUrl": 6,
-        "unsafeUrl": 14,
-        "accepted": 10,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": [],
-        "pages": [
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "visiblePostCount": null,
-            "candidateCount": 10,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "status": "count-unavailable",
-            "countSource": "unavailable"
-          }
-        ]
-      },
+      "status": "failed",
+      "listingPagesChecked": 0,
+      "candidates": 0,
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -375,37 +223,16 @@
         "rejected": 0
       },
       "vacancyDecisions": [],
-      "rejected": 10,
+      "rejected": 0,
       "rejectionReasons": {},
-      "error": ""
+      "error": "RECRUIT_VERIFY_FAILED: 2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음 | https://comwel.incruit.com/index_main.asp => 200 | https://comwel.saramin.co.kr/ => 200 | https://www.comwel.or.kr/comwel/noti/recruit.jsp => HTTP 400 / curl failed: HTTP 400 | https://www.comwel.or.kr/comwel/noti/recruit.jsp => HTTP 400 / curl failed: HTTP 400 | https://www.comwel.or.kr/ => HTTP 400 / curl failed: HTTP 400 | https://www.comwel.or.kr/ => HTTP 400 / curl failed: HTTP 400 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached"
     },
     {
       "org": "한국산업안전보건공단",
-      "status": "healthy",
-      "listingPagesChecked": 1,
-      "candidates": 10,
-      "extractionDiagnostics": {
-        "anchors": 58,
-        "titleMatches": 30,
-        "noUrl": 6,
-        "unsafeUrl": 14,
-        "accepted": 10,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": [],
-        "pages": [
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "visiblePostCount": null,
-            "candidateCount": 10,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "status": "count-unavailable",
-            "countSource": "unavailable"
-          }
-        ]
-      },
+      "status": "failed",
+      "listingPagesChecked": 0,
+      "candidates": 0,
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -425,11 +252,9 @@
         "rejected": 0
       },
       "vacancyDecisions": [],
-      "rejected": 10,
-      "rejectionReasons": {
-        "closed notice text": 3
-      },
-      "error": ""
+      "rejected": 0,
+      "rejectionReasons": {},
+      "error": "RECRUIT_VERIFY_FAILED: 2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음 | https://www.kosha.or.kr/kosha/intro/recruitment.do => 200 | https://www.kosha.or.kr/ => 200 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached"
     },
     {
       "org": "울산항만공사",
@@ -456,7 +281,7 @@
         "unsafeSamples": [],
         "pages": [
           {
-            "url": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1786023534079",
+            "url": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1786025708448",
             "visiblePostCount": 11,
             "candidateCount": 11,
             "exactMatch": true,
@@ -592,7 +417,7 @@
                 "result": "울산",
                 "lines": [
                   "2026년 울산항만공사 연간 채용 계획 사전 안내",
-                  "공지 2026년 울산항만공사 연간 채용 계획 사전 안내 인사노무부 2026-04-10 4,487",
+                  "공지 2026년 울산항만공사 연간 채용 계획 사전 안내 인사노무부 2026-04-10 4,489",
                   "울산광역시 남구 장생포고래로 271",
                   "울산항만공사 ULSAN PORT AUTHORITY"
                 ]
@@ -722,31 +547,10 @@
     },
     {
       "org": "한국수력원자력",
-      "status": "healthy",
-      "listingPagesChecked": 1,
-      "candidates": 10,
-      "extractionDiagnostics": {
-        "anchors": 58,
-        "titleMatches": 30,
-        "noUrl": 6,
-        "unsafeUrl": 14,
-        "accepted": 10,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": [],
-        "pages": [
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
-            "visiblePostCount": null,
-            "candidateCount": 10,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "status": "count-unavailable",
-            "countSource": "unavailable"
-          }
-        ]
-      },
+      "status": "failed",
+      "listingPagesChecked": 0,
+      "candidates": 0,
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -766,9 +570,9 @@
         "rejected": 0
       },
       "vacancyDecisions": [],
-      "rejected": 10,
+      "rejected": 0,
       "rejectionReasons": {},
-      "error": ""
+      "error": "RECRUIT_VERIFY_FAILED: 1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음 | https://www.khnp.co.kr/recruit/ => 200 | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached | https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11003 ms: Timeout was reached"
     },
     {
       "org": "울산도시공사",
@@ -1358,27 +1162,567 @@
         ]
       },
       "pipeline": {
-        "detailAttempted": 2,
-        "detailValidated": 0,
-        "attachmentsDiscovered": 0,
-        "documentsAttempted": 0,
-        "documentsParsed": 0
+        "detailAttempted": 3,
+        "detailValidated": 1,
+        "attachmentsDiscovered": 5,
+        "documentsAttempted": 5,
+        "documentsParsed": 2
       },
       "documentDiagnostics": {
-        "byDetectedType": {},
-        "byContentType": {},
-        "byError": {}
+        "byDetectedType": {
+          "pdf": 2,
+          "unknown": 3
+        },
+        "byContentType": {
+          "file/unknown": 3,
+          "image/png": 1,
+          "image/jpeg": 1
+        },
+        "byError": {
+          "extracted text too short": 2,
+          "tesseract timeout after 45000ms": 1
+        }
       },
-      "documentSamples": [],
+      "documentSamples": [
+        {
+          "name": "직무기술서(2026-5차).pdf (107kbb)",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12180",
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12180",
+          "hintedType": "pdf",
+          "detectedType": "pdf",
+          "detectionReason": "magic",
+          "contentType": "file/unknown",
+          "contentDisposition": "attachment; filename=\"%EC%A7%81%EB%AC%B4%EA%B8%B0%EC%88%A0%EC%84%9C%282026-5%EC%B0%A8%29.pdf\"",
+          "signature": "255044462d312e340a25aaabacad0a31",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 109306,
+          "textLength": 12564,
+          "method": "pdftotext",
+          "priority": 100,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "서류,면접전형 평가표.pdf (62kbb)",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12181",
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12181",
+          "hintedType": "pdf",
+          "detectedType": "pdf",
+          "detectionReason": "magic",
+          "contentType": "file/unknown",
+          "contentDisposition": "attachment; filename=\"%EC%84%9C%EB%A5%98%2C%EB%A9%B4%EC%A0%91%EC%A0%84%ED%98%95+%ED%8F%89%EA%B0%80%ED%91%9C.pdf\"",
+          "signature": "255044462d312e340a25aaabacad0a31",
+          "transport": "node-fetch",
+          "ok": true,
+          "size": 63889,
+          "textLength": 675,
+          "method": "pdftotext",
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "이의신청서.hwp (43kbb)",
+          "url": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12182",
+          "finalUrl": "https://www.uipa.or.kr/webuser/recruit/download.html?bd_id=24674&fi_id=12182",
+          "hintedType": "hwp",
+          "detectedType": "",
+          "contentType": "file/unknown",
+          "contentDisposition": "attachment; filename=\"%EC%9D%B4%EC%9D%98%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp\"",
+          "signature": "d0cf11e0a1b11ae10000000000000000",
+          "transport": "node-fetch",
+          "size": 43520,
+          "ok": false,
+          "error": "extracted text too short",
+          "commandError": {
+            "message": "extracted text too short",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "파일 다운로드",
+          "url": "https://www.uipa.or.kr/webuser/img/ico_download.png",
+          "finalUrl": "https://www.uipa.or.kr/webuser/img/ico_download.png",
+          "hintedType": "png",
+          "detectedType": "",
+          "contentType": "image/png",
+          "contentDisposition": "",
+          "signature": "89504e470d0a1a0a0000000d49484452",
+          "transport": "node-fetch",
+          "size": 229,
+          "ok": false,
+          "error": "extracted text too short",
+          "commandError": {
+            "message": "extracted text too short",
+            "code": "",
+            "exitCode": null,
+            "command": "",
+            "args": [],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "a9e2417408fe06324593d7904351f178.jpg",
+          "url": "https://www.uipa.or.kr/data/upload/board/2/24674/a9e2417408fe06324593d7904351f178.jpg",
+          "finalUrl": "https://www.uipa.or.kr/data/upload/board/2/24674/a9e2417408fe06324593d7904351f178.jpg",
+          "hintedType": "jpg",
+          "detectedType": "",
+          "contentType": "image/jpeg",
+          "contentDisposition": "",
+          "signature": "ffd8ffe20c584943435f50524f46494c",
+          "transport": "node-fetch",
+          "size": 4249305,
+          "ok": false,
+          "error": "tesseract timeout after 45000ms",
+          "commandError": {
+            "message": "tesseract timeout after 45000ms",
+            "code": "COMMAND_TIMEOUT",
+            "exitCode": null,
+            "command": "tesseract",
+            "args": [
+              "/tmp/nextjob-doc-gdeZfm/attachment-4.jpg",
+              "stdout",
+              "-l",
+              "kor+eng",
+              "--psm",
+              "6"
+            ],
+            "stdout": "",
+            "stderr": ""
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        }
+      ],
       "vacancyStats": {
-        "detected": 0,
+        "detected": 5,
         "accepted": 0,
-        "rejected": 0
+        "rejected": 5
       },
-      "vacancyDecisions": [],
+      "vacancyDecisions": [
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "ICT/SW 사업운영·관리 (가급3~4호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 ICT/SW 사업운영·관리 (가급3~4호)",
+                  "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 99 진행",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1097,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-2",
+          "vacancyName": "울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "울산",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 99 진행",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1141,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-3",
+          "vacancyName": "AI특화공동훈련센터 구축사업 운영 및 관리 (가급 5호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 AI특화공동훈련센터 구축사업 운영 및 관리 (가급 5호)",
+                  "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 99 진행",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1155,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-4",
+          "vacancyName": "AI선박 특화플랫폼 및 애플리케이션 개발 사업 운영 및 관리 (가급 3호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 AI선박 특화플랫폼 및 애플리케이션 개발 사업 운영 및 관리 (가급 3호)",
+                  "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 99 진행",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1167,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
+          "candidateLink": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
+          "vacancyId": "vacancy-5",
+          "vacancyName": "조선산업 핵심인재 디지털 양성 인프라 구축사업 운영 및 관리 (가급 3~4호)",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요"
+          ],
+          "quality": {
+            "score": 65,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "첨부문서 2개 분석",
+              "울산 단일 근무 확인",
+              "마감일 확인",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "허용 고용형태 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "울산",
+            "fitScore": 55,
+            "jobCategory": "전산",
+            "crossValidation": {
+              "checked": true,
+              "conflict": false,
+              "reasons": [],
+              "detailEmployment": "고용형태 확인 필요",
+              "documentEmployment": "고용형태 확인 필요",
+              "detailEducation": "학력 확인 필요",
+              "documentEducation": "학력 확인 필요",
+              "detailLocation": "근무지 확인 필요",
+              "documentLocation": "근무지 확인 필요"
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "울산 단일 근무지 확인",
+              "본문-첨부문서 교차검증 통과"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "울산",
+                "lines": [
+                  "울산정보산업진흥원 2026년 5차 직원 채용 공고 조선산업 핵심인재 디지털 양성 인프라 구축사업 운영 및 관리 (가급 3~4호)",
+                  "공지 울산정보산업진흥원 2026년 5차 직원 채용 공고 2026.08.05 99 진행",
+                  "채용분야 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호)",
+                  "◦ 울산 석유화학 AX실증산단 구축사업 운영 및 관리"
+                ]
+              },
+              "sources": {
+                "detailChars": 1201,
+                "documentChars": 13301,
+                "documentUsed": true
+              }
+            }
+          }
+        }
+      ],
       "rejected": 10,
       "rejectionReasons": {
-        "closed notice text": 1,
+        "ICT/SW 사업운영·관리 (가급3~4호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | 울산 석유화학 AX실증산단 구축사업 운영 및 관리(가급 4호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | AI특화공동훈련센터 구축사업 운영 및 관리 (가급 5호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | AI선박 특화플랫폼 및 애플리케이션 개발 사업 운영 및 관리 (가급 3호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인 | 조선산업 핵심인재 디지털 양성 인프라 구축사업 운영 및 관리 (가급 3~4호): 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인": 1,
         "insufficient detail structure": 2
       },
       "error": ""
@@ -2393,40 +2737,10 @@
     },
     {
       "org": "울산연구원",
-      "status": "healthy",
-      "listingPagesChecked": 1,
-      "candidates": 10,
-      "extractionDiagnostics": {
-        "anchors": 795,
-        "titleMatches": 10,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 10,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [
-          "(부산광역시) 위해축산물 긴급회수문 게재",
-          "울산시설공단 임원 공개모집 공고",
-          "울산테크노파크 직원(청년인턴) 채용 공고",
-          "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
-          "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
-          "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
-          "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
-          "울산광역시체육회 기간제근로자(장애인) 채용 공고"
-        ],
-        "unsafeSamples": [],
-        "pages": [
-          {
-            "url": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
-            "visiblePostCount": 10,
-            "candidateCount": 10,
-            "exactMatch": true,
-            "missingCount": 0,
-            "extraCount": 0,
-            "status": "exact",
-            "countSource": "visible-board-rows"
-          }
-        ]
-      },
+      "status": "failed",
+      "listingPagesChecked": 0,
+      "candidates": 0,
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -2446,11 +2760,9 @@
         "rejected": 0
       },
       "vacancyDecisions": [],
-      "rejected": 10,
-      "rejectionReasons": {
-        "expired deadline": 3
-      },
-      "error": ""
+      "rejected": 0,
+      "rejectionReasons": {},
+      "error": "RECRUIT_VERIFY_FAILED: 1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음 | http://www.uri.re.kr/ => HTTP 403 / curl failed: HTTP 403 | http://www.uri.re.kr/ => timeout / HTTP 403 / curl failed: HTTP 403 | https://uill.uri.re.kr/ => 200 | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached"
     },
     {
       "org": "울산문화관광재단",
@@ -2532,40 +2844,10 @@
     },
     {
       "org": "울산복지가족진흥사회서비스원",
-      "status": "healthy",
-      "listingPagesChecked": 1,
-      "candidates": 13,
-      "extractionDiagnostics": {
-        "anchors": 293,
-        "titleMatches": 13,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 13,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [
-          "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
-          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
-          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
-          "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
-          "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
-          "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
-          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
-          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
-        ],
-        "unsafeSamples": [],
-        "pages": [
-          {
-            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-            "visiblePostCount": 13,
-            "candidateCount": 13,
-            "exactMatch": true,
-            "missingCount": 0,
-            "extraCount": 0,
-            "status": "exact",
-            "countSource": "visible-board-rows"
-          }
-        ]
-      },
+      "status": "failed",
+      "listingPagesChecked": 0,
+      "candidates": 0,
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -2585,11 +2867,9 @@
         "rejected": 0
       },
       "vacancyDecisions": [],
-      "rejected": 13,
-      "rejectionReasons": {
-        "expired deadline": 5
-      },
-      "error": ""
+      "rejected": 0,
+      "rejectionReasons": {},
+      "error": "HTTP_TIMEOUT_ALL: 후보 URL 16개 모두 시간 초과 | https://www.wfps.or.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached | https://www.wfps.or.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached | https://www.wfps.or.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached | https://www.wfps.or.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 11002 ms: Timeout was reached | https://www.uwfdi.re.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached | https://www.uwfdi.re.kr/webuser/employment/list.html => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached | https://www.uwfdi.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached | https://www.uwfdi.re.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001001000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001001000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached"
     },
     {
       "org": "울주문화재단",
@@ -2648,40 +2928,10 @@
     },
     {
       "org": "울산광역시 타기관소식",
-      "status": "healthy",
-      "listingPagesChecked": 1,
-      "candidates": 10,
-      "extractionDiagnostics": {
-        "anchors": 795,
-        "titleMatches": 10,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 10,
-        "rowFallbackAccepted": 0,
-        "titleSamples": [
-          "(부산광역시) 위해축산물 긴급회수문 게재",
-          "울산시설공단 임원 공개모집 공고",
-          "울산테크노파크 직원(청년인턴) 채용 공고",
-          "대통령 직속 빛의 위원회《빛의 혁명》기록물 수집",
-          "울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용",
-          "울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고",
-          "2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내",
-          "울산광역시체육회 기간제근로자(장애인) 채용 공고"
-        ],
-        "unsafeSamples": [],
-        "pages": [
-          {
-            "url": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
-            "visiblePostCount": 10,
-            "candidateCount": 10,
-            "exactMatch": true,
-            "missingCount": 0,
-            "extraCount": 0,
-            "status": "exact",
-            "countSource": "visible-board-rows"
-          }
-        ]
-      },
+      "status": "failed",
+      "listingPagesChecked": 0,
+      "candidates": 0,
+      "extractionDiagnostics": {},
       "pipeline": {
         "detailAttempted": 0,
         "detailValidated": 0,
@@ -2701,11 +2951,9 @@
         "rejected": 0
       },
       "vacancyDecisions": [],
-      "rejected": 10,
-      "rejectionReasons": {
-        "expired deadline": 3
-      },
-      "error": ""
+      "rejected": 0,
+      "rejectionReasons": {},
+      "error": "HTTP_TIMEOUT_ALL: 후보 URL 6개 모두 시간 초과 | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 11002 ms: Timeout was reached | https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6000 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 6002 ms: Timeout was reached | https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2 => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsannamgu.go.kr port 443 after 11002 ms: Timeout was reached | https://job.alio.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 6001 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 6002 ms: Timeout was reached | https://job.alio.go.kr/ => fetch failed (UND_ERR_CONNECT_TIMEOUT) / curl failed: curl: (28) Failed to connect to job.alio.go.kr port 443 after 11001 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached\ncurl: (28) Failed to connect to job.alio.go.kr port 443 after 11002 ms: Timeout was reached"
     }
   ]
 }

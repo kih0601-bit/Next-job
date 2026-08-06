@@ -4,20 +4,17 @@ import { extractAlioCandidates } from './alio-adapter.mjs';
 const LIST_QUERY_KEYS = new Set(['pageIndex', 'page', 'searchCondition', 'searchKeyword', 'menuNo', 'mId', 'order', 'search_yn', 'org_name']);
 const DETAIL_PARAM = /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no|boardNo|board_no|noticeNo|notice_no|sn|id)$/i;
 const FILE_OR_DOWNLOAD = /\.(?:pdf|hwp|hwpx|docx?|xlsx?|zip)(?:$|[?#])|filedown|download|attach|atchfile|file_id|fileid/i;
-const LIST_NAVIGATION_TITLE = /^(?:--?>\s*)?(?:채용공고|채용정보|채용안내)(?:\s*(?:더보기|바로가기))?$/i;
+const GENERIC_NAVIGATION_TITLE = /^(?:홈|메인|목록|이전|다음|처음|마지막|더보기|바로가기|로그인|회원가입|사이트맵|검색|전체메뉴)$/i;
 
-
-const NON_RECRUITMENT_DISCLOSURE = [
-  /친인척(?:\s*해당자)?\s*(?:공개|현황)/,
-  /임직원\s*채용인원\s*(?:및|·)?\s*친인척/,
-  /채용(?:인원|현황|실적|통계)\s*(?:공개|현황)/,
-  /신규채용\s*(?:현황|실적|통계)/,
-  /채용비리|채용\s*감사|채용\s*점검/,
-  /퇴직자|재직자|임직원\s*현황/
-];
-
-function isRecruitmentDisclosure(title = '') {
-  return NON_RECRUITMENT_DISCLOSURE.some(pattern => pattern.test(title));
+function looksLikeBoardRecord(block = '', link = '', source = null) {
+  const text = cleanHtml(block).replace(/\s+/g, ' ').trim();
+  if (hasDetailSignal(link, source)) return true;
+  if (/<tr\b/i.test(block) && /<t[dh]\b/i.test(block)) return true;
+  if (/\b(?:onclick|data-href|data-url|data-id|data-seq|data-idx)\s*=/i.test(block)) return true;
+  if (/(?:20\d{2}|19\d{2})[.\-/년]\s*\d{1,2}(?:[.\-/월]\s*\d{1,2})?/.test(text)) return true;
+  if (/(?:번호|작성일|등록일|게시일|조회수|첨부파일)/.test(text)) return true;
+  if (/\b(?:idx|seq|no|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo)\b/i.test(block)) return true;
+  return false;
 }
 
 const SOURCE_PROFILES = {
@@ -257,15 +254,16 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     diagnostics.anchors += 1;
     const attrs = match[1] || '';
     const title = cleanHtml(match[2]).replace(/\s+/g, ' ').trim();
-    if (!validTitle(title) || isRecruitmentDisclosure(title) || LIST_NAVIGATION_TITLE.test(title)) continue;
+    if (!validTitle(title) || GENERIC_NAVIGATION_TITLE.test(title)) continue;
     diagnostics.titleMatches += 1;
     if (diagnostics.titleSamples.length < 8) diagnostics.titleSamples.push(title);
 
     let urls = candidateUrls(attrs, source);
     let usedRowFallback = false;
-    let block = '';
+    let block = enclosingBlock(html, match.index);
+    if (!looksLikeBoardRecord(block, urls[0] || '', source)) continue;
     if (!urls.length || !urls.some(url => sourceAllows(url, source))) {
-      block = enclosingBlock(html, match.index);
+      block = block || enclosingBlock(html, match.index);
       const rowUrls = [...sourceSpecificDetailUrls(block, source), ...urlsFromBlock(block, source)];
       for (const url of rowUrls) if (!urls.includes(url)) urls.push(url);
       usedRowFallback = rowUrls.length > 0;
@@ -296,7 +294,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       diagnostics.accepted += 1;
       diagnostics.listOnlyAccepted += 1;
       if (diagnostics.unsafeSamples.length < 8) diagnostics.unsafeSamples.push({ title, reason: urls.length ? 'detail-url-pending' : 'no-url-detail-pending', identity, row: row.slice(0, 1200) });
-      if (jobs.length >= 30) break;
+      if (jobs.length >= 100) break;
       continue;
     }
     const canonical = canonicalJobUrl(link);
@@ -310,7 +308,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     jobs.push({ org: source.org, title, link: canonical, listText, adapter: source.org });
     diagnostics.accepted += 1;
     if (usedRowFallback) diagnostics.rowFallbackAccepted += 1;
-    if (jobs.length >= 30) break;
+    if (jobs.length >= 100) break;
   }
 
   // Some institutional boards do not wrap the subject in an <a> tag. Instead the
@@ -319,7 +317,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
   // into false job candidates.
   const blockRegex = /<(tr|li|article|div)\b([^>]*(?:onclick|data-href|data-url|role\s*=\s*["']link["'])[^>]*)>([\s\S]*?)<\/\1>/gi;
   for (const match of html.matchAll(blockRegex)) {
-    if (jobs.length >= 30) break;
+    if (jobs.length >= 100) break;
     diagnostics.clickableBlocksScanned += 1;
     const attrs = match[2] || '';
     const block = match[0];
@@ -333,7 +331,8 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       const text = cleanHtml(block).replace(/\s+/g, ' ').trim();
       title = text.split(/(?:\d{4}[.\-/]\d{1,2}[.\-/]\d{1,2}|조회\s*\d+|첨부파일)/)[0].trim();
     }
-    if (!validTitle(title) || isRecruitmentDisclosure(title) || LIST_NAVIGATION_TITLE.test(title)) continue;
+    if (!validTitle(title) || GENERIC_NAVIGATION_TITLE.test(title)) continue;
+    if (!looksLikeBoardRecord(block, '', source)) continue;
 
     const blockAction = attrs.match(/\b(?:onclick|onmousedown)\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
     if (blockAction && diagnostics.actionSamples.length < 12) diagnostics.actionSamples.push({ title, action: decodeHtmlEntities(blockAction).slice(0, 600) });

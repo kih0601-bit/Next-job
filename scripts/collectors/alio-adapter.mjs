@@ -55,11 +55,13 @@ function extractRowFallbackCandidates(html, source, { validTitle, normalizeTitle
     const end = Math.min(String(html).length, (match.index || 0) + match[0].length + 900);
     const fragment = String(html).slice(start, end);
     const text = cleanHtml(fragment).replace(/\s+/g, ' ').trim();
-    const titleMatches = [...text.matchAll(/(?:20\d{2}[^|]{0,100}?(?:채용|모집)[^|]{0,120}|[^|]{0,80}?(?:신입|경력|정규직|공무직|무기계약직)[^|]{0,100}?(?:채용|모집)[^|]{0,80})/g)]
-      .map(item => item[0].trim())
-      .filter(Boolean)
-      .sort((a, b) => a.length - b.length);
-    const title = titleMatches.find(validTitle);
+    const cellTitles = [...fragment.matchAll(/<(?:td|th|span|div|p|strong)\b[^>]*(?:class\s*=\s*["'][^"']*(?:title|subject|sj|tit)[^"']*["'])?[^>]*>([\s\S]*?)<\/(?:td|th|span|div|p|strong)>/gi)]
+      .map(item => normalizeTitle(item[1]))
+      .filter(validTitle)
+      .filter(item => !/^(?:번호|기관명|제목|등록일|마감일|조회수)$/.test(item))
+      .sort((a, b) => b.length - a.length);
+    const title = cellTitles[0] || text.split(/(?:20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}|조회\s*\d+|첨부파일)/)[0].trim();
+    if (!validTitle(title)) continue;
     if (!title) continue;
     const link = `https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=${match[1]}`;
     const key = `${source.org}|${normalizeTitleForDedup(title)}|${link}`;
@@ -68,7 +70,7 @@ function extractRowFallbackCandidates(html, source, { validTitle, normalizeTitle
     jobs.push({ org: source.org, title, link, listText: text, sourceType: 'ALIO', adapter: 'ALIO-row-fallback' });
     diagnostics.rowFallbackAccepted = (diagnostics.rowFallbackAccepted || 0) + 1;
     diagnostics.accepted += 1;
-    if (jobs.length >= 40) break;
+    if (jobs.length >= 100) break;
   }
 }
 
@@ -98,9 +100,9 @@ export function extractAlioCandidates(html, source, { validTitle, normalizeTitle
     const listText = cleanHtml(html.slice(start, end)).replace(/\s+/g, ' ').trim();
     jobs.push({ org: source.org, title, link, listText, sourceType: 'ALIO' });
     diagnostics.accepted += 1;
-    if (jobs.length >= 40) break;
+    if (jobs.length >= 100) break;
   }
-  if (jobs.length < 40) extractRowFallbackCandidates(html, source, { validTitle, normalizeTitleForDedup }, jobs, seen, diagnostics);
+  if (jobs.length < 100) extractRowFallbackCandidates(html, source, { validTitle, normalizeTitleForDedup }, jobs, seen, diagnostics);
   Object.defineProperty(jobs, 'diagnostics', { value: diagnostics, enumerable: false });
   return jobs;
 }

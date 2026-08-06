@@ -6,8 +6,9 @@ import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 const VERSION = '15.2-phase5-list-normalization';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
-const ACCESS_TIMEOUT_MS = 7000;
-const LIST_TIMEOUT_MS = 7000;
+const ACCESS_TIMEOUT_MS = 10000;
+const LIST_TIMEOUT_MS = 10000;
+const MAX_ACCESS_URLS = 6;
 
 function headers(referer = '') {
   return {
@@ -32,20 +33,24 @@ async function fetchHtml(url, timeoutMs = 22000, referer = '') {
   }
 }
 
-async function firstAccessible(source) {
+async function accessiblePages(source) {
   const attempts = [];
-  for (const url of source.accessUrls || [source.url]) {
+  const pages = [];
+  for (const url of (source.accessUrls || [source.url]).slice(0, MAX_ACCESS_URLS)) {
     try {
       const result = await fetchHtml(url, ACCESS_TIMEOUT_MS, source.homepage || '');
       attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl });
-      return { ...result, requestedUrl: url, attempts };
+      pages.push({ ...result, requestedUrl: url });
     } catch (error) {
       attempts.push({ url, ok: false, error: error.name === 'AbortError' ? 'timeout' : error.message });
     }
   }
-  const error = new Error('all access URLs failed');
-  error.attempts = attempts;
-  throw error;
+  if (!pages.length) {
+    const error = new Error('all access URLs failed');
+    error.attempts = attempts;
+    throw error;
+  }
+  return { pages, attempts };
 }
 
 function permissiveTitle(title = '') {
@@ -71,19 +76,26 @@ async function probeSource(source) {
     elapsedMs: 0
   };
   try {
-    const access = await firstAccessible(source);
-    report.access = { ok: true, requestedUrl: access.requestedUrl, finalUrl: access.finalUrl, status: access.status, contentType: access.contentType, attempts: access.attempts };
-    const activeSource = { ...source, url: access.finalUrl || access.requestedUrl };
-    const listingUrls = [activeSource.url];
-    if (source.discoverListings) {
-      for (const url of discoverListingUrls(access.html, activeSource)) if (!listingUrls.includes(url)) listingUrls.push(url);
-    }
+    const access = await accessiblePages(source);
+    const first = access.pages[0];
+    report.access = { ok: true, requestedUrl: first.requestedUrl, finalUrl: first.finalUrl, status: first.status, contentType: first.contentType, attempts: access.attempts };
     const all = [];
-    for (const [index, url] of listingUrls.slice(0, MAX_LISTING_PAGES).entries()) {
+    const listingPages = [];
+    for (const page of access.pages) {
+      const activeSource = { ...source, url: page.finalUrl || page.requestedUrl };
+      listingPages.push({ page, source: activeSource });
+      if (source.discoverListings) {
+        for (const url of discoverListingUrls(page.html, activeSource)) {
+          if (!listingPages.some(item => item.source.url === url)) listingPages.push({ url, source: { ...activeSource, url } });
+        }
+      }
+    }
+    for (const item of listingPages.slice(0, MAX_LISTING_PAGES)) {
+      const url = item.source.url;
       try {
-        const page = index === 0 ? access : await fetchHtml(url, LIST_TIMEOUT_MS, activeSource.url);
+        const page = item.page || await fetchHtml(url, LIST_TIMEOUT_MS, item.source.url);
         report.list.pagesChecked += 1;
-        const pageSource = { ...activeSource, url: page.finalUrl || url };
+        const pageSource = { ...item.source, url: page.finalUrl || url };
         const found = extractCandidatesForSource(page.html, pageSource, { validTitle: permissiveTitle, normalizeTitleForDedup: normalizeTitle });
         report.list.extractionDiagnostics.push({ url: pageSource.url, ...(found.diagnostics || {}) });
         for (const item of found) if (!all.some(existing => existing.link === item.link && existing.title === item.title)) all.push(item);

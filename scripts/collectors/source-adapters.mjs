@@ -231,7 +231,7 @@ function sourceAllows(link, source) {
 export function extractCandidatesForSource(html, source, { validTitle, normalizeTitleForDedup }) {
   const jobs = [];
   const seen = new Set();
-  const diagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, titleSamples: [], unsafeSamples: [] };
+  const diagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, clickableBlocksScanned: 0, clickableBlocksAccepted: 0, listOnlyAccepted: 0, titleSamples: [], unsafeSamples: [] };
   const anchorRegex = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
   for (const match of html.matchAll(anchorRegex)) {
     diagnostics.anchors += 1;
@@ -269,6 +269,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       diagnostics.noUrl += urls.length ? 0 : 1;
       diagnostics.unsafeUrl += urls.length ? 1 : 0;
       diagnostics.accepted += 1;
+      diagnostics.listOnlyAccepted += 1;
       if (diagnostics.unsafeSamples.length < 8) diagnostics.unsafeSamples.push({ title, reason: urls.length ? 'detail-url-pending' : 'no-url-detail-pending', identity, row: row.slice(0, 1200) });
       if (jobs.length >= 30) break;
       continue;
@@ -286,6 +287,56 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     if (usedRowFallback) diagnostics.rowFallbackAccepted += 1;
     if (jobs.length >= 30) break;
   }
+
+  // Some institutional boards do not wrap the subject in an <a> tag. Instead the
+  // entire row/card is clickable through onclick, data-url, data-href, or role=link.
+  // Scan only bounded row-like blocks so this fallback does not turn page chrome
+  // into false job candidates.
+  const blockRegex = /<(tr|li|article|div)\b([^>]*(?:onclick|data-href|data-url|role\s*=\s*["']link["'])[^>]*)>([\s\S]*?)<\/\1>/gi;
+  for (const match of html.matchAll(blockRegex)) {
+    if (jobs.length >= 30) break;
+    diagnostics.clickableBlocksScanned += 1;
+    const attrs = match[2] || '';
+    const block = match[0];
+    if (block.length > 20000) continue;
+
+    const explicitTitle = attrs.match(/\b(?:data-title|aria-label|title)\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
+    const classTitle = block.match(/<(?:td|th|span|div|p|strong)\b[^>]*class\s*=\s*(["'])[^"']*(?:title|subject|sj|tit)[^"']*\1[^>]*>([\s\S]*?)<\/(?:td|th|span|div|p|strong)>/i)?.[2] || '';
+    const anchorTitle = block.match(/<a\b[^>]*>([\s\S]*?)<\/a>/i)?.[1] || '';
+    let title = cleanHtml(explicitTitle || classTitle || anchorTitle).replace(/\s+/g, ' ').trim();
+    if (!title) {
+      const text = cleanHtml(block).replace(/\s+/g, ' ').trim();
+      title = text.split(/(?:\d{4}[.\-/]\d{1,2}[.\-/]\d{1,2}|조회\s*\d+|첨부파일)/)[0].trim();
+    }
+    if (!validTitle(title) || isRecruitmentDisclosure(title) || LIST_NAVIGATION_TITLE.test(title)) continue;
+
+    const urls = [...candidateUrls(attrs, source), ...sourceSpecificDetailUrls(block, source), ...urlsFromBlock(block, source)];
+    const link = urls.find(url => sourceAllows(url, source));
+    const identity = attrs.match(/\b(?:data-)?(?:idx|seq|no|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo|sn|id)\s*=\s*(["'])([^"']+)\1/i)?.[2]
+      || attrs.match(/(?:view|fn_Detail|goView|fnView|detail)\s*\(\s*["']?([^"')\s,]+)/i)?.[1]
+      || `block-${match.index}`;
+    const canonical = link ? canonicalJobUrl(link) : `${canonicalJobUrl(source.url)}#list-${encodeURIComponent(identity)}`;
+    const key = `${source.org}|${normalizeTitleForDedup(title)}|${canonical}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    jobs.push({
+      org: source.org,
+      title,
+      link: canonical,
+      listText: cleanHtml(block).replace(/\s+/g, ' ').trim(),
+      adapter: `${source.org}:clickable-block`,
+      ...(link ? {} : { listOnly: true, listIdentity: identity })
+    });
+    diagnostics.accepted += 1;
+    diagnostics.clickableBlocksAccepted += 1;
+    if (!link) {
+      diagnostics.noUrl += 1;
+      diagnostics.listOnlyAccepted += 1;
+      if (diagnostics.unsafeSamples.length < 8) diagnostics.unsafeSamples.push({ title, reason: 'clickable-block-detail-url-pending', identity, row: block.slice(0, 1200) });
+    }
+  }
+
   Object.defineProperty(jobs, 'diagnostics', { value: diagnostics, enumerable: false });
   return jobs;
 }

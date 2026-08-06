@@ -116,14 +116,16 @@ export function buildListRootCauseDiagnostics({ html = '', source, inspection, s
   else probableCause = 'NO_LIST_ROOT_CAUSE_DETECTED';
 
   return {
-    version: '1.0',
-    org: source.org,
-    url: source.url,
+    version: '1.1-passive',
+    mode: 'passive',
+    org: source?.org || 'unknown',
+    url: source?.url || '',
     probableCause,
     counts: {
       visiblePostCount: inspection.visiblePostCount,
       candidateCount: inspection.candidateCount,
       rawTableRows: rows.length,
+      sourceHtmlLength: String(html).length,
       missingRows: missingRows.length,
       extraCandidates: extraCandidates.length
     },

@@ -12,7 +12,7 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 35
 
     steps:
       - name: Checkout repository
@@ -23,22 +23,56 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Run pipeline diagnostics
+      - name: Preserve previous pipeline report
+        shell: bash
+        run: |
+          if [ -s data/pipeline-report.json ]; then
+            cp data/pipeline-report.json data/pipeline-report.previous.json
+          fi
+
+      - name: Probe institution pipelines
         run: node scripts/pipeline-probe.mjs
+
+      - name: Build unified institution report
+        run: node scripts/build-unified-report.mjs
+
+      - name: Save diagnostic evidence
+        run: node scripts/save-diagnostic-evidence.mjs
+
+      - name: Compare with previous run
+        run: node scripts/compare-pipeline-reports.mjs
+
+      - name: Check regressions
+        run: node scripts/run-regression-check.mjs
+
+      - name: Update pipeline history
+        run: node scripts/update-pipeline-history.mjs
 
       - name: Collect job postings
         run: node scripts/collect.mjs
 
-      - name: Commit updated jobs
+      - name: Upload diagnostic bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: next-job-diagnostics
+          path: |
+            data/pipeline-report.json
+            data/pipeline-diff.json
+            data/regression-report.json
+            data/pipeline-history.json
+            data/pipeline-artifacts.json
+            data/diagnostics/
+          retention-days: 14
+
+      - name: Commit updated jobs and diagnostics
         shell: bash
         run: |
-          if git diff --quiet -- data/jobs.json data/source-health.json data/pipeline-report.json data/pipeline-artifacts.json; then
-            echo "No changes"
-            exit 0
-          fi
-
           git config user.name "next-job-bot"
           git config user.email "next-job-bot@users.noreply.github.com"
-          git add data/jobs.json data/source-health.json data/pipeline-report.json data/pipeline-artifacts.json
-          git commit -m "자동 채용공고 업데이트"
+          git add -A data/
+          if git diff --cached --quiet; then
+            echo "No data changes"
+            exit 0
+          fi
+          git commit -m "자동 채용공고 및 진단 데이터 업데이트"
           git push

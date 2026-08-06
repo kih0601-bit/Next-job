@@ -1,55 +1,12 @@
 {
-  "generatedAt": "2026-08-06T14:53:46.786Z",
+  "generatedAt": "2026-08-06T15:11:01.255Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 9,
-    "regressed": 1,
-    "unchanged": 12
+    "improved": 1,
+    "regressed": 0,
+    "unchanged": 21
   },
   "changes": [
-    {
-      "org": "울산테크노파크",
-      "health": "failed",
-      "primaryCause": {
-        "stage": "http",
-        "status": "failed",
-        "code": "HTTP_FAILED",
-        "reason": "모든 후보 URL HTTP 접속 실패",
-        "evidence": [
-          {
-            "url": "https://www.utp.or.kr/",
-            "ok": false,
-            "error": "timeout"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachment": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
     {
       "org": "울산남구도시관리공단",
       "health": "degraded",
@@ -570,9 +527,9 @@
       },
       "stages": {
         "access": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "list": {
           "from": false,
@@ -580,17 +537,17 @@
           "change": "same"
         },
         "detail": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "attachment": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -1115,12 +1072,12 @@
               },
               {
                 "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/PageLink.do;jsessionid=9B11631B18FDB475F7FC96F39887CF32",
+                "url": "https://www.uljusiseol.or.kr/portal/PageLink.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4",
                 "allowed": false
               },
               {
                 "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/;jsessionid=9B11631B18FDB475F7FC96F39887CF32",
+                "url": "https://www.uljusiseol.or.kr/portal/;jsessionid=BF9D8DD8AE5040DDE552B835239831E4",
                 "allowed": false
               },
               {
@@ -1155,32 +1112,32 @@
               },
               {
                 "title": "고객소통",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=9B11631B18FDB475F7FC96F39887CF32?bbsId=BBSMSTR_000000000048",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000048",
                 "allowed": true
               },
               {
                 "title": "고객의 소리",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=9B11631B18FDB475F7FC96F39887CF32?bbsId=BBSMSTR_000000000048",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000048",
                 "allowed": true
               },
               {
                 "title": "군민제안방",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=9B11631B18FDB475F7FC96F39887CF32?bbsId=BBSMSTR_000000000050",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000050",
                 "allowed": true
               },
               {
                 "title": "재난 및 안전",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=9B11631B18FDB475F7FC96F39887CF32?bbsId=BBSMSTR_000000000045",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000045",
                 "allowed": true
               },
               {
                 "title": "체육시설서식자료실",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=9B11631B18FDB475F7FC96F39887CF32?bbsId=BBSMSTR_000000000046",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000046",
                 "allowed": true
               },
               {
                 "title": "주민참여예산",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=9B11631B18FDB475F7FC96F39887CF32?bbsId=BBSMSTR_000000000049",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=BF9D8DD8AE5040DDE552B835239831E4?bbsId=BBSMSTR_000000000049",
                 "allowed": true
               }
             ],
@@ -1412,9 +1369,9 @@
       },
       "stages": {
         "access": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "list": {
           "from": false,
@@ -1422,17 +1379,17 @@
           "change": "same"
         },
         "detail": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "attachment": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -1488,9 +1445,9 @@
       },
       "stages": {
         "access": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "list": {
           "from": false,
@@ -1498,17 +1455,17 @@
           "change": "same"
         },
         "detail": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "attachment": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -1855,14 +1812,14 @@
       },
       "stages": {
         "access": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "detail": {
           "from": false,
@@ -1875,7 +1832,7 @@
           "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -1911,14 +1868,14 @@
       },
       "stages": {
         "access": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "detail": {
           "from": false,
@@ -1931,7 +1888,7 @@
           "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -2073,19 +2030,19 @@
               {
                 "title": "정보공개청구",
                 "reason": "detail-url-pending",
-                "identity": "row-36045",
+                "identity": "row-36044",
                 "row": "<div class=\"list01\"><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새 창 열림\">정보공개청구</a></div>"
               },
               {
                 "title": "웹접근성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49224",
+                "identity": "row-49223",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               },
               {
                 "title": "웹개방성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49375",
+                "identity": "row-49374",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               }
             ],
@@ -2220,14 +2177,14 @@
       },
       "stages": {
         "access": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "detail": {
           "from": false,
@@ -2240,7 +2197,7 @@
           "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -2350,27 +2307,27 @@
       },
       "stages": {
         "access": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "detail": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "attachment": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -2424,27 +2381,27 @@
       },
       "stages": {
         "access": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "detail": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "attachment": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -2457,6 +2414,43 @@
         "reason": "현재 진단 표본에서 실패 원인 없음",
         "evidence": [],
         "repairTarget": "scripts/collectors/institutions/울산연구원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachment": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        }
+      },
+      "improved": false,
+      "regressed": false
+    },
+    {
+      "org": "울산테크노파크",
+      "health": "healthy",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {

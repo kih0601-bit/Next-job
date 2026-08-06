@@ -1,51 +1,7 @@
 {
-  "generatedAt": "2026-08-06T14:53:46.857Z",
+  "generatedAt": "2026-08-06T15:11:01.333Z",
   "mode": "warning",
-  "passed": false,
-  "regressionCount": 1,
-  "regressions": [
-    {
-      "org": "울산테크노파크",
-      "health": "failed",
-      "primaryCause": {
-        "stage": "http",
-        "status": "failed",
-        "code": "HTTP_FAILED",
-        "reason": "모든 후보 URL HTTP 접속 실패",
-        "evidence": [
-          {
-            "url": "https://www.utp.or.kr/",
-            "ok": false,
-            "error": "timeout"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachment": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    }
-  ]
+  "passed": true,
+  "regressionCount": 0,
+  "regressions": []
 }

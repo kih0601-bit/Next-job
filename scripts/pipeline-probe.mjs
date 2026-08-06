@@ -3,7 +3,7 @@ import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.m
 import { extractCandidatesForSource, discoverListingUrls, countVisibleBoardPosts } from './collectors/source-adapters.mjs';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 
-const VERSION = '15.6-phase5-first-page-exact-list';
+const VERSION = '15.7-phase5-root-cause-diagnostics';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 10000;
@@ -103,6 +103,91 @@ async function accessiblePages(source) {
     throw error;
   }
   return { pages, attempts };
+}
+
+
+
+function classifyAccess(report) {
+  const attempts = report.access?.attempts || [];
+  if (report.access?.ok) {
+    return {
+      status: 'success',
+      code: 'ACCESS_OK',
+      reason: `정상 응답 ${report.access.status || 200} · 최종 URL ${report.access.finalUrl || report.access.requestedUrl || ''}`,
+      evidence: attempts
+    };
+  }
+  if (!attempts.length) return { status: 'failed', code: 'ACCESS_NO_ATTEMPT', reason: '접속 시도 기록이 없음', evidence: [] };
+  const errors = attempts.map(item => String(item.error || ''));
+  if (errors.every(value => value === 'timeout')) return { status: 'failed', code: 'ACCESS_TIMEOUT_ALL', reason: `후보 URL ${attempts.length}개가 모두 시간 초과`, evidence: attempts };
+  if (attempts.some(item => /HTTP 404/.test(item.error || ''))) return { status: 'failed', code: 'ACCESS_404', reason: '저장된 후보 URL 중 404 주소가 있음', evidence: attempts };
+  if (attempts.some(item => /HTTP 403/.test(item.error || ''))) return { status: 'failed', code: 'ACCESS_FORBIDDEN', reason: '서버가 자동 접속을 거부함(HTTP 403)', evidence: attempts };
+  if (attempts.some(item => /HTTP 5\d\d/.test(item.error || ''))) return { status: 'failed', code: 'ACCESS_SERVER_ERROR', reason: '기관 서버 오류(HTTP 5xx)', evidence: attempts };
+  return { status: 'failed', code: 'ACCESS_ALL_FAILED', reason: '등록된 모든 접속 후보 URL이 실패함', evidence: attempts };
+}
+
+function classifyList(report) {
+  const list = report.list || {};
+  const diagnostics = list.extractionDiagnostics || [];
+  if (!report.access?.ok) return { status: 'blocked', code: 'LIST_BLOCKED_BY_ACCESS', reason: '접속 실패로 목록 진단 불가', evidence: [] };
+  if (list.status === 'fetch-failed') return { status: 'failed', code: 'LIST_PAGE_FETCH_FAILED', reason: `목록 후보 페이지를 가져오지 못함: ${(list.errors || []).join(' | ')}`, evidence: list.errors || [] };
+  if (!diagnostics.length) return { status: 'failed', code: 'LIST_NO_DIAGNOSTIC_PAGE', reason: '목록 후보 페이지를 확보했지만 분석 결과가 없음', evidence: [] };
+  if (list.status === 'exact') return { status: 'success', code: 'LIST_EXACT', reason: `화면 게시글 ${list.visiblePostCount}건 = 추출 ${list.candidateCount}건`, evidence: diagnostics };
+  if (list.status === 'count-unavailable-or-empty') {
+    const htmlPages = diagnostics.filter(item => (item.visiblePostCount || 0) === 0 && (item.candidateCount || 0) === 0);
+    const anySignals = diagnostics.some(item => (item.anchors || 0) > 0 || (item.clickableBlocksScanned || 0) > 0 || (item.actionSamples || []).length > 0);
+    if (anySignals) return { status: 'failed', code: 'LIST_COUNTER_FAILED', reason: '게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함', evidence: diagnostics };
+    return { status: 'unknown', code: 'LIST_EMPTY_OR_WRONG_PAGE', reason: '실제 0건인지 채용 게시판이 아닌 페이지인지 구분 필요', evidence: htmlPages };
+  }
+  if (list.candidateCount === 0 && (list.visiblePostCount || 0) > 0) {
+    const merged = diagnostics.reduce((acc, item) => ({
+      anchors: acc.anchors + (item.anchors || 0),
+      titleMatches: acc.titleMatches + (item.titleMatches || 0),
+      noUrl: acc.noUrl + (item.noUrl || 0),
+      unsafeUrl: acc.unsafeUrl + (item.unsafeUrl || 0),
+      clickableBlocksScanned: acc.clickableBlocksScanned + (item.clickableBlocksScanned || 0)
+    }), { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, clickableBlocksScanned: 0 });
+    if (merged.titleMatches === 0) return { status: 'failed', code: 'LIST_TITLE_NOT_FOUND', reason: `화면 게시글 ${list.visiblePostCount}건은 확인했지만 제목 선택자가 하나도 맞지 않음`, evidence: diagnostics };
+    if (merged.noUrl > 0) return { status: 'failed', code: 'LIST_DETAIL_SIGNAL_MISSING', reason: '제목은 찾았지만 href/onclick/게시글 ID 등 상세 이동정보를 복구하지 못함', evidence: diagnostics };
+    if (merged.unsafeUrl > 0) return { status: 'failed', code: 'LIST_URL_REJECTED', reason: '상세 URL 후보를 만들었지만 호스트·목록 URL·다운로드 URL 판정에서 모두 거절됨', evidence: diagnostics };
+    return { status: 'failed', code: 'LIST_EXTRACTOR_REJECTED_ALL', reason: '게시글 행은 확인했지만 후보가 최종 수용 조건을 통과하지 못함', evidence: diagnostics };
+  }
+  if ((list.candidateCount || 0) < (list.visiblePostCount || 0)) return { status: 'partial', code: 'LIST_MISSING_POSTS', reason: `화면 ${list.visiblePostCount}건 중 ${list.candidateCount}건 추출 · ${list.missingCount}건 누락`, evidence: diagnostics };
+  if ((list.candidateCount || 0) > (list.visiblePostCount || 0)) return { status: 'partial', code: 'LIST_EXTRA_POSTS', reason: `화면 ${list.visiblePostCount}건보다 ${list.extraCount}건 많이 추출 · 메뉴/첨부/중복 오탐 가능`, evidence: diagnostics };
+  return { status: 'failed', code: 'LIST_UNKNOWN_MISMATCH', reason: '화면 글 수와 추출 수가 일치하지 않으나 기존 분류에 해당하지 않음', evidence: diagnostics };
+}
+
+function classifyDetail(report) {
+  if (!report.list?.ok) return { status: 'blocked', code: 'DETAIL_BLOCKED_BY_LIST', reason: '목록 단계 미통과로 상세 진단 보류', evidence: [] };
+  if ((report.list.detailUrlReady || 0) === 0) return { status: 'failed', code: 'DETAIL_URL_NOT_READY', reason: `목록 ${report.list.candidateCount}건 모두 상세 URL 미복구`, evidence: report.list.extractionDiagnostics || [] };
+  if ((report.detail.attempted || 0) === 0) return { status: 'failed', code: 'DETAIL_NOT_ATTEMPTED', reason: '상세 URL은 있으나 상세 요청이 실행되지 않음', evidence: [] };
+  if (report.detail.ok) return { status: 'success', code: 'DETAIL_OK', reason: `${report.detail.attempted}건 시도 · ${report.detail.validated}건 본문 검증 성공`, evidence: report.detail.samples || [] };
+  const errors = (report.detail.samples || []).map(item => item.error || '');
+  if (errors.some(value => /404|HTTP 404/i.test(value))) return { status: 'failed', code: 'DETAIL_404', reason: '생성된 상세 URL이 404를 반환함 · URL 규칙 오류 가능', evidence: report.detail.samples || [] };
+  if (errors.some(value => /403|forbidden/i.test(value))) return { status: 'failed', code: 'DETAIL_FORBIDDEN', reason: '상세페이지 요청이 차단됨', evidence: report.detail.samples || [] };
+  if ((report.detail.samples || []).some(item => item.textLength === 0)) return { status: 'failed', code: 'DETAIL_EMPTY_BODY', reason: '상세 응답은 받았지만 본문 텍스트를 찾지 못함', evidence: report.detail.samples || [] };
+  return { status: 'failed', code: 'DETAIL_VALIDATION_FAILED', reason: '상세페이지 응답이 제목·본문 검증을 통과하지 못함', evidence: report.detail.samples || [] };
+}
+
+function classifyAttachment(report) {
+  if (!report.detail?.ok) return { status: 'blocked', code: 'ATTACHMENT_BLOCKED_BY_DETAIL', reason: '상세 단계 미통과로 첨부 진단 보류', evidence: [] };
+  if ((report.attachment.discovered || 0) > 0) return { status: 'success', code: 'ATTACHMENT_FOUND', reason: `검증 표본에서 첨부 링크 ${report.attachment.discovered}개 발견`, evidence: report.attachment.samples || [] };
+  return { status: 'unknown', code: 'ATTACHMENT_ZERO_UNRESOLVED', reason: '첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함', evidence: report.detail.samples || [] };
+}
+
+function attachRootCauses(report) {
+  report.diagnosis = {
+    access: classifyAccess(report),
+    list: classifyList(report),
+    detail: classifyDetail(report),
+    attachment: classifyAttachment(report)
+  };
+  const order = ['access', 'list', 'detail', 'attachment'];
+  const first = order.map(stage => ({ stage, ...report.diagnosis[stage] })).find(item => item.status === 'failed' || item.status === 'partial' || item.status === 'unknown');
+  report.primaryCause = first || { stage: 'complete', status: 'success', code: 'PIPELINE_SAMPLE_OK', reason: '현재 진단 표본에서 실패 원인 없음', evidence: [] };
+  report.stageLabel = `${report.primaryCause.stage}:${report.primaryCause.code}`;
+  report.bottleneck = report.primaryCause.reason;
+  return report;
 }
 
 function permissiveTitle(title = '') {
@@ -206,7 +291,7 @@ async function probeSource(source, artifacts) {
     report.bottleneck = '접속';
   }
   report.elapsedMs = Date.now() - startedAt;
-  return report;
+  return attachRootCauses(report);
 }
 
 const results = [];
@@ -222,14 +307,15 @@ const payload = {
   version: VERSION,
   sourceRegistryVersion: SOURCE_REGISTRY_VERSION,
   generatedAt: new Date().toISOString(),
-  policy: '필터 없이 기관 채용 게시판 첫 페이지의 화면 게시글 수와 추출 수를 비교해 누락·오탐 0건일 때만 목록 성공으로 판정',
+  policy: '기관별·단계별로 성공 여부뿐 아니라 실패 원인 코드, 근거와 1차 원인을 기록',
   summary: {
     sourceCount: results.length,
     accessOk: results.filter(item => item.access.ok).length,
     listOk: results.filter(item => item.list.ok).length,
     detailOk: results.filter(item => item.detail.ok).length,
     attachmentOk: results.filter(item => item.attachment.ok).length,
-    fullPipelineOk: results.filter(item => item.access.ok && item.list.ok && item.detail.ok && item.attachment.ok).length
+    fullPipelineOk: results.filter(item => item.access.ok && item.list.ok && item.detail.ok && item.attachment.ok).length,
+    causeCounts: results.reduce((acc, item) => { const key = item.primaryCause?.code || 'UNKNOWN'; acc[key] = (acc[key] || 0) + 1; return acc; }, {})
   },
   sources: results
 };

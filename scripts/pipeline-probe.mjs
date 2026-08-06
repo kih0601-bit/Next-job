@@ -3,7 +3,7 @@ import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.m
 import { extractCandidatesForSource, discoverListingUrls } from './collectors/source-adapters.mjs';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 
-const VERSION = '15.4-phase5-deep-diagnostics';
+const VERSION = '15.5-phase5-all-board-posts';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 10000;
@@ -160,7 +160,7 @@ async function probeSource(source, artifacts) {
     report.list.candidateCount = all.length;
     report.list.detailUrlReady = all.filter(item => !item.listOnly).length;
     report.list.listOnlyCount = all.filter(item => item.listOnly).length;
-    report.list.samples = all.slice(0, 8).map(item => ({ title: item.title, link: item.link, adapter: item.adapter || '' }));
+    report.list.samples = all.slice(0, 20).map(item => ({ title: item.title, link: item.link, adapter: item.adapter || '' }));
     report.list.ok = all.length > 0;
 
     const allowedHosts = [...new Set((source.accessUrls || [source.url]).map(url => { try { return new URL(url).hostname; } catch { return ''; } }).filter(Boolean))];
@@ -204,7 +204,7 @@ const payload = {
   version: VERSION,
   sourceRegistryVersion: SOURCE_REGISTRY_VERSION,
   generatedAt: new Date().toISOString(),
-  policy: '필터링과 분리하여 기관 접속 → 목록 추출 → 상세페이지 추출 → 첨부파일 발견만 진단',
+  policy: '필터 없이 기관 채용 게시판의 모든 게시글 목록을 수집하고 접속 → 목록 → 상세 → 첨부 단계만 진단',
   summary: {
     sourceCount: results.length,
     accessOk: results.filter(item => item.access.ok).length,

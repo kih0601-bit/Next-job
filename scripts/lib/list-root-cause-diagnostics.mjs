@@ -82,6 +82,30 @@ function inferRowReason(row) {
   return 'UNMATCHED_BY_EXTRACTOR';
 }
 
+
+function classifyCandidate(item = {}) {
+  const title = text(item.title || '');
+  const link = String(item.link || '');
+  if (/FAQ|자주 묻는|질문/.test(title)) return 'FAQ';
+  if (/IR|투자정보|경영공시|회사소개|조직도|오시는길/.test(title)) return 'MENU_OR_IR';
+  if (/공지|합격자|면접|서류|필기|채용|모집|인턴|직원|근로자/.test(title)) return 'RECRUIT_POST';
+  if (/download|file|첨부/i.test(link)) return 'ATTACHMENT';
+  return 'UNCLASSIFIED';
+}
+
+function counterFailureReason({ rows, selectedCandidates, inspection, uniqueVisibleCount }) {
+  const visible = inspection.visiblePostCount;
+  const candidateCount = selectedCandidates.length;
+  if (visible == null && rows.length === 0 && candidateCount > 0) return 'DOM_COUNT_ZERO';
+  if (visible == null && rows.length > 0) return 'COUNTER_SELECTOR_MISMATCH';
+  if (visible == null && candidateCount > 0) return 'COUNTER_ONLY';
+  if (visible != null && uniqueVisibleCount === candidateCount && visible !== candidateCount) return 'RAW_ROW_DUPLICATE_COUNT';
+  if (visible != null && candidateCount === 0 && rows.length > 0) return 'EXTRACTOR_REJECTED_ROWS';
+  if (visible != null && candidateCount < uniqueVisibleCount) return 'MISSING_UNIQUE_POSTS';
+  if (visible != null && candidateCount > uniqueVisibleCount) return 'EXTRA_NON_ROW_CANDIDATES';
+  return 'UNKNOWN';
+}
+
 export function buildListRootCauseDiagnostics({ html = '', source, inspection, selectedCandidates = [] }) {
   const rows = collectRows(html);
   const accepted = new Map(selectedCandidates.map(item => [normalizeBoardTitle(item.title), item]));
@@ -105,6 +129,22 @@ export function buildListRootCauseDiagnostics({ html = '', source, inspection, s
   const extractedSet = new Set(extractedTitles.map(normalizeBoardTitle));
   const missingRows = rowTrace.filter(item => item.title && !extractedSet.has(item.normalizedTitle));
   const extraCandidates = selectedCandidates.filter(item => !rowTrace.some(row => row.normalizedTitle === normalizeBoardTitle(item.title)));
+  const uniqueVisibleTitles = [...new Set(visibleTitles.map(normalizeBoardTitle).filter(Boolean))];
+  const candidateClassCounts = selectedCandidates.reduce((acc, item) => {
+    const kind = classifyCandidate(item);
+    acc[kind] = (acc[kind] || 0) + 1;
+    return acc;
+  }, {});
+  const counterTrace = {
+    source: inspection?.diagnostics?.countSource || inspection?.countSource || (inspection.visiblePostCount == null ? 'unavailable' : 'visible-board-rows'),
+    rawDomRows: rows.length,
+    uniqueVisibleTitleCount: uniqueVisibleTitles.length,
+    reportedVisiblePostCount: inspection.visiblePostCount,
+    acceptedCandidateCount: selectedCandidates.length,
+    exactAgainstRaw: rows.length === selectedCandidates.length,
+    exactAgainstUniqueTitles: uniqueVisibleTitles.length === selectedCandidates.length
+  };
+  const listCounterFailureReason = counterFailureReason({ rows, selectedCandidates, inspection, uniqueVisibleCount: uniqueVisibleTitles.length });
 
   let probableCause = 'UNDETERMINED';
   if (rows.length === 0 && selectedCandidates.length > 0) probableCause = 'VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE';
@@ -121,10 +161,14 @@ export function buildListRootCauseDiagnostics({ html = '', source, inspection, s
     org: source?.org || 'unknown',
     url: source?.url || '',
     probableCause,
+    listCounterFailureReason,
+    counterTrace,
+    candidateClassCounts,
     counts: {
       visiblePostCount: inspection.visiblePostCount,
       candidateCount: inspection.candidateCount,
       rawTableRows: rows.length,
+      uniqueVisibleTitleCount: uniqueVisibleTitles.length,
       sourceHtmlLength: String(html).length,
       missingRows: missingRows.length,
       extraCandidates: extraCandidates.length

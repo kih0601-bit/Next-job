@@ -238,6 +238,44 @@ function sourceAllows(link, source) {
   }
 }
 
+
+function visibleBoardRows(html = '') {
+  const rows = [];
+  const rowRegex = /<tr\b[^>]*>([\s\S]*?)<\/tr>/gi;
+  for (const match of String(html).matchAll(rowRegex)) {
+    const block = match[0];
+    if (/<th\b/i.test(block) && !/<td\b/i.test(block)) continue;
+    const cells = [...block.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)];
+    if (cells.length < 2) continue;
+    const text = cleanHtml(block).replace(/\s+/g, ' ').trim();
+    if (text.length < 4) continue;
+    const hasDate = /(?:19|20)\d{2}[.\-/년]\s*\d{1,2}(?:[.\-/월]\s*\d{1,2})?/.test(text);
+    const hasAction = /<a\b|\b(?:onclick|data-href|data-url|data-id|data-seq|data-idx)\s*=/i.test(block);
+    const firstCell = cleanHtml(cells[0][1]).replace(/\s+/g, ' ').trim();
+    const hasSequence = /^(?:공지|notice|\d{1,6})$/i.test(firstCell);
+    if (!hasAction || (!hasDate && !hasSequence)) continue;
+    rows.push({ start: match.index, end: match.index + block.length, block, cells });
+  }
+  return rows;
+}
+
+function titleFromBoardRow(row) {
+  const block = row.block || '';
+  const preferred = block.match(/<a\b[^>]*(?:class\s*=\s*(["'])[^"']*(?:title|subject|sj|tit|ellipsis)[^"']*\1|title\s*=\s*(["'])[^"']+\2)[^>]*>([\s\S]*?)<\/a>/i)?.[3];
+  if (preferred) return cleanHtml(preferred).replace(/\s+/g, ' ').trim();
+  const anchors = [...block.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/gi)]
+    .map(m => cleanHtml(m[1]).replace(/\s+/g, ' ').trim())
+    .filter(t => t && !/^(?:download|첨부|파일|보기)$/i.test(t));
+  if (anchors.length) return anchors.sort((a,b) => b.length-a.length)[0];
+  const cellTexts = (row.cells || []).map(c => cleanHtml(c[1]).replace(/\s+/g, ' ').trim())
+    .filter(t => t && !/^(?:공지|notice|\d{1,6}|(?:19|20)\d{2}[.\-/].*)$/i.test(t));
+  return cellTexts.sort((a,b) => b.length-a.length)[0] || '';
+}
+
+export function countVisibleBoardPosts(html = '') {
+  return visibleBoardRows(html).length;
+}
+
 export function extractCandidatesForSource(html, source, { validTitle, normalizeTitleForDedup }) {
   try {
     const host = new URL(source.url).hostname;
@@ -248,10 +286,37 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
 
   const jobs = [];
   const seen = new Set();
-  const diagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, clickableBlocksScanned: 0, clickableBlocksAccepted: 0, listOnlyAccepted: 0, titleSamples: [], unsafeSamples: [], actionSamples: [], candidateUrlSamples: [] };
+  const boardRows = visibleBoardRows(html);
+  const diagnostics = { visiblePostCount: boardRows.length, rowMode: boardRows.length > 0, anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, clickableBlocksScanned: 0, clickableBlocksAccepted: 0, listOnlyAccepted: 0, titleSamples: [], unsafeSamples: [], actionSamples: [], candidateUrlSamples: [] };
+
+  // Table-based public boards are parsed row-first. Exactly one candidate is emitted
+  // per visible post row, preventing menu links and attachment buttons from being
+  // counted as separate posts.
+  for (const row of boardRows) {
+    if (jobs.length >= 100) break;
+    const title = titleFromBoardRow(row);
+    if (!validTitle(title) || GENERIC_NAVIGATION_TITLE.test(title)) continue;
+    const urls = [...sourceSpecificDetailUrls(row.block, source), ...urlsFromBlock(row.block, source)];
+    const link = urls.find(url => sourceAllows(url, source));
+    const action = row.block.match(/\bonclick\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
+    const identity = action.match(/(?:view|fn_Detail|goView|fnView|detail)\s*\(\s*["']?([^"')\s,]+)/i)?.[1]
+      || row.block.match(/(?:data-)?(?:idx|seq|no|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo)\s*=\s*(["'])([^"']+)\1/i)?.[2]
+      || `row-${row.start}`;
+    const canonical = link ? canonicalJobUrl(link) : `${canonicalJobUrl(source.url)}#list-${encodeURIComponent(identity)}`;
+    const key = `${source.org}|${normalizeTitleForDedup(title)}|${canonical}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    jobs.push({ org: source.org, title, link: canonical, listText: cleanHtml(row.block).replace(/\s+/g, ' ').trim(), adapter: `${source.org}:board-row`, ...(link ? {} : { listOnly: true, listIdentity: identity }) });
+    diagnostics.accepted += 1;
+    diagnostics.titleMatches += 1;
+    if (!link) { diagnostics.listOnlyAccepted += 1; diagnostics.noUrl += 1; }
+    if (diagnostics.titleSamples.length < 8) diagnostics.titleSamples.push(title);
+    if (action && diagnostics.actionSamples.length < 12) diagnostics.actionSamples.push({ title, action: decodeHtmlEntities(action).slice(0, 600) });
+  }
   const anchorRegex = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
   for (const match of html.matchAll(anchorRegex)) {
     diagnostics.anchors += 1;
+    if (boardRows.length > 0) continue;
     const attrs = match[1] || '';
     const title = cleanHtml(match[2]).replace(/\s+/g, ' ').trim();
     if (!validTitle(title) || GENERIC_NAVIGATION_TITLE.test(title)) continue;
@@ -316,7 +381,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
   // Scan only bounded row-like blocks so this fallback does not turn page chrome
   // into false job candidates.
   const blockRegex = /<(tr|li|article|div)\b([^>]*(?:onclick|data-href|data-url|role\s*=\s*["']link["'])[^>]*)>([\s\S]*?)<\/\1>/gi;
-  for (const match of html.matchAll(blockRegex)) {
+  for (const match of (boardRows.length > 0 ? [] : html.matchAll(blockRegex))) {
     if (jobs.length >= 100) break;
     diagnostics.clickableBlocksScanned += 1;
     const attrs = match[2] || '';

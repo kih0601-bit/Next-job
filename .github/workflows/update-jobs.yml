@@ -54,6 +54,9 @@ jobs:
       - name: Probe institution pipelines
         run: node scripts/pipeline-probe.mjs
 
+      - name: Run pipeline diagnostics
+        run: node scripts/pipeline-probe.mjs
+
       - name: Collect job postings
         run: node scripts/collect.mjs
 

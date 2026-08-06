@@ -8,6 +8,7 @@ import { analyzeVacancies } from './lib/classifier.mjs';
 import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
 import { analyzeAttachments, getDocumentToolDiagnostics } from './lib/document-analyzer.mjs';
 import { validateJob, runCollectionQA, VALIDATOR_VERSION } from './lib/validator.mjs';
+import { selectListCandidates, LIST_SELECTOR_VERSION } from './lib/list-selector.mjs';
 import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, RULES_VERSION } from './lib/rules.mjs';
 
 import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.mjs';
@@ -17,7 +18,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '14.0-phase2-list-extraction';
+const DATA_VERSION = '15.0-phase5-list-selection';
 const execFileAsync = promisify(execFile);
 
 function validTitle(title) {
@@ -479,14 +480,24 @@ async function fetchSource(source) {
         if (!candidateMap.has(key)) candidateMap.set(key, candidate);
       }
     }
-    const candidates = [...candidateMap.values()];
+    const rawCandidates = [...candidateMap.values()];
+    const listSelection = selectListCandidates(rawCandidates);
+    const candidates = listSelection.accepted;
     const jobs = [];
     const rejectionReasons = {};
     const vacancyStats = { detected: 0, accepted: 0, rejected: 0 };
     const pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 };
     const documentDiagnostics = { byDetectedType: {}, byContentType: {}, byError: {} };
     const documentSamples = [];
-    const vacancyDecisions = [];
+    const vacancyDecisions = listSelection.rejected.map(candidate => ({
+      candidateTitle: candidate.title,
+      candidateLink: candidate.link || '',
+      vacancyId: 'list-selection',
+      vacancyName: candidate.title,
+      status: 'list-rejected',
+      reason: candidate.listSelection.reasons.join(', '),
+      listSelection: candidate.listSelection
+    }));
     for (const candidate of candidates) {
       if (candidate.listOnly) {
         const reason = 'phase2 list extracted; detail URL pending Phase 3';
@@ -533,15 +544,15 @@ async function fetchSource(source) {
       }
     }
     return {
-      ok: true, source: activeSource, jobs, candidates: candidates.length, listingPagesChecked: listingUrls.length, accessAttempts: access.attempts,
-      rejected: Math.max(0, candidates.length - jobs.length),
+      ok: true, source: activeSource, jobs, candidates: candidates.length, rawCandidates: rawCandidates.length, listSelection, listingPagesChecked: listingUrls.length, accessAttempts: access.attempts,
+      rejected: Math.max(0, rawCandidates.length - jobs.length),
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
       rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, accessAttempts: error.accessAttempts || [], rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPreviousPayload() {

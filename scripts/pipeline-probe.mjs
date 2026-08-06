@@ -3,6 +3,7 @@ import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.m
 import { discoverListingUrls } from './collectors/source-adapters.mjs';
 import { inspectListingPage } from './lib/list-pipeline.mjs';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
+import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 
 const VERSION = '15.7-phase5-root-cause-diagnostics';
 const MAX_LISTING_PAGES = 3;
@@ -92,8 +93,9 @@ async function accessiblePages(source) {
   for (const url of (source.accessUrls || [source.url]).slice(0, MAX_ACCESS_URLS)) {
     try {
       const result = await fetchHtml(url, ACCESS_TIMEOUT_MS, source.homepage || '');
-      attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl });
-      pages.push({ ...result, requestedUrl: url });
+      const verification = inspectRecruitPage({ ...result, requestedUrl: url, org: source.org });
+      attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl, verification });
+      pages.push({ ...result, requestedUrl: url, verification });
     } catch (error) {
       attempts.push({ url, ok: false, error: error.name === 'AbortError' ? 'timeout' : error.message });
     }
@@ -103,20 +105,19 @@ async function accessiblePages(source) {
     error.attempts = attempts;
     throw error;
   }
-  return { pages, attempts };
+  const selected = chooseBestAccessPage(pages);
+  return { pages, attempts, selected, diagnosis: summarizeAccessAttempts(attempts, selected) };
 }
 
 
 
 function classifyAccess(report) {
   const attempts = report.access?.attempts || [];
-  if (report.access?.ok) {
-    return {
-      status: 'success',
-      code: 'ACCESS_OK',
-      reason: `정상 응답 ${report.access.status || 200} · 최종 URL ${report.access.finalUrl || report.access.requestedUrl || ''}`,
-      evidence: attempts
-    };
+  if (report.access?.diagnosis?.ok) {
+    return { status: 'success', code: report.access.diagnosis.code, reason: report.access.diagnosis.reason, evidence: attempts };
+  }
+  if (report.access?.ok && !report.access?.diagnosis?.ok) {
+    return { status: 'failed', code: report.access?.diagnosis?.code || 'ACCESS_RESPONDED_BUT_NOT_RECRUIT', reason: report.access?.diagnosis?.reason || '응답 페이지가 채용 게시판으로 검증되지 않음', evidence: attempts };
   }
   if (!attempts.length) return { status: 'failed', code: 'ACCESS_NO_ATTEMPT', reason: '접속 시도 기록이 없음', evidence: [] };
   const errors = attempts.map(item => String(item.error || ''));
@@ -226,9 +227,10 @@ async function probeSource(source, artifacts) {
   };
   try {
     const access = await accessiblePages(source);
-    const first = access.pages[0];
+    const first = access.selected || access.pages[0];
     for (const page of access.pages) artifacts.push(pageArtifact(source, page, 'access'));
-    report.access = { ok: true, requestedUrl: first.requestedUrl, finalUrl: first.finalUrl, status: first.status, contentType: first.contentType, attempts: access.attempts };
+    report.access = { ok: Boolean(access.diagnosis?.ok), requestedUrl: first.requestedUrl, finalUrl: first.finalUrl, activeRecruitUrl: access.diagnosis?.activeRecruitUrl || '', status: first.status, contentType: first.contentType, attempts: access.attempts, verification: first.verification, diagnosis: access.diagnosis };
+    if (!report.access.ok) throw Object.assign(new Error(access.diagnosis?.reason || '채용 게시판 검증 실패'), { attempts: access.attempts });
     const listingPages = [];
     for (const page of access.pages) {
       const activeSource = { ...source, url: page.finalUrl || page.requestedUrl };

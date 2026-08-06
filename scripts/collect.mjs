@@ -4,6 +4,7 @@ import { promisify } from 'node:util';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { canonicalJobUrl, discoverListingUrls } from './collectors/source-adapters.mjs';
 import { inspectListingPage } from './lib/list-pipeline.mjs';
+import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 import { analyzeVacancies } from './lib/classifier.mjs';
 import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
 import { analyzeAttachments, getDocumentToolDiagnostics } from './lib/document-analyzer.mjs';
@@ -267,43 +268,35 @@ async function fetchHtml(url, timeoutMs = 15000, options = {}) {
 
 async function fetchFirstAccessible(source) {
   const attempts = [];
+  const successfulPages = [];
   const urls = source.accessUrls?.length ? source.accessUrls : [source.url];
   for (const url of urls) {
     const allowInsecureTls = /(^|\.)ucf\.or\.kr$/i.test(new URL(url).hostname);
     for (let attempt = 1; attempt <= 2; attempt += 1) {
       try {
-        const result = await fetchHtml(url, attempt === 1 ? 20000 : 35000, {
-          referer: source.homepage || '',
-          allowInsecureTls
-        });
-        attempts.push({
-          url, ok: true, status: result.status, finalUrl: result.finalUrl,
-          transport: result.transport, profile: result.profile, attempt
-        });
-        return { ...result, requestedUrl: url, attempts };
+        const result = await fetchHtml(url, attempt === 1 ? 20000 : 35000, { referer: source.homepage || '', allowInsecureTls });
+        const verification = inspectRecruitPage({ ...result, requestedUrl: url, org: source.org });
+        const item = { ...result, requestedUrl: url, verification };
+        successfulPages.push(item);
+        attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl, transport: result.transport, profile: result.profile, attempt, verification });
+        if (verification.verified) {
+          const diagnosis = summarizeAccessAttempts(attempts, item);
+          return { ...item, attempts, accessDiagnosis: diagnosis };
+        }
+        break;
       } catch (error) {
         attempts.push({ url, ok: false, error: error.message, attempt });
         if (attempt === 1) await new Promise(resolve => setTimeout(resolve, 1500));
       }
     }
   }
-  if (source.org === '울산광역시 타기관소식') {
-    for (const url of urls.filter(item => /^https?:\/\/(?:www\.)?ulsan\.go\.kr\//i.test(item))) {
-      try {
-        const result = await fetchWithCurlResolved(url, 50000, { referer: source.homepage || '' });
-        attempts.push({
-          url, ok: true, status: result.status, finalUrl: result.finalUrl,
-          transport: result.transport, profile: result.profile, resolvedIp: result.resolvedIp, attempt: 'dns-fallback'
-        });
-        return { ...result, requestedUrl: url, attempts };
-      } catch (error) {
-        attempts.push({ url, ok: false, error: error.message, attempt: 'dns-fallback' });
-      }
-    }
-  }
+  const selected = chooseBestAccessPage(successfulPages);
+  const diagnosis = summarizeAccessAttempts(attempts, selected);
+  if (diagnosis.ok && selected) return { ...selected, attempts, accessDiagnosis: diagnosis };
   const summary = attempts.map(item => `${item.url} => ${item.error || item.status}`).join(' | ');
-  const failure = new Error(summary || 'all access URLs failed');
+  const failure = new Error(`${diagnosis.code}: ${diagnosis.reason}${summary ? ` | ${summary}` : ''}`);
   failure.accessAttempts = attempts;
+  failure.accessDiagnosis = diagnosis;
   throw failure;
 }
 
@@ -547,7 +540,7 @@ async function fetchSource(source) {
       }
     }
     return {
-      ok: true, source: activeSource, jobs, candidates: candidates.length, rawCandidates: rawCandidates.length, collectionCandidates: collectionCandidates.length, listSelection, listingPagesChecked: listingUrls.length, accessAttempts: access.attempts,
+      ok: true, source: activeSource, jobs, candidates: candidates.length, rawCandidates: rawCandidates.length, collectionCandidates: collectionCandidates.length, listSelection, listingPagesChecked: listingUrls.length, accessAttempts: access.attempts, accessDiagnosis: access.accessDiagnosis || {}, activeRecruitUrl: access.accessDiagnosis?.activeRecruitUrl || activeSource.url,
       rejected: Math.max(0, rawCandidates.length - jobs.length),
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
@@ -555,9 +548,18 @@ async function fetchSource(source) {
       rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
+async function readPipelineReport() {
+  try {
+    const payload = JSON.parse(await fs.readFile('data/pipeline-report.json', 'utf8'));
+    return { payload, byOrg: new Map((payload.sources || []).map(item => [item.org, item])) };
+  } catch {
+    return { payload: null, byOrg: new Map() };
+  }
+}
+
 async function readPreviousPayload() {
   try {
     return JSON.parse(await fs.readFile('data/jobs.json', 'utf8'));
@@ -567,6 +569,7 @@ async function readPreviousPayload() {
 }
 
 const previousPayload = await readPreviousPayload();
+const pipelineReport = await readPipelineReport();
 const previousJobs = Array.isArray(previousPayload.jobs) ? previousPayload.jobs : [];
 const results = [];
 const ACCESS_CONCURRENCY = 2;
@@ -583,11 +586,17 @@ for (const result of results) {
     retained = previousJobs.filter(job => job.org === result.source.org && !isExpired(job.deadline));
   }
   const sourceJobs = result.ok ? result.jobs : retained;
+  const diagnostic = pipelineReport.byOrg.get(result.source.org) || null;
   sources.push({
     org: result.source.org,
-    ok: result.ok,
-    status: result.ok ? 'healthy' : retained.length ? 'degraded' : 'failed',
-    candidates: result.candidates,
+    ok: diagnostic ? Boolean(diagnostic.access?.ok) : result.ok,
+    status: diagnostic ? (diagnostic.access?.ok ? 'healthy' : retained.length ? 'degraded' : 'failed') : (result.ok ? 'healthy' : retained.length ? 'degraded' : 'failed'),
+    candidates: diagnostic ? Number(diagnostic.list?.candidateCount || 0) : result.candidates,
+    collectionCandidates: result.candidates,
+    activeRecruitUrl: diagnostic?.access?.activeRecruitUrl || result.activeRecruitUrl || '',
+    diagnosis: diagnostic?.diagnosis || null,
+    primaryCause: diagnostic?.primaryCause || null,
+    diagnosticStages: diagnostic ? { access: diagnostic.access, list: diagnostic.list, detail: diagnostic.detail, attachment: diagnostic.attachment } : null,
     listingPagesChecked: result.listingPagesChecked || 0,
     count: result.jobs.length,
     retained: retained.length,
@@ -667,12 +676,22 @@ const payload = {
 const healthPayload = {
   version: payload.version,
   updatedAt: nowIso,
-  summary: {
-    totalSources: SOURCES.length,
-    healthy: successfulSources,
-    degraded: degradedSources,
-    failed: failedSources,
-    retainedJobs
+  summary: pipelineReport.payload ? {
+    totalSources: pipelineReport.payload.summary?.sourceCount ?? SOURCES.length,
+    healthy: pipelineReport.payload.summary?.accessOk ?? successfulSources,
+    degraded: 0,
+    failed: (pipelineReport.payload.summary?.sourceCount ?? SOURCES.length) - (pipelineReport.payload.summary?.accessOk ?? successfulSources),
+    retainedJobs,
+    accessOk: pipelineReport.payload.summary?.accessOk ?? 0,
+    listOk: pipelineReport.payload.summary?.listOk ?? 0,
+    detailOk: pipelineReport.payload.summary?.detailOk ?? 0,
+    attachmentOk: pipelineReport.payload.summary?.attachmentOk ?? 0,
+    fullPipelineOk: pipelineReport.payload.summary?.fullPipelineOk ?? 0,
+    reportConsistency: 'pipeline-report.json 기준으로 일원화',
+    collection: { successfulSources, degradedSources, failedSources }
+  } : {
+    totalSources: SOURCES.length, healthy: successfulSources, degraded: degradedSources, failed: failedSources, retainedJobs,
+    reportConsistency: 'pipeline-report.json 없음; collect 자체 결과 사용'
   },
   sources
 };

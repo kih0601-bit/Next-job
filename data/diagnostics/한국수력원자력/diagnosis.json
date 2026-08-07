@@ -1,56 +1,147 @@
 {
   "org": "한국수력원자력",
-  "health": "failed",
+  "health": "degraded",
   "primaryCause": {
-    "stage": "recruitVerify",
+    "stage": "list",
     "status": "failed",
-    "code": "RECRUIT_VERIFY_FAILED",
-    "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
-    "evidence": {
-      "ok": false,
-      "verified": false,
-      "fallback": false,
-      "code": "RECRUIT_VERIFY_ERROR_PAGE",
-      "reason": "오류·차단·비HTML 신호 0개",
-      "score": 2,
-      "maxScore": 5,
-      "checks": {
-        "httpDocument": false,
-        "recruitKeyword": true,
-        "boardStructure": true,
-        "organizationMatch": false,
-        "meaningfulBody": false
+    "code": "LIST_COUNTER_FAILED",
+    "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+    "evidence": [
+      {
+        "url": "https://www.khnp.co.kr/recruit/",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 0,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [],
+        "candidateCount": 0,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
       },
-      "title": "",
-      "orgMatched": false,
-      "positiveHits": 1,
-      "positiveMatches": [
-        "recruit(?:ment)?"
-      ],
-      "negativeHits": 0,
-      "negativeMatches": [],
-      "boardSignals": 1,
-      "boardType": {
-        "type": "UNKNOWN",
-        "confidence": "low",
-        "evidence": [
-          "명확한 게시판 구조 신호 없음"
-        ]
-      },
-      "textLength": 0,
-      "requestedUrl": "https://www.khnp.co.kr/recruit/",
-      "finalUrl": "https://www.khnp.co.kr/recruit/",
-      "status": 200,
-      "contentType": "text/html; charset=UTF-8"
-    },
-    "repairTarget": "scripts/lib/recruit-verify.mjs",
-    "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
+      {
+        "url": "https://www.khnp.co.kr/recruit/main/index.do",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 96,
+        "titleMatches": 71,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 13,
+        "rowFallbackAccepted": 3,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [
+          "일반 채용",
+          "기간제 채용",
+          "개인정보 처리방침",
+          "채용안내",
+          "핵심가치와 인재상",
+          "근무조건 및 대우",
+          "직무소개",
+          "채용공고"
+        ],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [
+          {
+            "title": "일반 채용",
+            "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+            "allowed": true
+          },
+          {
+            "title": "기간제 채용",
+            "url": "https://www.khnp.co.kr/trecruit",
+            "allowed": false
+          },
+          {
+            "title": "기간제 채용",
+            "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+            "allowed": true
+          },
+          {
+            "title": "개인정보 처리방침",
+            "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on3",
+            "allowed": true
+          },
+          {
+            "title": "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
+            "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017253",
+            "allowed": true
+          },
+          {
+            "title": "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
+            "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017152",
+            "allowed": true
+          },
+          {
+            "title": "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
+            "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017134",
+            "allowed": true
+          },
+          {
+            "title": "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
+            "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017078",
+            "allowed": true
+          },
+          {
+            "title": "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
+            "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017092",
+            "allowed": true
+          },
+          {
+            "title": "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
+            "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017016",
+            "allowed": true
+          },
+          {
+            "title": "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
+            "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016805",
+            "allowed": true
+          },
+          {
+            "title": "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
+            "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016272",
+            "allowed": true
+          },
+          {
+            "title": "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+            "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015762",
+            "allowed": true
+          },
+          {
+            "title": "2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04",
+            "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015760",
+            "allowed": true
+          }
+        ],
+        "candidateCount": 13,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
+      }
+    ],
+    "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
+    "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
   },
   "diagnosis": {
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "1개 후보 URL HTTP 응답 성공",
+      "reason": "2개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://www.khnp.co.kr/recruit/",
@@ -58,15 +149,15 @@
           "status": 200,
           "finalUrl": "https://www.khnp.co.kr/recruit/",
           "verification": {
-            "ok": false,
-            "verified": false,
+            "ok": true,
+            "verified": true,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_ERROR_PAGE",
-            "reason": "오류·차단·비HTML 신호 0개",
-            "score": 2,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+            "score": 3,
             "maxScore": 5,
             "checks": {
-              "httpDocument": false,
+              "httpDocument": true,
               "recruitKeyword": true,
               "boardStructure": true,
               "organizationMatch": false,
@@ -88,6 +179,12 @@
                 "명확한 게시판 구조 신호 없음"
               ]
             },
+            "institutionRule": true,
+            "institutionRuleEvidence": [
+              "host:www.khnp.co.kr",
+              "url-pattern",
+              "html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용"
+            ],
             "textLength": 0,
             "requestedUrl": "https://www.khnp.co.kr/recruit/",
             "finalUrl": "https://www.khnp.co.kr/recruit/",
@@ -96,95 +193,243 @@
           }
         },
         {
+          "url": "https://www.khnp.co.kr/recruit/main/index.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "한국수력원자력 채용",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "institutionRule": true,
+            "institutionRuleEvidence": [
+              "host:www.khnp.co.kr",
+              "url-pattern",
+              "html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용"
+            ],
+            "textLength": 3004,
+            "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+            "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        },
+        {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
           "ok": false,
-          "error": "timeout"
+          "error": "fetch failed"
         }
       ]
     },
     "recruitVerify": {
-      "status": "failed",
-      "code": "RECRUIT_VERIFY_FAILED",
-      "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
       "evidence": {
-        "ok": false,
-        "verified": false,
+        "ok": true,
+        "verified": true,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_ERROR_PAGE",
-        "reason": "오류·차단·비HTML 신호 0개",
-        "score": 2,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+        "score": 5,
         "maxScore": 5,
         "checks": {
-          "httpDocument": false,
+          "httpDocument": true,
           "recruitKeyword": true,
           "boardStructure": true,
-          "organizationMatch": false,
-          "meaningfulBody": false
+          "organizationMatch": true,
+          "meaningfulBody": true
         },
-        "title": "",
-        "orgMatched": false,
-        "positiveHits": 1,
+        "title": "한국수력원자력 채용",
+        "orgMatched": true,
+        "positiveHits": 2,
         "positiveMatches": [
+          "채용\\s*공고",
           "recruit(?:ment)?"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 1,
+        "boardSignals": 3,
         "boardType": {
-          "type": "UNKNOWN",
-          "confidence": "low",
+          "type": "UL_LIST",
+          "confidence": "medium",
           "evidence": [
-            "명확한 게시판 구조 신호 없음"
+            "ul/ol + li 구조 발견"
           ]
         },
-        "textLength": 0,
-        "requestedUrl": "https://www.khnp.co.kr/recruit/",
-        "finalUrl": "https://www.khnp.co.kr/recruit/",
+        "institutionRule": true,
+        "institutionRuleEvidence": [
+          "host:www.khnp.co.kr",
+          "url-pattern",
+          "html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용"
+        ],
+        "textLength": 3004,
+        "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+        "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
         "status": 200,
         "contentType": "text/html; charset=UTF-8"
       }
     },
     "list": {
-      "status": "blocked",
-      "code": "LIST_BLOCKED_BY_RECRUIT_VERIFY",
-      "reason": "채용 게시판 검증 실패로 목록 진단 보류",
-      "evidence": {
-        "ok": false,
-        "verified": false,
-        "fallback": false,
-        "code": "RECRUIT_VERIFY_ERROR_PAGE",
-        "reason": "오류·차단·비HTML 신호 0개",
-        "score": 2,
-        "maxScore": 5,
-        "checks": {
-          "httpDocument": false,
-          "recruitKeyword": true,
-          "boardStructure": true,
-          "organizationMatch": false,
-          "meaningfulBody": false
+      "status": "failed",
+      "code": "LIST_COUNTER_FAILED",
+      "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+      "evidence": [
+        {
+          "url": "https://www.khnp.co.kr/recruit/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
         },
-        "title": "",
-        "orgMatched": false,
-        "positiveHits": 1,
-        "positiveMatches": [
-          "recruit(?:ment)?"
-        ],
-        "negativeHits": 0,
-        "negativeMatches": [],
-        "boardSignals": 1,
-        "boardType": {
-          "type": "UNKNOWN",
-          "confidence": "low",
-          "evidence": [
-            "명확한 게시판 구조 신호 없음"
-          ]
-        },
-        "textLength": 0,
-        "requestedUrl": "https://www.khnp.co.kr/recruit/",
-        "finalUrl": "https://www.khnp.co.kr/recruit/",
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8"
-      }
+        {
+          "url": "https://www.khnp.co.kr/recruit/main/index.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 96,
+          "titleMatches": 71,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 13,
+          "rowFallbackAccepted": 3,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "일반 채용",
+            "기간제 채용",
+            "개인정보 처리방침",
+            "채용안내",
+            "핵심가치와 인재상",
+            "근무조건 및 대우",
+            "직무소개",
+            "채용공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [
+            {
+              "title": "일반 채용",
+              "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+              "allowed": true
+            },
+            {
+              "title": "기간제 채용",
+              "url": "https://www.khnp.co.kr/trecruit",
+              "allowed": false
+            },
+            {
+              "title": "기간제 채용",
+              "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+              "allowed": true
+            },
+            {
+              "title": "개인정보 처리방침",
+              "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on3",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017253",
+              "allowed": true
+            },
+            {
+              "title": "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017152",
+              "allowed": true
+            },
+            {
+              "title": "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017134",
+              "allowed": true
+            },
+            {
+              "title": "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017078",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017092",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017016",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016805",
+              "allowed": true
+            },
+            {
+              "title": "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016272",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015762",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015760",
+              "allowed": true
+            }
+          ],
+          "candidateCount": 13,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ]
     },
     "detail": {
       "status": "blocked",
@@ -193,64 +438,90 @@
       "evidence": []
     },
     "attachment": {
-      "status": "blocked",
-      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
-      "reason": "상세 단계 미통과로 첨부 진단 보류",
-      "evidence": []
+      "status": "unknown",
+      "code": "ATTACHMENT_ZERO_UNRESOLVED",
+      "reason": "첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함",
+      "evidence": [
+        {
+          "title": "일반 채용",
+          "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+          "ok": true,
+          "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+          "textLength": 2418,
+          "attachmentCount": 0,
+          "error": ""
+        },
+        {
+          "title": "기간제 채용",
+          "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+          "ok": true,
+          "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+          "textLength": 2418,
+          "attachmentCount": 0,
+          "error": ""
+        }
+      ]
     },
     "access": {
-      "status": "failed",
-      "code": "RECRUIT_VERIFY_FAILED",
-      "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
       "evidence": {
-        "ok": false,
-        "verified": false,
+        "ok": true,
+        "verified": true,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_ERROR_PAGE",
-        "reason": "오류·차단·비HTML 신호 0개",
-        "score": 2,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+        "score": 5,
         "maxScore": 5,
         "checks": {
-          "httpDocument": false,
+          "httpDocument": true,
           "recruitKeyword": true,
           "boardStructure": true,
-          "organizationMatch": false,
-          "meaningfulBody": false
+          "organizationMatch": true,
+          "meaningfulBody": true
         },
-        "title": "",
-        "orgMatched": false,
-        "positiveHits": 1,
+        "title": "한국수력원자력 채용",
+        "orgMatched": true,
+        "positiveHits": 2,
         "positiveMatches": [
+          "채용\\s*공고",
           "recruit(?:ment)?"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 1,
+        "boardSignals": 3,
         "boardType": {
-          "type": "UNKNOWN",
-          "confidence": "low",
+          "type": "UL_LIST",
+          "confidence": "medium",
           "evidence": [
-            "명확한 게시판 구조 신호 없음"
+            "ul/ol + li 구조 발견"
           ]
         },
-        "textLength": 0,
-        "requestedUrl": "https://www.khnp.co.kr/recruit/",
-        "finalUrl": "https://www.khnp.co.kr/recruit/",
+        "institutionRule": true,
+        "institutionRuleEvidence": [
+          "host:www.khnp.co.kr",
+          "url-pattern",
+          "html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용"
+        ],
+        "textLength": 3004,
+        "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+        "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
         "status": 200,
         "contentType": "text/html; charset=UTF-8"
       }
     }
   },
-  "repairTarget": "scripts/lib/recruit-verify.mjs",
-  "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인",
+  "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
+  "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정",
   "stages": {
     "access": {
-      "ok": false,
+      "ok": true,
       "httpOk": true,
-      "recruitVerifyOk": false,
-      "requestedUrl": "https://www.khnp.co.kr/recruit/",
-      "finalUrl": "https://www.khnp.co.kr/recruit/",
-      "activeRecruitUrl": "",
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+      "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+      "activeRecruitUrl": "https://www.khnp.co.kr/recruit/main/index.do",
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
       "attempts": [
@@ -260,15 +531,15 @@
           "status": 200,
           "finalUrl": "https://www.khnp.co.kr/recruit/",
           "verification": {
-            "ok": false,
-            "verified": false,
+            "ok": true,
+            "verified": true,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_ERROR_PAGE",
-            "reason": "오류·차단·비HTML 신호 0개",
-            "score": 2,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+            "score": 3,
             "maxScore": 5,
             "checks": {
-              "httpDocument": false,
+              "httpDocument": true,
               "recruitKeyword": true,
               "boardStructure": true,
               "organizationMatch": false,
@@ -290,6 +561,12 @@
                 "명확한 게시판 구조 신호 없음"
               ]
             },
+            "institutionRule": true,
+            "institutionRuleEvidence": [
+              "host:www.khnp.co.kr",
+              "url-pattern",
+              "html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용"
+            ],
             "textLength": 0,
             "requestedUrl": "https://www.khnp.co.kr/recruit/",
             "finalUrl": "https://www.khnp.co.kr/recruit/",
@@ -298,63 +575,120 @@
           }
         },
         {
+          "url": "https://www.khnp.co.kr/recruit/main/index.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "한국수력원자력 채용",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "institutionRule": true,
+            "institutionRuleEvidence": [
+              "host:www.khnp.co.kr",
+              "url-pattern",
+              "html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용"
+            ],
+            "textLength": 3004,
+            "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+            "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        },
+        {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
           "ok": false,
-          "error": "timeout"
+          "error": "fetch failed"
         }
       ],
       "verification": {
-        "ok": false,
-        "verified": false,
+        "ok": true,
+        "verified": true,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_ERROR_PAGE",
-        "reason": "오류·차단·비HTML 신호 0개",
-        "score": 2,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+        "score": 5,
         "maxScore": 5,
         "checks": {
-          "httpDocument": false,
+          "httpDocument": true,
           "recruitKeyword": true,
           "boardStructure": true,
-          "organizationMatch": false,
-          "meaningfulBody": false
+          "organizationMatch": true,
+          "meaningfulBody": true
         },
-        "title": "",
-        "orgMatched": false,
-        "positiveHits": 1,
+        "title": "한국수력원자력 채용",
+        "orgMatched": true,
+        "positiveHits": 2,
         "positiveMatches": [
+          "채용\\s*공고",
           "recruit(?:ment)?"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 1,
+        "boardSignals": 3,
         "boardType": {
-          "type": "UNKNOWN",
-          "confidence": "low",
+          "type": "UL_LIST",
+          "confidence": "medium",
           "evidence": [
-            "명확한 게시판 구조 신호 없음"
+            "ul/ol + li 구조 발견"
           ]
         },
-        "textLength": 0,
-        "requestedUrl": "https://www.khnp.co.kr/recruit/",
-        "finalUrl": "https://www.khnp.co.kr/recruit/",
+        "institutionRule": true,
+        "institutionRuleEvidence": [
+          "host:www.khnp.co.kr",
+          "url-pattern",
+          "html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용"
+        ],
+        "textLength": 3004,
+        "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+        "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
         "status": 200,
         "contentType": "text/html; charset=UTF-8"
       },
       "boardType": {
-        "type": "UNKNOWN",
-        "confidence": "low",
+        "type": "UL_LIST",
+        "confidence": "medium",
         "evidence": [
-          "명확한 게시판 구조 신호 없음"
+          "ul/ol + li 구조 발견"
         ]
       },
       "diagnosis": {
-        "ok": false,
-        "code": "RECRUIT_VERIFY_FAILED",
-        "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+        "ok": true,
+        "code": "RECRUIT_VERIFY_FALLBACK_OK",
+        "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "1개 후보 URL HTTP 응답 성공",
+          "reason": "2개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://www.khnp.co.kr/recruit/",
@@ -362,15 +696,15 @@
               "status": 200,
               "finalUrl": "https://www.khnp.co.kr/recruit/",
               "verification": {
-                "ok": false,
-                "verified": false,
+                "ok": true,
+                "verified": true,
                 "fallback": false,
-                "code": "RECRUIT_VERIFY_ERROR_PAGE",
-                "reason": "오류·차단·비HTML 신호 0개",
-                "score": 2,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+                "score": 3,
                 "maxScore": 5,
                 "checks": {
-                  "httpDocument": false,
+                  "httpDocument": true,
                   "recruitKeyword": true,
                   "boardStructure": true,
                   "organizationMatch": false,
@@ -392,6 +726,12 @@
                     "명확한 게시판 구조 신호 없음"
                   ]
                 },
+                "institutionRule": true,
+                "institutionRuleEvidence": [
+                  "host:www.khnp.co.kr",
+                  "url-pattern",
+                  "html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용"
+                ],
                 "textLength": 0,
                 "requestedUrl": "https://www.khnp.co.kr/recruit/",
                 "finalUrl": "https://www.khnp.co.kr/recruit/",
@@ -400,127 +740,766 @@
               }
             },
             {
+              "url": "https://www.khnp.co.kr/recruit/main/index.do",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "한국수력원자력 채용",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 3,
+                "boardType": {
+                  "type": "UL_LIST",
+                  "confidence": "medium",
+                  "evidence": [
+                    "ul/ol + li 구조 발견"
+                  ]
+                },
+                "institutionRule": true,
+                "institutionRuleEvidence": [
+                  "host:www.khnp.co.kr",
+                  "url-pattern",
+                  "html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용"
+                ],
+                "textLength": 3004,
+                "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+                "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              }
+            },
+            {
               "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
               "ok": false,
-              "error": "timeout"
+              "error": "fetch failed"
             }
           ]
         },
         "recruitVerify": {
-          "ok": false,
-          "code": "RECRUIT_VERIFY_FAILED",
-          "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
-          "score": 2,
+          "ok": true,
+          "code": "RECRUIT_VERIFY_FALLBACK_OK",
+          "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+          "score": 5,
           "maxScore": 5,
           "boardType": {
-            "type": "UNKNOWN",
-            "confidence": "low",
+            "type": "UL_LIST",
+            "confidence": "medium",
             "evidence": [
-              "명확한 게시판 구조 신호 없음"
+              "ul/ol + li 구조 발견"
             ]
           },
           "evidence": {
-            "ok": false,
-            "verified": false,
+            "ok": true,
+            "verified": true,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_ERROR_PAGE",
-            "reason": "오류·차단·비HTML 신호 0개",
-            "score": 2,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+            "score": 5,
             "maxScore": 5,
             "checks": {
-              "httpDocument": false,
+              "httpDocument": true,
               "recruitKeyword": true,
               "boardStructure": true,
-              "organizationMatch": false,
-              "meaningfulBody": false
+              "organizationMatch": true,
+              "meaningfulBody": true
             },
-            "title": "",
-            "orgMatched": false,
-            "positiveHits": 1,
+            "title": "한국수력원자력 채용",
+            "orgMatched": true,
+            "positiveHits": 2,
             "positiveMatches": [
+              "채용\\s*공고",
               "recruit(?:ment)?"
             ],
             "negativeHits": 0,
             "negativeMatches": [],
-            "boardSignals": 1,
+            "boardSignals": 3,
             "boardType": {
-              "type": "UNKNOWN",
-              "confidence": "low",
+              "type": "UL_LIST",
+              "confidence": "medium",
               "evidence": [
-                "명확한 게시판 구조 신호 없음"
+                "ul/ol + li 구조 발견"
               ]
             },
-            "textLength": 0,
-            "requestedUrl": "https://www.khnp.co.kr/recruit/",
-            "finalUrl": "https://www.khnp.co.kr/recruit/",
+            "institutionRule": true,
+            "institutionRuleEvidence": [
+              "host:www.khnp.co.kr",
+              "url-pattern",
+              "html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용"
+            ],
+            "textLength": 3004,
+            "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+            "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
             "status": 200,
             "contentType": "text/html; charset=UTF-8"
           }
         },
-        "activeRecruitUrl": "",
+        "activeRecruitUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+        "selectedRequestedUrl": "https://www.khnp.co.kr/recruit/main/index.do",
         "verification": {
-          "ok": false,
-          "verified": false,
+          "ok": true,
+          "verified": true,
           "fallback": false,
-          "code": "RECRUIT_VERIFY_ERROR_PAGE",
-          "reason": "오류·차단·비HTML 신호 0개",
-          "score": 2,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "기관 전용 채용게시판 규칙 확인 (host:www.khnp.co.kr, url-pattern, html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용)",
+          "score": 5,
           "maxScore": 5,
           "checks": {
-            "httpDocument": false,
+            "httpDocument": true,
             "recruitKeyword": true,
             "boardStructure": true,
-            "organizationMatch": false,
-            "meaningfulBody": false
+            "organizationMatch": true,
+            "meaningfulBody": true
           },
-          "title": "",
-          "orgMatched": false,
-          "positiveHits": 1,
+          "title": "한국수력원자력 채용",
+          "orgMatched": true,
+          "positiveHits": 2,
           "positiveMatches": [
+            "채용\\s*공고",
             "recruit(?:ment)?"
           ],
           "negativeHits": 0,
           "negativeMatches": [],
-          "boardSignals": 1,
+          "boardSignals": 3,
           "boardType": {
-            "type": "UNKNOWN",
-            "confidence": "low",
+            "type": "UL_LIST",
+            "confidence": "medium",
             "evidence": [
-              "명확한 게시판 구조 신호 없음"
+              "ul/ol + li 구조 발견"
             ]
           },
-          "textLength": 0,
-          "requestedUrl": "https://www.khnp.co.kr/recruit/",
-          "finalUrl": "https://www.khnp.co.kr/recruit/",
+          "institutionRule": true,
+          "institutionRuleEvidence": [
+            "host:www.khnp.co.kr",
+            "url-pattern",
+            "html:NetFunnel_Action[\\s\\S]{0,300}recruit_main|recruit\\/main\\/index\\.do|채용"
+          ],
+          "textLength": 3004,
+          "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+          "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do",
           "status": 200,
           "contentType": "text/html; charset=UTF-8"
         }
-      },
-      "error": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음"
+      }
     },
     "list": {
       "ok": false,
-      "status": "unknown",
-      "pagesChecked": 0,
+      "status": "count-unavailable-or-empty",
+      "pagesChecked": 2,
       "visiblePostCount": null,
-      "candidateCount": 0,
+      "candidateCount": 13,
       "missingCount": null,
       "extraCount": null,
       "exactMatch": false,
-      "selectedUrl": "",
-      "detailUrlReady": 0,
+      "selectedUrl": "https://www.khnp.co.kr/recruit/main/index.do",
+      "detailUrlReady": 13,
       "listOnlyCount": 0,
-      "extractionDiagnostics": [],
-      "rootCauseDiagnostics": [],
-      "diagnosticFiles": [],
-      "samples": [],
-      "errors": []
+      "extractionDiagnostics": [
+        {
+          "url": "https://www.khnp.co.kr/recruit/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://www.khnp.co.kr/recruit/main/index.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 96,
+          "titleMatches": 71,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 13,
+          "rowFallbackAccepted": 3,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "일반 채용",
+            "기간제 채용",
+            "개인정보 처리방침",
+            "채용안내",
+            "핵심가치와 인재상",
+            "근무조건 및 대우",
+            "직무소개",
+            "채용공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [
+            {
+              "title": "일반 채용",
+              "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+              "allowed": true
+            },
+            {
+              "title": "기간제 채용",
+              "url": "https://www.khnp.co.kr/trecruit",
+              "allowed": false
+            },
+            {
+              "title": "기간제 채용",
+              "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+              "allowed": true
+            },
+            {
+              "title": "개인정보 처리방침",
+              "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on3",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017253",
+              "allowed": true
+            },
+            {
+              "title": "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017152",
+              "allowed": true
+            },
+            {
+              "title": "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017134",
+              "allowed": true
+            },
+            {
+              "title": "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017078",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017092",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017016",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016805",
+              "allowed": true
+            },
+            {
+              "title": "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016272",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015762",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015760",
+              "allowed": true
+            }
+          ],
+          "candidateCount": 13,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "한국수력원자력",
+          "url": "https://www.khnp.co.kr/recruit/",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "listCounterFailureReason": "UNKNOWN",
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 0,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {},
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 190,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "한국수력원자력",
+          "url": "https://www.khnp.co.kr/recruit/main/index.do",
+          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+          "listCounterFailureReason": "DOM_COUNT_ZERO",
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 13,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 5,
+            "UNCLASSIFIED": 8
+          },
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 13,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 43393,
+            "missingRows": 0,
+            "extraCandidates": 13
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 74,
+            "article": 0,
+            "[onclick]": 3,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 96
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [
+            "일반 채용",
+            "기간제 채용",
+            "개인정보 처리방침",
+            "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
+            "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
+            "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
+            "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
+            "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
+            "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
+            "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
+            "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
+            "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+            "2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04"
+          ],
+          "missingRows": [],
+          "extraCandidates": [
+            {
+              "org": "한국수력원자력",
+              "title": "일반 채용",
+              "link": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+              "listText": "**************************** --> 일반 채용 기간제 채용 개인정보 처리방침 채용안내 핵심가치와 인재상 근무조건 및 대우 직무소개 채용공고 채용공고 <a href='/recruit/rj00/RJ20100.do?mid=MI000",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "기간제 채용",
+              "link": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+              "listText": "=\"/recruit/main/index.do\"> 일반 채용 기간제 채용 개인정보 처리방침 채용안내 핵심가치와 인재상 근무조건 및 대우 직무소개 채용공고 채용공고 공지사항 <a href='/recruit/rk10/RK10000.do?mid=MI00000000000000",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "개인정보 처리방침",
+              "link": "https://www.khnp.co.kr/recruit/main/index.do?id=on3",
+              "listText": "s=\"go_ch\"> 일반 채용 기간제 채용 개인정보 처리방침 채용안내 핵심가치와 인재상 근무조건 및 대우 직무소개 채용공고 채용공고 공지사항 나의채용 <a href='/recruit/rk10/RK10100.do?mid=MI000000",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
+              "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17253",
+              "listText": ":fn_popUpVideo();\" class=\"btn_more\">더보기 --> 2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28 [공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24 [필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23 <a href=\"/rec",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
+              "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17152",
+              "listText": "26년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28 [공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24 [필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23 [필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22 <a href=\"/recr",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
+              "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17134",
+              "listText": "ct\">[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24 [필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23 [필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22 2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22 <a href=\"/recruit/",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
+              "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17078",
+              "listText": "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23 [필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22 2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22 2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08 <a href=\"/recruit/rj00/RJ",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
+              "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17092",
+              "listText": "ect\">[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22 2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22 2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08 2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22 <a href=\"/recruit/rj00/RJ20110.do?boar",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
+              "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17016",
+              "listText": "ct\">2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22 2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08 2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22 [공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26 <a",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
+              "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+16805",
+              "listText": "s=\"subject\">2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08 2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22 [공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26 2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
+              "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+16272",
+              "listText": "class=\"subject\">2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22 [공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26 2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04 2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04 </div",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+              "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+15762",
+              "listText": "bject\">[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26 2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04 2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04 $(document).ready(function(){ //netfunnel 끝 NetFunnel_Complete(); // 사전공지를 위한 알림 var v_data = cf_LoadJsonData(\"/recruit/cmmn/RZ0010/jsonIndexAlert.do\"); if( v_data.item",
+              "adapter": "한국수력원자력"
+            },
+            {
+              "org": "한국수력원자력",
+              "title": "2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04",
+              "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+15760",
+              "listText": "ct\">2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04 2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04 $(document).ready(function(){ //netfunnel 끝 NetFunnel_Complete(); // 사전공지를 위한 알림 var v_data = cf_LoadJsonData(\"/recruit/cmmn/RZ0010/jsonIndexAlert.do\"); if( v_data.items.status != null && v_data.items.status == 'A' ){ alert(v_data.items.memo); } /* //비밀번호확인 오류메세지 처리 if( cf_ToString('') != '') { alert(''); alert(''); alert(\"test\"); }else{ alert(\"test123\"); } */ //fn_popUpVideo(); }); //<![CDATA[ var myFullpage = new fullpage('#fullpage', { anchors: ['mainSection0', 'mainSection1', 'mainSection2'], /* a",
+              "adapter": "한국수력원자력"
+            }
+          ],
+          "rowTrace": []
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "한국수력원자력",
+          "htmlPath": "data/diagnostics/한국수력원자력/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/한국수력원자력/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/한국수력원자력/list/page-1-rows.txt",
+          "url": "https://www.khnp.co.kr/recruit/"
+        },
+        {
+          "org": "한국수력원자력",
+          "htmlPath": "data/diagnostics/한국수력원자력/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/한국수력원자력/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/한국수력원자력/list/page-2-rows.txt",
+          "url": "https://www.khnp.co.kr/recruit/main/index.do"
+        }
+      ],
+      "samples": [
+        {
+          "title": "일반 채용",
+          "link": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "기간제 채용",
+          "link": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "개인정보 처리방침",
+          "link": "https://www.khnp.co.kr/recruit/main/index.do?id=on3",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
+          "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17253",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
+          "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17152",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
+          "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17134",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
+          "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17078",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
+          "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17092",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
+          "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17016",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
+          "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+16805",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
+          "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+16272",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+          "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+15762",
+          "adapter": "한국수력원자력"
+        },
+        {
+          "title": "2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04",
+          "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+15760",
+          "adapter": "한국수력원자력"
+        }
+      ],
+      "errors": [],
+      "selectedRootCause": {
+        "version": "1.1-passive",
+        "mode": "passive",
+        "org": "한국수력원자력",
+        "url": "https://www.khnp.co.kr/recruit/main/index.do",
+        "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+        "listCounterFailureReason": "DOM_COUNT_ZERO",
+        "counterTrace": {
+          "source": "unavailable",
+          "rawDomRows": 0,
+          "uniqueVisibleTitleCount": 0,
+          "reportedVisiblePostCount": null,
+          "acceptedCandidateCount": 13,
+          "exactAgainstRaw": false,
+          "exactAgainstUniqueTitles": false
+        },
+        "candidateClassCounts": {
+          "RECRUIT_POST": 5,
+          "UNCLASSIFIED": 8
+        },
+        "counts": {
+          "visiblePostCount": null,
+          "candidateCount": 13,
+          "rawTableRows": 0,
+          "uniqueVisibleTitleCount": 0,
+          "sourceHtmlLength": 43393,
+          "missingRows": 0,
+          "extraCandidates": 13
+        },
+        "selectorCounts": {
+          "table tbody tr": 0,
+          "tr": 0,
+          "li": 74,
+          "article": 0,
+          "[onclick]": 3,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 96
+        },
+        "rejectReasonCounts": {},
+        "visibleTitles": [],
+        "extractedTitles": [
+          "일반 채용",
+          "기간제 채용",
+          "개인정보 처리방침",
+          "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
+          "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
+          "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
+          "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
+          "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
+          "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
+          "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
+          "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
+          "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+          "2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04"
+        ],
+        "missingRows": [],
+        "extraCandidates": [
+          {
+            "org": "한국수력원자력",
+            "title": "일반 채용",
+            "link": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+            "listText": "**************************** --> 일반 채용 기간제 채용 개인정보 처리방침 채용안내 핵심가치와 인재상 근무조건 및 대우 직무소개 채용공고 채용공고 <a href='/recruit/rj00/RJ20100.do?mid=MI000",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "기간제 채용",
+            "link": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+            "listText": "=\"/recruit/main/index.do\"> 일반 채용 기간제 채용 개인정보 처리방침 채용안내 핵심가치와 인재상 근무조건 및 대우 직무소개 채용공고 채용공고 공지사항 <a href='/recruit/rk10/RK10000.do?mid=MI00000000000000",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "개인정보 처리방침",
+            "link": "https://www.khnp.co.kr/recruit/main/index.do?id=on3",
+            "listText": "s=\"go_ch\"> 일반 채용 기간제 채용 개인정보 처리방침 채용안내 핵심가치와 인재상 근무조건 및 대우 직무소개 채용공고 채용공고 공지사항 나의채용 <a href='/recruit/rk10/RK10100.do?mid=MI000000",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
+            "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17253",
+            "listText": ":fn_popUpVideo();\" class=\"btn_more\">더보기 --> 2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28 [공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24 [필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23 <a href=\"/rec",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
+            "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17152",
+            "listText": "26년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28 [공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24 [필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23 [필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22 <a href=\"/recr",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
+            "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17134",
+            "listText": "ct\">[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24 [필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23 [필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22 2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22 <a href=\"/recruit/",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
+            "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17078",
+            "listText": "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23 [필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22 2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22 2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08 <a href=\"/recruit/rj00/RJ",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
+            "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17092",
+            "listText": "ect\">[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22 2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22 2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08 2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22 <a href=\"/recruit/rj00/RJ20110.do?boar",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
+            "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+17016",
+            "listText": "ct\">2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22 2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08 2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22 [공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26 <a",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
+            "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+16805",
+            "listText": "s=\"subject\">2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08 2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22 [공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26 2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
+            "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+16272",
+            "listText": "class=\"subject\">2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22 [공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26 2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04 2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04 </div",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+            "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+15762",
+            "listText": "bject\">[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26 2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04 2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04 $(document).ready(function(){ //netfunnel 끝 NetFunnel_Complete(); // 사전공지를 위한 알림 var v_data = cf_LoadJsonData(\"/recruit/cmmn/RZ0010/jsonIndexAlert.do\"); if( v_data.item",
+            "adapter": "한국수력원자력"
+          },
+          {
+            "org": "한국수력원자력",
+            "title": "2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04",
+            "link": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=+15760",
+            "listText": "ct\">2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04 2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04 $(document).ready(function(){ //netfunnel 끝 NetFunnel_Complete(); // 사전공지를 위한 알림 var v_data = cf_LoadJsonData(\"/recruit/cmmn/RZ0010/jsonIndexAlert.do\"); if( v_data.items.status != null && v_data.items.status == 'A' ){ alert(v_data.items.memo); } /* //비밀번호확인 오류메세지 처리 if( cf_ToString('') != '') { alert(''); alert(''); alert(\"test\"); }else{ alert(\"test123\"); } */ //fn_popUpVideo(); }); //<![CDATA[ var myFullpage = new fullpage('#fullpage', { anchors: ['mainSection0', 'mainSection1', 'mainSection2'], /* a",
+            "adapter": "한국수력원자력"
+          }
+        ],
+        "rowTrace": []
+      }
     },
     "detail": {
-      "ok": false,
-      "attempted": 0,
-      "validated": 0,
-      "samples": []
+      "ok": true,
+      "attempted": 2,
+      "validated": 2,
+      "samples": [
+        {
+          "title": "일반 채용",
+          "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+          "ok": true,
+          "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+          "textLength": 2418,
+          "attachmentCount": 0,
+          "error": ""
+        },
+        {
+          "title": "기간제 채용",
+          "requestedUrl": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+          "ok": true,
+          "finalUrl": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+          "textLength": 2418,
+          "attachmentCount": 0,
+          "error": ""
+        }
+      ]
     },
     "attachment": {
       "ok": false,

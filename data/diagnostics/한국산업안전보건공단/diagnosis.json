@@ -1,51 +1,61 @@
 {
   "org": "한국산업안전보건공단",
-  "health": "failed",
+  "health": "degraded",
   "primaryCause": {
-    "stage": "recruitVerify",
-    "status": "failed",
-    "code": "RECRUIT_VERIFY_FAILED",
-    "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
-    "evidence": {
-      "ok": false,
-      "verified": false,
-      "fallback": false,
-      "code": "RECRUIT_VERIFY_ERROR_PAGE",
-      "reason": "오류·차단·비HTML 신호 0개",
-      "score": 2,
-      "maxScore": 5,
-      "checks": {
-        "httpDocument": false,
-        "recruitKeyword": true,
-        "boardStructure": true,
-        "organizationMatch": false,
-        "meaningfulBody": false
+    "stage": "list",
+    "status": "unknown",
+    "code": "LIST_EMPTY_OR_WRONG_PAGE",
+    "reason": "실제 0건인지 채용 게시판이 아닌 페이지인지 구분 필요",
+    "evidence": [
+      {
+        "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 0,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [],
+        "candidateCount": 0,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
       },
-      "title": "",
-      "orgMatched": false,
-      "positiveHits": 1,
-      "positiveMatches": [
-        "recruit(?:ment)?"
-      ],
-      "negativeHits": 0,
-      "negativeMatches": [],
-      "boardSignals": 1,
-      "boardType": {
-        "type": "SPA",
-        "confidence": "medium",
-        "evidence": [
-          "SPA 신호 2개",
-          "초기 HTML 텍스트 0자"
-        ]
-      },
-      "textLength": 0,
-      "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
-      "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
-      "status": 200,
-      "contentType": "text/html"
-    },
-    "repairTarget": "scripts/lib/recruit-verify.mjs",
-    "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
+      {
+        "url": "https://kosha.or.kr/landing",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 0,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [],
+        "candidateCount": 0,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
+      }
+    ],
+    "repairTarget": "scripts/collectors/source-registry.mjs",
+    "recommendedAction": "현재 URL이 채용 게시판인지 확인하고 기관별 목록 URL 교체"
   },
   "diagnosis": {
     "http": {
@@ -59,15 +69,15 @@
           "status": 200,
           "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
           "verification": {
-            "ok": false,
-            "verified": false,
+            "ok": true,
+            "verified": true,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_ERROR_PAGE",
-            "reason": "오류·차단·비HTML 신호 0개",
-            "score": 2,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
+            "score": 3,
             "maxScore": 5,
             "checks": {
-              "httpDocument": false,
+              "httpDocument": true,
               "recruitKeyword": true,
               "boardStructure": true,
               "organizationMatch": false,
@@ -90,6 +100,12 @@
                 "초기 HTML 텍스트 0자"
               ]
             },
+            "institutionRule": true,
+            "institutionRuleEvidence": [
+              "host:www.kosha.or.kr",
+              "url-pattern",
+              "html:kosha-tboard-config|jobncontract|recruitment"
+            ],
             "textLength": 0,
             "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
             "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
@@ -132,6 +148,11 @@
                 "초기 HTML 텍스트 0자"
               ]
             },
+            "institutionRule": false,
+            "institutionRuleEvidence": [
+              "host:kosha.or.kr",
+              "html:kosha-tboard-config|jobncontract|recruitment"
+            ],
             "textLength": 0,
             "requestedUrl": "https://www.kosha.or.kr/",
             "finalUrl": "https://kosha.or.kr/landing",
@@ -142,24 +163,24 @@
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
           "ok": false,
-          "error": "timeout"
+          "error": "fetch failed"
         }
       ]
     },
     "recruitVerify": {
-      "status": "failed",
-      "code": "RECRUIT_VERIFY_FAILED",
-      "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
       "evidence": {
-        "ok": false,
-        "verified": false,
+        "ok": true,
+        "verified": true,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_ERROR_PAGE",
-        "reason": "오류·차단·비HTML 신호 0개",
-        "score": 2,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
+        "score": 3,
         "maxScore": 5,
         "checks": {
-          "httpDocument": false,
+          "httpDocument": true,
           "recruitKeyword": true,
           "boardStructure": true,
           "organizationMatch": false,
@@ -182,6 +203,12 @@
             "초기 HTML 텍스트 0자"
           ]
         },
+        "institutionRule": true,
+        "institutionRuleEvidence": [
+          "host:www.kosha.or.kr",
+          "url-pattern",
+          "html:kosha-tboard-config|jobncontract|recruitment"
+        ],
         "textLength": 0,
         "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
         "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
@@ -190,47 +217,57 @@
       }
     },
     "list": {
-      "status": "blocked",
-      "code": "LIST_BLOCKED_BY_RECRUIT_VERIFY",
-      "reason": "채용 게시판 검증 실패로 목록 진단 보류",
-      "evidence": {
-        "ok": false,
-        "verified": false,
-        "fallback": false,
-        "code": "RECRUIT_VERIFY_ERROR_PAGE",
-        "reason": "오류·차단·비HTML 신호 0개",
-        "score": 2,
-        "maxScore": 5,
-        "checks": {
-          "httpDocument": false,
-          "recruitKeyword": true,
-          "boardStructure": true,
-          "organizationMatch": false,
-          "meaningfulBody": false
+      "status": "unknown",
+      "code": "LIST_EMPTY_OR_WRONG_PAGE",
+      "reason": "실제 0건인지 채용 게시판이 아닌 페이지인지 구분 필요",
+      "evidence": [
+        {
+          "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
         },
-        "title": "",
-        "orgMatched": false,
-        "positiveHits": 1,
-        "positiveMatches": [
-          "recruit(?:ment)?"
-        ],
-        "negativeHits": 0,
-        "negativeMatches": [],
-        "boardSignals": 1,
-        "boardType": {
-          "type": "SPA",
-          "confidence": "medium",
-          "evidence": [
-            "SPA 신호 2개",
-            "초기 HTML 텍스트 0자"
-          ]
-        },
-        "textLength": 0,
-        "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
-        "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
-        "status": 200,
-        "contentType": "text/html"
-      }
+        {
+          "url": "https://kosha.or.kr/landing",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ]
     },
     "detail": {
       "status": "blocked",
@@ -245,19 +282,19 @@
       "evidence": []
     },
     "access": {
-      "status": "failed",
-      "code": "RECRUIT_VERIFY_FAILED",
-      "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
       "evidence": {
-        "ok": false,
-        "verified": false,
+        "ok": true,
+        "verified": true,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_ERROR_PAGE",
-        "reason": "오류·차단·비HTML 신호 0개",
-        "score": 2,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
+        "score": 3,
         "maxScore": 5,
         "checks": {
-          "httpDocument": false,
+          "httpDocument": true,
           "recruitKeyword": true,
           "boardStructure": true,
           "organizationMatch": false,
@@ -280,6 +317,12 @@
             "초기 HTML 텍스트 0자"
           ]
         },
+        "institutionRule": true,
+        "institutionRuleEvidence": [
+          "host:www.kosha.or.kr",
+          "url-pattern",
+          "html:kosha-tboard-config|jobncontract|recruitment"
+        ],
         "textLength": 0,
         "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
         "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
@@ -288,16 +331,16 @@
       }
     }
   },
-  "repairTarget": "scripts/lib/recruit-verify.mjs",
-  "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인",
+  "repairTarget": "scripts/collectors/source-registry.mjs",
+  "recommendedAction": "현재 URL이 채용 게시판인지 확인하고 기관별 목록 URL 교체",
   "stages": {
     "access": {
-      "ok": false,
+      "ok": true,
       "httpOk": true,
-      "recruitVerifyOk": false,
+      "recruitVerifyOk": true,
       "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
       "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
-      "activeRecruitUrl": "",
+      "activeRecruitUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
       "status": 200,
       "contentType": "text/html",
       "attempts": [
@@ -307,15 +350,15 @@
           "status": 200,
           "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
           "verification": {
-            "ok": false,
-            "verified": false,
+            "ok": true,
+            "verified": true,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_ERROR_PAGE",
-            "reason": "오류·차단·비HTML 신호 0개",
-            "score": 2,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
+            "score": 3,
             "maxScore": 5,
             "checks": {
-              "httpDocument": false,
+              "httpDocument": true,
               "recruitKeyword": true,
               "boardStructure": true,
               "organizationMatch": false,
@@ -338,6 +381,12 @@
                 "초기 HTML 텍스트 0자"
               ]
             },
+            "institutionRule": true,
+            "institutionRuleEvidence": [
+              "host:www.kosha.or.kr",
+              "url-pattern",
+              "html:kosha-tboard-config|jobncontract|recruitment"
+            ],
             "textLength": 0,
             "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
             "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
@@ -380,6 +429,11 @@
                 "초기 HTML 텍스트 0자"
               ]
             },
+            "institutionRule": false,
+            "institutionRuleEvidence": [
+              "host:kosha.or.kr",
+              "html:kosha-tboard-config|jobncontract|recruitment"
+            ],
             "textLength": 0,
             "requestedUrl": "https://www.kosha.or.kr/",
             "finalUrl": "https://kosha.or.kr/landing",
@@ -390,19 +444,19 @@
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
           "ok": false,
-          "error": "timeout"
+          "error": "fetch failed"
         }
       ],
       "verification": {
-        "ok": false,
-        "verified": false,
+        "ok": true,
+        "verified": true,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_ERROR_PAGE",
-        "reason": "오류·차단·비HTML 신호 0개",
-        "score": 2,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
+        "score": 3,
         "maxScore": 5,
         "checks": {
-          "httpDocument": false,
+          "httpDocument": true,
           "recruitKeyword": true,
           "boardStructure": true,
           "organizationMatch": false,
@@ -425,6 +479,12 @@
             "초기 HTML 텍스트 0자"
           ]
         },
+        "institutionRule": true,
+        "institutionRuleEvidence": [
+          "host:www.kosha.or.kr",
+          "url-pattern",
+          "html:kosha-tboard-config|jobncontract|recruitment"
+        ],
         "textLength": 0,
         "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
         "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
@@ -440,9 +500,9 @@
         ]
       },
       "diagnosis": {
-        "ok": false,
-        "code": "RECRUIT_VERIFY_FAILED",
-        "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+        "ok": true,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
         "http": {
           "ok": true,
           "code": "HTTP_OK",
@@ -454,15 +514,15 @@
               "status": 200,
               "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
               "verification": {
-                "ok": false,
-                "verified": false,
+                "ok": true,
+                "verified": true,
                 "fallback": false,
-                "code": "RECRUIT_VERIFY_ERROR_PAGE",
-                "reason": "오류·차단·비HTML 신호 0개",
-                "score": 2,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
+                "score": 3,
                 "maxScore": 5,
                 "checks": {
-                  "httpDocument": false,
+                  "httpDocument": true,
                   "recruitKeyword": true,
                   "boardStructure": true,
                   "organizationMatch": false,
@@ -485,6 +545,12 @@
                     "초기 HTML 텍스트 0자"
                   ]
                 },
+                "institutionRule": true,
+                "institutionRuleEvidence": [
+                  "host:www.kosha.or.kr",
+                  "url-pattern",
+                  "html:kosha-tboard-config|jobncontract|recruitment"
+                ],
                 "textLength": 0,
                 "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
                 "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
@@ -527,6 +593,11 @@
                     "초기 HTML 텍스트 0자"
                   ]
                 },
+                "institutionRule": false,
+                "institutionRuleEvidence": [
+                  "host:kosha.or.kr",
+                  "html:kosha-tboard-config|jobncontract|recruitment"
+                ],
                 "textLength": 0,
                 "requestedUrl": "https://www.kosha.or.kr/",
                 "finalUrl": "https://kosha.or.kr/landing",
@@ -537,15 +608,15 @@
             {
               "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
               "ok": false,
-              "error": "timeout"
+              "error": "fetch failed"
             }
           ]
         },
         "recruitVerify": {
-          "ok": false,
-          "code": "RECRUIT_VERIFY_FAILED",
-          "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
-          "score": 2,
+          "ok": true,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
+          "score": 3,
           "maxScore": 5,
           "boardType": {
             "type": "SPA",
@@ -556,15 +627,15 @@
             ]
           },
           "evidence": {
-            "ok": false,
-            "verified": false,
+            "ok": true,
+            "verified": true,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_ERROR_PAGE",
-            "reason": "오류·차단·비HTML 신호 0개",
-            "score": 2,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
+            "score": 3,
             "maxScore": 5,
             "checks": {
-              "httpDocument": false,
+              "httpDocument": true,
               "recruitKeyword": true,
               "boardStructure": true,
               "organizationMatch": false,
@@ -587,6 +658,12 @@
                 "초기 HTML 텍스트 0자"
               ]
             },
+            "institutionRule": true,
+            "institutionRuleEvidence": [
+              "host:www.kosha.or.kr",
+              "url-pattern",
+              "html:kosha-tboard-config|jobncontract|recruitment"
+            ],
             "textLength": 0,
             "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
             "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
@@ -594,17 +671,18 @@
             "contentType": "text/html"
           }
         },
-        "activeRecruitUrl": "",
+        "activeRecruitUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+        "selectedRequestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
         "verification": {
-          "ok": false,
-          "verified": false,
+          "ok": true,
+          "verified": true,
           "fallback": false,
-          "code": "RECRUIT_VERIFY_ERROR_PAGE",
-          "reason": "오류·차단·비HTML 신호 0개",
-          "score": 2,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "기관 전용 채용게시판 규칙 확인 (host:www.kosha.or.kr, url-pattern, html:kosha-tboard-config|jobncontract|recruitment)",
+          "score": 3,
           "maxScore": 5,
           "checks": {
-            "httpDocument": false,
+            "httpDocument": true,
             "recruitKeyword": true,
             "boardStructure": true,
             "organizationMatch": false,
@@ -627,32 +705,229 @@
               "초기 HTML 텍스트 0자"
             ]
           },
+          "institutionRule": true,
+          "institutionRuleEvidence": [
+            "host:www.kosha.or.kr",
+            "url-pattern",
+            "html:kosha-tboard-config|jobncontract|recruitment"
+          ],
           "textLength": 0,
           "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
           "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
           "status": 200,
           "contentType": "text/html"
         }
-      },
-      "error": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음"
+      }
     },
     "list": {
       "ok": false,
-      "status": "unknown",
-      "pagesChecked": 0,
+      "status": "count-unavailable-or-empty",
+      "pagesChecked": 2,
       "visiblePostCount": null,
       "candidateCount": 0,
       "missingCount": null,
       "extraCount": null,
       "exactMatch": false,
-      "selectedUrl": "",
+      "selectedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
       "detailUrlReady": 0,
       "listOnlyCount": 0,
-      "extractionDiagnostics": [],
-      "rootCauseDiagnostics": [],
-      "diagnosticFiles": [],
+      "extractionDiagnostics": [
+        {
+          "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://kosha.or.kr/landing",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "한국산업안전보건공단",
+          "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "listCounterFailureReason": "UNKNOWN",
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 0,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {},
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 1993,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "한국산업안전보건공단",
+          "url": "https://kosha.or.kr/landing",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "listCounterFailureReason": "UNKNOWN",
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 0,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {},
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 1993,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "한국산업안전보건공단",
+          "htmlPath": "data/diagnostics/한국산업안전보건공단/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/한국산업안전보건공단/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/한국산업안전보건공단/list/page-1-rows.txt",
+          "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do"
+        },
+        {
+          "org": "한국산업안전보건공단",
+          "htmlPath": "data/diagnostics/한국산업안전보건공단/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/한국산업안전보건공단/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/한국산업안전보건공단/list/page-2-rows.txt",
+          "url": "https://kosha.or.kr/landing"
+        }
+      ],
       "samples": [],
-      "errors": []
+      "errors": [],
+      "selectedRootCause": {
+        "version": "1.1-passive",
+        "mode": "passive",
+        "org": "한국산업안전보건공단",
+        "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+        "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+        "listCounterFailureReason": "UNKNOWN",
+        "counterTrace": {
+          "source": "unavailable",
+          "rawDomRows": 0,
+          "uniqueVisibleTitleCount": 0,
+          "reportedVisiblePostCount": null,
+          "acceptedCandidateCount": 0,
+          "exactAgainstRaw": true,
+          "exactAgainstUniqueTitles": true
+        },
+        "candidateClassCounts": {},
+        "counts": {
+          "visiblePostCount": null,
+          "candidateCount": 0,
+          "rawTableRows": 0,
+          "uniqueVisibleTitleCount": 0,
+          "sourceHtmlLength": 1993,
+          "missingRows": 0,
+          "extraCandidates": 0
+        },
+        "selectorCounts": {
+          "table tbody tr": 0,
+          "tr": 0,
+          "li": 0,
+          "article": 0,
+          "[onclick]": 0,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 0
+        },
+        "rejectReasonCounts": {},
+        "visibleTitles": [],
+        "extractedTitles": [],
+        "missingRows": [],
+        "extraCandidates": [],
+        "rowTrace": []
+      }
     },
     "detail": {
       "ok": false,

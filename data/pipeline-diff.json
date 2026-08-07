@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-07T05:12:53.280Z",
+  "generatedAt": "2026-08-07T05:48:26.694Z",
   "baselineAvailable": true,
   "summary": {
     "improved": 0,
-    "regressed": 0,
-    "unchanged": 22
+    "regressed": 5,
+    "unchanged": 16
   },
   "changes": [
     {
@@ -19,22 +19,7 @@
           {
             "url": "https://www.uri.re.kr/index.do",
             "ok": false,
-            "error": "fetch failed"
-          },
-          {
-            "url": "https://uri.re.kr/index.do",
-            "ok": false,
-            "error": "fetch failed"
-          },
-          {
-            "url": "http://www.uri.re.kr/index.do",
-            "ok": false,
-            "error": "fetch failed"
-          },
-          {
-            "url": "http://uri.re.kr/index.do",
-            "ok": false,
-            "error": "fetch failed"
+            "error": "HTTP 403"
           },
           {
             "url": "https://www.uri.re.kr/",
@@ -69,6 +54,201 @@
       },
       "improved": false,
       "regressed": false
+    },
+    {
+      "org": "한국산업안전보건공단",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "list",
+        "status": "unknown",
+        "code": "LIST_EMPTY_OR_WRONG_PAGE",
+        "reason": "실제 0건인지 채용 게시판이 아닌 페이지인지 구분 필요",
+        "evidence": [
+          {
+            "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://kosha.or.kr/landing",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          }
+        ],
+        "repairTarget": "scripts/collectors/source-registry.mjs",
+        "recommendedAction": "현재 URL이 채용 게시판인지 확인하고 기관별 목록 URL 교체"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
+    {
+      "org": "근로복지공단",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "list",
+        "status": "failed",
+        "code": "LIST_COUNTER_FAILED",
+        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+        "evidence": [
+          {
+            "url": "https://comwel.incruit.com/index_main.asp",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 22,
+            "titleMatches": 15,
+            "noUrl": 0,
+            "unsafeUrl": 1,
+            "accepted": 2,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 1,
+            "titleSamples": [
+              "���� Ȩ������",
+              "���� �Ұ��ڷ�",
+              "�����",
+              "���� �� ����",
+              "����",
+              "�ٽɰ�ġ",
+              "�濵��ħ",
+              "����� �濵����"
+            ],
+            "unsafeSamples": [
+              {
+                "title": "�����",
+                "reason": "detail-url-pending",
+                "identity": "row-2450",
+                "row": "<li class=\"nav-list__item depth1\">\r\n\t\t\t\t\t\t\t<a href=\"https://www.comwel.or.kr/recruit/hp/ablman/ablmanView.do\" target=\"_blank\" class=\"link\">�����</a>\r\n\t\t\t\t\t\t</li>"
+              }
+            ],
+            "actionSamples": [],
+            "candidateUrlSamples": [
+              {
+                "title": "�����",
+                "url": "https://www.comwel.or.kr/recruit/hp/ablman/ablmanView.do",
+                "allowed": false
+              },
+              {
+                "title": "�ٷκ������� ��25�� 2�� �ű�����(������) ä�� ���� 2025.08.14.(��) ~ 2025.08.28.(��) 18:00:00 �ٷΰ���",
+                "url": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+                "allowed": true
+              }
+            ],
+            "candidateCount": 2,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
+        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
     },
     {
       "org": "울산남구도시관리공단",
@@ -107,7 +287,7 @@
             "countSource": "unavailable"
           },
           {
-            "url": "https://uncmc.incruit.com/",
+            "url": "https://www.uncmc.or.kr/",
             "visiblePostCount": null,
             "rowMode": false,
             "anchors": 0,
@@ -159,6 +339,419 @@
       "regressed": false
     },
     {
+      "org": "한국수력원자력",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "list",
+        "status": "failed",
+        "code": "LIST_COUNTER_FAILED",
+        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+        "evidence": [
+          {
+            "url": "https://www.khnp.co.kr/recruit/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://www.khnp.co.kr/recruit/main/index.do",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 96,
+            "titleMatches": 71,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 13,
+            "rowFallbackAccepted": 3,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [
+              "일반 채용",
+              "기간제 채용",
+              "개인정보 처리방침",
+              "채용안내",
+              "핵심가치와 인재상",
+              "근무조건 및 대우",
+              "직무소개",
+              "채용공고"
+            ],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [
+              {
+                "title": "일반 채용",
+                "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+                "allowed": true
+              },
+              {
+                "title": "기간제 채용",
+                "url": "https://www.khnp.co.kr/trecruit",
+                "allowed": false
+              },
+              {
+                "title": "기간제 채용",
+                "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+                "allowed": true
+              },
+              {
+                "title": "개인정보 처리방침",
+                "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on3",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017253",
+                "allowed": true
+              },
+              {
+                "title": "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017152",
+                "allowed": true
+              },
+              {
+                "title": "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017134",
+                "allowed": true
+              },
+              {
+                "title": "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017078",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017092",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017016",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016805",
+                "allowed": true
+              },
+              {
+                "title": "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016272",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015762",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015760",
+                "allowed": true
+              }
+            ],
+            "candidateCount": 13,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
+        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
+    {
+      "org": "한국전력공사",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "list",
+        "status": "failed",
+        "code": "LIST_COUNTER_FAILED",
+        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+        "evidence": [
+          {
+            "url": "https://www.kepco.co.kr/home/about/careers.do",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 157,
+            "titleMatches": 147,
+            "noUrl": 3,
+            "unsafeUrl": 88,
+            "accepted": 100,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 91,
+            "titleSamples": [
+              "본문 바로가기",
+              "한국전력공사 로고",
+              "회사소개",
+              "KEPCO 소개 메뉴 열기",
+              "KEPCO 개요",
+              "CEO 인사말",
+              "경영방침",
+              "조직안내 메뉴 열기"
+            ],
+            "unsafeSamples": [
+              {
+                "title": "한국전력공사 로고",
+                "reason": "detail-url-pending",
+                "identity": "row-6969",
+                "row": "<div class=\"logo-wrap\">\r\n\t\t\t\t\t<h1>\r\n\t\t\t\t\t\t<a href=\"/home/index.do\" class=\"logo\" title=\"한국전력공사 로고\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_main');\">\r\n\t\t\t\t\t\t\t<span class=\"sr-only\">한국전력공사 로고</span>\r\n\t\t\t\t\t\t\t<svg width=\"144\" height=\"29\" viewBox=\"0 0 144 29\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t<path d=\"M72.9113 3.25391C69.5838 3.25391 66.6784 5.05837 65.0458 7.76149V3.26104H57.4156C54.2265 3.26104 51.418 4.90859 49.7508 7.42628V3.26104H44.0645V22.2899H49.7508V18.1247C51.418 20.6424 54.2265 22.297 57.4156 22.297H57.9206H65.0527V17.7894C66.6853 20.4926 69.5908 22.297 72.9182 22.297H73.4232H82.9973V17.1475H73.3194H73.3263C71.922 17.1475 70.6768 16.4415 69.909 15.3573H82.9973V10.2079H69.9228C70.6907 9.13089 71.9289 8.42479 73.3263 8.42479H73.9697L82.9973 8.41766V3.26817H72.9182L72.9113 3.25391ZM57.8099 17.1404H57.8168C55.4787 17.1404 53.5832 15.1933 53.5832 12.7826C53.5832 10.3719 55.4787 8.41766 57.8168 8.41766H58.4602L64.6792 8.41053C64.022 9.71573 63.6415 11.1992 63.6415 12.7755C63.6415 14.3517 64.022 15.8352 64.6792 17.1475H57.803L57.8099 17.1404Z\" fill=\"#0045C9\"/>\r\n\t\t\t\t\t\t\t\t<path d=\"M136.976 3.57304L136.63 3.48745C135.239 3.1451 133.787 2.9668 132.292 2.9668"
+              },
+              {
+                "title": "CEO 인사말",
+                "reason": "detail-url-pending",
+                "identity": "row-21220",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/introduce/ceo.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_ceo');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>CEO 인사말</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+              },
+              {
+                "title": "경영방침",
+                "reason": "detail-url-pending",
+                "identity": "row-21618",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/introduce/policy/ceo/conts.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_policy');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>경영방침</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+              },
+              {
+                "title": "조직안내 메뉴 열기",
+                "reason": "detail-url-pending",
+                "identity": "row-22431",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/orgaznization/orgchart/conts.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_org');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t조직안내\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<span class=\"sr-only\">메뉴 열기</span>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<i class=\"icon-mo\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M7 9L12 14L17 9\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"gnb-3depth\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+              },
+              {
+                "title": "해외지사·법인",
+                "reason": "detail-url-pending",
+                "identity": "row-24085",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/orgaznization/global/boardList.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_global');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>해외지사·법인</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+              },
+              {
+                "title": "출자회사",
+                "reason": "detail-url-pending",
+                "identity": "row-24503",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/orgaznization/subsidiaries/group-company/conts.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_subsidiary');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>출자회사</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+              },
+              {
+                "title": "전국 본부 · 사업소",
+                "reason": "detail-url-pending",
+                "identity": "row-24943",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/locations.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_branches_1');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t전국 본부 · 사업소\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t            <i class=\"icon-pc\">\r\n\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M9 17L14 12L9 7\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t"
+              },
+              {
+                "title": "투자정보 메뉴 열기",
+                "reason": "detail-url-pending",
+                "identity": "row-26226",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/invest/irinfo/irreport/boardList.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_ir');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t투자정보\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<span class=\"sr-only\">메뉴 열기</span>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<i class=\"icon-mo\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M7 9L12 14L17 9\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"gnb-3depth\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t"
+              }
+            ],
+            "actionSamples": [
+              {
+                "title": "한국전력공사 로고",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_main');"
+              },
+              {
+                "title": "CEO 인사말",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_ceo');"
+              },
+              {
+                "title": "경영방침",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_policy');"
+              },
+              {
+                "title": "조직안내 메뉴 열기",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_org');"
+              },
+              {
+                "title": "해외지사·법인",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_global');"
+              },
+              {
+                "title": "출자회사",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_subsidiary');"
+              },
+              {
+                "title": "전국 본부 · 사업소",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_branches_1');"
+              },
+              {
+                "title": "투자정보 메뉴 열기",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_ir');"
+              },
+              {
+                "title": "IR정보",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_ir_info');"
+              },
+              {
+                "title": "재무정보",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_finance_info');"
+              },
+              {
+                "title": "주식정보",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_stock_info');"
+              },
+              {
+                "title": "전자공고",
+                "action": "javascript:gaEvent('gnb', 'click', 'gnb_electronic_announcement');"
+              }
+            ],
+            "candidateUrlSamples": [
+              {
+                "title": "한국전력공사 로고",
+                "url": "https://www.kepco.co.kr/home/index.do",
+                "allowed": false
+              },
+              {
+                "title": "회사소개",
+                "url": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+                "allowed": true
+              },
+              {
+                "title": "KEPCO 소개 메뉴 열기",
+                "url": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+                "allowed": true
+              },
+              {
+                "title": "KEPCO 개요",
+                "url": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+                "allowed": true
+              },
+              {
+                "title": "CEO 인사말",
+                "url": "https://www.kepco.co.kr/home/about/introduce/ceo.do",
+                "allowed": false
+              },
+              {
+                "title": "경영방침",
+                "url": "https://www.kepco.co.kr/home/about/introduce/policy/ceo/conts.do",
+                "allowed": false
+              },
+              {
+                "title": "조직안내 메뉴 열기",
+                "url": "https://www.kepco.co.kr/home/about/orgaznization/orgchart/conts.do",
+                "allowed": false
+              },
+              {
+                "title": "해외지사·법인",
+                "url": "https://www.kepco.co.kr/home/about/orgaznization/global/boardList.do",
+                "allowed": false
+              },
+              {
+                "title": "출자회사",
+                "url": "https://www.kepco.co.kr/home/about/orgaznization/subsidiaries/group-company/conts.do",
+                "allowed": false
+              },
+              {
+                "title": "전국 본부 · 사업소",
+                "url": "https://www.kepco.co.kr/home/about/locations.do",
+                "allowed": false
+              },
+              {
+                "title": "투자정보 메뉴 열기",
+                "url": "https://www.kepco.co.kr/home/about/invest/irinfo/irreport/boardList.do",
+                "allowed": false
+              },
+              {
+                "title": "IR정보",
+                "url": "https://www.kepco.co.kr/home/about/invest/irinfo/irreport/boardList.do",
+                "allowed": false
+              },
+              {
+                "title": "재무정보",
+                "url": "https://www.kepco.co.kr/home/about/invest/fininfo/finstatements/boardList.do",
+                "allowed": false
+              },
+              {
+                "title": "주식정보",
+                "url": "https://www.kepco.co.kr/home/about/invest/stinfo/capital/conts.do",
+                "allowed": false
+              },
+              {
+                "title": "전자공고",
+                "url": "https://www.kepco.co.kr/home/about/invest/announce/boardList.do",
+                "allowed": false
+              },
+              {
+                "title": "인재채용",
+                "url": "https://www.kepco.co.kr/home/about/careers.do",
+                "allowed": false
+              }
+            ],
+            "candidateCount": 100,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
+        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
+    {
       "org": "울산문화관광재단",
       "health": "degraded",
       "primaryCause": {
@@ -168,19 +761,19 @@
         "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
         "evidence": [
           {
-            "title": "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
-            "requestedUrl": "https://uctf.or.kr/board/employment/view/202411196196",
+            "title": "제6차 기간제 근로자 채용 최종합격자 공고",
+            "requestedUrl": "https://uctf.or.kr/board/employment/view/202411202683",
             "ok": false,
-            "finalUrl": "https://uctf.or.kr/board/employment/view/202411196196",
+            "finalUrl": "https://uctf.or.kr/board/employment/view/202411202683",
             "textLength": 0,
             "attachmentCount": 0,
             "error": "insufficient detail structure"
           },
           {
-            "title": "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
-            "requestedUrl": "https://uctf.or.kr/board/employment/view/202411196033",
+            "title": "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
+            "requestedUrl": "https://uctf.or.kr/board/employment/view/202411196196",
             "ok": false,
-            "finalUrl": "https://uctf.or.kr/board/employment/view/202411196033",
+            "finalUrl": "https://uctf.or.kr/board/employment/view/202411196196",
             "textLength": 0,
             "attachmentCount": 0,
             "error": "insufficient detail structure"
@@ -437,6 +1030,53 @@
       },
       "improved": false,
       "regressed": false
+    },
+    {
+      "org": "한국산업인력공단",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "detail",
+        "status": "failed",
+        "code": "DETAIL_EMPTY_BODY",
+        "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+        "evidence": [
+          {
+            "title": "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����",
+            "requestedUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
+            "ok": false,
+            "finalUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "error": "final url is not a detail page"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/한국산업인력공단.mjs",
+        "recommendedAction": "기관 전용 상세 본문 선택자 추가"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
     },
     {
       "org": "한국석유공사",
@@ -747,19 +1387,19 @@
               {
                 "title": "정보공개청구",
                 "reason": "detail-url-pending",
-                "identity": "row-36039",
+                "identity": "row-36042",
                 "row": "<div class=\"list01\"><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새 창 열림\">정보공개청구</a></div>"
               },
               {
                 "title": "웹접근성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49198",
+                "identity": "row-49201",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               },
               {
                 "title": "웹개방성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49349",
+                "identity": "row-49352",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               }
             ],
@@ -872,21 +1512,6 @@
             "missingCount": null,
             "extraCount": null,
             "countSource": "unavailable"
-          },
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-            "anchors": 53,
-            "titleMatches": 27,
-            "noUrl": 6,
-            "unsafeUrl": 14,
-            "accepted": 7,
-            "rowFallbackAccepted": 0,
-            "visiblePostCount": 7,
-            "candidateCount": 7,
-            "exactMatch": true,
-            "missingCount": 0,
-            "extraCount": 0,
-            "countSource": "visible-board-rows"
           }
         ],
         "repairTarget": "scripts/collectors/institutions/한국동서발전.mjs",
@@ -967,43 +1592,6 @@
         "attachment": {
           "from": false,
           "to": false,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "근로복지공단",
-      "health": "healthy",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
           "change": "same"
         }
       },
@@ -1168,154 +1756,6 @@
         "reason": "현재 진단 표본에서 실패 원인 없음",
         "evidence": [],
         "repairTarget": "scripts/collectors/institutions/울산항만공사.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "한국산업안전보건공단",
-      "health": "healthy",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국산업안전보건공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "한국산업인력공단",
-      "health": "healthy",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국산업인력공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "한국수력원자력",
-      "health": "healthy",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "한국전력공사",
-      "health": "healthy",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {

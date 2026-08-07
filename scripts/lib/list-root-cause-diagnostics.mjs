@@ -164,10 +164,13 @@ export function buildListRootCauseDiagnostics({ html = '', source, inspection, s
     && Number(adapterDiagnostics.accepted || 0) === selectedCandidates.length
     && Array.isArray(adapterDiagnostics.titleSamples)
     && adapterDiagnostics.titleSamples.length > 0;
-  const accuracyVerified = Boolean(inspection.exactMatch && (exactTitleSet || strongAdapterRecordEvidence));
+  const templateRecordEvidence = inspection?.diagnostics?.recordVerification || { verified: false };
+  const accuracyVerified = Boolean(inspection.exactMatch && (exactTitleSet || strongAdapterRecordEvidence || templateRecordEvidence.verified));
   const accuracyVerification = {
     verified: accuracyVerified,
-    level: exactTitleSet ? 'DOM_TITLE_SET_EXACT' : strongAdapterRecordEvidence ? 'SOURCE_RECORD_EXACT' : inspection.exactMatch ? 'COUNT_EXACT_ONLY' : 'NOT_EXACT',
+    level: exactTitleSet ? 'DOM_TITLE_SET_EXACT' : strongAdapterRecordEvidence ? 'SOURCE_RECORD_EXACT' : templateRecordEvidence.verified ? templateRecordEvidence.level : inspection.exactMatch ? 'COUNT_EXACT_ONLY' : 'NOT_EXACT',
+    listVerificationTemplate: templateRecordEvidence.template || null,
+    templateRecordEvidence,
     independentDomEvidence,
     exactCount: Boolean(inspection.exactMatch),
     exactTitleSet,
@@ -188,7 +191,7 @@ export function buildListRootCauseDiagnostics({ html = '', source, inspection, s
   else probableCause = 'NO_LIST_ROOT_CAUSE_DETECTED';
 
   return {
-    version: '1.2-list-accuracy',
+    version: '1.3-list-template-verification',
     mode: 'passive',
     org: source?.org || 'unknown',
     url: source?.url || '',

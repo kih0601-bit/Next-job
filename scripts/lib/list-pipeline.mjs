@@ -1,5 +1,5 @@
 import { cleanHtml } from './detail-parser.mjs';
-import { extractCandidatesForSource, countVisibleBoardPosts } from '../collectors/source-adapters.mjs';
+import { extractCandidatesForSource, countVisibleBoardPosts, verifyExtractedListAgainstVisibleRecords } from '../collectors/source-adapters.mjs';
 
 export function permissiveBoardTitle(title = '') {
   const text = cleanHtml(title).replace(/\s+/g, ' ').trim();
@@ -29,6 +29,7 @@ export function inspectListingPage(html, source) {
       ? diagnostics.visiblePostCount
       : null;
   const candidateCount = candidates.length;
+  const recordVerification = verifyExtractedListAgainstVisibleRecords(html, source, candidates);
   const exactMatch = visiblePostCount !== null && candidateCount === visiblePostCount;
   const missingCount = visiblePostCount === null ? null : Math.max(0, visiblePostCount - candidateCount);
   const extraCount = visiblePostCount === null ? null : Math.max(0, candidateCount - visiblePostCount);
@@ -55,6 +56,7 @@ export function inspectListingPage(html, source) {
       exactMatch,
       missingCount,
       extraCount,
+      recordVerification,
       countSource: visiblePostCount !== null
         ? (Number.isInteger(counted) && counted > 0 ? 'visible-board-rows' : 'adapter-diagnostics')
         : 'unavailable'

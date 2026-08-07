@@ -1250,251 +1250,607 @@
             var siteControl = new SiteControl();
         </script>
 
-
-<main id="sub">
-
-    <div id="subVisual" class="rel">
-        <div class="bgImg">
-            <div class="img pc_view">
-                <img src="/img/subComm/visual_site.jpg" alt="" />
+<link rel="stylesheet" href="css/jquery.fullpage.min.css">
+</head>
+<div id="opinionPop" class="opinion-form" style="display: none;">
+    <div class="popup_suggestion">
+        <div class="inner">
+            <h3>울산문화관광재단 홈페이지 개선 의견</h3>
+            <p class="memo">
+                울산문화관광재단 홈페이지를 방문해 주셔서 감사합니다.<br>
+                더 나은 서비스를 제공하기 위해 홈페이지 개선에 대한 의견을 수집하고 있습니다.<br>
+                다양한 의견을 남겨주세요.
+            </p>
+            <button class="btn_close" onclick="opinionPopClose();">
+                <img src="/img/ucation/btn_close.png" alt="닫기">
+            </button>
+            <div class="input_box">
+                <form action="">
+                    <p class="tit">내용</p>
+                    <textarea class="opinion-content" name="" id="" cols="30" rows="10" placeholder="예시 : 앱 접속이 불안정합니다." v-model="content"></textarea>
+                </form>
             </div>
-            <div class="img mo_view">
-                <img src="/img/subComm/visual_site_mo.jpg" alt="" />
-            </div>
-        </div>
-        <div class="txtArea abs w100 t_center w_center">
-            <div class="title fc0 fs50 fwtbold gm">
-                재단소식
-            </div>
-            <div class="menuLst flex justy_cnt fs14">
-                <img src="/img/subComm/ic_visual.svg" alt="">
-                <div class="txt fc0">
-                     ＞ 재단소식 ＞ 채용
-                </div>
+            <div class="btn_g">
+                <button onclick="notice.requestSubmit()">의견 제출하기</button>
             </div>
         </div>
     </div>
-    <!--- //서브비쥬얼 --->
+</div>
 
-    <div id="subWrap" class="siteWrap">
+<nav class="fullGnb fixed y_center left0">
+    <ul class="">
+        <li class="on"><a href="#section1" data-menuanchor="section1"><i></i>Main</a></li>
+        <li><a href="#section2" data-menuanchor="section2"><i></i>재단소식</a></li>
+        <li><a href="#section3" data-menuanchor="section3"><i></i>문화예술달력</a></li>
+        <li><a href="#section4" data-menuanchor="section4"><i></i>사업안내</a></li>
+        <li><a href="#section5" data-menuanchor="section5"><i></i>운영시설</a></li>
+    </ul><div class="unfoldBtn unfoldBtn2 act"></div>
+    <style>.fullGnb ul.off{display: none;}</style>
+</nav>
+<div id="main">
 
-        
-<aside id="sideMenu">
-    <div class="sideMenu siteMenu">
+	<section class="section m1" style="height: 100vh">
+        <div class="inner rel h100 banner-list">
 
-        <div class="mnCont">
-
-            <div class="mnTitle fs22 fwt500 gm">
-                재단소식
-            </div>
-
-            <ul class="mnGnb ns">
-
-                <li class="gnb_lst fs16">
-                    <a href="/board/notice" class="gnb_tit">공지사항</a>
-                </li>
-
-                <li class="gnb_lst fs16">
-                    <a href="/board/bid" class="gnb_tit">공모 및 입찰</a>
-                </li>
-
-                <li class="gnb_lst fs16">
-                    <a href="/board/employment" class="gnb_tit">채용</a>
-                </li>
-
-                <li class="gnb_lst" style="display: none;" aria-hidden="true"></li>
-
-                <li class="gnb_lst fs16">
-                    <a href="/board/sns/insta" class="gnb_tit">재단 SNS</a>
-                </li>
-
-                <li class="gnb_lst fs16">
-                    <a href="/board/press" class="gnb_tit">보도자료</a>
-                </li>
-
-                <li class="gnb_lst fs16">
-                    <a href="/board/archive" class="gnb_tit">자료실</a>
-                </li>
-
-                <li class="gnb_lst fs16">
-                    <span class="gnb_tit slide_tit">그 밖의 소식</span>
-                    <ul class="mnLnb">
-                        <li class="lnb_lst fs15">
-                            <a href="/board/relate">유관기관 소식</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="gnb_lst fs16">
-                    <a href="/board/newsletter" class="gnb_tit">뉴스레터</a>
-                </li>
-
-            </ul>
-
-        </div>
-
-    </div>
-
-    <div class="moSideMenu siteMenu">
-        <div class="current flex alc fs16 fwtbold fc0 ns">
-            <span>공지사항</span>
-            <img src="/img/subComm/ic_menu_down.svg" alt="">
-        </div>
-        <ul class="moSideGnb fs16">
-            <li class="gnbLst">
-                <a href="/board/notice">공지사항</a>
-            </li>
-            <li class="gnbLst">
-                <a href="/board/bid">공모 및 입찰</a>
-            </li>
-            <li class="gnbLst">
-                <a href="/board/employment">채용</a>
-            </li>
-            <!--<li class="gnbLst">
-                <a href="/board/festival">축제,행사,교육</a>
-            </li>-->
-            <li class="gnbLst">
-                <a href="/board/sns/insta">재단 SNS</a>
-            </li>
-            <li class="gnbLst">
-                <a href="/board/press">보도자료</a>
-            </li>
-            <li class="gnbLst">
-                <a href="/board/archive">자료실</a>
-            </li>
-            <li class="gnbLst">
-                <a href="/board/relate">그 밖의 소식</a>
-            </li>
-            <li class="gnbLst">
-                <a href="/board/newsletter">뉴스레터</a>
-            </li>
-        </ul>
-    </div>
-</aside>
-
-
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function(){
-                let currentMenu = $('.gnb_lst').eq(2)
-                currentMenu.addClass('on');
-                currentMenu.find('.mnLnb').show();
-
-                $('.moSideMenu .current span').text('채용');                
-            })
-        </script>
-        <!--- //사이드메뉴 --->
-
-        <div id="subContent">
-
-            <div class="subContTitle">
-                <div class="subTit ns fs16">재단소식</div>
-                <div class="title flex justy_btw alc">
-                    <div class="tit gm fs32 fwtbold">채용</div>
-                    <div class="btnArea">
-                        <a href="#" class="shareBtn"><span></span></a>
-                        <a href="#" class="printBtn"><span></span></a>
+            <div class="m1_swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="(item, i) in itemList" style="cursor: pointer">
+                        <div class="img pc_view" v-on:click="requestLink(i)" style="width: 100%;">
+                            <img :src="item.path" alt="">
+                        </div>
+                        <div class="img mo_view" v-on:click="requestLink(i)">
+                            <img :src="item.path" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="subContWrt fs18 fc11">
-                울산문화관광재단의 채용 소식을 확인해보세요.
-            </div>
-            <!--- //서브 공통 타이틀 --->
 
-            <!--- 서브 작업영역 - 여기에 작업해주세요 ~~~~~~~~~~~~~ --->
-            <div class="subContArea page_operate">
-                <div class="site_noticeList_ui site_notice_ui site_custom_ui">
-                    <fieldset class="site_boardSearch_g">
-                        <legend>게시판 내 검색</legend>
-                        <label for="site_fAraeSearch">카테고리</label>
-                        <div class="col_left summary">
-                            <p class="site_total">전체 <span v-cloak>{{count}}</span>건</p>
+			<div class="btnArea flex">
+				<div class="leftCont">
+					<div class="bannerTit fs18 fwtbold ns" v-cloak>
+						{{title}}
+					</div>
+					<div class="actionBtn flex">
+						<div class="swiper-button-prev m1_prev"></div>
+						<img src="/img/common/ic_pause.svg" alt="" class="palyBtn pointer">
+						<div class="swiper-button-next m1_next"></div>
+					</div>
+					<div class="bar_wrap">
+						<div class="bar">
+							<div class="back"></div>
+						</div>
+					</div>
+				</div>
+				<div class="rightCont">
+					<div class="swiper-pagination m1_pg fs16"></div>
+				</div>
+			</div>
+
+        </div>
+    </section>
+    <!--- //메인 섹션1 - 비쥬얼 슬라이드 ------------>
+
+	<section class="section m2 rel notice-list">
+        <div class="inner">
+
+            <div class="topArea flex alend justy_btw">
+                <div class="titArea">
+                    <div class="subt fs16">
+                        UCTF NOTICE
+                    </div>
+                    <div class="tit gm fs40 fwtbold fc9">
+                        울산문화관광재단 소식
+                    </div>
+                    <div class="wrt fs18 fc11">
+                        다양한 울산문화관광재단의 소식을 빠르게 만나보세요.
+                    </div>
+                </div>
+
+				<div class="tabWrap">
+					<ul class="tabLst fs16 flex alc">
+						<li :class="{'on': category.length == 0 }" v-on:click="requestNoticeList('')">전체</li>
+						<li :class="{'on': category.includes('공지') }" v-on:click="requestNoticeList(['공지'])">공지사항</li>
+						<li :class="{'on': category.includes('공모') }" v-on:click="requestNoticeList(['공모', '입찰'])">공모 · 입찰</li>
+						<li :class="{'on': category.includes('채용') }" v-on:click="requestNoticeList(['채용'])">채용</li>
+						<!--<li :class="{'on': category.includes('축제') }" v-on:click="requestNoticeList(['축제', '행사', '교육'])">축제 · 행사 · 교육</li>-->
+					</ul>
+				</div>
+            </div>
+            <!--//타이틀-->
+
+            <div class="contArea rel">
+                <div class="m2_swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="(item, i) in itemList">
+                            <a v-on:click="requestGoingNoticeDetail(i)" class="slideInner">
+                                <ul class="prg flex fs14">
+                                    <span class="cate" v-cloak>{{item.category}}</span>
+                                    <span class="open type_a" :class="item.stateClass" v-cloak>{{item.state}}</span>
+                                </ul>
+                                <div class="date fs14 fwt300" v-cloak>
+                                    {{item.registrationDatetime}}
+                                </div>
+                                <div class="subj fs20 fwt600" v-cloak>
+                                    {{item.title}}
+                                </div>
+                                <div class="wrt fs16">
+                                    {{item.summary}}
+                                </div>
+                            </a>
                         </div>
-                        <div class="site_col_right employment-search-bar">
-                            <select name="" id="">
-                                <option value="제목">제목</option>
-                            </select>
-                            <div class="site_search_wrap">
-                                <label for="site_fAraeSearch">검색어</label>
-                                <input type="text" id="fkeySearch" v-model="keyword" placeholder="검색어를 입력하세요">
-                                <button class="site_btn_search" type="button" v-on:click="requestSearch()">검색</button>
+                    </div>
+                </div>
+                <div class="swiper-button-prev m2_prev">
+                    <img src="/img/common/ic_arr_prev.svg" alt="">
+                </div>
+                <div class="swiper-button-next m2_next">
+                    <img src="/img/common/ic_arr_next.svg" alt="">
+                </div>
+
+                <div class="linkBtn t_center">
+                    <a v-on:click="requestGoingNoticeListPage()">
+                        <img src="/img/common/ic_plus.svg" alt="">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--- //메인 섹션2 - 울산문화관광재단 소식 ------------>
+
+	<section class="section m3">
+        <iframe id="basicIframe" src="https://www.ulsanculture.kr/webuser/page/iframe3.html" width="99%" height="933px" scrolling="no" frameborder="0" allowfullscreen></iframe>
+    </section>
+    <!--- //메인 섹션3 - 문화예술달력 ------------>
+    
+    <section class="section m4">
+        <div class="inner">
+            <div class="contArea flex column business-list">
+
+                <div class="title t_center">
+                    <div class="subt fs16">
+                        UCTF PROJECT
+                    </div>
+                    <div class="tit gm fs40 fwtbold fc9">
+                        문화관광 사업안내
+                    </div>
+                </div>
+
+				<div class="cateWrap">
+					<div class="cateArea flex alc m_center">
+						<ul class="cateBox fs16 fc2 flex t_center">
+							<li :class="{'on': category === '' }" v-on:click="requestSort('')">전체</li>
+							<li :class="{'on': category === '예술지원' }" v-on:click="requestSort('예술지원')">예술지원</li>
+							<li :class="{'on': category === '문화예술교육' }" v-on:click="requestSort('문화예술교육')">문화예술교육</li>
+							<li :class="{'on': category === '문화소통' }" v-on:click="requestSort('문화소통')">문화소통</li>
+							<li onclick="location.href='/business/tour-mice/smart01'">관광 생태계 조성</li>
+							<li onclick="location.href='/business/tour-mice/infra01'">관광 콘텐츠 육성</li>
+							<li onclick="location.href='/business/tour-mice/display01'">전시·컨벤션 육성</li>
+						</ul>
+						<span class="moreBtn g_center pointer" onclick="location.href='/business/culture-art/view/id'">
+							<img src="/img/common/ic_plus.svg" alt="">
+						</span>
+					</div>
+				</div>
+
+                <div class="slideArea m_center">
+
+                    <div class="m4_swiper ov_h">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" v-for="(item, i) in sortList">
+                                <div class="slideInner">
+                                    <a v-on:click="requestDetail(i)">
+                                        <div class="imgArea img">
+                                            <img :src="item.imagePath" alt="" onerror="this.src='/img/common/non_img_01.png'">
+                                        </div>
+                                        <div class="txtArea">
+                                            <span class="cate fs13 fc10" v-cloak>{{item.category}}</span>
+                                            <div class="tit fs25 fwtbold fc9" v-cloak>
+                                                {{item.title}}
+                                            </div>
+                                            <div class="wrt fs15 fc15">
+                                                <p v-html="item.content"></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </fieldset>
-                    <div class="site_table_wrap">
-                        <table>
-                            <colgroup>
-                                <col style="width: 5.5%;">
-                                <col class="pc_ver" style="width: 7.9%;">
-                                <col style="width: auto;">
-                                <col style="width: 7.9%;">
-                                <col style="width: 15.8%;">
-                                <col style="width: 7.9%;">
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th class="site_num">번호</th>
-                                    <th class="site_status pc_ver">상태</th>
-                                    <th class="site_tit">제목</th>
-                                    <th class="site_file">첨부</th>
-                                    <th class="site_date">등록일</th>
-                                    <th class="site_view">조회수</th>
-                                </tr>
-                            </thead>
-                            <tbody class="employment-list">
-                                <tr :class="{'site_notice_fix': item.notice}" v-for="(item, i) in itemList">
-                                    <td class="site_num" v-if="!item.notice" v-cloak>{{item.number}}</td>
-                                    <td class="site_num" v-if="item.notice">
-                                        <span class="nt_fix">
-                                            <img src="/img/site/ic_notice.png" alt="공지글">
-                                        </span>
-                                    </td>
-                                    <td class="site_status pc_ver" v-cloak>{{item.state}}</td>
-                                    <td class="site_tit" v-on:click="requestGoingEmploymentDetail(i)" style="cursor: pointer;" v-cloak>{{item.title}}</td>
-                                    <td class="site_file">
-                                    <img src="/img/site/ic_file.png" alt="첨부파일" v-if="item.file">
-                                    </td>
-                                    <td class="site_date" v-cloak>{{item.registrationDatetime}}</td>
-                                    <td class="site_view" v-cloak>{{item.hit}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
-                    <div class="site_btm_wrap">
-                        <div class="site_btng" style="display: none">
-                            <a href="#" class="site_btn_write">글쓰기</a>
-                        </div>
-                        <div class="site_paging">
-                            <ul class="employment-pagenation">
-                                <li class="site_first" v-on:click="requestGoingPage(0)"><a>
-                                    <img src="/img/site/btn_first.png" alt="처음으로">
-                                </a></li>
-                                <li class="site_prev" v-on:click="requestGoingPrevPage()"><a>
-                                    <img src="/img/site/btn_prev.png" alt="이전으로">
-                                </a></li>
-                                <ul>
-                                    <li v-for="(item, i) in itemList" v-on:click="requestGoingPage(item)" :class="{'site_on': currentPage === item}" ><a v-cloak>{{item + 1}}</a></li>
-                                </ul>
-                                <li class="site_next" v-on:click="requestGoingNextPage()"><a>
-                                    <img src="/img/site/btn_next.png" alt="다음으로">
-                                </a></li>
-                                <li class="site_last" v-on:click="requestGoingPage(lastPage)"><a>
-                                    <img src="/img/site/btn_last.png" alt="맨끝으로">
-                                </a></li>
-                            </ul>
-                        </div>
-                    </div>
+
+                    <div class="swiper-pagination m4_pg"></div>
+                    <div class="swiper-button-prev m4_prev"></div>
+                    <div class="swiper-button-next m4_next"></div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--- //메인 섹션4 - 문화 관광 사업 안내 ------------>
+
+    <section class="section m5">
+		<div class="inner">
+
+			<div class="topArea flex justy_btw alend">
+				<div class="titArea">
+					<div class="subt fs16 ns">UCTF SPACE</div>
+					<div class="tit gm fs40 fwtbold">운영시설</div>
+				</div>
+				<ul class="cateArea fs16 flex">
+					<li class="on" onclick="m5Change(1)">
+						유에코 <br class="mo_view">(UECO)
+					</li>
+					<li onclick="m5Change(2)">
+						관광기업<br class="mo_view">지원센터
+					</li>
+					<li onclick="m5Change(3)">
+						아르코공연<br class="mo_view">연습센터@울산
+					</li>
+				</ul>
+			</div>
+
+			<div class="contArea">
+				<div class="imgArea">
+					<div class="img">
+						<img src="/img/main/m5_img_2.jpg" alt="">
+					</div>
+				</div>
+				<div class="tabArea">
+					<div class="tab tab1 flex alend">
+						<div class="bookCont bookCont1 rel">
+							<div class="tit fs24 ns fwtbold">
+								유에코 (UECO)
+							</div>
+							<div class="wrt fs18">
+								전시회, 국제회의, 세미나, 문화공연 등 휴식과 여가를 즐길 수 있는 복합 비즈니스 공간
+							</div>
+							<a href="/facility/ueco/intro" class="inblock moreBtn fs15 fwt300">
+								자세히 보기 &nbsp+
+							</a>
+							<div class="botArea flex alend justy_btw">
+								<div class="btnArea flex">
+									<div class="prevBtn" onclick="m5Change(3)">
+										<img src="/img/common/ic_arr_prev.svg" alt="">
+									</div>
+									<div class="nextBtn" onclick="m5Change(2)">
+										<img src="/img/common/ic_arr_next.svg" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="bookmark bookmark2 step1 rel" onclick="m5Change(2)">
+							<img src="/img/main/m5_vert_1.png" alt="">
+						</div>
+						<div class="bookmark bookmark3 step2 rel" onclick="m5Change(3)">
+							<img src="/img/main/m5_vert_3.png" alt="">
+						</div>
+					</div>
+
+					<div class="tab tab2 flex alend">
+						<div class="bookCont bookCont2 rel">
+							<div class="tit fs24 ns fwtbold">
+								관광기업지원센터
+							</div>
+							<div class="wrt fs18">
+								관광분야 중소기업 또는 예비창업자를 대상으로 업무 공간 제공 및 울산 관광산업 활성화를 위한 다양한 맞춤형 프로그램을 지원
+							</div>
+							<a href="/facility/tour-center/intro" class="inblock moreBtn fs15 fwt300">
+								자세히 보기 &nbsp+
+							</a>
+							<div class="botArea flex alend justy_btw">
+								<div class="btnArea flex">
+									<div class="prevBtn" onclick="m5Change(1)">
+										<img src="/img/common/ic_arr_prev.svg" alt="">
+									</div>
+									<div class="nextBtn" onclick="m5Change(3)">
+										<img src="/img/common/ic_arr_next.svg" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="bookmark bookmark1 step1 rel" onclick="m5Change(1)">
+							<img src="/img/main/m5_vert_2.png" alt="">
+						</div>
+						<div class="bookmark bookmark3 step2 rel" onclick="m5Change(3)">
+							<img src="/img/main/m5_vert_3.png" alt="">
+						</div>
+					</div>
+
+					<div class="tab tab3 flex alend">
+						<div class="bookCont bookCont3 rel">
+							<div class="tit fs24 ns fwtbold">
+								아르코공연연습센터@울산
+							</div>
+							<div class="wrt fs18">
+								지역 내 무대공연 예술 활성화를 위하여 울산의 공연예술 단체 및 개인 연습 공간 제공
+							</div>
+							<a href="/facility/encore-center/intro" class="inblock moreBtn fs15 fwt300">
+								자세히 보기 &nbsp+
+							</a>
+							<div class="botArea flex alend justy_btw">
+								<div class="btnArea flex">
+									<div class="prevBtn" onclick="m5Change(2)">
+										<img src="/img/common/ic_arr_prev.svg" alt="">
+									</div>
+									<div class="nextBtn" onclick="m5Change(1)">
+										<img src="/img/common/ic_arr_next.svg" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="bookmark bookmark1 step1 rel" onclick="m5Change(1)">
+							<img src="/img/main/m5_vert_2.png" alt="">
+						</div>
+						<div class="bookmark bookmark2 step2 rel" onclick="m5Change(2)">
+							<img src="/img/main/m5_vert_1.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+    </section>
+    <!--- //메인 섹션5 - 문화 관광 공간 안내 ------------>
+	<section class="section m6 fp-auto-height">
+		<div id="ftSymbol">
+            <div class="rollingArea flex ov_h">
+                <div class="rollList">
+
+                    <ul class="flex justy_cnt">
+                        <li class="img">
+                            <img src="/img/common/ft_symbol_1.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('http://ueco.or.kr/', '_blank')">
+                        </li>
+                        <li class="img">
+                            <img src="/img/common/ft_symbol_2.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('https://www.ulsanculture.kr/webuser/page/main.html', '_blank')">
+                        </li>
+                        <!--<li class="img">
+                            <img src="/img/common/ft_symbol_3.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('', '_blank')">
+                        </li>-->
+                        <li class="img">
+                            <img src="/img/common/ft_symbol_4.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('https://whataulsan.com/', '_blank')">
+                        </li>
+                        <li class="img">
+                            <img src="/img/common/ft_symbol_5.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('https://go-tago.whataulsan.com/taxi', '_blank')">
+                        </li>
+                        <li class="img">
+                            <img src="/img/common/ft_symbol_6.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('https://tourbiz.uctf.or.kr/', '_blank')">
+                        </li>
+                        <li class="img">
+                            <img src="/img/common/ft_symbol_7.png" alt="" class="y_center" style="cursor: pointer;" onclick="window.open('https://www.ulsan.go.kr/u/rep/main.ulsan', '_blank')">
+                        </li>
+                    </ul>
+
                 </div>
             </div>
-            <!--- //서브 작업영역 - 여기에 작업해주세요 ~~~~~~~~~~~~~  --->
-
         </div>
-        <!--- //서브 콘텐츠 --->
 
+		<div id="footer">
+			<div class="inner inner1620 m_center rel">
+
+				<div class="topArea flex justy_btw alc">
+					<ul class="fMenu fs16 fc0 flex">
+                        <li>
+                            <a onclick="location.href='/privacy'">개인정보처리방침</a>
+                        </li>
+                        <li>
+                            <a onclick="document.querySelector('#opinionPop').style.setProperty('display', 'block', 'important')">홈페이지 개선의견</a>
+                        </li>
+                        <li>
+                            <a href="/board/newsletter">뉴스레터</a>
+                        </li>
+                        <li>
+                            <a href="/sitemap">사이트맵</a>
+                        </li>
+					</ul>
+					<div class="rightCont flex alc">
+						<div class="snsLst flex alc">
+							<a target="_blank" href="https://www.youtube.com/channel/UCozQIFHMVgG5yK3IjESYA_w"  class="g_center">
+                                <img src="/img/common/ic_ft_sns_1.png" alt="">
+                            </a>
+                            <a target="_blank" href="https://www.facebook.com/uctf.or.kr"  class="g_center">
+                                <img src="/img/common/ic_ft_sns_2.png" alt="">
+                            </a>
+                            <a target="_blank" href="https://www.instagram.com/uctf.or.kr/"  class="g_center">
+                                <img src="/img/common/ic_ft_sns_3.png" alt="">
+                            </a>
+						</div>
+						<div class="siteLst flex alc">
+							<div class="site site1 flex alc fs14 fc6 justy_btw pointer">
+								패밀리사이트
+								<img src="/img/common/ic_down.svg" alt="">
+							</div>
+							<div class="site site2 flex alc fs14 fc6 justy_btw pointer">
+								유관기관
+								<img src="/img/common/ic_down.svg" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="botArea">
+					<div class="fLogo">
+						<img src="/img/common/logo_ft.svg" alt="">
+					</div>
+					<div class="infoArea flex alend justy_btw">
+						<div class="cont">
+							<div class="info fs14 fc5">
+								재단법인울산문화관광재단  |  주소 : 울산광역시 울주군 삼남읍 울산역로 255(유에코), 3층<br>
+								대표번호 : 052-255-1800  |  팩스 : 052-256-9303  |  운영시간 : 09:00~18:00
+							</div>
+							<div class="copy fs14 fc6">
+                                Copyright © 울산문화관광재단. All rights reserved
+							</div>
+						</div>
+						<div class="mark">
+							<img src="/img/common/ft_web_logo.png" alt="">
+						</div>
+					</div>
+				</div>
+
+				<div class="siteModal siteModal1 bc0 abs w100">
+					<div class="inner">
+						<div class="siteBox">
+							<div class="titArea flex alc justy_btw">
+								<div class="tit fs20 ns fwt800 fc4">패밀리사이트</div>
+								<img src="/img/common/ic_ft_arr_1.svg" alt="" class="ico">
+							</div>
+							<ul class="siteLst flex fxwrap fc6 t_center fs18">
+								<li><a target="_blank" href="http://ueco.or.kr/">유에코</a></li>
+								<li><a target="_blank" href="https://www.ulsanculture.kr/webuser/page/main.html">울산문화24</a></li>
+								<li><a target="_blank" href="https://www.usarte.or.kr/webuser/page/main.html">울산문화예술교육지원센터</a></li>
+								<li><a target="_blank" href="https://community.uacf.or.kr/webuser/page/main.html">생활문화동호회</a></li>
+								<li><a target="_blank" href="https://www.usculture.or.kr/">꿈꾸는 문화도시 울산</a></li>
+								<li><a target="_blank" href="https://tuium.or.kr/web/index.do">울산문화틔움</a></li>
+								<li><a target="_blank" href="https://whataulsan.com/">왔어울산</a></li>
+								<li><a target="_blank" href="https://go-tago.whataulsan.com/pc">울산시티투어</a></li>
+								<li><a target="_blank" href="https://tourbiz.uctf.or.kr/">울산관광기업지원센터</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="siteModal siteModal2 bc0 abs w100">
+					<div class="inner flex alstart justy_btw">
+						<div class="siteBox">
+							<div class="titArea flex alc justy_btw">
+								<div class="tit fs20 ns fwt800 fc4">울산유관기관</div>
+							</div>
+							<ul class="siteLst flex fxwrap fc6 t_center fs18">
+								<li><a target="_blank" href="https://www.ulsan.go.kr/u/rep/main.ulsan">울산광역시청</a></li>
+								<li><a target="_blank" href="https://www.ulju.ulsan.kr/ulju/main.do">울주군청</a></li>
+								<li><a target="_blank" href="https://use.go.kr/use/intro.do">울산광역시교육청</a></li>
+								<li><a target="_blank" href="https://www.ulsan.go.kr/s/museum/main.ulsan">울산박물관</a></li>
+								<li><a target="_blank" href="https://use.go.kr/usm/index.do;jsessionid=5CC31AEC2B1C925994958F56344D67D9">울산과학관</a></li>
+								<li><a target="_blank" href="http://www.uill.or.kr/UR/main/main.do?rbsIdx=1">울산광역시평생교육진흥원</a></li>
+								<li><a target="_blank" href="https://www.gokams.or.kr/main/main.aspx">예술경영지원센터</a></li>
+								<li><a target="_blank" href="http://ucac.ulsan.go.kr/">울산문화예술회관</a></li>
+								<li><a target="_blank" href="https://www.bukgu.ulsan.kr/art/main.mo">북구문화예술회관</a></li>
+								<li><a target="_blank" href="https://artscenter.junggu.ulsan.kr/main/main.do">중구문화의전당</a></li>
+								<li><a target="_blank" href="https://www.ucf.or.kr:478/uljuart/index.html">울주문화예술회관</a></li>
+								<li><a target="_blank" href="https://www.hhiarts.co.kr/main/">현대예술관</a></li>
+								<li><a target="_blank" href="https://www.uwcf.or.kr/">고래문화재단</a></li>
+								<li><a target="_blank" href="http://www.soeburi.org/">울산쇠부리축제</a></li>
+								<li><a target="_blank" href="https://www.onggi.or.kr/">울산옹기축제</a></li>
+								<li><a target="_blank" href="https://www.umff.kr/kor/">울주산악영화제</a></li>
+								<li><a target="_blank" href="http://www.ulsanart.or.kr/">울산예총</a></li>
+								<li><a target="_blank" href="https://ulsanart.quv.kr/">울산민예총</a></li>
+								<li><a target="_blank" href="http://www.ulsanmunhwa.com/">울산문화원연합회</a></li>
+								<li><a target="_blank" href="http://www.ng518.kr/main.html">울산남구문화원</a></li>
+								<li><a target="_blank" href="http://www.munhwa21.org/pages/main.php">울산중구문화원</a></li>
+								<li><a target="_blank" href="http://www.udcc.or.kr/index.php">울산동구문화원</a></li>
+								<li><a target="_blank" href="https://www.ubcc.or.kr">울산북구문화원</a></li>
+								<li><a href="#">울주문화원</a></li>
+							</ul>
+						</div>
+
+						<div class="siteBox">
+							<div class="titArea flex alc justy_btw">
+								<div class="tit fs20 ns fwt800 fc4">전국문화관광재단</div>
+								<img src="/img/common/ic_ft_arr_2.svg" alt="" class="ico">
+							</div>
+							<ul class="siteLst flex fxwrap fc6 t_center fs18">
+								<li><a target="_blank" href="https://www.sfac.or.kr/index.do">서울문화재단</a></li>
+								<li><a target="_blank" href="https://www.ggcf.kr">경기문화재단</a></li>
+								<li><a target="_blank" href="https://www.ggcf.kr">인천문화재단</a></li>
+								<li><a target="_blank" href="https://www.gwcf.or.kr">강원문화재단</a></li>
+								<li><a target="_blank" href="https://www.cbfc.or.kr">충북문화재단</a></li>
+								<li><a target="_blank" href="https://www.cacf.or.kr">충남문화재단</a></li>
+								<li><a target="_blank" href="https://dcaf.or.kr">대전문화재단</a></li>
+								<li><a target="_blank" href="https://www.sjcf.or.kr">세종시문화재단</a></li>
+								<li><a target="_blank" href="https://dgfca.or.kr">대구문화재단</a></li>
+								<li><a target="_blank" href="https://www.bscf.or.kr">부산문화재단</a></li>
+								<li><a target="_blank" href="https://gcaf.or.kr">경남문화예술진흥원</a></li>
+								<li><a target="_blank" href="https://www.jbct.or.kr">전라북도문화관광재단</a></li>
+								<li><a target="_blank" href="https://ijnto.or.kr">전라남도문화관광재단</a></li>
+								<li><a target="_blank" href="https://www.gjcf.or.kr">광주문화재단</a></li>
+								<li><a target="_blank" href="https://www.jfac.kr">제주문화예술재단</a></li>
+
+                                <li><a target="_blank" href="https://www.jbct.or.kr/">전북특별자치도문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.sjcf.or.kr/index.do">세종시문화관광재단</a></li>
+                                <li><a target="_blank" href="https://jjct.or.kr/">진주문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.mycf.or.kr/main/">밀양문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.chilgokctf.or.kr/ctf/main.do">칠곡문화관광재단</a></li>
+                                <li><a target="_blank" href="https://cjcf.or.kr/">충주문화관광재단</a></li>
+                                <li><a target="_blank" href="http://www.yctf.or.kr/">영주문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.cacf.or.kr/site/index.php">충남문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.ghct.or.kr/home/main">김해문화관광재단</a></li>
+                                <li><a target="_blank" href="https://yctf.kr/">예천문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.ictf.or.kr/2022/inner.php?sMenu=main&pre_url=https%3A%2F%2Fwww.google.com%2F">익산문화관광재단</a></li>
+                                <li><a target="_blank" href="http://hfct.or.kr/index.do?S=S01">화순군문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.dctf.or.kr/dhct_new/index.php">동해문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.pcfac.or.kr/">포천문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.gongjucf.or.kr/intro.do">공주문화관광재단</a></li>
+                                <li><a target="_blank" href="http://sokchocf.or.kr/sokchocf">속초문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.ywcf.or.kr/">영월문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.jbct.or.kr/d_index.php">전북문화관광재단</a></li>
+                                <li><a target="_blank" href="http://yctf.or.kr/index.php">영주문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.ydct.org/">영덕문화관광재단</a></li>
+                                <li><a target="_blank" href="https://yacf.or.kr/index.cs">영암문화관광재단</a></li>
+                                <li><a target="_blank" href="https://jjct.or.kr/">진주문화관광재단</a></li>
+                                <li><a target="_blank" href="http://www.gctf.or.kr/">고창문화관광재단</a></li>
+                                <li><a target="_blank" href="https://gunwi3964.org/intro.htm">군위문화관광재단</a></li>
+                                <li><a target="_blank" href="http://www.gangjin.or.kr/">강진군문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.cctf.or.kr/">청송문화관광재단</a></li>
+                                <li><a target="_blank" href="https://hscf.or.kr/">횡성문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.namhaetour.org/main.web">남해관광문화재단</a></li>
+                                <li><a target="_blank" href="https://www.ydct.org/">영덕문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.ywcf.or.kr/">영월문화관광재단</a></li>
+                                <li><a target="_blank" href="https://gdctf.or.kr/">광주동구문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.haenamct.or.kr/main/">해남문화관광재단</a></li>
+                                <li><a target="_blank" href="https://hongju.or.kr/">홍주문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.yjcf.or.kr/yjcf">여주세종문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.gcfct.org/">계룡시문화관광재단</a></li>
+                                <li><a target="_blank" href="http://cjartdb.co.kr/">충주문화관광재단</a></li>
+                                <li><a target="_blank" href="https://yctf.kr/">예천문화관광재단</a></li>
+                                <li><a target="_blank" href="http://hfct.or.kr/index.do?S=S01">화순군문화관광재단</a></li>
+                                <li><a target="_blank" href="http://sokchocf.or.kr/sokchocf">속초문화관광재단</a></li>
+                                <li><a target="_blank" href="http://www.gangjin.or.kr/index.asp">강진군문화관광재단</a></li>
+                                <li><a target="_blank" href="https://www.sto.or.kr/index">서울관광재단</a></li>
+                                <li><a target="_blank" href="https://www.gwto.or.kr/www/index.do">강원관광재단</a></li>
+                                <li><a target="_blank" href="https://ijnto.or.kr/">전남관광재단</a></li>
+                                <li><a target="_blank" href="https://sftf.or.kr/">순창발효관광재단</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>    
+	</section>
+
+</div>
+
+<div id="side_logo" class="fixed pc_view quick-menu">
+    <div class="sideLogoWrap rel">
+        <ul class="sideLogo flex column act">
+
+                <li class="logoLst flex alc" v-for="(item, i) in itemList" v-on:click="requestLink(i)" style="cursor: pointer;">
+                    <div class="hTxt abs">
+                        <img :src="'/img/common/slide_logo_txt_' + (i + 1) + '.png'" alt="">
+                    </div>
+                    <div class="logoBox rel img etc">
+                        <img :src="'/img/common/side_logo_' + (i + 1) + '.png'" alt="" class="logoImg">
+                        <div class="txtBox ns fs13 fwtbold fc4 abs y_center" style="white-space: pre-wrap" v-cloak>{{item}}</div>
+                    </div>
+                </li>
+        </ul>
+        <div class="unfoldBtn unfoldBtn1 act"></div>
     </div>
-
-</main>
+</div>
+<li class="chat rel pointer " id="custom-button-1">
+    <img src="/img/common/ic_side_bot.svg" alt="" class="y_center">
+    <div class="txt fs16 fc0 abs y_center">챗봇</div>
+</li>
+<div class="popup-list" style="position: fixed; top: 0; left: 0; width: 0; height: 0; z-index: 9999999;">
+    <div v-for="(item, i) in itemList" style="position: absolute; background-color: #ffffff;" :style="{top: item.x + 'px', left: item.y + 'px'}" v-cloak>
+        <img :src="item.path" style="max-width: 100vw; cursor: pointer;" v-on:click="requestLink(i)">
+        <div style="display: flex; padding: 1rem; align-items: center; justify-content: center;">
+            <a class="site_btn_list" style="font-size: 1.8rem; margin-right: 1.4rem" v-on:click="requestClose(i)">닫기</a>
+            <a class="site_btn_list" style="font-size: 1.8rem;" v-on:click="requestCloseDay(i)">오늘하루 보지않음</a>
+        </div>
+    </div>
+</div>
 
     
     <!-- 플로팅 -->
@@ -2183,106 +2539,659 @@ ChannelIO('boot', {
 </script>
 
 
+<style media="screen">
+	.commonFtSymbol {display: none}
+	.commonFooter {display: none}
+</style>
+
+<script src="js/jquery.fullpage.min.js"></script>
 
 <script>
-class Employment{
+
+	if($(window).width() > 920){
+		$('#main').css('padding-top', headHeight);
+	}else{
+		$('#main').css('padding-top', moHeadHeight);
+	}
+
+	$(window).resize(function() {
+		if($(window).width() > 920) {
+			$('#main').css('padding-top', headHeight);
+		} else {
+			$('#main').css('padding-top', moHeadHeight);
+		}
+	});
+
+
+    $(document).ready(function() {
+        // 부모 문서에서 메시지를 수신
+        window.addEventListener("message", function (event) {
+            if (event.data.action === "scroll") {
+                console.log("event");
+                const direction = event.data.direction;
+                if (direction > 0) {
+                    $.fn.fullpage.moveSectionDown();
+                } else {
+                    $.fn.fullpage.moveSectionUp();
+                }
+            }
+        });
+
+
+        $('#main').fullpage({
+            autoScrolling: true,
+            scrollHorizontally: true,
+            responsiveWidth: 920,
+            menu: '.gnb',
+            anchors: ['section1', 'section2', 'section3', 'section4', 'section5'],
+            onLeave: function (anchorLink, index) {
+                $('.fullGnb li').removeClass('on');
+                const safeHeadTopHeight = headTopHeight || 0;
+                if (index == 1) {
+                    $('.fullGnb li').eq(0).addClass('on');
+                    $('.pcHeader').css('top', 0);
+                    console.log(headTopHeight);
+                } else if (index == 3) {
+                    const iframe = document.querySelector("iframe");
+
+                    if (iframe && iframe.contentWindow) {
+                        iframe.contentWindow.postMessage("scroll", "*");
+                    }
+                    $('.pcHeader').css('top', -safeHeadTopHeight);
+                    console.log(headTopHeight);
+                    $('.fullGnb li').eq(2).addClass('on');
+                    $('.pcHeader').css('top', -headTopHeight);
+                } else if (index > 1) {
+                    $('.fullGnb li').eq(index - 1).addClass('on');
+                    $('.pcHeader').css('top', -headTopHeight);
+                    console.log(headTopHeight);
+                }
+            }
+        });
+    });
+
+    /*$('#main').fullpage({
+        autoScrolling:true,
+        scrollHorizontally: true,
+		responsiveWidth: 920,
+		menu : '.gnb',
+	    anchors : ['section1', 'section2', 'section3', 'section4', 'section5'],
+		onLeave: function(anchorLink, index){
+			$('.fullGnb li').removeClass('on');
+
+			if(index == 1){
+				$('.fullGnb li').eq(0).addClass('on');
+				$('.pcHeader').css('top', 0)
+			}else if(index == 2){
+				$('.fullGnb li').eq(1).addClass('on');
+				$('.pcHeader').css('top',-headTopHeight)
+			}else if(index == 3){
+				$('.fullGnb li').eq(2).addClass('on');
+				$('.pcHeader').css('top',-headTopHeight)
+			}else if(index == 4){
+				$('.fullGnb li').eq(3).addClass('on');
+				$('.pcHeader').css('top',-headTopHeight)
+			}else if(index == 5){
+				$('.fullGnb li').eq(4).addClass('on');
+				$('.pcHeader').css('top',-headTopHeight)
+			}
+		},
+
+    });*/
+</script>
+<script>
+class Notice{
     constructor(){
         var _this = this;
-        this.employmentList = [];
-        var urlSearch = new URLSearchParams(location.search);
-        this.page = urlSearch.get('page')??0;
 
-        this.summaryView = new Vue({
-            el: ".summary",
-            data: {count: 0}
+        this.m2_swpier = null;
+        this.bItemList = [];
+
+        axios.get("/api/popups").then(function(r){
+            var closedPopupList = _this.getCookie("closedPopupList");
+            closedPopupList = closedPopupList != null ? closedPopupList.split("&") : [];
+            
+            r.data.content.forEach(function(e, i){
+                if(!closedPopupList.includes(e.id)){
+                    _this.popupListView.itemList.push({
+                        id: e.id,
+                        path: e.path,
+                        link: e.link,
+                        x: e.x,
+                        y: e.y
+                    });
+                }
+            });
+        });
+
+        this.popupListView = new Vue({
+            el: ".popup-list",
+            data: {
+                itemList: []
+            },
+            methods: {
+                requestLink: function(i){
+                    window.open(this.itemList[i].link, "_blank");
+                },
+                requestClose: function(i){
+                    this.itemList.splice(i, 1);
+                },
+                requestCloseDay: function(i){
+                    var closedPopupList = _this.getCookie("closedPopupList");
+                    closedPopupList = closedPopupList != null ? closedPopupList.split("&") : [];
+                    closedPopupList.push(this.itemList[i].id);
+                    _this.setCookie("closedPopupList", closedPopupList.join("&"), {expires: (new Date(dayjs().format("YYYY-MM-DD 23:59:59"))).toUTCString()});
+                    this.itemList.splice(i, 1);
+                }
+            }
+        });
+
+        this.quickMenuView = new Vue({
+            el: ".quick-menu",
+            data: {
+                itemList: [
+                    "유에코(UECO)",
+                    "울산 문화24",
+                    "문화누리카드",
+                    "울산문화예술\n교육지원센터",
+                    "꿈꾸는\n문화도시 울산",
+                    "왔어울산",
+                    "울산 시티투어",
+                    "울산관광택시",
+                    "울산관광기업\n지원센터",
+                    //"유케이션"
+                ],
+                linkList: [
+                    "http://ueco.or.kr/",
+                    "https://www.ulsanculture.kr/webuser/page/main.html",
+                    "https://www.mnuri.kr/main/main.do",
+                    "https://www.usarte.or.kr/webuser/page/main.html",
+                    "https://www.usculture.or.kr/",
+                    "https://whataulsan.com/",
+                    "https://go-tago.whataulsan.com/pc",
+                    "https://go-tago.whataulsan.com/taxi",
+                    "https://tourbiz.uctf.or.kr/web/index.do",
+                    //"/tour-mice/ucation/intro"
+                ]
+            },
+            methods: {
+                requestLink: function(i){
+                    window.open(this.linkList[i], "_blank");
+                }
+            }
+        });
+
+        ////////////////// SIDE FLOATING SCRIPT
+        let sideLogo = $('.sideLogo');
+        let sideLogoBox = $('.sideLogo .logoLst .logoBox');
+        let sideLogoHtxt = $('.sideLogo .logoLst .logoBox .hTxt');
+        let unfoldBtn1 = $('.unfoldBtn1');
+        let unfoldBtn2 = $('.unfoldBtn2');
+        let slideLogoTxtBox = $('.sideLogo .logoLst .txtBox');
+        let sideNav = $('.fullGnb ul');
+
+        sideLogoBox.on('mouseover',function(){
+            if(sideLogo.hasClass('act') != true){
+                $(this).addClass('on');
+                $(this).siblings('.hTxt').fadeIn(200);
+            }
+        })
+        sideLogoBox.on('mouseleave',function(){
+            if(sideLogo.hasClass('act') != true){
+                $(this).removeClass('on');
+                $(this).siblings('.hTxt').fadeOut(200);
+            }
         })
 
-        this.searchView = new Vue({
-            el: ".employment-search-bar",
-            data: {
-                keyword: ""
-            },
-            methods: {
-                requestSearch: function(){
-                    _this.getEmploymentList(0, this.keyword);
-                }
-            }
-        });
+        unfoldBtn1.on('click',function(){
+            sideLogo.toggleClass('act');
+            unfoldBtn1.toggleClass('act');
 
-        this.employmentListView = new Vue({
-            el: ".employment-list",
+            setTimeout(function(){
+                slideLogoTxtBox.fadeIn(100);
+            },600)
+
+            if(sideLogoBox.hasClass('etc') === true){
+                setTimeout(function(){
+                    sideLogoBox.removeClass('etc');
+                },300)
+            }else{
+                sideLogoBox.addClass('etc');
+            }
+        })
+
+        unfoldBtn2.on('click',function(){
+            //sideNav.toggleClass('act');
+            if(unfoldBtn2.hasClass('act') === true){
+                unfoldBtn2.removeClass('act');
+                sideNav.addClass('off');
+            }else{
+                unfoldBtn2.addClass('act');
+                sideNav.removeClass('off');
+                
+            }
+        })
+
+        ////////////////////// SIDE FLOATING SCRIPT 2
+        let fBtnAreaLi = $('.fBtnArea li');
+
+        fBtnAreaLi.on('mouseover',function(){
+            $(this).find('.txt').css('opacity','1')
+        })
+        fBtnAreaLi.on('mouseleave',function(){
+            $(this).find('.txt').css('opacity','0')
+        })
+
+        this.bannerListView = new Vue({
+            el: ".banner-list",
             data: {
+                title: "",
                 itemList: []
             },
             methods: {
-                requestGoingEmploymentDetail: function(i){
-                    location.href = "/board/employment/view/" + this.itemList[i].id;
+                requestLink: function(i){
+                    location.href = this.itemList[i].link;
                 }
             }
         });
 
-        this.pagenationView = new Vue({
-            el: ".employment-pagenation",
+        this.businessListView = new Vue({
+            el: ".business-list",
             data: {
-                currentPage: _this.page,
-                lastPage: 0,
+                category: "",
+                sortList: []
+            },
+            methods: {
+                requestDetail: function(i){
+                    location.href = "/business/culture-art/view/" + this.sortList[i].id;
+                },
+                requestSort: function(category){
+                    var __this = this;
+                    this.sortList = [];
+                    this.category = category;
+                    if(category == ''){
+                        _this.bItemList.forEach(function(e){
+                            __this.sortList.push(e);
+                        })
+                    }else{
+                        _this.bItemList.forEach(function(e){
+                            if(e.category == category){
+                                __this.sortList.push(e);
+                            }
+                        })
+                        
+                        setTimeout(function(){
+                            _this.m4_swiper.slideTo(0);
+                            _this.m4_swiper.update();
+                        }, 0);
+                    }
+                }
+            }
+        });
+
+        this.noticeListView = new Vue({
+            el: ".notice-list",
+            data: {
+                category: [],
                 itemList: []
             },
             methods: {
-                requestGoingPrevPage: function(){
-                    this.requestGoingPage(this.currentPage - 1);
+                requestNoticeList: function(category){
+                    this.category = category;
+                    console.log(category);
+                    _this.getNoticeList(category.length != 0 ? category : null);
                 },
-                requestGoingNextPage: function(){
-                    if(this.currentPage + 1 > this.lastPage) return;
-                    this.requestGoingPage(this.currentPage + 1);
+                requestGoingNoticeListPage: function(){
+                    var category = "";
+                    if(this.category.includes("공지")){
+                        category = "notice";
+                    }else if(this.category.includes("공모")){
+                        category = "bid";
+                    }else if(this.category.includes("채용")){
+                        category = "employment";
+                    }else if(this.category.includes("축제")){
+                        category = "festival";
+                    }else{
+                        category = "notice";
+                    }
+                    location.href = "/board/" + category;
                 },
-                requestGoingPage: function(i){
-                    _this.getEmploymentList(i, _this.searchView.keyword);
-                    document.querySelector(".employment-list").scrollIntoView({behavior : 'smooth', block: "center"});
+                requestGoingNoticeDetail: function(i){
+                    var category = "";
+                    switch(this.itemList[i].category){
+                        case undefined:
+                            category = "notice";
+                            break;
+                        case "공지":
+                            category = "notice";
+                            break;
+                        case "공모":
+                        case "입찰":
+                            category = "bid";
+                            break;
+                        case "채용":
+                            category = "employment";
+                            break;
+                        case "축제":
+                        case "행사":
+                        case "교육":
+                            category = "festival";
+                            break;
+                    }
+
+                    location.href = "/board/" + category + "/view/" + this.itemList[i].id;
                 }
             }
         });
 
-        this.getEmploymentList(_this.page);
+        axios.get("/api/banners").then(function(r){
+            r.data.content.forEach((e, i) => {
+                if(i == 0){
+                    _this.bannerListView.title = e.title;
+                }
+                _this.bannerListView.itemList.push({
+                    title: e.title,
+                    path: e.path,
+                    link: e.link
+                });
+            });
+            setTimeout(function(){
+                let m1Back = $('.m1 .btnArea .bar .back');
+
+                var m1_swiper = new Swiper('.m1_swiper', {
+                    autoplay: {
+                        delay: 4000,
+                        disableOnInteraction:false,
+                    },
+                    loop: true,
+                    on: {
+                        slideChange : function() {
+                            _this.bannerListView.title = _this.bannerListView.itemList[this.realIndex].title;
+                        },
+                    },
+
+                    pagination: {
+                        el: ".m1_pg",
+                        type: "fraction",
+                        formatFractionCurrent: function (number) {
+                            return ('0' + number).slice(-2);
+                        },
+                        formatFractionTotal: function (number) {
+                            return ('0' + number).slice(-2);
+                        },
+                        renderFraction: function (currentClass, totalClass) {
+                            return '<span class="' + currentClass + '"></span>' +
+                                    ' / ' +
+                                    '<span class="' + totalClass + '"></span>';
+                        }
+                    },
+
+                    navigation: {
+                        nextEl: '.m1_next',
+                        prevEl: '.m1_prev',
+                    },
+
+                });
+
+                $(document).ready(function(){
+                    m1Back.addClass('animation')
+                })
+
+                m1_swiper.on('slideChange',function(){
+                    m1Back.removeClass('animation');
+                    setTimeout(function(){
+                        m1Back.addClass('animation');
+                    },100)
+                })
+
+
+                $(".m1 .btnArea .palyBtn").on("click", function() {
+
+                    if($(this).hasClass('on') === true){
+                        m1_swiper.autoplay.start();
+                        $(this).removeClass('on');
+                        $(".m1 .btnArea .palyBtn").attr('src','../img/common/ic_pause.svg');
+                    }else{
+                        m1_swiper.autoplay.stop();
+                        $(this).addClass('on');
+                        $(".m1 .btnArea .palyBtn").attr('src','../img/common/ic_play.svg');
+                    }
+
+                });
+            }, 0);
+        });
+
+        axios.get("/api/businesses").then(function(r){
+            r.data.forEach(function(e){
+                var text = e.content.replace(/<br\/>/ig, "\n");
+                text = text.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, "");
+
+
+                text = text.replace(/(<([^>]+)>)/gi, "");
+                text = text.replace(/&nbsp;/gi,"");
+                text = text.substr(0, 50);
+                text += '<span>...  <span style="text-decoration: underline;">더보기</span></span>';
+
+                _this.bItemList.push({
+                    id: e.id,
+                    imagePath: 0 < e.imagePath.split("&").length ? e.imagePath.split("&")[0] : "/img/common/non_img_01.png",
+                    category: e.category == "문화도시" ? "문화소통" : e.category,
+                    title: e.title,
+                    content: text
+                });
+                _this.businessListView.sortList.push({
+                    id: e.id,
+                    imagePath: 0 < e.imagePath.split("&").length ? e.imagePath.split("&")[0] : "/img/common/non_img_01.png",
+                    category: e.category == "문화도시" ? "문화소통" : e.category,
+                    title: e.title,
+                    content: text
+                });
+            });
+            setTimeout(function(){
+                _this.m4_swiper = new Swiper('.m4_swiper', {
+                    // autoplay: {
+                    //     delay: 4000,
+                    // },
+
+                    loop: false,
+                    watchOverflow: true,
+                    centerInsufficientSlides: true,
+
+                    breakpoints: {
+                        0: {
+                            slidesPerView: 1.1,
+                            spaceBetween: 20,
+                        },
+                        880: {
+                            slidesPerView: 1.8,
+                            spaceBetween: 20,
+                        },
+                        1024: {
+                            slidesPerView: 'auto',
+                            spaceBetween: 27,
+                        },
+                    },
+
+                    navigation: {
+                        nextEl: '.m4_next',
+                        prevEl: '.m4_prev',
+                    },
+
+                    pagination: {
+                        el: ".m4_pg",
+                        type: "progressbar",
+                    },
+
+                });
+            }, 0);
+        });
+
+        this.opinionFormView = new Vue({
+            el: ".opinion-form",
+            data: {
+                content: ""
+            },
+            methods: {
+                requestSubmit: async function(){
+                    var _this = this;
+                    if(confirm("제출하시겠습니까?")){
+                        var id = (await axios.get("/api/ids")).data;
+                        axios.post("/api/opinions", {
+                            id: id,
+                            content: _this.content,
+                            registrationDatetime: dayjs().format("YYYY-MM-DD HH:mm:ss")
+                        }, {
+                            headers:{
+                                "Content-Type": "application/x-www-form-urlencoded"
+                            }
+                        }).then(function(r){
+                            alert("제출되었습니다.");
+                            location.reload();
+                        });
+                    }
+                }
+            }
+        });
+
+        _this.getNoticeList();
     }
 
-    getEmploymentList(page, keyword){
+    async requestSubmit(){
         var _this = this;
+        if(confirm("제출하시겠습니까?")){
+            var id = (await axios.get("/api/ids")).data;
+            axios.post("/api/opinions", {
+                id: id,
+                content: document.querySelector(".opinion-content").value,
+                registrationDatetime: dayjs().format("YYYY-MM-DD HH:mm:ss")
+            }, {
+                headers:{
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            }).then(function(r){
+                alert("제출되었습니다.");
+                location.reload();
+            });
+        }
+    }
+
+    getNoticeList(category){
+        var _this = this;
+    
         axios.get("/api/notices", {
             params: {
-                page: page,
-                keyword: keyword,
-                category: ["채용"]
+                page: 0,
+                category: category
             }
         }).then(function(r){
-            _this.pagenationView.itemList = [];
-            _this.employmentListView.itemList = [];
-                
-            _this.summaryView.count = r.data.totalElements;
-
-            _this.pagenationView.currentPage = r.data.number;
-            _this.pagenationView.lastPage = r.data.totalPages - 1;
-            for(let i = Math.floor(r.data.number / 5) * 5; i < r.data.totalPages && i < (Math.floor(r.data.number / 5) * 5) + 5; i++){
-                _this.pagenationView.itemList.push(i);
-            }
-
-            r.data.content.forEach((e, i) => {
-                _this.employmentListView.itemList.push({
-                    number: r.data.totalElements - ((r.data.number * r.data.size) + i),
+            console.log(r);
+            _this.noticeListView.itemList = [];
+            /*r.data.content.forEach((e, i) => {
+                _this.noticeListView.itemList.push({
+                    notice: false,
+                    number: (r.data.number * r.data.size) + i,
                     id: e.id,
                     title: e.title,
                     category: e.category,
-                    state: e.state,
-                    notice: e.notice,
                     hit: e.hit,
-                    file: e.filePath != null,
                     registrationDatetime: e.registrationDatetime.split(" ")[0]
                 });
-            });
-            history.pushState(null, null, '?page=' + page);
+            });*/
+
+            for(let i = 0 ; i < r.data.content.length; i++){
+                let e = r.data.content[i];
+                var text = e.content.replace(/<br\/>/ig, "\n");
+                text = text.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, "");
+
+
+                text = text.replace(/(<([^>]+)>)/gi, "");
+                text = text.replace(/&nbsp;/gi,"");
+                text = text.substr(0, 50);
+
+                _this.noticeListView.itemList.push({
+                    notice: false,
+                    number: (r.data.number * r.data.size) + i,
+                    id: e.id,
+                    title: e.title,
+                    summary: e.summary,
+                    content: text,
+                    category: e.category,
+                    hit: e.hit,
+                    state: e.state,
+                    stateClass: e.state != "진행중" ? "type_b" : "type_c",
+                    registrationDatetime: e.registrationDatetime.split(" ")[0]
+                });
+            }
+
+            setTimeout(function(){
+                if(_this.m2_swiper != null){
+                    _this.m2_swiper.update();
+                    _this.m2_swiper.slideTo(0);
+                }else{
+                    _this.m2_swiper = new Swiper('.m2_swiper', {
+                        autoplay: {
+                            delay: 4000,
+                        },
+                        loop: false,
+
+                        breakpoints: {
+                            0: {
+                                slidesPerView: 1,
+                                spaceBetween: 30,
+                            },
+                            880: {
+                                slidesPerView: 3.6,
+                                spaceBetween: 30,
+                            },
+                            1024: {
+                                slidesPerView: 4,
+                                spaceBetween: 40,
+                            },
+                        },
+
+                        navigation: {
+                            nextEl: '.m2_next',
+                            prevEl: '.m2_prev',
+                        },
+
+                    });
+                }
+            }, 0);
+        }).catch(function(e){
+            console.log(e);
         });
     }
-}
 
-var employment = new Employment();
+    getCookie(name) {
+        let matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : null;
+    }
+
+    setCookie(name, value, options = {}) {
+
+        options = {
+            path: '/', // 경로 지정
+            ...options // 아규먼트로 옵션을 넘겨줬을경우 전개연산자로 추가 갱신
+        };
+
+        if (options.expires instanceof Date) {
+            options.expires = options.expires.toUTCString(); // 생 Date 객체라면 형식에 맞게 인코딩
+        }
+
+        let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+        for (let optionKey in options) {
+            updatedCookie += "; " + optionKey;
+            let optionValue = options[optionKey];
+            if (optionValue !== true) { // 밸류가 없다면
+                updatedCookie += "=" + optionValue;
+            }
+        }
+
+        document.cookie = updatedCookie; // 새로 갱신
+    }
+}
+var notice = new Notice();
 </script>

@@ -460,7 +460,7 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
     // by the next pipeline stage.
     const structuralEvidence = titleEvidence && (attachments.length > 0 || contentImages.length > 0);
     if (text.length < 100 && !(structuralEvidence && fullText.length >= 20)) {
-      writeDetailDiagnostic({ org, expectedTitle, requestedUrl: url, finalUrl, status: response.status, contentType, html, error: 'detail body too short', stage: 'body-verdict', request, verdict: { textLength: text.length, fullTextLength: fullText.length, attachmentCount: attachments.length, contentImageCount: contentImages.length, titleEvidence } });
+      writeDetailDiagnostic({ org: sourceOrg, expectedTitle, requestedUrl: url, finalUrl, status: response.status, contentType, html, error: 'detail body too short', stage: 'body-verdict', request, verdict: { textLength: text.length, fullTextLength: fullText.length, attachmentCount: attachments.length, contentImageCount: contentImages.length, titleEvidence } });
       throw new Error('detail body too short');
     }
     const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)|게시물\s*목록|검색결과\s*\d+건|채용공고\s*목록/.test(fullText) && !/(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text) && !titleEvidence;
@@ -487,7 +487,7 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
 
     const confidence = detailConfidence(text, expectedTitle);
     if (confidence.structureSignals < 1 && attachments.length === 0 && !(titleEvidence && text.length >= 140)) {
-      writeDetailDiagnostic({ org, expectedTitle, requestedUrl: url, finalUrl, status: response.status, contentType, html, error: 'insufficient detail structure', stage: 'structure-verdict', request, verdict: { textLength: text.length, fullTextLength: fullText.length, attachmentCount: attachments.length, contentImageCount: contentImages.length, titleEvidence } });
+      writeDetailDiagnostic({ org: sourceOrg, expectedTitle, requestedUrl: url, finalUrl, status: response.status, contentType, html, error: 'insufficient detail structure', stage: 'structure-verdict', request, verdict: { textLength: text.length, fullTextLength: fullText.length, attachmentCount: attachments.length, contentImageCount: contentImages.length, titleEvidence } });
       throw new Error('insufficient detail structure');
     }
     if (confidence.tokenCount >= 3 && confidence.titleRatio < 0.25 && attachments.length === 0 && !titleEvidence) throw new Error('detail title mismatch');

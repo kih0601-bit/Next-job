@@ -8,10 +8,11 @@ import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
+import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 
-const VERSION = '16.9-list-verification-templates';
+const VERSION = '17.0-first-page-detail-verification';
 const MAX_LISTING_PAGES = 3;
-const MAX_DETAIL_SAMPLES = 2;
+const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const ACCESS_TIMEOUT_MS = 18000;
 const LIST_TIMEOUT_MS = 10000;
 const MAX_ACCESS_URLS = 6;
@@ -209,7 +210,10 @@ function classifyDetail(report) {
   if (!report.list?.ok) return { status: 'blocked', code: 'DETAIL_BLOCKED_BY_LIST', reason: '목록 단계 미통과로 상세 진단 보류', evidence: [] };
   if ((report.list.detailUrlReady || 0) === 0) return { status: 'failed', code: 'DETAIL_URL_NOT_READY', reason: `목록 ${report.list.candidateCount}건 모두 상세 URL 미복구`, evidence: report.list.extractionDiagnostics || [] };
   if ((report.detail.attempted || 0) === 0) return { status: 'failed', code: 'DETAIL_NOT_ATTEMPTED', reason: '상세 URL은 있으나 상세 요청이 실행되지 않음', evidence: [] };
-  if (report.detail.ok) return { status: 'success', code: 'DETAIL_OK', reason: `${report.detail.attempted}건 시도 · ${report.detail.validated}건 본문 검증 성공`, evidence: report.detail.samples || [] };
+  if (report.detail.ok) return { status: 'success', code: 'DETAIL_FIRST_PAGE_VERIFIED_EXACT', reason: `첫 페이지 ${report.detail.targetCount}건 전체 상세 URL·본문 1:1 검증 완료`, evidence: report.detail.samples || [] };
+  if ((report.detail.missingDetailUrl || 0) > 0) return { status: 'failed', code: 'DETAIL_URL_PARTIAL', reason: `첫 페이지 ${report.detail.targetCount}건 중 ${report.detail.missingDetailUrl}건 상세 URL 미복구`, evidence: report.list.extractionDiagnostics || [] };
+  if ((report.detail.attempted || 0) < (report.detail.targetCount || 0)) return { status: 'failed', code: 'DETAIL_COVERAGE_INCOMPLETE', reason: `첫 페이지 ${report.detail.targetCount}건 중 ${report.detail.attempted}건만 상세 요청`, evidence: report.detail.samples || [] };
+  if ((report.detail.validated || 0) < (report.detail.targetCount || 0)) return { status: 'failed', code: 'DETAIL_BODY_PARTIAL', reason: `첫 페이지 ${report.detail.targetCount}건 중 ${report.detail.validated}건만 상세 본문 검증 성공`, evidence: report.detail.samples || [] };
   const errors = (report.detail.samples || []).map(item => item.error || '');
   if (errors.some(value => /404|HTTP 404/i.test(value))) return { status: 'failed', code: 'DETAIL_404', reason: '생성된 상세 URL이 404를 반환함 · URL 규칙 오류 가능', evidence: report.detail.samples || [] };
   if (errors.some(value => /403|forbidden/i.test(value))) return { status: 'failed', code: 'DETAIL_FORBIDDEN', reason: '상세페이지 요청이 차단됨', evidence: report.detail.samples || [] };
@@ -287,7 +291,7 @@ async function probeSource(source, artifacts) {
     accessTemplate: accessTemplateSummary(source),
     access: { ok: false, httpOk: false, recruitVerifyOk: false, attempts: [], boardType: { type: 'UNKNOWN', confidence: 'low', evidence: [] } },
     list: { ok: false, status: 'unknown', pagesChecked: 0, visiblePostCount: null, candidateCount: 0, missingCount: null, extraCount: null, exactMatch: false, selectedUrl: '', detailUrlReady: 0, listOnlyCount: 0, extractionDiagnostics: [], rootCauseDiagnostics: [], diagnosticFiles: [], samples: [], errors: [] },
-    detail: { ok: false, attempted: 0, validated: 0, samples: [] },
+    detail: { ok: false, targetCount: 0, attempted: 0, validated: 0, failed: 0, missingDetailUrl: 0, coverageRatio: 0, validationRatio: 0, samples: [] },
     attachment: { ok: false, discovered: 0, samples: [] },
     bottleneck: '',
     elapsedMs: 0
@@ -356,18 +360,23 @@ async function probeSource(source, artifacts) {
     else report.list.status = selected.status;
     report.list.ok = report.list.status === 'verified-exact';
 
+    report.detail.targetCount = all.length;
+    report.detail.missingDetailUrl = all.filter(item => item.listOnly).length;
     const allowedHosts = [...new Set((source.accessUrls || [source.url]).map(url => { try { return new URL(url).hostname; } catch { return ''; } }).filter(Boolean))];
     for (const candidate of all.filter(item => !item.listOnly).slice(0, MAX_DETAIL_SAMPLES)) {
       report.detail.attempted += 1;
       const detail = await fetchDetail(candidate.link, { expectedTitle: candidate.title, sourceOrg: source.org, allowedHosts });
       if (detail.ok) report.detail.validated += 1;
+      else report.detail.failed += 1;
       report.attachment.discovered += detail.attachments?.length || 0;
-      report.detail.samples.push({ title: candidate.title, requestedUrl: candidate.link, ok: detail.ok, finalUrl: detail.finalUrl || '', textLength: detail.text?.length || 0, attachmentCount: detail.attachments?.length || 0, error: detail.error || '' });
+      report.detail.samples.push({ title: candidate.title, requestedUrl: candidate.link, template: classifyDetailTemplate(candidate.link, candidate), ok: detail.ok, finalUrl: detail.finalUrl || '', textLength: detail.text?.length || 0, attachmentCount: detail.attachments?.length || 0, error: detail.error || '' });
       for (const file of detail.attachments || []) {
         if (report.attachment.samples.length < 8) report.attachment.samples.push({ name: file.name, type: file.type, url: file.url });
       }
     }
-    report.detail.ok = report.detail.validated > 0;
+    report.detail.coverageRatio = report.detail.targetCount ? report.detail.attempted / report.detail.targetCount : 1;
+    report.detail.validationRatio = report.detail.attempted ? report.detail.validated / report.detail.attempted : (report.detail.targetCount === 0 ? 1 : 0);
+    report.detail.ok = report.list.ok && report.detail.targetCount === report.list.candidateCount && report.detail.missingDetailUrl === 0 && report.detail.attempted === report.detail.targetCount && report.detail.validated === report.detail.targetCount;
     report.attachment.ok = report.attachment.discovered > 0;
     if (!report.access.ok) report.bottleneck = '접속';
     else if (!report.list.ok) report.bottleneck = report.list.status === 'count-exact-unverified' ? '목록 개수 일치·제목 정확성 미검증' : report.list.status === 'partial' ? `목록 부분 추출 (${report.list.candidateCount}/${report.list.visiblePostCount})` : report.list.status === 'count-unavailable-or-empty' ? '목록 글 수 판정 불가 또는 실제 0건' : '목록 추출 실패';

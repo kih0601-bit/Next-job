@@ -33,11 +33,6 @@ const SOURCE_PROFILES = {
     detailPath: /\/notify\/(?!noti06\.do$)|(?:view|detail|read)/i,
     detailParams: /^(?:idx|seq|no|nttId|bbsSeq|articleNo|dataSid)$/i
   },
-  '울산광역시 타기관소식': {
-    hosts: ['ulsan.go.kr'],
-    detailPath: /(?:view|detail|read|select)/i,
-    detailParams: /^(?:nttId|dataSid|bbsSeq|articleNo|postNo|dataId|bbsId)$/i
-  },
   '울산항만공사': {
     hosts: ['upa.or.kr'],
     detailPath: /\/portal\/board\/post\/view\.do$/i,
@@ -204,13 +199,6 @@ function sourceSpecificDetailUrls(block = '', source) {
     }
   }
 
-  if (source.org === '울산광역시 타기관소식') {
-    const dataIds = new Set();
-    for (const match of block.matchAll(/(?:dataId|dataSid|nttId)\s*[=:,(]?\s*["']?(\d{2,})/gi)) dataIds.add(match[1]);
-    for (const dataId of dataIds) {
-      push(`/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=${dataId}&mId=001004001003000000`);
-    }
-  }
 
   // Dedicated eGov recruitment boards whose title link calls a JavaScript helper.
   // Recover the post id without issuing any extra request.

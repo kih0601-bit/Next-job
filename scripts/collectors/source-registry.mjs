@@ -74,11 +74,8 @@ const RAW_SOURCES = [
     'https://www.ubpi.or.kr/sub/?mcode=0403080000',
     'https://www.ubpi.or.kr/' ] },
   { org: '울산연구원', urls: [
-    // Official URI site first. Keep transport variants because GitHub runners intermittently get TLS/403 on www.
+    // Official URI recruitment surface. GitHub runners may need the URI-specific transport fallback.
     'https://www.uri.re.kr/index.do',
-    'https://uri.re.kr/index.do',
-    'http://www.uri.re.kr/index.do',
-    'http://uri.re.kr/index.do',
     'https://www.uri.re.kr/' ] },
   { org: '울산문화관광재단', urls: [
     'https://uctf.or.kr/board/employment',
@@ -104,18 +101,6 @@ const RAW_SOURCES = [
     'https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do',
     'http://www.ucf.or.kr/',
     'https://www.ucf.or.kr/' ] },
-  { org: '울산광역시 타기관소식', urls: [
-    // Primary source: Ulsan Metropolitan City other-organization notices.
-    'https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000',
-    'https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000',
-    // Same-purpose local-government mirror with a directly readable 타기관소식 board.
-    'https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=alimiNotice',
-    // Official local-government fallback: subsidiary-agency recruitment notices.
-    // GitHub-hosted runners can be blocked at the TCP layer by ulsan.go.kr, so the
-    // collector must still have an official public route for Phase 1 availability.
-    'https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2',
-    // Official public-institution fallback. Phase 2 will validate listing coverage.
-    'https://job.alio.go.kr/' ] }
 ];
 
 export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
@@ -135,4 +120,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.6-strict-board-arrival';
+export const SOURCE_REGISTRY_VERSION = '15.7-21-sources-uri-access';

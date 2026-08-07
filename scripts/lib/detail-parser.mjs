@@ -328,6 +328,32 @@ function detailConfidence(text = '', expectedTitle = '') {
   return { structureSignals, matched, tokenCount: tokens.length, titleRatio };
 }
 
+
+const DETAIL_DIAG_DIR = process.env.NEXTJOB_DETAIL_DIAG_DIR || '';
+
+function safeDiagName(value = '') {
+  return String(value).normalize('NFKC').replace(/[^\p{L}\p{N}._-]+/gu, '_').replace(/^_+|_+$/g, '').slice(0, 120) || 'detail';
+}
+
+function writeDetailDiagnostic({ org = 'unknown', expectedTitle = '', requestedUrl = '', finalUrl = '', status = 0, contentType = '', html = '', error = '', stage = '', verdict = {}, request = null }) {
+  if (!DETAIL_DIAG_DIR) return;
+  try {
+    const dir = path.join(DETAIL_DIAG_DIR, safeDiagName(org), 'detail');
+    fs.mkdirSync(dir, { recursive: true });
+    const id = new URL(finalUrl || requestedUrl).searchParams.get('nttId')
+      || new URL(finalUrl || requestedUrl).searchParams.get('bd_id')
+      || new URL(finalUrl || requestedUrl).searchParams.get('num')
+      || safeDiagName(expectedTitle);
+    const base = safeDiagName(String(id));
+    fs.writeFileSync(path.join(dir, `${base}-raw.html`), String(html || ''));
+    fs.writeFileSync(path.join(dir, `${base}-meta.json`), JSON.stringify({
+      org, expectedTitle, requestedUrl, finalUrl, status, contentType, error, stage,
+      requestMethod: request?.method || 'GET',
+      verdict
+    }, null, 2));
+  } catch {}
+}
+
 export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', sourceOrg = '', allowedHosts = [], request = null } = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -433,7 +459,10 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
     // real attachment is still a valid detail page; attachment contents are handled
     // by the next pipeline stage.
     const structuralEvidence = titleEvidence && (attachments.length > 0 || contentImages.length > 0);
-    if (text.length < 100 && !(structuralEvidence && fullText.length >= 20)) throw new Error('detail body too short');
+    if (text.length < 100 && !(structuralEvidence && fullText.length >= 20)) {
+      writeDetailDiagnostic({ org, expectedTitle, requestedUrl: url, finalUrl, status: response.status, contentType, html, error: 'detail body too short', stage: 'body-verdict', request, verdict: { textLength: text.length, fullTextLength: fullText.length, attachmentCount: attachments.length, contentImageCount: contentImages.length, titleEvidence } });
+      throw new Error('detail body too short');
+    }
     const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)|게시물\s*목록|검색결과\s*\d+건|채용공고\s*목록/.test(fullText) && !/(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text) && !titleEvidence;
     if (looksLikeListOnly) throw new Error('list page detected');
     // Only call it a site error when the response lacks the expected notice title.
@@ -457,7 +486,10 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
     }
 
     const confidence = detailConfidence(text, expectedTitle);
-    if (confidence.structureSignals < 1 && attachments.length === 0 && !(titleEvidence && text.length >= 140)) throw new Error('insufficient detail structure');
+    if (confidence.structureSignals < 1 && attachments.length === 0 && !(titleEvidence && text.length >= 140)) {
+      writeDetailDiagnostic({ org, expectedTitle, requestedUrl: url, finalUrl, status: response.status, contentType, html, error: 'insufficient detail structure', stage: 'structure-verdict', request, verdict: { textLength: text.length, fullTextLength: fullText.length, attachmentCount: attachments.length, contentImageCount: contentImages.length, titleEvidence } });
+      throw new Error('insufficient detail structure');
+    }
     if (confidence.tokenCount >= 3 && confidence.titleRatio < 0.25 && attachments.length === 0 && !titleEvidence) throw new Error('detail title mismatch');
     return { ok: true, finalUrl, text: text || fullText, confidence, httpStatus: response.status, contentType, attachments, detailTransport: request?.method ? `FORM_${String(request.method).toUpperCase()}` : 'GET' };
   } catch (error) {

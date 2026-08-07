@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-07T04:51:53.593Z",
+  "generatedAt": "2026-08-07T05:12:53.280Z",
   "baselineAvailable": true,
   "summary": {
     "improved": 0,
-    "regressed": 3,
-    "unchanged": 19
+    "regressed": 0,
+    "unchanged": 22
   },
   "changes": [
     {
@@ -17,19 +17,29 @@
         "reason": "모든 후보 URL HTTP 접속 실패",
         "evidence": [
           {
-            "url": "https://www.uri.re.kr/",
-            "ok": false,
-            "error": "fetch failed"
-          },
-          {
             "url": "https://www.uri.re.kr/index.do",
             "ok": false,
-            "error": "HTTP 403"
+            "error": "fetch failed"
           },
           {
-            "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+            "url": "https://uri.re.kr/index.do",
             "ok": false,
             "error": "fetch failed"
+          },
+          {
+            "url": "http://www.uri.re.kr/index.do",
+            "ok": false,
+            "error": "fetch failed"
+          },
+          {
+            "url": "http://uri.re.kr/index.do",
+            "ok": false,
+            "error": "fetch failed"
+          },
+          {
+            "url": "https://www.uri.re.kr/",
+            "ok": false,
+            "error": "HTTP 403"
           }
         ],
         "repairTarget": "scripts/collectors/institutions/울산연구원.mjs",
@@ -37,9 +47,9 @@
       },
       "stages": {
         "access": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "list": {
           "from": false,
@@ -58,7 +68,7 @@
         }
       },
       "improved": false,
-      "regressed": true
+      "regressed": false
     },
     {
       "org": "울산광역시 타기관소식",
@@ -112,14 +122,14 @@
       },
       "stages": {
         "access": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "list": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "detail": {
           "from": false,
@@ -133,7 +143,7 @@
         }
       },
       "improved": false,
-      "regressed": true
+      "regressed": false
     },
     {
       "org": "울산남구도시관리공단",
@@ -193,29 +203,6 @@
             "missingCount": null,
             "extraCount": null,
             "countSource": "unavailable"
-          },
-          {
-            "url": "https://www.uncmc.or.kr/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
           }
         ],
         "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
@@ -228,23 +215,23 @@
           "change": "same"
         },
         "list": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "detail": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "attachment": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         }
       },
       "improved": false,
-      "regressed": true
+      "regressed": false
     },
     {
       "org": "울산문화관광재단",
@@ -835,19 +822,19 @@
               {
                 "title": "정보공개청구",
                 "reason": "detail-url-pending",
-                "identity": "row-36041",
+                "identity": "row-36039",
                 "row": "<div class=\"list01\"><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새 창 열림\">정보공개청구</a></div>"
               },
               {
                 "title": "웹접근성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49200",
+                "identity": "row-49198",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               },
               {
                 "title": "웹개방성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49351",
+                "identity": "row-49349",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               }
             ],

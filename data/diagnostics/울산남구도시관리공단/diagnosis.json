@@ -2,137 +2,114 @@
   "org": "울산남구도시관리공단",
   "health": "degraded",
   "primaryCause": {
-    "stage": "list",
-    "status": "partial",
-    "code": "LIST_COUNT_EXACT_UNVERIFIED",
-    "reason": "개수는 10건으로 일치하지만 실제 게시글 제목 집합의 정확성은 아직 독립 검증되지 않음",
+    "stage": "detail",
+    "status": "failed",
+    "code": "DETAIL_BODY_PARTIAL",
+    "reason": "첫 페이지 10건 중 5건만 상세 본문 검증 성공",
     "evidence": [
       {
-        "url": "https://recruit.incruit.com/uncmc/",
-        "visiblePostCount": null,
-        "rowMode": false,
-        "anchors": 5,
-        "titleMatches": 3,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
-        "clickableBlocksScanned": 0,
-        "clickableBlocksAccepted": 0,
-        "listOnlyAccepted": 0,
-        "titleSamples": [
-          "������",
-          "������",
-          "������"
-        ],
-        "unsafeSamples": [],
-        "actionSamples": [],
-        "candidateUrlSamples": [],
-        "candidateCount": 0,
-        "exactMatch": false,
-        "missingCount": null,
-        "extraCount": null,
-        "countSource": "unavailable"
+        "title": "남구체육회 생활체육지도자 공개경쟁 채용 안내",
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=529011",
+        "template": "QUERY_ID",
+        "ok": true,
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=529011",
+        "textLength": 135,
+        "attachmentCount": 7,
+        "error": ""
       },
       {
-        "url": "https://uncmc.incruit.com/",
-        "visiblePostCount": null,
-        "rowMode": false,
-        "anchors": 0,
-        "titleMatches": 0,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
-        "clickableBlocksScanned": 0,
-        "clickableBlocksAccepted": 0,
-        "listOnlyAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": [],
-        "actionSamples": [],
-        "candidateUrlSamples": [],
-        "candidateCount": 0,
-        "exactMatch": false,
-        "missingCount": null,
-        "extraCount": null,
-        "countSource": "unavailable"
+        "title": "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=525293",
+        "template": "QUERY_ID",
+        "ok": true,
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=525293",
+        "textLength": 143,
+        "attachmentCount": 10,
+        "error": ""
       },
       {
-        "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
-        "visiblePostCount": 10,
-        "rowMode": true,
-        "anchors": 782,
-        "titleMatches": 10,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 10,
-        "rowFallbackAccepted": 0,
-        "clickableBlocksScanned": 0,
-        "clickableBlocksAccepted": 0,
-        "listOnlyAccepted": 0,
-        "titleSamples": [
-          "남구체육회 생활체육지도자 공개경쟁 채용 안내",
-          "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
-          "2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고",
-          "2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고",
-          "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
-          "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고",
-          "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
-          "2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고"
-        ],
-        "unsafeSamples": [],
-        "actionSamples": [
-          {
-            "title": "남구체육회 생활체육지도자 공개경쟁 채용 안내",
-            "action": "goBoardArticle('529011'); return false;"
-          },
-          {
-            "title": "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
-            "action": "goBoardArticle('525293'); return false;"
-          },
-          {
-            "title": "2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고",
-            "action": "goBoardArticle('524281'); return false;"
-          },
-          {
-            "title": "2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고",
-            "action": "goBoardArticle('523385'); return false;"
-          },
-          {
-            "title": "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
-            "action": "goBoardArticle('523070'); return false;"
-          },
-          {
-            "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고",
-            "action": "goBoardArticle('520747'); return false;"
-          },
-          {
-            "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
-            "action": "goBoardArticle('520190'); return false;"
-          },
-          {
-            "title": "2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고",
-            "action": "goBoardArticle('518116'); return false;"
-          },
-          {
-            "title": "2026년 제1회 울산광역시남구도시관리공단 일반직 직원 채용 재공고",
-            "action": "goBoardArticle('517639'); return false;"
-          },
-          {
-            "title": "2026년 고래문화재단 기간제 근로자 채용 공고",
-            "action": "goBoardArticle('517613'); return false;"
-          }
-        ],
-        "candidateUrlSamples": [],
-        "candidateCount": 10,
-        "exactMatch": true,
-        "missingCount": 0,
-        "extraCount": 0,
-        "countSource": "visible-board-rows"
+        "title": "2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고",
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=524281",
+        "template": "QUERY_ID",
+        "ok": true,
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=524281",
+        "textLength": 435,
+        "attachmentCount": 7,
+        "error": ""
+      },
+      {
+        "title": "2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고",
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523385",
+        "template": "QUERY_ID",
+        "ok": false,
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523385",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "detail body too short"
+      },
+      {
+        "title": "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523070",
+        "template": "QUERY_ID",
+        "ok": false,
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523070",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "detail body too short"
+      },
+      {
+        "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고",
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520747",
+        "template": "QUERY_ID",
+        "ok": false,
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520747",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "detail body too short"
+      },
+      {
+        "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520190",
+        "template": "QUERY_ID",
+        "ok": true,
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520190",
+        "textLength": 236,
+        "attachmentCount": 10,
+        "error": ""
+      },
+      {
+        "title": "2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고",
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=518116",
+        "template": "QUERY_ID",
+        "ok": false,
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=518116",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "detail body too short"
+      },
+      {
+        "title": "2026년 제1회 울산광역시남구도시관리공단 일반직 직원 채용 재공고",
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517639",
+        "template": "QUERY_ID",
+        "ok": false,
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517639",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "detail body too short"
+      },
+      {
+        "title": "2026년 고래문화재단 기간제 근로자 채용 공고",
+        "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517613",
+        "template": "QUERY_ID",
+        "ok": true,
+        "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517613",
+        "textLength": 186,
+        "attachmentCount": 11,
+        "error": ""
       }
     ],
     "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
-    "recommendedAction": "게시글 행/제목 집합을 독립적으로 식별해 실제 목록과 추출 결과의 제목 단위 일치 검증 추가"
+    "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
   },
   "diagnosis": {
     "http": {
@@ -317,7 +294,7 @@
             },
             "institutionRule": false,
             "institutionRuleEvidence": [],
-            "textLength": 226,
+            "textLength": 227,
             "requestedUrl": "https://www.uncmc.or.kr/",
             "finalUrl": "https://www.uncmc.or.kr/",
             "status": 200,
@@ -373,9 +350,9 @@
       }
     },
     "list": {
-      "status": "partial",
-      "code": "LIST_COUNT_EXACT_UNVERIFIED",
-      "reason": "개수는 10건으로 일치하지만 실제 게시글 제목 집합의 정확성은 아직 독립 검증되지 않음",
+      "status": "success",
+      "code": "LIST_VERIFIED_EXACT",
+      "reason": "실제 게시글 목록 검증 완료 · 화면 10건 = 추출 10건 · TEMPLATE_TABLE_RECORD_EXACT",
       "evidence": [
         {
           "url": "https://recruit.incruit.com/uncmc/",
@@ -402,6 +379,16 @@
           "exactMatch": false,
           "missingCount": null,
           "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "unavailable"
         },
         {
@@ -425,6 +412,16 @@
           "exactMatch": false,
           "missingCount": null,
           "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "unavailable"
         },
         {
@@ -498,62 +495,141 @@
           "exactMatch": true,
           "missingCount": 0,
           "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 28",
+              "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 513",
+              "229 2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고 울산광역시남구도시관리공단 2026-06-22 406",
+              "228 2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고 고래문화재단 2026-06-11 365",
+              "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 718",
+              "226 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고 울산광역시남구도시관리공단 2026-05-20 523",
+              "225 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-05-12 405",
+              "224 2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고 울산광역시남구도시관리공단 2026-04-13 718"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
           "countSource": "visible-board-rows"
         }
       ]
     },
     "detail": {
-      "status": "blocked",
-      "code": "DETAIL_BLOCKED_BY_LIST",
-      "reason": "목록 단계 미통과로 상세 진단 보류",
-      "evidence": []
-    },
-    "attachment": {
-      "status": "success",
-      "code": "ATTACHMENT_FOUND",
-      "reason": "검증 표본에서 첨부 링크 17개 발견",
+      "status": "failed",
+      "code": "DETAIL_BODY_PARTIAL",
+      "reason": "첫 페이지 10건 중 5건만 상세 본문 검증 성공",
       "evidence": [
         {
-          "name": "남구체육회 생활체육지도자 채용공고.hwpx [111223 byte]",
-          "type": "hwpx",
-          "url": "https://www.ulsannamgu.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000256538&fileSn=0"
+          "title": "남구체육회 생활체육지도자 공개경쟁 채용 안내",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=529011",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=529011",
+          "textLength": 135,
+          "attachmentCount": 7,
+          "error": ""
         },
         {
-          "name": "남구체육회 생활체육지도자 채용공고.hwpx [111223 byte]",
-          "type": "hwpx",
-          "url": "https://www.ulsannamgu.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000256538%22&amp"
+          "title": "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=525293",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=525293",
+          "textLength": 143,
+          "attachmentCount": 10,
+          "error": ""
         },
         {
-          "name": "남구체육회 생활체육지도자 채용공고.hwpx [111223 byte]",
-          "type": "hwpx",
-          "url": "https://www.ulsannamgu.go.kr/cop/bbs/FileDown.do?atchFileId=FILE_000000000256538&fileSn=0"
+          "title": "2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=524281",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=524281",
+          "textLength": 435,
+          "attachmentCount": 7,
+          "error": ""
         },
         {
-          "name": "뷰어다운로드",
-          "type": "unknown",
-          "url": "https://www.ulsannamgu.go.kr/userGuide/viewerDownload.jsp"
+          "title": "2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523385",
+          "template": "QUERY_ID",
+          "ok": false,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523385",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
         },
         {
-          "name": "기타파일",
-          "type": "hwpx",
-          "url": "https://www.ulsannamgu.go.kr/images/icon_ext/ico_etc.gif"
+          "title": "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523070",
+          "template": "QUERY_ID",
+          "ok": false,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523070",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
         },
         {
-          "name": "파일다운로드",
-          "type": "unknown",
-          "url": "https://www.ulsannamgu.go.kr/fileDown.jsp"
+          "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520747",
+          "template": "QUERY_ID",
+          "ok": false,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520747",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
         },
         {
-          "name": "name=\"frm\" method=\"post\" action=\"/cop/bbs/selectBoardArticle.do\" onsubmit=\"fn_egov_pwd_ckeck(); return false;\" \n 남구체육회 생활체육지도자 공개경쟁 채용 안내 \n 작성자 : 체육지원과 \n 조회수 :",
-          "type": "hwpx",
-          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do"
+          "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520190",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520190",
+          "textLength": 236,
+          "attachmentCount": 10,
+          "error": ""
         },
         {
-          "name": "2026년 제5회 기간제근로자 공개 채용 공고.pdf [231974 byte]",
-          "type": "pdf",
-          "url": "https://www.ulsannamgu.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000254755&fileSn=1"
+          "title": "2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=518116",
+          "template": "QUERY_ID",
+          "ok": false,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=518116",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
+        },
+        {
+          "title": "2026년 제1회 울산광역시남구도시관리공단 일반직 직원 채용 재공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517639",
+          "template": "QUERY_ID",
+          "ok": false,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517639",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
+        },
+        {
+          "title": "2026년 고래문화재단 기간제 근로자 채용 공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517613",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517613",
+          "textLength": 186,
+          "attachmentCount": 11,
+          "error": ""
         }
       ]
+    },
+    "attachment": {
+      "status": "blocked",
+      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
+      "reason": "상세 단계 미통과로 첨부 진단 보류",
+      "evidence": []
     },
     "access": {
       "status": "success",
@@ -601,7 +677,7 @@
     }
   },
   "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
-  "recommendedAction": "게시글 행/제목 집합을 독립적으로 식별해 실제 목록과 추출 결과의 제목 단위 일치 검증 추가",
+  "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인",
   "stages": {
     "access": {
       "ok": true,
@@ -790,7 +866,7 @@
             },
             "institutionRule": false,
             "institutionRuleEvidence": [],
-            "textLength": 226,
+            "textLength": 227,
             "requestedUrl": "https://www.uncmc.or.kr/",
             "finalUrl": "https://www.uncmc.or.kr/",
             "status": 200,
@@ -1032,7 +1108,7 @@
                 },
                 "institutionRule": false,
                 "institutionRuleEvidence": [],
-                "textLength": 226,
+                "textLength": 227,
                 "requestedUrl": "https://www.uncmc.or.kr/",
                 "finalUrl": "https://www.uncmc.or.kr/",
                 "status": 200,
@@ -1140,8 +1216,8 @@
       }
     },
     "list": {
-      "ok": false,
-      "status": "count-exact-unverified",
+      "ok": true,
+      "status": "verified-exact",
       "pagesChecked": 3,
       "visiblePostCount": 10,
       "candidateCount": 10,
@@ -1177,6 +1253,16 @@
           "exactMatch": false,
           "missingCount": null,
           "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "unavailable"
         },
         {
@@ -1200,6 +1286,16 @@
           "exactMatch": false,
           "missingCount": null,
           "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "unavailable"
         },
         {
@@ -1273,12 +1369,31 @@
           "exactMatch": true,
           "missingCount": 0,
           "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 28",
+              "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 513",
+              "229 2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고 울산광역시남구도시관리공단 2026-06-22 406",
+              "228 2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고 고래문화재단 2026-06-11 365",
+              "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 718",
+              "226 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고 울산광역시남구도시관리공단 2026-05-20 523",
+              "225 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-05-12 405",
+              "224 2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고 울산광역시남구도시관리공단 2026-04-13 718"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
           "countSource": "visible-board-rows"
         }
       ],
       "rootCauseDiagnostics": [
         {
-          "version": "1.2-list-accuracy",
+          "version": "1.3-list-template-verification",
           "mode": "passive",
           "org": "울산남구도시관리공단",
           "url": "https://recruit.incruit.com/uncmc/",
@@ -1287,6 +1402,17 @@
           "accuracyVerification": {
             "verified": false,
             "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
             "independentDomEvidence": false,
             "exactCount": false,
             "exactTitleSet": false,
@@ -1333,7 +1459,7 @@
           "rowTrace": []
         },
         {
-          "version": "1.2-list-accuracy",
+          "version": "1.3-list-template-verification",
           "mode": "passive",
           "org": "울산남구도시관리공단",
           "url": "https://uncmc.incruit.com/",
@@ -1342,6 +1468,17 @@
           "accuracyVerification": {
             "verified": false,
             "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
             "independentDomEvidence": false,
             "exactCount": false,
             "exactTitleSet": false,
@@ -1388,15 +1525,35 @@
           "rowTrace": []
         },
         {
-          "version": "1.2-list-accuracy",
+          "version": "1.3-list-template-verification",
           "mode": "passive",
           "org": "울산남구도시관리공단",
           "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
           "probableCause": "NON_ROW_CANDIDATES_OR_COUNTER_MISMATCH",
           "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
           "accuracyVerification": {
-            "verified": false,
-            "level": "COUNT_EXACT_ONLY",
+            "verified": true,
+            "level": "TEMPLATE_TABLE_RECORD_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": true,
+              "template": "TABLE_RECORD",
+              "recordCount": 10,
+              "candidateCount": 10,
+              "matchedCount": 10,
+              "unmatchedTitles": [],
+              "recordSamples": [
+                "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 28",
+                "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 513",
+                "229 2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고 울산광역시남구도시관리공단 2026-06-22 406",
+                "228 2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고 고래문화재단 2026-06-11 365",
+                "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 718",
+                "226 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고 울산광역시남구도시관리공단 2026-05-20 523",
+                "225 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-05-12 405",
+                "224 2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고 울산광역시남구도시관리공단 2026-04-13 718"
+              ],
+              "level": "TEMPLATE_TABLE_RECORD_EXACT"
+            },
             "independentDomEvidence": true,
             "exactCount": true,
             "exactTitleSet": false,
@@ -1459,14 +1616,14 @@
               "org": "울산남구도시관리공단",
               "title": "남구체육회 생활체육지도자 공개경쟁 채용 안내",
               "link": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=529011",
-              "listText": "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 25",
+              "listText": "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 28",
               "adapter": "울산남구도시관리공단:board-row"
             },
             {
               "org": "울산남구도시관리공단",
               "title": "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
               "link": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=525293",
-              "listText": "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 511",
+              "listText": "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 513",
               "adapter": "울산남구도시관리공단:board-row"
             },
             {
@@ -1487,7 +1644,7 @@
               "org": "울산남구도시관리공단",
               "title": "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
               "link": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523070",
-              "listText": "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 717",
+              "listText": "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 718",
               "adapter": "울산남구도시관리공단:board-row"
             },
             {
@@ -1531,14 +1688,14 @@
               "index": 0,
               "title": "",
               "normalizedTitle": "",
-              "text": "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 25",
+              "text": "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 28",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=529011",
               "onclick": "goBoardArticle('529011'); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t231\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=529011\" onclick=\"goBoardArticle('529011'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t남구체육회 생활체육지도자 공개경쟁 채용 안내\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">체육지원과</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-08-03</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000256538&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000256538','0');return false;\" onkeypress=\"\" title=\"남구체육회 생활체육지도자 채용공고.hwpx 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_etc.gif\" alt=\"기타파일\">\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">25</td>\r\n\t\t\t\t     </tr>",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t231\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=529011\" onclick=\"goBoardArticle('529011'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t남구체육회 생활체육지도자 공개경쟁 채용 안내\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">체육지원과</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-08-03</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000256538&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000256538','0');return false;\" onkeypress=\"\" title=\"남구체육회 생활체육지도자 채용공고.hwpx 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_etc.gif\" alt=\"기타파일\">\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">28</td>\r\n\t\t\t\t     </tr>",
               "accepted": false,
               "acceptedLink": "",
               "adapter": "",
@@ -1548,14 +1705,14 @@
               "index": 1,
               "title": "",
               "normalizedTitle": "",
-              "text": "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 511",
+              "text": "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 513",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=525293",
               "onclick": "goBoardArticle('525293'); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t230\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=525293\" onclick=\"goBoardArticle('525293'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-07-06</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000254755&amp;fileSn=1\" onclick=\"fn_egov_downFile('FILE_000000000254755','1');return false;\" onkeypress=\"\" title=\"2026년 제5회 기간제근로자 공개 채용 공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000254755&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000254755','0');return false;\" onkeypress=\"\" title=\"채용응시원서 및 자기소개서.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">511</td>\r\n\t\t\t\t     </tr>",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t230\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=525293\" onclick=\"goBoardArticle('525293'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-07-06</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000254755&amp;fileSn=1\" onclick=\"fn_egov_downFile('FILE_000000000254755','1');return false;\" onkeypress=\"\" title=\"2026년 제5회 기간제근로자 공개 채용 공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000254755&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000254755','0');return false;\" onkeypress=\"\" title=\"채용응시원서 및 자기소개서.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">513</td>\r\n\t\t\t\t     </tr>",
               "accepted": false,
               "acceptedLink": "",
               "adapter": "",
@@ -1599,14 +1756,14 @@
               "index": 4,
               "title": "",
               "normalizedTitle": "",
-              "text": "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 717",
+              "text": "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 718",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=523070",
               "onclick": "goBoardArticle('523070'); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t227\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=523070\" onclick=\"goBoardArticle('523070'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-06-07</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000253319&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000253319','0');return false;\" onkeypress=\"\" title=\"2026년 제2회 울산광역시남구도시관리공단 일반직， 무기계약직 채용 공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">717</td>\r\n\t\t\t\t     </tr>",
+              "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t227\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=523070\" onclick=\"goBoardArticle('523070'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-06-07</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000253319&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000253319','0');return false;\" onkeypress=\"\" title=\"2026년 제2회 울산광역시남구도시관리공단 일반직， 무기계약직 채용 공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">718</td>\r\n\t\t\t\t     </tr>",
               "accepted": false,
               "acceptedLink": "",
               "adapter": "",
@@ -1777,15 +1934,35 @@
       ],
       "errors": [],
       "selectedRootCause": {
-        "version": "1.2-list-accuracy",
+        "version": "1.3-list-template-verification",
         "mode": "passive",
         "org": "울산남구도시관리공단",
         "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
         "probableCause": "NON_ROW_CANDIDATES_OR_COUNTER_MISMATCH",
         "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
         "accuracyVerification": {
-          "verified": false,
-          "level": "COUNT_EXACT_ONLY",
+          "verified": true,
+          "level": "TEMPLATE_TABLE_RECORD_EXACT",
+          "listVerificationTemplate": "TABLE_RECORD",
+          "templateRecordEvidence": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 28",
+              "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 513",
+              "229 2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고 울산광역시남구도시관리공단 2026-06-22 406",
+              "228 2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고 고래문화재단 2026-06-11 365",
+              "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 718",
+              "226 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고 울산광역시남구도시관리공단 2026-05-20 523",
+              "225 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-05-12 405",
+              "224 2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고 울산광역시남구도시관리공단 2026-04-13 718"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
           "independentDomEvidence": true,
           "exactCount": true,
           "exactTitleSet": false,
@@ -1848,14 +2025,14 @@
             "org": "울산남구도시관리공단",
             "title": "남구체육회 생활체육지도자 공개경쟁 채용 안내",
             "link": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=529011",
-            "listText": "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 25",
+            "listText": "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 28",
             "adapter": "울산남구도시관리공단:board-row"
           },
           {
             "org": "울산남구도시관리공단",
             "title": "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
             "link": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=525293",
-            "listText": "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 511",
+            "listText": "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 513",
             "adapter": "울산남구도시관리공단:board-row"
           },
           {
@@ -1876,7 +2053,7 @@
             "org": "울산남구도시관리공단",
             "title": "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
             "link": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523070",
-            "listText": "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 717",
+            "listText": "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 718",
             "adapter": "울산남구도시관리공단:board-row"
           },
           {
@@ -1920,14 +2097,14 @@
             "index": 0,
             "title": "",
             "normalizedTitle": "",
-            "text": "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 25",
+            "text": "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 28",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=529011",
             "onclick": "goBoardArticle('529011'); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t231\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=529011\" onclick=\"goBoardArticle('529011'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t남구체육회 생활체육지도자 공개경쟁 채용 안내\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">체육지원과</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-08-03</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000256538&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000256538','0');return false;\" onkeypress=\"\" title=\"남구체육회 생활체육지도자 채용공고.hwpx 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_etc.gif\" alt=\"기타파일\">\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">25</td>\r\n\t\t\t\t     </tr>",
+            "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t231\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=529011\" onclick=\"goBoardArticle('529011'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t남구체육회 생활체육지도자 공개경쟁 채용 안내\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">체육지원과</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-08-03</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000256538&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000256538','0');return false;\" onkeypress=\"\" title=\"남구체육회 생활체육지도자 채용공고.hwpx 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_etc.gif\" alt=\"기타파일\">\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">28</td>\r\n\t\t\t\t     </tr>",
             "accepted": false,
             "acceptedLink": "",
             "adapter": "",
@@ -1937,14 +2114,14 @@
             "index": 1,
             "title": "",
             "normalizedTitle": "",
-            "text": "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 511",
+            "text": "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 513",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=525293",
             "onclick": "goBoardArticle('525293'); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t230\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=525293\" onclick=\"goBoardArticle('525293'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-07-06</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000254755&amp;fileSn=1\" onclick=\"fn_egov_downFile('FILE_000000000254755','1');return false;\" onkeypress=\"\" title=\"2026년 제5회 기간제근로자 공개 채용 공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000254755&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000254755','0');return false;\" onkeypress=\"\" title=\"채용응시원서 및 자기소개서.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">511</td>\r\n\t\t\t\t     </tr>",
+            "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t230\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=525293\" onclick=\"goBoardArticle('525293'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-07-06</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000254755&amp;fileSn=1\" onclick=\"fn_egov_downFile('FILE_000000000254755','1');return false;\" onkeypress=\"\" title=\"2026년 제5회 기간제근로자 공개 채용 공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000254755&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000254755','0');return false;\" onkeypress=\"\" title=\"채용응시원서 및 자기소개서.hwp 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_hwp.gif\" alt=\"hwp파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">513</td>\r\n\t\t\t\t     </tr>",
             "accepted": false,
             "acceptedLink": "",
             "adapter": "",
@@ -1988,14 +2165,14 @@
             "index": 4,
             "title": "",
             "normalizedTitle": "",
-            "text": "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 717",
+            "text": "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 718",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=523070",
             "onclick": "goBoardArticle('523070'); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t227\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=523070\" onclick=\"goBoardArticle('523070'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-06-07</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000253319&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000253319','0');return false;\" onkeypress=\"\" title=\"2026년 제2회 울산광역시남구도시관리공단 일반직， 무기계약직 채용 공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">717</td>\r\n\t\t\t\t     </tr>",
+            "html": "<tr>\r\n\t\t\t\t        <td class=\"problem_number\">\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t227\r\n\t\t\t\t\t\t</td>            \r\n\t\t\t\t        <td class=\"left\">\r\n\t\t\t\t        &nbsp; \t<a href=\"/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&amp;nttId=523070\" onclick=\"goBoardArticle('523070'); return false;\" onkeypress=\"\">\r\n\t\t\t\t        \t\t\t2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고\r\n\t\t\t\t        \t\t</a>\r\n\t\t\t\t        </td>\t\t\r\n\t\t\t\t        <td class=\"problem_name\">울산광역시남구도시관리공단</td>\t\t\t\t        \r\n\t\t\t\t        <td class=\"date\">2026-06-07</td>\r\n\t\t\t\t        <td class=\"problem_file\">\t\t\t\t        \t\r\n\t\t\t\t        \t\r\n\t\t\t                    \r\n\t\t\t                    \r\n\t\t\t                \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\r\n   <a href=\"/cmm/fms/FileDown.do?atchFileId=FILE_000000000253319&amp;fileSn=0\" onclick=\"fn_egov_downFile('FILE_000000000253319','0');return false;\" onkeypress=\"\" title=\"2026년 제2회 울산광역시남구도시관리공단 일반직， 무기계약직 채용 공고.pdf 다운로드\" target=\"ifrmFlDwn\">\r\n   \r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t<img src=\"/images/icon_ext/ico_pdf.gif\" alt=\"pdf파일\">\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n   \t\t\r\n      \r\n   \r\n   </a>\r\n   \t\r\n      \t\r\n   \r\n   \r\n   \t  \r\n\r\n \r\n \r\n\r\n <script>\r\n// file_url : 파일경로\r\n// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오. \r\nfunction previewAjax(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName),\"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nfunction preListen(file_url, file_name) {\r\nvar apiKey = \"ATQZI3PF5XP6KFSAR7ENRA\";\r\nvar cc = \"ulsan_nam\";\r\nvar fileUrl = encodeURIComponent(file_url);\r\nvar fileName = encodeURIComponent(file_name);\r\nwindow.open(\"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}\".format(apiKey, cc, fileUrl, fileName), \"a\", \"width=1200, height=1000, left=100, top=50\");} \r\nString.prototype.format = function() {\r\nvar formatted = this;\r\nfor( var arg in arguments ) {\r\nformatted = formatted.replace(\"{\" +arg + \"}\", arguments[arg]);} \r\nreturn formatted;\r\n}; \r\n</script>\r\n\r\n\r\n\r\n      \t\t\t                \r\n\t\t\t\t        </td>\r\n\t\t\t\t        <td class=\"problem_count\">718</td>\r\n\t\t\t\t     </tr>",
             "accepted": false,
             "acceptedLink": "",
             "adapter": "",
@@ -2089,8 +2266,28 @@
         ]
       },
       "accuracyVerification": {
-        "verified": false,
-        "level": "COUNT_EXACT_ONLY",
+        "verified": true,
+        "level": "TEMPLATE_TABLE_RECORD_EXACT",
+        "listVerificationTemplate": "TABLE_RECORD",
+        "templateRecordEvidence": {
+          "verified": true,
+          "template": "TABLE_RECORD",
+          "recordCount": 10,
+          "candidateCount": 10,
+          "matchedCount": 10,
+          "unmatchedTitles": [],
+          "recordSamples": [
+            "231 남구체육회 생활체육지도자 공개경쟁 채용 안내 체육지원과 2026-08-03 28",
+            "230 2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-07-06 513",
+            "229 2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고 울산광역시남구도시관리공단 2026-06-22 406",
+            "228 2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고 고래문화재단 2026-06-11 365",
+            "227 2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고 울산광역시남구도시관리공단 2026-06-07 718",
+            "226 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고 울산광역시남구도시관리공단 2026-05-20 523",
+            "225 2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고 울산광역시남구도시관리공단 2026-05-12 405",
+            "224 2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고 울산광역시남구도시관리공단 2026-04-13 718"
+          ],
+          "level": "TEMPLATE_TABLE_RECORD_EXACT"
+        },
         "independentDomEvidence": true,
         "exactCount": true,
         "exactTitleSet": false,
@@ -2102,33 +2299,120 @@
       }
     },
     "detail": {
-      "ok": true,
-      "attempted": 2,
-      "validated": 2,
+      "ok": false,
+      "targetCount": 10,
+      "attempted": 10,
+      "validated": 5,
+      "failed": 5,
+      "missingDetailUrl": 0,
+      "coverageRatio": 1,
+      "validationRatio": 0.5,
       "samples": [
         {
           "title": "남구체육회 생활체육지도자 공개경쟁 채용 안내",
           "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=529011",
+          "template": "QUERY_ID",
           "ok": true,
           "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=529011",
-          "textLength": 8173,
+          "textLength": 135,
           "attachmentCount": 7,
           "error": ""
         },
         {
           "title": "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
           "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=525293",
+          "template": "QUERY_ID",
           "ok": true,
           "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=525293",
-          "textLength": 8242,
+          "textLength": 143,
           "attachmentCount": 10,
+          "error": ""
+        },
+        {
+          "title": "2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=524281",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=524281",
+          "textLength": 435,
+          "attachmentCount": 7,
+          "error": ""
+        },
+        {
+          "title": "2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523385",
+          "template": "QUERY_ID",
+          "ok": false,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523385",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
+        },
+        {
+          "title": "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523070",
+          "template": "QUERY_ID",
+          "ok": false,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523070",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
+        },
+        {
+          "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520747",
+          "template": "QUERY_ID",
+          "ok": false,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520747",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
+        },
+        {
+          "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520190",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520190",
+          "textLength": 236,
+          "attachmentCount": 10,
+          "error": ""
+        },
+        {
+          "title": "2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=518116",
+          "template": "QUERY_ID",
+          "ok": false,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=518116",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
+        },
+        {
+          "title": "2026년 제1회 울산광역시남구도시관리공단 일반직 직원 채용 재공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517639",
+          "template": "QUERY_ID",
+          "ok": false,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517639",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "detail body too short"
+        },
+        {
+          "title": "2026년 고래문화재단 기간제 근로자 채용 공고",
+          "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517613",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517613",
+          "textLength": 186,
+          "attachmentCount": 11,
           "error": ""
         }
       ]
     },
     "attachment": {
       "ok": true,
-      "discovered": 17,
+      "discovered": 45,
       "samples": [
         {
           "name": "남구체육회 생활체육지도자 채용공고.hwpx [111223 byte]",

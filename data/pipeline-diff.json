@@ -1,301 +1,184 @@
 {
-  "generatedAt": "2026-08-06T15:24:51.790Z",
+  "generatedAt": "2026-08-07T00:05:21.794Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 0,
-    "regressed": 2,
-    "unchanged": 20
+    "improved": 4,
+    "regressed": 3,
+    "unchanged": 15
   },
   "changes": [
     {
-      "org": "울주군시설관리공단",
-      "health": "failed",
+      "org": "울산복지가족진흥사회서비스원",
+      "health": "degraded",
       "primaryCause": {
-        "stage": "http",
-        "status": "failed",
-        "code": "HTTP_FAILED",
-        "reason": "모든 후보 URL HTTP 접속 실패",
+        "stage": "list",
+        "status": "partial",
+        "code": "LIST_EXTRA_POSTS",
+        "reason": "화면 10건보다 3건 많이 추출 · 메뉴/첨부/중복 오탐 가능",
         "evidence": [
           {
-            "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011",
-            "ok": false,
-            "error": "fetch failed"
+            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "visiblePostCount": 10,
+            "rowMode": true,
+            "anchors": 293,
+            "titleMatches": 13,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 13,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [
+              "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+              "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+              "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+              "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+              "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+              "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+              "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+              "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
+            ],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 13,
+            "exactMatch": false,
+            "missingCount": 0,
+            "extraCount": 3,
+            "countSource": "visible-board-rows"
+          },
+          {
+            "url": "https://www.wfps.or.kr/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
+            "visiblePostCount": 10,
+            "rowMode": true,
+            "anchors": 293,
+            "titleMatches": 13,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 13,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [
+              "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+              "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+              "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+              "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+              "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+              "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+              "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+              "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
+            ],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 13,
+            "exactMatch": false,
+            "missingCount": 0,
+            "extraCount": 3,
+            "countSource": "visible-board-rows"
           }
         ],
-        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "오탐 행 원문을 기준으로 메뉴·첨부·중복 제외 규칙 추가"
       },
       "stages": {
         "access": {
           "from": true,
-          "to": false,
-          "change": "regressed"
+          "to": true,
+          "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         },
         "detail": {
           "from": true,
-          "to": false,
-          "change": "regressed"
+          "to": true,
+          "change": "same"
         },
         "attachment": {
           "from": true,
-          "to": false,
-          "change": "regressed"
+          "to": true,
+          "change": "same"
         }
       },
       "improved": false,
       "regressed": true
     },
     {
-      "org": "울산남구도시관리공단",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "list",
-        "status": "failed",
-        "code": "LIST_EXTRACTOR_REJECTED_ALL",
-        "reason": "게시글 행은 확인했지만 후보가 최종 수용 조건을 통과하지 못함",
-        "evidence": [
-          {
-            "url": "https://recruit.incruit.com/uncmc/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 5,
-            "titleMatches": 3,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "������",
-              "������",
-              "������"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          },
-          {
-            "url": "https://uncmc.incruit.com/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          },
-          {
-            "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
-            "visiblePostCount": 10,
-            "rowMode": true,
-            "anchors": 782,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": 10,
-            "extraCount": 0,
-            "countSource": "visible-board-rows"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "detail": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "attachment": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "울산북구시설관리공단",
+      "org": "한국석유공사",
       "health": "degraded",
       "primaryCause": {
         "stage": "list",
         "status": "partial",
-        "code": "LIST_MISSING_POSTS",
-        "reason": "화면 10건 중 7건 추출 · 3건 누락",
+        "code": "LIST_EXTRA_POSTS",
+        "reason": "화면 4건보다 11건 많이 추출 · 메뉴/첨부/중복 오탐 가능",
         "evidence": [
           {
-            "url": "https://www.ubimc.or.kr/pageCont.do?menuNo=2040000",
-            "visiblePostCount": 10,
+            "url": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp",
+            "visiblePostCount": 4,
             "rowMode": true,
-            "anchors": 155,
-            "titleMatches": 7,
+            "anchors": 141,
+            "titleMatches": 15,
             "noUrl": 0,
             "unsafeUrl": 0,
-            "accepted": 7,
+            "accepted": 15,
             "rowFallbackAccepted": 0,
             "clickableBlocksScanned": 0,
             "clickableBlocksAccepted": 0,
             "listOnlyAccepted": 0,
             "titleSamples": [
-              "2026년 제3회 기간제근로자 채용 공고",
-              "2026년 제2회 기간제근로자 채용 최종합격자 공고",
-              "2026년 제2회 기간제근로자 채용 서류심사 합격자 및 면접시험 계획 공고",
-              "체육센터 시간강사(프리랜서) 모집 최종위탁자 공고",
-              "체육센터 시간강사(프리랜서) 강좌 위·수탁 모집 공고",
-              "2026년 제2회 기간제근로자 채용 공고",
-              "2026년 제1회 기간제근로자 채용 최종합격자 공고"
+              "2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�",
+              "2026�� �Ϲݱ� ����(ü����) ä����� [����]",
+              "2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)",
+              "2026�� ��ݱ� ����(�Ⱓ��) ä�� ���� ��� �ȳ�",
+              "2026�� ��ݱ� ����(�Ⱓ��) ä����� (����)",
+              "2025�� �ѱ��������� ���� ����ä�� ���� (����)",
+              "��2025�� ä����� �˸��̡� ���� ��û �ȳ� (����..",
+              "2025�⵵ �ѱ��������� ���� ä���ȹ(��)"
             ],
             "unsafeSamples": [],
-            "actionSamples": [
-              {
-                "title": "2026년 제3회 기간제근로자 채용 공고",
-                "action": "fn_egov_inqire_notice('4604', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "2026년 제2회 기간제근로자 채용 최종합격자 공고",
-                "action": "fn_egov_inqire_notice('4581', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "2026년 제2회 기간제근로자 채용 서류심사 합격자 및 면접시험 계획 공고",
-                "action": "fn_egov_inqire_notice('4578', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "체육센터 시간강사(프리랜서) 모집 최종위탁자 공고",
-                "action": "fn_egov_inqire_notice('4577', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "체육센터 시간강사(프리랜서) 강좌 위·수탁 모집 공고",
-                "action": "fn_egov_inqire_notice('4565', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "2026년 제2회 기간제근로자 채용 공고",
-                "action": "fn_egov_inqire_notice('4562', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "2026년 제1회 기간제근로자 채용 최종합격자 공고",
-                "action": "fn_egov_inqire_notice('4544', 'BBSMSTR_000000000061');"
-              }
-            ],
+            "actionSamples": [],
             "candidateUrlSamples": [],
-            "candidateCount": 7,
+            "candidateCount": 15,
             "exactMatch": false,
-            "missingCount": 3,
-            "extraCount": 0,
+            "missingCount": 0,
+            "extraCount": 11,
             "countSource": "visible-board-rows"
           },
           {
-            "url": "https://ubimc.or.kr/pageCont.do?menuNo=2040000",
-            "visiblePostCount": 10,
-            "rowMode": true,
-            "anchors": 155,
-            "titleMatches": 7,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 7,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "2026년 제3회 기간제근로자 채용 공고",
-              "2026년 제2회 기간제근로자 채용 최종합격자 공고",
-              "2026년 제2회 기간제근로자 채용 서류심사 합격자 및 면접시험 계획 공고",
-              "체육센터 시간강사(프리랜서) 모집 최종위탁자 공고",
-              "체육센터 시간강사(프리랜서) 강좌 위·수탁 모집 공고",
-              "2026년 제2회 기간제근로자 채용 공고",
-              "2026년 제1회 기간제근로자 채용 최종합격자 공고"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [
-              {
-                "title": "2026년 제3회 기간제근로자 채용 공고",
-                "action": "fn_egov_inqire_notice('4604', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "2026년 제2회 기간제근로자 채용 최종합격자 공고",
-                "action": "fn_egov_inqire_notice('4581', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "2026년 제2회 기간제근로자 채용 서류심사 합격자 및 면접시험 계획 공고",
-                "action": "fn_egov_inqire_notice('4578', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "체육센터 시간강사(프리랜서) 모집 최종위탁자 공고",
-                "action": "fn_egov_inqire_notice('4577', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "체육센터 시간강사(프리랜서) 강좌 위·수탁 모집 공고",
-                "action": "fn_egov_inqire_notice('4565', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "2026년 제2회 기간제근로자 채용 공고",
-                "action": "fn_egov_inqire_notice('4562', 'BBSMSTR_000000000061');"
-              },
-              {
-                "title": "2026년 제1회 기간제근로자 채용 최종합격자 공고",
-                "action": "fn_egov_inqire_notice('4544', 'BBSMSTR_000000000061');"
-              }
-            ],
-            "candidateUrlSamples": [],
-            "candidateCount": 7,
-            "exactMatch": false,
-            "missingCount": 3,
-            "extraCount": 0,
-            "countSource": "visible-board-rows"
-          },
-          {
-            "url": "https://www.ubimc.or.kr/",
+            "url": "https://m.knoc.co.kr/sub01/sub01_7_9.jsp",
             "visiblePostCount": null,
             "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
+            "anchors": 264,
+            "titleMatches": 245,
             "noUrl": 0,
             "unsafeUrl": 0,
             "accepted": 0,
@@ -303,7 +186,16 @@
             "clickableBlocksScanned": 0,
             "clickableBlocksAccepted": 0,
             "listOnlyAccepted": 0,
-            "titleSamples": [],
+            "titleSamples": [
+              "���� �ٷΰ���",
+              "�ѱ���������",
+              "�˻��ϱ�",
+              "�α���",
+              "����Ʈ��",
+              "Ȩ����",
+              "�޴� �ݱ�",
+              "CEO �λ縻"
+            ],
             "unsafeSamples": [],
             "actionSamples": [],
             "candidateUrlSamples": [],
@@ -312,10 +204,130 @@
             "missingCount": null,
             "extraCount": null,
             "countSource": "unavailable"
+          },
+          {
+            "url": "https://www.knoc.co.kr/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 105,
+            "titleMatches": 84,
+            "noUrl": 0,
+            "unsafeUrl": 1,
+            "accepted": 13,
+            "rowFallbackAccepted": 1,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 1,
+            "titleSamples": [
+              "�������ΰ���",
+              "�α���",
+              "ENGLISH",
+              "�ѱ���������",
+              "����Ұ�",
+              "������ �� �ֿ����",
+              "�ӿ� �� �濵��",
+              "ȸ�翬��"
+            ],
+            "unsafeSamples": [
+              {
+                "title": "Opinet �⸧���� �Ƴ��� ������ �ѱ��������� ���ǳ�",
+                "reason": "detail-url-pending",
+                "identity": "row-42893",
+                "row": "<li class=\"opinet\">\r\n\t\t\t\t\t\t<a href=\"https://www.opinet.co.kr/user/main/mainView.do\" target=\"_blank\">\r\n\t\t\t\t\t\t\t<h3>Opinet</h3>\r\n\t\t\t\t\t\t\t<p>�⸧���� �Ƴ��� ������ �ѱ��������� ���ǳ�</p>\r\n\t\t\t\t\t\t\t<img class=\"arrow\" src=\"images/main/i_go_03.png\" alt=\"ȭ��ǥ\">\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t</li>"
+              }
+            ],
+            "actionSamples": [],
+            "candidateUrlSamples": [
+              {
+                "title": "[�����ڷ�] �ѱ���������, ���� �� ������ �۾� ���� ã�� ���ð� ���� ����� �ǽ� �� ���»� ��� �� ���� ���� ���� ü�� ������ �(2026.07.29.) 2026-07-29",
+                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=996&mode=view&bid=NEWS&field=subject&text=&page=1",
+                "allowed": true
+              },
+              {
+                "title": "[�����ڷ�] �ѱ���������, ���� �湮�� ���� ������� ����ȸ ����(2026.07.27.) 2026-07-27",
+                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=995&mode=view&bid=NEWS&field=subject&text=&page=1",
+                "allowed": true
+              },
+              {
+                "title": "[�����ڷ�] �ѱ���������, ���� �������� ������ ������ ���� ����ȸ�� �ǽ�(2026.07.24.) 2026-07-24",
+                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=994&mode=view&bid=NEWS&field=subject&text=&page=1",
+                "allowed": true
+              },
+              {
+                "title": "[�����ڷ�] �ѱ���������, ��������ĺ� �Ұ� ��2026 �糭���� �������� ����(2026.07.22.) 2026-07-22",
+                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=993&mode=view&bid=NEWS&field=subject&text=&page=1",
+                "allowed": true
+              },
+              {
+                "title": "[�����ڷ�] �ѱ���������, �������硤�Ѽ����� �������ࡦ���� ��� ���� ����(2026.07.15.) 2026-07-15",
+                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=992&mode=view&bid=NEWS&field=subject&text=&page=1",
+                "allowed": true
+              },
+              {
+                "title": "�����ڷ� �ٷΰ���",
+                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp",
+                "allowed": true
+              },
+              {
+                "title": "���ں� ������ȸ",
+                "url": "https://www.opinet.co.kr/user/dopospdrg/dopOsPdrgSelect.do",
+                "allowed": false
+              },
+              {
+                "title": "���ں� ������ȸ",
+                "url": "https://www.knoc.co.kr/?id=tab1-1",
+                "allowed": true
+              },
+              {
+                "title": "���ں� ������ȸ",
+                "url": "https://www.knoc.co.kr/?id=tab1-2",
+                "allowed": true
+              },
+              {
+                "title": "���ں� ������ȸ",
+                "url": "https://www.knoc.co.kr/?id=tab1-3",
+                "allowed": true
+              },
+              {
+                "title": "��������-��������-�Ѽ��� ���� ���Ͽ� ���� ��������� (2026.07,15)",
+                "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
+                "allowed": true
+              },
+              {
+                "title": "UAE ADNOC�� CEO ��� (2026.07.08.)",
+                "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
+                "allowed": true
+              },
+              {
+                "title": "����-�ѱ������ڿ�����, �ؾ���°� ȸ�� �� ������ȸ ��� ���� �������� ü�� (2026.07.07)",
+                "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
+                "allowed": true
+              },
+              {
+                "title": "���ּ� ����, �ؿܻ������ ���� ���� ���� (2026.07.06.)",
+                "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
+                "allowed": true
+              },
+              {
+                "title": "���䴺�� �ٷΰ���",
+                "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
+                "allowed": true
+              },
+              {
+                "title": "Opinet �⸧���� �Ƴ��� ������ �ѱ��������� ���ǳ�",
+                "url": "https://www.opinet.co.kr/user/main/mainView.do",
+                "allowed": false
+              }
+            ],
+            "candidateCount": 13,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
           }
         ],
-        "repairTarget": "scripts/collectors/institutions/울산북구시설관리공단.mjs",
-        "recommendedAction": "누락 행 원문을 기준으로 기관 전용 행 선택자 보강"
+        "repairTarget": "scripts/collectors/institutions/한국석유공사.mjs",
+        "recommendedAction": "오탐 행 원문을 기준으로 메뉴·첨부·중복 제외 규칙 추가"
       },
       "stages": {
         "access": {
@@ -324,9 +336,9 @@
           "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         },
         "detail": {
           "from": false,
@@ -340,132 +352,7 @@
         }
       },
       "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "울산정보산업진흥원",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "list",
-        "status": "partial",
-        "code": "LIST_MISSING_POSTS",
-        "reason": "화면 11건 중 10건 추출 · 1건 누락",
-        "evidence": [
-          {
-            "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
-            "visiblePostCount": 11,
-            "rowMode": true,
-            "anchors": 221,
-            "titleMatches": 10,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 10,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "울산정보산업진흥원 2026년 5차 직원 채용 공고",
-              "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
-              "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
-              "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
-              "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
-              "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
-              "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
-              "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 10,
-            "exactMatch": false,
-            "missingCount": 1,
-            "extraCount": 0,
-            "countSource": "visible-board-rows"
-          },
-          {
-            "url": "https://uipa.or.kr/webuser/recruit/list.html",
-            "visiblePostCount": 11,
-            "rowMode": true,
-            "anchors": 221,
-            "titleMatches": 10,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 10,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "울산정보산업진흥원 2026년 5차 직원 채용 공고",
-              "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
-              "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
-              "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
-              "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
-              "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
-              "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
-              "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 10,
-            "exactMatch": false,
-            "missingCount": 1,
-            "extraCount": 0,
-            "countSource": "visible-board-rows"
-          },
-          {
-            "url": "https://uipa.careerlink.kr/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
-        "recommendedAction": "누락 행 원문을 기준으로 기관 전용 행 선택자 보강"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
+      "regressed": true
     },
     {
       "org": "근로복지공단",
@@ -1039,6 +926,187 @@
       "regressed": false
     },
     {
+      "org": "울주군시설관리공단",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "list",
+        "status": "failed",
+        "code": "LIST_COUNTER_FAILED",
+        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+        "evidence": [
+          {
+            "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 233,
+            "titleMatches": 215,
+            "noUrl": 1,
+            "unsafeUrl": 3,
+            "accepted": 48,
+            "rowFallbackAccepted": 2,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 4,
+            "titleSamples": [
+              "브라우저에서 자바스크립트를 활성화하는 방법",
+              "주요메뉴로 건너뛰기",
+              "본문으로가기",
+              "공공시설예약서비스",
+              "울주시네마 예매시스템",
+              "울주군시설관리공단",
+              "페이스북",
+              "카카오톡"
+            ],
+            "unsafeSamples": [
+              {
+                "title": "주요메뉴로 건너뛰기",
+                "reason": "detail-url-pending",
+                "identity": "row-6610",
+                "row": "<li><a  class=\"accessibility\" href=\"#gnb\">주요메뉴로 건너뛰기</a></li>"
+              },
+              {
+                "title": "본문으로가기",
+                "reason": "detail-url-pending",
+                "identity": "row-6676",
+                "row": "<li><a  class=\"accessibility\" href=\"#container\">본문으로가기</a></li>"
+              },
+              {
+                "title": "홍보영상",
+                "reason": "no-url-detail-pending",
+                "identity": "row-13332",
+                "row": "<li class=\"promo\"><a href=\"#\" onClick=\"show_promo();\"><span class=\"sns_txt\">홍보영상</span></a></li>"
+              },
+              {
+                "title": "관련사이트",
+                "reason": "detail-url-pending",
+                "identity": "row-75722",
+                "row": "<li>\r\n\t\t\t\t\t\t\t\t<a href=\"#LINK\" class=\"flink\">관련사이트</a>\r\n\t\t\t\t\t\t\t\t<ul  class=\"foot_link\">\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"https://www.uljusiseol.or.kr/portal\" target=\"_blank\">울주군시설관리공단</a></li>"
+              }
+            ],
+            "actionSamples": [
+              {
+                "title": "홍보영상",
+                "action": "show_promo();"
+              }
+            ],
+            "candidateUrlSamples": [
+              {
+                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
+                "url": "http://www.enable-javascript.com/ko/",
+                "allowed": false
+              },
+              {
+                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
+                "url": "https://cdn.rawgit.com/young-ha/webfont-archive/master/css/Godo.css",
+                "allowed": false
+              },
+              {
+                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
+                "url": "https://www.uljusiseol.or.kr/portal/PageLink.do;jsessionid=293FEB9422F9E11A75F3D012955E195A",
+                "allowed": false
+              },
+              {
+                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
+                "url": "https://www.uljusiseol.or.kr/portal/;jsessionid=293FEB9422F9E11A75F3D012955E195A",
+                "allowed": false
+              },
+              {
+                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011#gnb",
+                "allowed": false
+              },
+              {
+                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011&id=securitynttidheader",
+                "allowed": true
+              },
+              {
+                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011&id=securitybbsidheader",
+                "allowed": true
+              },
+              {
+                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011&id=skip_nav",
+                "allowed": true
+              },
+              {
+                "title": "주요메뉴로 건너뛰기",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011#gnb",
+                "allowed": false
+              },
+              {
+                "title": "본문으로가기",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011#container",
+                "allowed": false
+              },
+              {
+                "title": "고객소통",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000048",
+                "allowed": true
+              },
+              {
+                "title": "고객의 소리",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000048",
+                "allowed": true
+              },
+              {
+                "title": "군민제안방",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000050",
+                "allowed": true
+              },
+              {
+                "title": "재난 및 안전",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000045",
+                "allowed": true
+              },
+              {
+                "title": "체육시설서식자료실",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000046",
+                "allowed": true
+              },
+              {
+                "title": "주민참여예산",
+                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000049",
+                "allowed": true
+              }
+            ],
+            "candidateCount": 48,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
+        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+      },
+      "stages": {
+        "access": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "list": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "detail": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachment": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        }
+      },
+      "improved": true,
+      "regressed": false
+    },
+    {
       "org": "울주문화재단",
       "health": "degraded",
       "primaryCause": {
@@ -1595,7 +1663,7 @@
       "regressed": false
     },
     {
-      "org": "울산광역시 타기관소식",
+      "org": "울산북구시설관리공단",
       "health": "degraded",
       "primaryCause": {
         "stage": "detail",
@@ -1604,25 +1672,25 @@
         "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
         "evidence": [
           {
-            "title": "(부산광역시) 위해축산물 긴급회수문 게재",
-            "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+            "title": "2026년 제3회 기간제근로자 채용 공고",
+            "requestedUrl": "https://www.ubimc.or.kr/pageCont.do?bbsId=BBSMSTR_000000000061&nttId=4604",
             "ok": false,
-            "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182862",
+            "finalUrl": "https://www.ubimc.or.kr/pageCont.do?bbsId=BBSMSTR_000000000061&nttId=4604",
             "textLength": 0,
             "attachmentCount": 0,
-            "error": "fetch failed"
+            "error": "detail body too short"
           },
           {
-            "title": "울산시설공단 임원 공개모집 공고",
-            "requestedUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+            "title": "2026년 제2회 기간제근로자 채용 최종합격자 공고",
+            "requestedUrl": "https://www.ubimc.or.kr/pageCont.do?bbsId=BBSMSTR_000000000061&nttId=4581",
             "ok": false,
-            "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&dataId=182860",
+            "finalUrl": "https://www.ubimc.or.kr/pageCont.do?bbsId=BBSMSTR_000000000061&nttId=4581",
             "textLength": 0,
             "attachmentCount": 0,
-            "error": "fetch failed"
+            "error": "detail body too short"
           }
         ],
-        "repairTarget": "scripts/collectors/institutions/울산광역시 타기관소식.mjs",
+        "repairTarget": "scripts/collectors/institutions/울산북구시설관리공단.mjs",
         "recommendedAction": "기관 전용 상세 본문 선택자 추가"
       },
       "stages": {
@@ -1632,23 +1700,23 @@
           "change": "same"
         },
         "list": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         },
         "detail": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "attachment": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         }
       },
-      "improved": false,
-      "regressed": true
+      "improved": true,
+      "regressed": false
     },
     {
       "org": "울산시설공단",
@@ -1707,6 +1775,62 @@
       "regressed": false
     },
     {
+      "org": "울산테크노파크",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "detail",
+        "status": "failed",
+        "code": "DETAIL_EMPTY_BODY",
+        "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+        "evidence": [
+          {
+            "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+            "requestedUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39252",
+            "ok": false,
+            "finalUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39252",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "error": "final url is not a detail page"
+          },
+          {
+            "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+            "requestedUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39251",
+            "ok": false,
+            "finalUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39251",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "error": "final url is not a detail page"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
+        "recommendedAction": "기관 전용 상세 본문 선택자 추가"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
+    {
       "org": "한국산업인력공단",
       "health": "degraded",
       "primaryCause": {
@@ -1754,35 +1878,105 @@
       "regressed": false
     },
     {
-      "org": "한국석유공사",
+      "org": "울산광역시 타기관소식",
       "health": "degraded",
       "primaryCause": {
         "stage": "detail",
         "status": "failed",
-        "code": "DETAIL_EMPTY_BODY",
-        "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+        "code": "DETAIL_URL_NOT_READY",
+        "reason": "목록 10건 모두 상세 URL 미복구",
         "evidence": [
           {
-            "title": "2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�",
-            "requestedUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=73&psize=15&ses=USERSESSION&text=",
-            "ok": false,
-            "finalUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=73&psize=15&ses=USERSESSION&text=",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "final url is not a detail page"
+            "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+            "visiblePostCount": 10,
+            "rowMode": true,
+            "anchors": 782,
+            "titleMatches": 10,
+            "noUrl": 10,
+            "unsafeUrl": 0,
+            "accepted": 10,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 10,
+            "titleSamples": [
+              "남구체육회 생활체육지도자 공개경쟁 채용 안내",
+              "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
+              "2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고",
+              "2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고",
+              "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
+              "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고",
+              "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
+              "2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고"
+            ],
+            "unsafeSamples": [],
+            "actionSamples": [
+              {
+                "title": "남구체육회 생활체육지도자 공개경쟁 채용 안내",
+                "action": "goBoardArticle('529011'); return false;"
+              },
+              {
+                "title": "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
+                "action": "goBoardArticle('525293'); return false;"
+              },
+              {
+                "title": "2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고",
+                "action": "goBoardArticle('524281'); return false;"
+              },
+              {
+                "title": "2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고",
+                "action": "goBoardArticle('523385'); return false;"
+              },
+              {
+                "title": "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
+                "action": "goBoardArticle('523070'); return false;"
+              },
+              {
+                "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고",
+                "action": "goBoardArticle('520747'); return false;"
+              },
+              {
+                "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
+                "action": "goBoardArticle('520190'); return false;"
+              },
+              {
+                "title": "2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고",
+                "action": "goBoardArticle('518116'); return false;"
+              },
+              {
+                "title": "2026년 제1회 울산광역시남구도시관리공단 일반직 직원 채용 재공고",
+                "action": "goBoardArticle('517639'); return false;"
+              },
+              {
+                "title": "2026년 고래문화재단 기간제 근로자 채용 공고",
+                "action": "goBoardArticle('517613'); return false;"
+              }
+            ],
+            "candidateUrlSamples": [],
+            "candidateCount": 10,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "countSource": "visible-board-rows"
           },
           {
-            "title": "2026�� �Ϲݱ� ����(ü����) ä����� [����]",
-            "requestedUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=72&psize=15&ses=USERSESSION&text=",
-            "ok": false,
-            "finalUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=72&psize=15&ses=USERSESSION&text=",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "final url is not a detail page"
+            "url": "https://job.alio.go.kr/",
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
           }
         ],
-        "repairTarget": "scripts/collectors/institutions/한국석유공사.mjs",
-        "recommendedAction": "기관 전용 상세 본문 선택자 추가"
+        "repairTarget": "scripts/collectors/institutions/울산광역시 타기관소식.mjs",
+        "recommendedAction": "기관 전용 상세 URL 생성 규칙 구현"
       },
       "stages": {
         "access": {
@@ -1918,49 +2112,49 @@
               {
                 "title": "REC 계약",
                 "reason": "detail-url-pending",
-                "identity": "row-20251",
+                "identity": "row-20248",
                 "row": "<li> \r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 계약</a>\r\n<ul class='depth3'>\r\n<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 입찰</a>\r\n</li>"
               },
               {
                 "title": "REC 입찰",
                 "reason": "detail-url-pending",
-                "identity": "row-20396",
+                "identity": "row-20393",
                 "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 입찰</a>\r\n</li>"
               },
               {
                 "title": "REC 양수양도",
                 "reason": "detail-url-pending",
-                "identity": "row-20527",
+                "identity": "row-20524",
                 "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 양수양도</a>\r\n</li>"
               },
               {
                 "title": "REC 대금지급",
                 "reason": "detail-url-pending",
-                "identity": "row-20660",
+                "identity": "row-20657",
                 "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 대금지급</a>\r\n</li>"
               },
               {
                 "title": "REC 거래절차",
                 "reason": "detail-url-pending",
-                "identity": "row-20793",
+                "identity": "row-20790",
                 "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 거래절차</a>\r\n</li>"
               },
               {
                 "title": "정보공개청구",
                 "reason": "detail-url-pending",
-                "identity": "row-36043",
+                "identity": "row-36041",
                 "row": "<div class=\"list01\"><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새 창 열림\">정보공개청구</a></div>"
               },
               {
                 "title": "웹접근성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49222",
+                "identity": "row-49220",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               },
               {
                 "title": "웹개방성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49373",
+                "identity": "row-49371",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               }
             ],
@@ -2212,7 +2406,7 @@
       "regressed": false
     },
     {
-      "org": "울산도시공사",
+      "org": "울산남구도시관리공단",
       "health": "healthy",
       "primaryCause": {
         "stage": "complete",
@@ -2220,7 +2414,7 @@
         "code": "PIPELINE_SAMPLE_OK",
         "reason": "현재 진단 표본에서 실패 원인 없음",
         "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산도시공사.mjs",
+        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
@@ -2230,26 +2424,26 @@
           "change": "same"
         },
         "list": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         },
         "detail": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         },
         "attachment": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
-      "org": "울산복지가족진흥사회서비스원",
+      "org": "울산도시공사",
       "health": "healthy",
       "primaryCause": {
         "stage": "complete",
@@ -2257,7 +2451,7 @@
         "code": "PIPELINE_SAMPLE_OK",
         "reason": "현재 진단 표본에서 실패 원인 없음",
         "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "repairTarget": "scripts/collectors/institutions/울산도시공사.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
@@ -2323,7 +2517,7 @@
       "regressed": false
     },
     {
-      "org": "울산테크노파크",
+      "org": "울산정보산업진흥원",
       "health": "healthy",
       "primaryCause": {
         "stage": "complete",
@@ -2331,7 +2525,7 @@
         "code": "PIPELINE_SAMPLE_OK",
         "reason": "현재 진단 표본에서 실패 원인 없음",
         "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
+        "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
@@ -2341,9 +2535,9 @@
           "change": "same"
         },
         "list": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         },
         "detail": {
           "from": true,
@@ -2356,7 +2550,7 @@
           "change": "same"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {

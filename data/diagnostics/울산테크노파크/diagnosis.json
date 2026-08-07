@@ -1,0 +1,2164 @@
+{
+  "org": "울산테크노파크",
+  "health": "degraded",
+  "primaryCause": {
+    "stage": "detail",
+    "status": "failed",
+    "code": "DETAIL_EMPTY_BODY",
+    "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+    "evidence": [
+      {
+        "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+        "requestedUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39252",
+        "ok": false,
+        "finalUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39252",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "final url is not a detail page"
+      },
+      {
+        "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+        "requestedUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39251",
+        "ok": false,
+        "finalUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39251",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "final url is not a detail page"
+      }
+    ],
+    "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
+    "recommendedAction": "기관 전용 상세 본문 선택자 추가"
+  },
+  "diagnosis": {
+    "http": {
+      "status": "success",
+      "code": "HTTP_OK",
+      "reason": "1개 후보 URL HTTP 응답 성공",
+      "evidence": [
+        {
+          "url": "https://www.utp.or.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.utp.or.kr/",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산테크노파크",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "인재\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 5969,
+            "requestedUrl": "https://www.utp.or.kr/",
+            "finalUrl": "https://www.utp.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        }
+      ]
+    },
+    "recruitVerify": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산테크노파크",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "인재\\s*채용"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 2,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 5969,
+        "requestedUrl": "https://www.utp.or.kr/",
+        "finalUrl": "https://www.utp.or.kr/",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      }
+    },
+    "list": {
+      "status": "success",
+      "code": "LIST_EXACT",
+      "reason": "화면 게시글 15건 = 추출 15건",
+      "evidence": [
+        {
+          "url": "https://www.utp.or.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 481,
+          "titleMatches": 416,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 17,
+          "rowFallbackAccepted": 4,
+          "clickableBlocksScanned": 16,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "SITEMAP",
+            "ENGLISH",
+            "지원사업",
+            "사업안내",
+            "장비지원",
+            "입주 및 부대시설",
+            "알림마당",
+            "정보공개"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [
+            {
+              "title": "2026년도 방폭안전관리 대상사업장 모집 추가공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=569",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 지역주력산업육성(지역특화 프로젝트 2.0 『레전드 50+』) 지원모집 3차 공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=568",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 지역주력산업육성(지역특화 프로젝트 『레전드 50+』) 지원모집 3차 공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=566",
+              "allowed": true
+            },
+            {
+              "title": "[울산 암모니아 벙커링 규제자유특구] 2026년 규제자유특구혁신사업육성 책임보험료 지원 및 사업화지원사업 모집 공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=567",
+              "allowed": true
+            },
+            {
+              "title": "「2026년 중소기업 밀집지역 위기대응 체계 구축사업」 Stand-up 맞춤지원 모집 공고(하반기)",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=565",
+              "allowed": true
+            },
+            {
+              "title": "「K-함정 융합 플랫폼 구축사업」 R&D 과제기획 수요기업 모집 공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=563",
+              "allowed": true
+            },
+            {
+              "title": "울산 암모니아 벙커링 규제자유특구 책임보험 가입 관련 보험사 모집 공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=562",
+              "allowed": true
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+              "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408&wr_id=39252&mnuno=M0000048",
+              "allowed": true
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+              "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408&wr_id=39251&mnuno=M0000048",
+              "allowed": true
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+              "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408&wr_id=39250&mnuno=M0000048",
+              "allowed": true
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)",
+              "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408&wr_id=39249&mnuno=M0000048",
+              "allowed": true
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제출 안내",
+              "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408&wr_id=39248&mnuno=M0000048",
+              "allowed": true
+            },
+            {
+              "title": "CONTACT US",
+              "url": "https://www.utp.or.kr/sub_etc/utpetc04.php",
+              "allowed": true
+            },
+            {
+              "title": "052-219-8500",
+              "url": "tel:052-219-8500",
+              "allowed": false
+            },
+            {
+              "title": "052-219-8500",
+              "url": "https://www.utp.or.kr/sub_etc/utpetc04.php",
+              "allowed": true
+            },
+            {
+              "title": "052-219-8500",
+              "url": "tel:052-219-8509",
+              "allowed": false
+            }
+          ],
+          "candidateCount": 17,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408",
+          "visiblePostCount": 15,
+          "rowMode": true,
+          "anchors": 468,
+          "titleMatches": 15,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 15,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제…",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 15,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&sno=0511",
+          "visiblePostCount": 8,
+          "rowMode": true,
+          "anchors": 437,
+          "titleMatches": 8,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 8,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "2026년 임직원 채용인원 및 친인척 해당자 공개",
+            "2025년 임직원 채용인원 및 친인척 해당자 공개",
+            "2024년 임직원 채용인원 및 친인척 해당자 공개",
+            "2023년 임직원 채용인원 및 친인척 해당자 공개",
+            "2022년 임직원 채용인원 및 친인척 해당자 공개",
+            "2021년 임직원 채용인원 및 친인척 해당자 공개",
+            "2020년 임직원 채용인원 및 친인척 해당자 공개",
+            "2019년 임직원 채용인원 및 친인척 해당자 공개"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 8,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        }
+      ]
+    },
+    "detail": {
+      "status": "failed",
+      "code": "DETAIL_EMPTY_BODY",
+      "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+      "evidence": [
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+          "requestedUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39252",
+          "ok": false,
+          "finalUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39252",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "final url is not a detail page"
+        },
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+          "requestedUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39251",
+          "ok": false,
+          "finalUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39251",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "final url is not a detail page"
+        }
+      ]
+    },
+    "attachment": {
+      "status": "blocked",
+      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
+      "reason": "상세 단계 미통과로 첨부 진단 보류",
+      "evidence": []
+    },
+    "access": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산테크노파크",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "인재\\s*채용"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 2,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 5969,
+        "requestedUrl": "https://www.utp.or.kr/",
+        "finalUrl": "https://www.utp.or.kr/",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      }
+    }
+  },
+  "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
+  "recommendedAction": "기관 전용 상세 본문 선택자 추가",
+  "stages": {
+    "access": {
+      "ok": true,
+      "httpOk": true,
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://www.utp.or.kr/",
+      "finalUrl": "https://www.utp.or.kr/",
+      "activeRecruitUrl": "https://www.utp.or.kr/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "attempts": [
+        {
+          "url": "https://www.utp.or.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.utp.or.kr/",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산테크노파크",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "인재\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 5969,
+            "requestedUrl": "https://www.utp.or.kr/",
+            "finalUrl": "https://www.utp.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산테크노파크",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "인재\\s*채용"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 2,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "textLength": 5969,
+        "requestedUrl": "https://www.utp.or.kr/",
+        "finalUrl": "https://www.utp.or.kr/",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      },
+      "boardType": {
+        "type": "IFRAME",
+        "confidence": "high",
+        "evidence": [
+          "iframe 태그 발견"
+        ]
+      },
+      "diagnosis": {
+        "ok": true,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+        "http": {
+          "ok": true,
+          "code": "HTTP_OK",
+          "reason": "1개 후보 URL HTTP 응답 성공",
+          "attempts": [
+            {
+              "url": "https://www.utp.or.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.utp.or.kr/",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "울산테크노파크",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "인재\\s*채용"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 2,
+                "boardType": {
+                  "type": "IFRAME",
+                  "confidence": "high",
+                  "evidence": [
+                    "iframe 태그 발견"
+                  ]
+                },
+                "textLength": 5969,
+                "requestedUrl": "https://www.utp.or.kr/",
+                "finalUrl": "https://www.utp.or.kr/",
+                "status": 200,
+                "contentType": "text/html; charset=utf-8"
+              }
+            }
+          ]
+        },
+        "recruitVerify": {
+          "ok": true,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
+          },
+          "evidence": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산테크노파크",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "인재\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "textLength": 5969,
+            "requestedUrl": "https://www.utp.or.kr/",
+            "finalUrl": "https://www.utp.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        "activeRecruitUrl": "https://www.utp.or.kr/",
+        "selectedRequestedUrl": "https://www.utp.or.kr/",
+        "verification": {
+          "ok": true,
+          "verified": true,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": true,
+            "meaningfulBody": true
+          },
+          "title": "울산테크노파크",
+          "orgMatched": true,
+          "positiveHits": 2,
+          "positiveMatches": [
+            "채용\\s*공고",
+            "인재\\s*채용"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 2,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
+          },
+          "textLength": 5969,
+          "requestedUrl": "https://www.utp.or.kr/",
+          "finalUrl": "https://www.utp.or.kr/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8"
+        }
+      }
+    },
+    "list": {
+      "ok": true,
+      "status": "exact",
+      "pagesChecked": 3,
+      "visiblePostCount": 15,
+      "candidateCount": 15,
+      "missingCount": 0,
+      "extraCount": 0,
+      "exactMatch": true,
+      "selectedUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408",
+      "detailUrlReady": 15,
+      "listOnlyCount": 0,
+      "extractionDiagnostics": [
+        {
+          "url": "https://www.utp.or.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 481,
+          "titleMatches": 416,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 17,
+          "rowFallbackAccepted": 4,
+          "clickableBlocksScanned": 16,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "SITEMAP",
+            "ENGLISH",
+            "지원사업",
+            "사업안내",
+            "장비지원",
+            "입주 및 부대시설",
+            "알림마당",
+            "정보공개"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [
+            {
+              "title": "2026년도 방폭안전관리 대상사업장 모집 추가공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=569",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 지역주력산업육성(지역특화 프로젝트 2.0 『레전드 50+』) 지원모집 3차 공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=568",
+              "allowed": true
+            },
+            {
+              "title": "2026년도 지역주력산업육성(지역특화 프로젝트 『레전드 50+』) 지원모집 3차 공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=566",
+              "allowed": true
+            },
+            {
+              "title": "[울산 암모니아 벙커링 규제자유특구] 2026년 규제자유특구혁신사업육성 책임보험료 지원 및 사업화지원사업 모집 공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=567",
+              "allowed": true
+            },
+            {
+              "title": "「2026년 중소기업 밀집지역 위기대응 체계 구축사업」 Stand-up 맞춤지원 모집 공고(하반기)",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=565",
+              "allowed": true
+            },
+            {
+              "title": "「K-함정 융합 플랫폼 구축사업」 R&D 과제기획 수요기업 모집 공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=563",
+              "allowed": true
+            },
+            {
+              "title": "울산 암모니아 벙커링 규제자유특구 책임보험 가입 관련 보험사 모집 공고",
+              "url": "https://www.utp.or.kr/include/contents.php?mnuno=M0000018&menu_group=1&sno=0102&task=view&seq=562",
+              "allowed": true
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+              "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408&wr_id=39252&mnuno=M0000048",
+              "allowed": true
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+              "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408&wr_id=39251&mnuno=M0000048",
+              "allowed": true
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+              "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408&wr_id=39250&mnuno=M0000048",
+              "allowed": true
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)",
+              "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408&wr_id=39249&mnuno=M0000048",
+              "allowed": true
+            },
+            {
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제출 안내",
+              "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408&wr_id=39248&mnuno=M0000048",
+              "allowed": true
+            },
+            {
+              "title": "CONTACT US",
+              "url": "https://www.utp.or.kr/sub_etc/utpetc04.php",
+              "allowed": true
+            },
+            {
+              "title": "052-219-8500",
+              "url": "tel:052-219-8500",
+              "allowed": false
+            },
+            {
+              "title": "052-219-8500",
+              "url": "https://www.utp.or.kr/sub_etc/utpetc04.php",
+              "allowed": true
+            },
+            {
+              "title": "052-219-8500",
+              "url": "tel:052-219-8509",
+              "allowed": false
+            }
+          ],
+          "candidateCount": 17,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408",
+          "visiblePostCount": 15,
+          "rowMode": true,
+          "anchors": 468,
+          "titleMatches": 15,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 15,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제…",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 15,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&sno=0511",
+          "visiblePostCount": 8,
+          "rowMode": true,
+          "anchors": 437,
+          "titleMatches": 8,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 8,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "2026년 임직원 채용인원 및 친인척 해당자 공개",
+            "2025년 임직원 채용인원 및 친인척 해당자 공개",
+            "2024년 임직원 채용인원 및 친인척 해당자 공개",
+            "2023년 임직원 채용인원 및 친인척 해당자 공개",
+            "2022년 임직원 채용인원 및 친인척 해당자 공개",
+            "2021년 임직원 채용인원 및 친인척 해당자 공개",
+            "2020년 임직원 채용인원 및 친인척 해당자 공개",
+            "2019년 임직원 채용인원 및 친인척 해당자 공개"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 8,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "countSource": "visible-board-rows"
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산테크노파크",
+          "url": "https://www.utp.or.kr/",
+          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+          "listCounterFailureReason": "DOM_COUNT_ZERO",
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 17,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 12,
+            "UNCLASSIFIED": 5
+          },
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 17,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 109136,
+            "missingRows": 0,
+            "extraCandidates": 17
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 296,
+            "article": 0,
+            "[onclick]": 16,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 481
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [
+            "2026년도 방폭안전관리 대상사업장 모집 추가공고",
+            "2026년도 지역주력산업육성(지역특화 프로젝트 2.0 『레전드 50+』) 지원모집 3차 공고",
+            "2026년도 지역주력산업육성(지역특화 프로젝트 『레전드 50+』) 지원모집 3차 공고",
+            "[울산 암모니아 벙커링 규제자유특구] 2026년 규제자유특구혁신사업육성 책임보험료 지원 및 사업화지원사업 모집 공고",
+            "「2026년 중소기업 밀집지역 위기대응 체계 구축사업」 Stand-up 맞춤지원 모집 공고(하반기)",
+            "「K-함정 융합 플랫폼 구축사업」 R&D 과제기획 수요기업 모집 공고",
+            "울산 암모니아 벙커링 규제자유특구 책임보험 가입 관련 보험사 모집 공고",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제출 안내",
+            "CONTACT US",
+            "052-219-8500",
+            "052-219-8509",
+            "info@utp.or.kr",
+            "1877-8972"
+          ],
+          "missingRows": [],
+          "extraCandidates": [
+            {
+              "org": "울산테크노파크",
+              "title": "2026년도 방폭안전관리 대상사업장 모집 추가공고",
+              "link": "https://www.utp.or.kr/include/contents.php?menu_group=1&mnuno=M0000018&seq=569&sno=0102&task=view",
+              "listText": "2026년도 방폭안전관리 대상사업장 모집 추가공고 D-14 2026.08.05 ~ 2026.08.21 2026년도 지역주력산업육성(지역특화 프로젝트 2.0 『레전드 50+』) 지원모집 3차 공고 D-12 2026.08.04 ~ 2026.08.19",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "2026년도 지역주력산업육성(지역특화 프로젝트 2.0 『레전드 50+』) 지원모집 3차 공고",
+              "link": "https://www.utp.or.kr/include/contents.php?menu_group=1&mnuno=M0000018&seq=568&sno=0102&task=view",
+              "listText": ".21 2026년도 지역주력산업육성(지역특화 프로젝트 2.0 『레전드 50+』) 지원모집 3차 공고 D-12 2026.08.04 ~ 2026.08.19 2026년도 지역주력산업육성(지역특화 프로젝트 『레전드 50+』) 지원모집 3차 공고 D-12 2026.08.04 ~ 2026.08.19",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "2026년도 지역주력산업육성(지역특화 프로젝트 『레전드 50+』) 지원모집 3차 공고",
+              "link": "https://www.utp.or.kr/include/contents.php?menu_group=1&mnuno=M0000018&seq=566&sno=0102&task=view",
+              "listText": ".19 2026년도 지역주력산업육성(지역특화 프로젝트 『레전드 50+』) 지원모집 3차 공고 D-12 2026.08.04 ~ 2026.08.19 [울산 암모니아 벙커링 규제자유특구] 2026년 규제자유특구혁신사업육성 책임보험료 지원 및 사업화지원사업 모집 공고 D-14 2026.08.03 ~ 2026.08.21",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "[울산 암모니아 벙커링 규제자유특구] 2026년 규제자유특구혁신사업육성 책임보험료 지원 및 사업화지원사업 모집 공고",
+              "link": "https://www.utp.or.kr/include/contents.php?menu_group=1&mnuno=M0000018&seq=567&sno=0102&task=view",
+              "listText": ".19 [울산 암모니아 벙커링 규제자유특구] 2026년 규제자유특구혁신사업육성 책임보험료 지원 및 사업화지원사업 모집 공고 D-14 2026.08.03 ~ 2026.08.21 「2026년 중소기업 밀집지역 위기대응 체계 구축사업」 Stand-up 맞춤지원 모집 공고(하반기) D-115 2026.08.03 ~ 2026.11.30",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "「2026년 중소기업 밀집지역 위기대응 체계 구축사업」 Stand-up 맞춤지원 모집 공고(하반기)",
+              "link": "https://www.utp.or.kr/include/contents.php?menu_group=1&mnuno=M0000018&seq=565&sno=0102&task=view",
+              "listText": ".21 「2026년 중소기업 밀집지역 위기대응 체계 구축사업」 Stand-up 맞춤지원 모집 공고(하반기) D-115 2026.08.03 ~ 2026.11.30 「K-함정 융합 플랫폼 구축사업」 R&D 과제기획 수요기업 모집 공고 D-7 2026.08.03 ~ 2026.08.14",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "「K-함정 융합 플랫폼 구축사업」 R&D 과제기획 수요기업 모집 공고",
+              "link": "https://www.utp.or.kr/include/contents.php?menu_group=1&mnuno=M0000018&seq=563&sno=0102&task=view",
+              "listText": ".30 「K-함정 융합 플랫폼 구축사업」 R&D 과제기획 수요기업 모집 공고 D-7 2026.08.03 ~ 2026.08.14 울산 암모니아 벙커링 규제자유특구 책임보험 가입 관련 보험사 모집 공고 D-0 2026.07.31 ~ 2026.08.07",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산 암모니아 벙커링 규제자유특구 책임보험 가입 관련 보험사 모집 공고",
+              "link": "https://www.utp.or.kr/include/contents.php?menu_group=1&mnuno=M0000018&seq=562&sno=0102&task=view",
+              "listText": ".14 울산 암모니아 벙커링 규제자유특구 책임보험 가입 관련 보험사 모집 공고 D-0 2026.07.31 ~ 2026.08.07 N OTICE 공지사항 <a href=\"./board/board.php?bo_table=sub0509&menu_group=5&sno=0508\" target=\"_sel",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000048&sno=0408&wr_id=39252",
+              "listText": "n_more.png\" alt=\"해당페이지 이동\" /> 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내 26.08.06 울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호) 26.08.04 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표 26.07.24",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000048&sno=0408&wr_id=39251",
+              "listText": "년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내 26.08.06 울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호) 26.08.04 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표 26.07.24 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 26.07.22",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000048&sno=0408&wr_id=39250",
+              "listText": "0048\">울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호) 26.08.04 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표 26.07.24 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 26.07.22 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제출 안내 26.07.20",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000048&sno=0408&wr_id=39249",
+              "listText": "크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표 26.07.24 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 26.07.22 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제출 안내 26.07.20 [중소벤처기업부]",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제출 안내",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000048&sno=0408&wr_id=39248",
+              "listText": "0048\">울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 26.07.22 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제출 안내 26.07.20 [중소벤처기업부] 2019년 스마트공장 보급·확산사업 공고 19.04.16 [중소벤처기업진흥공단] 19년 중소기업컨설팅(화학물질등록-사전신고)",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "CONTACT US",
+              "link": "https://www.utp.or.kr/sub_etc/utpetc04.php",
+              "listText": "\">영상정보처리기기 운영&middot;관리방침 이메일무단수집거부 이용약관 사이트맵 (우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동 울산테크노파크 대표번호 : 052-219-8500 FAX : 052-219-8509 E-mail : info@utp.or.kr 전국테크노파크 대표번호 : 1877-8972 Copyright 2016 ULSAN TECHNOPARK. All Rights Reserved. <a href=\".\" target=\"_blank\" title=\"새창열림\" id=\"sitelin",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "052-219-8500",
+              "link": "https://www.utp.or.kr/sub_etc/utpetc04.php",
+              "listText": "> (우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동 울산테크노파크 대표번호 : 052-219-8500 FAX : 052-219-8509 E-mail : info@utp.or.kr 전국테크노파크 대표번호 : 1877-8972 Copyright 2016 ULSAN TECHNOPARK. All Rights Reserved. UTP 관련사이트 <a href=\"http://platform.utp.or.kr/\" target=\"_blank\" ti",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "052-219-8509",
+              "link": "https://www.utp.or.kr/sub_etc/utpetc04.php",
+              "listText": "(우)44412 울산광역시 중구 종가로 15(다운동) 울산테크노파크 본부동 울산테크노파크 대표번호 : 052-219-8500 FAX : 052-219-8509 E-mail : info@utp.or.kr 전국테크노파크 대표번호 : 1877-8972 Copyright 2016 ULSAN TECHNOPARK. All Rights Reserved. UTP 관련사이트 기업지원사업 관리 시스템 울산테크노파크 교",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "info@utp.or.kr",
+              "link": "https://www.utp.or.kr/sub_etc/utpetc04.php",
+              "listText": "dding-left: 1.5em\" > 대표번호 : 052-219-8500 FAX : 052-219-8509 E-mail : info@utp.or.kr 전국테크노파크 대표번호 : 1877-8972 Copyright 2016 ULSAN TECHNOPARK. All Rights Reserved. UTP 관련사이트 기업지원사업 관리 시스템 울산테크노파크 교육센터 울산 R&D성과물정보 관리시스템 <a",
+              "adapter": "울산테크노파크"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "1877-8972",
+              "link": "https://www.utp.or.kr/sub_etc/utpetc04.php",
+              "listText": "스보내기\">052-219-8509 E-mail : info@utp.or.kr 전국테크노파크 대표번호 : 1877-8972 Copyright 2016 ULSAN TECHNOPARK. All Rights Reserved. UTP 관련사이트 기업지원사업 관리 시스템 울산테크노파크 교육센터 울산 R&D성과물정보 관리시스템 장비이용신청 온라인시스템 <div class=\"sitelink_wrap02",
+              "adapter": "울산테크노파크"
+            }
+          ],
+          "rowTrace": []
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산테크노파크",
+          "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408",
+          "probableCause": "NON_ROW_CANDIDATES_OR_COUNTER_MISMATCH",
+          "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+          "counterTrace": {
+            "source": "visible-board-rows",
+            "rawDomRows": 15,
+            "uniqueVisibleTitleCount": 3,
+            "reportedVisiblePostCount": 15,
+            "acceptedCandidateCount": 15,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 15
+          },
+          "counts": {
+            "visiblePostCount": 15,
+            "candidateCount": 15,
+            "rawTableRows": 15,
+            "uniqueVisibleTitleCount": 3,
+            "sourceHtmlLength": 91583,
+            "missingRows": 0,
+            "extraCandidates": 12
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 16,
+            "li": 289,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 468
+          },
+          "rejectReasonCounts": {
+            "TITLE_EMPTY": 12
+          },
+          "visibleTitles": [
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표"
+          ],
+          "extractedTitles": [
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제…",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 면접전형 결과 및 합격자 검증 서류 제출 …",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 면접전형 결과 및 합격자 검증 서류 제출…",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 서류전형 결과 및 면접전형 안내",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 서류전형 결과 및 면접전형 안내",
+            "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호)",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호)",
+            "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호)"
+          ],
+          "missingRows": [],
+          "extraCandidates": [
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39252",
+              "listText": "964 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-08-06 35",
+              "adapter": "울산테크노파크:board-row"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39251",
+              "listText": "963 울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호) 채용담당자 2026-08-04 118",
+              "adapter": "울산테크노파크:board-row"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39249",
+              "listText": "961 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 채용담당자 2026-07-22 468",
+              "adapter": "울산테크노파크:board-row"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제…",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39248",
+              "listText": "960 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제… 채용담당자 2026-07-20 248",
+              "adapter": "울산테크노파크:board-row"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39247",
+              "listText": "959 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-07-10 418",
+              "adapter": "울산테크노파크:board-row"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 면접전형 결과 및 합격자 검증 서류 제출 …",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39244",
+              "listText": "956 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 면접전형 결과 및 합격자 검증 서류 제출 … 채용담당자 2026-07-06 355",
+              "adapter": "울산테크노파크:board-row"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 면접전형 결과 및 합격자 검증 서류 제출…",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39243",
+              "listText": "955 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 면접전형 결과 및 합격자 검증 서류 제출… 채용담당자 2026-07-06 281",
+              "adapter": "울산테크노파크:board-row"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 서류전형 결과 및 면접전형 안내",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39242",
+              "listText": "954 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-06-26 528",
+              "adapter": "울산테크노파크:board-row"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 서류전형 결과 및 면접전형 안내",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39241",
+              "listText": "953 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-06-26 435",
+              "adapter": "울산테크노파크:board-row"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호)",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39240",
+              "listText": "952 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 채용담당자 2026-06-26 791",
+              "adapter": "울산테크노파크:board-row"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호)",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39239",
+              "listText": "951 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 채용담당자 2026-06-12 1064",
+              "adapter": "울산테크노파크:board-row"
+            },
+            {
+              "org": "울산테크노파크",
+              "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호)",
+              "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39238",
+              "listText": "950 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 채용담당자 2026-06-12 814",
+              "adapter": "울산테크노파크:board-row"
+            }
+          ],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "964 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-08-06 35",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39252&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                964                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39252&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-08-06</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_g75GHFaA__ECA095EBB3B4EAB3B5EAB09C__ECA09C2026-010ED98B8_ECB2ADEB8584EC9DB8ED84B4__EC849CEBA598ECA084ED9895_EAB2B0EAB3BC.pdf\" title=\"_정보공개__제2026-010호_청년인턴__서류전형_결과.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>35</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 1,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "963 울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호) 채용담당자 2026-08-04 118",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39251&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                963                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39251&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-08-04</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_sVeRLiro_ECA09C2026-011ED98B8_ECA781EC9B90_ECB2ADEB8584EC9DB8ED84B4__ECB184EC9AA9_ECA781EBACB4EAB8B0EC88A0EC849C.pdf\" title=\"제2026-011호_직원_청년인턴__채용_직무기술서.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>118</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 2,
+              "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+              "normalizedTitle": "울산테크노파크 직원 청년인턴 채용 공고 제2026 009호 최종합격자 발표",
+              "text": "962 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표 채용담당자 2026-07-24 287",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39250&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                962                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39250&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-24</td>\r\n                            <td>\r\n                                                            </td>\r\n                            <td>287</td>\r\n                        </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39250",
+              "adapter": "울산테크노파크:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "961 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 채용담당자 2026-07-22 468",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39249&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                961                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39249&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-22</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_ehEwkbqv_ECA09C2026-010ED98B8_ECA781EC9B90_ECB2ADEB8584EC9DB8ED84B4__ECB184EC9AA9_ECA781EBACB4EAB8B0EC88A0EC849C.pdf\" title=\"제2026-010호_직원_청년인턴__채용_직무기술서.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>468</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 4,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "960 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제… 채용담당자 2026-07-20 248",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39248&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                960                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39248&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제…</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-20</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_mNhxOnlV__ECA095EBB3B4EAB3B5EAB09C__EC9AB8EC82B0ED858CED81ACEB85B8ED8C8CED81AC_ECA781EC9B90_ECB184EC9AA9_EBA9B4ECA091ECA084ED9895_EAB2B0EAB3BC_ECA09C2026-009ED98B8_.pdf\" title=\"_정보공개__울산테크노파크_직원_채용_면접전형_결과_제2026-009호_.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>248</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 5,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "959 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-07-10 418",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39247&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                959                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39247&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-10</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_t89XVb0r__ECA095EBB3B4EAB3B5EAB09C__ECA09C2026-009ED98B8_ECB2ADEB8584EC9DB8ED84B4__EC849CEBA598ECA084ED9895_EAB2B0EAB3BC.pdf\" title=\"_정보공개__제2026-009호_청년인턴__서류전형_결과.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>418</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 6,
+              "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표",
+              "normalizedTitle": "울산테크노파크 직원 위촉직 채용 공고 제2026 008호 최종합격자 발표",
+              "text": "958 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표 채용담당자 2026-07-10 287",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39246&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                958                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39246&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-10</td>\r\n                            <td>\r\n                                                            </td>\r\n                            <td>287</td>\r\n                        </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39246",
+              "adapter": "울산테크노파크:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 7,
+              "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표",
+              "normalizedTitle": "울산테크노파크 직원 위촉직 채용 공고 제2026 007호 최종합격자 발표",
+              "text": "957 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표 채용담당자 2026-07-10 191",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39245&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                957                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39245&mnuno=M0000059&menu_group=4&sno=0408'> 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-10</td>\r\n                            <td>\r\n                                                            </td>\r\n                            <td>191</td>\r\n                        </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39245",
+              "adapter": "울산테크노파크:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 8,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "956 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 면접전형 결과 및 합격자 검증 서류 제출 … 채용담당자 2026-07-06 355",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39244&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                956                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39244&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 면접전형 결과 및 합격자 검증 서류 제출 …</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-06</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_NbwhDWKX__ECA095EBB3B4EAB3B5EAB09C__EC9AB8EC82B0ED858CED81ACEB85B8ED8C8CED81AC_ECA781EC9B90_ECB184EC9AA9_EBA9B4ECA091ECA084ED9895_EAB2B0EAB3BC_ECA09C2026-008ED98B8_.pdf\" title=\"_정보공개__울산테크노파크_직원_채용_면접전형_결과_제2026-008호_.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>355</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 9,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "955 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 면접전형 결과 및 합격자 검증 서류 제출… 채용담당자 2026-07-06 281",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39243&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                955                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39243&mnuno=M0000059&menu_group=4&sno=0408'>\t울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 면접전형 결과 및 합격자 검증 서류 제출…</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-06</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_FEkgmj3x__ECA095EBB3B4EAB3B5EAB09C__EC9AB8EC82B0ED858CED81ACEB85B8ED8C8CED81AC_ECA781EC9B90_ECB184EC9AA9_EBA9B4ECA091ECA084ED9895_EAB2B0EAB3BC_ECA09C2026-007ED98B8_.pdf\" title=\"_정보공개__울산테크노파크_직원_채용_면접전형_결과_제2026-007호_.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>281</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 10,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "954 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-06-26 528",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39242&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                954                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39242&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 서류전형 결과 및 면접전형 안내</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-06-26</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_yNSMfJRk__ECA095EBB3B4EAB3B5EAB09C__ECA09C2026-008ED98B8_EC9C84ECB489ECA781__EC849CEBA598ECA084ED9895_EAB2B0EAB3BC.pdf\" title=\"_정보공개__제2026-008호_위촉직__서류전형_결과.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>528</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 11,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "953 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-06-26 435",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39241&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                953                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39241&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 서류전형 결과 및 면접전형 안내</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-06-26</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_NbvzqlTi__ECA095EBB3B4EAB3B5EAB09C__ECA09C2026-007ED98B8_EC9C84ECB489ECA781__EC849CEBA598ECA084ED9895_EAB2B0EAB3BC.pdf\" title=\"_정보공개__제2026-007호_위촉직__서류전형_결과.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>435</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 12,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "952 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 채용담당자 2026-06-26 791",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39240&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                952                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39240&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호)</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-06-26</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_vf0XPtlr_ECA09C2026-009ED98B8_ECA781EC9B90_ECB2ADEB8584EC9DB8ED84B4__ECB184EC9AA9_ECA781EBACB4EAB8B0EC88A0EC849C.pdf\" title=\"제2026-009호_직원_청년인턴__채용_직무기술서.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>791</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 13,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "951 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 채용담당자 2026-06-12 1064",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39239&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                951                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39239&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-008호)</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-06-12</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_at5HNL3m_ECA09C2026-008ED98B8_ECA781EC9B90_EC9C84ECB489ECA781__ECB184EC9AA9_ECA781EBACB4EAB8B0EC88A0EC849C.pdf\" title=\"제2026-008호_직원_위촉직__채용_직무기술서.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>1064</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            },
+            {
+              "index": 14,
+              "title": "",
+              "normalizedTitle": "",
+              "text": "950 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 채용담당자 2026-06-12 814",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0603&wr_id=39238&mnuno=M0000059&menu_group=4&sno=0408",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                950                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39238&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-007호)</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-06-12</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_rIck3aPd_ECA09C2026-007ED98B8_ECA781EC9B90_EC9C84ECB489ECA781__ECB184EC9AA9_ECA781EBACB4EAB8B0EC88A0EC849C.pdf\" title=\"제2026-007호_직원_위촉직__채용_직무기술서.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>814</td>\r\n                        </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "TITLE_EMPTY"
+            }
+          ]
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산테크노파크",
+          "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&sno=0511",
+          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+          "listCounterFailureReason": "UNKNOWN",
+          "counterTrace": {
+            "source": "visible-board-rows",
+            "rawDomRows": 8,
+            "uniqueVisibleTitleCount": 8,
+            "reportedVisiblePostCount": 8,
+            "acceptedCandidateCount": 8,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 8
+          },
+          "counts": {
+            "visiblePostCount": 8,
+            "candidateCount": 8,
+            "rawTableRows": 8,
+            "uniqueVisibleTitleCount": 8,
+            "sourceHtmlLength": 80195,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 9,
+            "li": 290,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 437
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [
+            "2026년 임직원 채용인원 및 친인척 해당자 공개",
+            "2025년 임직원 채용인원 및 친인척 해당자 공개",
+            "2024년 임직원 채용인원 및 친인척 해당자 공개",
+            "2023년 임직원 채용인원 및 친인척 해당자 공개",
+            "2022년 임직원 채용인원 및 친인척 해당자 공개",
+            "2021년 임직원 채용인원 및 친인척 해당자 공개",
+            "2020년 임직원 채용인원 및 친인척 해당자 공개",
+            "2019년 임직원 채용인원 및 친인척 해당자 공개"
+          ],
+          "extractedTitles": [
+            "2026년 임직원 채용인원 및 친인척 해당자 공개",
+            "2025년 임직원 채용인원 및 친인척 해당자 공개",
+            "2024년 임직원 채용인원 및 친인척 해당자 공개",
+            "2023년 임직원 채용인원 및 친인척 해당자 공개",
+            "2022년 임직원 채용인원 및 친인척 해당자 공개",
+            "2021년 임직원 채용인원 및 친인척 해당자 공개",
+            "2020년 임직원 채용인원 및 친인척 해당자 공개",
+            "2019년 임직원 채용인원 및 친인척 해당자 공개"
+          ],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "2026년 임직원 채용인원 및 친인척 해당자 공개",
+              "normalizedTitle": "2026년 임직원 채용인원 및 친인척 해당자 공개",
+              "text": "8 2026년 임직원 채용인원 및 친인척 해당자 공개 채용담당자",
+              "hasDate": false,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0109_07&wr_id=10&mnuno=M0000093&menu_group=5&sno=0511",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                8                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0109_07&wr_id=10&mnuno=M0000093&menu_group=5&sno=0511'>2026년 임직원 채용인원 및 친인척 해당자 공개</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>\r\n                                                            </td>\r\n                        </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=10",
+              "adapter": "울산테크노파크:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 1,
+              "title": "2025년 임직원 채용인원 및 친인척 해당자 공개",
+              "normalizedTitle": "2025년 임직원 채용인원 및 친인척 해당자 공개",
+              "text": "7 2025년 임직원 채용인원 및 친인척 해당자 공개 채용담당자",
+              "hasDate": false,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0109_07&wr_id=9&mnuno=M0000093&menu_group=5&sno=0511",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                7                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0109_07&wr_id=9&mnuno=M0000093&menu_group=5&sno=0511'>2025년 임직원 채용인원 및 친인척 해당자 공개</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>\r\n                                                            </td>\r\n                        </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=9",
+              "adapter": "울산테크노파크:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 2,
+              "title": "2024년 임직원 채용인원 및 친인척 해당자 공개",
+              "normalizedTitle": "2024년 임직원 채용인원 및 친인척 해당자 공개",
+              "text": "6 2024년 임직원 채용인원 및 친인척 해당자 공개 채용담당자",
+              "hasDate": false,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0109_07&wr_id=8&mnuno=M0000093&menu_group=5&sno=0511",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                6                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0109_07&wr_id=8&mnuno=M0000093&menu_group=5&sno=0511'>2024년 임직원 채용인원 및 친인척 해당자 공개</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>\r\n                                                            </td>\r\n                        </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=8",
+              "adapter": "울산테크노파크:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "2023년 임직원 채용인원 및 친인척 해당자 공개",
+              "normalizedTitle": "2023년 임직원 채용인원 및 친인척 해당자 공개",
+              "text": "5 2023년 임직원 채용인원 및 친인척 해당자 공개 채용담당자",
+              "hasDate": false,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0109_07&wr_id=7&mnuno=M0000093&menu_group=5&sno=0511",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                5                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0109_07&wr_id=7&mnuno=M0000093&menu_group=5&sno=0511'>2023년 임직원 채용인원 및 친인척 해당자 공개</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>\r\n                                                            </td>\r\n                        </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=7",
+              "adapter": "울산테크노파크:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 4,
+              "title": "2022년 임직원 채용인원 및 친인척 해당자 공개",
+              "normalizedTitle": "2022년 임직원 채용인원 및 친인척 해당자 공개",
+              "text": "4 2022년 임직원 채용인원 및 친인척 해당자 공개 채용담당자",
+              "hasDate": false,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0109_07&wr_id=6&mnuno=M0000093&menu_group=5&sno=0511",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                4                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0109_07&wr_id=6&mnuno=M0000093&menu_group=5&sno=0511'>2022년 임직원 채용인원 및 친인척 해당자 공개</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>\r\n                                                            </td>\r\n                        </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=6",
+              "adapter": "울산테크노파크:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 5,
+              "title": "2021년 임직원 채용인원 및 친인척 해당자 공개",
+              "normalizedTitle": "2021년 임직원 채용인원 및 친인척 해당자 공개",
+              "text": "3 2021년 임직원 채용인원 및 친인척 해당자 공개 채용담당자",
+              "hasDate": false,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0109_07&wr_id=4&mnuno=M0000093&menu_group=5&sno=0511",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                3                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0109_07&wr_id=4&mnuno=M0000093&menu_group=5&sno=0511'>2021년 임직원 채용인원 및 친인척 해당자 공개</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>\r\n                                                            </td>\r\n                        </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=4",
+              "adapter": "울산테크노파크:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 6,
+              "title": "2020년 임직원 채용인원 및 친인척 해당자 공개",
+              "normalizedTitle": "2020년 임직원 채용인원 및 친인척 해당자 공개",
+              "text": "2 2020년 임직원 채용인원 및 친인척 해당자 공개 채용담당자",
+              "hasDate": false,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0109_07&wr_id=3&mnuno=M0000093&menu_group=5&sno=0511",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                2                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0109_07&wr_id=3&mnuno=M0000093&menu_group=5&sno=0511'>2020년 임직원 채용인원 및 친인척 해당자 공개</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>\r\n                                                            </td>\r\n                        </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=3",
+              "adapter": "울산테크노파크:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 7,
+              "title": "2019년 임직원 채용인원 및 친인척 해당자 공개",
+              "normalizedTitle": "2019년 임직원 채용인원 및 친인척 해당자 공개",
+              "text": "1 2019년 임직원 채용인원 및 친인척 해당자 공개 채용담당자",
+              "hasDate": false,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "../board/board.php?bo_table=sub0109_07&wr_id=2&mnuno=M0000093&menu_group=5&sno=0511",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n                            <td>\r\n                                1                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0109_07&wr_id=2&mnuno=M0000093&menu_group=5&sno=0511'>2019년 임직원 채용인원 및 친인척 해당자 공개</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>\r\n                                                            </td>\r\n                        </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&mnuno=M0000093&sno=0511&wr_id=2",
+              "adapter": "울산테크노파크:board-row",
+              "rejectionReason": ""
+            }
+          ]
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "울산테크노파크",
+          "htmlPath": "data/diagnostics/울산테크노파크/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/울산테크노파크/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/울산테크노파크/list/page-1-rows.txt",
+          "url": "https://www.utp.or.kr/"
+        },
+        {
+          "org": "울산테크노파크",
+          "htmlPath": "data/diagnostics/울산테크노파크/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/울산테크노파크/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/울산테크노파크/list/page-2-rows.txt",
+          "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408"
+        },
+        {
+          "org": "울산테크노파크",
+          "htmlPath": "data/diagnostics/울산테크노파크/list/page-3-raw.html",
+          "diagnosisPath": "data/diagnostics/울산테크노파크/list/page-3-root-cause.json",
+          "rowsPath": "data/diagnostics/울산테크노파크/list/page-3-rows.txt",
+          "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0109_07&menu_group=5&sno=0511"
+        }
+      ],
+      "samples": [
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39252",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39251",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39250",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39249",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제…",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39248",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39247",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39246",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39245",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 면접전형 결과 및 합격자 검증 서류 제출 …",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39244",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 면접전형 결과 및 합격자 검증 서류 제출…",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39243",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 서류전형 결과 및 면접전형 안내",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39242",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 서류전형 결과 및 면접전형 안내",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39241",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호)",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39240",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호)",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39239",
+          "adapter": "울산테크노파크:board-row"
+        },
+        {
+          "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호)",
+          "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39238",
+          "adapter": "울산테크노파크:board-row"
+        }
+      ],
+      "errors": [],
+      "selectedRootCause": {
+        "version": "1.1-passive",
+        "mode": "passive",
+        "org": "울산테크노파크",
+        "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408",
+        "probableCause": "NON_ROW_CANDIDATES_OR_COUNTER_MISMATCH",
+        "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+        "counterTrace": {
+          "source": "visible-board-rows",
+          "rawDomRows": 15,
+          "uniqueVisibleTitleCount": 3,
+          "reportedVisiblePostCount": 15,
+          "acceptedCandidateCount": 15,
+          "exactAgainstRaw": true,
+          "exactAgainstUniqueTitles": false
+        },
+        "candidateClassCounts": {
+          "RECRUIT_POST": 15
+        },
+        "counts": {
+          "visiblePostCount": 15,
+          "candidateCount": 15,
+          "rawTableRows": 15,
+          "uniqueVisibleTitleCount": 3,
+          "sourceHtmlLength": 91583,
+          "missingRows": 0,
+          "extraCandidates": 12
+        },
+        "selectorCounts": {
+          "table tbody tr": 1,
+          "tr": 16,
+          "li": 289,
+          "article": 0,
+          "[onclick]": 0,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 468
+        },
+        "rejectReasonCounts": {
+          "TITLE_EMPTY": 12
+        },
+        "visibleTitles": [
+          "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표"
+        ],
+        "extractedTitles": [
+          "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+          "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+          "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+          "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)",
+          "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제…",
+          "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 면접전형 결과 및 합격자 검증 서류 제출 …",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 면접전형 결과 및 합격자 검증 서류 제출…",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 서류전형 결과 및 면접전형 안내",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 서류전형 결과 및 면접전형 안내",
+          "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호)",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호)",
+          "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호)"
+        ],
+        "missingRows": [],
+        "extraCandidates": [
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39252",
+            "listText": "964 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-08-06 35",
+            "adapter": "울산테크노파크:board-row"
+          },
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39251",
+            "listText": "963 울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호) 채용담당자 2026-08-04 118",
+            "adapter": "울산테크노파크:board-row"
+          },
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39249",
+            "listText": "961 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 채용담당자 2026-07-22 468",
+            "adapter": "울산테크노파크:board-row"
+          },
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제…",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39248",
+            "listText": "960 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제… 채용담당자 2026-07-20 248",
+            "adapter": "울산테크노파크:board-row"
+          },
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39247",
+            "listText": "959 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-07-10 418",
+            "adapter": "울산테크노파크:board-row"
+          },
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 면접전형 결과 및 합격자 검증 서류 제출 …",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39244",
+            "listText": "956 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 면접전형 결과 및 합격자 검증 서류 제출 … 채용담당자 2026-07-06 355",
+            "adapter": "울산테크노파크:board-row"
+          },
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 면접전형 결과 및 합격자 검증 서류 제출…",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39243",
+            "listText": "955 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 면접전형 결과 및 합격자 검증 서류 제출… 채용담당자 2026-07-06 281",
+            "adapter": "울산테크노파크:board-row"
+          },
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 서류전형 결과 및 면접전형 안내",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39242",
+            "listText": "954 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-06-26 528",
+            "adapter": "울산테크노파크:board-row"
+          },
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 서류전형 결과 및 면접전형 안내",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39241",
+            "listText": "953 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-06-26 435",
+            "adapter": "울산테크노파크:board-row"
+          },
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호)",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39240",
+            "listText": "952 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 채용담당자 2026-06-26 791",
+            "adapter": "울산테크노파크:board-row"
+          },
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호)",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39239",
+            "listText": "951 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 채용담당자 2026-06-12 1064",
+            "adapter": "울산테크노파크:board-row"
+          },
+          {
+            "org": "울산테크노파크",
+            "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호)",
+            "link": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39238",
+            "listText": "950 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 채용담당자 2026-06-12 814",
+            "adapter": "울산테크노파크:board-row"
+          }
+        ],
+        "rowTrace": [
+          {
+            "index": 0,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "964 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-08-06 35",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39252&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                964                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39252&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-08-06</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_g75GHFaA__ECA095EBB3B4EAB3B5EAB09C__ECA09C2026-010ED98B8_ECB2ADEB8584EC9DB8ED84B4__EC849CEBA598ECA084ED9895_EAB2B0EAB3BC.pdf\" title=\"_정보공개__제2026-010호_청년인턴__서류전형_결과.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>35</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          },
+          {
+            "index": 1,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "963 울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호) 채용담당자 2026-08-04 118",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39251&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                963                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39251&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-08-04</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_sVeRLiro_ECA09C2026-011ED98B8_ECA781EC9B90_ECB2ADEB8584EC9DB8ED84B4__ECB184EC9AA9_ECA781EBACB4EAB8B0EC88A0EC849C.pdf\" title=\"제2026-011호_직원_청년인턴__채용_직무기술서.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>118</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          },
+          {
+            "index": 2,
+            "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표",
+            "normalizedTitle": "울산테크노파크 직원 청년인턴 채용 공고 제2026 009호 최종합격자 발표",
+            "text": "962 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표 채용담당자 2026-07-24 287",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39250&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                962                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39250&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 최종합격자 발표</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-24</td>\r\n                            <td>\r\n                                                            </td>\r\n                            <td>287</td>\r\n                        </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39250",
+            "adapter": "울산테크노파크:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 3,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "961 울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 채용담당자 2026-07-22 468",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39249&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                961                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39249&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호)</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-22</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_ehEwkbqv_ECA09C2026-010ED98B8_ECA781EC9B90_ECB2ADEB8584EC9DB8ED84B4__ECB184EC9AA9_ECA781EBACB4EAB8B0EC88A0EC849C.pdf\" title=\"제2026-010호_직원_청년인턴__채용_직무기술서.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>468</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          },
+          {
+            "index": 4,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "960 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제… 채용담당자 2026-07-20 248",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39248&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                960                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39248&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 면접전형 결과 및 합격자 검증 서류 제…</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-20</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_mNhxOnlV__ECA095EBB3B4EAB3B5EAB09C__EC9AB8EC82B0ED858CED81ACEB85B8ED8C8CED81AC_ECA781EC9B90_ECB184EC9AA9_EBA9B4ECA091ECA084ED9895_EAB2B0EAB3BC_ECA09C2026-009ED98B8_.pdf\" title=\"_정보공개__울산테크노파크_직원_채용_면접전형_결과_제2026-009호_.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>248</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          },
+          {
+            "index": 5,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "959 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-07-10 418",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39247&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                959                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39247&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 서류전형 결과 및 면접전형 안내</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-10</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_t89XVb0r__ECA095EBB3B4EAB3B5EAB09C__ECA09C2026-009ED98B8_ECB2ADEB8584EC9DB8ED84B4__EC849CEBA598ECA084ED9895_EAB2B0EAB3BC.pdf\" title=\"_정보공개__제2026-009호_청년인턴__서류전형_결과.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>418</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          },
+          {
+            "index": 6,
+            "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표",
+            "normalizedTitle": "울산테크노파크 직원 위촉직 채용 공고 제2026 008호 최종합격자 발표",
+            "text": "958 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표 채용담당자 2026-07-10 287",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39246&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                958                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39246&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 최종합격자 발표</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-10</td>\r\n                            <td>\r\n                                                            </td>\r\n                            <td>287</td>\r\n                        </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39246",
+            "adapter": "울산테크노파크:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 7,
+            "title": "울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표",
+            "normalizedTitle": "울산테크노파크 직원 위촉직 채용 공고 제2026 007호 최종합격자 발표",
+            "text": "957 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표 채용담당자 2026-07-10 191",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39245&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                957                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39245&mnuno=M0000059&menu_group=4&sno=0408'> 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 최종합격자 발표</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-10</td>\r\n                            <td>\r\n                                                            </td>\r\n                            <td>191</td>\r\n                        </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39245",
+            "adapter": "울산테크노파크:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 8,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "956 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 면접전형 결과 및 합격자 검증 서류 제출 … 채용담당자 2026-07-06 355",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39244&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                956                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39244&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 면접전형 결과 및 합격자 검증 서류 제출 …</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-06</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_NbwhDWKX__ECA095EBB3B4EAB3B5EAB09C__EC9AB8EC82B0ED858CED81ACEB85B8ED8C8CED81AC_ECA781EC9B90_ECB184EC9AA9_EBA9B4ECA091ECA084ED9895_EAB2B0EAB3BC_ECA09C2026-008ED98B8_.pdf\" title=\"_정보공개__울산테크노파크_직원_채용_면접전형_결과_제2026-008호_.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>355</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          },
+          {
+            "index": 9,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "955 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 면접전형 결과 및 합격자 검증 서류 제출… 채용담당자 2026-07-06 281",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39243&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                955                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39243&mnuno=M0000059&menu_group=4&sno=0408'>\t울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 면접전형 결과 및 합격자 검증 서류 제출…</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-07-06</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_FEkgmj3x__ECA095EBB3B4EAB3B5EAB09C__EC9AB8EC82B0ED858CED81ACEB85B8ED8C8CED81AC_ECA781EC9B90_ECB184EC9AA9_EBA9B4ECA091ECA084ED9895_EAB2B0EAB3BC_ECA09C2026-007ED98B8_.pdf\" title=\"_정보공개__울산테크노파크_직원_채용_면접전형_결과_제2026-007호_.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>281</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          },
+          {
+            "index": 10,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "954 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-06-26 528",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39242&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                954                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39242&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 서류전형 결과 및 면접전형 안내</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-06-26</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_yNSMfJRk__ECA095EBB3B4EAB3B5EAB09C__ECA09C2026-008ED98B8_EC9C84ECB489ECA781__EC849CEBA598ECA084ED9895_EAB2B0EAB3BC.pdf\" title=\"_정보공개__제2026-008호_위촉직__서류전형_결과.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>528</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          },
+          {
+            "index": 11,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "953 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 서류전형 결과 및 면접전형 안내 채용담당자 2026-06-26 435",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39241&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                953                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39241&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 서류전형 결과 및 면접전형 안내</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-06-26</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_NbvzqlTi__ECA095EBB3B4EAB3B5EAB09C__ECA09C2026-007ED98B8_EC9C84ECB489ECA781__EC849CEBA598ECA084ED9895_EAB2B0EAB3BC.pdf\" title=\"_정보공개__제2026-007호_위촉직__서류전형_결과.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>435</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          },
+          {
+            "index": 12,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "952 울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호) 채용담당자 2026-06-26 791",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39240&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                952                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39240&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(청년인턴) 채용 공고(제2026-009호)</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-06-26</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_vf0XPtlr_ECA09C2026-009ED98B8_ECA781EC9B90_ECB2ADEB8584EC9DB8ED84B4__ECB184EC9AA9_ECA781EBACB4EAB8B0EC88A0EC849C.pdf\" title=\"제2026-009호_직원_청년인턴__채용_직무기술서.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>791</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          },
+          {
+            "index": 13,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "951 울산테크노파크 직원(위촉직) 채용 공고(제2026-008호) 채용담당자 2026-06-12 1064",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39239&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                951                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39239&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-008호)</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-06-12</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_at5HNL3m_ECA09C2026-008ED98B8_ECA781EC9B90_EC9C84ECB489ECA781__ECB184EC9AA9_ECA781EBACB4EAB8B0EC88A0EC849C.pdf\" title=\"제2026-008호_직원_위촉직__채용_직무기술서.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>1064</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          },
+          {
+            "index": 14,
+            "title": "",
+            "normalizedTitle": "",
+            "text": "950 울산테크노파크 직원(위촉직) 채용 공고(제2026-007호) 채용담당자 2026-06-12 814",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "../board/board.php?bo_table=sub0603&wr_id=39238&mnuno=M0000059&menu_group=4&sno=0408",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n                            <td>\r\n                                950                            </td>\r\n                                                        <td class=\"subject\">\r\n                                <a href='../board/board.php?bo_table=sub0603&wr_id=39238&mnuno=M0000059&menu_group=4&sno=0408'>울산테크노파크 직원(위촉직) 채용 공고(제2026-007호)</a>                            </td>\r\n                            <td>채용담당자</td>\r\n                            <td>2026-06-12</td>\r\n                            <td>\r\n                                                                <a href=\"../data/file/sub0603/2886730661_rIck3aPd_ECA09C2026-007ED98B8_ECA781EC9B90_EC9C84ECB489ECA781__ECB184EC9AA9_ECA781EBACB4EAB8B0EC88A0EC849C.pdf\" title=\"제2026-007호_직원_위촉직__채용_직무기술서.pdf\" target=\"_blank\"><img src=\"/images/icon_file.png\" alt=\"첨부파일 있음\" /></a>\r\n                                                            </td>\r\n                            <td>814</td>\r\n                        </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "TITLE_EMPTY"
+          }
+        ]
+      }
+    },
+    "detail": {
+      "ok": false,
+      "attempted": 2,
+      "validated": 0,
+      "samples": [
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-010호) 서류전형 결과 및 면접전형 안내",
+          "requestedUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39252",
+          "ok": false,
+          "finalUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39252",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "final url is not a detail page"
+        },
+        {
+          "title": "울산테크노파크 직원(청년인턴) 채용 공고(제2026-011호)",
+          "requestedUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39251",
+          "ok": false,
+          "finalUrl": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&mnuno=M0000059&sno=0408&wr_id=39251",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "final url is not a detail page"
+        }
+      ]
+    },
+    "attachment": {
+      "ok": false,
+      "discovered": 0,
+      "samples": []
+    }
+  }
+}

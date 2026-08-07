@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "purpose": "목록 추출 결과가 실제 채용게시판의 각 게시글 레코드와 1:1로 일치하는지 검증",
+  "completionRule": "visiblePostCount = candidateCount 이면서 각 후보 제목이 서로 다른 실제 게시글 레코드에 1:1 매칭되어야 LIST_VERIFIED_EXACT",
+  "templates": {
+    "TABLE_RECORD": "일반 HTML table/tr 게시판",
+    "ALIO_CARD": "JOB-ALIO recruit_list 카드/li 게시판",
+    "API_CONTENT": "JSON content 배열 게시판",
+    "ROWAREA_RECORD": "rowArea/opnIdx 클릭형 게시판",
+    "HIDDEN_NTTID_ROW": "hidden nttId + submit title 게시판"
+  },
+  "fallback": "새 구조는 완료 처리하지 않고 TEMPLATE_RECORD_MISMATCH로 남겨 기관별 진단 후 새 템플릿을 추가"
+}

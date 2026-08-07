@@ -279,6 +279,31 @@ function titleTokens(value = '') {
     .trim().split(/\s+/).filter(word => word.length >= 2).slice(0, 8);
 }
 
+
+
+const DETAIL_BODY_SELECTORS = [
+  /<(?:div|section|article|td)\b[^>]*(?:id|class)=["'][^"']*(?:board[_-]?(?:view|content|cont)|view[_-]?(?:content|cont|body)|bbs[_-]?(?:view|content|cont)|detail[_-]?(?:content|cont|body)|article[_-]?(?:content|body)|post[_-]?(?:content|body)|contents?|editor|fr-view|se-main-container|bo_v_con)[^"']*["'][^>]*>([\s\S]*?)<\/(?:div|section|article|td)>/gi,
+  /<article\b[^>]*>([\s\S]*?)<\/article>/gi
+];
+
+export function extractDetailBody(html = '', expectedTitle = '') {
+  const source = String(html);
+  const candidates = [];
+  for (const pattern of DETAIL_BODY_SELECTORS) {
+    for (const match of source.matchAll(pattern)) {
+      const text = cleanHtml(match[1] || match[0]);
+      if (text.length >= 80) candidates.push(text);
+    }
+  }
+  const titleWords = titleTokens(expectedTitle);
+  candidates.sort((a, b) => {
+    const ar = titleWords.length ? titleWords.filter(w => a.includes(w)).length / titleWords.length : 0;
+    const br = titleWords.length ? titleWords.filter(w => b.includes(w)).length / titleWords.length : 0;
+    return br - ar || b.length - a.length;
+  });
+  return candidates[0] || cleanHtml(source);
+}
+
 function detailConfidence(text = '', expectedTitle = '') {
   const structureSignals = [
     /모집분야|채용분야/, /응시자격|지원자격/, /접수기간|원서접수/,
@@ -308,12 +333,13 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
     const contentType = response.headers.get('content-type') || '';
     if (!/html|text\//i.test(contentType)) throw new Error(`unsupported content-type: ${contentType}`);
     const html = await response.text();
-    const text = cleanHtml(html).slice(0, 70000);
+    const fullText = cleanHtml(html).slice(0, 70000);
+    const text = extractDetailBody(html, expectedTitle).slice(0, 70000);
     if (text.length < 100) throw new Error('detail body too short');
-    const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)|게시물\s*목록|검색결과\s*\d+건|채용공고\s*목록/.test(text) && !/(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text);
+    const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)|게시물\s*목록|검색결과\s*\d+건|채용공고\s*목록/.test(fullText) && !/(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text);
     if (looksLikeListOnly) throw new Error('list page detected');
-    if (/페이지의\s*주소가\s*올바른지|요청하신\s*페이지를\s*찾을\s*수|존재하지\s*않는\s*페이지|404\s*(?:not\s*found)?/i.test(text)) throw new Error('site error page detected');
-    if (/접근이\s*차단|비정상적인\s*접근|로그인이\s*필요|세션이\s*만료|captcha/i.test(text)) throw new Error('blocked or login page detected');
+    if (/페이지의\s*주소가\s*올바른지|요청하신\s*페이지를\s*찾을\s*수|존재하지\s*않는\s*페이지|404\s*(?:not\s*found)?/i.test(fullText)) throw new Error('site error page detected');
+    if (/접근이\s*차단|비정상적인\s*접근|로그인이\s*필요|세션이\s*만료|captcha/i.test(fullText)) throw new Error('blocked or login page detected');
 
     const finalUrl = response.url || url;
     const final = new URL(finalUrl);
@@ -331,12 +357,15 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
       : (response.headers.get('set-cookie') || '').split(/,(?=[^;,]+=)/).map(value => value.split(';')[0]).join('; ');
     const attachments = extractAttachments(html, finalUrl, { referer: finalUrl, cookie });
     const hasStrongBody = /(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text);
-    if ((!hasDetailPath && !hasDetailParam && !hasStrongBody) || (/(?:list|recruit\.do|contents\.ulsan|noti06\.do)$/i.test(final.pathname) && !hasDetailParam && !hasStrongBody)) {
+    const expectedTokens = titleTokens(expectedTitle);
+    const expectedMatched = expectedTokens.filter(word => fullText.includes(word)).length;
+    const titleEvidence = expectedTokens.length < 2 || expectedMatched / expectedTokens.length >= 0.35;
+    if ((!hasDetailPath && !hasDetailParam && !hasStrongBody && !titleEvidence) || (/(?:list|recruit\.do|contents\.ulsan|noti06\.do)$/i.test(final.pathname) && !hasDetailParam && !hasStrongBody && !titleEvidence)) {
       throw new Error('final url is not a detail page');
     }
 
     const confidence = detailConfidence(text, expectedTitle);
-    if (confidence.structureSignals < 1 && attachments.length === 0) throw new Error('insufficient detail structure');
+    if (confidence.structureSignals < 1 && attachments.length === 0 && !(titleEvidence && text.length >= 140)) throw new Error('insufficient detail structure');
     if (confidence.tokenCount >= 3 && confidence.titleRatio < 0.25 && attachments.length === 0) throw new Error('detail title mismatch');
     return { ok: true, finalUrl, text, confidence, httpStatus: response.status, contentType, attachments };
   } catch (error) {

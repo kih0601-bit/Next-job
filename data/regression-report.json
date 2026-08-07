@@ -1,121 +1,171 @@
 {
-  "generatedAt": "2026-08-07T07:37:35.430Z",
+  "generatedAt": "2026-08-07T08:07:39.690Z",
   "mode": "warning",
   "passed": false,
-  "regressionCount": 3,
+  "regressionCount": 2,
   "regressions": [
+    {
+      "org": "울산복지가족진흥사회서비스원",
+      "health": "failed",
+      "primaryCause": {
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "fetch failed",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.wfps.or.kr/",
+            "ok": false,
+            "error": "fetch failed",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "fetch failed",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.uwfdi.re.kr/",
+            "ok": false,
+            "error": "fetch failed",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+            "ok": false,
+            "error": "fetch failed",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+            "ok": false,
+            "error": "fetch failed",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
     {
       "org": "울산남구도시관리공단",
       "health": "degraded",
       "primaryCause": {
-        "stage": "detail",
+        "stage": "list",
         "status": "failed",
-        "code": "DETAIL_BODY_PARTIAL",
-        "reason": "첫 페이지 10건 중 5건만 상세 본문 검증 성공",
+        "code": "LIST_COUNTER_FAILED",
+        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
         "evidence": [
           {
-            "title": "남구체육회 생활체육지도자 공개경쟁 채용 안내",
-            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=529011",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=529011",
-            "textLength": 135,
-            "attachmentCount": 7,
-            "error": ""
+            "url": "https://recruit.incruit.com/uncmc/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 5,
+            "titleMatches": 3,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [
+              "������",
+              "������",
+              "������"
+            ],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "recordVerification": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "countSource": "unavailable"
           },
           {
-            "title": "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
-            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=525293",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=525293",
-            "textLength": 143,
-            "attachmentCount": 10,
-            "error": ""
-          },
-          {
-            "title": "2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고",
-            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=524281",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=524281",
-            "textLength": 435,
-            "attachmentCount": 7,
-            "error": ""
-          },
-          {
-            "title": "2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고",
-            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523385",
-            "template": "QUERY_ID",
-            "ok": false,
-            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523385",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          },
-          {
-            "title": "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
-            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523070",
-            "template": "QUERY_ID",
-            "ok": false,
-            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=523070",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          },
-          {
-            "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고",
-            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520747",
-            "template": "QUERY_ID",
-            "ok": false,
-            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520747",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          },
-          {
-            "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
-            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520190",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=520190",
-            "textLength": 236,
-            "attachmentCount": 10,
-            "error": ""
-          },
-          {
-            "title": "2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고",
-            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=518116",
-            "template": "QUERY_ID",
-            "ok": false,
-            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=518116",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          },
-          {
-            "title": "2026년 제1회 울산광역시남구도시관리공단 일반직 직원 채용 재공고",
-            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517639",
-            "template": "QUERY_ID",
-            "ok": false,
-            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517639",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          },
-          {
-            "title": "2026년 고래문화재단 기간제 근로자 채용 공고",
-            "requestedUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517613",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=517613",
-            "textLength": 186,
-            "attachmentCount": 11,
-            "error": ""
+            "url": "https://uncmc.incruit.com/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "recordVerification": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "countSource": "unavailable"
           }
         ],
         "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
       },
       "stages": {
         "access": {
@@ -125,304 +175,18 @@
         },
         "list": {
           "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
           "to": false,
           "change": "regressed"
         },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
-    {
-      "org": "울산정보산업진흥원",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "detail",
-        "status": "failed",
-        "code": "DETAIL_BODY_PARTIAL",
-        "reason": "첫 페이지 10건 중 3건만 상세 본문 검증 성공",
-        "evidence": [
-          {
-            "title": "울산정보산업진흥원 2026년 5차 직원 채용 공고",
-            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
-            "template": "COMMON_PLATFORM",
-            "ok": true,
-            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24674",
-            "textLength": 167,
-            "attachmentCount": 5,
-            "error": ""
-          },
-          {
-            "title": "울산정보산업진흥원 2026년 4차 직원 채용 최종합격자 공고",
-            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24664",
-            "template": "COMMON_PLATFORM",
-            "ok": false,
-            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24664",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          },
-          {
-            "title": "울산정보산업진흥원 2026년 4차 직원 채용 면접전형 합격자 공고",
-            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24631",
-            "template": "COMMON_PLATFORM",
-            "ok": true,
-            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24631",
-            "textLength": 141,
-            "attachmentCount": 5,
-            "error": ""
-          },
-          {
-            "title": "울산정보산업진흥원 2026년 4차 직원 채용 필기전형 합격자 공고",
-            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24543",
-            "template": "COMMON_PLATFORM",
-            "ok": false,
-            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24543",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          },
-          {
-            "title": "울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고",
-            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24388",
-            "template": "COMMON_PLATFORM",
-            "ok": false,
-            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24388",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          },
-          {
-            "title": "울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고",
-            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24381",
-            "template": "COMMON_PLATFORM",
-            "ok": false,
-            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24381",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          },
-          {
-            "title": "울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고",
-            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24321",
-            "template": "COMMON_PLATFORM",
-            "ok": true,
-            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24321",
-            "textLength": 141,
-            "attachmentCount": 5,
-            "error": ""
-          },
-          {
-            "title": "울산정보산업진흥원 2026년 3차 직원 채용 서류전형 합격자 공고",
-            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24246",
-            "template": "COMMON_PLATFORM",
-            "ok": false,
-            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24246",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          },
-          {
-            "title": "울산정보산업진흥원 2026년 4차 직원 채용 공고",
-            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24160",
-            "template": "COMMON_PLATFORM",
-            "ok": false,
-            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24160",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          },
-          {
-            "title": "울산정보산업진흥원 2026년 3차 직원 채용 공고",
-            "requestedUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24051",
-            "template": "COMMON_PLATFORM",
-            "ok": false,
-            "finalUrl": "https://www.uipa.or.kr/webuser/recruit/view.html?bd_id=24051",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "detail body too short"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
         "detail": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "attachment": {
           "from": true,
           "to": false,
           "change": "regressed"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
-    {
-      "org": "울산항만공사",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "detail",
-        "status": "failed",
-        "code": "DETAIL_BODY_PARTIAL",
-        "reason": "첫 페이지 11건 중 8건만 상세 본문 검증 성공",
-        "evidence": [
-          {
-            "title": "2026년 울산항만공사 연간 채용 계획 사전 안내",
-            "requestedUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16232&mid=0405000000",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16232&mid=0405000000",
-            "textLength": 215,
-            "attachmentCount": 2,
-            "error": ""
-          },
-          {
-            "title": "2026년 하반기 체험형 청년인턴 채용 최종합격자 및 예비합격자 발표",
-            "requestedUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16428&mid=0405000000",
-            "template": "QUERY_ID",
-            "ok": false,
-            "finalUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16428&mid=0405000000",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "site error page detected"
-          },
-          {
-            "title": "2026년 상반기 신입직원(채용형 인턴) 채용 최종합격자 및 예비합격자 발표",
-            "requestedUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16425&mid=0405000000",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16425&mid=0405000000",
-            "textLength": 429,
-            "attachmentCount": 1,
-            "error": ""
-          },
-          {
-            "title": "2026년 하반기 체험형 청년인턴 채용 면접전형 응시 대상자 공고",
-            "requestedUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16386&mid=0405000000",
-            "template": "QUERY_ID",
-            "ok": false,
-            "finalUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16386&mid=0405000000",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "site error page detected"
-          },
-          {
-            "title": "2026년 상반기 신입직원(채용형 인턴) 채용 면접전형 응시 대상자 공고",
-            "requestedUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16385&mid=0405000000",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16385&mid=0405000000",
-            "textLength": 382,
-            "attachmentCount": 1,
-            "error": ""
-          },
-          {
-            "title": "2026년 하반기 체험형 청년인턴 채용 필기전형 예비합격자 공고",
-            "requestedUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16334&mid=0405000000",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16334&mid=0405000000",
-            "textLength": 440,
-            "attachmentCount": 1,
-            "error": ""
-          },
-          {
-            "title": "2026년 하반기 체험형 청년인턴 채용 필기전형 합격자 공고",
-            "requestedUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16333&mid=0405000000",
-            "template": "QUERY_ID",
-            "ok": false,
-            "finalUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16333&mid=0405000000",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "site error page detected"
-          },
-          {
-            "title": "2026년 상반기 신입직원(채용형 인턴) 채용 필기전형 예비합격자 공고",
-            "requestedUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16323&mid=0405000000",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16323&mid=0405000000",
-            "textLength": 448,
-            "attachmentCount": 1,
-            "error": ""
-          },
-          {
-            "title": "2026년 상반기 신입직원(채용형 인턴) 채용 필기전형 합격자 공고",
-            "requestedUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16322&mid=0405000000",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16322&mid=0405000000",
-            "textLength": 384,
-            "attachmentCount": 1,
-            "error": ""
-          },
-          {
-            "title": "2026년 상반기 기간제계약직(대체인력, 비서) 채용 최종합격자 및 예비합격자 발표",
-            "requestedUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16298&mid=0405000000",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16298&mid=0405000000",
-            "textLength": 330,
-            "attachmentCount": 1,
-            "error": ""
-          },
-          {
-            "title": "2026년 하반기 체험형 청년인턴 채용 필기전형 응시대상자 공고",
-            "requestedUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16294&mid=0405000000",
-            "template": "QUERY_ID",
-            "ok": true,
-            "finalUrl": "https://www.upa.or.kr/portal/board/post/view.do?bcIdx=668&idx=16294&mid=0405000000",
-            "textLength": 333,
-            "attachmentCount": 1,
-            "error": ""
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산항만공사.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
         }
       },
       "improved": false,

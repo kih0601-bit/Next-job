@@ -47,7 +47,7 @@
     "candidateCount": 1,
     "rawTableRows": 0,
     "uniqueVisibleTitleCount": 0,
-    "sourceHtmlLength": 8278,
+    "sourceHtmlLength": 8279,
     "missingRows": 0,
     "extraCandidates": 1
   },
@@ -71,11 +71,19 @@
     {
       "org": "울주문화재단",
       "title": "일반 (재)울주문화재단 2026년도 제2차 직원 채용 재공고 접수기간 2026-07-10(금) 11:00 ~ 2026-07-20(월) 18:00 공지사항 0 건 접수마감 개인정보처리방침 이메일주소 무단수집거부 ⓒ KPDI HR Co.,Ltd. HUBST",
-      "link": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do#list-opnIdx-14483",
+      "link": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningDetailPage.do",
       "listText": "일반 (재)울주문화재단 2026년도 제2차 직원 채용 재공고 접수기간 2026-07-10(금) 11:00 ~ 2026-07-20(월) 18:00 공지사항 0 건 접수마감 개인정보처리방침 이메일주소 무단수집거부 ⓒ KPDI HR Co.,Ltd. HUBST",
-      "adapter": "울주문화재단:rowArea",
-      "listOnly": true,
-      "listIdentity": "14483"
+      "adapter": "울주문화재단:rowArea-post",
+      "listIdentity": "14483",
+      "detailRequest": {
+        "method": "POST",
+        "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningDetailPage.do",
+        "body": "orgIdx=1090&opnIdx=14483&openType=&boardType=0",
+        "headers": {
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        "referer": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do"
+      }
     }
   ],
   "rowTrace": []

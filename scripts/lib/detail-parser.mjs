@@ -361,6 +361,30 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
               return { ok: true, finalUrl: url, text: [title, text].filter(Boolean).join('\n').slice(0, 70000), confidence: detailConfidence(text, expectedTitle), httpStatus: apiResponse.status, contentType: apiResponse.headers.get('content-type') || '', attachments: [], detailTransport: 'UCTF_API_DETAIL' };
             }
           }
+        } catch { /* try first-page collection API below */ }
+        try {
+          const listApi = new URL('/api/notices?page=0&category=%EC%B1%84%EC%9A%A9', new URL(url).origin).href;
+          const listResponse = await fetch(listApi, { signal: controller.signal, redirect: 'follow', headers: { ...baseHeaders, accept: 'application/json,text/plain,*/*', referer: new URL(url).origin + '/board/employment' } });
+          if (listResponse.ok) {
+            const payload = await listResponse.json();
+            const item = (payload?.content || []).find(entry => String(entry?.id) === String(id));
+            if (item) {
+              const title = cleanHtml(String(item.title || ''));
+              const bodyRaw = String(item.content || '');
+              const bodyText = cleanHtml(bodyRaw);
+              const imageUrls = [...bodyRaw.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["']/gi)].map(m => absoluteUrl(m[1], url)).filter(Boolean);
+              const fileUrls = String(item.filePath || '').split('&').map(v => v.trim()).filter(Boolean);
+              const fileNames = String(item.fileName || '').split('&').map(v => v.trim());
+              const attachments = fileUrls.map((fileUrl, i) => ({ name: fileNames[i] || `첨부파일 ${i + 1}`, type: fileUrl.split('.').pop()?.split(/[?#]/)[0]?.toLowerCase() || '', url: fileUrl }));
+              const titleProbe = `${title} ${bodyText}`;
+              const tokens = titleTokens(expectedTitle);
+              const matched = tokens.filter(word => titleProbe.includes(word)).length;
+              const titleEvidence = tokens.length < 2 || matched / tokens.length >= 0.35;
+              if (titleEvidence && (bodyText.length >= 30 || imageUrls.length > 0 || attachments.length > 0)) {
+                return { ok: true, finalUrl: url, text: [title, bodyText].filter(Boolean).join('\n').slice(0, 70000), confidence: detailConfidence(`${title} ${bodyText}`, expectedTitle), httpStatus: listResponse.status, contentType: 'application/json', attachments, contentImages: imageUrls, detailTransport: 'UCTF_API_LIST_DETAIL' };
+              }
+            }
+          }
         } catch { /* fall through to public HTML detail */ }
       }
     }
@@ -376,6 +400,12 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
       ? response.headers.getSetCookie().map(value => value.split(';')[0]).join('; ')
       : (response.headers.get('set-cookie') || '').split(/,(?=[^;,]+=)/).map(value => value.split(';')[0]).join('; ');
     const attachments = extractAttachments(html, finalUrl, { referer: finalUrl, cookie });
+    const contentImages = [...html.matchAll(/<img\b([^>]*)>/gi)].map(match => {
+      const attrs = match[1] || '';
+      const src = attrs.match(/\bsrc\s*=\s*["']([^"']+)["']/i)?.[1] || '';
+      const alt = decodeHtmlEntities(attrs.match(/\b(?:alt|title)\s*=\s*["']([^"']+)["']/i)?.[1] || '');
+      return { url: absoluteUrl(src, finalUrl), alt };
+    }).filter(item => item.url && !/(logo|icon|btn|banner|common|header|footer|sns|loading)/i.test(`${item.url} ${item.alt}`));
     const expectedTokens = titleTokens(expectedTitle);
     const expectedMatched = expectedTokens.filter(word => fullText.includes(word)).length;
     const titleEvidence = expectedTokens.length < 2 || expectedMatched / expectedTokens.length >= 0.35;
@@ -384,7 +414,7 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
     // actual notice in HWP/PDF attachments. A page with the exact list title plus a
     // real attachment is still a valid detail page; attachment contents are handled
     // by the next pipeline stage.
-    if (text.length < 100 && !(titleEvidence && attachments.length > 0 && fullText.length >= 30)) throw new Error('detail body too short');
+    if (text.length < 100 && !(titleEvidence && attachments.length > 0 && fullText.length >= 30) && !(titleEvidence && contentImages.length > 0 && fullText.length >= 30)) throw new Error('detail body too short');
     const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)|게시물\s*목록|검색결과\s*\d+건|채용공고\s*목록/.test(fullText) && !/(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text) && !titleEvidence;
     if (looksLikeListOnly) throw new Error('list page detected');
     // Only call it a site error when the response lacks the expected notice title.

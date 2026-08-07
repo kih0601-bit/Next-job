@@ -40,7 +40,8 @@ const RAW_SOURCES = [
     'https://www.kepco.co.kr/home/about/careers.do',
     'https://recruit.kepco.co.kr/', alioUrl('한국전력공사') ] },
   { org: '한국수력원자력', urls: [
-    'https://www.khnp.co.kr/recruit/', alioUrl('한국수력원자력') ] },
+    'https://www.khnp.co.kr/recruit/',
+    'https://www.khnp.co.kr/recruit/main/index.do', alioUrl('한국수력원자력') ] },
   { org: '울산도시공사', urls: ['https://www.umca.co.kr/'] },
   { org: '울산시설공단', urls: [
     'https://www.uic.or.kr/notify/noti06.do',
@@ -69,7 +70,8 @@ const RAW_SOURCES = [
     'https://www.ubpi.or.kr/sub/?mcode=0403080000',
     'https://www.ubpi.or.kr/' ] },
   { org: '울산연구원', urls: [
-    'http://www.uri.re.kr/',
+    'https://www.uri.re.kr/',
+    'https://www.uri.re.kr/index.do',
     'https://uill.uri.re.kr/',
     'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000' ] },
   { org: '울산문화관광재단', urls: [
@@ -99,6 +101,8 @@ const RAW_SOURCES = [
   { org: '울산광역시 타기관소식', urls: [
     // Primary source: Ulsan Metropolitan City other-organization notices.
     'https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000',
+    // Same-purpose local-government mirror with a directly readable 타기관소식 board.
+    'https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=alimiNotice',
     // Official local-government fallback: subsidiary-agency recruitment notices.
     // GitHub-hosted runners can be blocked at the TCP layer by ulsan.go.kr, so the
     // collector must still have an official public route for Phase 1 availability.
@@ -124,4 +128,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.4-phase1-verified-recruit-board-urls';
+export const SOURCE_REGISTRY_VERSION = '15.5-access-board-verification';

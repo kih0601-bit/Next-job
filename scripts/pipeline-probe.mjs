@@ -9,7 +9,7 @@ import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 
-const VERSION = '16.8-20-sources-list-accuracy-verification';
+const VERSION = '16.9-list-verification-templates';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 18000;

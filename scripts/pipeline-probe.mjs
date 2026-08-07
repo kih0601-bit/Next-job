@@ -1,4 +1,6 @@
 import fs from 'node:fs/promises';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.mjs';
 import { discoverListingUrls } from './collectors/source-adapters.mjs';
 import { inspectListingPage } from './lib/list-pipeline.mjs';
@@ -6,7 +8,7 @@ import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 
-const VERSION = '16.5-two-source-board-arrival';
+const VERSION = '16.6-uri-access-21-sources';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 18000;
@@ -15,6 +17,7 @@ const MAX_ACCESS_URLS = 6;
 const MAX_HTML_EXCERPT = 18000;
 const MAX_RELEVANT_SNIPPETS = 24;
 const MAX_SCRIPT_SNIPPETS = 12;
+const execFileAsync = promisify(execFile);
 
 
 function compactText(value = '', max = MAX_HTML_EXCERPT) {
@@ -74,15 +77,45 @@ function headers(referer = '') {
   };
 }
 
+async function fetchHtmlWithCurl(url, timeoutMs = 22000, referer = '') {
+  const args = [
+    '--silent', '--show-error', '--location', '--compressed', '--ipv4',
+    '--connect-timeout', String(Math.max(6, Math.floor(timeoutMs / 3000))),
+    '--max-time', String(Math.max(12, Math.ceil(timeoutMs / 1000))),
+    '--retry', '1', '--retry-all-errors',
+    '--user-agent', headers(referer)['user-agent'],
+    '--header', 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    '--header', 'Accept-Language: ko-KR,ko;q=0.9',
+    '--write-out', '\n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type}'
+  ];
+  if (referer) args.push('--referer', referer);
+  args.push(url);
+  const { stdout } = await execFileAsync('curl', args, { maxBuffer: 12 * 1024 * 1024, timeout: timeoutMs + 5000 });
+  const marker = '\n__NEXTJOB_META__';
+  const pos = stdout.lastIndexOf(marker);
+  if (pos < 0) throw new Error('curl metadata missing');
+  const html = stdout.slice(0, pos);
+  const [statusText, finalUrl, contentType = ''] = stdout.slice(pos + marker.length).trim().split('|');
+  const status = Number(statusText);
+  if (!Number.isFinite(status) || status < 200 || status >= 400) throw new Error(`HTTP ${statusText || 'unknown'}`);
+  if (html.trim().length < 80) throw new Error('response body too short');
+  return { html, status, finalUrl: finalUrl || url, contentType };
+}
+
 async function fetchHtml(url, timeoutMs = 22000, referer = '') {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const response = await fetch(url, { signal: controller.signal, redirect: 'follow', headers: headers(referer) });
-    const html = await response.text();
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    if (html.trim().length < 80) throw new Error('response body too short');
-    return { html, status: response.status, finalUrl: response.url || url, contentType: response.headers.get('content-type') || '' };
+    try {
+      const response = await fetch(url, { signal: controller.signal, redirect: 'follow', headers: headers(referer) });
+      const html = await response.text();
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      if (html.trim().length < 80) throw new Error('response body too short');
+      return { html, status: response.status, finalUrl: response.url || url, contentType: response.headers.get('content-type') || '' };
+    } catch (error) {
+      if (!/(^|\.)uri\.re\.kr$/i.test(new URL(url).hostname)) throw error;
+      return await fetchHtmlWithCurl(url, timeoutMs, referer);
+    }
   } finally {
     clearTimeout(timer);
   }

@@ -189,12 +189,11 @@ console.log('v12.6 document-backed classification tests passed');
   assert.match(rows[0].link, /\/portal\/board\/post\/view\.do\?bcIdx=668&idx=14905&mid=0405000000/);
 
   const { SOURCES } = await import('./collectors/source-registry.mjs');
+  assert.equal(SOURCES.length, 21, '운영 수집기관은 21개여야 함');
+  assert.equal(SOURCES.some(item => item.org === '\uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uD0C0\uAE30\uAD00\uC18C\uC2DD'), false, '퇴역한 타기관소식 source가 다시 등록되면 안 됨');
   assert.ok(SOURCES.find(item => item.org === '근로복지공단').accessUrls.some(url => /comwel\.incruit\.com/.test(url)));
   assert.ok(SOURCES.find(item => item.org === '한국전력공사').accessUrls.some(url => /kepco\.co\.kr\/home\/about\/careers\.do/.test(url)));
-  const ulsanOtherNotices = SOURCES.find(item => item.org === '울산광역시 타기관소식');
-  assert.ok(ulsanOtherNotices.accessUrls.some(url => /contents\.do\?mId=001004001003000000/.test(url)));
-  assert.ok(ulsanOtherNotices.accessUrls.some(url => /ulsannamgu\.go\.kr\/cop\/bbs\/selectBoardList\.do\?bbsId=hireNotice2/.test(url)));
-  assert.ok(ulsanOtherNotices.accessUrls.some(url => /^https:\/\/job\.alio\.go\.kr\/?$/.test(url)));
+
 
   const welfareFamilyService = SOURCES.find(item => item.org === '울산복지가족진흥사회서비스원');
   assert.ok(welfareFamilyService.accessUrls.some(url => /wfps\.or\.kr\/webuser\/employment\/list\.html/.test(url)), '기관 공식 채용게시판을 주 경로로 유지해야 함');

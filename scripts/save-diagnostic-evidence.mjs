@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const MAX_TEXT = 120000;
-const canonicalOrg = value => String(value || 'unknown').normalize('NFC').replace(/[\s_-]+/g, ' ').trim().replace(/^울산광역시\s*타기관소식$/, '울산광역시 타기관소식');
+const canonicalOrg = value => String(value || 'unknown').normalize('NFC').replace(/[\s_-]+/g, ' ').trim();
 const slug = value => canonicalOrg(value).replace(/[^a-zA-Z0-9가-힣]+/g, '_').replace(/^_+|_+$/g, '').slice(0,80) || 'unknown';
 const report = JSON.parse(await fs.readFile('data/pipeline-report.json','utf8'));
 let artifacts = { artifacts: [] };

@@ -253,6 +253,12 @@ async function fetchHtml(url, timeoutMs = 15000, options = {}) {
     () => fetchWithNode(url, timeoutMs, { ...options, profile: 'simple' }),
     () => fetchWithCurl(url, timeoutMs, { ...options, insecure: false })
   ];
+  // URI's official site intermittently fails DNS/TLS/403 from GitHub-hosted runners.
+  // Resolve A records through public DoH and pin curl to the resolved IP while
+  // preserving the original Host/SNI. This is only enabled for uri.re.kr.
+  if (/(^|\.)uri\.re\.kr$/i.test(new URL(url).hostname)) {
+    strategies.push(() => fetchWithCurlResolved(url, timeoutMs, options));
+  }
   if (options.allowInsecureTls) strategies.push(() => fetchWithCurl(url, timeoutMs, { ...options, insecure: true }));
 
   const errors = [];

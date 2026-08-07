@@ -10,7 +10,7 @@ import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } fro
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 
-const VERSION = '17.0-first-page-detail-verification';
+const VERSION = '17.1-first-page-detail-source-repair';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const ACCESS_TIMEOUT_MS = 18000;
@@ -365,11 +365,11 @@ async function probeSource(source, artifacts) {
     const allowedHosts = [...new Set((source.accessUrls || [source.url]).map(url => { try { return new URL(url).hostname; } catch { return ''; } }).filter(Boolean))];
     for (const candidate of all.filter(item => !item.listOnly).slice(0, MAX_DETAIL_SAMPLES)) {
       report.detail.attempted += 1;
-      const detail = await fetchDetail(candidate.link, { expectedTitle: candidate.title, sourceOrg: source.org, allowedHosts });
+      const detail = await fetchDetail(candidate.link, { expectedTitle: candidate.title, sourceOrg: source.org, allowedHosts, request: candidate.detailRequest || null });
       if (detail.ok) report.detail.validated += 1;
       else report.detail.failed += 1;
       report.attachment.discovered += detail.attachments?.length || 0;
-      report.detail.samples.push({ title: candidate.title, requestedUrl: candidate.link, template: classifyDetailTemplate(candidate.link, candidate), ok: detail.ok, finalUrl: detail.finalUrl || '', textLength: detail.text?.length || 0, attachmentCount: detail.attachments?.length || 0, error: detail.error || '' });
+      report.detail.samples.push({ title: candidate.title, requestedUrl: candidate.link, requestMethod: candidate.detailRequest?.method || 'GET', template: classifyDetailTemplate(candidate.link, candidate), ok: detail.ok, finalUrl: detail.finalUrl || '', textLength: detail.text?.length || 0, attachmentCount: detail.attachments?.length || 0, transport: detail.detailTransport || '', error: detail.error || '' });
       for (const file of detail.attachments || []) {
         if (report.attachment.samples.length < 8) report.attachment.samples.push({ name: file.name, type: file.type, url: file.url });
       }

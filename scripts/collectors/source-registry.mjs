@@ -42,7 +42,9 @@ const RAW_SOURCES = [
   { org: '한국수력원자력', urls: [
     'https://www.khnp.co.kr/recruit/',
     'https://www.khnp.co.kr/recruit/main/index.do', alioUrl('한국수력원자력') ] },
-  { org: '울산도시공사', urls: ['https://www.umca.co.kr/'] },
+  { org: '울산도시공사', urls: [
+    'https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000',
+    'https://www.umca.co.kr/' ] },
   { org: '울산시설공단', urls: [
     'https://www.uic.or.kr/notify/noti06.do',
     'https://uic.or.kr/notify/noti06.do',
@@ -65,14 +67,15 @@ const RAW_SOURCES = [
     'https://uipa.careerlink.kr/',
     'https://uipa.recruiter.co.kr/',
     'https://uipa.or.kr/' ] },
-  { org: '울산테크노파크', urls: ['https://www.utp.or.kr/'] },
+  { org: '울산테크노파크', urls: [
+    'https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408',
+    'https://www.utp.or.kr/' ] },
   { org: '울산경제일자리진흥원', urls: [
     'https://www.ubpi.or.kr/sub/?mcode=0403080000',
     'https://www.ubpi.or.kr/' ] },
   { org: '울산연구원', urls: [
     'https://www.uri.re.kr/',
     'https://www.uri.re.kr/index.do',
-    'https://uill.uri.re.kr/',
     'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000' ] },
   { org: '울산문화관광재단', urls: [
     'https://uctf.or.kr/board/employment',
@@ -128,4 +131,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.5-access-board-verification';
+export const SOURCE_REGISTRY_VERSION = '15.6-strict-board-arrival';

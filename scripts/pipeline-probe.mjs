@@ -9,7 +9,7 @@ import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 
-const VERSION = '16.7-access-template-engine';
+const VERSION = '16.8-20-sources-list-accuracy-verification';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 18000;
@@ -179,7 +179,8 @@ function classifyList(report) {
   if (!report.access?.recruitVerifyOk) return { status: 'blocked', code: 'LIST_BLOCKED_BY_RECRUIT_VERIFY', reason: '채용 게시판 검증 실패로 목록 진단 보류', evidence: report.access?.verification || [] };
   if (list.status === 'fetch-failed') return { status: 'failed', code: 'LIST_PAGE_FETCH_FAILED', reason: `목록 후보 페이지를 가져오지 못함: ${(list.errors || []).join(' | ')}`, evidence: list.errors || [] };
   if (!diagnostics.length) return { status: 'failed', code: 'LIST_NO_DIAGNOSTIC_PAGE', reason: '목록 후보 페이지를 확보했지만 분석 결과가 없음', evidence: [] };
-  if (list.status === 'exact') return { status: 'success', code: 'LIST_EXACT', reason: `화면 게시글 ${list.visiblePostCount}건 = 추출 ${list.candidateCount}건`, evidence: diagnostics };
+  if (list.status === 'verified-exact') return { status: 'success', code: 'LIST_VERIFIED_EXACT', reason: `실제 게시글 목록 검증 완료 · 화면 ${list.visiblePostCount}건 = 추출 ${list.candidateCount}건 · ${list.accuracyVerification?.level || 'verified'}`, evidence: diagnostics };
+  if (list.status === 'count-exact-unverified') return { status: 'partial', code: 'LIST_COUNT_EXACT_UNVERIFIED', reason: `개수는 ${list.visiblePostCount}건으로 일치하지만 실제 게시글 제목 집합의 정확성은 아직 독립 검증되지 않음`, evidence: diagnostics };
   if (list.status === 'count-unavailable-or-empty') {
     const htmlPages = diagnostics.filter(item => (item.visiblePostCount || 0) === 0 && (item.candidateCount || 0) === 0);
     const anySignals = diagnostics.some(item => (item.anchors || 0) > 0 || (item.clickableBlocksScanned || 0) > 0 || (item.actionSamples || []).length > 0);
@@ -231,6 +232,7 @@ function remediationFor(code = '', org = '') {
     HTTP_SERVER_ERROR: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '서버 오류 재시도·대체 URL 순서를 확인' },
     RECRUIT_VERIFY_FAILED: { repairTarget: 'scripts/lib/recruit-verify.mjs', recommendedAction: '기관별 채용 키워드·게시판 검증 근거를 확인' },
     RECRUIT_VERIFY_ERROR_PAGE: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '오류·차단 페이지가 아닌 실제 채용 게시판 URL로 교체' },
+    LIST_COUNT_EXACT_UNVERIFIED: { repairTarget: institutionAdapter, recommendedAction: '게시글 행/제목 집합을 독립적으로 식별해 실제 목록과 추출 결과의 제목 단위 일치 검증 추가' },
     LIST_COUNTER_FAILED: { repairTarget: institutionAdapter, recommendedAction: '기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정' },
     LIST_EMPTY_OR_WRONG_PAGE: { repairTarget: 'scripts/collectors/source-registry.mjs', recommendedAction: '현재 URL이 채용 게시판인지 확인하고 기관별 목록 URL 교체' },
     LIST_TITLE_NOT_FOUND: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 제목 선택자 또는 행 텍스트 규칙 추가' },
@@ -346,10 +348,13 @@ async function probeSource(source, artifacts) {
     report.list.listOnlyCount = all.filter(item => item.listOnly).length;
     report.list.samples = all.slice(0, 20).map(item => ({ title: item.title, link: item.link, adapter: item.adapter || '' }));
     report.list.selectedRootCause = selected?.rootCause || null;
+    report.list.accuracyVerification = selected?.rootCause?.accuracyVerification || { verified: false, level: 'NO_EVIDENCE' };
     if (!selected) report.list.status = 'fetch-failed';
     else if (selected.status === 'empty-or-wrong-page' || selected.status === 'count-unavailable') report.list.status = 'count-unavailable-or-empty';
+    else if (selected.status === 'exact' && report.list.accuracyVerification.verified) report.list.status = 'verified-exact';
+    else if (selected.status === 'exact') report.list.status = 'count-exact-unverified';
     else report.list.status = selected.status;
-    report.list.ok = report.list.status === 'exact';
+    report.list.ok = report.list.status === 'verified-exact';
 
     const allowedHosts = [...new Set((source.accessUrls || [source.url]).map(url => { try { return new URL(url).hostname; } catch { return ''; } }).filter(Boolean))];
     for (const candidate of all.filter(item => !item.listOnly).slice(0, MAX_DETAIL_SAMPLES)) {
@@ -365,7 +370,7 @@ async function probeSource(source, artifacts) {
     report.detail.ok = report.detail.validated > 0;
     report.attachment.ok = report.attachment.discovered > 0;
     if (!report.access.ok) report.bottleneck = '접속';
-    else if (!report.list.ok) report.bottleneck = report.list.status === 'partial' ? `목록 부분 추출 (${report.list.candidateCount}/${report.list.visiblePostCount})` : report.list.status === 'count-unavailable-or-empty' ? '목록 글 수 판정 불가 또는 실제 0건' : '목록 추출 실패';
+    else if (!report.list.ok) report.bottleneck = report.list.status === 'count-exact-unverified' ? '목록 개수 일치·제목 정확성 미검증' : report.list.status === 'partial' ? `목록 부분 추출 (${report.list.candidateCount}/${report.list.visiblePostCount})` : report.list.status === 'count-unavailable-or-empty' ? '목록 글 수 판정 불가 또는 실제 0건' : '목록 추출 실패';
     else if (report.list.detailUrlReady === 0) report.bottleneck = '상세 URL 복구';
     else if (!report.detail.ok) report.bottleneck = '상세페이지 추출';
     else if (!report.attachment.ok) report.bottleneck = '첨부파일 추출 또는 현재 표본에 첨부 없음';

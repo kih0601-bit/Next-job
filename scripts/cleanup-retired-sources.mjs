@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const RETIRED = new Set(['\uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uD0C0\uAE30\uAD00\uC18C\uC2DD']);
+const RETIRED = new Set(['\uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uD0C0\uAE30\uAD00\uC18C\uC2DD', '\uC6B8\uC0B0\uC5F0\uAD6C\uC6D0']);
 const DATA_DIR = 'data';
 const DIAGNOSTICS_DIR = path.join(DATA_DIR, 'diagnostics');
 

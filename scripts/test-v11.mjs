@@ -38,7 +38,7 @@ assert.equal(explicitTemporary.excluded, true);
 assert.ok(explicitTemporary.excludeReasons.some(reason => reason.includes('고용형태')));
 
 const { SOURCES } = await import('./collectors/source-registry.mjs');
-assert.ok(SOURCES.length >= 21, '21개 이상 기관 출처가 등록되어야 함');
+assert.ok(SOURCES.length >= 20, '20개 이상 기관 출처가 등록되어야 함');
 assert.ok(SOURCES.every(source => source.org && source.url && source.requireValidDetail), '모든 출처는 상세 검증을 요구해야 함');
 
 const { extractAttachments } = await import('./lib/detail-parser.mjs');
@@ -190,7 +190,7 @@ console.log('v12.6 document-backed classification tests passed');
 
   const { SOURCES } = await import('./collectors/source-registry.mjs');
   const { ACCESS_TEMPLATES, validateAccessTemplateSource } = await import('./lib/access-templates.mjs');
-  assert.equal(SOURCES.length, 21, '운영 수집기관은 21개여야 함');
+  assert.equal(SOURCES.length, 20, '운영 수집기관은 20개여야 함');
   assert.equal(SOURCES.some(item => item.org === '\uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uD0C0\uAE30\uAD00\uC18C\uC2DD'), false, '퇴역한 타기관소식 source가 다시 등록되면 안 됨');
 
   for (const source of SOURCES) {
@@ -207,8 +207,8 @@ console.log('v12.6 document-backed classification tests passed');
   assert.ok(templateCounts.DEDICATED_RECRUIT_SITE >= 1);
   assert.ok(templateCounts.API_BOARD >= 1);
   assert.ok(templateCounts.REDIRECT_OR_ENTRY >= 1);
-  assert.equal(templateCounts.RESTRICTED_CUSTOM, 1, '현재 제한형은 울산연구원 1곳만 유지');
-  assert.equal(SOURCES.find(item => item.org === '울산연구원').accessTemplate, 'RESTRICTED_CUSTOM');
+  assert.equal(templateCounts.RESTRICTED_CUSTOM || 0, 0, '퇴역 제한형 템플릿은 운영 소스에 없어야 함');
+  assert.equal(SOURCES.some(item => item.org === '\uC6B8\uC0B0\uC5F0\uAD6C\uC6D0'), false, '퇴역 기관은 운영 수집라인 전체에서 제거되어야 함');
   assert.equal(SOURCES.find(item => item.org === '울산문화관광재단').accessTemplate, 'API_BOARD');
   assert.equal(SOURCES.find(item => item.org === '울산항만공사').accessTemplate, 'REDIRECT_OR_ENTRY');
   assert.equal(SOURCES.find(item => item.org === '근로복지공단').accessTemplate, 'COMMON_PLATFORM');

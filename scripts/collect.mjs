@@ -5,6 +5,7 @@ import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { canonicalJobUrl, discoverListingUrls } from './collectors/source-adapters.mjs';
 import { inspectListingPage } from './lib/list-pipeline.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
+import { buildAccessPlan, getCollectorTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { analyzeVacancies } from './lib/classifier.mjs';
 import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
 import { analyzeAttachments, getDocumentToolDiagnostics } from './lib/document-analyzer.mjs';
@@ -247,19 +248,17 @@ async function fetchWithCurl(url, timeoutMs, { referer = '', insecure = false } 
   }
 }
 
-async function fetchHtml(url, timeoutMs = 15000, options = {}) {
-  const strategies = [
-    () => fetchWithNode(url, timeoutMs, { ...options, profile: 'browser' }),
-    () => fetchWithNode(url, timeoutMs, { ...options, profile: 'simple' }),
-    () => fetchWithCurl(url, timeoutMs, { ...options, insecure: false })
-  ];
-  // URI's official site intermittently fails DNS/TLS/403 from GitHub-hosted runners.
-  // Resolve A records through public DoH and pin curl to the resolved IP while
-  // preserving the original Host/SNI. This is only enabled for uri.re.kr.
-  if (/(^|\.)uri\.re\.kr$/i.test(new URL(url).hostname)) {
-    strategies.push(() => fetchWithCurlResolved(url, timeoutMs, options));
-  }
-  if (options.allowInsecureTls) strategies.push(() => fetchWithCurl(url, timeoutMs, { ...options, insecure: true }));
+async function fetchHtml(url, timeoutMs = 15000, options = {}, source = {}) {
+  const chain = getCollectorTransportChain(source);
+  const strategies = chain.map(transport => {
+    if (transport === 'node-browser') return () => fetchWithNode(url, timeoutMs, { ...options, profile: 'browser' });
+    if (transport === 'node-simple') return () => fetchWithNode(url, timeoutMs, { ...options, profile: 'simple' });
+    if (transport === 'curl') return () => fetchWithCurl(url, timeoutMs, { ...options, insecure: false });
+    if (transport === 'curl-resolved') return () => fetchWithCurlResolved(url, timeoutMs, options);
+    if (transport === 'curl-insecure') return () => fetchWithCurl(url, timeoutMs, { ...options, insecure: true });
+    return async () => { throw new Error(`unsupported access transport: ${transport}`); };
+  });
+  if (options.allowInsecureTls && !chain.includes('curl-insecure')) strategies.push(() => fetchWithCurl(url, timeoutMs, { ...options, insecure: true }));
 
   const errors = [];
   for (const run of strategies) {
@@ -275,30 +274,31 @@ async function fetchHtml(url, timeoutMs = 15000, options = {}) {
 async function fetchFirstAccessible(source) {
   const attempts = [];
   const successfulPages = [];
-  const urls = source.accessUrls?.length ? source.accessUrls : [source.url];
-  for (const url of urls) {
+  const accessPlan = buildAccessPlan(source);
+  for (const plan of accessPlan) {
+    const { url } = plan;
     const allowInsecureTls = /(^|\.)ucf\.or\.kr$/i.test(new URL(url).hostname);
     for (let attempt = 1; attempt <= 2; attempt += 1) {
       try {
-        const result = await fetchHtml(url, attempt === 1 ? 20000 : 35000, { referer: source.homepage || '', allowInsecureTls });
-        const verification = inspectRecruitPage({ ...result, requestedUrl: url, org: source.org });
-        const item = { ...result, requestedUrl: url, verification };
+        const result = await fetchHtml(url, attempt === 1 ? 20000 : 35000, { referer: source.homepage || '', allowInsecureTls }, source);
+        const verification = inspectRecruitPage({ ...result, requestedUrl: url, org: source.org, accessTemplate: source.accessTemplate, accessConfig: source.accessConfig });
+        const item = { ...result, requestedUrl: url, verification, accessPriority: plan.accessPriority, accessTemplate: plan.template };
         successfulPages.push(item);
-        attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl, transport: result.transport, profile: result.profile, attempt, verification });
+        attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl, transport: result.transport, profile: result.profile, attempt, verification, accessTemplate: plan.template });
         if (verification.verified) {
           const diagnosis = summarizeAccessAttempts(attempts, item);
-          return { ...item, attempts, accessDiagnosis: diagnosis };
+          return { ...item, attempts, accessDiagnosis: diagnosis, accessTemplateSummary: accessTemplateSummary(source) };
         }
         break;
       } catch (error) {
-        attempts.push({ url, ok: false, error: error.message, attempt });
+        attempts.push({ url, ok: false, error: error.message, attempt, accessTemplate: plan.template });
         if (attempt === 1) await new Promise(resolve => setTimeout(resolve, 1500));
       }
     }
   }
   const selected = chooseBestAccessPage(successfulPages);
   const diagnosis = summarizeAccessAttempts(attempts, selected);
-  if (diagnosis.ok && selected) return { ...selected, attempts, accessDiagnosis: diagnosis };
+  if (diagnosis.ok && selected) return { ...selected, attempts, accessDiagnosis: diagnosis, accessTemplateSummary: accessTemplateSummary(source) };
   const summary = attempts.map(item => `${item.url} => ${item.error || item.status}`).join(' | ');
   const failure = new Error(`${diagnosis.code}: ${diagnosis.reason}${summary ? ` | ${summary}` : ''}`);
   failure.accessAttempts = attempts;
@@ -462,7 +462,7 @@ async function fetchSource(source) {
     for (const listingUrl of listingUrls) {
       let listingHtml = listingUrl === activeSource.url ? html : '';
       if (!listingHtml) {
-        try { listingHtml = (await fetchHtml(listingUrl, 22000, { referer: activeSource.url })).html; }
+        try { listingHtml = (await fetchHtml(listingUrl, 22000, { referer: activeSource.url }, source)).html; }
         catch { continue; }
       }
       const listingSource = { ...activeSource, url: listingUrl };

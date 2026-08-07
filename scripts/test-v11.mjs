@@ -189,8 +189,29 @@ console.log('v12.6 document-backed classification tests passed');
   assert.match(rows[0].link, /\/portal\/board\/post\/view\.do\?bcIdx=668&idx=14905&mid=0405000000/);
 
   const { SOURCES } = await import('./collectors/source-registry.mjs');
+  const { ACCESS_TEMPLATES, validateAccessTemplateSource } = await import('./lib/access-templates.mjs');
   assert.equal(SOURCES.length, 21, '운영 수집기관은 21개여야 함');
   assert.equal(SOURCES.some(item => item.org === '\uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uD0C0\uAE30\uAD00\uC18C\uC2DD'), false, '퇴역한 타기관소식 source가 다시 등록되면 안 됨');
+
+  for (const source of SOURCES) {
+    assert.ok(source.accessTemplate, `${source.org}: accessTemplate이 지정되어야 함`);
+    assert.ok(ACCESS_TEMPLATES[source.accessTemplate], `${source.org}: 등록되지 않은 accessTemplate`);
+    assert.equal(validateAccessTemplateSource(source), true);
+  }
+  const templateCounts = SOURCES.reduce((acc, source) => {
+    acc[source.accessTemplate] = (acc[source.accessTemplate] || 0) + 1;
+    return acc;
+  }, {});
+  assert.ok(templateCounts.DIRECT_BOARD >= 1);
+  assert.ok(templateCounts.COMMON_PLATFORM >= 1);
+  assert.ok(templateCounts.DEDICATED_RECRUIT_SITE >= 1);
+  assert.ok(templateCounts.API_BOARD >= 1);
+  assert.ok(templateCounts.REDIRECT_OR_ENTRY >= 1);
+  assert.equal(templateCounts.RESTRICTED_CUSTOM, 1, '현재 제한형은 울산연구원 1곳만 유지');
+  assert.equal(SOURCES.find(item => item.org === '울산연구원').accessTemplate, 'RESTRICTED_CUSTOM');
+  assert.equal(SOURCES.find(item => item.org === '울산문화관광재단').accessTemplate, 'API_BOARD');
+  assert.equal(SOURCES.find(item => item.org === '울산항만공사').accessTemplate, 'REDIRECT_OR_ENTRY');
+  assert.equal(SOURCES.find(item => item.org === '근로복지공단').accessTemplate, 'COMMON_PLATFORM');
   assert.ok(SOURCES.find(item => item.org === '근로복지공단').accessUrls.some(url => /comwel\.incruit\.com/.test(url)));
   assert.ok(SOURCES.find(item => item.org === '한국전력공사').accessUrls.some(url => /kepco\.co\.kr\/home\/about\/careers\.do/.test(url)));
 

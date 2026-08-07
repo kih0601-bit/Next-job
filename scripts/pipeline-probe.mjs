@@ -7,8 +7,9 @@ import { inspectListingPage } from './lib/list-pipeline.mjs';
 import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics.mjs';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
+import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 
-const VERSION = '16.6-uri-access-21-sources';
+const VERSION = '16.7-access-template-engine';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 18000;
@@ -102,36 +103,48 @@ async function fetchHtmlWithCurl(url, timeoutMs = 22000, referer = '') {
   return { html, status, finalUrl: finalUrl || url, contentType };
 }
 
-async function fetchHtml(url, timeoutMs = 22000, referer = '') {
+async function fetchHtmlWithFetch(url, timeoutMs = 22000, referer = '') {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    try {
-      const response = await fetch(url, { signal: controller.signal, redirect: 'follow', headers: headers(referer) });
-      const html = await response.text();
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      if (html.trim().length < 80) throw new Error('response body too short');
-      return { html, status: response.status, finalUrl: response.url || url, contentType: response.headers.get('content-type') || '' };
-    } catch (error) {
-      if (!/(^|\.)uri\.re\.kr$/i.test(new URL(url).hostname)) throw error;
-      return await fetchHtmlWithCurl(url, timeoutMs, referer);
-    }
+    const response = await fetch(url, { signal: controller.signal, redirect: 'follow', headers: headers(referer) });
+    const html = await response.text();
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    if (html.trim().length < 80) throw new Error('response body too short');
+    return { html, status: response.status, finalUrl: response.url || url, contentType: response.headers.get('content-type') || '' };
   } finally {
     clearTimeout(timer);
   }
 }
 
+async function fetchHtml(url, timeoutMs = 22000, referer = '', source = {}) {
+  const chain = getTransportChain(source);
+  let lastError = null;
+  for (const transport of chain) {
+    try {
+      if (transport === 'fetch') return await fetchHtmlWithFetch(url, timeoutMs, referer);
+      if (transport === 'curl') return await fetchHtmlWithCurl(url, timeoutMs, referer);
+      throw new Error(`unsupported transport: ${transport}`);
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError || new Error('no access transport available');
+}
+
 async function accessiblePages(source) {
   const attempts = [];
   const pages = [];
-  for (const [accessPriority, url] of (source.accessUrls || [source.url]).slice(0, MAX_ACCESS_URLS).entries()) {
+  const accessPlan = buildAccessPlan(source).slice(0, MAX_ACCESS_URLS);
+  for (const plan of accessPlan) {
+    const { accessPriority, url } = plan;
     try {
-      const result = await fetchHtml(url, ACCESS_TIMEOUT_MS, source.homepage || '');
-      const verification = inspectRecruitPage({ ...result, requestedUrl: url, org: source.org });
-      attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl, verification });
-      pages.push({ ...result, requestedUrl: url, verification, accessPriority });
+      const result = await fetchHtml(url, ACCESS_TIMEOUT_MS, source.homepage || '', source);
+      const verification = inspectRecruitPage({ ...result, requestedUrl: url, org: source.org, accessTemplate: source.accessTemplate, accessConfig: source.accessConfig });
+      attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl, verification, accessTemplate: plan.template, requestProfile: plan.requestProfile });
+      pages.push({ ...result, requestedUrl: url, verification, accessPriority, accessTemplate: plan.template, requestProfile: plan.requestProfile });
     } catch (error) {
-      attempts.push({ url, ok: false, error: error.name === 'AbortError' ? 'timeout' : error.message });
+      attempts.push({ url, ok: false, error: error.name === 'AbortError' ? 'timeout' : error.message, accessTemplate: plan.template, requestProfile: plan.requestProfile });
     }
   }
   if (!pages.length) {
@@ -269,6 +282,7 @@ async function probeSource(source, artifacts) {
   const startedAt = Date.now();
   const report = {
     org: source.org,
+    accessTemplate: accessTemplateSummary(source),
     access: { ok: false, httpOk: false, recruitVerifyOk: false, attempts: [], boardType: { type: 'UNKNOWN', confidence: 'low', evidence: [] } },
     list: { ok: false, status: 'unknown', pagesChecked: 0, visiblePostCount: null, candidateCount: 0, missingCount: null, extraCount: null, exactMatch: false, selectedUrl: '', detailUrlReady: 0, listOnlyCount: 0, extractionDiagnostics: [], rootCauseDiagnostics: [], diagnosticFiles: [], samples: [], errors: [] },
     detail: { ok: false, attempted: 0, validated: 0, samples: [] },
@@ -297,7 +311,7 @@ async function probeSource(source, artifacts) {
     for (const [pageIndex, item] of listingPages.slice(0, MAX_LISTING_PAGES).entries()) {
       const url = item.source.url;
       try {
-        const page = item.page || await fetchHtml(url, LIST_TIMEOUT_MS, item.source.url);
+        const page = item.page || await fetchHtml(url, LIST_TIMEOUT_MS, item.source.url, source);
         report.list.pagesChecked += 1;
         const pageSource = { ...item.source, url: page.finalUrl || url };
         artifacts.push(pageArtifact(pageSource, { ...page, requestedUrl: url }, 'listing'));

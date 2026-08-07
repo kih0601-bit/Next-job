@@ -494,7 +494,9 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     seen.add(key);
     let detailRequest = null;
     if (source.org === '울산시설공단') {
-      detailRequest = hiddenFormRequest(row.block, source, { actionPattern: /selectEmploymentArticle\.do/i });
+      // The canonical GET article URL is publicly readable. 52's form POST replay
+      // was rejected with HTTP 403 by the live site, so keep the recovered GET URL.
+      detailRequest = null;
     } else if (source.org === '울산항만공사') {
       const idx = row.block.match(/data-req-get-p-idx=["'](\d+)["']/i)?.[1] || '';
       detailRequest = upaPostRequest(row.block, source, idx);

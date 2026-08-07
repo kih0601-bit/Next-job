@@ -79,7 +79,7 @@ const RAW_SOURCES = [
     'https://uctf.or.kr/board/employment',
     'https://www.uctf.or.kr/board/employment',
     'https://uctf.or.kr/' ] },
-  { org: '울산복지가족진흥사회서비스원', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL_WITH_GOV_FALLBACK' }, urls: [
+  { org: '울산복지가족진흥사회서비스원', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL_WITH_GOV_FALLBACK', transportChain: ['fetch', 'curl'] }, urls: [
     // Primary and legacy official recruitment boards.
     'https://www.wfps.or.kr/webuser/employment/list.html',
     'https://www.wfps.or.kr/',

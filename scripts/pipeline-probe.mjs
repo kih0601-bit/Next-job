@@ -10,7 +10,7 @@ import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } fro
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 
-const VERSION = '17.1-first-page-detail-source-repair';
+const VERSION = '17.2-detail-regression-repair';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const ACCESS_TIMEOUT_MS = 18000;
@@ -79,6 +79,18 @@ function headers(referer = '') {
   };
 }
 
+
+function decodeResponseBytes(bytes, contentType = '', htmlProbe = '') {
+  const headerCharset = String(contentType).match(/charset\s*=\s*["']?([^;"'\s]+)/i)?.[1] || '';
+  const metaCharset = String(htmlProbe).match(/<meta[^>]+charset\s*=\s*["']?([^"'\s/>]+)/i)?.[1]
+    || String(htmlProbe).match(/<meta[^>]+content\s*=\s*["'][^"']*charset\s*=\s*([^;"'\s]+)/i)?.[1]
+    || '';
+  const raw = (headerCharset || metaCharset || 'utf-8').toLowerCase();
+  const charset = /euc-?kr|ks_c_5601|cp949|windows-949/.test(raw) ? 'euc-kr' : 'utf-8';
+  try { return new TextDecoder(charset).decode(bytes); }
+  catch { return new TextDecoder('utf-8').decode(bytes); }
+}
+
 async function fetchHtmlWithCurl(url, timeoutMs = 22000, referer = '') {
   const args = [
     '--silent', '--show-error', '--location', '--compressed', '--ipv4',
@@ -109,7 +121,9 @@ async function fetchHtmlWithFetch(url, timeoutMs = 22000, referer = '') {
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const response = await fetch(url, { signal: controller.signal, redirect: 'follow', headers: headers(referer) });
-    const html = await response.text();
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    const utf8Probe = new TextDecoder('utf-8').decode(bytes.slice(0, Math.min(bytes.length, 8192)));
+    const html = decodeResponseBytes(bytes, response.headers.get('content-type') || '', utf8Probe);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     if (html.trim().length < 80) throw new Error('response body too short');
     return { html, status: response.status, finalUrl: response.url || url, contentType: response.headers.get('content-type') || '' };

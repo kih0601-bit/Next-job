@@ -8,7 +8,9 @@ export function chooseBestAccessPage(pages = []) {
   return [...pages].sort((a, b) => {
     const av = a.verification || {}, bv = b.verification || {};
     return Number(bv.verified) - Number(av.verified)
-      || Number(bv.fallback) - Number(av.fallback)
+      || Number(bv.institutionRule) - Number(av.institutionRule)
+      || Number(bv.checks?.organizationMatch) - Number(av.checks?.organizationMatch)
+      || (a.accessPriority ?? 999) - (b.accessPriority ?? 999)
       || (bv.score || 0) - (av.score || 0)
       || (b.html?.length || 0) - (a.html?.length || 0);
   })[0] || null;
@@ -23,7 +25,7 @@ export function summarizeAccessAttempts(attempts = [], selected = null) {
     attempts
   };
 
-  if (selected?.verification?.ok) {
+  if (selected?.verification?.verified) {
     const primary = selected.requestedUrl === attempts[0]?.url;
     const recruitVerify = {
       ok: true,

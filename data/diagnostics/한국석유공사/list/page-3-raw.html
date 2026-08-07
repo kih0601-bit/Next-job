@@ -42,7 +42,7 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR" />
-	<title>�ѱ���������</title>
+	<title>한국석유공사</title>
 <!-- 	<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" /> 
 	<script src="./js/jquery.bxslider.js"></script>
@@ -96,14 +96,14 @@
 			document.location.href = document.location.href.replace('http:', 'https:');
 		}
 
-		// �˾�
+		// 팝업
 		function setCookie(name, value, expiredays) {
 			var todayDate = new Date();
 			todayDate.setDate(todayDate.getDate() + expiredays);
 			document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
 		}
 
-		// ���̾��˾� �ݱ�
+		// 레이어팝업 닫기
 		function closeLayerPopup(code) {
 			if ($("input[data-type=pop][data-val=" + code + "]").is(":checked") == true) {
 				setCookie(code, "done", 1);
@@ -152,7 +152,7 @@
 
 	</script>
 
-	<!-- �ű��˾� ���� -->
+	<!-- 신규팝업 시작 -->
 	
 	<script language="Javascript">
 		var cookies = [];
@@ -164,31 +164,31 @@
 			}
 		}
 	</script>
-	<!-- �ű��˾� �� -->
+	<!-- 신규팝업 끝 -->
 
 	<script type="text/javascript">
-		// ���հ˻�
+		// 통합검색
 		$(document).ready(function() {
 			$("#btnSearch").click(function() {
 				$("#tsearchForm").submit();
 			});
 		});
 
-		// ȭ�� ����
+		// 화면 비율
 		var zoomVal = 100;
 
-		// ȭ�� ���, Ȯ��
+		// 화면 축소, 확대
 		function zoom(action) {
 			if (action == "plus") {
 				if (zoomVal >= 200) {
-					alert("���̻� Ȯ���� �� �����ϴ�.");
+					alert("더이상 확대할 수 없습니다.");
 				} else {
 					zoomVal += 10;
 					document.body.style.zoom = zoomVal + "%";
 				}
 			} else {
 				if (zoomVal <= 70) {
-					alert("���̻� ����� �� �����ϴ�.");
+					alert("더이상 축소할 수 없습니다.");
 				} else {
 					zoomVal -= 10;
 					document.body.style.zoom = zoomVal + "%";
@@ -196,7 +196,7 @@
 			}
 		}
 
-		// ��� �˾� �ݱ�
+		// 상단 팝업 닫기
 		function top_pop_close() {
 			$("#top_pop").css("display", "none");
 		}
@@ -221,7 +221,7 @@
 			}
 		}
 
-		// ��� �˾� �ݱ�
+		// 상단 팝업 닫기
 		function top_pop_close() {
 			$("#top_pop").css("display", "none");
 		}
@@ -231,7 +231,7 @@
 		{
 			"@context": "http://schema.org",
 			"@type": "Person",
-			"name": "�ѱ���������",
+			"name": "한국석유공사",
 			"url": "https://www.knoc.co.kr",
 			"sameAs": [
 				"https://blog.naver.com/knoc3",
@@ -241,7 +241,7 @@
 
 	</script>
 	<script type="text/javascript">
-		// ���̾��˾� �ݱ�
+		// 레이어팝업 닫기
 		function closeLayerPopup1(code) {
 			if ($("input[name=\"chkbox\"]").is(":checked") == true) {
 				setCookie(code, "done", 1);
@@ -342,7 +342,7 @@
 			position: absolute;
 			z-index: 1;
 			bottom: 125%;
-			/* ���� ��� */
+			/* 위로 띄움 */
 			left: 50%;
 			transform: translateX(-50%);
 			opacity: 0;
@@ -366,7 +366,7 @@
 
 	<div id="skip-nav">
 		<ul>
-			<li><a class="accessibility" href="#body-layout">�������ΰ���</a></li>
+			<li><a class="accessibility" href="#body-layout">본문으로가기</a></li>
 		</ul>
 	</div>
 
@@ -380,7 +380,7 @@
 	</div>
 
 	<div class="header_area">
-		<!--header_area ����-->
+		<!--header_area 시작-->
 		<!--1::s-->
 
 
@@ -391,24 +391,24 @@
 
 
 		<div class="header_b_wrap">
-			<!--������ҿ��� ����-->
+			<!--헤더바텀영역 시작-->
 
 
 			<div class="header_awrap" id="top_menu">
-				<!--�������¸޴� bak ����-->
+				<!--내려오는메뉴 bak 시작-->
 				<div class="inner">
-					<!-- inner ���� -->
+					<!-- inner 시작 -->
 					<div class="center_zone"></div>
-				</div><!-- inner ��-->
+				</div><!-- inner 끝-->
 			</div>
-			<!--�������¸޴� bak ��-->
+			<!--내려오는메뉴 bak 끝-->
 
 		</div>
-		<!--������ҿ��� ��-->
+		<!--헤더바텀영역 끝-->
 
 
 	</div>
-	<!--header_area ��-->
+	<!--header_area 끝-->
 
 
 
@@ -417,9 +417,9 @@
 
 	<!-- slide banner : S -->
 	<div class="main_slidebox" id="body_layout">
-		<!-- ���̾��˾�  : ST -->
+		<!-- 레이어팝업  : ST -->
 		<script type="text/javascript">
-			// ���̾��˾� �ݱ�
+			// 레이어팝업 닫기
 			/*function closeLayerPopup1(code) {
 				if ($("input[name=\"chkbox\"]").is(":checked") == true) {
 		        	setCookie(code, "done", 1);
@@ -442,29 +442,29 @@
 
 		</script>
 
-		<!-- ���̾��˾�  : ED -->
+		<!-- 레이어팝업  : ED -->
 
 
 
 
 		<!------------------------------------------------------------- -->
-		<!-- ��� -->
+		<!-- 헤더 -->
 		<div class="header-wrap">
 			<div class="h-top">
 				<div class="h-top-in">
 					<div class="font-size">
-						<p>����ũ��</p>
+						<p>글자크기</p>
 						<ul class="btn-wrap">
-							<li><button type="button" class="zoom-in" onclick="javascript:zoom('plus');"><span class="hidden-text">����ũ�� ũ��</span></button></li>
-							<li><button type="button" class="zoom-out" onclick="javascript:zoom('minus');"><span class="hidden-text">����ũ�� �۰�</span></button></li>
+							<li><button type="button" class="zoom-in" onclick="javascript:zoom('plus');"><span class="hidden-text">글자크기 크게</span></button></li>
+							<li><button type="button" class="zoom-out" onclick="javascript:zoom('minus');"><span class="hidden-text">글자크기 작게</span></button></li>
 						</ul>
-						<button type="button" class="btn-print" onclick="printPage();"><span class="hidden-text">����Ʈ</span></button>
+						<button type="button" class="btn-print" onclick="printPage();"><span class="hidden-text">프린트</span></button>
 					</div>
 					<ul class="h-utill">
 						<li>
 
 							
-							<a href="/member/login.jsp">�α���</a>
+							<a href="/member/login.jsp">로그인</a>
 							
 
 						</li>
@@ -474,323 +474,309 @@
 			</div>
 
 			<header class="header">
-				<h1 class="logo"><a href="#"><span class="hidden-text">�ѱ���������</span></a></h1>
+				<h1 class="logo"><a href="#"><span class="hidden-text">한국석유공사</span></a></h1>
 
 				<nav class="header-gnb">
 					<ul class="gnb-depth-1">
 						<li class="depth-1">
-							<a href="/sub01/sub01_5.jsp"><span>����Ұ�</span></a>
+							<a href="/sub01/sub01_5.jsp"><span>공사소개</span></a>
 							<ul class="gnb-depth-2">
 								
-								<li class="depth-2"><a href="/sub01/sub01_1_1.jsp" title="CEO �������� �̵�"><span>CEO</span></a></li>
+								<li class="depth-2"><a href="/sub01/sub01_1_1.jsp" title="CEO 페이지로 이동"><span>CEO</span></a></li>
 								
-								<li class="depth-2"><a href="/sub01/sub01_5.jsp" title="������ �� �ֿ���� �������� �̵�"><span>������ �� �ֿ����</span></a></li>
+								<li class="depth-2"><a href="/sub01/sub01_5.jsp" title="조직도 및 주요업무 페이지로 이동"><span>조직도 및 주요업무</span></a></li>
 								
-								<li class="depth-2"><a href="/sub01/sub01_1_4.jsp" title="�ӿ� �� �濵�� �������� �̵�"><span>�ӿ� �� �濵��</span></a></li>
+								<li class="depth-2"><a href="/sub01/sub01_1_4.jsp" title="임원 및 경영진 페이지로 이동"><span>임원 및 경영진</span></a></li>
 								
-								<li class="depth-2"><a href="/sub01/sub01_4_2010.jsp" title="ȸ�翬�� �������� �̵�"><span>ȸ�翬��</span></a></li>
+								<li class="depth-2"><a href="/sub01/sub01_4_2010.jsp" title="회사연혁 페이지로 이동"><span>회사연혁</span></a></li>
 								
-								<li class="depth-2"><a href="/sub01/sub01_10_1.jsp" title="�����ȭ �������� �̵�"><span>�����ȭ</span></a></li>
+								<li class="depth-2"><a href="/sub01/sub01_10_1.jsp" title="기업문화 페이지로 이동"><span>기업문화</span></a></li>
 								
-								<li class="depth-2"><a href="/sub01/sub01_2_5_1.jsp" title="CI �������� �̵�"><span>CI</span></a></li>
+								<li class="depth-2"><a href="/sub01/sub01_2_5_1.jsp" title="CI 페이지로 이동"><span>CI</span></a></li>
 								
-								<li class="depth-2"><a href="/sub01/sub01_7_1.jsp" title="ä������ �������� �̵�"><span>ä������</span></a></li>
+								<li class="depth-2"><a href="/sub01/sub01_7_1.jsp" title="채용정보 페이지로 이동"><span>채용정보</span></a></li>
 								
-								<li class="depth-2"><a href="/sub01/sub01_9.jsp" title="ã�ƿ��ô� �� �������� �̵�"><span>ã�ƿ��ô� ��</span></a></li>
+								<li class="depth-2"><a href="/sub01/sub01_9.jsp" title="찾아오시는 길 페이지로 이동"><span>찾아오시는 길</span></a></li>
 								
 							</ul>
 						</li>
 						<li class="depth-1">
-							<a href="/sub03/sub03_1_1.jsp"><span>����Ұ�</span></a>
+							<a href="/sub03/sub03_1_1.jsp"><span>사업소개</span></a>
 							<ul class="gnb-depth-2">
 								
-								<li class="depth-2"><a href="/sub03/sub03_1_1.jsp" title="�������߻�� �������� �̵�"><span>�������߻��</span></a></li>
+								<li class="depth-2"><a href="/sub03/sub03_1_1.jsp" title="석유개발사업 페이지로 이동"><span>석유개발사업</span></a></li>
 								
-								<li class="depth-2"><a href="/sub03/sub03_4_3.jsp" title="���������� �������� �̵�"><span>����������</span></a></li>
+								<li class="depth-2"><a href="/sub03/sub03_4_3.jsp" title="석유비축사업 페이지로 이동"><span>석유비축사업</span></a></li>
 								
-								<li class="depth-2"><a href="/sub03/sub03_8_1_1.jsp" title="���뱸��������� �������� �̵�"><span>���뱸���������</span></a></li>
+								<li class="depth-2"><a href="/sub03/sub03_8_1_1.jsp" title="유통구조개선사업 페이지로 이동"><span>유통구조개선사업</span></a></li>
 								
-								<li class="depth-2"><a href="/sub03/sub03_9.jsp" title="�ſ�������� �������� �̵�"><span>�ſ��������</span></a></li>
+								<li class="depth-2"><a href="/sub03/sub03_9.jsp" title="신에너지사업 페이지로 이동"><span>신에너지사업</span></a></li>
 								
 							</ul>
 						</li>
 						<li class="depth-1">
-							<a href="/sub13/sub13_1_1.jsp"><span>ESG�濵</span></a>
+							<a href="/sub13/sub13_1_1.jsp"><span>ESG경영</span></a>
 							<ul class="gnb-depth-2">
 								
-								<li class="depth-2"><a href="/sub13/sub13_1_1.jsp" title="ESG�濵 �������� �̵�"><span>ESG�濵</span></a></li>
+								<li class="depth-2"><a href="/sub13/sub13_1_1.jsp" title="ESG경영 페이지로 이동"><span>ESG경영</span></a></li>
 								
-								<li class="depth-2"><a href="/sub13/sub13_2_1_1.jsp" title="ȯ�� �������� �̵�"><span>ȯ��</span></a></li>
+								<li class="depth-2"><a href="/sub13/sub13_2_1_1.jsp" title="환경 페이지로 이동"><span>환경</span></a></li>
 								
-								<li class="depth-2"><a href="/sub13/sub13_3_1_1.jsp" title="��ȸ�о� �������� �̵�"><span>��ȸ�о�</span></a></li>
+								<li class="depth-2"><a href="/sub13/sub13_3_1_1.jsp" title="사회분야 페이지로 이동"><span>사회분야</span></a></li>
 								
-								<li class="depth-2"><a href="/sub13/sub13_4_1_1.jsp" title="���豸�� �������� �̵�"><span>���豸��</span></a></li>
+								<li class="depth-2"><a href="/sub13/sub13_4_1_1.jsp" title="지배구조 페이지로 이동"><span>지배구조</span></a></li>
 								
-								<li class="depth-2"><a href="/sub13/sub13_5_1_1.jsp" title="�������αǰ濵 �������� �̵�"><span>�������αǰ濵</span></a></li>
+								<li class="depth-2"><a href="/sub13/sub13_5_1_1.jsp" title="윤리·인권경영 페이지로 이동"><span>윤리·인권경영</span></a></li>
 								
 							</ul>
 						</li>
 						<li class="depth-1">
-							<a href="/sub11/sub11_1.jsp"><span>ȫ������</span></a>
+							<a href="/sub11/sub11_1.jsp"><span>홍보센터</span></a>
 							<ul class="gnb-depth-2">
 								
-								<li class="depth-2"><a href="/sub11/sub11_1.jsp" title="�����ڷ� �������� �̵�"><span>�����ڷ�</span></a></li>
+								<li class="depth-2"><a href="/sub11/sub11_1.jsp" title="보도자료 페이지로 이동"><span>보도자료</span></a></li>
 								
-								<li class="depth-2"><a href="/sub11/sub11_2.jsp" title="���䴺�� �������� �̵�"><span>���䴺��</span></a></li>
+								<li class="depth-2"><a href="/sub11/sub11_2.jsp" title="포토뉴스 페이지로 이동"><span>포토뉴스</span></a></li>
 								
-								<li class="depth-2"><a href="/sub11/sub11_10.jsp" title="���󴺽� �������� �̵�"><span>���󴺽�</span></a></li>
+								<li class="depth-2"><a href="/sub11/sub11_10.jsp" title="영상뉴스 페이지로 이동"><span>영상뉴스</span></a></li>
 								
-								<li class="depth-2"><a href="/sub11/sub11_3.jsp" title="ȫ������ �������� �̵�"><span>ȫ������</span></a></li>
+								<li class="depth-2"><a href="/sub11/sub11_3.jsp" title="홍보영상 페이지로 이동"><span>홍보영상</span></a></li>
 								
-								<li class="depth-2"><a href="/sub11/sub11_5_5.jsp" title="ȫ�� ���๰ �������� �̵�"><span>ȫ�� ���๰</span></a></li>
+								<li class="depth-2"><a href="/sub11/sub11_5_5.jsp" title="홍보 간행물 페이지로 이동"><span>홍보 간행물</span></a></li>
 								
-								<li class="depth-2"><a href="/sub11/sub11_4.jsp" title="���������� �������� �̵�"><span>����������</span></a></li>
+								<li class="depth-2"><a href="/sub11/sub11_4.jsp" title="사진갤러리 페이지로 이동"><span>사진갤러리</span></a></li>
 								
 							</ul>
 						</li>
 						<li class="depth-1">
-							<a href="/sub05/sub05_13_1_1.jsp"><span>��������</span></a>
+							<a href="/sub05/sub05_13_1_1.jsp"><span>정보공개</span></a>
 							<ul class="gnb-depth-2">
 								
-								<li class="depth-2"><a href="/sub05/sub05_13_1_1.jsp" title="������������ �������� �̵�"><span>������������</span></a></li>
+								<li class="depth-2"><a href="/sub05/sub05_13_1_1.jsp" title="정보공개제도 페이지로 이동"><span>정보공개제도</span></a></li>
 								
-								<li class="depth-2"><a href="/sub05/sub05_13_2_1.jsp" title="�������� û�� �������� �̵�"><span>�������� û��</span></a></li>
+								<li class="depth-2"><a href="/sub05/sub05_13_2_1.jsp" title="정보공개 청구 페이지로 이동"><span>정보공개 청구</span></a></li>
 								
-								<li class="depth-2"><a href="/sub05/sub05_13_1_3.jsp" title="������������ �������� �̵�"><span>������������</span></a></li>
+								<li class="depth-2"><a href="/sub05/sub05_13_1_3.jsp" title="비공개대상정보 페이지로 이동"><span>비공개대상정보</span></a></li>
 								
-								<li class="depth-2"><a href="/sub05/sub05_12_list.jsp" title="����������ǥ �������� �̵�"><span>����������ǥ</span></a></li>
+								<li class="depth-2"><a href="/sub05/sub05_12_list.jsp" title="사전정보공표 페이지로 이동"><span>사전정보공표</span></a></li>
 								
-								<li class="depth-2"><a href="/sub05/sub05_13_list.jsp" title="������� �������� �̵�"><span>�������</span></a></li>
+								<li class="depth-2"><a href="/sub05/sub05_13_list.jsp" title="정보목록 페이지로 이동"><span>정보목록</span></a></li>
 								
-								<li class="depth-2"><a href="/sub05/sub05_13_4_1.jsp" title="���������� �������� �̵�"><span>����������</span></a></li>
+								<li class="depth-2"><a href="/sub05/sub05_13_4_1.jsp" title="공공데이터 페이지로 이동"><span>공공데이터</span></a></li>
 								
-								<li class="depth-2"><a href="/sub05/sub05_14.jsp" title="����Ǹ��� �������� �̵�"><span>����Ǹ���</span></a></li>
+								<li class="depth-2"><a href="/sub05/sub05_14.jsp" title="사업실명제 페이지로 이동"><span>사업실명제</span></a></li>
 								
 							</ul>
 						</li>
 						<li class="depth-1">
-							<a href="/sub05/sub05_5_5.jsp"><span>��������</span></a>
+							<a href="/sub05/sub05_5_5.jsp"><span>국민참여</span></a>
 							<ul class="gnb-depth-2">
 								
-								<li class="depth-2"><a href="/sub05/sub05_5_5.jsp" title="�������� �������� �̵�"><span>��������</span></a></li>
+								<li class="depth-2"><a href="/sub05/sub05_5_5.jsp" title="공지사항 페이지로 이동"><span>공지사항</span></a></li>
 								
-								<li class="depth-2"><a href="/sub04/sub04_1_1.jsp" title="�������� �������� �̵�"><span>��������</span></a></li>
+								<li class="depth-2"><a href="/sub04/sub04_1_1.jsp" title="고객헌장 페이지로 이동"><span>고객헌장</span></a></li>
 								
-								<li class="depth-2"><a href="/sub04/sub04_15.jsp" title="�Ű����ȼ��� �������� �̵�"><span>�Ű����ȼ���</span></a></li>
+								<li class="depth-2"><a href="/sub04/sub04_15.jsp" title="신고제안센터 페이지로 이동"><span>신고제안센터</span></a></li>
 								
-								<li class="depth-2"><a href="/sub04/sub04_2.jsp" title="�������� �������� �̵�"><span>��������</span></a></li>
+								<li class="depth-2"><a href="/sub04/sub04_2.jsp" title="고객상담실 페이지로 이동"><span>고객상담실</span></a></li>
 								
-								<li class="depth-2"><a href="/sub04/sub04_3.jsp" title="����/�������� �������� �̵�"><span>����/��������</span></a></li>
+								<li class="depth-2"><a href="/sub04/sub04_3.jsp" title="고객/국민제안 페이지로 이동"><span>고객/국민제안</span></a></li>
 								
-								<li class="depth-2"><a href="/sub04/sub04_5.jsp" title="�ο����� �������� �̵�"><span>�ο�����</span></a></li>
+								<li class="depth-2"><a href="/sub04/sub04_5.jsp" title="민원접수 페이지로 이동"><span>민원접수</span></a></li>
 								
-								<li class="depth-2"><a href="/sub04/sub04_5_5.jsp" title="���С����ͽŰ� �������� �̵�"><span>���С����ͽŰ�</span></a></li>
+								<li class="depth-2"><a href="/sub04/sub04_5_5.jsp" title="부패·공익신고 페이지로 이동"><span>부패·공익신고</span></a></li>
 								
-								<li class="depth-2"><a href="/sub04/sub04_7.jsp" title="����������伾�� �������� �̵�"><span>����������伾��</span></a></li>
+								<li class="depth-2"><a href="/sub04/sub04_7.jsp" title="기업성장응답센터 페이지로 이동"><span>기업성장응답센터</span></a></li>
 								
-								<li class="depth-2"><a href="/sub04/sub04_18.jsp" title="�ΰ����� �������� �������� �̵�"><span>�ΰ����� ��������</span></a></li>
+								<li class="depth-2"><a href="/sub04/sub04_18.jsp" title="민간성장 지원마당 페이지로 이동"><span>민간성장 지원마당</span></a></li>
 								
-								<li class="depth-2"><a href="/sub04/sub04_8_1.jsp" title="�˶������� �������� �̵�"><span>�˶�������</span></a></li>
+								<li class="depth-2"><a href="/sub04/sub04_8_1.jsp" title="알뜰주유소 페이지로 이동"><span>알뜰주유소</span></a></li>
 								
-								<li class="depth-2"><a href="/sub04/sub04_1_10.jsp" title="���������ڿ� �������� �̵�"><span>���������ڿ�</span></a></li>
+								<li class="depth-2"><a href="/sub04/sub04_1_10.jsp" title="공공개방자원 페이지로 이동"><span>공공개방자원</span></a></li>
 								
-								<li class="depth-2"><a href="/sub12/sub12_2_2.jsp" title="KPA �������� ������û �������� �̵�"><span>KPA �������� ������û</span></a></li>
+								<li class="depth-2"><a href="/sub12/sub12_2_2.jsp" title="KPA 공개강좌 교육신청 페이지로 이동"><span>KPA 공개강좌 교육신청</span></a></li>
 								
 							</ul>
 						</li>
 					</ul>
 				</nav>
 				<div class="r-wrap">
-					<button id="openModal" class="sch-btn" type="button"><span class="hidden-text">�˻�</span></button>
+					<button id="openModal" class="sch-btn" type="button"><span class="hidden-text">검색</span></button>
 
-					<!-- �˻�â -->
+					<!-- 검색창 -->
 					<div id="myModal" class="sch-wrap modal" role="dialog" aria-hidden="true" aria-labelledby="modalTitle" tabindex="-1">
 						<form name="tsearchForm" id="tsearchForm" method="post" action="/search/list.jsp">
 							<div class="sch-box">
 								<div class="cont">
-									<h3>���հ˻�</h3>
+									<h3>통합검색</h3>
 									<div class="bar">
 										<form name="tsearchForm" id="tsearchForm" method="post" action="/search/list.jsp">
-											<label for="nsearch" class="blind">�˻�� �Է�</label><input type="text" id="nsearch" name="search" placeholder="�˻�� �Է����ּ���" />
-											<button type="button" id="btnSearch" class="sch-btn"><span class="hidden-text">�˻�</span></button>
+											<label for="nsearch" class="blind">검색어를 입력</label><input type="text" id="nsearch" name="search" placeholder="검색어를 입력해주세요" />
+											<button type="button" id="btnSearch" class="sch-btn"><span class="hidden-text">검색</span></button>
 										</form>
 
 									</div>
 								</div>
-								<button id="closeModal" class="close-btn" type="button" id="btnClose"><span class="hidden-text">�˻�â �ݱ�</span></button>
+								<button id="closeModal" class="close-btn" type="button" id="btnClose"><span class="hidden-text">검색창 닫기</span></button>
 							</div>
 						</form>
 					</div>
-					<!-- //�˻�â -->
+					<!-- //검색창 -->
 
-					<a class="all-menu" href="/member/sitemap.jsp"><span class="hidden-text">����Ʈ�� �ٷΰ���</span></a>
+					<a class="all-menu" href="/member/sitemap.jsp"><span class="hidden-text">사이트맵 바로가기</span></a>
 				</div>
 
 
 
 			</header>
 		</div>
-		<!-- //��� -->
-					<!-- �˾� -->
+		<!-- //헤더 -->
+					<!-- 팝업 -->
 	<div class="layer_pop_wrap">
 		<!--  <div id="layer_pop_e01" class="layer_pop" style="display:none;  ">
 			<div class="layer_img">
 				<a href="https://naver.me/IM4N84uL" tabindex="0"><img src="/images/popup_20251128.jpg" alt="" /></a>
 			</div>  
 			<div class="layer_close">
-				<input type="checkbox" name="chkbox" value="checkbox" title="�����Ϸ� ��â�� ���� ����" style="position:relative; left:0;">
-				�����Ϸ� ��â�� ���� ����
-				<button type="button" onclick="closeLayerPopup1('layer_pop_e01');"><span class="close_btn">�ݱ�</span></button>
+				<input type="checkbox" name="chkbox" value="checkbox" title="오늘하루 이창을 열지 않음" style="position:relative; left:0;">
+				오늘하루 이창을 열지 않음
+				<button type="button" onclick="closeLayerPopup1('layer_pop_e01');"><span class="close_btn">닫기</span></button>
 			</div>
 		</div>
 
 		<div id="layer_pop_e02" class="layer_pop2" style="display:none;">
 			<div class="layer_img">
-				<a href="/sub05/sub05_5_5.jsp?page=1&num=284&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/20251031_img_1.jpg" alt="���� �� �� �ߴ� �ȳ�" /></a>
+				<a href="/sub05/sub05_5_5.jsp?page=1&num=284&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/20251031_img_1.jpg" alt="서비스 일 시 중단 안내" /></a>
 			</div>
 			<div class="layer_close">
-				<input type="checkbox" name="chkbox" value="checkbox" title="�����Ϸ� ��â�� ���� ����" style="position:relative; left:0;">
-				�����Ϸ� ��â�� ���� ����
-				<button type="button" onclick="closeLayerPopup2('layer_pop_e02');"><span class="close_btn">�ݱ�</span></button>
+				<input type="checkbox" name="chkbox" value="checkbox" title="오늘하루 이창을 열지 않음" style="position:relative; left:0;">
+				오늘하루 이창을 열지 않음
+				<button type="button" onclick="closeLayerPopup2('layer_pop_e02');"><span class="close_btn">닫기</span></button>
 			</div>
 		</div>
 
 
 		<div id="layer_pop_e03" class="layer_pop3" style="display:none;">
 			<div class="layer_img">
-				<a href="/sub05/sub05_5_5.jsp?page=1&num=285&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/20251103_img_2.jpg" alt="DDos �����Ʒ�" /></a>
+				<a href="/sub05/sub05_5_5.jsp?page=1&num=285&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/20251103_img_2.jpg" alt="DDos 대응훈련" /></a>
 			</div>
 			<div class="layer_close">
-				<input type="checkbox" name="chkbox" value="checkbox" title="�����Ϸ� ��â�� ���� ����" style="position:relative; left:0;">
-				�����Ϸ� ��â�� ���� ����
-				<button type="button" onclick="closeLayerPopup3('layer_pop_e03');"><span class="close_btn">�ݱ�</span></button>
+				<input type="checkbox" name="chkbox" value="checkbox" title="오늘하루 이창을 열지 않음" style="position:relative; left:0;">
+				오늘하루 이창을 열지 않음
+				<button type="button" onclick="closeLayerPopup3('layer_pop_e03');"><span class="close_btn">닫기</span></button>
 			</div>
 		</div>-->
 		
 		<div id="layer_pop_e01" class="layer_pop" style="display:none;  ">
 			<div class="layer_img">
-				<a href="/sub05/sub05_5_5.jsp?page=1&num=297&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/popup_20260330.jpg" alt="������" /></a>
+				<a href="/sub05/sub05_5_5.jsp?page=1&num=297&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/popup_20260330.jpg" alt="공고문" /></a>
 			</div>  
 			<div class="layer_close">
-				<input type="checkbox" name="chkbox" value="checkbox" title="�����Ϸ� ��â�� ���� ����" style="position:relative; left:0;">
-				�����Ϸ� ��â�� ���� ����
-				<button type="button" onclick="closeLayerPopup1('layer_pop_e01');"><span class="close_btn">�ݱ�</span></button>
+				<input type="checkbox" name="chkbox" value="checkbox" title="오늘하루 이창을 열지 않음" style="position:relative; left:0;">
+				오늘하루 이창을 열지 않음
+				<button type="button" onclick="closeLayerPopup1('layer_pop_e01');"><span class="close_btn">닫기</span></button>
 			</div>
 		</div>
 
 		<div id="layer_pop_e02" class="layer_pop2" style="display:none;">
 			<div class="layer_img">
-				<a href="/sub05/sub05_5_5.jsp?page=1&num=289&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/popup_20251209_2.jpg" alt="���� �� �� �ߴ� �ȳ�" /></a>
+				<a href="/sub05/sub05_5_5.jsp?page=1&num=289&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/popup_20251209_2.jpg" alt="서비스 일 시 중단 안내" /></a>
 			</div>
 			<div class="layer_close">
-				<input type="checkbox" name="chkbox" value="checkbox" title="�����Ϸ� ��â�� ���� ����" style="position:relative; left:0;">
-				�����Ϸ� ��â�� ���� ����
-				<button type="button" onclick="closeLayerPopup2('layer_pop_e02');"><span class="close_btn">�ݱ�</span></button>
+				<input type="checkbox" name="chkbox" value="checkbox" title="오늘하루 이창을 열지 않음" style="position:relative; left:0;">
+				오늘하루 이창을 열지 않음
+				<button type="button" onclick="closeLayerPopup2('layer_pop_e02');"><span class="close_btn">닫기</span></button>
 			</div>
 		</div>
 
 
 		<div id="layer_pop_e03" class="layer_pop3" style="display:none;">
 			<div class="layer_img">
-				<a href="/sub05/sub05_5_5.jsp?page=1&num=288&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/popup_20251209_3.jpg" alt="DDos �����Ʒ�" /></a>
+				<a href="/sub05/sub05_5_5.jsp?page=1&num=288&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/popup_20251209_3.jpg" alt="DDos 대응훈련" /></a>
 			</div>
 			<div class="layer_close">
-				<input type="checkbox" name="chkbox" value="checkbox" title="�����Ϸ� ��â�� ���� ����" style="position:relative; left:0;">
-				�����Ϸ� ��â�� ���� ����
-				<button type="button" onclick="closeLayerPopup3('layer_pop_e03');"><span class="close_btn">�ݱ�</span></button>
+				<input type="checkbox" name="chkbox" value="checkbox" title="오늘하루 이창을 열지 않음" style="position:relative; left:0;">
+				오늘하루 이창을 열지 않음
+				<button type="button" onclick="closeLayerPopup3('layer_pop_e03');"><span class="close_btn">닫기</span></button>
 			</div>
 		</div>
 		
 		<div id="layer_pop_e04" class="layer_pop4" style="display:none; top:110px; width:250px; left:175px;">
 			<div class="layer_img">
-				<a href="/sub05/sub05_5_5.jsp?page=1&num=284&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/20260109_img_1.jpg" alt="������ǰ �볳 ������� �ȳ�" /></a>
+				<a href="/sub05/sub05_5_5.jsp?page=1&num=284&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" tabindex="0"><img src="/images/20260109_img_1.jpg" alt="허위물품 대납 사기주의 안내" /></a>
 			</div>
 			<div class="layer_close">
-				<input type="checkbox" name="chkbox" value="checkbox" title="�����Ϸ� ��â�� ���� ����" style="position:relative; left:0;">
-				�����Ϸ� ��â�� ���� ����
-				<button type="button" onclick="closeLayerPopup4('layer_pop_e04');"><span class="close_btn">�ݱ�</span></button>
+				<input type="checkbox" name="chkbox" value="checkbox" title="오늘하루 이창을 열지 않음" style="position:relative; left:0;">
+				오늘하루 이창을 열지 않음
+				<button type="button" onclick="closeLayerPopup4('layer_pop_e04');"><span class="close_btn">닫기</span></button>
 			</div>
 		</div>
 		
 	</div>
-	<!-- //�˾� -->
+	<!-- //팝업 -->
 
 
 		<!-- #body-layout -->
 		<div id="body-layout">
 
 
-			<!-- ���κ��־� -->
+			<!-- 메인비주얼 -->
 			<div class="main-visual">
 				<div class="main-txt">
 					<p class="t1">Better Energy for</p>
 					<p class="t2">Us <span>&amp;</span> Earth</p>
-					<div class="t3">�ѱ���������� ���Ӱ����� �������� ������ ��������</br> ���� ���� ���� ����ϱ� ���� ����ϰ� �ֽ��ϴ�.</div>
+					<div class="t3">한국석유공사는 지속가능한 에너지의 안정적 공급으로</br> 국민 삶의 질을 향상하기 위해 노력하고 있습니다.</div>
 				</div>
 				<div class="inner">
 					<ul class="m-item-list">
 						<li>
 							<a href="/sub03/sub03_2_2.jsp">
 								<img src="images/main/m_icon_01.png" alt="">
-								<p>�������߻��</p>
+								<p>석유개발사업</p>
 							</a>
 						</li>
 						<li>
 							<a href="/sub03/sub03_4_3.jsp">
 								<img src="images/main/m_icon_02.png" alt="">
-								<p>����������</p>
+								<p>석유비축사업</p>
 							</a>
 						</li>
 						<li>
 							<a href="/sub03/sub03_8_1_1.jsp">
 								<img src="images/main/m_icon_03.png" alt="">
-								<p>���뱸���������</p>
+								<p>유통구조개선사업</p>
 							</a>
 						</li>
 					</ul>
 				</div>
 			</div>
-			<!-- //���κ��־� -->
+			<!-- //메인비주얼 -->
 
 			<!-- section1 -->
 			<div class="section1 section">
 				<div class="inner">
-					<!--�˾��� ����-->
+					<!--팝업존 시작-->
 					<div class="popup-wrap">
-						<h2 class="tit">�ֿ�˸�</h2>
+						<h2 class="tit">주요알림</h2>
             <div class="control">
 							<!-- Pagination -->
 							<div class="swiper-pagination"></div>
 
 							<!-- Navigation Buttons -->
-							<button class="prev btn" type="button"><span class="hidden-text">��������</span></button>
-							<button class="next btn" type="button"><span class="hidden-text">��������</span></button>
-							<button class="stop btn" type="button"><span class="hidden-text">����</span></button>
+							<button class="prev btn" type="button"><span class="hidden-text">이전으로</span></button>
+							<button class="next btn" type="button"><span class="hidden-text">다음으로</span></button>
+							<button class="stop btn" type="button"><span class="hidden-text">정지</span></button>
 						</div>
 						<div class="swiper-wrapper">
 							
 							<div class="swiper-slide">
 								
-								<a href="https://surveypro.co.kr/s?sCode=MjAzMTA2NjkzMg-MTM4NTE" target='_blank' title="���������� �ȶ�(KNOCK)!OX���� �̺�Ʈ">
+								<a href="https://surveypro.co.kr/s?sCode=MjAzMTA2NjkzMg-MTM4NTE" target='_blank' title="공공데이터 똑똑(KNOCK)!OX퀴즈 이벤트">
 									
-									<img src="/upload/POPUP/202607231734257721167.jpg" alt="2026�� �ѱ���������(KNOC)
-���������� �ȶ�(KNOCK)!OX�����̺�Ʈ
-�����Ⱓ 8/3(��)~8/7(��)
-��÷�� ���� ������ 30�в� �����÷��̽� �Ƹ޸�ī�� ���� 1�� ����!" style="width:100%; height:390px;">
-									
-								</a>
-								
-							</div>
-							
-							<div class="swiper-slide">
-								
-								<a href="https://www.kipa.org/kinpex/" target='_blank' title="2026  ���ѹα� �߸�Ư�����">
-									
-									<img src="/upload/POPUP/202607141722201301598.jpg" alt="2026 ���ѹα� �߸�Ư�����
-���Ⱓ/��� : 2026.12.2(��) ~ 12.5(��) �ڿ��� 3�� Hall C
-�����Ⱓ/���
-2026.7.8(��) ~ 8.26(��)18�� �¶��� ���� (www.kipa.org/kinpex)
-�������ó,�ѱ��߸�����ȸ" style="width:100%; height:390px;">
+									<img src="/upload/POPUP/202607231734257721167.jpg" alt="2026년 한국석유공사(KNOC)
+공공데이터 똑똑(KNOCK)!OX퀴즈이벤트
+참여기간 8/3(월)~8/7(금)
+추첨을 통해 정답자 30분께 투썸플레이스 아메리카노 쿠폰 1매 증정!" style="width:100%; height:390px;">
 									
 								</a>
 								
@@ -798,13 +784,13 @@
 							
 							<div class="swiper-slide">
 								
-								<a href="https://www.knoc.co.kr/sub05/sub05_5_5.jsp?page=1&num=304&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" target='_blank' title="������� ����û�ŵ� �� ���� ��3�� �������� �˸�">
+								<a href="https://www.kipa.org/kinpex/" target='_blank' title="2026  대한민국 발명특허대전">
 									
-									<img src="/upload/POPUP/202607161440256751291.jpg" alt="�ѱ���������
-������� ����û�ŵ� �� ����
-�������� ��3�� �������� �˸�
-
-�ڼ��� ������ ���������� Ȯ���� �ּ���." style="width:100%; height:390px;">
+									<img src="/upload/POPUP/202607141722201301598.jpg" alt="2026 대한민국 발명특허대전
+행사기간/장소 : 2026.12.2(수) ~ 12.5(토) 코엑스 3층 Hall C
+접수기간/방법
+2026.7.8(수) ~ 8.26(수)18시 온라인 접수 (www.kipa.org/kinpex)
+지식재산처,한국발명진흥회" style="width:100%; height:390px;">
 									
 								</a>
 								
@@ -812,15 +798,29 @@
 							
 							<div class="swiper-slide">
 								
-								<a href="https://www.knoc.co.kr/sub04/sub04_20.jsp" target='_blank' title="Ư�� �������� ��û ����">
+								<a href="https://www.knoc.co.kr/sub05/sub05_5_5.jsp?page=1&num=304&mode=view&field=&text=&bid=DATA5&ses=USERSESSION&psize=12" target='_blank' title="공공기관 종합청렴도 평가 관련 제3자 제공사항 알림">
 									
-									<img src="/upload/POPUP/202605221040275381112.jpg" alt="Ư�� ���������� ��û ����
+									<img src="/upload/POPUP/202607161440256751291.jpg" alt="한국석유공사
+공공기관 종합청렴도 평가 관련
+개인정보 제3자 제공사항 알림
 
-- ���Ư�� : 6�� (���������� ��� Ư�� �� ȣ����)
-- �����Ⱓ : ~2026.12.31. (�������)
-- ���⼭�� : ����ڵ����, Ư��� Ȱ�� ��ȹ��
+자세한 내용은 공지사항을 확인해 주세요." style="width:100%; height:390px;">
+									
+								</a>
+								
+							</div>
+							
+							<div class="swiper-slide">
+								
+								<a href="https://www.knoc.co.kr/sub04/sub04_20.jsp" target='_blank' title="특허 공유이전 신청 접수">
+									
+									<img src="/upload/POPUP/202605221040275381112.jpg" alt="특허 공유·이전 신청 접수
 
-��û�ٷΰ��� ��ư" style="width:100%; height:390px;">
+- 대상특허 : 6건 (공유·이전 대상 특허 탭 호가인)
+- 접수기간 : ~2026.12.31. (상시접수)
+- 제출서류 : 사업자등록증, 특허권 활용 계획서
+
+신청바로가기 버튼" style="width:100%; height:390px;">
 									
 								</a>
 								
@@ -876,25 +876,25 @@
 							}
 						});
 
-						// ����/��� ��ư ���
+						// 정지/재생 버튼 토글
 						var isPlaying = true;
 						$('.popup-wrap .stop').on('click', function() {
 							if (isPlaying) {
 								popupSwiper.autoplay.stop();
-								$(this).find('span').text('���');
+								$(this).find('span').text('재생');
 							} else {
 								popupSwiper.autoplay.start();
-								$(this).find('span').text('����');
+								$(this).find('span').text('정지');
 							}
 							isPlaying = !isPlaying;
 						});
 
 					</script>
-					<!--�˾��� ��-->
+					<!--팝업존 끝-->
 
 					<!-- bxSlider -->
 					<script type="text/javascript">
-						//�����̵�ɼ�Ȱ���ϱ�
+						//슬라이드옵션활용하기
 						/*var manualSlide = $('.manual_control_slider').bxSlider({
 	controls:false,
 	pager:false,
@@ -929,30 +929,30 @@
 							var img = $(this).find('img');
 							if (img.attr('src') === 'images/p_stop.png') {
 								img.attr('src', 'images/p_play.png');
-								img.attr('alt', '�˾��� ���');
+								img.attr('alt', '팝업종 재생');
 								manualSlide.stopAuto();
 							} else {
 								img.attr('src', 'images/p_stop.png');
-								img.attr('alt', '�˾��� ����');
+								img.attr('alt', '팝업존 정지');
 								manualSlide.startAuto();
 							}
 						});
 
 
-						// ��Ŀ���� �����̴��� �̵��� �� �ڵ� ��� ���߱�
+						// 포커스가 슬라이더로 이동할 때 자동 재생 멈추기
 						$('.manualWrap').on('focus', function() {
 							manualSlide.stopAuto();
 						}).on('blur', function() {
 							manualSlide.startAuto();
 						});
 
-						// ��Ŀ���� �����̴� �׸����� �̵��� �� �ڵ� ��� ���߱�
+						// 포커스가 슬라이더 항목으로 이동할 때 자동 재생 멈추기
 						$('.manual_control_slider li').attr('tabindex', '0').on('focus', function() {
 							manualSlide.stopAuto();
 						}).on('blur', function() {
 							manualSlide.startAuto();
 						});
-						//Ű����� �����̴� �����ϱ�
+						//키보드로 슬라이더 조작하기
 						$(document).on('keydown', function(e) {
 							if ($('.manual_control_slider li').is(':focus')) {
 								var currentSlide = manualSlide.getCurrentSlide();
@@ -960,29 +960,29 @@
 
 								if (e.which === 9) { // tab key
 									if (e.shiftKey) {
-										// Shift + Tab ������ ��
+										// Shift + Tab 눌렀을 때
 
 
 										if (currentSlide === 0) {
 
-											$('#a1').focus(); // id�� a1�� ��ҷ� ��Ŀ�� �̵�
+											$('#a1').focus(); // id가 a1인 요소로 포커스 이동
 
 
 										} else {
 											e.preventDefault();
-											manualSlide.goToPrevSlide(); // ���� �����̵�� �̵�
+											manualSlide.goToPrevSlide(); // 이전 슬라이드로 이동
 										}
 
 
 									} else {
-										// Tab�� ������ ��
+										// Tab만 눌렀을 때
 
 										if (currentSlide === slideCount - 1) {
-											e.preventDefault(); // �⺻ �� ���� ����
-											$('#p_prev').focus(); // id�� p_prev�� ��ҷ� ��Ŀ�� �̵�
+											e.preventDefault(); // 기본 탭 동작 방지
+											$('#p_prev').focus(); // id가 p_prev인 요소로 포커스 이동
 										} else {
-											e.preventDefault(); // �⺻ �� ���� ����
-											manualSlide.goToNextSlide(); // ���� �����̵�� �̵�
+											e.preventDefault(); // 기본 탭 동작 방지
+											manualSlide.goToNextSlide(); // 다음 슬라이드로 이동
 										}
 									}
 								}
@@ -995,14 +995,14 @@
 
 					<!-- NOTICE -->
 					<div class="notice">
-						<h2 class="tit">�����ڷ� </h2>
+						<h2 class="tit">보도자료 </h2>
 
 						<ul class="item-list">
 							
 							<li>
 
 								<a href="/sub11/sub11_1.jsp?num=996&mode=view&bid=NEWS&field=subject&text=&page=1" class="link">
-									<p>[�����ڷ�] �ѱ���������, ���� �� ������ �۾� ���� ã�� ���ð� ���� ����� �ǽ� �� ���»� ��� �� ���� ���� ���� ü�� ������ �(2026.07.29.)</p>
+									<p>[보도자료] 한국석유공사, 폭염 속 고위험 작업 현장 찾아 ‘냉각 안전 요원’ 실시 및 협력사 대상 상설 가상 현실 안전 체험 교육장 운영(2026.07.29.)</p>
 									<span class="date">2026-07-29</span>
 								</a>
 
@@ -1011,7 +1011,7 @@
 							<li>
 
 								<a href="/sub11/sub11_1.jsp?num=995&mode=view&bid=NEWS&field=subject&text=&page=1" class="link">
-									<p>[�����ڷ�] �ѱ���������, ���� �湮�� ���� ������� ����ȸ ����(2026.07.27.)</p>
+									<p>[보도자료] 한국석유공사, 공사 방문한 김상욱 울산시장과 간담회 개최(2026.07.27.)</p>
 									<span class="date">2026-07-27</span>
 								</a>
 
@@ -1020,7 +1020,7 @@
 							<li>
 
 								<a href="/sub11/sub11_1.jsp?num=994&mode=view&bid=NEWS&field=subject&text=&page=1" class="link">
-									<p>[�����ڷ�] �ѱ���������, ���� �������� ������ ������ ���� ����ȸ�� �ǽ�(2026.07.24.)</p>
+									<p>[보도자료] 한국석유공사, 석유 수급위기 선제적 대응을 위한 점검회의 실시(2026.07.24.)</p>
 									<span class="date">2026-07-24</span>
 								</a>
 
@@ -1029,7 +1029,7 @@
 							<li>
 
 								<a href="/sub11/sub11_1.jsp?num=993&mode=view&bid=NEWS&field=subject&text=&page=1" class="link">
-									<p>[�����ڷ�] �ѱ���������, ��������ĺ� �Ұ� ��2026 �糭���� �������� ����(2026.07.22.)</p>
+									<p>[보도자료] 한국석유공사, 산업·기후부 소관 ‘2026 재난관리 우수기관’ 선정(2026.07.22.)</p>
 									<span class="date">2026-07-22</span>
 								</a>
 
@@ -1038,7 +1038,7 @@
 							<li>
 
 								<a href="/sub11/sub11_1.jsp?num=992&mode=view&bid=NEWS&field=subject&text=&page=1" class="link">
-									<p>[�����ڷ�] �ѱ���������, �������硤�Ѽ����� �������ࡦ���� ��� ���� ����(2026.07.15.)</p>
+									<p>[보도자료] 한국석유공사, 가스공사·한수원과 업무협약…감사 기술 정보 공유(2026.07.15.)</p>
 									<span class="date">2026-07-15</span>
 								</a>
 
@@ -1046,42 +1046,42 @@
 							
 						</ul>
 
-						<a href="/sub11/sub11_1.jsp" class="btn-plus"><span class="hidden-text">�����ڷ� �ٷΰ���</span></a>
+						<a href="/sub11/sub11_1.jsp" class="btn-plus"><span class="hidden-text">보도자료 바로가기</span></a>
 					</div>
-					<!--�����ڷ� ��-->
+					<!--보도자료 끝-->
 				</div>
 			</div>
-			<!--�˾���, �Խ��� ��-->
+			<!--팝업존, 게시판 끝-->
 
 			<div class="section2 section">
-				<!--������ ���� ����-->
+				<!--오늘의 유가 시작-->
 				<div class="inner">
-					<!-- ������ ����  start -->
+					<!-- 오늘의 유가  start -->
 					<div class="today-oil">
-						<h2 class="tit">������ ����</h2>
+						<h2 class="tit">오늘의 유가</h2>
 						
-						<a class="inquiry" href="https://www.opinet.co.kr/user/dopospdrg/dopOsPdrgSelect.do" title="��â���� �̵�" target="_blank">���ں� ������ȸ</a>
+						<a class="inquiry" href="https://www.opinet.co.kr/user/dopospdrg/dopOsPdrgSelect.do" title="새창으로 이동" target="_blank">일자별 가격조회</a>
 						
 						<div class="today-oil-cont">
-							<!-- �������� -->
+							<!-- 국내유가 -->
 							<div class="tab-wrap">
 								<div class="tabs">
-									<div class="tab-list" role="tablist" aria-label="�������� ��">
-										<button class="active" role="tab" aria-selected="true" tabindex="0" aria-controls="panel1-1" id="tab1-1">�ֹ���</button>
-										<button role="tab" aria-selected="false" tabindex="-1" aria-controls="panel1-2" id="tab1-2">�ڵ��������</button>
-										<button role="tab" aria-selected="false" tabindex="-1" aria-controls="panel1-3" id="tab1-3">�ڵ������ź</button>
+									<div class="tab-list" role="tablist" aria-label="국내유가 탭">
+										<button class="active" role="tab" aria-selected="true" tabindex="0" aria-controls="panel1-1" id="tab1-1">휘발유</button>
+										<button role="tab" aria-selected="false" tabindex="-1" aria-controls="panel1-2" id="tab1-2">자동차용경유</button>
+										<button role="tab" aria-selected="false" tabindex="-1" aria-controls="panel1-3" id="tab1-3">자동차용부탄</button>
 									</div>
 
 									<div class="tab-cont">
 										<div id="panel1-1" role="tabpanel" aria-labelledby="tab1-1" tabindex="0">
 											<div class="top">
-												<span>��������</span>
-												<h4>������ ���� ��հ���</h4>
+												<span>국내유가</span>
+												<h4>주유소 전국 평균가격</h4>
 												<p>2026.08.07</p>
 											</div>
 											<div class="price">
 												<strong>1865.12</strong>
-												<p class="unit">(��/����)</p>
+												<p class="unit">(원/리터)</p>
 												
 													<span class="down"> 0.30</span>
 												
@@ -1089,13 +1089,13 @@
 										</div>
 										<div id="panel1-2" role="tabpanel" aria-labelledby="tab1-2" tabindex="-1" hidden>
 											<div class="top">
-												<span>��������</span>
-												<h4>�ڵ��������</h4>
+												<span>국내유가</span>
+												<h4>자동차용경유</h4>
 												<p>2026.08.07</p>
 											</div>
 											<div class="price">
 												<strong>1848.05</strong>
-												<p class="unit">(��/����)</p>
+												<p class="unit">(원/리터)</p>
 												
 													<span class="down">0.37</span>
 												
@@ -1103,13 +1103,13 @@
 										</div>
 										<div id="panel1-3" role="tabpanel" aria-labelledby="tab1-3" tabindex="-1" hidden>
 											<div class="top">
-												<span>��������</span>
-												<h4>�ڵ������ź</h4>
+												<span>국내유가</span>
+												<h4>자동차용부탄</h4>
 												<p>2026.08.07</p>
 											</div>
 											<div class="price">
 												<strong>1101.00</strong>
-												<p class="unit">(��/����)</p>
+												<p class="unit">(원/리터)</p>
 												
 													<span class="down">0.50</span>
 												
@@ -1119,10 +1119,10 @@
 								</div>
 							</div>
 
-							<!-- �������� -->
+							<!-- 국제유가 -->
 							<div class="tab-wrap">
 								<div class="tabs">
-									<div class="tab-list" role="tablist" aria-label="�������� ��">
+									<div class="tab-list" role="tablist" aria-label="국제유가 탭">
 										<button class="active" role="tab" aria-selected="true" tabindex="0" aria-controls="panel2-1" id="tab2-1">Dubai</button>
 										<button role="tab" aria-selected="false" tabindex="-1" aria-controls="panel2-2" id="tab2-2">WTI(NYMEX)</button>
 										<button role="tab" aria-selected="false" tabindex="-1" aria-controls="panel2-3" id="tab2-3">Brent(ICE)</button>
@@ -1132,8 +1132,8 @@
 										<div id="panel2-1" role="tabpanel" aria-labelledby="tab2-1" tabindex="0">
 											
 											<div class="top">
-												<span>��������</span>
-												<h4>��������</h4>
+												<span>국제유가</span>
+												<h4>원유가격</h4>
 												<p>2026.08.06</p>
 											</div>
 											<div class="price">
@@ -1147,8 +1147,8 @@
 										<div id="panel2-2" role="tabpanel" aria-labelledby="tab2-2" tabindex="-1" hidden>
 											
 											<div class="top">
-												<span>��������</span>
-												<h4>��������</h4>
+												<span>국제유가</span>
+												<h4>원유가격</h4>
 												<p>2026.08.06</p>
 											</div>
 											<div class="price">
@@ -1162,8 +1162,8 @@
 										<div id="panel2-3" role="tabpanel" aria-labelledby="tab2-3" tabindex="-1" hidden>
 											
 											<div class="top">
-												<span>��������</span>
-												<h4>��������</h4>
+												<span>국제유가</span>
+												<h4>원유가격</h4>
 												<p>2026.08.06</p>
 											</div>
 											<div class="price">
@@ -1179,12 +1179,12 @@
 							</div>
 						</div>
 					</div>
-					<!-- //������ ���� end -->
+					<!-- //오늘의 유가 end -->
 					
-					<!-- PHOTONEW �̹��� ���� ��� -->
+					<!-- PHOTONEW 이미지 전용 출력 -->
 
 					<div class="photo-news">
-						<h2 class="tit">���䴺��</h2>
+						<h2 class="tit">포토뉴스</h2>
 						<ul class="item-list">
 							
 
@@ -1193,7 +1193,7 @@
 							<li>
 								<a href="/sub11/sub11_2.jsp">
 								<div class="img-wrap"><img src="/upload/neoboard/PHOTONEW/T20260722164747914139.jpg" style="width:100%;" alt="" /></div>
-								<div class="txt-wrap"><p>��������-��������-�Ѽ��� ���� ���Ͽ� ���� ��������� (2026.07,15)</p></div>
+								<div class="txt-wrap"><p>석유공사-가스공사-한수원 감사 노하우 공유 업무협약식 (2026.07,15)</p></div>
 								</a> 
 							</li>
 
@@ -1205,7 +1205,7 @@
 							<li>
 								<a href="/sub11/sub11_2.jsp">
 								<div class="img-wrap"><img src="/upload/neoboard/PHOTONEW/T202607221645291991308.jpg" style="width:100%;" alt="" /></div>
-								<div class="txt-wrap"><p>UAE ADNOC�� CEO ��� (2026.07.08.)</p></div>
+								<div class="txt-wrap"><p>UAE ADNOC사 CEO 면담 (2026.07.08.)</p></div>
 								</a> 
 							</li>
 
@@ -1217,7 +1217,7 @@
 							<li>
 								<a href="/sub11/sub11_2.jsp">
 								<div class="img-wrap"><img src="/upload/neoboard/PHOTONEW/T202607221617480851297.jpg" style="width:100%;" alt="" /></div>
-								<div class="txt-wrap"><p>����-�ѱ������ڿ�����, �ؾ���°� ȸ�� �� ������ȸ ��� ���� �������� ü�� (2026.07.07)</p></div>
+								<div class="txt-wrap"><p>공사-한국수산자원공단, 해양생태계 회복 및 지역사회 상생 위한 업무협약 체결 (2026.07.07)</p></div>
 								</a> 
 							</li>
 
@@ -1229,23 +1229,23 @@
 							<li>
 								<a href="/sub11/sub11_2.jsp">
 								<div class="img-wrap"><img src="/upload/neoboard/PHOTONEW/T202607221613138381666.jpg" style="width:100%;" alt="" /></div>
-								<div class="txt-wrap"><p>���ּ� ����, �ؿܻ������ ���� ���� ���� (2026.07.06.)</p></div>
+								<div class="txt-wrap"><p>손주석 사장, 해외생산원유 국내 반입 점검 (2026.07.06.)</p></div>
 								</a> 
 							</li>
 
 
 							
 						</ul>
-						<a href="/sub11/sub11_2.jsp" class="btn-plus"><span class="hidden-text">���䴺�� �ٷΰ���</span></a>
+						<a href="/sub11/sub11_2.jsp" class="btn-plus"><span class="hidden-text">포토뉴스 바로가기</span></a>
 					</div>
-					<!-- PHOTONEW �̹��� ���� ��� �� -->
+					<!-- PHOTONEW 이미지 전용 출력 끝 -->
 
-					<!-- ���䴺�� -->
+					<!-- 포토뉴스 -->
 
 
 				</div>
 			</div>
-			<!--������ ���� ��-->
+			<!--오늘의 유가 끝-->
 			
 			
 
@@ -1255,14 +1255,14 @@
 				<div class="inner">
 					<div class="knoc-news">
 						<div class="top">
-							<h2 class="tit">KNOC �ҽ� <span>KNOC ���� ȫ�� ä�ο��� �پ��� �ҽ��� ����������!</span></h2>
+							<h2 class="tit">KNOC 소식 <span>KNOC 공식 홍보 채널에서 다양한 소식을 만나보세요!</span></h2>
 
 							<ul class="icon-list">
-								<li class="blog"><a href="https://blog.naver.com/knoc3" target="_blank" title="���α� ��â ����"><span class="hidden-text">���α� �ٷΰ���</span></a></li>
+								<li class="blog"><a href="https://blog.naver.com/knoc3" target="_blank" title="블로그 새창 열림"><span class="hidden-text">블로그 바로가기</span></a></li>
 
-								<li class="youtube"><a href="https://www.youtube.com/channel/UCzte3fAK5m-9KswRH3SPNuA" target="_blank" title="��Ʃ�� ��â ����"><span class="hidden-text">��Ʃ�� �ٷΰ���</span></a></li>
-								<li class="insta"><a href="https://www.instagram.com/iloveknoc/?igsh=MTk5c2NtcGpza2l0Yw%3D%3D#" target="_blank" title="�ν�Ÿ�׷� ��â ����"><span class="hidden-text">�ν�Ÿ�׷� �ٷΰ���</span></a></li>
-								<li class="newsletter"><a href="/sub11/sub11_5_5.jsp"><span class="hidden-text">���ڻ纸 �ٷΰ���</span></a></li>
+								<li class="youtube"><a href="https://www.youtube.com/channel/UCzte3fAK5m-9KswRH3SPNuA" target="_blank" title="유튜브 새창 열림"><span class="hidden-text">유튜브 바로가기</span></a></li>
+								<li class="insta"><a href="https://www.instagram.com/iloveknoc/?igsh=MTk5c2NtcGpza2l0Yw%3D%3D#" target="_blank" title="인스타그램 새창 열림"><span class="hidden-text">인스타그램 바로가기</span></a></li>
+								<li class="newsletter"><a href="/sub11/sub11_5_5.jsp"><span class="hidden-text">전자사보 바로가기</span></a></li>
 
 							</ul>
 						</div>
@@ -1273,8 +1273,8 @@
 								<a href="https://blog.naver.com/knoc3">
 									<div class="img-wrap"><img src="images/main/main_blog_2.jpg" style="width:345px; height:250px;" alt=""></div>
 									<div class="txt-wrap">
-										<p class="t1">�ѱ��������� ���� ���α�</p>
-										<p class="t2">���ϵ帲</p>
+										<p class="t1">한국석유공사 공식 블로그</p>
+										<p class="t2">오일드림</p>
 									</div>
 								</a>
 							</li>
@@ -1283,8 +1283,8 @@
 								<a href="https://www.youtube.com/channel/UCzte3fAK5m-9KswRH3SPNuA">
 									<div class="img-wrap"><img src="images/main/main_youtube.jpg" style="width:345px; height:250px;" alt=""></div>
 									<div class="txt-wrap">
-										<p class="t1">�ѱ��������� ���� ��Ʃ��</p>
-										<p class="t2">YOU�� ���� ������ ����</p>
+										<p class="t1">한국석유공사 공식 유튜브</p>
+										<p class="t2">YOU와 油가 만나는 공간</p>
 									</div>
 								</a>
 							</li>
@@ -1292,7 +1292,7 @@
 								<a href="https://www.instagram.com/iloveknoc/?igsh=MTk5c2NtcGpza2l0Yw%3D%3D#">
 									<div class="img-wrap"><img src="/images/main/main_instagram.jpg" style="width:345px; height:250px;" alt=""></div>
 									<div class="txt-wrap">
-										<p class="t1">�ѱ��������� ���� �ν�Ÿ�׷�</p>
+										<p class="t1">한국석유공사 공식 인스타그램</p>
 										<p class="t2">@iloveknoc</p>
 									</div>
 								</a>
@@ -1301,8 +1301,8 @@
 								<a href="/sub11/sub11_5_5.jsp">
 									<div class="img-wrap"><img src="/images/main/main_letter.jpg" style="width:345px; height:250px;" alt=""></div>
 									<div class="txt-wrap">
-										<p class="t1">�ѱ��������� ���ڻ纸 </p>
-										<p class="t2">�������</p>
+										<p class="t1">한국석유공사 전자사보 </p>
+										<p class="t2">석유사랑</p>
 									</div>
 								</a>
 							</li>
@@ -1313,73 +1313,73 @@
 			<!-- //section3 -->
 
 
-<!-- ���ǳ�&��Ʈ�γ� -->
+<!-- 오피넷&페트로넷 -->
 			<div class="inner">
 				<ul class="oil-btn">
 					<li class="opinet">
 						<a href="https://www.opinet.co.kr/user/main/mainView.do" target="_blank">
 							<h3>Opinet</h3>
-							<p>�⸧���� �Ƴ��� ������ �ѱ��������� ���ǳ�</p>
-							<img class="arrow" src="images/main/i_go_03.png" alt="ȭ��ǥ">
+							<p>기름값을 아끼는 지름길 한국석유공사 오피넷</p>
+							<img class="arrow" src="images/main/i_go_03.png" alt="화살표">
 						</a>
 					</li>
 					<li class="petronet">
 						<a href="https://www.petronet.co.kr/v4/main.jsp" target="_blank">
 							<h3>Petronet</h3>
-							<p>���������� ��� ���� �Ѵ��� Ȯ���ϼ���.</p>
-							<img class="arrow" src="images/main/i_go_03.png" alt="ȭ��ǥ">
+							<p>석유정보의 모든 것을 한눈에 확인하세요.</p>
+							<img class="arrow" src="images/main/i_go_03.png" alt="화살표">
 						</a>
 					</li>
 				</ul>
 			</div>
-			<!-- //���ǳ�&��Ʈ�γ� -->
+			<!-- //오피넷&페트로넷 -->
 
-			<!-- ���޴� -->
+			<!-- 퀵메뉴 -->
 			<div class="inner">
 				<ul class="quick-list">
 
 					<li>
 						<a href="/sub11/sub11_3.jsp">
 							<div class="img-wrap"><img src="images/main/quick_02.png" alt=""></div>
-							<p>ȫ������</p>
+							<p>홍보영상</p>
 						</a>
 					</li>
 					<li>
 						<a href="/sub11/sub11_5_2.jsp">
 							<div class="img-wrap"><img src="images/main/quick_03.png" alt=""></div>
-							<p>ȫ�����๰</p>
+							<p>홍보간행물</p>
 						</a>
 					</li>
 					<li>
 						<a href="/sub05/sub05_12_list.jsp">
 							<div class="img-wrap"><img src="images/main/quick_06.png" alt=""></div>
-							<p>����������ǥ</p>
+							<p>사전정보공표</p>
 						</a>
 					</li>
 					<li>
 						<a href="/sub04/sub04_15.jsp">
 							<div class="img-wrap"><img src="images/main/quick_07.png" alt=""></div>
-							<p>�Ű����ȼ���</p>
+							<p>신고제안센터</p>
 						</a>
 					</li>
 				</ul>
 			</div>
-			<!-- //���޴� -->
+			<!-- //퀵메뉴 -->
 
-			<!-- �ϴܹ�� -->
+			<!-- 하단배너 -->
 			<div class="site-list-wrap">
 				<div class="inner">
 					<ul class="site-list">
-						<li><a href="https://plus.gov.kr/" title="��â ����" target="_blank"><img src="images/main/bannerlogo04.jpg" alt="����24 �ΰ�"></a></li>
-						<li><a href="https://www.motie.go.kr/" title="��â ����" target="_blank"><img src="images/main/bannerlogo05.jpg" style="width:125px; margin-left:20px; margin-top:15px;" alt="������� �ΰ�"></a></li>
-						<li><a href="https://www.acrc.go.kr/" title="��â ����" target="_blank"><img src="images/main/bannerlogo02.jpg" alt="���α�������ȸ �ΰ�"></a></li>
-						<li><a href="https://www.alio.go.kr/main.do;jsessionid=G0CbBsXKSE4zBPOgjGGGIS4kJNguuP3BFJrCTBc1.portal10" title="��â ����" target="_blank"><img src="images/main/bannerlogo01.jpg" alt="�˸��� �ΰ�"></a></li>
-						<li><a href="https://www.alioplus.go.kr/" title="��â ����" target="_blank"><img src="images/main/bannerlogo03.jpg" alt="�츮�Բ��ؿ�! �˸����÷��� �ΰ�"></a></li>
-						<li><a href="https://www.2050cnc.go.kr/" title="��â ����" target="_blank"><img src="images/main/bannerlogo07.jpg" alt="���������2050 ź���߸������������ȸ �ΰ�"></a></li>
+						<li><a href="https://plus.gov.kr/" title="새창 열림" target="_blank"><img src="images/main/bannerlogo04.jpg" alt="정부24 로고"></a></li>
+						<li><a href="https://www.motie.go.kr/" title="새창 열림" target="_blank"><img src="images/main/bannerlogo05.jpg" style="width:125px; margin-left:20px; margin-top:15px;" alt="산업통상부 로고"></a></li>
+						<li><a href="https://www.acrc.go.kr/" title="새창 열림" target="_blank"><img src="images/main/bannerlogo02.jpg" alt="국민권익위원회 로고"></a></li>
+						<li><a href="https://www.alio.go.kr/main.do;jsessionid=G0CbBsXKSE4zBPOgjGGGIS4kJNguuP3BFJrCTBc1.portal10" title="새창 열림" target="_blank"><img src="images/main/bannerlogo01.jpg" alt="알리오 로고"></a></li>
+						<li><a href="https://www.alioplus.go.kr/" title="새창 열림" target="_blank"><img src="images/main/bannerlogo03.jpg" alt="우리함께해요! 알리오플러스 로고"></a></li>
+						<li><a href="https://www.2050cnc.go.kr/" title="새창 열림" target="_blank"><img src="images/main/bannerlogo07.jpg" alt="대통령직속2050 탄소중립녹색성장위원회 로고"></a></li>
 					</ul>
 				</div>
 			</div>
-			<!-- //�ϴܹ�� -->
+			<!-- //하단배너 -->
 
 		</div>
 		<!-- //#body-layout -->
@@ -1397,25 +1397,25 @@
 		<footer class="footer">
 			<div class="inner">
 				<ul class="f-utill">
-					<li class="on"><a href="/member/privacy.jsp">��������ó����ħ</a></li>
-					<li class="on"><a href="/member/m_policy.jsp">������ ��������ó����ħ</a></li>
-					<li class="on"><a href="/member/c_policy.jsp">�̵��� ��������ó����ħ</a></li>
-					<li><a href="/member/mail.jsp">�̸��Ϲ��ܼ����ź�</a></li>
-					<li><a href="/sub01/sub01_9.jsp">ã�ƿ��ô� ��</a></li>
+					<li class="on"><a href="/member/privacy.jsp">개인정보처리방침</a></li>
+					<li class="on"><a href="/member/m_policy.jsp">고정형 영상정보처리방침</a></li>
+					<li class="on"><a href="/member/c_policy.jsp">이동형 영상정보처리방침</a></li>
+					<li><a href="/member/mail.jsp">이메일무단수집거부</a></li>
+					<li><a href="/sub01/sub01_9.jsp">찾아오시는 길</a></li>
 				</ul>
 
 				<div class="f-bottom">
-					<h1 class="logo"><img src="images/main/logo_white.png" alt="�ѱ���������"></h1>
+					<h1 class="logo"><img src="images/main/logo_white.png" alt="한국석유공사"></h1>
 					<ul class="f-info">
-						<li class="adress">����:(��:44538)��걤���� �߱� ������ 305 �ѱ���������</li>
+						<li class="adress">본사:(우:44538)울산광역시 중구 종가로 305 한국석유공사</li>
 						<li class="tel tooltip-wrapper">
 							TEL.052-216-2114
 							<div class="tooltip">
-								<h5>�����ȣ �ȳ�</h5>
-								<p>1�� ���ǳ�</p>
-								<p>2�� ��������</p>
-								<p>3�� �˶�������</p>
-								<p>0�� ��Ÿ �ȳ�</p>
+								<h5>연결번호 안내</h5>
+								<p>1번 오피넷</p>
+								<p>2번 유가문의</p>
+								<p>3번 알뜰주유소</p>
+								<p>0번 기타 안내</p>
 							</div>
 						</li>
 						<li class="fax">/ FAX.052-216-5900</li>
@@ -1423,7 +1423,7 @@
 					</ul>
 
 					<div class="Web-accessibility">
-						<a href="/sub01/index.auth.2026.pdf" target="blank" title="��â"><img src="images/main/Web_accessibility.2026.png" alt="(��)�ѱ�����δ�ü�ѿ���ȸ �ѱ������ټ������򰡿� �����ټ� �������Ʈ ������ũ(WA������ũ)"></a>
+						<a href="/sub01/index.auth.2026.pdf" target="blank" title="새창"><img src="images/main/Web_accessibility.2026.png" alt="(사)한국장애인단체총연합회 한국웹접근성인증평가원 웹접근성 우수사이트 인증마크(WA인증마크)"></a>
 					</div>
 				</div>
 			</div>

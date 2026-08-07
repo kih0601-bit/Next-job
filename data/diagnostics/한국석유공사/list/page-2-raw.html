@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="type" content="website">
-	<title>�ѱ���������</title>
+	<title>한국석유공사</title>
 	<link rel="stylesheet" href="/css/swiper-bundle.min.css" />
 	<link rel="stylesheet" href="/css/default.css">
 	<link rel="stylesheet" type="text/css" href="/include/css/subpage.css" />
@@ -39,27 +39,27 @@
 </head>
 <body>
 
-<div class="accessbility"><a href="#content">���� �ٷΰ���</a></div>
+<div class="accessbility"><a href="#content">본문 바로가기</a></div>
 
 
 
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // ���� ȣ��Ʈ�� ��� Ȯ��
+    // 현재 호스트와 경로 확인
     const header = document.getElementById('header');
     const currentHost = window.location.host; // ex) m.knoc.co.kr
     const currentPath = window.location.pathname; // ex) /sub01/page.jsp
 
     
-    // ȣ��Ʈ�� m.knoc.co.kr�̰� ��ΰ� '/'�� �ƴ� ���
-    //���üҽ�
+    // 호스트가 m.knoc.co.kr이고 경로가 '/'가 아닌 경우
+    //로컬소스
    /* if (currentHost === "localhost:8080" && currentPath === "/") {
    		header.classList.remove("sub_header");
 	} else {
 	    header.classList.add("sub_header");
 	}*/
-	//�Ǽ�������
+	//실서버적용
 	 if (currentHost === "m.knoc.co.kr" && currentPath === "/") {
 	   		header.classList.remove("sub_header");
 		} else {
@@ -73,36 +73,36 @@ document.addEventListener("DOMContentLoaded", function() {
 	<div class="index-mobile-main">
 		<header id="header" class="header">
 			<div class="contain">
-				<h1 class="logo"><a href="/"><span class="hidden-text">�ѱ���������</span></a></h1>
+				<h1 class="logo"><a href="/"><span class="hidden-text">한국석유공사</span></a></h1>
 
 				<div class="btn-wrap">
-					<button type="button" class="sch-btn"><span class="hidden-text">�˻�</span></button>
-					<button type="button" class="menu"><span class="hidden-text">�޴�</span></button>
+					<button type="button" class="sch-btn"><span class="hidden-text">검색</span></button>
+					<button type="button" class="menu"><span class="hidden-text">메뉴</span></button>
 				</div>
 				
 				
 			</div>
 			 
 
-			<!-- �˻�â -->
+			<!-- 검색창 -->
 			<form name="tsearchForm" id="tsearchForm" method="post" action="/search/list.jsp">
 			    <div class="sch-wrap">
 			        <div class="sch-bar">
-			            <label for="nsearch" class="hideDesc">�˻��ϱ�</label>
-			            <input type="text" id="nsearch" name="search" class="ipt" placeholder="�˻�� �Է��� �ּ���.">
+			            <label for="nsearch" class="hideDesc">검색하기</label>
+			            <input type="text" id="nsearch" name="search" class="ipt" placeholder="검색어를 입력해 주세요.">
 			            <a href="javascript:menu_search();" class="btn">
-			                <span class="hidden-text">�˻��ϱ�</span>
+			                <span class="hidden-text">검색하기</span>
 			            </a>
 			        </div>
 			    </div>
 			</form>
-			<!-- //�˻�â -->
+			<!-- //검색창 -->
 			
 			
 			
 		</header>
-		<!-- //��� -->
-		<!-- ���̵�� -->
+		<!-- //헤더 -->
+		<!-- 사이드바 -->
 		
 		<div class="gnb-wrap">
 		
@@ -110,14 +110,14 @@ document.addEventListener("DOMContentLoaded", function() {
 				<ul class="utill">
 					
 					
-					<li><a href="javascript:menu_login();">�α���</a></li>
+					<li><a href="javascript:menu_login();">로그인</a></li>
 					
 					
-					<li><a href="/member/sitemap.jsp">����Ʈ��</a></li>
+					<li><a href="/member/sitemap.jsp">사이트맵</a></li>
 				</ul>
 				<ul class="btns">
-					<li class="home"><a href="/"><span class="hidden-text">Ȩ����</span></a></li>
-					<li class="close"><a href="#"><span class="hidden-text">�޴� �ݱ�</span></a></li>
+					<li class="home"><a href="/"><span class="hidden-text">홈으로</span></a></li>
+					<li class="close"><a href="#"><span class="hidden-text">메뉴 닫기</span></a></li>
 				</ul>
 			</div>
 
@@ -125,37 +125,37 @@ document.addEventListener("DOMContentLoaded", function() {
 		<div class="gnb-menu">
 				<div class="menu-wrap">
 					<ul class="tab-list">
-						<li><button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-1">����Ұ�</button></li>
-						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-2">����Ұ�</button></li>
-						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-3">ESG�濵</button></li>
-						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-4">ȫ������</button></li>
-						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-5">��������</button></li>
-						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-6">��������</button></li>
+						<li><button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-1">공사소개</button></li>
+						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-2">사업소개</button></li>
+						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-3">ESG경영</button></li>
+						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-4">홍보센터</button></li>
+						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-5">정보공개</button></li>
+						<li><button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-6">국민참여</button></li>
 					</ul>
 				</div>
 
 				<div class="submenu-wrap">
-					<!-- ����Ұ� -->
+					<!-- 공사소개 -->
 					<div id="panel-1" class="gnb-sub-list" role="tabpanel">
 						<ul>
 						    <li>
 								<a class="gnb-sub-trigger has-depth3" href="#">CEO</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a  href="/sub01/sub01_1_1.jsp">CEO �λ縻</a></li>
+										<li><a  href="/sub01/sub01_1_1.jsp">CEO 인사말</a></li>
 									</ul>
 								</div>
 							</li>
-							<li><a class="gnb-sub-trigger" href="/sub01/sub01_5.jsp">������ �� �ֿ����</a></li>
-							<li><a class="gnb-sub-trigger" href="/sub01/sub01_1_4.jsp">�ӿ� �� �濵��</a></li>
-							<li><a class="gnb-sub-trigger" href="/sub01/sub01_4_2010.jsp">ȸ�翬��</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub01/sub01_5.jsp">조직도 및 주요업무</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub01/sub01_1_4.jsp">임원 및 경영진</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub01/sub01_4_2010.jsp">회사연혁</a></li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">�����ȭ</a> 
+								<a class="gnb-sub-trigger has-depth3" href="#">기업문화</a> 
 								<div class="depth3-wrap">
 									<ul>
-										<li><a  href="/sub01/sub01_10_1.jsp">���</a></li>
-										<li><a  href="/sub01/sub01_10_2.jsp">����</a></li>
-										<li><a  href="/sub01/sub01_12_1.jsp">�ٽɰ�ġ</a></li>
+										<li><a  href="/sub01/sub01_10_1.jsp">사명</a></li>
+										<li><a  href="/sub01/sub01_10_2.jsp">비전</a></li>
+										<li><a  href="/sub01/sub01_12_1.jsp">핵심가치</a></li>
 									</ul>
 								</div>
 							</li>
@@ -163,115 +163,115 @@ document.addEventListener("DOMContentLoaded", function() {
 								<a class="gnb-sub-trigger has-depth3" href="#">CI</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a  href="/sub01/sub01_2_5_1.jsp">CI �Ұ�</a></li>
-										<li><a  href="/sub01/sub01_2_5_2.jsp">CI Ȱ��</a></li>
+										<li><a  href="/sub01/sub01_2_5_1.jsp">CI 소개</a></li>
+										<li><a  href="/sub01/sub01_2_5_2.jsp">CI 활용</a></li>
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">ä������</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">채용정보</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a  href="/sub01/sub01_7_1.jsp">�����</a></li>
-										<li><a  href="/sub01/sub01_7_2.jsp">��������</a></li>
-										<li><a  href="/sub01/sub01_7_3.jsp">�����Ļ�</a></li>
-										<li><a  href="/sub01/sub01_7_4.jsp">�������</a></li>
-										<li><a  href="/sub01/sub01_7_8.jsp?grp=REC5">ä��FAQ</a></li>
-										<li><a  href="/sub01/sub01_7_9.jsp">ä�����</a></li>
+										<li><a  href="/sub01/sub01_7_1.jsp">인재상</a></li>
+										<li><a  href="/sub01/sub01_7_2.jsp">인재육성</a></li>
+										<li><a  href="/sub01/sub01_7_3.jsp">복지후생</a></li>
+										<li><a  href="/sub01/sub01_7_4.jsp">인재관리</a></li>
+										<li><a  href="/sub01/sub01_7_8.jsp?grp=REC5">채용FAQ</a></li>
+										<li><a  href="/sub01/sub01_7_9.jsp">채용공고</a></li>
 									</ul>
 								</div>
 							</li>
-							<li><a class="gnb-sub-trigger" href="/sub01/sub01_9.jsp">ã�ƿ��ô� ��</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub01/sub01_9.jsp">찾아오시는 길</a></li>
 						</ul>
 					</div>
-					<!-- //����Ұ� -->
+					<!-- //공사소개 -->
 
-					<!-- ����Ұ� -->
+					<!-- 사업소개 -->
 					<div id="panel-2" class="gnb-sub-list" role="tabpanel" hidden>
 						<ul>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">�������߻��</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">석유개발사업</a>
 								<div class="depth3-wrap">
 									<ul>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">�������</a>
+											<a class="depth3-trigger has-depth4" href="#">국내사업</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub03/sub03_1_1.jsp">��������� Ž�� ����</a></li>
-												<li><a href="/sub03/sub03_1_2.jsp">��������� Ž�� ��Ȳ</a></li>
+												<li><a href="/sub03/sub03_1_1.jsp">국내대륙붕 탐사 개요</a></li>
+												<li><a href="/sub03/sub03_1_2.jsp">국내대륙붕 탐사 현황</a></li>
 											</ul>
 										</li>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">�ؿܻ��</a>
+											<a class="depth3-trigger has-depth4" href="#">해외사업</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub03/sub03_2_2.jsp">�������� ��Ȳ��</a></li>
-												<li><a href="/sub03/sub03_2_4_2018.jsp">�ؿ���ȸ�� �Ұ�</a></li>
-												<li><a href="/sub03/sub03_2_1.jsp">�������߻�� ����</a></li>
-												<li><a href="/sub03/sub03_2_3.jsp">�������� ����</a></li>
-												<li><a href="/sub03/sub03_3_3.jsp">������� �Ǽ�</a></li>
+												<li><a href="/sub03/sub03_2_2.jsp">석유개발 현황도</a></li>
+												<li><a href="/sub03/sub03_2_4_2018.jsp">해외자회사 소개</a></li>
+												<li><a href="/sub03/sub03_2_1.jsp">석유개발사업 개요</a></li>
+												<li><a href="/sub03/sub03_2_3.jsp">석유개발 과정</a></li>
+												<li><a href="/sub03/sub03_3_3.jsp">생산기지 건설</a></li>
 											</ul>
 										</li>
-										<li><a class="depth3-trigger" href="#">�������</a>
+										<li><a class="depth3-trigger" href="#">기술개발</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub03/sub03_9_1.jsp">������� ����</a></li>
-												<li><a href="/sub03/sub03_9_2018.jsp">������� ����</a></li>
-												<li><a href="/sub03/sub03_9_1_1.jsp">����ڷ� ����</a></li>
-												<li><a href="/sub03/sub03_9_1_3.jsp">������� ����</a></li>
+												<li><a href="/sub03/sub03_9_1.jsp">기술개발 개요</a></li>
+												<li><a href="/sub03/sub03_9_2018.jsp">기술개발 내용</a></li>
+												<li><a href="/sub03/sub03_9_1_1.jsp">기술자료 대출</a></li>
+												<li><a href="/sub03/sub03_9_1_3.jsp">기술개발 전략</a></li>
 											</ul>
 										</li>
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">����������</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">석유비축사업</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a class="depth3-trigger" href="#">����������</a>
+										<li><a class="depth3-trigger" href="#">석유비축사업</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub03/sub03_4_3.jsp">������� � ��Ȳ</a></li>
-												<li><a href="/sub03/sub03_4_4.jsp">���������� ����</a></li>
-												<li><a href="/sub03/sub03_4_6.jsp">������ ���� ����</a></li>
+												<li><a href="/sub03/sub03_4_3.jsp">비축기지 운영 현황</a></li>
+												<li><a href="/sub03/sub03_4_4.jsp">석유비축사업 개요</a></li>
+												<li><a href="/sub03/sub03_4_6.jsp">비축사업 추진 전략</a></li>
 											</ul>
 										
 										
 										</li>
-										<li><a  href="/sub03/sub03_4_4_1.jsp">������ ������ ���� ���</a>
+										<li><a  href="/sub03/sub03_4_4_1.jsp">경제적 비축사업 추진 노력</a>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">�Ǽ����</a>
+											<a class="depth3-trigger has-depth4" href="#">건설사업</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub03/sub03_3_1.jsp">�Ǽ���� ����</a></li>
-												<li><a href="/sub03/sub03_3_2.jsp">������� �Ǽ�</a></li>
-												<li><a href="/sub03/sub03_3_4.jsp">�ؿܻ�� ����</a></li>
+												<li><a href="/sub03/sub03_3_1.jsp">건설사업 개요</a></li>
+												<li><a href="/sub03/sub03_3_2.jsp">비축기지 건설</a></li>
+												<li><a href="/sub03/sub03_3_4.jsp">해외사업 추진</a></li>
 											</ul>
 										</li>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">�����������</a>
+											<a class="depth3-trigger has-depth4" href="#">에너지허브사업</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub03/sub03_8_2_1.jsp">�����������</a></li>
-												<li><a href="/sub03/sub03_8_2_2.jsp">������� �� ���ȿ��</a></li>
-												<li><a href="/sub03/sub03_8_2_3.jsp">��ũ�͹̳λ�� ���� ��Ȳ</a></li>
+												<li><a href="/sub03/sub03_8_2_1.jsp">에너지허브사업</a></li>
+												<li><a href="/sub03/sub03_8_2_2.jsp">사업목적 및 기대효과</a></li>
+												<li><a href="/sub03/sub03_8_2_3.jsp">탱크터미널사업 추진 현황</a></li>
 											</ul>
 										</li>
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">���뱸���������</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">유통구조개선사업</a>
 								<div class="depth3-wrap">
 									<ul>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">�˶������� ���</a>
+											<a class="depth3-trigger has-depth4" href="#">알뜰주유소 사업</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub03/sub03_8_1_1.jsp">�˶������� ��� �Ұ�</a></li>
-												<li><a href="/sub03/sub03_8_1_2.jsp">�˶������� � ü��</a></li>
-												<li><a href="/sub03/sub03_8_1_3.jsp">�˶������� � ����</a></li>
+												<li><a href="/sub03/sub03_8_1_1.jsp">알뜰주유소 사업 소개</a></li>
+												<li><a href="/sub03/sub03_8_1_2.jsp">알뜰주유소 운영 체계</a></li>
+												<li><a href="/sub03/sub03_8_1_3.jsp">알뜰주유소 운영 성과</a></li>
 											</ul>
 										</li>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">�����������</a>
+											<a class="depth3-trigger has-depth4" href="#">석유정보사업</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub03/sub03_6_1.jsp">������������</a></li>
-												<li><a href="/sub03/sub03_6_2_1.jsp">Petronet ���� �ȳ�</a></li>
-												<li><a href="/sub03/sub03_6_2_2.jsp">Petronet ȸ���ȳ�</a></li>
+												<li><a href="/sub03/sub03_6_1.jsp">석유정보서비스</a></li>
+												<li><a href="/sub03/sub03_6_2_1.jsp">Petronet 정보 안내</a></li>
+												<li><a href="/sub03/sub03_6_2_2.jsp">Petronet 회원안내</a></li>
 												<li><a href="/sub03/sub03_6_4.jsp">Opinet</a></li>
 											</ul>
 										</li>
@@ -279,97 +279,53 @@ document.addEventListener("DOMContentLoaded", function() {
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">�ſ��������</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">신에너지사업</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a href="/sub03/sub03_9.jsp">CCS ���</a></li>
-										<li><a href="/sub03/sub03_9_2.jsp">������ �ػ�ǳ�� ���</a></li> 
-										<li><a href="/sub03/sub03_9_3.jsp">��ź�� ���� �� �ϸ�Ͼ� ���</a>
+										<li><a href="/sub03/sub03_9.jsp">CCS 사업</a></li>
+										<li><a href="/sub03/sub03_9_2.jsp">부유식 해상풍력 사업</a></li> 
+										<li><a href="/sub03/sub03_9_3.jsp">저탄소 수소 · 암모니아 사업</a>
 									</ul>
 								</div>
 							</li>
 						</ul>
 					</div>
-					<!-- //����Ұ� -->
+					<!-- //사업소개 -->
 
-					<!-- ESG�濵 -->
+					<!-- ESG경영 -->
 					<div id="panel-3" class="gnb-sub-list" role="tabpanel" hidden>
 						<ul>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">ESG�濵</a> 
+								<a class="gnb-sub-trigger has-depth3" href="#">ESG경영</a> 
 								<div class="depth3-wrap">
 									<ul>
 										
-										<li><a  href="/sub13/sub13_1_1.jsp">ESG �ٽɼ���</a></li>
-										<li><a  href="/sub13/sub13_1_2.jsp">�濵����</a></li>
-										<li><a  href="/sub13/sub13_1_3.jsp">���Ӱ��ɰ濵������</a></li>
-										<li><a  href="/sub13/sub13_1_4.jsp">UNGC������</a></li>
-										<li><a  href="/sub13/sub13_1_5.jsp">���ذ����� ����</a></li>
+										<li><a  href="/sub13/sub13_1_1.jsp">ESG 핵심성과</a></li>
+										<li><a  href="/sub13/sub13_1_2.jsp">경영공시</a></li>
+										<li><a  href="/sub13/sub13_1_3.jsp">지속가능경영보고서</a></li>
+										<li><a  href="/sub13/sub13_1_4.jsp">UNGC보고서</a></li>
+										<li><a  href="/sub13/sub13_1_5.jsp">이해관계자 소통</a></li>
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">ȯ��</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">환경</a>
 								<div class="depth3-wrap">
 									<ul>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">ģȯ��濵</a>
+											<a class="depth3-trigger has-depth4" href="#">친환경경영</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub13/sub13_2_1_1.jsp">�Ұ�</a></li>
-												<li><a href="/sub13/sub13_2_1_2_1.jsp">��Ȳ</a></li>
+												<li><a href="/sub13/sub13_2_1_1.jsp">소개</a></li>
+												<li><a href="/sub13/sub13_2_1_2_1.jsp">현황</a></li>
 												
 											</ul>
 										</li>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">�����������</a>
+											<a class="depth3-trigger has-depth4" href="#">신재생에너지</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub03/sub03_9.jsp">CCS���</a></li>
-												<li><a href="/sub03/sub03_9_2.jsp">������ �ػ�ǳ�� ���</a></li>
-												<li><a href="/sub03/sub03_9_3.jsp">��ź�� ���� �� �ϸ�Ͼ� ���</a></li>
-												
-											</ul>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">��ȸ�о�</a>
-								<div class="depth3-wrap">
-									<ul>
-										<li>
-											<a class="depth3-trigger has-depth4" href="#">��ȸ����</a>
-											<ul class="depth4-wrap">
-												<li><a href="/sub13/sub13_3_1_1.jsp">����/����ü��</a></li>
-												<li><a href="/sub13/sub13_3_1_2.jsp">����� �Ұ�</a></li>
-												<li><a href="/sub13/sub13_3_1_4.jsp">Ȱ������</a></li>
-												<li><a href="/sub13/sub13_3_1_5.jsp">�������� ��Ȳ</a></li>
-												
-											</ul>
-										</li>
-										<li>
-											<a class="depth3-trigger has-depth4" href="#">���ݼ���</a>
-											<ul class="depth4-wrap">
-												<li><a href="/sub13/sub13_3_3_1.jsp">���ݼ��� �Ұ�</a></li>
-												<li><a href="/sub13/sub13_3_3_2_1.jsp">������� �ȳ�</a></li>
-												
-											</ul>
-										</li>
-										<li>
-											<a class="depth3-trigger has-depth4" href="#">�������ǰ濵</a>
-											<ul class="depth4-wrap">
-												<li><a href="/sub13/sub13_3_4_1_1.jsp">�Ұ�</a></li>
-												<li><a href="/sub13/sub13_3_4_2.jsp">������� �� ������� ��Ȳ</a></li>
-												<li><a href="/sub13/sub13_3_4_3.jsp">������� �������������</a></li>
-												
-											</ul>
-										</li>
-										<li>
-											<a class="depth3-trigger has-depth4" href="#">���ڸ�â��</a>
-											<ul class="depth4-wrap">
-												<li><a href="/sub13/sub13_3_5_1.jsp">��������</a></li>
-												<li><a href="/sub13/sub13_3_5_2.jsp">��������</a></li>
-												<li><a href="/sub13/sub13_3_5_3.jsp">��������</a></li>
-												<li><a href="/sub13/sub13_3_5_4.jsp">��� ������ ��������</a></li>
+												<li><a href="/sub03/sub03_9.jsp">CCS사업</a></li>
+												<li><a href="/sub03/sub03_9_2.jsp">부유식 해상풍력 사업</a></li>
+												<li><a href="/sub03/sub03_9_3.jsp">저탄소 수소 · 암모니아 사업</a></li>
 												
 											</ul>
 										</li>
@@ -377,53 +333,97 @@ document.addEventListener("DOMContentLoaded", function() {
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">���豸��</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">사회분야</a>
 								<div class="depth3-wrap">
 									<ul>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">������豸��</a>
+											<a class="depth3-trigger has-depth4" href="#">사회공헌</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub13/sub13_4_1_1.jsp">�̻�ȸ �Ұ�</a></li>
-												<li><a href="/sub13/sub13_4_1_2.jsp">�̻�ȸ ��Ȳ</a></li>
-												<li><a href="/sub13/sub13_4_1_3_1.jsp">�̻�ȸ ���� ������ȸ ���Ȳ</a></li>
+												<li><a href="/sub13/sub13_3_1_1.jsp">비전/전략체계</a></li>
+												<li><a href="/sub13/sub13_3_1_2.jsp">봉사단 소개</a></li>
+												<li><a href="/sub13/sub13_3_1_4.jsp">활동마당</a></li>
+												<li><a href="/sub13/sub13_3_1_5.jsp">산학협력 현황</a></li>
 												
 											</ul>
 										</li>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">��������</a>
+											<a class="depth3-trigger has-depth4" href="#">동반성장</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub13/sub13_4_3.jsp">���� �ȳ�</a></li> 
+												<li><a href="/sub13/sub13_3_3_1.jsp">동반성장 소개</a></li>
+												<li><a href="/sub13/sub13_3_3_2_1.jsp">지원사업 안내</a></li>
 												
 											</ul>
 										</li>
-										<li><a href="/sub13/sub13_4_4.jsp">�����ȭ �Ұ�</a></li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">안전보건경영</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_3_4_1_1.jsp">소개</a></li>
+												<li><a href="/sub13/sub13_3_4_2.jsp">산업재해 및 안전사고 현황</a></li>
+												<li><a href="/sub13/sub13_3_4_3.jsp">공공기관 안전관리등급제</a></li>
+												
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">일자리창출</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_3_5_1.jsp">추진조직</a></li>
+												<li><a href="/sub13/sub13_3_5_2.jsp">추진전략</a></li>
+												<li><a href="/sub13/sub13_3_5_3.jsp">추진실적</a></li>
+												<li><a href="/sub13/sub13_3_5_4.jsp">취업 취약계층 고용증진</a></li>
+												
+											</ul>
+										</li>
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">�������αǰ濵</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">지배구조</a>
 								<div class="depth3-wrap">
 									<ul>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">�����濵</a>
+											<a class="depth3-trigger has-depth4" href="#">기업지배구조</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub13/sub13_4_2_1_1.jsp">�����濵 �Ұ�</a></li>
-												<li><a href="/sub13/sub13_4_2_2_2025.jsp">�����濵 ����Ȱ��</a></li>
-												<li><a href="/sub13/sub13_4_2_3.jsp">�����濵 �ڷ��</a></li>
-												<li><a href="/sub13/sub13_4_2_4_1.jsp">�����濵 ����</a></li>
-												<li><a href="/sub13/sub13_4_2_5_1.jsp">�����Թ�</a></li>
+												<li><a href="/sub13/sub13_4_1_1.jsp">이사회 소개</a></li>
+												<li><a href="/sub13/sub13_4_1_2.jsp">이사회 현황</a></li>
+												<li><a href="/sub13/sub13_4_1_3_1.jsp">이사회 산하 소위원회 운영현황</a></li>
 												
 											</ul>
 										</li>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">�αǰ濵</a>
+											<a class="depth3-trigger has-depth4" href="#">정보공개</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub13/sub13_3_2_5.jsp">�αǰ濵����</a></li>
-												<li><a href="/sub13/sub13_5_2_1.jsp">�αǰ濵�Թ�</a></li>
-												<li><a href="/sub13/sub13_5_2_2.jsp">�αǰ濵������</a></li>
-												<li><a href="/sub13/sub13_3_2_6.jsp">�αǻ�㼾��</a></li>
-												<li><a href="/sub13/sub13_3_2_7.jsp">����ա������� �Ű�</a></li>
-												<li><a href="/sub13/sub13_3_2_8.jsp">���� �� ������ �Ű�</a></li>
+												<li><a href="/sub13/sub13_4_3.jsp">제도 안내</a></li> 
+												
+											</ul>
+										</li>
+										<li><a href="/sub13/sub13_4_4.jsp">기업문화 소개</a></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a class="gnb-sub-trigger has-depth3" href="#">윤리·인권경영</a>
+								<div class="depth3-wrap">
+									<ul>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">윤리경영</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_4_2_1_1.jsp">윤리경영 소개</a></li>
+												<li><a href="/sub13/sub13_4_2_2_2025.jsp">윤리경영 추진활동</a></li>
+												<li><a href="/sub13/sub13_4_2_3.jsp">윤리경영 자료실</a></li>
+												<li><a href="/sub13/sub13_4_2_4_1.jsp">윤리경영 제도</a></li>
+												<li><a href="/sub13/sub13_4_2_5_1.jsp">윤리규범</a></li>
+												
+											</ul>
+										</li>
+										<li>
+											<a class="depth3-trigger has-depth4" href="#">인권경영</a>
+											<ul class="depth4-wrap">
+												<li><a href="/sub13/sub13_3_2_5.jsp">인권경영헌장</a></li>
+												<li><a href="/sub13/sub13_5_2_1.jsp">인권경영규범</a></li>
+												<li><a href="/sub13/sub13_5_2_2.jsp">인권경영보고서</a></li>
+												<li><a href="/sub13/sub13_3_2_6.jsp">인권상담센터</a></li>
+												<li><a href="/sub13/sub13_3_2_7.jsp">성희롱·성폭력 신고</a></li>
+												<li><a href="/sub13/sub13_3_2_8.jsp">직장 내 괴롭힘 신고</a></li>
 												
 											</ul>
 										</li> 
@@ -432,198 +432,198 @@ document.addEventListener("DOMContentLoaded", function() {
 							</li>
 						</ul>
 					</div>
-					<!-- //ESG�濵 -->
+					<!-- //ESG경영 -->
 
-					<!-- ȫ������ -->
+					<!-- 홍보센터 -->
 					<div id="panel-4" class="gnb-sub-list" role="tabpanel" hidden>
 						<ul>
-							<li><a class="gnb-sub-trigger" href="/sub11/sub11_1.jsp">�����ڷ�</a></li>
-							<li><a class="gnb-sub-trigger" href="/sub11/sub11_2.jsp">���䴺��</a></li>
-							<li><a class="gnb-sub-trigger" href="/sub11/sub11_10.jsp">���󴺽�</a></li>
-							<li><a class="gnb-sub-trigger" href="/sub11/sub11_3.jsp">ȫ������</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub11/sub11_1.jsp">보도자료</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub11/sub11_2.jsp">포토뉴스</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub11/sub11_10.jsp">영상뉴스</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub11/sub11_3.jsp">홍보영상</a></li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">ȫ�� ���๰</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">홍보 간행물</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a  href="/sub11/sub11_5_5.jsp">�������-���ڻ纸</a></li>
-										<li><a  href="/sub11/sub11_5_2.jsp">��ν���</a></li>
-										<li><a  href="/sub11/sub11_5_1.jsp">ȫ�� ������</a></li>
+										<li><a  href="/sub11/sub11_5_5.jsp">석유사랑-전자사보</a></li>
+										<li><a  href="/sub11/sub11_5_2.jsp">브로슈어</a></li>
+										<li><a  href="/sub11/sub11_5_1.jsp">홍보 포스터</a></li>
 									</ul>
 								</div>
 							</li>
-							<li><a class="gnb-sub-trigger" href="/sub11/sub11_4.jsp">����������</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub11/sub11_4.jsp">사진갤러리</a></li>
 						</ul>
 					</div>
-					<!-- //ȫ������ -->
+					<!-- //홍보센터 -->
 
-					<!-- �������� -->
+					<!-- 정보공개 -->
 					<div id="panel-5" class="gnb-sub-list" role="tabpanel" hidden>
 						<ul>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">������������</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">정보공개제도</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a href="/sub05/sub05_13_1_1.jsp">�������������ȳ�</a></li>
-										<li><a href="/sub05/sub05_13_1_2.jsp">��������ó������</a></li>
-										<li><a href="/sub05/sub05_13_1_4.jsp">�Һ���������</a></li>
-										<li><a href="/sub05/sub05_13_1_5.jsp">å�Ӱ�/�ǹ������</a></li>
+										<li><a href="/sub05/sub05_13_1_1.jsp">정보공개제도안내</a></li>
+										<li><a href="/sub05/sub05_13_1_2.jsp">정보공개처리절차</a></li>
+										<li><a href="/sub05/sub05_13_1_4.jsp">불복구제절차</a></li>
+										<li><a href="/sub05/sub05_13_1_5.jsp">책임관/실무담당자</a></li>
 									</ul>
 								</div>
 							</li>
-							<li><a class="gnb-sub-trigger" href="/sub05/sub05_13_2_1.jsp">�������� û��</a></li>
-							<li><a class="gnb-sub-trigger" href="/sub05/sub05_13_1_3.jsp">������������</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub05/sub05_13_2_1.jsp">정보공개 청구</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub05/sub05_13_1_3.jsp">비공개대상정보</a></li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">����������ǥ</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">사전정보공표</a>
 								<div class="depth3-wrap">
 									<ul>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">ī�װ����� ����</a>
+											<a class="depth3-trigger has-depth4" href="#">카테고리별 정보</a>
 											<ul class="depth4-wrap">
 												<li><a href="/sub05/sub05_12_list.jsp?gpk=1">SHE</a></li>
-												<li><a href="/sub05/sub05_12_list.jsp?gpk=2">����</a></li>
-												<li><a href="/sub05/sub05_12_list.jsp?gpk=3">�濵</a></li>
-												<li><a href="/sub05/sub05_12_list.jsp?gpk=4">������</a></li>
-												<li><a href="/sub05/sub05_12_list.jsp?gpk=5">�������</a></li>
-												<li><a href="/sub05/sub05_12_list.jsp?gpk=6">��������</a></li>
-												<li><a href="/sub05/sub05_12_list.jsp?gpk=7">��������</a></li>
-												<li><a href="/sub05/sub05_12_list.jsp?gpk=8">�λ�</a> </li>
-												<li><a href="/sub05/sub05_12_list.jsp?gpk=9">�繫</a></li>
-												<li><a href="/sub05/sub05_12_list.jsp?gpk=10">����ȭ</a></li>
-												<li><a href="/sub05/sub05_12_list.jsp?gpk=11">�ѹ�</a></li>
-												<li><a href="/sub05/sub05_12_list.jsp?gpk=12">ȫ�����������</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=2">감사</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=3">경영</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=4">비축사업</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=5">상생협력</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=6">석유개발</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=7">석유정보</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=8">인사</a> </li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=9">재무</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=10">정보화</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=11">총무</a></li>
+												<li><a href="/sub05/sub05_12_list.jsp?gpk=12">홍보·대외협력</a></li>
 											</ul>
 										</li>
-										<li><a href="/sub05/sub05_13_6_1.jsp">���ΰ�������</a></li>
-										<li><a href="/sub05/sub05_2.jsp">�������� ������</a></li>
+										<li><a href="/sub05/sub05_13_6_1.jsp">국민관심정보</a></li>
+										<li><a href="/sub05/sub05_2.jsp">사전정보 제안함</a></li>
 									</ul>
 								</div>
 							</li>
-							<li><a class="gnb-sub-trigger" href="/sub05/sub05_13_list.jsp">�������</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub05/sub05_13_list.jsp">정보목록</a></li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">����������</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">공공데이터</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a href="/sub05/sub05_13_4_1.jsp">���������� ���� �ȳ�</a></li>
-										<li><a href="/sub05/sub05_13_4_2.jsp">���������� ���� ���</a></li>
-										<li><a href="/sub05/sub05_13_4_3.jsp">���������� ���� ��û</a></li>
-										<li><a href="/sub05/sub05_15.jsp">���������� ���� ä��</a></li>
-										<li><a href="/sub05/sub05_16.jsp">������������</a></li>
+										<li><a href="/sub05/sub05_13_4_1.jsp">공공데이터 개방 안내</a></li>
+										<li><a href="/sub05/sub05_13_4_2.jsp">공공데이터 개방 목록</a></li>
+										<li><a href="/sub05/sub05_13_4_3.jsp">공공데이터 제공 신청</a></li>
+										<li><a href="/sub05/sub05_15.jsp">공공데이터 소통 채널</a></li>
+										<li><a href="/sub05/sub05_16.jsp">비정형데이터</a></li>
 									</ul>
 								</div>
 							</li>
-							<li><a class="gnb-sub-trigger" href="/sub05/sub05_14.jsp">����Ǹ���</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub05/sub05_14.jsp">사업실명제</a></li>
 						</ul>
 					</div>
-					<!-- //�������� -->
+					<!-- //정보공개 -->
 
-					<!-- �������� -->
+					<!-- 국민참여 -->
 					<div id="panel-6" class="gnb-sub-list" role="tabpanel" hidden>
 						<ul>
-							<li><a class="gnb-sub-trigger" href="/sub05/sub05_5_5.jsp">��������</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub05/sub05_5_5.jsp">공지사항</a></li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">��������</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">고객헌장</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a href="/sub04/sub04_1_1.jsp">�������� ����</a></li>
-										<li><a href="/sub04/sub04_1_2.jsp">��������ǥ��</a></li>
+										<li><a href="/sub04/sub04_1_1.jsp">고객헌장 선언문</a></li>
+										<li><a href="/sub04/sub04_1_2.jsp">서비스이행표준</a></li>
 									</ul>
 								</div>
 							</li>
-							<li><a class="gnb-sub-trigger" href="/sub04/sub04_13.jsp">�Ű����ȼ���</a></li>
-							<li><a class="gnb-sub-trigger" href="/sub04/sub04_14.jsp">�Ű�ä�� ���</a></li>
-							<li><a class="gnb-sub-trigger" href="/sub04/sub04_2.jsp">��������</a></li>
-							<li><a class="gnb-sub-trigger" href="/sub04/sub04_3.jsp">����/��������</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub04/sub04_13.jsp">신고제안센터</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub04/sub04_14.jsp">신고채널 목록</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub04/sub04_2.jsp">고객상담실</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub04/sub04_3.jsp">고객/국민제안</a></li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">�ο�����</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">민원접수</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a href="/sub04/sub04_5.jsp">���̹� �ο���</a></li>
-										<li><a href="https://www.epeople.go.kr/index.jsp" class="tBlank" target="_blank">���νŹ���<em>��â</em></a></li>
+										<li><a href="/sub04/sub04_5.jsp">사이버 민원실</a></li>
+										<li><a href="https://www.epeople.go.kr/index.jsp" class="tBlank" target="_blank">국민신문고<em>새창</em></a></li>
 					
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">���С����ͽŰ�</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">부패·공익신고</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a href="http://www.redwhistle.org/report/report.asp?organ=1511" class="tBlank" target="_blank">KNOC �͸��Ű�<em>��â</em></a></li>
-										<li><a href="/sub04/sub04_5_5.jsp">����(������)�Ű�</a></li>
-										<li><a href="/sub04/sub04_5_8.jsp">ûŹ������ �������� �Ű�</a></li>
-										<li><a href="/sub04/sub04_5_7.jsp">���ͽŰ�</a></li>
-										<li><a href="/sub04/sub04_5_6.jsp">�ҹ��ϵ��� �Ű�</a></li>
-										<li><a href="/sub04/sub04_4.jsp">������ ����û�� �Ű�</a></li>
-										<li><a href="/sub04/sub04_6.jsp">���곶��Ű�����</a></li>
-										<li><a href="https://ncp.clean.go.kr/cmn/secCtfcKMC.do?menuCode=acs&mapAcs=Y&insttCd=B410005" class="tBlank" target="_blank">û������ ���С����ͽŰ�<em>��â</em></a></li>
+										<li><a href="http://www.redwhistle.org/report/report.asp?organ=1511" class="tBlank" target="_blank">KNOC 익명신고<em>새창</em></a></li>
+										<li><a href="/sub04/sub04_5_5.jsp">부패(부조리)신고</a></li>
+										<li><a href="/sub04/sub04_5_8.jsp">청탁금지법 위반행위 신고</a></li>
+										<li><a href="/sub04/sub04_5_7.jsp">공익신고</a></li>
+										<li><a href="/sub04/sub04_5_6.jsp">불법하도급 신고</a></li>
+										<li><a href="/sub04/sub04_4.jsp">보조금 부정청구 신고</a></li>
+										<li><a href="/sub04/sub04_6.jsp">예산낭비신고센터</a></li>
+										<li><a href="https://ncp.clean.go.kr/cmn/secCtfcKMC.do?menuCode=acs&mapAcs=Y&insttCd=B410005" class="tBlank" target="_blank">청렴포털 부패·공익신고<em>새창</em></a></li>
 										
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">����������伾��</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">기업성장응답센터</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a href="/sub04/sub04_7.jsp">����������伾�� �Ұ�</a></li>
-										<li><a href="/sub04/sub04_7_2.jsp">�����ַ� �Ű�</a></li>
-										<li><a href="/sub04/sub04_7_3.jsp">����ο� ���ؽŰ�</a></li>
-										<li><a href="/sub04/sub04_12.jsp">����ο� ��ȣ����������</a></li>
+										<li><a href="/sub04/sub04_7.jsp">기업성장응답센터 소개</a></li>
+										<li><a href="/sub04/sub04_7_2.jsp">규제애로 신고</a></li>
+										<li><a href="/sub04/sub04_7_3.jsp">기업민원 피해신고</a></li>
+										<li><a href="/sub04/sub04_12.jsp">기업민원 보호·서비스헌장</a></li>
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="/sub04/sub04_18.jsp">�ΰ����� ��������</a>
+								<a class="gnb-sub-trigger has-depth3" href="/sub04/sub04_18.jsp">민간성장 지원마당</a>
 								<div class="depth3-wrap">
 									<ul>	
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">�ΰ���� �ؿ����� �����÷���</a>
+											<a class="depth3-trigger has-depth4" href="#">민간기업 해외진출 협업플랫폼</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub03/sub03_2_2.jsp">�ؿܻ�� �Ұ�</a></li>
-												<li><a href="/sub04/sub04_19.jsp">���� ��û</a></li>
+												<li><a href="/sub03/sub03_2_2.jsp">해외사업 소개</a></li>
+												<li><a href="/sub04/sub04_19.jsp">협업 요청</a></li>
 											</ul>
 										</li>
 										<li>
-											<a class="depth3-trigger has-depth4" href="#">Ư�� ���������� �÷���</a>
+											<a class="depth3-trigger has-depth4" href="#">특허 공유·이전 플랫폼</a>
 											<ul class="depth4-wrap">
-												<li><a href="/sub04/sub04_21.jsp">���� ���� ��Ȱ��Ư��</a></li>
-												<li><a href="/sub04/sub04_20.jsp">Ư�� ���������� ��û</a></li>
+												<li><a href="/sub04/sub04_21.jsp">공사 보유 미활용특허</a></li>
+												<li><a href="/sub04/sub04_20.jsp">특허 공유·이전 신청</a></li>
 											</ul>
 										</li>
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">�˶�������</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">알뜰주유소</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a href="/sub04/sub04_8_1.jsp">��������</a></li>
-										<li><a href="/sub04/sub04_8_3.jsp">�ڷ��</a></li>
+										<li><a href="/sub04/sub04_8_1.jsp">공지사항</a></li>
+										<li><a href="/sub04/sub04_8_3.jsp">자료실</a></li>
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a class="gnb-sub-trigger has-depth3" href="#">���������ڿ�</a>
+								<a class="gnb-sub-trigger has-depth3" href="#">공공개방자원</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a href="/sub04/sub04_1_10.jsp">�ü����� �̿�ȳ�</a></li>
-										<li><a href="/sub04/sub04_8.jsp">�ü����� ������</a></li>
+										<li><a href="/sub04/sub04_1_10.jsp">시설개방 이용안내</a></li>
+										<li><a href="/sub04/sub04_8.jsp">시설개방 제안함</a></li>
 									</ul>
 								</div>
 							</li>
-							<li><a class="gnb-sub-trigger" href="/sub12/sub12_2_2.jsp">KPA �������� ������û</a></li>
+							<li><a class="gnb-sub-trigger" href="/sub12/sub12_2_2.jsp">KPA 공개강좌 교육신청</a></li>
 							<!--<li>
 								<a class="gnb-sub-trigger has-depth3" href="#">FAQ</a>
 								<div class="depth3-wrap">
 									<ul>
-										<li><a href="/sub05/sub05_9_1.jsp?grp=SENSE">�������</a></li>
-										<li><a href="/sub05/sub05_9_2.jsp?grp=TECH">��������</a></li>
-										<li><a href="/sub05/sub05_9_3.jsp?grp=BICHUK">��������</a></li>
-										<li><a href="/sub05/sub05_9_4.jsp?grp=BASIC">�Ϲݻ���</a></li>
+										<li><a href="/sub05/sub05_9_1.jsp?grp=SENSE">석유상식</a></li>
+										<li><a href="/sub05/sub05_9_2.jsp?grp=TECH">석유개발</a></li>
+										<li><a href="/sub05/sub05_9_3.jsp?grp=BICHUK">석유비축</a></li>
+										<li><a href="/sub05/sub05_9_4.jsp?grp=BASIC">일반사항</a></li>
 									</ul>
 								</div>
 							</li>-->
 						</ul>
 					</div>
-					<!-- //�������� -->
+					<!-- //국민참여 -->
 				</div>
 			</div>
 
@@ -654,7 +654,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					}
 				}
 			}
-		} else if (path.replaceAll("/coding", "").indexOf("/sub02/sub02_1_2_1_year") !== -1 || path.replaceAll("", "") === "/sub02/sub02_1_2_1_11.jsp") { // 2022.01.21 �����濵����Ȱ�� �޴� �� ó��
+		} else if (path.replaceAll("/coding", "").indexOf("/sub02/sub02_1_2_1_year") !== -1 || path.replaceAll("", "") === "/sub02/sub02_1_2_1_11.jsp") { // 2022.01.21 윤리경영추진활동 메뉴 탭 처리
 			if (path.indexOf("") !== -1) {
 				path = "/sub02/sub02_1_2_1_year21.jsp";
 			} else {
@@ -704,14 +704,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	});
 
-	// ���հ˻�
+	// 통합검색
 	function menu_search() {
 		$("#tsearchForm").submit();
 	}
 	
 	
 	
-	// �޴����� �α��� �������� �̵�
+	// 메뉴에서 로그인 페이지로 이동
 	function menu_login() {
 		location.href="/member/login.jsp?returnURL=" + $(location).attr('pathname');
 	}
@@ -730,18 +730,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <section id="content">
 	<div id="subHead">
-		<h2>ä�����</h2>
+		<h2>채용공고</h2>
 		<div class="locadv">
-			<a href="/" class="home">����</a>
-			<a href="/"><span>����Ұ�</span></a>
-			<a href="/"><span>ä������</span></a>
-            <span class="locanow">ä�����</span>
+			<a href="/" class="home">메인</a>
+			<a href="/"><span>공사소개</span></a>
+			<a href="/"><span>채용정보</span></a>
+            <span class="locanow">채용공고</span>
 		</div>
 	</div>
 
 	<div class="mgCont">
-		<div class="sabo-apply"><a href="/sub01/sub01_13.jsp" class="btn-TypeB"><em class="icon_apply">ä����� �˸��� </br>��û�ϱ�</em></a>
-		<a href="/sub01/sub01_14.jsp" class="btn-TypeB"><em class="icon_apply">ä����� �˸��� </br>����ϱ�</em></a></div>
+		<div class="sabo-apply"><a href="/sub01/sub01_13.jsp" class="btn-TypeB"><em class="icon_apply">채용공고 알리미 </br>신청하기</em></a>
+		<a href="/sub01/sub01_14.jsp" class="btn-TypeB"><em class="icon_apply">채용공고 알리미 </br>취소하기</em></a></div>
 		
 
 
@@ -749,7 +749,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 <!--
-	�ڷ��01 ��� ��Ų
+	자료실01 목록 스킨
 -->
 
 
@@ -773,7 +773,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 </script>
 
-<!-- ��� : START -->
+<!-- 목록 : START -->
 <div class="boardList">
 
 		<ul class="list">
@@ -781,7 +781,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">35</em>
 			
 				
@@ -789,28 +789,28 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=73&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=73&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026년 하반기 인턴(체험형) 채용 접수결과 안내</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2026.07.09</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=8101B5DC1543DD670AA7B1588C4E58CD&fno=CAA9D618E777DC49BED5FEB33CC93CBB&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�.pdf</a>
+								 <a href="/servlet/Download?num=8101B5DC1543DD670AA7B1588C4E58CD&fno=CAA9D618E777DC49BED5FEB33CC93CBB&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2026년 하반기 인턴(체험형) 채용 접수결과 안내.pdf</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">1761</em>
+				<span class="tit">조회</span>
+				<em class="cont">1765</em>
 			</li>
 		</ul>
 
@@ -819,7 +819,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">34</em>
 			
 				
@@ -827,29 +827,29 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=72&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026�� �Ϲݱ� ����(ü����) ä����� [����]</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=72&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026년 하반기 인턴(체험형) 채용공고 [마감]</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2026.06.23</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&fno=C3C1D06546817246AB5A9EDE4A74D84C&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 1 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����.pdf</a><br />
-								 <a href="/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&fno=BFB2242E89D78821BD8EB06BA08E6073&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����_����.zip</a>
+								 <a href="/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&fno=C3C1D06546817246AB5A9EDE4A74D84C&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 1 - 한국석유공사 2026년 하반기 인턴(체험형) 채용공고.pdf</a><br />
+								 <a href="/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&fno=BFB2242E89D78821BD8EB06BA08E6073&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2 - 한국석유공사 2026년 하반기 인턴(체험형) 채용공고_붙임.zip</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">7091</em>
+				<span class="tit">조회</span>
+				<em class="cont">7094</em>
 			</li>
 		</ul>
 
@@ -858,7 +858,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">33</em>
 			
 				
@@ -866,28 +866,28 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=71&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=71&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026년 하반기 직원(정규직, 인턴) 채용계획(안)</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2026.05.18</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=E0BAC17FDE31A0E0FC215445CD9E8A21&fno=641A4D1ACAD51B1A2E0986F21F479934&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> �ѱ��������� 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��).pdf</a>
+								 <a href="/servlet/Download?num=E0BAC17FDE31A0E0FC215445CD9E8A21&fno=641A4D1ACAD51B1A2E0986F21F479934&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 한국석유공사 2026년 하반기 직원(정규직, 인턴) 채용계획(안).pdf</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">10751</em>
+				<span class="tit">조회</span>
+				<em class="cont">10758</em>
 			</li>
 		</ul>
 
@@ -896,7 +896,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">32</em>
 			
 				
@@ -904,28 +904,28 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=70&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026�� ��ݱ� ����(�Ⱓ��) ä�� ���� ��� �ȳ�</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=70&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026년 상반기 직원(기간제) 채용 접수 결과 안내</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2026.04.07</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=3A9F6707F58C6889A60357E2583527BC&fno=C0E2BAAEBE6AE93B7806928947292F45&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2026�� ��ݱ� ����(�Ⱓ��) ä�� ������ ���� ��� �ȳ�.pdf</a>
+								 <a href="/servlet/Download?num=3A9F6707F58C6889A60357E2583527BC&fno=C0E2BAAEBE6AE93B7806928947292F45&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2026년 상반기 직원(기간제) 채용 지원서 접수 결과 안내.pdf</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">1788</em>
+				<span class="tit">조회</span>
+				<em class="cont">1789</em>
 			</li>
 		</ul>
 
@@ -934,7 +934,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">31</em>
 			
 				
@@ -942,29 +942,29 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=69&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026�� ��ݱ� ����(�Ⱓ��) ä����� (����)</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=69&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2026년 상반기 직원(기간제) 채용공고 (마감)</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2026.03.18</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=53122C0282B90D8259D2BE505CC14884&fno=34EF01CA28CFAFEC1B774AD090061B41&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> �ѱ��������� 2026�� ��ݱ� ����(�Ⱓ��) ä�����.pdf</a><br />
-								 <a href="/servlet/Download?num=53122C0282B90D8259D2BE505CC14884&fno=07CAE86A731DB4510E946917A6454484&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> �ѱ��������� 2026�� ��ݱ� ����(�Ⱓ��) ä�����_����.zip</a>
+								 <a href="/servlet/Download?num=53122C0282B90D8259D2BE505CC14884&fno=34EF01CA28CFAFEC1B774AD090061B41&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 한국석유공사 2026년 상반기 직원(기간제) 채용공고.pdf</a><br />
+								 <a href="/servlet/Download?num=53122C0282B90D8259D2BE505CC14884&fno=07CAE86A731DB4510E946917A6454484&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 한국석유공사 2026년 상반기 직원(기간제) 채용공고_붙임.zip</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">3781</em>
+				<span class="tit">조회</span>
+				<em class="cont">3785</em>
 			</li>
 		</ul>
 
@@ -973,7 +973,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">30</em>
 			
 				
@@ -981,29 +981,29 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=68&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2025�� �ѱ��������� ���� ����ä�� ���� (����)</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=68&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2025년 한국석유공사 직원 공개채용 공고 (마감)</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2025.04.24</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=97405E3903E5C413954A256E0139683B&fno=2F9CFE7970C5C025E12035DB024C1457&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2025�� �ѱ��������� ���� ����ä�� ����.pdf</a><br />
-								 <a href="/servlet/Download?num=97405E3903E5C413954A256E0139683B&fno=50F6C6217DBF3D6F50E455B7616711DC&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2025�� �ѱ��������� ���� ����ä�� ����_����.zip</a>
+								 <a href="/servlet/Download?num=97405E3903E5C413954A256E0139683B&fno=2F9CFE7970C5C025E12035DB024C1457&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2025년 한국석유공사 직원 공개채용 공고.pdf</a><br />
+								 <a href="/servlet/Download?num=97405E3903E5C413954A256E0139683B&fno=50F6C6217DBF3D6F50E455B7616711DC&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2025년 한국석유공사 직원 공개채용 공고_붙임.zip</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">65504</em>
+				<span class="tit">조회</span>
+				<em class="cont">65507</em>
 			</li>
 		</ul>
 
@@ -1012,7 +1012,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">29</em>
 			
 				
@@ -1020,27 +1020,27 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=67&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">��2025�� ä����� �˸��̡� ���� ��û �ȳ� (����..</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=67&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">「2025년 채용공고 알리미」 서비스 신청 안내 (서비..</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2025.04.18</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">5134</em>
+				<span class="tit">조회</span>
+				<em class="cont">5138</em>
 			</li>
 		</ul>
 
@@ -1049,7 +1049,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">28</em>
 			
 				
@@ -1057,28 +1057,28 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=66&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2025�⵵ �ѱ��������� ���� ä���ȹ(��)</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=66&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2025년도 한국석유공사 연간 채용계획(안)</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2025.02.04</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=3E9A44BEAAB7D496C3D6F3AF347539EC&fno=28BD578F27B7397FDDF5FB856D819FA8&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ����. 2025�� ä���ȹ(��)(Ȩ������ �Խÿ�).pdf</a>
+								 <a href="/servlet/Download?num=3E9A44BEAAB7D496C3D6F3AF347539EC&fno=28BD578F27B7397FDDF5FB856D819FA8&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 붙임. 2025년 채용계획(안)(홈페이지 게시용).pdf</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">13681</em>
+				<span class="tit">조회</span>
+				<em class="cont">13685</em>
 			</li>
 		</ul>
 
@@ -1087,7 +1087,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">27</em>
 			
 				
@@ -1095,29 +1095,29 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=65&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024�� �ѱ��������� �Ϲݱ� ���� ä�� ����</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=65&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024년 한국석유공사 하반기 직원 채용 공고</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2024.10.23</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=D37F0A32BA83977671A6CF2E36E00EB3&fno=997FA7C4D0094944B2DB47214E3078D7&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä�����.png</a><br />
-								 <a href="/servlet/Download?num=D37F0A32BA83977671A6CF2E36E00EB3&fno=08F6D2A65E8CC0B6E715DE504EC5B6AB&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä����� ��������.zip</a>
+								 <a href="/servlet/Download?num=D37F0A32BA83977671A6CF2E36E00EB3&fno=997FA7C4D0094944B2DB47214E3078D7&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 채용공고.png</a><br />
+								 <a href="/servlet/Download?num=D37F0A32BA83977671A6CF2E36E00EB3&fno=08F6D2A65E8CC0B6E715DE504EC5B6AB&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 채용공고 붙임파일.zip</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">17323</em>
+				<span class="tit">조회</span>
+				<em class="cont">17327</em>
 			</li>
 		</ul>
 
@@ -1126,7 +1126,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">26</em>
 			
 				
@@ -1134,29 +1134,29 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=64&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024�� �ѱ��������� ����� ������ ���� ���� ä�� ..</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=64&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024년 한국석유공사 장애인 스포츠 직무 직원 채용 ..</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2024.10.23</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=31A0F88B6FDBBF02BADE309977162F99&fno=3BA97BE9F58A783A9FD075134DCEBDC7&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä�����(����� ������ ���� ����).png</a><br />
-								 <a href="/servlet/Download?num=31A0F88B6FDBBF02BADE309977162F99&fno=E007F81E9067428F9B77B7429CA22CF9&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä����� ��������.zip</a>
+								 <a href="/servlet/Download?num=31A0F88B6FDBBF02BADE309977162F99&fno=3BA97BE9F58A783A9FD075134DCEBDC7&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 채용공고(장애인 스포츠 직무 직원).png</a><br />
+								 <a href="/servlet/Download?num=31A0F88B6FDBBF02BADE309977162F99&fno=E007F81E9067428F9B77B7429CA22CF9&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 채용공고 붙임파일.zip</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">3415</em>
+				<span class="tit">조회</span>
+				<em class="cont">3416</em>
 			</li>
 		</ul>
 
@@ -1165,7 +1165,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">25</em>
 			
 				
@@ -1173,29 +1173,29 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=63&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024�� �ѱ��������� ���� ���� ä��</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=63&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024년 한국석유공사 직원 공개 채용</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2024.04.03</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=5A449D17DB3B501524D666E640E79670&fno=1B5E802E47D018F499CD92019C01C19B&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2024�� �����оߺ� ������+��������.zip</a><br />
-								 <a href="/servlet/Download?num=5A449D17DB3B501524D666E640E79670&fno=C658FD65C340D8A8E5D128CF53764A16&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2024�� �ѱ��������� ���� ����ä��.JPG</a>
+								 <a href="/servlet/Download?num=5A449D17DB3B501524D666E640E79670&fno=1B5E802E47D018F499CD92019C01C19B&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2024년 모집분야별 공고문+붙임파일.zip</a><br />
+								 <a href="/servlet/Download?num=5A449D17DB3B501524D666E640E79670&fno=C658FD65C340D8A8E5D128CF53764A16&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2024년 한국석유공사 직원 공개채용.JPG</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">60495</em>
+				<span class="tit">조회</span>
+				<em class="cont">60496</em>
 			</li>
 		</ul>
 
@@ -1204,7 +1204,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">24</em>
 			
 				
@@ -1212,28 +1212,28 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=61&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024�⵵ �ѱ��������� ���� ä���ȹ(��)</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=61&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2024년도 한국석유공사 연간 채용계획(안)</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2024.01.11</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=89F637BBCDFFB6BFA0BEFECB0B22A20B&fno=5D2454C827B7D27B9CE641B95E44D20B&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ����_Ȩ�������Խ�_2024�� ä���ȹ(��).pdf</a>
+								 <a href="/servlet/Download?num=89F637BBCDFFB6BFA0BEFECB0B22A20B&fno=5D2454C827B7D27B9CE641B95E44D20B&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 붙임_홈페이지게시_2024년 채용계획(안).pdf</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">12397</em>
+				<span class="tit">조회</span>
+				<em class="cont">12398</em>
 			</li>
 		</ul>
 
@@ -1242,7 +1242,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">23</em>
 			
 				
@@ -1250,29 +1250,29 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=60&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2023�� �ѱ��������� ������(��ȣ��) ä�� ����</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=60&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2023년 한국석유공사 정규직(변호사) 채용 공고</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2023.11.09</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=21FE9C46B8BCD4CF78247CD9AC9FDBDA&fno=72B20FDCE078A46BBD9013E8B933F576&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2023�� �ѱ��������� ������(��ȣ��) ä�� ������.png</a><br />
-								 <a href="/servlet/Download?num=21FE9C46B8BCD4CF78247CD9AC9FDBDA&fno=50AFB788961F4CC81C93BDCC2086AC6E&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä������� ��������_2023�� �ѱ��������� ������(��ȣ��) ä��.pdf</a>
+								 <a href="/servlet/Download?num=21FE9C46B8BCD4CF78247CD9AC9FDBDA&fno=72B20FDCE078A46BBD9013E8B933F576&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2023년 한국석유공사 정규직(변호사) 채용 공고문.png</a><br />
+								 <a href="/servlet/Download?num=21FE9C46B8BCD4CF78247CD9AC9FDBDA&fno=50AFB788961F4CC81C93BDCC2086AC6E&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 채용공고문 붙임파일_2023년 한국석유공사 정규직(변호사) 채용.pdf</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">3947</em>
+				<span class="tit">조회</span>
+				<em class="cont">3948</em>
 			</li>
 		</ul>
 
@@ -1281,7 +1281,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">22</em>
 			
 				
@@ -1289,29 +1289,29 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=59&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2023�� �ѱ��������� �Ⱓ�� ���� ä�� ����</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=59&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2023년 한국석유공사 기간제 직원 채용 공고</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2023.09.12</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=BE59A2A767D3289686D541D27AAFDB11&fno=5D15B329B711D467245A8D77B8E19927&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2023��+�ѱ���������+�Ⱓ��+����+ä��+������.png</a><br />
-								 <a href="/servlet/Download?num=BE59A2A767D3289686D541D27AAFDB11&fno=BF1B9994318F819BB5B4C6283FA7EF29&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä������� ��������_2023�� �ѱ��������� �Ⱓ�� ���� ä��.pdf</a>
+								 <a href="/servlet/Download?num=BE59A2A767D3289686D541D27AAFDB11&fno=5D15B329B711D467245A8D77B8E19927&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2023년+한국석유공사+기간제+직원+채용+공고문.png</a><br />
+								 <a href="/servlet/Download?num=BE59A2A767D3289686D541D27AAFDB11&fno=BF1B9994318F819BB5B4C6283FA7EF29&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 채용공고문 붙임파일_2023년 한국석유공사 기간제 직원 채용.pdf</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">6063</em>
+				<span class="tit">조회</span>
+				<em class="cont">6064</em>
 			</li>
 		</ul>
 
@@ -1320,7 +1320,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 				
 			
-			<span class="tit">�۹�ȣ</span>
+			<span class="tit">글번호</span>
 			<em class="cont">21</em>
 			
 				
@@ -1328,48 +1328,48 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 			<li>
-				<span class="tit">����</span>
-				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=58&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2023�� �ѱ��������� ���� ä�� ����</a></em>
+				<span class="tit">제목</span>
+				<em class="cont"><a href="/sub01/sub01_7_9.jsp?page=1&amp;num=58&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&ses=USERSESSION&psize=15">2023년 한국석유공사 직원 채용 공고</a></em>
 			</li>
 			<li>
-				<span class="tit">����</span>
-				<em class="cont">����濵ó</em>
+				<span class="tit">성명</span>
+				<em class="cont">인재경영처</em>
 			</li>
 			<li>
-				<span class="tit">�����</span>
+				<span class="tit">등록일</span>
 				<em class="cont">2023.05.26</em>
 			</li>
 			<li>
-				<span class="tit">÷��</span>
+				<span class="tit">첨부</span>
 				<em class="cont">
 					
-								 <a href="/servlet/Download?num=F141129F1581D6B66EAA2838A07DB955&fno=2819662D652400A81DF823F8BE2BC398&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2023�� �ѱ��������� ���� ä�� ������.JPG</a><br />
-								 <a href="/servlet/Download?num=F141129F1581D6B66EAA2838A07DB955&fno=3340CA22C38EE287496B8D213978E13D&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> ä������� ��������.zip</a>
+								 <a href="/servlet/Download?num=F141129F1581D6B66EAA2838A07DB955&fno=2819662D652400A81DF823F8BE2BC398&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 2023년 한국석유공사 직원 채용 공고문.JPG</a><br />
+								 <a href="/servlet/Download?num=F141129F1581D6B66EAA2838A07DB955&fno=3340CA22C38EE287496B8D213978E13D&bid=RECRUIT&callback=/sub01/sub01_7_9.jsp&ses=USERSESSION"><em class="file-icon ico10">download</em> 채용공고문 붙임파일.zip</a>
 				</em>
 			</li>
 			
 			<li>
-				<span class="tit">��ȸ</span>
-				<em class="cont">48105</em>
+				<span class="tit">조회</span>
+				<em class="cont">48107</em>
 			</li>
 		</ul>
 
 </div>
-<!-- ��� : END -->
+<!-- 목록 : END -->
 
-<!-- ������ : START -->
+<!-- 페이지 : START -->
 <div class="paging">
 	
 	<ul>
-		<!-- ������ : ó����ư : START -->
-		<li class="page-item first"><a href="/sub01/sub01_7_9.jsp?page=1&amp;field=&amp;text=&amp;mode=list&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15" class="page-link">ó��</a></li>
-		<!-- ������ : ó����ư : END -->
+		<!-- 페이지 : 처음버튼 : START -->
+		<li class="page-item first"><a href="/sub01/sub01_7_9.jsp?page=1&amp;field=&amp;text=&amp;mode=list&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15" class="page-link">처음</a></li>
+		<!-- 페이지 : 처음버튼 : END -->
 
-		<!-- ������ : ������ư : START -->
-		<li class="prev"><a href="javascript:void(0);" class="page-link">����</a></li>
-		<!-- ������ : ������ư : END -->
+		<!-- 페이지 : 이전버튼 : START -->
+		<li class="prev"><a href="javascript:void(0);" class="page-link">이전</a></li>
+		<!-- 페이지 : 이전버튼 : END -->
 
-		<!-- ������ : ��������ư : START -->
+		<!-- 페이지 : 페이지버튼 : START -->
 		
 		
 		
@@ -1387,18 +1387,18 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 		
 		
-		<!-- ������ : ��������ư : END -->
+		<!-- 페이지 : 페이지버튼 : END -->
 
-		<!-- ������ : ������ư : START -->
-		<li class="next"><a href="/sub01/sub01_7_9.jsp?page=2&amp;field=&amp;text=&amp;mode=list&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15" class="page-link">����</a></li>
-		<!-- ������ : ������ư : END -->
+		<!-- 페이지 : 다음버튼 : START -->
+		<li class="next"><a href="/sub01/sub01_7_9.jsp?page=2&amp;field=&amp;text=&amp;mode=list&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15" class="page-link">다음</a></li>
+		<!-- 페이지 : 다음버튼 : END -->
 
-		<!-- ������ : ����ư : START -->
-		<li class="page-item last"><a href="/sub01/sub01_7_9.jsp?page=3&amp;field=&amp;text=&amp;mode=list&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15" class="page-link">��</a></li>
-		<!-- ������ : ����ư : END -->
+		<!-- 페이지 : 끝버튼 : START -->
+		<li class="page-item last"><a href="/sub01/sub01_7_9.jsp?page=3&amp;field=&amp;text=&amp;mode=list&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15" class="page-link">끝</a></li>
+		<!-- 페이지 : 끝버튼 : END -->
 	</ul>
 </div>
-<!-- ������ : END -->
+<!-- 페이지 : END -->
 
 
 <!-- search -->
@@ -1411,19 +1411,19 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 
 		<select id="field" name="field" class="ipt">
-			<option value="subject">����</option>
-			<option value="name">����</option>
-			<option value="content">����</option>
+			<option value="subject">제목</option>
+			<option value="name">성명</option>
+			<option value="content">내용</option>
 		</select>
 		<input type="text" value="" id="schinput" name="text" class="ipt">
-		<a href="javascript:do_search();" class="btn-TypeB"><em class="iconS">�˻�</em></a>
+		<a href="javascript:do_search();" class="btn-TypeB"><em class="iconS">검색</em></a>
 	</fieldset>
 </form>
 	</div>
 
 	<ul class="update">
-		<li>���μ� : ����濵ó �λ���</li>
-		<li>����ó : 052-216-2703</li>
+		<li>담당부서 : 인재경영처 인사팀</li>
+		<li>연락처 : 052-216-2703</li>
 	</ul>
 </section>
 
@@ -1434,18 +1434,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <footer>
 	<div class="grid-jb link">
-		<a class="on" href="/member/privacy.jsp">��������ó����ħ</a>
-		<a class="on" href="/member/m_policy.jsp">������ ��������ó����ħ</a>
-		<a class="on" href="/member/c_policy.jsp">�̵��� ��������ó����ħ</a>
-		<a href="/member/mail.jsp">�̸��Ϲ��ܼ����ź�</a>
-		<a href="/sub01/sub01_9.jsp">ã�ƿ��ô� ��</a>
+		<a class="on" href="/member/privacy.jsp">개인정보처리방침</a>
+		<a class="on" href="/member/m_policy.jsp">고정형 영상정보처리방침</a>
+		<a class="on" href="/member/c_policy.jsp">이동형 영상정보처리방침</a>
+		<a href="/member/mail.jsp">이메일무단수집거부</a>
+		<a href="/sub01/sub01_9.jsp">찾아오시는 길</a>
 	</div>
 	<div class="footlogo">Knoc KOREA NATIONAL OIL CORPORATION</div>
 	<address>
-		<span>����</span>
-		<span>��. 44538  ��걤���� �߱� ������ 305 �ѱ���������</span>
-		<span>��ǥ��ȭ.  052-216-2114</span>
-		<span>�ѽ�.  052-216-5900</span>
+		<span>본사</span>
+		<span>우. 44538  울산광역시 중구 종가로 305 한국석유공사</span>
+		<span>대표전화.  052-216-2114</span>
+		<span>팩스.  052-216-5900</span>
 	</address>
 	<p class="copy">COPYRIGHT (C) BY KOREA NATIONAL OIL CORPORATION.<br>
 		ALL RIGHTS RESERVED.</p>

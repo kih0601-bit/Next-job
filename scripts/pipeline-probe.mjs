@@ -379,7 +379,7 @@ async function probeSource(source, artifacts) {
     const allowedHosts = [...new Set((source.accessUrls || [source.url]).map(url => { try { return new URL(url).hostname; } catch { return ''; } }).filter(Boolean))];
     for (const candidate of all.filter(item => !item.listOnly).slice(0, MAX_DETAIL_SAMPLES)) {
       report.detail.attempted += 1;
-      const detail = await fetchDetail(candidate.link, { expectedTitle: candidate.title, sourceOrg: source.org, allowedHosts, request: candidate.detailRequest || null });
+      const detail = await fetchDetail(candidate.link, { expectedTitle: candidate.title, sourceOrg: source.org, allowedHosts, request: candidate.detailRequest || null }, source.org);
       if (detail.ok) report.detail.validated += 1;
       else report.detail.failed += 1;
       report.attachment.discovered += detail.attachments?.length || 0;

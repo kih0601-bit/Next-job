@@ -74,9 +74,12 @@ const RAW_SOURCES = [
     'https://www.ubpi.or.kr/sub/?mcode=0403080000',
     'https://www.ubpi.or.kr/' ] },
   { org: '울산연구원', urls: [
-    'https://www.uri.re.kr/',
+    // Official URI site first. Keep transport variants because GitHub runners intermittently get TLS/403 on www.
     'https://www.uri.re.kr/index.do',
-    'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000' ] },
+    'https://uri.re.kr/index.do',
+    'http://www.uri.re.kr/index.do',
+    'http://uri.re.kr/index.do',
+    'https://www.uri.re.kr/' ] },
   { org: '울산문화관광재단', urls: [
     'https://uctf.or.kr/board/employment',
     'https://www.uctf.or.kr/board/employment',
@@ -103,6 +106,7 @@ const RAW_SOURCES = [
     'https://www.ucf.or.kr/' ] },
   { org: '울산광역시 타기관소식', urls: [
     // Primary source: Ulsan Metropolitan City other-organization notices.
+    'https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000',
     'https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000',
     // Same-purpose local-government mirror with a directly readable 타기관소식 board.
     'https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=alimiNotice',

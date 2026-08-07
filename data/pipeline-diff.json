@@ -1,339 +1,45 @@
 {
-  "generatedAt": "2026-08-07T00:05:21.794Z",
+  "generatedAt": "2026-08-07T01:37:30.737Z",
   "baselineAvailable": true,
   "summary": {
     "improved": 4,
-    "regressed": 3,
-    "unchanged": 15
+    "regressed": 9,
+    "unchanged": 10
   },
   "changes": [
     {
-      "org": "울산복지가족진흥사회서비스원",
-      "health": "degraded",
+      "org": "울산광역시 타기관소식",
+      "health": "failed",
       "primaryCause": {
-        "stage": "list",
-        "status": "partial",
-        "code": "LIST_EXTRA_POSTS",
-        "reason": "화면 10건보다 3건 많이 추출 · 메뉴/첨부/중복 오탐 가능",
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
         "evidence": [
           {
-            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-            "visiblePostCount": 10,
-            "rowMode": true,
-            "anchors": 293,
-            "titleMatches": 13,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 13,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
-              "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
-              "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
-              "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
-              "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
-              "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
-              "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
-              "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 13,
-            "exactMatch": false,
-            "missingCount": 0,
-            "extraCount": 3,
-            "countSource": "visible-board-rows"
+            "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+            "ok": false,
+            "error": "timeout"
           },
           {
-            "url": "https://www.wfps.or.kr/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
+            "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
+            "ok": false,
+            "error": "timeout"
           },
           {
-            "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
-            "visiblePostCount": 10,
-            "rowMode": true,
-            "anchors": 293,
-            "titleMatches": 13,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 13,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
-              "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
-              "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
-              "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
-              "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
-              "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
-              "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
-              "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 13,
-            "exactMatch": false,
-            "missingCount": 0,
-            "extraCount": 3,
-            "countSource": "visible-board-rows"
+            "url": "https://job.alio.go.kr/",
+            "ok": false,
+            "error": "timeout"
           }
         ],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
-        "recommendedAction": "오탐 행 원문을 기준으로 메뉴·첨부·중복 제외 규칙 추가"
+        "repairTarget": "scripts/collectors/institutions/울산광역시 타기관소식.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
         "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
           "from": true,
           "to": false,
           "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
-    {
-      "org": "한국석유공사",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "list",
-        "status": "partial",
-        "code": "LIST_EXTRA_POSTS",
-        "reason": "화면 4건보다 11건 많이 추출 · 메뉴/첨부/중복 오탐 가능",
-        "evidence": [
-          {
-            "url": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp",
-            "visiblePostCount": 4,
-            "rowMode": true,
-            "anchors": 141,
-            "titleMatches": 15,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 15,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�",
-              "2026�� �Ϲݱ� ����(ü����) ä����� [����]",
-              "2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)",
-              "2026�� ��ݱ� ����(�Ⱓ��) ä�� ���� ��� �ȳ�",
-              "2026�� ��ݱ� ����(�Ⱓ��) ä����� (����)",
-              "2025�� �ѱ��������� ���� ����ä�� ���� (����)",
-              "��2025�� ä����� �˸��̡� ���� ��û �ȳ� (����..",
-              "2025�⵵ �ѱ��������� ���� ä���ȹ(��)"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 15,
-            "exactMatch": false,
-            "missingCount": 0,
-            "extraCount": 11,
-            "countSource": "visible-board-rows"
-          },
-          {
-            "url": "https://m.knoc.co.kr/sub01/sub01_7_9.jsp",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 264,
-            "titleMatches": 245,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "���� �ٷΰ���",
-              "�ѱ���������",
-              "�˻��ϱ�",
-              "�α���",
-              "����Ʈ��",
-              "Ȩ����",
-              "�޴� �ݱ�",
-              "CEO �λ縻"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          },
-          {
-            "url": "https://www.knoc.co.kr/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 105,
-            "titleMatches": 84,
-            "noUrl": 0,
-            "unsafeUrl": 1,
-            "accepted": 13,
-            "rowFallbackAccepted": 1,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 1,
-            "titleSamples": [
-              "�������ΰ���",
-              "�α���",
-              "ENGLISH",
-              "�ѱ���������",
-              "����Ұ�",
-              "������ �� �ֿ����",
-              "�ӿ� �� �濵��",
-              "ȸ�翬��"
-            ],
-            "unsafeSamples": [
-              {
-                "title": "Opinet �⸧���� �Ƴ��� ������ �ѱ��������� ���ǳ�",
-                "reason": "detail-url-pending",
-                "identity": "row-42893",
-                "row": "<li class=\"opinet\">\r\n\t\t\t\t\t\t<a href=\"https://www.opinet.co.kr/user/main/mainView.do\" target=\"_blank\">\r\n\t\t\t\t\t\t\t<h3>Opinet</h3>\r\n\t\t\t\t\t\t\t<p>�⸧���� �Ƴ��� ������ �ѱ��������� ���ǳ�</p>\r\n\t\t\t\t\t\t\t<img class=\"arrow\" src=\"images/main/i_go_03.png\" alt=\"ȭ��ǥ\">\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t</li>"
-              }
-            ],
-            "actionSamples": [],
-            "candidateUrlSamples": [
-              {
-                "title": "[�����ڷ�] �ѱ���������, ���� �� ������ �۾� ���� ã�� ���ð� ���� ����� �ǽ� �� ���»� ��� �� ���� ���� ���� ü�� ������ �(2026.07.29.) 2026-07-29",
-                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=996&mode=view&bid=NEWS&field=subject&text=&page=1",
-                "allowed": true
-              },
-              {
-                "title": "[�����ڷ�] �ѱ���������, ���� �湮�� ���� ������� ����ȸ ����(2026.07.27.) 2026-07-27",
-                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=995&mode=view&bid=NEWS&field=subject&text=&page=1",
-                "allowed": true
-              },
-              {
-                "title": "[�����ڷ�] �ѱ���������, ���� �������� ������ ������ ���� ����ȸ�� �ǽ�(2026.07.24.) 2026-07-24",
-                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=994&mode=view&bid=NEWS&field=subject&text=&page=1",
-                "allowed": true
-              },
-              {
-                "title": "[�����ڷ�] �ѱ���������, ��������ĺ� �Ұ� ��2026 �糭���� �������� ����(2026.07.22.) 2026-07-22",
-                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=993&mode=view&bid=NEWS&field=subject&text=&page=1",
-                "allowed": true
-              },
-              {
-                "title": "[�����ڷ�] �ѱ���������, �������硤�Ѽ����� �������ࡦ���� ��� ���� ����(2026.07.15.) 2026-07-15",
-                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=992&mode=view&bid=NEWS&field=subject&text=&page=1",
-                "allowed": true
-              },
-              {
-                "title": "�����ڷ� �ٷΰ���",
-                "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp",
-                "allowed": true
-              },
-              {
-                "title": "���ں� ������ȸ",
-                "url": "https://www.opinet.co.kr/user/dopospdrg/dopOsPdrgSelect.do",
-                "allowed": false
-              },
-              {
-                "title": "���ں� ������ȸ",
-                "url": "https://www.knoc.co.kr/?id=tab1-1",
-                "allowed": true
-              },
-              {
-                "title": "���ں� ������ȸ",
-                "url": "https://www.knoc.co.kr/?id=tab1-2",
-                "allowed": true
-              },
-              {
-                "title": "���ں� ������ȸ",
-                "url": "https://www.knoc.co.kr/?id=tab1-3",
-                "allowed": true
-              },
-              {
-                "title": "��������-��������-�Ѽ��� ���� ���Ͽ� ���� ��������� (2026.07,15)",
-                "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
-                "allowed": true
-              },
-              {
-                "title": "UAE ADNOC�� CEO ��� (2026.07.08.)",
-                "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
-                "allowed": true
-              },
-              {
-                "title": "����-�ѱ������ڿ�����, �ؾ���°� ȸ�� �� ������ȸ ��� ���� �������� ü�� (2026.07.07)",
-                "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
-                "allowed": true
-              },
-              {
-                "title": "���ּ� ����, �ؿܻ������ ���� ���� ���� (2026.07.06.)",
-                "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
-                "allowed": true
-              },
-              {
-                "title": "���䴺�� �ٷΰ���",
-                "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
-                "allowed": true
-              },
-              {
-                "title": "Opinet �⸧���� �Ƴ��� ������ �ѱ��������� ���ǳ�",
-                "url": "https://www.opinet.co.kr/user/main/mainView.do",
-                "allowed": false
-              }
-            ],
-            "candidateCount": 13,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/한국석유공사.mjs",
-        "recommendedAction": "오탐 행 원문을 기준으로 메뉴·첨부·중복 제외 규칙 추가"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
         },
         "list": {
           "from": true,
@@ -356,110 +62,55 @@
     },
     {
       "org": "근로복지공단",
-      "health": "degraded",
+      "health": "failed",
       "primaryCause": {
-        "stage": "list",
+        "stage": "recruitVerify",
         "status": "failed",
-        "code": "LIST_COUNTER_FAILED",
-        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-        "evidence": [
-          {
-            "url": "https://comwel.incruit.com/index_main.asp",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 22,
-            "titleMatches": 15,
-            "noUrl": 0,
-            "unsafeUrl": 1,
-            "accepted": 2,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 1,
-            "titleSamples": [
-              "���� Ȩ������",
-              "���� �Ұ��ڷ�",
-              "�����",
-              "���� �� ����",
-              "����",
-              "�ٽɰ�ġ",
-              "�濵��ħ",
-              "����� �濵����"
-            ],
-            "unsafeSamples": [
-              {
-                "title": "�����",
-                "reason": "detail-url-pending",
-                "identity": "row-2450",
-                "row": "<li class=\"nav-list__item depth1\">\r\n\t\t\t\t\t\t\t<a href=\"https://www.comwel.or.kr/recruit/hp/ablman/ablmanView.do\" target=\"_blank\" class=\"link\">�����</a>\r\n\t\t\t\t\t\t</li>"
-              }
-            ],
-            "actionSamples": [],
-            "candidateUrlSamples": [
-              {
-                "title": "�����",
-                "url": "https://www.comwel.or.kr/recruit/hp/ablman/ablmanView.do",
-                "allowed": false
-              },
-              {
-                "title": "�ٷκ������� ��25�� 2�� �ű�����(������) ä�� ���� 2025.08.14.(��) ~ 2025.08.28.(��) 18:00:00 �ٷΰ���",
-                "url": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
-                "allowed": true
-              }
-            ],
-            "candidateCount": 2,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+        "evidence": {
+          "ok": false,
+          "verified": false,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_FAILED",
+          "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+          "score": 3,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": false,
+            "boardStructure": true,
+            "organizationMatch": false,
+            "meaningfulBody": true
           },
-          {
-            "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
+          "title": "�ٷκ������� ä�� Ȩ������",
+          "orgMatched": false,
+          "positiveHits": 0,
+          "positiveMatches": [],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 1,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
           },
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "anchors": 60,
-            "titleMatches": 30,
-            "noUrl": 6,
-            "unsafeUrl": 14,
-            "accepted": 10,
-            "rowFallbackAccepted": 0,
-            "visiblePostCount": null,
-            "candidateCount": 10,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
-        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+          "textLength": 354,
+          "requestedUrl": "https://comwel.incruit.com/index_main.asp",
+          "finalUrl": "https://comwel.incruit.com/index_main.asp",
+          "status": 200,
+          "contentType": "text/html"
+        },
+        "repairTarget": "scripts/lib/recruit-verify.mjs",
+        "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
       },
       "stages": {
         "access": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "list": {
           "from": false,
@@ -468,840 +119,143 @@
         },
         "detail": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "attachment": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         }
       },
       "improved": false,
-      "regressed": false
+      "regressed": true
     },
     {
-      "org": "울산문화관광재단",
-      "health": "degraded",
+      "org": "울산연구원",
+      "health": "failed",
       "primaryCause": {
-        "stage": "list",
+        "stage": "recruitVerify",
         "status": "failed",
-        "code": "LIST_COUNTER_FAILED",
-        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-        "evidence": [
-          {
-            "url": "https://uctf.or.kr/board/employment",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 340,
-            "titleMatches": 274,
-            "noUrl": 2,
-            "unsafeUrl": 1,
-            "accepted": 9,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 5,
-            "clickableBlocksAccepted": 2,
-            "listOnlyAccepted": 3,
-            "titleSamples": [
-              "정보공개",
-              "재단소개",
-              "사업안내",
-              "운영시설",
-              "재단소식",
-              "고객의 소리",
-              "정보공개",
-              "비전 - 전략체계"
-            ],
-            "unsafeSamples": [
-              {
-                "title": "개인정보처리방침",
-                "reason": "detail-url-pending",
-                "identity": "row-93567",
-                "row": "<li>\n                        <a onclick=\"window.open('/privacy', '_blank')\">개인정보처리방침</a>\n                    </li>"
-              },
-              {
-                "title": "통합검색",
-                "reason": "clickable-block-detail-url-pending",
-                "identity": "block-4022",
-                "row": "<li class=\"lst search pointer\" onclick=\"searchModalShow();\">\n                                <span style=\"font-size: 1.3rem; color: #ffffff;\">\n                                    통합검색\n                                    <img src=\"/img/common/ic_head_search.svg\" alt=\"\" style=\"margin-left: 12px;\">\n                                </span>\n                            </li>"
-              },
-              {
-                "title": "패밀리 사이트",
-                "reason": "clickable-block-detail-url-pending",
-                "identity": "block-82986",
-                "row": "<li class=\"site rel pointer\" onclick=\"familyPopShow();\">\n                <img src=\"/img/common/ic_side_site.svg\" alt=\"\" class=\"y_center\">\n                <div class=\"txt fs16 fc0 abs y_center\">패밀리 사이트</div>\n            </li>"
-              }
-            ],
-            "actionSamples": [
-              {
-                "title": "개인정보처리방침",
-                "action": "window.open('/privacy', '_blank')"
-              },
-              {
-                "title": "통합검색",
-                "action": "searchModalShow();"
-              },
-              {
-                "title": "패밀리 사이트",
-                "action": "familyPopShow();"
-              }
-            ],
-            "candidateUrlSamples": [
-              {
-                "title": "사업안내",
-                "url": "https://uctf.or.kr/business/culture-art/view/id",
-                "allowed": true
-              },
-              {
-                "title": "문화예술사업",
-                "url": "https://uctf.or.kr/business/culture-art/view/id",
-                "allowed": true
-              },
-              {
-                "title": "지속 가능한 예술생태계 조성",
-                "url": "https://uctf.or.kr/business/culture-art/view/id",
-                "allowed": true
-              },
-              {
-                "title": "일상 속 시민 문화감수성 향상",
-                "url": "https://uctf.or.kr/business/culture-art/view/id2",
-                "allowed": true
-              },
-              {
-                "title": "문화도시 위상 강화",
-                "url": "https://uctf.or.kr/business/culture-art/view/id3",
-                "allowed": true
-              },
-              {
-                "title": "지속 가능한 예술생태계 조성",
-                "url": "https://uctf.or.kr/business/culture-art/view/id1",
-                "allowed": true
-              },
-              {
-                "title": "일상 속 시민 문화감수성 향상",
-                "url": "https://uctf.or.kr/business/culture-art/view/id2",
-                "allowed": true
-              },
-              {
-                "title": "문화도시 위상 강화",
-                "url": "https://uctf.or.kr/business/culture-art/view/id3",
-                "allowed": true
-              },
-              {
-                "title": "개인정보처리방침",
-                "url": "https://uctf.or.kr/privacy",
-                "allowed": false
-              }
-            ],
-            "candidateCount": 9,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+        "evidence": {
+          "ok": false,
+          "verified": false,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_FAILED",
+          "reason": "채용 게시판 검증 점수 4/5 · 필수 조건 미충족",
+          "score": 4,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": false,
+            "boardStructure": true,
+            "organizationMatch": true,
+            "meaningfulBody": true
           },
-          {
-            "url": "https://www.uctf.or.kr/board/employment",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 340,
-            "titleMatches": 274,
-            "noUrl": 2,
-            "unsafeUrl": 1,
-            "accepted": 9,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 5,
-            "clickableBlocksAccepted": 2,
-            "listOnlyAccepted": 3,
-            "titleSamples": [
-              "정보공개",
-              "재단소개",
-              "사업안내",
-              "운영시설",
-              "재단소식",
-              "고객의 소리",
-              "정보공개",
-              "비전 - 전략체계"
-            ],
-            "unsafeSamples": [
-              {
-                "title": "개인정보처리방침",
-                "reason": "detail-url-pending",
-                "identity": "row-93567",
-                "row": "<li>\n                        <a onclick=\"window.open('/privacy', '_blank')\">개인정보처리방침</a>\n                    </li>"
-              },
-              {
-                "title": "통합검색",
-                "reason": "clickable-block-detail-url-pending",
-                "identity": "block-4022",
-                "row": "<li class=\"lst search pointer\" onclick=\"searchModalShow();\">\n                                <span style=\"font-size: 1.3rem; color: #ffffff;\">\n                                    통합검색\n                                    <img src=\"/img/common/ic_head_search.svg\" alt=\"\" style=\"margin-left: 12px;\">\n                                </span>\n                            </li>"
-              },
-              {
-                "title": "패밀리 사이트",
-                "reason": "clickable-block-detail-url-pending",
-                "identity": "block-82986",
-                "row": "<li class=\"site rel pointer\" onclick=\"familyPopShow();\">\n                <img src=\"/img/common/ic_side_site.svg\" alt=\"\" class=\"y_center\">\n                <div class=\"txt fs16 fc0 abs y_center\">패밀리 사이트</div>\n            </li>"
-              }
-            ],
-            "actionSamples": [
-              {
-                "title": "개인정보처리방침",
-                "action": "window.open('/privacy', '_blank')"
-              },
-              {
-                "title": "통합검색",
-                "action": "searchModalShow();"
-              },
-              {
-                "title": "패밀리 사이트",
-                "action": "familyPopShow();"
-              }
-            ],
-            "candidateUrlSamples": [
-              {
-                "title": "사업안내",
-                "url": "https://www.uctf.or.kr/business/culture-art/view/id",
-                "allowed": true
-              },
-              {
-                "title": "문화예술사업",
-                "url": "https://www.uctf.or.kr/business/culture-art/view/id",
-                "allowed": true
-              },
-              {
-                "title": "지속 가능한 예술생태계 조성",
-                "url": "https://www.uctf.or.kr/business/culture-art/view/id",
-                "allowed": true
-              },
-              {
-                "title": "일상 속 시민 문화감수성 향상",
-                "url": "https://www.uctf.or.kr/business/culture-art/view/id2",
-                "allowed": true
-              },
-              {
-                "title": "문화도시 위상 강화",
-                "url": "https://www.uctf.or.kr/business/culture-art/view/id3",
-                "allowed": true
-              },
-              {
-                "title": "지속 가능한 예술생태계 조성",
-                "url": "https://www.uctf.or.kr/business/culture-art/view/id1",
-                "allowed": true
-              },
-              {
-                "title": "일상 속 시민 문화감수성 향상",
-                "url": "https://www.uctf.or.kr/business/culture-art/view/id2",
-                "allowed": true
-              },
-              {
-                "title": "문화도시 위상 강화",
-                "url": "https://www.uctf.or.kr/business/culture-art/view/id3",
-                "allowed": true
-              },
-              {
-                "title": "개인정보처리방침",
-                "url": "https://www.uctf.or.kr/privacy",
-                "allowed": false
-              }
-            ],
-            "candidateCount": 9,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
+          "title": "울산연구원 평생교육연구실",
+          "orgMatched": true,
+          "positiveHits": 0,
+          "positiveMatches": [],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 1,
+          "boardType": {
+            "type": "UL_LIST",
+            "confidence": "medium",
+            "evidence": [
+              "ul/ol + li 구조 발견"
+            ]
           },
-          {
-            "url": "https://uctf.or.kr/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 427,
-            "titleMatches": 365,
-            "noUrl": 6,
-            "unsafeUrl": 0,
-            "accepted": 19,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 23,
-            "clickableBlocksAccepted": 8,
-            "listOnlyAccepted": 6,
-            "titleSamples": [
-              "정보공개",
-              "재단소개",
-              "사업안내",
-              "운영시설",
-              "재단소식",
-              "고객의 소리",
-              "정보공개",
-              "비전 - 전략체계"
-            ],
-            "unsafeSamples": [
-              {
-                "title": "홈페이지 개선의견",
-                "reason": "no-url-detail-pending",
-                "identity": "row-88196",
-                "row": "<li>\n                            <a onclick=\"document.querySelector('#opinionPop').style.setProperty('display', 'block', 'important')\">홈페이지 개선의견</a>\n                        </li>"
-              },
-              {
-                "title": "통합검색",
-                "reason": "clickable-block-detail-url-pending",
-                "identity": "block-4022",
-                "row": "<li class=\"lst search pointer\" onclick=\"searchModalShow();\">\n                                <span style=\"font-size: 1.3rem; color: #ffffff;\">\n                                    통합검색\n                                    <img src=\"/img/common/ic_head_search.svg\" alt=\"\" style=\"margin-left: 12px;\">\n                                </span>\n                            </li>"
-              },
-              {
-                "title": "유에코 (UECO)",
-                "reason": "clickable-block-detail-url-pending",
-                "identity": "block-82150",
-                "row": "<li class=\"on\" onclick=\"m5Change(1)\">\n\t\t\t\t\t\t유에코 <br class=\"mo_view\">(UECO)\n\t\t\t\t\t</li>"
-              },
-              {
-                "title": "관광기업 지원센터",
-                "reason": "clickable-block-detail-url-pending",
-                "identity": "block-82241",
-                "row": "<li onclick=\"m5Change(2)\">\n\t\t\t\t\t\t관광기업<br class=\"mo_view\">지원센터\n\t\t\t\t\t</li>"
-              },
-              {
-                "title": "아르코공연 연습센터@울산",
-                "reason": "clickable-block-detail-url-pending",
-                "identity": "block-82319",
-                "row": "<li onclick=\"m5Change(3)\">\n\t\t\t\t\t\t아르코공연<br class=\"mo_view\">연습센터@울산\n\t\t\t\t\t</li>"
-              },
-              {
-                "title": "패밀리 사이트",
-                "reason": "clickable-block-detail-url-pending",
-                "identity": "block-102500",
-                "row": "<li class=\"site rel pointer\" onclick=\"familyPopShow();\">\n                <img src=\"/img/common/ic_side_site.svg\" alt=\"\" class=\"y_center\">\n                <div class=\"txt fs16 fc0 abs y_center\">패밀리 사이트</div>\n            </li>"
-              }
-            ],
-            "actionSamples": [
-              {
-                "title": "홈페이지 개선의견",
-                "action": "document.querySelector('#opinionPop').style.setProperty('display', 'block', 'important')"
-              },
-              {
-                "title": "통합검색",
-                "action": "searchModalShow();"
-              },
-              {
-                "title": "관광 생태계 조성",
-                "action": "location.href='/business/tour-mice/smart01'"
-              },
-              {
-                "title": "관광 콘텐츠 육성",
-                "action": "location.href='/business/tour-mice/infra01'"
-              },
-              {
-                "title": "전시·컨벤션 육성",
-                "action": "location.href='/business/tour-mice/display01'"
-              },
-              {
-                "title": "유에코 (UECO)",
-                "action": "m5Change(1)"
-              },
-              {
-                "title": "관광기업 지원센터",
-                "action": "m5Change(2)"
-              },
-              {
-                "title": "아르코공연 연습센터@울산",
-                "action": "m5Change(3)"
-              },
-              {
-                "title": "패밀리 사이트",
-                "action": "familyPopShow();"
-              }
-            ],
-            "candidateUrlSamples": [
-              {
-                "title": "사업안내",
-                "url": "https://uctf.or.kr/business/culture-art/view/id",
-                "allowed": true
-              },
-              {
-                "title": "문화예술사업",
-                "url": "https://uctf.or.kr/business/culture-art/view/id",
-                "allowed": true
-              },
-              {
-                "title": "지속 가능한 예술생태계 조성",
-                "url": "https://uctf.or.kr/business/culture-art/view/id",
-                "allowed": true
-              },
-              {
-                "title": "일상 속 시민 문화감수성 향상",
-                "url": "https://uctf.or.kr/business/culture-art/view/id2",
-                "allowed": true
-              },
-              {
-                "title": "문화도시 위상 강화",
-                "url": "https://uctf.or.kr/business/culture-art/view/id3",
-                "allowed": true
-              },
-              {
-                "title": "지속 가능한 예술생태계 조성",
-                "url": "https://uctf.or.kr/business/culture-art/view/id1",
-                "allowed": true
-              },
-              {
-                "title": "일상 속 시민 문화감수성 향상",
-                "url": "https://uctf.or.kr/business/culture-art/view/id2",
-                "allowed": true
-              },
-              {
-                "title": "문화도시 위상 강화",
-                "url": "https://uctf.or.kr/business/culture-art/view/id3",
-                "allowed": true
-              },
-              {
-                "title": "자세히 보기 &nbsp+",
-                "url": "https://uctf.or.kr/facility/ueco/intro",
-                "allowed": true
-              },
-              {
-                "title": "자세히 보기 &nbsp+",
-                "url": "https://uctf.or.kr/facility/tour-center/intro",
-                "allowed": true
-              },
-              {
-                "title": "자세히 보기 &nbsp+",
-                "url": "https://uctf.or.kr/facility/encore-center/intro",
-                "allowed": true
-              },
-              {
-                "title": "개인정보처리방침",
-                "url": "https://uctf.or.kr/privacy",
-                "allowed": true
-              },
-              {
-                "title": "개인정보처리방침",
-                "url": "https://uctf.or.kr/privacy",
-                "allowed": true
-              },
-              {
-                "title": "관광 생태계 조성",
-                "url": "https://uctf.or.kr/business/tour-mice/smart01",
-                "allowed": true
-              },
-              {
-                "title": "관광 생태계 조성",
-                "url": "https://uctf.or.kr/business/tour-mice/smart01",
-                "allowed": true
-              },
-              {
-                "title": "관광 콘텐츠 육성",
-                "url": "https://uctf.or.kr/business/tour-mice/infra01",
-                "allowed": true
-              }
-            ],
-            "candidateCount": 19,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산문화관광재단.mjs",
-        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+          "textLength": 4717,
+          "requestedUrl": "https://uill.uri.re.kr/",
+          "finalUrl": "https://uill.uri.re.kr/",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8"
+        },
+        "repairTarget": "scripts/lib/recruit-verify.mjs",
+        "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
       },
       "stages": {
         "access": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "list": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "detail": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "attachment": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "울주군시설관리공단",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "list",
-        "status": "failed",
-        "code": "LIST_COUNTER_FAILED",
-        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-        "evidence": [
-          {
-            "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 233,
-            "titleMatches": 215,
-            "noUrl": 1,
-            "unsafeUrl": 3,
-            "accepted": 48,
-            "rowFallbackAccepted": 2,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 4,
-            "titleSamples": [
-              "브라우저에서 자바스크립트를 활성화하는 방법",
-              "주요메뉴로 건너뛰기",
-              "본문으로가기",
-              "공공시설예약서비스",
-              "울주시네마 예매시스템",
-              "울주군시설관리공단",
-              "페이스북",
-              "카카오톡"
-            ],
-            "unsafeSamples": [
-              {
-                "title": "주요메뉴로 건너뛰기",
-                "reason": "detail-url-pending",
-                "identity": "row-6610",
-                "row": "<li><a  class=\"accessibility\" href=\"#gnb\">주요메뉴로 건너뛰기</a></li>"
-              },
-              {
-                "title": "본문으로가기",
-                "reason": "detail-url-pending",
-                "identity": "row-6676",
-                "row": "<li><a  class=\"accessibility\" href=\"#container\">본문으로가기</a></li>"
-              },
-              {
-                "title": "홍보영상",
-                "reason": "no-url-detail-pending",
-                "identity": "row-13332",
-                "row": "<li class=\"promo\"><a href=\"#\" onClick=\"show_promo();\"><span class=\"sns_txt\">홍보영상</span></a></li>"
-              },
-              {
-                "title": "관련사이트",
-                "reason": "detail-url-pending",
-                "identity": "row-75722",
-                "row": "<li>\r\n\t\t\t\t\t\t\t\t<a href=\"#LINK\" class=\"flink\">관련사이트</a>\r\n\t\t\t\t\t\t\t\t<ul  class=\"foot_link\">\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"https://www.uljusiseol.or.kr/portal\" target=\"_blank\">울주군시설관리공단</a></li>"
-              }
-            ],
-            "actionSamples": [
-              {
-                "title": "홍보영상",
-                "action": "show_promo();"
-              }
-            ],
-            "candidateUrlSamples": [
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "http://www.enable-javascript.com/ko/",
-                "allowed": false
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://cdn.rawgit.com/young-ha/webfont-archive/master/css/Godo.css",
-                "allowed": false
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/PageLink.do;jsessionid=293FEB9422F9E11A75F3D012955E195A",
-                "allowed": false
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/;jsessionid=293FEB9422F9E11A75F3D012955E195A",
-                "allowed": false
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011#gnb",
-                "allowed": false
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011&id=securitynttidheader",
-                "allowed": true
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011&id=securitybbsidheader",
-                "allowed": true
-              },
-              {
-                "title": "브라우저에서 자바스크립트를 활성화하는 방법",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011&id=skip_nav",
-                "allowed": true
-              },
-              {
-                "title": "주요메뉴로 건너뛰기",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011#gnb",
-                "allowed": false
-              },
-              {
-                "title": "본문으로가기",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011#container",
-                "allowed": false
-              },
-              {
-                "title": "고객소통",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000048",
-                "allowed": true
-              },
-              {
-                "title": "고객의 소리",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000048",
-                "allowed": true
-              },
-              {
-                "title": "군민제안방",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000050",
-                "allowed": true
-              },
-              {
-                "title": "재난 및 안전",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000045",
-                "allowed": true
-              },
-              {
-                "title": "체육시설서식자료실",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000046",
-                "allowed": true
-              },
-              {
-                "title": "주민참여예산",
-                "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=293FEB9422F9E11A75F3D012955E195A?bbsId=BBSMSTR_000000000049",
-                "allowed": true
-              }
-            ],
-            "candidateCount": 48,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
-        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
-      },
-      "stages": {
-        "access": {
-          "from": false,
-          "to": true,
-          "change": "improved"
-        },
-        "list": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "detail": {
-          "from": false,
-          "to": true,
-          "change": "improved"
-        },
-        "attachment": {
-          "from": false,
-          "to": true,
-          "change": "improved"
-        }
-      },
-      "improved": true,
-      "regressed": false
-    },
-    {
-      "org": "울주문화재단",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "list",
-        "status": "failed",
-        "code": "LIST_COUNTER_FAILED",
-        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-        "evidence": [
-          {
-            "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 5,
-            "titleMatches": 4,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "재단소개",
-              "채용공고",
-              "공지사항",
-              "문의사항"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          },
-          {
-            "url": "https://uljuculture.hubst.co.kr/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          },
-          {
-            "url": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 5,
-            "titleMatches": 4,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "재단소개",
-              "채용공고",
-              "공지사항",
-              "문의사항"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울주문화재단.mjs",
-        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
-      },
-      "stages": {
-        "access": {
           "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": false,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         },
         "detail": {
-          "from": false,
+          "from": true,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         },
         "attachment": {
-          "from": false,
+          "from": true,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         }
       },
       "improved": false,
-      "regressed": false
+      "regressed": true
     },
     {
       "org": "한국산업안전보건공단",
-      "health": "degraded",
+      "health": "failed",
       "primaryCause": {
-        "stage": "list",
+        "stage": "recruitVerify",
         "status": "failed",
-        "code": "LIST_COUNTER_FAILED",
-        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-        "evidence": [
-          {
-            "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+        "evidence": {
+          "ok": false,
+          "verified": false,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_ERROR_PAGE",
+          "reason": "오류·차단·비HTML 신호 0개",
+          "score": 2,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": false,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": false,
+            "meaningfulBody": false
           },
-          {
-            "url": "https://kosha.or.kr/landing",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
+          "title": "",
+          "orgMatched": false,
+          "positiveHits": 1,
+          "positiveMatches": [
+            "recruit(?:ment)?"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 1,
+          "boardType": {
+            "type": "SPA",
+            "confidence": "medium",
+            "evidence": [
+              "SPA 신호 2개",
+              "초기 HTML 텍스트 0자"
+            ]
           },
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "anchors": 58,
-            "titleMatches": 30,
-            "noUrl": 6,
-            "unsafeUrl": 14,
-            "accepted": 10,
-            "rowFallbackAccepted": 0,
-            "visiblePostCount": null,
-            "candidateCount": 10,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/한국산업안전보건공단.mjs",
-        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+          "textLength": 0,
+          "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+          "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+          "status": 200,
+          "contentType": "text/html"
+        },
+        "repairTarget": "scripts/lib/recruit-verify.mjs",
+        "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
       },
       "stages": {
         "access": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "list": {
           "from": false,
@@ -1310,20 +264,235 @@
         },
         "detail": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "attachment": {
           "from": true,
-          "to": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
+    {
+      "org": "한국산업인력공단",
+      "health": "failed",
+      "primaryCause": {
+        "stage": "recruitVerify",
+        "status": "failed",
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+        "evidence": {
+          "ok": false,
+          "verified": false,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_FAILED",
+          "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+          "score": 3,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": false,
+            "boardStructure": true,
+            "organizationMatch": false,
+            "meaningfulBody": true
+          },
+          "title": "HRDK �ѱ�����η°���",
+          "orgMatched": false,
+          "positiveHits": 0,
+          "positiveMatches": [],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 1,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
+          },
+          "textLength": 8703,
+          "requestedUrl": "https://www.hrdkorea.or.kr/",
+          "finalUrl": "https://www.hrdkorea.or.kr/",
+          "status": 200,
+          "contentType": "text/html; charset=euc-kr"
+        },
+        "repairTarget": "scripts/lib/recruit-verify.mjs",
+        "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "attachment": {
+          "from": false,
+          "to": false,
           "change": "same"
         }
       },
       "improved": false,
-      "regressed": false
+      "regressed": true
+    },
+    {
+      "org": "한국석유공사",
+      "health": "failed",
+      "primaryCause": {
+        "stage": "recruitVerify",
+        "status": "failed",
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "3개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+        "evidence": {
+          "ok": false,
+          "verified": false,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_FAILED",
+          "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+          "score": 3,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": false,
+            "boardStructure": true,
+            "organizationMatch": false,
+            "meaningfulBody": true
+          },
+          "title": "�ѱ���������",
+          "orgMatched": false,
+          "positiveHits": 0,
+          "positiveMatches": [],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 1,
+          "boardType": {
+            "type": "UL_LIST",
+            "confidence": "medium",
+            "evidence": [
+              "ul/ol + li 구조 발견"
+            ]
+          },
+          "textLength": 2827,
+          "requestedUrl": "https://www.knoc.co.kr/",
+          "finalUrl": "https://www.knoc.co.kr/",
+          "status": 200,
+          "contentType": "text/html; charset=EUC-KR"
+        },
+        "repairTarget": "scripts/lib/recruit-verify.mjs",
+        "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "detail": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "attachment": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": false,
+      "regressed": true
     },
     {
       "org": "한국수력원자력",
+      "health": "failed",
+      "primaryCause": {
+        "stage": "recruitVerify",
+        "status": "failed",
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+        "evidence": {
+          "ok": false,
+          "verified": false,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_ERROR_PAGE",
+          "reason": "오류·차단·비HTML 신호 0개",
+          "score": 2,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": false,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": false,
+            "meaningfulBody": false
+          },
+          "title": "",
+          "orgMatched": false,
+          "positiveHits": 1,
+          "positiveMatches": [
+            "recruit(?:ment)?"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 1,
+          "boardType": {
+            "type": "UNKNOWN",
+            "confidence": "low",
+            "evidence": [
+              "명확한 게시판 구조 신호 없음"
+            ]
+          },
+          "textLength": 0,
+          "requestedUrl": "https://www.khnp.co.kr/recruit/",
+          "finalUrl": "https://www.khnp.co.kr/recruit/",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8"
+        },
+        "repairTarget": "scripts/lib/recruit-verify.mjs",
+        "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
+    {
+      "org": "울산남구도시관리공단",
       "health": "degraded",
       "primaryCause": {
         "stage": "list",
@@ -1332,7 +501,34 @@
         "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
         "evidence": [
           {
-            "url": "https://www.khnp.co.kr/recruit/",
+            "url": "https://recruit.incruit.com/uncmc/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 5,
+            "titleMatches": 3,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [
+              "������",
+              "������",
+              "������"
+            ],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://uncmc.incruit.com/",
             "visiblePostCount": null,
             "rowMode": false,
             "anchors": 0,
@@ -1355,22 +551,30 @@
             "countSource": "unavailable"
           },
           {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%88%98%EB%A0%A5%EC%9B%90%EC%9E%90%EB%A0%A5&search_yn=Y",
-            "anchors": 58,
-            "titleMatches": 30,
-            "noUrl": 6,
-            "unsafeUrl": 14,
-            "accepted": 10,
-            "rowFallbackAccepted": 0,
+            "url": "https://www.uncmc.or.kr/",
             "visiblePostCount": null,
-            "candidateCount": 10,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
             "exactMatch": false,
             "missingCount": null,
             "extraCount": null,
             "countSource": "unavailable"
           }
         ],
-        "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
+        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
         "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
       },
       "stages": {
@@ -1380,23 +584,23 @@
           "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         },
         "detail": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "attachment": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         }
       },
       "improved": false,
-      "regressed": false
+      "regressed": true
     },
     {
       "org": "한국전력공사",
@@ -1617,21 +821,6 @@
             "missingCount": null,
             "extraCount": null,
             "countSource": "unavailable"
-          },
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-            "anchors": 60,
-            "titleMatches": 30,
-            "noUrl": 6,
-            "unsafeUrl": 14,
-            "accepted": 10,
-            "rowFallbackAccepted": 0,
-            "visiblePostCount": null,
-            "candidateCount": 10,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
           }
         ],
         "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
@@ -1660,6 +849,62 @@
         }
       },
       "improved": false,
+      "regressed": false
+    },
+    {
+      "org": "울산문화관광재단",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "detail",
+        "status": "failed",
+        "code": "DETAIL_EMPTY_BODY",
+        "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+        "evidence": [
+          {
+            "title": "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
+            "requestedUrl": "https://uctf.or.kr/board/employment/view/202411196196",
+            "ok": false,
+            "finalUrl": "https://uctf.or.kr/board/employment/view/202411196196",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "error": "insufficient detail structure"
+          },
+          {
+            "title": "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
+            "requestedUrl": "https://uctf.or.kr/board/employment/view/202411196033",
+            "ok": false,
+            "finalUrl": "https://uctf.or.kr/board/employment/view/202411196033",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "error": "insufficient detail structure"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산문화관광재단.mjs",
+        "recommendedAction": "기관 전용 상세 본문 선택자 추가"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "detail": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "attachment": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": true,
       "regressed": false
     },
     {
@@ -1700,9 +945,9 @@
           "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "detail": {
           "from": false,
@@ -1715,7 +960,7 @@
           "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -1817,53 +1062,6 @@
           "change": "same"
         },
         "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachment": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
-    {
-      "org": "한국산업인력공단",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "detail",
-        "status": "failed",
-        "code": "DETAIL_EMPTY_BODY",
-        "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
-        "evidence": [
-          {
-            "title": "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����",
-            "requestedUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-            "ok": false,
-            "finalUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "error": "final url is not a detail page"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/한국산업인력공단.mjs",
-        "recommendedAction": "기관 전용 상세 본문 선택자 추가"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
           "from": false,
           "to": false,
           "change": "same"
@@ -1878,96 +1076,140 @@
       "regressed": false
     },
     {
-      "org": "울산광역시 타기관소식",
+      "org": "울주군시설관리공단",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "detail",
+        "status": "failed",
+        "code": "DETAIL_EMPTY_BODY",
+        "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+        "evidence": [
+          {
+            "title": "울주군시설관리공단 이사장 후보자 모집공고",
+            "requestedUrl": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleDetail.do?bbsId=BBSMSTR_000000000011&nttId=8716",
+            "ok": false,
+            "finalUrl": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleDetail.do?bbsId=BBSMSTR_000000000011&nttId=8716",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "error": "insufficient detail structure"
+          },
+          {
+            "title": "울주군시설관리공단 2026년 제1회 직원 신규채용 최종합격자 발표",
+            "requestedUrl": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleDetail.do?bbsId=BBSMSTR_000000000011&nttId=7627",
+            "ok": false,
+            "finalUrl": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleDetail.do?bbsId=BBSMSTR_000000000011&nttId=7627",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "error": "insufficient detail structure"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
+        "recommendedAction": "기관 전용 상세 본문 선택자 추가"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": true,
+      "regressed": true
+    },
+    {
+      "org": "울주문화재단",
       "health": "degraded",
       "primaryCause": {
         "stage": "detail",
         "status": "failed",
         "code": "DETAIL_URL_NOT_READY",
-        "reason": "목록 10건 모두 상세 URL 미복구",
+        "reason": "목록 1건 모두 상세 URL 미복구",
         "evidence": [
           {
-            "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2",
-            "visiblePostCount": 10,
+            "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
+            "visiblePostCount": 1,
             "rowMode": true,
-            "anchors": 782,
-            "titleMatches": 10,
-            "noUrl": 10,
+            "anchors": 0,
+            "titleMatches": 1,
+            "noUrl": 1,
             "unsafeUrl": 0,
-            "accepted": 10,
+            "accepted": 1,
             "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 10,
+            "clickableBlocksScanned": 1,
+            "clickableBlocksAccepted": 1,
+            "listOnlyAccepted": 1,
             "titleSamples": [
-              "남구체육회 생활체육지도자 공개경쟁 채용 안내",
-              "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
-              "2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고",
-              "2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고",
-              "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
-              "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고",
-              "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
-              "2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고"
+              "일반 (재)울주문화재단 2026년도 제2차 직원 채용 재공고 접수기간 2026-07-10(금) 11:00 ~ 2026-07-20(월) 18:00 공지사항 0 건 접수마감 개인정보처리방침 이메일주소 무단수집거부 ⓒ KPDI HR Co.,Ltd. HUBST"
             ],
             "unsafeSamples": [],
-            "actionSamples": [
-              {
-                "title": "남구체육회 생활체육지도자 공개경쟁 채용 안내",
-                "action": "goBoardArticle('529011'); return false;"
-              },
-              {
-                "title": "2026년 제5회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
-                "action": "goBoardArticle('525293'); return false;"
-              },
-              {
-                "title": "2026년 울산광역시남구도시관리공단 여름 방학 성수기 청년인턴 채용 공고",
-                "action": "goBoardArticle('524281'); return false;"
-              },
-              {
-                "title": "2026년 고래문화재단 기간제근로자(공연·전시 보조) 채용 공고",
-                "action": "goBoardArticle('523385'); return false;"
-              },
-              {
-                "title": "2026년 제2회 울산광역시남구도시관리공단 일반직, 무기계약직 채용 공고",
-                "action": "goBoardArticle('523070'); return false;"
-              },
-              {
-                "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 재공고",
-                "action": "goBoardArticle('520747'); return false;"
-              },
-              {
-                "title": "2026년 제4회 울산광역시남구도시관리공단 기간제근로자 채용 공고",
-                "action": "goBoardArticle('520190'); return false;"
-              },
-              {
-                "title": "2026년 제1회 울산광역시남구도시관리공단 무기계약직 직원 채용 재공고",
-                "action": "goBoardArticle('518116'); return false;"
-              },
-              {
-                "title": "2026년 제1회 울산광역시남구도시관리공단 일반직 직원 채용 재공고",
-                "action": "goBoardArticle('517639'); return false;"
-              },
-              {
-                "title": "2026년 고래문화재단 기간제 근로자 채용 공고",
-                "action": "goBoardArticle('517613'); return false;"
-              }
-            ],
+            "actionSamples": [],
             "candidateUrlSamples": [],
-            "candidateCount": 10,
+            "candidateCount": 1,
             "exactMatch": true,
             "missingCount": 0,
             "extraCount": 0,
             "countSource": "visible-board-rows"
           },
           {
-            "url": "https://job.alio.go.kr/",
+            "url": "https://uljuculture.hubst.co.kr/",
+            "visiblePostCount": null,
+            "rowMode": false,
             "anchors": 0,
             "titleMatches": 0,
             "noUrl": 0,
             "unsafeUrl": 0,
             "accepted": 0,
             "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
             "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 5,
+            "titleMatches": 4,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [
+              "재단소개",
+              "채용공고",
+              "공지사항",
+              "문의사항"
+            ],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
             "candidateCount": 0,
             "exactMatch": false,
             "missingCount": null,
@@ -1975,7 +1217,7 @@
             "countSource": "unavailable"
           }
         ],
-        "repairTarget": "scripts/collectors/institutions/울산광역시 타기관소식.mjs",
+        "repairTarget": "scripts/collectors/institutions/울주문화재단.mjs",
         "recommendedAction": "기관 전용 상세 URL 생성 규칙 구현"
       },
       "stages": {
@@ -1985,9 +1227,9 @@
           "change": "same"
         },
         "list": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         },
         "detail": {
           "from": false,
@@ -2000,7 +1242,7 @@
           "change": "same"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
@@ -2112,49 +1354,49 @@
               {
                 "title": "REC 계약",
                 "reason": "detail-url-pending",
-                "identity": "row-20248",
+                "identity": "row-20251",
                 "row": "<li> \r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 계약</a>\r\n<ul class='depth3'>\r\n<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 입찰</a>\r\n</li>"
               },
               {
                 "title": "REC 입찰",
                 "reason": "detail-url-pending",
-                "identity": "row-20393",
+                "identity": "row-20396",
                 "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 입찰</a>\r\n</li>"
               },
               {
                 "title": "REC 양수양도",
                 "reason": "detail-url-pending",
-                "identity": "row-20524",
+                "identity": "row-20527",
                 "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 양수양도</a>\r\n</li>"
               },
               {
                 "title": "REC 대금지급",
                 "reason": "detail-url-pending",
-                "identity": "row-20657",
+                "identity": "row-20660",
                 "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 대금지급</a>\r\n</li>"
               },
               {
                 "title": "REC 거래절차",
                 "reason": "detail-url-pending",
-                "identity": "row-20790",
+                "identity": "row-20793",
                 "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 거래절차</a>\r\n</li>"
               },
               {
                 "title": "정보공개청구",
                 "reason": "detail-url-pending",
-                "identity": "row-36041",
+                "identity": "row-36043",
                 "row": "<div class=\"list01\"><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새 창 열림\">정보공개청구</a></div>"
               },
               {
                 "title": "웹접근성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49220",
+                "identity": "row-49222",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               },
               {
                 "title": "웹개방성 인증마크",
                 "reason": "detail-url-pending",
-                "identity": "row-49371",
+                "identity": "row-49373",
                 "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
               }
             ],
@@ -2263,21 +1505,6 @@
               }
             ],
             "candidateCount": 39,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "countSource": "unavailable"
-          },
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-            "anchors": 53,
-            "titleMatches": 27,
-            "noUrl": 6,
-            "unsafeUrl": 14,
-            "accepted": 7,
-            "rowFallbackAccepted": 0,
-            "visiblePostCount": null,
-            "candidateCount": 7,
             "exactMatch": false,
             "missingCount": null,
             "extraCount": null,
@@ -2406,43 +1633,6 @@
       "regressed": false
     },
     {
-      "org": "울산남구도시관리공단",
-      "health": "healthy",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": false,
-          "to": true,
-          "change": "improved"
-        },
-        "detail": {
-          "from": false,
-          "to": true,
-          "change": "improved"
-        },
-        "attachment": {
-          "from": false,
-          "to": true,
-          "change": "improved"
-        }
-      },
-      "improved": true,
-      "regressed": false
-    },
-    {
       "org": "울산도시공사",
       "health": "healthy",
       "primaryCause": {
@@ -2480,7 +1670,7 @@
       "regressed": false
     },
     {
-      "org": "울산연구원",
+      "org": "울산복지가족진흥사회서비스원",
       "health": "healthy",
       "primaryCause": {
         "stage": "complete",
@@ -2488,44 +1678,7 @@
         "code": "PIPELINE_SAMPLE_OK",
         "reason": "현재 진단 표본에서 실패 원인 없음",
         "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산연구원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "울산정보산업진흥원",
-      "health": "healthy",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
@@ -2551,6 +1704,43 @@
         }
       },
       "improved": true,
+      "regressed": false
+    },
+    {
+      "org": "울산정보산업진흥원",
+      "health": "healthy",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachment": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        }
+      },
+      "improved": false,
       "regressed": false
     },
     {

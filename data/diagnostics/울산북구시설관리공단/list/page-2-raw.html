@@ -15,8 +15,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="naver-site-verification" content="726949f43c25a1e991b4bc947bb897fcf914e3e1" />
 <title>울산광역시 북구 시설관리공단</title>
-<link rel="shortcut icon" href="/bukgu_favicon.ico;jsessionid=691EC999D529A9EEAF0DF43D689B1269" type="image/x-icon">
-<link rel="icon" href="/bukgu_favicon.ico;jsessionid=691EC999D529A9EEAF0DF43D689B1269" type="image/x-icon">
+<link rel="shortcut icon" href="/bukgu_favicon.ico;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591" type="image/x-icon">
+<link rel="icon" href="/bukgu_favicon.ico;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591" type="image/x-icon">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JG7MRPZF9Y"></script>
 <script>
@@ -352,11 +352,11 @@ $(document).ready(function(){
 	 <div id="h_mline">
 	  <ul class="hm_wrap">
 	   <li ><a href="javascript:goSecMenu(1)">공단소개</a></li>
-		<li ><a href="javascript:goSecMenu(2)">알림마당</a></li>
+		<li class="on"><a href="javascript:goSecMenu(2)">알림마당</a></li>
 		<li ><a href="javascript:goSecMenu(3)">열린경영</a></li>
 		<li ><a href="javascript:goSecMenu(4)">시설안내</a></li>
 		<li ><a href="javascript:goSecMenu(5)">고객센터</a></li>
-		<li class="on"><a href="javascript:goSecMenu(6)">정보공개</a></li>
+		<li ><a href="javascript:goSecMenu(6)">정보공개</a></li>
 		</ul><!--1차메뉴-->
 	  <div id="h_smenu">
 	   <ul class="hsm_box">
@@ -1157,7 +1157,7 @@ $(document).ready(function(){
 	
 	//페이지로드시 현재메뉴 오픈
 	$(document).ready(function(){
-		var paramMenuNo = "6040000";
+		var paramMenuNo = "2040000";
 		
 		if(paramMenuNo != ""){
 			var firstClass = ".m_fm_" + paramMenuNo.substring(0,1);
@@ -1171,7 +1171,7 @@ $(document).ready(function(){
 	<!--//#header-->
 	
 	<form name="menuListForm" action ="#" method="post">
-        <input type="hidden" id="menuNo" name="menuNo" value="6000000" />
+        <input type="hidden" id="menuNo" name="menuNo" value="2000000" />
         <input type="hidden" id="link" name="link" value="" />
         <input type="hidden" name="tmp_menuNm" value="1000000|0|공단소개|/|/|dir|" />
         <input type="hidden" name="tmp_menuNm" value="3080100|3080000|안전보건경영방침|/|/|openman/openman08_1|" />
@@ -1252,12 +1252,12 @@ $(document).ready(function(){
      
 
 
-<script src="/js/egovframework/com/sym/mnu/mpm/EgovMainMenu.js;jsessionid=691EC999D529A9EEAF0DF43D689B1269"></script>
+<script src="/js/egovframework/com/sym/mnu/mpm/EgovMainMenu.js;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591"></script>
 
 	 <div id="leftm">
 	  <div class="lm_top">
-	   <img src="/images/contents/lm_img6.png" alt=" " />
-	   <span>정보공개</span>
+	   <img src="/images/contents/lm_img2.png" alt=" " />
+	   <span>알림마당</span>
 	  </div>
 	  <div class="lm_list">
 	  	<script>
@@ -1270,7 +1270,7 @@ $(document).ready(function(){
 		 var leftStartMenuValue = document.getElementById("menuNo").value;
 		 if (leftStartMenuValue==null || leftStartMenuValue=="" || leftStartMenuValue=="null") leftStartMenuValue = '1000000';
 		 
-		 var sMenuNo = "6040000";
+		 var sMenuNo = "2040000";
 		 var curMenuNo = sMenuNo;
 		 var tmpMenuNo = sMenuNo.substring(sMenuNo.length-3, sMenuNo.length);
 		 if(tmpMenuNo != "000") sMenuNo = Number(sMenuNo) - Number(tmpMenuNo);
@@ -1315,11 +1315,11 @@ $(document).ready(function(){
 	 }
 	 </script><div id="content_in">
 	  <div class="cont_title">
-	   <h1>사전정보공개</h1>
+	   <h1>채용공고</h1>
 	   <ul id="cont_navi">
 	    <li><img src="/images/contents/navi_icon.png" alt="home" /></li>
-		<li>정보공개</li>
-		<li>사전정보공개</li>
+		<li>알림마당</li>
+		<li>채용공고</li>
 		</ul>
 	  </div>
 	  <!--cont_title-->
@@ -1328,7 +1328,7 @@ $(document).ready(function(){
 
 
 
-<script src="/js/egovframework/com/cop/bbs/EgovBBSMng.js;jsessionid=691EC999D529A9EEAF0DF43D689B1269" ></script>
+<script src="/js/egovframework/com/cop/bbs/EgovBBSMng.js;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591" ></script>
 
 
 
@@ -1341,13 +1341,13 @@ $(document).ready(function(){
 	}
 
 	function fn_egov_addNotice() {
-		document.frm.action = "/cop/bbs/addBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269";
+		document.frm.action = "/cop/bbs/addBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591";
 		document.frm.submit();
 	}
 
 	function fn_egov_select_noticeList(pageNo) {
 		document.frm.pageIndex.value = pageNo;
-		document.frm.action = "/cop/bbs/selectBoardList.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269";
+		document.frm.action = "/cop/bbs/selectBoardList.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591";
 		document.frm.submit();
 	}
 
@@ -1355,7 +1355,7 @@ $(document).ready(function(){
 		 if(bbsId == "") return false; //20150508
 		 document.submitParam.nttId.value = nttId;
 		 document.submitParam.bbsId.value = bbsId;
-		 document.submitParam.action = "/cop/bbs/selectBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269";
+		 document.submitParam.action = "/cop/bbs/selectBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591";
 		 document.submitParam.submit();
 	}
 //-->
@@ -1377,8 +1377,8 @@ $(document).ready(function(){
 		</div>
 
 		<div class="board_search">
-			<form name="frm" action ="/cop/bbs/selectBoardList.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269" method="post">
-			<input type="hidden" name="menuNo" value="6040000" />
+			<form name="frm" action ="/cop/bbs/selectBoardList.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591" method="post">
+			<input type="hidden" name="menuNo" value="2040000" />
 			<input type="hidden" name="bbsId" value="BBSMSTR_000000000061" />
 			<input type="hidden" name="nttId"  value="0" />
 			<input type="hidden" name="bbsTyCode" value="pds" />
@@ -1411,7 +1411,7 @@ $(document).ready(function(){
 	<form name="submitParam" method="post">
 	 	<input type="hidden" name="bbsId"  />
 		<input type="hidden" name="nttId"  />
-		<input type="hidden" name="menuNo" value="6040000" />
+		<input type="hidden" name="menuNo" value="2040000" />
 
 		<input name="pageIndex" type="hidden" value="1" />
 		<input name="searchCnd" type="hidden" value="" />
@@ -1452,14 +1452,14 @@ $(document).ready(function(){
 	 
 	  <tr>
 	   <td class="num">	   	
-	   	<img src="/images/board/notice.gif;jsessionid=691EC999D529A9EEAF0DF43D689B1269" alt="공지" class="noticeimg" />
+	   	<img src="/images/board/notice.gif;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591" alt="공지" class="noticeimg" />
 		
 	   </td>
 	   <td class="title_post">	   
 			
 	    		
 	    		
-		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269">
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591">
 						<input type="hidden" name="bbsTyCode" value="pds" />
 						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
 						<input type="hidden" name="authFlag" value="Y" />
@@ -1480,7 +1480,7 @@ $(document).ready(function(){
 	    
 	   <td class="date">2026-08-03</td>
 	   
-	   <td class="count_post">313</td>
+	   <td class="count_post">316</td>
 	  </tr>
 	 
 	  <tr>
@@ -1492,7 +1492,7 @@ $(document).ready(function(){
 			
 	    		
 	    		
-		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269">
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591">
 						<input type="hidden" name="bbsTyCode" value="pds" />
 						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
 						<input type="hidden" name="authFlag" value="Y" />
@@ -1513,7 +1513,7 @@ $(document).ready(function(){
 	    
 	   <td class="date">2026-06-18</td>
 	   
-	   <td class="count_post">894</td>
+	   <td class="count_post">895</td>
 	  </tr>
 	 
 	  <tr>
@@ -1525,7 +1525,7 @@ $(document).ready(function(){
 			
 	    		
 	    		
-		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269">
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591">
 						<input type="hidden" name="bbsTyCode" value="pds" />
 						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
 						<input type="hidden" name="authFlag" value="Y" />
@@ -1546,7 +1546,7 @@ $(document).ready(function(){
 	    
 	   <td class="date">2026-06-01</td>
 	   
-	   <td class="count_post">1156</td>
+	   <td class="count_post">1157</td>
 	  </tr>
 	 
 	  <tr>
@@ -1558,7 +1558,7 @@ $(document).ready(function(){
 			
 	    		
 	    		
-		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269">
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591">
 						<input type="hidden" name="bbsTyCode" value="pds" />
 						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
 						<input type="hidden" name="authFlag" value="Y" />
@@ -1579,7 +1579,7 @@ $(document).ready(function(){
 	    
 	   <td class="date">2026-05-21</td>
 	   
-	   <td class="count_post">661</td>
+	   <td class="count_post">663</td>
 	  </tr>
 	 
 	  <tr>
@@ -1591,7 +1591,7 @@ $(document).ready(function(){
 			
 	    		
 	    		
-		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269">
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591">
 						<input type="hidden" name="bbsTyCode" value="pds" />
 						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
 						<input type="hidden" name="authFlag" value="Y" />
@@ -1624,7 +1624,7 @@ $(document).ready(function(){
 			
 	    		
 	    		
-		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269">
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591">
 						<input type="hidden" name="bbsTyCode" value="pds" />
 						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
 						<input type="hidden" name="authFlag" value="Y" />
@@ -1657,7 +1657,7 @@ $(document).ready(function(){
 			
 	    		
 	    		
-		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269">
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591">
 						<input type="hidden" name="bbsTyCode" value="pds" />
 						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
 						<input type="hidden" name="authFlag" value="Y" />
@@ -1690,7 +1690,7 @@ $(document).ready(function(){
 			
 	    		
 	    		
-		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269">
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591">
 						<input type="hidden" name="bbsTyCode" value="pds" />
 						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
 						<input type="hidden" name="authFlag" value="Y" />
@@ -1723,7 +1723,7 @@ $(document).ready(function(){
 			
 	    		
 	    		
-		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269">
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591">
 						<input type="hidden" name="bbsTyCode" value="pds" />
 						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
 						<input type="hidden" name="authFlag" value="Y" />
@@ -1756,7 +1756,7 @@ $(document).ready(function(){
 			
 	    		
 	    		
-		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269">
+		    		<form name="subForm" method="post" action="/cop/bbs/selectBoardArticle.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591">
 						<input type="hidden" name="bbsTyCode" value="pds" />
 						<input type="hidden" name="bbsAttrbCode" value="BBSA03" />
 						<input type="hidden" name="authFlag" value="Y" />
@@ -1809,7 +1809,7 @@ $(document).ready(function(){
 	<!--
 	
 	function fn_list(){
-		location.href = "/pageCont.do;jsessionid=691EC999D529A9EEAF0DF43D689B1269?menuNo=6040000";
+		location.href = "/pageCont.do;jsessionid=8BD0E3FA02B853C4DA8BD6D720C5B591?menuNo=2040000";
 	}
 	
 	
@@ -1829,6 +1829,16 @@ $(document).ready(function(){
 	  </div>
 	   <!--.contents_box-->
 
+	  
+	  <!--담당자 정보(최종수정일 있을 떄)-->
+	  <div id="cont_info">
+	   <ul>
+	    <li class="team"><span><img src="/images/common/pi_team.png" alt=" " /> 부서 : </span>경영지원팀</li>
+	    <li class="name"><span><img src="/images/common/pi_name.png" alt=" " /> 담당자 : </span>채용담당자</li>
+	    <li class="call"><span><img src="/images/common/pi_call.png" alt=" " /> 연락처 : </span><a href="tel:052-255-5523" title="담당자 연락처">052-255-5523</a></li>
+	    <li class="modi_date"><span><img src="/images/common/pi_md.png" alt=" " /> 최종수정일 : </span>2025.01.03.</li>
+	   </ul>
+	  </div>
 	  
 
 	  

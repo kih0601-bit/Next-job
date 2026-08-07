@@ -1,30 +1,54 @@
 {
   "org": "한국산업인력공단",
-  "health": "degraded",
+  "health": "failed",
   "primaryCause": {
-    "stage": "detail",
+    "stage": "recruitVerify",
     "status": "failed",
-    "code": "DETAIL_EMPTY_BODY",
-    "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
-    "evidence": [
-      {
-        "title": "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����",
-        "requestedUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-        "ok": false,
-        "finalUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-        "textLength": 0,
-        "attachmentCount": 0,
-        "error": "final url is not a detail page"
-      }
-    ],
-    "repairTarget": "scripts/collectors/institutions/한국산업인력공단.mjs",
-    "recommendedAction": "기관 전용 상세 본문 선택자 추가"
+    "code": "RECRUIT_VERIFY_FAILED",
+    "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+    "evidence": {
+      "ok": false,
+      "verified": false,
+      "fallback": false,
+      "code": "RECRUIT_VERIFY_FAILED",
+      "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+      "score": 3,
+      "maxScore": 5,
+      "checks": {
+        "httpDocument": true,
+        "recruitKeyword": false,
+        "boardStructure": true,
+        "organizationMatch": false,
+        "meaningfulBody": true
+      },
+      "title": "HRDK �ѱ�����η°���",
+      "orgMatched": false,
+      "positiveHits": 0,
+      "positiveMatches": [],
+      "negativeHits": 0,
+      "negativeMatches": [],
+      "boardSignals": 1,
+      "boardType": {
+        "type": "IFRAME",
+        "confidence": "high",
+        "evidence": [
+          "iframe 태그 발견"
+        ]
+      },
+      "textLength": 8703,
+      "requestedUrl": "https://www.hrdkorea.or.kr/",
+      "finalUrl": "https://www.hrdkorea.or.kr/",
+      "status": 200,
+      "contentType": "text/html; charset=euc-kr"
+    },
+    "repairTarget": "scripts/lib/recruit-verify.mjs",
+    "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
   },
   "diagnosis": {
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "3개 후보 URL HTTP 응답 성공",
+      "reason": "2개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://www.hrdkorea.or.kr/3/1/2/2",
@@ -110,224 +134,96 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "verification": {
-            "ok": true,
-            "verified": true,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
-            "score": 5,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": true,
-              "recruitKeyword": true,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": true
-            },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 4,
-            "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
-              "직원\\s*채용",
-              "recruit(?:ment)?"
-            ],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 3,
-            "boardType": {
-              "type": "JOB_ALIO",
-              "confidence": "high",
-              "evidence": [
-                "JOB-ALIO URL/본문 신호"
-              ]
-            },
-            "textLength": 1857,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "status": 200,
-            "contentType": "text/html;charset=UTF-8"
-          }
+          "ok": false,
+          "error": "timeout"
         }
       ]
     },
     "recruitVerify": {
-      "status": "success",
-      "code": "RECRUIT_VERIFY_FALLBACK_OK",
-      "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
+      "status": "failed",
+      "code": "RECRUIT_VERIFY_FAILED",
+      "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
       "evidence": {
-        "ok": true,
-        "verified": true,
+        "ok": false,
+        "verified": false,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
-        "score": 5,
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+        "score": 3,
         "maxScore": 5,
         "checks": {
           "httpDocument": true,
-          "recruitKeyword": true,
+          "recruitKeyword": false,
           "boardStructure": true,
-          "organizationMatch": true,
+          "organizationMatch": false,
           "meaningfulBody": true
         },
-        "title": "잡알리오",
-        "orgMatched": true,
-        "positiveHits": 4,
-        "positiveMatches": [
-          "채용\\s*공고",
-          "채용\\s*정보",
-          "직원\\s*채용",
-          "recruit(?:ment)?"
-        ],
+        "title": "HRDK �ѱ�����η°���",
+        "orgMatched": false,
+        "positiveHits": 0,
+        "positiveMatches": [],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 3,
+        "boardSignals": 1,
         "boardType": {
-          "type": "JOB_ALIO",
+          "type": "IFRAME",
           "confidence": "high",
           "evidence": [
-            "JOB-ALIO URL/본문 신호"
+            "iframe 태그 발견"
           ]
         },
-        "textLength": 1857,
-        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+        "textLength": 8703,
+        "requestedUrl": "https://www.hrdkorea.or.kr/",
+        "finalUrl": "https://www.hrdkorea.or.kr/",
         "status": 200,
-        "contentType": "text/html;charset=UTF-8"
+        "contentType": "text/html; charset=euc-kr"
       }
     },
     "list": {
-      "status": "success",
-      "code": "LIST_EXACT",
-      "reason": "화면 게시글 1건 = 추출 1건",
-      "evidence": [
-        {
-          "url": "https://www.hrdkorea.or.kr/3/1/2/2",
-          "visiblePostCount": 1,
-          "rowMode": true,
-          "anchors": 497,
-          "titleMatches": 1,
-          "noUrl": 0,
-          "unsafeUrl": 0,
-          "accepted": 1,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 0,
-          "titleSamples": [
-            "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����"
-          ],
-          "unsafeSamples": [],
-          "actionSamples": [],
-          "candidateUrlSamples": [],
-          "candidateCount": 1,
-          "exactMatch": true,
-          "missingCount": 0,
-          "extraCount": 0,
-          "countSource": "visible-board-rows"
+      "status": "blocked",
+      "code": "LIST_BLOCKED_BY_RECRUIT_VERIFY",
+      "reason": "채용 게시판 검증 실패로 목록 진단 보류",
+      "evidence": {
+        "ok": false,
+        "verified": false,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+        "score": 3,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": false,
+          "boardStructure": true,
+          "organizationMatch": false,
+          "meaningfulBody": true
         },
-        {
-          "url": "https://www.hrdkorea.or.kr/",
-          "visiblePostCount": null,
-          "rowMode": false,
-          "anchors": 570,
-          "titleMatches": 511,
-          "noUrl": 0,
-          "unsafeUrl": 1,
-          "accepted": 4,
-          "rowFallbackAccepted": 1,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 1,
-          "titleSamples": [
-            "&times;",
-            "���� �ٷΰ���",
-            "�ڵ��ϼ� ����",
-            "HRDK �ѱ�����η°���",
-            "�¶���ȫ������",
-            "����Ʈ��",
-            "�̿�ȳ�",
-            "����Ұ�"
-          ],
-          "unsafeSamples": [
-            {
-              "title": "�ѱ�����η°��� �ݺ��� û�ű��",
-              "reason": "detail-url-pending",
-              "identity": "row-152746",
-              "row": "<li><a href=\"javascript:void();\" title=\"��â����_�ѱ�����η°��� �ݺ��� û�ű�� �˾�â\" onclick=\"window.open('/main/popup/openPop.html', 'popup', 'width=950,height=800,top=150,left=150,scrollbars=yes'); return false;\"><span class=\"blind\">�ѱ�����η°��� �ݺ��� û�ű��</span></a></li>"
-            }
-          ],
-          "actionSamples": [
-            {
-              "title": "�ѱ�����η°��� �ݺ��� û�ű��",
-              "action": "window.open('/main/popup/openPop.html', 'popup', 'width=950,height=800,top=150,left=150,scrollbars=yes'); return false;"
-            }
-          ],
-          "candidateUrlSamples": [
-            {
-              "title": "&times;",
-              "url": "https://www.hrdkorea.or.kr/?id=mainPopup_closeBtn",
-              "allowed": true
-            },
-            {
-              "title": "�ؿܿ�������",
-              "url": "https://www.hrdkorea.or.kr/3/1/4",
-              "allowed": true
-            },
-            {
-              "title": "������� ����� ����",
-              "url": "https://meister.hrdkorea.or.kr/sub/1/1/1/20160512100402856100_view.do",
-              "allowed": true
-            },
-            {
-              "title": "�ѱ�����η°��� �ݺ��� û�ű��",
-              "url": "https://www.hrdkorea.or.kr/main/popup/openPop.html",
-              "allowed": false
-            }
-          ],
-          "candidateCount": 4,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
+        "title": "HRDK �ѱ�����η°���",
+        "orgMatched": false,
+        "positiveHits": 0,
+        "positiveMatches": [],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 1,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
         },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "anchors": 57,
-          "titleMatches": 30,
-          "noUrl": 6,
-          "unsafeUrl": 14,
-          "accepted": 10,
-          "rowFallbackAccepted": 0,
-          "visiblePostCount": null,
-          "candidateCount": 10,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
-        }
-      ]
+        "textLength": 8703,
+        "requestedUrl": "https://www.hrdkorea.or.kr/",
+        "finalUrl": "https://www.hrdkorea.or.kr/",
+        "status": 200,
+        "contentType": "text/html; charset=euc-kr"
+      }
     },
     "detail": {
-      "status": "failed",
-      "code": "DETAIL_EMPTY_BODY",
-      "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
-      "evidence": [
-        {
-          "title": "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����",
-          "requestedUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-          "ok": false,
-          "finalUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "error": "final url is not a detail page"
-        }
-      ]
+      "status": "blocked",
+      "code": "DETAIL_BLOCKED_BY_LIST",
+      "reason": "목록 단계 미통과로 상세 진단 보류",
+      "evidence": []
     },
     "attachment": {
       "status": "blocked",
@@ -336,63 +232,58 @@
       "evidence": []
     },
     "access": {
-      "status": "success",
-      "code": "RECRUIT_VERIFY_FALLBACK_OK",
-      "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
+      "status": "failed",
+      "code": "RECRUIT_VERIFY_FAILED",
+      "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
       "evidence": {
-        "ok": true,
-        "verified": true,
+        "ok": false,
+        "verified": false,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
-        "score": 5,
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+        "score": 3,
         "maxScore": 5,
         "checks": {
           "httpDocument": true,
-          "recruitKeyword": true,
+          "recruitKeyword": false,
           "boardStructure": true,
-          "organizationMatch": true,
+          "organizationMatch": false,
           "meaningfulBody": true
         },
-        "title": "잡알리오",
-        "orgMatched": true,
-        "positiveHits": 4,
-        "positiveMatches": [
-          "채용\\s*공고",
-          "채용\\s*정보",
-          "직원\\s*채용",
-          "recruit(?:ment)?"
-        ],
+        "title": "HRDK �ѱ�����η°���",
+        "orgMatched": false,
+        "positiveHits": 0,
+        "positiveMatches": [],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 3,
+        "boardSignals": 1,
         "boardType": {
-          "type": "JOB_ALIO",
+          "type": "IFRAME",
           "confidence": "high",
           "evidence": [
-            "JOB-ALIO URL/본문 신호"
+            "iframe 태그 발견"
           ]
         },
-        "textLength": 1857,
-        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+        "textLength": 8703,
+        "requestedUrl": "https://www.hrdkorea.or.kr/",
+        "finalUrl": "https://www.hrdkorea.or.kr/",
         "status": 200,
-        "contentType": "text/html;charset=UTF-8"
+        "contentType": "text/html; charset=euc-kr"
       }
     }
   },
-  "repairTarget": "scripts/collectors/institutions/한국산업인력공단.mjs",
-  "recommendedAction": "기관 전용 상세 본문 선택자 추가",
+  "repairTarget": "scripts/lib/recruit-verify.mjs",
+  "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인",
   "stages": {
     "access": {
-      "ok": true,
+      "ok": false,
       "httpOk": true,
-      "recruitVerifyOk": true,
-      "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-      "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-      "activeRecruitUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+      "recruitVerifyOk": false,
+      "requestedUrl": "https://www.hrdkorea.or.kr/",
+      "finalUrl": "https://www.hrdkorea.or.kr/",
+      "activeRecruitUrl": "",
       "status": 200,
-      "contentType": "text/html;charset=UTF-8",
+      "contentType": "text/html; charset=euc-kr",
       "attempts": [
         {
           "url": "https://www.hrdkorea.or.kr/3/1/2/2",
@@ -478,106 +369,60 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "verification": {
-            "ok": true,
-            "verified": true,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
-            "score": 5,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": true,
-              "recruitKeyword": true,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": true
-            },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 4,
-            "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
-              "직원\\s*채용",
-              "recruit(?:ment)?"
-            ],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 3,
-            "boardType": {
-              "type": "JOB_ALIO",
-              "confidence": "high",
-              "evidence": [
-                "JOB-ALIO URL/본문 신호"
-              ]
-            },
-            "textLength": 1857,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "status": 200,
-            "contentType": "text/html;charset=UTF-8"
-          }
+          "ok": false,
+          "error": "timeout"
         }
       ],
       "verification": {
-        "ok": true,
-        "verified": true,
+        "ok": false,
+        "verified": false,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
-        "score": 5,
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+        "score": 3,
         "maxScore": 5,
         "checks": {
           "httpDocument": true,
-          "recruitKeyword": true,
+          "recruitKeyword": false,
           "boardStructure": true,
-          "organizationMatch": true,
+          "organizationMatch": false,
           "meaningfulBody": true
         },
-        "title": "잡알리오",
-        "orgMatched": true,
-        "positiveHits": 4,
-        "positiveMatches": [
-          "채용\\s*공고",
-          "채용\\s*정보",
-          "직원\\s*채용",
-          "recruit(?:ment)?"
-        ],
+        "title": "HRDK �ѱ�����η°���",
+        "orgMatched": false,
+        "positiveHits": 0,
+        "positiveMatches": [],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 3,
+        "boardSignals": 1,
         "boardType": {
-          "type": "JOB_ALIO",
+          "type": "IFRAME",
           "confidence": "high",
           "evidence": [
-            "JOB-ALIO URL/본문 신호"
+            "iframe 태그 발견"
           ]
         },
-        "textLength": 1857,
-        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+        "textLength": 8703,
+        "requestedUrl": "https://www.hrdkorea.or.kr/",
+        "finalUrl": "https://www.hrdkorea.or.kr/",
         "status": 200,
-        "contentType": "text/html;charset=UTF-8"
+        "contentType": "text/html; charset=euc-kr"
       },
       "boardType": {
-        "type": "JOB_ALIO",
+        "type": "IFRAME",
         "confidence": "high",
         "evidence": [
-          "JOB-ALIO URL/본문 신호"
+          "iframe 태그 발견"
         ]
       },
       "diagnosis": {
-        "ok": true,
-        "code": "RECRUIT_VERIFY_FALLBACK_OK",
-        "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
+        "ok": false,
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "3개 후보 URL HTTP 응답 성공",
+          "reason": "2개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://www.hrdkorea.or.kr/3/1/2/2",
@@ -663,660 +508,122 @@
             },
             {
               "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-              "ok": true,
-              "status": 200,
-              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-              "verification": {
-                "ok": true,
-                "verified": true,
-                "fallback": false,
-                "code": "RECRUIT_VERIFY_OK",
-                "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
-                "score": 5,
-                "maxScore": 5,
-                "checks": {
-                  "httpDocument": true,
-                  "recruitKeyword": true,
-                  "boardStructure": true,
-                  "organizationMatch": true,
-                  "meaningfulBody": true
-                },
-                "title": "잡알리오",
-                "orgMatched": true,
-                "positiveHits": 4,
-                "positiveMatches": [
-                  "채용\\s*공고",
-                  "채용\\s*정보",
-                  "직원\\s*채용",
-                  "recruit(?:ment)?"
-                ],
-                "negativeHits": 0,
-                "negativeMatches": [],
-                "boardSignals": 3,
-                "boardType": {
-                  "type": "JOB_ALIO",
-                  "confidence": "high",
-                  "evidence": [
-                    "JOB-ALIO URL/본문 신호"
-                  ]
-                },
-                "textLength": 1857,
-                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-                "status": 200,
-                "contentType": "text/html;charset=UTF-8"
-              }
+              "ok": false,
+              "error": "timeout"
             }
           ]
         },
         "recruitVerify": {
-          "ok": true,
-          "code": "RECRUIT_VERIFY_FALLBACK_OK",
-          "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
-          "score": 5,
+          "ok": false,
+          "code": "RECRUIT_VERIFY_FAILED",
+          "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+          "score": 3,
           "maxScore": 5,
           "boardType": {
-            "type": "JOB_ALIO",
+            "type": "IFRAME",
             "confidence": "high",
             "evidence": [
-              "JOB-ALIO URL/본문 신호"
+              "iframe 태그 발견"
             ]
           },
           "evidence": {
-            "ok": true,
-            "verified": true,
+            "ok": false,
+            "verified": false,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
-            "score": 5,
+            "code": "RECRUIT_VERIFY_FAILED",
+            "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+            "score": 3,
             "maxScore": 5,
             "checks": {
               "httpDocument": true,
-              "recruitKeyword": true,
+              "recruitKeyword": false,
               "boardStructure": true,
-              "organizationMatch": true,
+              "organizationMatch": false,
               "meaningfulBody": true
             },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 4,
-            "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
-              "직원\\s*채용",
-              "recruit(?:ment)?"
-            ],
+            "title": "HRDK �ѱ�����η°���",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
             "negativeHits": 0,
             "negativeMatches": [],
-            "boardSignals": 3,
+            "boardSignals": 1,
             "boardType": {
-              "type": "JOB_ALIO",
+              "type": "IFRAME",
               "confidence": "high",
               "evidence": [
-                "JOB-ALIO URL/본문 신호"
+                "iframe 태그 발견"
               ]
             },
-            "textLength": 1857,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+            "textLength": 8703,
+            "requestedUrl": "https://www.hrdkorea.or.kr/",
+            "finalUrl": "https://www.hrdkorea.or.kr/",
             "status": 200,
-            "contentType": "text/html;charset=UTF-8"
+            "contentType": "text/html; charset=euc-kr"
           }
         },
-        "activeRecruitUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-        "selectedRequestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+        "activeRecruitUrl": "",
         "verification": {
-          "ok": true,
-          "verified": true,
+          "ok": false,
+          "verified": false,
           "fallback": false,
-          "code": "RECRUIT_VERIFY_OK",
-          "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
-          "score": 5,
+          "code": "RECRUIT_VERIFY_FAILED",
+          "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+          "score": 3,
           "maxScore": 5,
           "checks": {
             "httpDocument": true,
-            "recruitKeyword": true,
+            "recruitKeyword": false,
             "boardStructure": true,
-            "organizationMatch": true,
+            "organizationMatch": false,
             "meaningfulBody": true
           },
-          "title": "잡알리오",
-          "orgMatched": true,
-          "positiveHits": 4,
-          "positiveMatches": [
-            "채용\\s*공고",
-            "채용\\s*정보",
-            "직원\\s*채용",
-            "recruit(?:ment)?"
-          ],
+          "title": "HRDK �ѱ�����η°���",
+          "orgMatched": false,
+          "positiveHits": 0,
+          "positiveMatches": [],
           "negativeHits": 0,
           "negativeMatches": [],
-          "boardSignals": 3,
+          "boardSignals": 1,
           "boardType": {
-            "type": "JOB_ALIO",
+            "type": "IFRAME",
             "confidence": "high",
             "evidence": [
-              "JOB-ALIO URL/본문 신호"
+              "iframe 태그 발견"
             ]
           },
-          "textLength": 1857,
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+          "textLength": 8703,
+          "requestedUrl": "https://www.hrdkorea.or.kr/",
+          "finalUrl": "https://www.hrdkorea.or.kr/",
           "status": 200,
-          "contentType": "text/html;charset=UTF-8"
+          "contentType": "text/html; charset=euc-kr"
         }
-      }
+      },
+      "error": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음"
     },
     "list": {
-      "ok": true,
-      "status": "exact",
-      "pagesChecked": 3,
-      "visiblePostCount": 1,
-      "candidateCount": 1,
-      "missingCount": 0,
-      "extraCount": 0,
-      "exactMatch": true,
-      "selectedUrl": "https://www.hrdkorea.or.kr/3/1/2/2",
-      "detailUrlReady": 1,
+      "ok": false,
+      "status": "unknown",
+      "pagesChecked": 0,
+      "visiblePostCount": null,
+      "candidateCount": 0,
+      "missingCount": null,
+      "extraCount": null,
+      "exactMatch": false,
+      "selectedUrl": "",
+      "detailUrlReady": 0,
       "listOnlyCount": 0,
-      "extractionDiagnostics": [
-        {
-          "url": "https://www.hrdkorea.or.kr/3/1/2/2",
-          "visiblePostCount": 1,
-          "rowMode": true,
-          "anchors": 497,
-          "titleMatches": 1,
-          "noUrl": 0,
-          "unsafeUrl": 0,
-          "accepted": 1,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 0,
-          "titleSamples": [
-            "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����"
-          ],
-          "unsafeSamples": [],
-          "actionSamples": [],
-          "candidateUrlSamples": [],
-          "candidateCount": 1,
-          "exactMatch": true,
-          "missingCount": 0,
-          "extraCount": 0,
-          "countSource": "visible-board-rows"
-        },
-        {
-          "url": "https://www.hrdkorea.or.kr/",
-          "visiblePostCount": null,
-          "rowMode": false,
-          "anchors": 570,
-          "titleMatches": 511,
-          "noUrl": 0,
-          "unsafeUrl": 1,
-          "accepted": 4,
-          "rowFallbackAccepted": 1,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 1,
-          "titleSamples": [
-            "&times;",
-            "���� �ٷΰ���",
-            "�ڵ��ϼ� ����",
-            "HRDK �ѱ�����η°���",
-            "�¶���ȫ������",
-            "����Ʈ��",
-            "�̿�ȳ�",
-            "����Ұ�"
-          ],
-          "unsafeSamples": [
-            {
-              "title": "�ѱ�����η°��� �ݺ��� û�ű��",
-              "reason": "detail-url-pending",
-              "identity": "row-152746",
-              "row": "<li><a href=\"javascript:void();\" title=\"��â����_�ѱ�����η°��� �ݺ��� û�ű�� �˾�â\" onclick=\"window.open('/main/popup/openPop.html', 'popup', 'width=950,height=800,top=150,left=150,scrollbars=yes'); return false;\"><span class=\"blind\">�ѱ�����η°��� �ݺ��� û�ű��</span></a></li>"
-            }
-          ],
-          "actionSamples": [
-            {
-              "title": "�ѱ�����η°��� �ݺ��� û�ű��",
-              "action": "window.open('/main/popup/openPop.html', 'popup', 'width=950,height=800,top=150,left=150,scrollbars=yes'); return false;"
-            }
-          ],
-          "candidateUrlSamples": [
-            {
-              "title": "&times;",
-              "url": "https://www.hrdkorea.or.kr/?id=mainPopup_closeBtn",
-              "allowed": true
-            },
-            {
-              "title": "�ؿܿ�������",
-              "url": "https://www.hrdkorea.or.kr/3/1/4",
-              "allowed": true
-            },
-            {
-              "title": "������� ����� ����",
-              "url": "https://meister.hrdkorea.or.kr/sub/1/1/1/20160512100402856100_view.do",
-              "allowed": true
-            },
-            {
-              "title": "�ѱ�����η°��� �ݺ��� û�ű��",
-              "url": "https://www.hrdkorea.or.kr/main/popup/openPop.html",
-              "allowed": false
-            }
-          ],
-          "candidateCount": 4,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "anchors": 57,
-          "titleMatches": 30,
-          "noUrl": 6,
-          "unsafeUrl": 14,
-          "accepted": 10,
-          "rowFallbackAccepted": 0,
-          "visiblePostCount": null,
-          "candidateCount": 10,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
-        }
-      ],
-      "rootCauseDiagnostics": [
-        {
-          "version": "1.1-passive",
-          "mode": "passive",
-          "org": "한국산업인력공단",
-          "url": "https://www.hrdkorea.or.kr/3/1/2/2",
-          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
-          "listCounterFailureReason": "UNKNOWN",
-          "counterTrace": {
-            "source": "visible-board-rows",
-            "rawDomRows": 1,
-            "uniqueVisibleTitleCount": 1,
-            "reportedVisiblePostCount": 1,
-            "acceptedCandidateCount": 1,
-            "exactAgainstRaw": true,
-            "exactAgainstUniqueTitles": true
-          },
-          "candidateClassCounts": {
-            "UNCLASSIFIED": 1
-          },
-          "counts": {
-            "visiblePostCount": 1,
-            "candidateCount": 1,
-            "rawTableRows": 1,
-            "uniqueVisibleTitleCount": 1,
-            "sourceHtmlLength": 113875,
-            "missingRows": 0,
-            "extraCandidates": 0
-          },
-          "selectorCounts": {
-            "table tbody tr": 1,
-            "tr": 2,
-            "li": 350,
-            "article": 0,
-            "[onclick]": 4,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 497
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [
-            "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����"
-          ],
-          "extractedTitles": [
-            "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����"
-          ],
-          "missingRows": [],
-          "extraCandidates": [],
-          "rowTrace": [
-            {
-              "index": 0,
-              "title": "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����",
-              "normalizedTitle": "2026",
-              "text": "1 2026�� �Ϲݱ� �Ϲ��� �ű����� ä����� 2026-07-28",
-              "hasDate": true,
-              "hasSequence": true,
-              "hasAction": true,
-              "href": "/3/1/2/2?k=56000&amp;pageNo=&amp;searchType=&amp;searchText=",
-              "onclick": "",
-              "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t\t<td>1</td>\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t<td>\r\n\t\t\t\t\t\t<a href=\"/3/1/2/2?k=56000&amp;pageNo=&amp;searchType=&amp;searchText=\">2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t<td>2026-07-28</td>\r\n\t\t\t\t</tr>",
-              "accepted": true,
-              "acceptedLink": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-              "adapter": "한국산업인력공단:board-row",
-              "rejectionReason": ""
-            }
-          ]
-        },
-        {
-          "version": "1.1-passive",
-          "mode": "passive",
-          "org": "한국산업인력공단",
-          "url": "https://www.hrdkorea.or.kr/",
-          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-          "listCounterFailureReason": "DOM_COUNT_ZERO",
-          "counterTrace": {
-            "source": "unavailable",
-            "rawDomRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": null,
-            "acceptedCandidateCount": 4,
-            "exactAgainstRaw": false,
-            "exactAgainstUniqueTitles": false
-          },
-          "candidateClassCounts": {
-            "UNCLASSIFIED": 4
-          },
-          "counts": {
-            "visiblePostCount": null,
-            "candidateCount": 4,
-            "rawTableRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 157853,
-            "missingRows": 0,
-            "extraCandidates": 4
-          },
-          "selectorCounts": {
-            "table tbody tr": 0,
-            "tr": 0,
-            "li": 351,
-            "article": 0,
-            "[onclick]": 4,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 570
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [],
-          "extractedTitles": [
-            "&times;",
-            "�ؿܿ�������",
-            "������� ����� ����",
-            "�ѱ�����η°��� �ݺ��� û�ű��"
-          ],
-          "missingRows": [],
-          "extraCandidates": [
-            {
-              "org": "한국산업인력공단",
-              "title": "&times;",
-              "link": "https://www.hrdkorea.or.kr/?id=mainPopup_closeBtn",
-              "listText": "class=\"swiper_cookie\"> ���� �Ϸ� �˾�â�� �׸� ���ڽ��ϴ� &times; ���� �ٷΰ��� �˻� �Է��� ���� �˻��� �Է� <!-- 2022.05.03",
-              "adapter": "한국산업인력공단"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "�ؿܿ�������",
-              "link": "https://www.hrdkorea.or.kr/3/1/4",
-              "listText": "\"> ���ȼ� �򰡰�� -- 2021-12-01 4������ ���� ��� .hasDep4 class �߰� -- �ؿܿ������� ���� ��ȹ�� ���� ��������� // 2021-12-01 4���� �߰� --> ȫ��",
-              "adapter": "한국산업인력공단"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "������� ����� ����",
-              "link": "https://meister.hrdkorea.or.kr/sub/1/1/1/20160512100402856100_view.do",
-              "listText": "�������� �ڰ� ������� ����� ���� û�� �̷��÷��� ��� ��� �������� �ɷ�ǥ�� (NCS) <!-- 2021-11",
-              "adapter": "한국산업인력공단"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "�ѱ�����η°��� �ݺ��� û�ű��",
-              "link": "https://www.hrdkorea.or.kr#list-row-152746",
-              "listText": "�ѱ�����η°��� �ݺ��� û�ű��",
-              "adapter": "한국산업인력공단",
-              "listOnly": true,
-              "listIdentity": "row-152746"
-            }
-          ],
-          "rowTrace": []
-        },
-        {
-          "version": "1.1-passive",
-          "mode": "passive",
-          "org": "한국산업인력공단",
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-          "listCounterFailureReason": "DOM_COUNT_ZERO",
-          "counterTrace": {
-            "source": "unavailable",
-            "rawDomRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": null,
-            "acceptedCandidateCount": 10,
-            "exactAgainstRaw": false,
-            "exactAgainstUniqueTitles": false
-          },
-          "candidateClassCounts": {
-            "RECRUIT_POST": 10
-          },
-          "counts": {
-            "visiblePostCount": null,
-            "candidateCount": 10,
-            "rawTableRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 56143,
-            "missingRows": 0,
-            "extraCandidates": 10
-          },
-          "selectorCounts": {
-            "table tbody tr": 0,
-            "tr": 0,
-            "li": 125,
-            "article": 0,
-            "[onclick]": 8,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 57
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [],
-          "extractedTitles": [
-            "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
-            "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
-            "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
-            "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
-            "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
-            "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
-            "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
-            "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
-            "한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
-            "한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감"
-          ],
-          "missingRows": [],
-          "extraCandidates": [
-            {
-              "org": "한국산업인력공단",
-              "title": "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303146",
-              "listText": "h();\"> 진행상태 진행중 마감 한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중 한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감 한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301269",
-              "listText": "정규직 / 2026.07.29 ~ 26.08.13 / 진행중 한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감 한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감 <div cl",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300001",
-              "listText": "비정규직 / 2026.06.04 ~ 26.06.19 / 마감 한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감 한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감 한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299857",
-              "listText": "정규직 / 2026.04.30 ~ 26.05.15 / 마감 한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감 한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감 한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299695",
-              "listText": "비정규직 / 2026.04.29 ~ 26.05.14 / 마감 한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감 한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감 한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299638",
-              "listText": "비정규직 / 2026.04.24 ~ 26.05.12 / 마감 한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감 한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감 한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298581",
-              "listText": "비정규직 / 2026.04.23 ~ 26.05.08 / 마감 한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감 한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298430",
-              "listText": "비정규직 / 2026.04.02 ~ 26.04.17 / 마감 한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298234",
-              "listText": "비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 /",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업인력공단",
-              "title": "한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298236",
-              "listText": "비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감 1 2 저작권정책 &emsp; 이메일무단수집거부 &emsp; <a href=\"/mobile2021/privacy.d",
-              "sourceType": "ALIO"
-            }
-          ],
-          "rowTrace": []
-        }
-      ],
-      "diagnosticFiles": [
-        {
-          "org": "한국산업인력공단",
-          "htmlPath": "data/diagnostics/한국산업인력공단/list/page-1-raw.html",
-          "diagnosisPath": "data/diagnostics/한국산업인력공단/list/page-1-root-cause.json",
-          "rowsPath": "data/diagnostics/한국산업인력공단/list/page-1-rows.txt",
-          "url": "https://www.hrdkorea.or.kr/3/1/2/2"
-        },
-        {
-          "org": "한국산업인력공단",
-          "htmlPath": "data/diagnostics/한국산업인력공단/list/page-2-raw.html",
-          "diagnosisPath": "data/diagnostics/한국산업인력공단/list/page-2-root-cause.json",
-          "rowsPath": "data/diagnostics/한국산업인력공단/list/page-2-rows.txt",
-          "url": "https://www.hrdkorea.or.kr/"
-        },
-        {
-          "org": "한국산업인력공단",
-          "htmlPath": "data/diagnostics/한국산업인력공단/list/page-3-raw.html",
-          "diagnosisPath": "data/diagnostics/한국산업인력공단/list/page-3-root-cause.json",
-          "rowsPath": "data/diagnostics/한국산업인력공단/list/page-3-rows.txt",
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y"
-        }
-      ],
-      "samples": [
-        {
-          "title": "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����",
-          "link": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-          "adapter": "한국산업인력공단:board-row"
-        }
-      ],
-      "errors": [],
-      "selectedRootCause": {
-        "version": "1.1-passive",
-        "mode": "passive",
-        "org": "한국산업인력공단",
-        "url": "https://www.hrdkorea.or.kr/3/1/2/2",
-        "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
-        "listCounterFailureReason": "UNKNOWN",
-        "counterTrace": {
-          "source": "visible-board-rows",
-          "rawDomRows": 1,
-          "uniqueVisibleTitleCount": 1,
-          "reportedVisiblePostCount": 1,
-          "acceptedCandidateCount": 1,
-          "exactAgainstRaw": true,
-          "exactAgainstUniqueTitles": true
-        },
-        "candidateClassCounts": {
-          "UNCLASSIFIED": 1
-        },
-        "counts": {
-          "visiblePostCount": 1,
-          "candidateCount": 1,
-          "rawTableRows": 1,
-          "uniqueVisibleTitleCount": 1,
-          "sourceHtmlLength": 113875,
-          "missingRows": 0,
-          "extraCandidates": 0
-        },
-        "selectorCounts": {
-          "table tbody tr": 1,
-          "tr": 2,
-          "li": 350,
-          "article": 0,
-          "[onclick]": 4,
-          "[data-url]": 0,
-          "[data-href]": 0,
-          "a[href]": 497
-        },
-        "rejectReasonCounts": {},
-        "visibleTitles": [
-          "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����"
-        ],
-        "extractedTitles": [
-          "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����"
-        ],
-        "missingRows": [],
-        "extraCandidates": [],
-        "rowTrace": [
-          {
-            "index": 0,
-            "title": "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����",
-            "normalizedTitle": "2026",
-            "text": "1 2026�� �Ϲݱ� �Ϲ��� �ű����� ä����� 2026-07-28",
-            "hasDate": true,
-            "hasSequence": true,
-            "hasAction": true,
-            "href": "/3/1/2/2?k=56000&amp;pageNo=&amp;searchType=&amp;searchText=",
-            "onclick": "",
-            "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t<td>1</td>\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t<td>\r\n\t\t\t\t\t\t<a href=\"/3/1/2/2?k=56000&amp;pageNo=&amp;searchType=&amp;searchText=\">2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t<td>2026-07-28</td>\r\n\t\t\t\t</tr>",
-            "accepted": true,
-            "acceptedLink": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-            "adapter": "한국산업인력공단:board-row",
-            "rejectionReason": ""
-          }
-        ]
-      }
+      "extractionDiagnostics": [],
+      "rootCauseDiagnostics": [],
+      "diagnosticFiles": [],
+      "samples": [],
+      "errors": []
     },
     "detail": {
       "ok": false,
-      "attempted": 1,
+      "attempted": 0,
       "validated": 0,
-      "samples": [
-        {
-          "title": "2026�� �Ϲݱ� �Ϲ��� �ű����� ä�����",
-          "requestedUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-          "ok": false,
-          "finalUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "error": "final url is not a detail page"
-        }
-      ]
+      "samples": []
     },
     "attachment": {
       "ok": false,

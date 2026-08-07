@@ -1,82 +1,57 @@
 {
   "org": "한국산업안전보건공단",
-  "health": "degraded",
+  "health": "failed",
   "primaryCause": {
-    "stage": "list",
+    "stage": "recruitVerify",
     "status": "failed",
-    "code": "LIST_COUNTER_FAILED",
-    "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-    "evidence": [
-      {
-        "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
-        "visiblePostCount": null,
-        "rowMode": false,
-        "anchors": 0,
-        "titleMatches": 0,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
-        "clickableBlocksScanned": 0,
-        "clickableBlocksAccepted": 0,
-        "listOnlyAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": [],
-        "actionSamples": [],
-        "candidateUrlSamples": [],
-        "candidateCount": 0,
-        "exactMatch": false,
-        "missingCount": null,
-        "extraCount": null,
-        "countSource": "unavailable"
+    "code": "RECRUIT_VERIFY_FAILED",
+    "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+    "evidence": {
+      "ok": false,
+      "verified": false,
+      "fallback": false,
+      "code": "RECRUIT_VERIFY_ERROR_PAGE",
+      "reason": "오류·차단·비HTML 신호 0개",
+      "score": 2,
+      "maxScore": 5,
+      "checks": {
+        "httpDocument": false,
+        "recruitKeyword": true,
+        "boardStructure": true,
+        "organizationMatch": false,
+        "meaningfulBody": false
       },
-      {
-        "url": "https://kosha.or.kr/landing",
-        "visiblePostCount": null,
-        "rowMode": false,
-        "anchors": 0,
-        "titleMatches": 0,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
-        "clickableBlocksScanned": 0,
-        "clickableBlocksAccepted": 0,
-        "listOnlyAccepted": 0,
-        "titleSamples": [],
-        "unsafeSamples": [],
-        "actionSamples": [],
-        "candidateUrlSamples": [],
-        "candidateCount": 0,
-        "exactMatch": false,
-        "missingCount": null,
-        "extraCount": null,
-        "countSource": "unavailable"
+      "title": "",
+      "orgMatched": false,
+      "positiveHits": 1,
+      "positiveMatches": [
+        "recruit(?:ment)?"
+      ],
+      "negativeHits": 0,
+      "negativeMatches": [],
+      "boardSignals": 1,
+      "boardType": {
+        "type": "SPA",
+        "confidence": "medium",
+        "evidence": [
+          "SPA 신호 2개",
+          "초기 HTML 텍스트 0자"
+        ]
       },
-      {
-        "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-        "anchors": 58,
-        "titleMatches": 30,
-        "noUrl": 6,
-        "unsafeUrl": 14,
-        "accepted": 10,
-        "rowFallbackAccepted": 0,
-        "visiblePostCount": null,
-        "candidateCount": 10,
-        "exactMatch": false,
-        "missingCount": null,
-        "extraCount": null,
-        "countSource": "unavailable"
-      }
-    ],
-    "repairTarget": "scripts/collectors/institutions/한국산업안전보건공단.mjs",
-    "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+      "textLength": 0,
+      "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+      "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+      "status": 200,
+      "contentType": "text/html"
+    },
+    "repairTarget": "scripts/lib/recruit-verify.mjs",
+    "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
   },
   "diagnosis": {
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "3개 후보 URL HTTP 응답 성공",
+      "reason": "2개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
@@ -166,162 +141,96 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "verification": {
-            "ok": true,
-            "verified": true,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-            "score": 5,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": true,
-              "recruitKeyword": true,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": true
-            },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 3,
-            "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
-              "recruit(?:ment)?"
-            ],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 3,
-            "boardType": {
-              "type": "JOB_ALIO",
-              "confidence": "high",
-              "evidence": [
-                "JOB-ALIO URL/본문 신호"
-              ]
-            },
-            "textLength": 1913,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "status": 200,
-            "contentType": "text/html;charset=UTF-8"
-          }
+          "ok": false,
+          "error": "timeout"
         }
       ]
     },
     "recruitVerify": {
-      "status": "success",
-      "code": "RECRUIT_VERIFY_FALLBACK_OK",
-      "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+      "status": "failed",
+      "code": "RECRUIT_VERIFY_FAILED",
+      "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
       "evidence": {
-        "ok": true,
-        "verified": true,
+        "ok": false,
+        "verified": false,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-        "score": 5,
+        "code": "RECRUIT_VERIFY_ERROR_PAGE",
+        "reason": "오류·차단·비HTML 신호 0개",
+        "score": 2,
         "maxScore": 5,
         "checks": {
-          "httpDocument": true,
+          "httpDocument": false,
           "recruitKeyword": true,
           "boardStructure": true,
-          "organizationMatch": true,
-          "meaningfulBody": true
+          "organizationMatch": false,
+          "meaningfulBody": false
         },
-        "title": "잡알리오",
-        "orgMatched": true,
-        "positiveHits": 3,
+        "title": "",
+        "orgMatched": false,
+        "positiveHits": 1,
         "positiveMatches": [
-          "채용\\s*공고",
-          "채용\\s*정보",
           "recruit(?:ment)?"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 3,
+        "boardSignals": 1,
         "boardType": {
-          "type": "JOB_ALIO",
-          "confidence": "high",
+          "type": "SPA",
+          "confidence": "medium",
           "evidence": [
-            "JOB-ALIO URL/본문 신호"
+            "SPA 신호 2개",
+            "초기 HTML 텍스트 0자"
           ]
         },
-        "textLength": 1913,
-        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
+        "textLength": 0,
+        "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+        "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
         "status": 200,
-        "contentType": "text/html;charset=UTF-8"
+        "contentType": "text/html"
       }
     },
     "list": {
-      "status": "failed",
-      "code": "LIST_COUNTER_FAILED",
-      "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-      "evidence": [
-        {
-          "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
-          "visiblePostCount": null,
-          "rowMode": false,
-          "anchors": 0,
-          "titleMatches": 0,
-          "noUrl": 0,
-          "unsafeUrl": 0,
-          "accepted": 0,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 0,
-          "titleSamples": [],
-          "unsafeSamples": [],
-          "actionSamples": [],
-          "candidateUrlSamples": [],
-          "candidateCount": 0,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
+      "status": "blocked",
+      "code": "LIST_BLOCKED_BY_RECRUIT_VERIFY",
+      "reason": "채용 게시판 검증 실패로 목록 진단 보류",
+      "evidence": {
+        "ok": false,
+        "verified": false,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_ERROR_PAGE",
+        "reason": "오류·차단·비HTML 신호 0개",
+        "score": 2,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": false,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": false,
+          "meaningfulBody": false
         },
-        {
-          "url": "https://kosha.or.kr/landing",
-          "visiblePostCount": null,
-          "rowMode": false,
-          "anchors": 0,
-          "titleMatches": 0,
-          "noUrl": 0,
-          "unsafeUrl": 0,
-          "accepted": 0,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 0,
-          "titleSamples": [],
-          "unsafeSamples": [],
-          "actionSamples": [],
-          "candidateUrlSamples": [],
-          "candidateCount": 0,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
+        "title": "",
+        "orgMatched": false,
+        "positiveHits": 1,
+        "positiveMatches": [
+          "recruit(?:ment)?"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 1,
+        "boardType": {
+          "type": "SPA",
+          "confidence": "medium",
+          "evidence": [
+            "SPA 신호 2개",
+            "초기 HTML 텍스트 0자"
+          ]
         },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "anchors": 58,
-          "titleMatches": 30,
-          "noUrl": 6,
-          "unsafeUrl": 14,
-          "accepted": 10,
-          "rowFallbackAccepted": 0,
-          "visiblePostCount": null,
-          "candidateCount": 10,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
-        }
-      ]
+        "textLength": 0,
+        "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+        "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+        "status": 200,
+        "contentType": "text/html"
+      }
     },
     "detail": {
       "status": "blocked",
@@ -330,89 +239,67 @@
       "evidence": []
     },
     "attachment": {
-      "status": "success",
-      "code": "ATTACHMENT_FOUND",
-      "reason": "검증 표본에서 첨부 링크 4개 발견",
-      "evidence": [
-        {
-          "name": "2026년도 안전보건공단 하반기 채용공고문.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066561"
-        },
-        {
-          "name": "6급 직무설명서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066562"
-        },
-        {
-          "name": "2026년도 안전보건공단 하반기 채용공고문.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066557"
-        },
-        {
-          "name": "5급 직무설명서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066558"
-        }
-      ]
+      "status": "blocked",
+      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
+      "reason": "상세 단계 미통과로 첨부 진단 보류",
+      "evidence": []
     },
     "access": {
-      "status": "success",
-      "code": "RECRUIT_VERIFY_FALLBACK_OK",
-      "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+      "status": "failed",
+      "code": "RECRUIT_VERIFY_FAILED",
+      "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
       "evidence": {
-        "ok": true,
-        "verified": true,
+        "ok": false,
+        "verified": false,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-        "score": 5,
+        "code": "RECRUIT_VERIFY_ERROR_PAGE",
+        "reason": "오류·차단·비HTML 신호 0개",
+        "score": 2,
         "maxScore": 5,
         "checks": {
-          "httpDocument": true,
+          "httpDocument": false,
           "recruitKeyword": true,
           "boardStructure": true,
-          "organizationMatch": true,
-          "meaningfulBody": true
+          "organizationMatch": false,
+          "meaningfulBody": false
         },
-        "title": "잡알리오",
-        "orgMatched": true,
-        "positiveHits": 3,
+        "title": "",
+        "orgMatched": false,
+        "positiveHits": 1,
         "positiveMatches": [
-          "채용\\s*공고",
-          "채용\\s*정보",
           "recruit(?:ment)?"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 3,
+        "boardSignals": 1,
         "boardType": {
-          "type": "JOB_ALIO",
-          "confidence": "high",
+          "type": "SPA",
+          "confidence": "medium",
           "evidence": [
-            "JOB-ALIO URL/본문 신호"
+            "SPA 신호 2개",
+            "초기 HTML 텍스트 0자"
           ]
         },
-        "textLength": 1913,
-        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
+        "textLength": 0,
+        "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+        "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
         "status": 200,
-        "contentType": "text/html;charset=UTF-8"
+        "contentType": "text/html"
       }
     }
   },
-  "repairTarget": "scripts/collectors/institutions/한국산업안전보건공단.mjs",
-  "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정",
+  "repairTarget": "scripts/lib/recruit-verify.mjs",
+  "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인",
   "stages": {
     "access": {
-      "ok": true,
+      "ok": false,
       "httpOk": true,
-      "recruitVerifyOk": true,
-      "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-      "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-      "activeRecruitUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
+      "recruitVerifyOk": false,
+      "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+      "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+      "activeRecruitUrl": "",
       "status": 200,
-      "contentType": "text/html;charset=UTF-8",
+      "contentType": "text/html",
       "attempts": [
         {
           "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
@@ -502,104 +389,64 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "verification": {
-            "ok": true,
-            "verified": true,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-            "score": 5,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": true,
-              "recruitKeyword": true,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": true
-            },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 3,
-            "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
-              "recruit(?:ment)?"
-            ],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 3,
-            "boardType": {
-              "type": "JOB_ALIO",
-              "confidence": "high",
-              "evidence": [
-                "JOB-ALIO URL/본문 신호"
-              ]
-            },
-            "textLength": 1913,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "status": 200,
-            "contentType": "text/html;charset=UTF-8"
-          }
+          "ok": false,
+          "error": "timeout"
         }
       ],
       "verification": {
-        "ok": true,
-        "verified": true,
+        "ok": false,
+        "verified": false,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-        "score": 5,
+        "code": "RECRUIT_VERIFY_ERROR_PAGE",
+        "reason": "오류·차단·비HTML 신호 0개",
+        "score": 2,
         "maxScore": 5,
         "checks": {
-          "httpDocument": true,
+          "httpDocument": false,
           "recruitKeyword": true,
           "boardStructure": true,
-          "organizationMatch": true,
-          "meaningfulBody": true
+          "organizationMatch": false,
+          "meaningfulBody": false
         },
-        "title": "잡알리오",
-        "orgMatched": true,
-        "positiveHits": 3,
+        "title": "",
+        "orgMatched": false,
+        "positiveHits": 1,
         "positiveMatches": [
-          "채용\\s*공고",
-          "채용\\s*정보",
           "recruit(?:ment)?"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 3,
+        "boardSignals": 1,
         "boardType": {
-          "type": "JOB_ALIO",
-          "confidence": "high",
+          "type": "SPA",
+          "confidence": "medium",
           "evidence": [
-            "JOB-ALIO URL/본문 신호"
+            "SPA 신호 2개",
+            "초기 HTML 텍스트 0자"
           ]
         },
-        "textLength": 1913,
-        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
+        "textLength": 0,
+        "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+        "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
         "status": 200,
-        "contentType": "text/html;charset=UTF-8"
+        "contentType": "text/html"
       },
       "boardType": {
-        "type": "JOB_ALIO",
-        "confidence": "high",
+        "type": "SPA",
+        "confidence": "medium",
         "evidence": [
-          "JOB-ALIO URL/본문 신호"
+          "SPA 신호 2개",
+          "초기 HTML 텍스트 0자"
         ]
       },
       "diagnosis": {
-        "ok": true,
-        "code": "RECRUIT_VERIFY_FALLBACK_OK",
-        "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+        "ok": false,
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "3개 후보 URL HTTP 응답 성공",
+          "reason": "2개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
@@ -689,691 +536,134 @@
             },
             {
               "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-              "ok": true,
-              "status": 200,
-              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-              "verification": {
-                "ok": true,
-                "verified": true,
-                "fallback": false,
-                "code": "RECRUIT_VERIFY_OK",
-                "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-                "score": 5,
-                "maxScore": 5,
-                "checks": {
-                  "httpDocument": true,
-                  "recruitKeyword": true,
-                  "boardStructure": true,
-                  "organizationMatch": true,
-                  "meaningfulBody": true
-                },
-                "title": "잡알리오",
-                "orgMatched": true,
-                "positiveHits": 3,
-                "positiveMatches": [
-                  "채용\\s*공고",
-                  "채용\\s*정보",
-                  "recruit(?:ment)?"
-                ],
-                "negativeHits": 0,
-                "negativeMatches": [],
-                "boardSignals": 3,
-                "boardType": {
-                  "type": "JOB_ALIO",
-                  "confidence": "high",
-                  "evidence": [
-                    "JOB-ALIO URL/본문 신호"
-                  ]
-                },
-                "textLength": 1913,
-                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-                "status": 200,
-                "contentType": "text/html;charset=UTF-8"
-              }
+              "ok": false,
+              "error": "timeout"
             }
           ]
         },
         "recruitVerify": {
-          "ok": true,
-          "code": "RECRUIT_VERIFY_FALLBACK_OK",
-          "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-          "score": 5,
+          "ok": false,
+          "code": "RECRUIT_VERIFY_FAILED",
+          "reason": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+          "score": 2,
           "maxScore": 5,
           "boardType": {
-            "type": "JOB_ALIO",
-            "confidence": "high",
+            "type": "SPA",
+            "confidence": "medium",
             "evidence": [
-              "JOB-ALIO URL/본문 신호"
+              "SPA 신호 2개",
+              "초기 HTML 텍스트 0자"
             ]
           },
           "evidence": {
-            "ok": true,
-            "verified": true,
+            "ok": false,
+            "verified": false,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-            "score": 5,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 2,
             "maxScore": 5,
             "checks": {
-              "httpDocument": true,
+              "httpDocument": false,
               "recruitKeyword": true,
               "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": true
+              "organizationMatch": false,
+              "meaningfulBody": false
             },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 3,
+            "title": "",
+            "orgMatched": false,
+            "positiveHits": 1,
             "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
               "recruit(?:ment)?"
             ],
             "negativeHits": 0,
             "negativeMatches": [],
-            "boardSignals": 3,
+            "boardSignals": 1,
             "boardType": {
-              "type": "JOB_ALIO",
-              "confidence": "high",
+              "type": "SPA",
+              "confidence": "medium",
               "evidence": [
-                "JOB-ALIO URL/본문 신호"
+                "SPA 신호 2개",
+                "초기 HTML 텍스트 0자"
               ]
             },
-            "textLength": 1913,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
+            "textLength": 0,
+            "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+            "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
             "status": 200,
-            "contentType": "text/html;charset=UTF-8"
+            "contentType": "text/html"
           }
         },
-        "activeRecruitUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-        "selectedRequestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
+        "activeRecruitUrl": "",
         "verification": {
-          "ok": true,
-          "verified": true,
+          "ok": false,
+          "verified": false,
           "fallback": false,
-          "code": "RECRUIT_VERIFY_OK",
-          "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-          "score": 5,
+          "code": "RECRUIT_VERIFY_ERROR_PAGE",
+          "reason": "오류·차단·비HTML 신호 0개",
+          "score": 2,
           "maxScore": 5,
           "checks": {
-            "httpDocument": true,
+            "httpDocument": false,
             "recruitKeyword": true,
             "boardStructure": true,
-            "organizationMatch": true,
-            "meaningfulBody": true
+            "organizationMatch": false,
+            "meaningfulBody": false
           },
-          "title": "잡알리오",
-          "orgMatched": true,
-          "positiveHits": 3,
+          "title": "",
+          "orgMatched": false,
+          "positiveHits": 1,
           "positiveMatches": [
-            "채용\\s*공고",
-            "채용\\s*정보",
             "recruit(?:ment)?"
           ],
           "negativeHits": 0,
           "negativeMatches": [],
-          "boardSignals": 3,
+          "boardSignals": 1,
           "boardType": {
-            "type": "JOB_ALIO",
-            "confidence": "high",
+            "type": "SPA",
+            "confidence": "medium",
             "evidence": [
-              "JOB-ALIO URL/본문 신호"
+              "SPA 신호 2개",
+              "초기 HTML 텍스트 0자"
             ]
           },
-          "textLength": 1913,
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
+          "textLength": 0,
+          "requestedUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
+          "finalUrl": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
           "status": 200,
-          "contentType": "text/html;charset=UTF-8"
+          "contentType": "text/html"
         }
-      }
+      },
+      "error": "2개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음"
     },
     "list": {
       "ok": false,
-      "status": "count-unavailable-or-empty",
-      "pagesChecked": 3,
+      "status": "unknown",
+      "pagesChecked": 0,
       "visiblePostCount": null,
-      "candidateCount": 10,
+      "candidateCount": 0,
       "missingCount": null,
       "extraCount": null,
       "exactMatch": false,
-      "selectedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-      "detailUrlReady": 10,
+      "selectedUrl": "",
+      "detailUrlReady": 0,
       "listOnlyCount": 0,
-      "extractionDiagnostics": [
-        {
-          "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
-          "visiblePostCount": null,
-          "rowMode": false,
-          "anchors": 0,
-          "titleMatches": 0,
-          "noUrl": 0,
-          "unsafeUrl": 0,
-          "accepted": 0,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 0,
-          "titleSamples": [],
-          "unsafeSamples": [],
-          "actionSamples": [],
-          "candidateUrlSamples": [],
-          "candidateCount": 0,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
-        },
-        {
-          "url": "https://kosha.or.kr/landing",
-          "visiblePostCount": null,
-          "rowMode": false,
-          "anchors": 0,
-          "titleMatches": 0,
-          "noUrl": 0,
-          "unsafeUrl": 0,
-          "accepted": 0,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 0,
-          "titleSamples": [],
-          "unsafeSamples": [],
-          "actionSamples": [],
-          "candidateUrlSamples": [],
-          "candidateCount": 0,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "anchors": 58,
-          "titleMatches": 30,
-          "noUrl": 6,
-          "unsafeUrl": 14,
-          "accepted": 10,
-          "rowFallbackAccepted": 0,
-          "visiblePostCount": null,
-          "candidateCount": 10,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
-        }
-      ],
-      "rootCauseDiagnostics": [
-        {
-          "version": "1.1-passive",
-          "mode": "passive",
-          "org": "한국산업안전보건공단",
-          "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
-          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
-          "listCounterFailureReason": "UNKNOWN",
-          "counterTrace": {
-            "source": "unavailable",
-            "rawDomRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": null,
-            "acceptedCandidateCount": 0,
-            "exactAgainstRaw": true,
-            "exactAgainstUniqueTitles": true
-          },
-          "candidateClassCounts": {},
-          "counts": {
-            "visiblePostCount": null,
-            "candidateCount": 0,
-            "rawTableRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 1993,
-            "missingRows": 0,
-            "extraCandidates": 0
-          },
-          "selectorCounts": {
-            "table tbody tr": 0,
-            "tr": 0,
-            "li": 0,
-            "article": 0,
-            "[onclick]": 0,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 0
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [],
-          "extractedTitles": [],
-          "missingRows": [],
-          "extraCandidates": [],
-          "rowTrace": []
-        },
-        {
-          "version": "1.1-passive",
-          "mode": "passive",
-          "org": "한국산업안전보건공단",
-          "url": "https://kosha.or.kr/landing",
-          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
-          "listCounterFailureReason": "UNKNOWN",
-          "counterTrace": {
-            "source": "unavailable",
-            "rawDomRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": null,
-            "acceptedCandidateCount": 0,
-            "exactAgainstRaw": true,
-            "exactAgainstUniqueTitles": true
-          },
-          "candidateClassCounts": {},
-          "counts": {
-            "visiblePostCount": null,
-            "candidateCount": 0,
-            "rawTableRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 1993,
-            "missingRows": 0,
-            "extraCandidates": 0
-          },
-          "selectorCounts": {
-            "table tbody tr": 0,
-            "tr": 0,
-            "li": 0,
-            "article": 0,
-            "[onclick]": 0,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 0
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [],
-          "extractedTitles": [],
-          "missingRows": [],
-          "extraCandidates": [],
-          "rowTrace": []
-        },
-        {
-          "version": "1.1-passive",
-          "mode": "passive",
-          "org": "한국산업안전보건공단",
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-          "listCounterFailureReason": "DOM_COUNT_ZERO",
-          "counterTrace": {
-            "source": "unavailable",
-            "rawDomRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": null,
-            "acceptedCandidateCount": 10,
-            "exactAgainstRaw": false,
-            "exactAgainstUniqueTitles": false
-          },
-          "candidateClassCounts": {
-            "RECRUIT_POST": 10
-          },
-          "counts": {
-            "visiblePostCount": null,
-            "candidateCount": 10,
-            "rawTableRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 56810,
-            "missingRows": 0,
-            "extraCandidates": 10
-          },
-          "selectorCounts": {
-            "table tbody tr": 0,
-            "tr": 0,
-            "li": 125,
-            "article": 0,
-            "[onclick]": 9,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 58
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [],
-          "extractedTitles": [
-            "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 6급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-            "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 5급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-            "한국산업안전보건공단 2026년도 하반기 신규직원(경력직 2급_산업보건(의학)) 채용공고 울산 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-            "한국산업안전보건공단 [안전보건공단] 본부(울산) 업무직 채용공고 울산 / 무기계약직 / 2026.08.04 ~ 26.08.14 / 진행중",
-            "한국산업안전보건공단 [안전보건공단] 2026년도 체험형 인턴 채용공고 서울 외 14 / 청년인턴(체험형) / 2026.07.24 ~ 26.08.04 / 마감",
-            "한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.07.22 ~ 26.08.03 / 마감",
-            "한국산업안전보건공단 [안전보건공단 산업안전보건교육원] 업무직(시설관리원) 채용공고 인천 / 무기계약직 / 2026.07.10 ~ 26.07.20 / 마감",
-            "한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.06.24 ~ 26.07.06 / 마감",
-            "한국산업안전보건공단 [안전보건공단 산업안전보건연구원(대전)] 업무직(시설관리원) 채용공고 대전 / 무기계약직 / 2026.06.22 ~ 26.07.03 / 마감",
-            "한국산업안전보건공단 [건설업] '26년도 안전한 일터 지킴이 채용공고 인천 외 7 / 비정규직 / 2026.06.08 ~ 26.06.18 / 마감"
-          ],
-          "missingRows": [],
-          "extraCandidates": [
-            {
-              "org": "한국산업안전보건공단",
-              "title": "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 6급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303583",
-              "listText": "h();\"> 진행상태 진행중 마감 한국산업안전보건공단 2026년도 하반기 신규직원(신입직 6급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 2026년도 하반기 신규직원(신입직 5급) 채용공고 서울 외 14 / 정규직",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업안전보건공단",
-              "title": "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 5급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303582",
-              "listText": "정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 2026년도 하반기 신규직원(신입직 5급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 2026년도 하반기 신규직원(경력직 2급_산업보건(의학)) 채용공고 울산 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 [안전보건공단] 본부(울산) 업무직 채용공고<",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업안전보건공단",
-              "title": "한국산업안전보건공단 2026년도 하반기 신규직원(경력직 2급_산업보건(의학)) 채용공고 울산 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303580",
-              "listText": "정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 2026년도 하반기 신규직원(경력직 2급_산업보건(의학)) 채용공고 울산 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 [안전보건공단] 본부(울산) 업무직 채용공고 울산 / 무기계약직 / 2026.08.04 ~ 26.08.14 / 진행중 한국산업안전보건공단 [안전보건공단] 2026년도 체험형 인턴 채용공고",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업안전보건공단",
-              "title": "한국산업안전보건공단 [안전보건공단] 본부(울산) 업무직 채용공고 울산 / 무기계약직 / 2026.08.04 ~ 26.08.14 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303446",
-              "listText": "정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 [안전보건공단] 본부(울산) 업무직 채용공고 울산 / 무기계약직 / 2026.08.04 ~ 26.08.14 / 진행중 한국산업안전보건공단 [안전보건공단] 2026년도 체험형 인턴 채용공고 서울 외 14 / 청년인턴(체험형)",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업안전보건공단",
-              "title": "한국산업안전보건공단 [안전보건공단] 2026년도 체험형 인턴 채용공고 서울 외 14 / 청년인턴(체험형) / 2026.07.24 ~ 26.08.04 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303050",
-              "listText": "무기계약직 / 2026.08.04 ~ 26.08.14 / 진행중 한국산업안전보건공단 [안전보건공단] 2026년도 체험형 인턴 채용공고 서울 외 14 / 청년인턴(체험형) / 2026.07.24 ~ 26.08.04 / 마감 한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.07.22 ~ 26.08.03 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건교육",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업안전보건공단",
-              "title": "한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.07.22 ~ 26.08.03 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302974",
-              "listText": "청년인턴(체험형) / 2026.07.24 ~ 26.08.04 / 마감 한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.07.22 ~ 26.08.03 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건교육원] 업무직(시설관리원) 채용공고 인천 / 무기계약직 / 2026.07.10 ~ 26.07.20 / 마감 한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업안전보건공단",
-              "title": "한국산업안전보건공단 [안전보건공단 산업안전보건교육원] 업무직(시설관리원) 채용공고 인천 / 무기계약직 / 2026.07.10 ~ 26.07.20 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302603",
-              "listText": "무기계약직 / 2026.07.22 ~ 26.08.03 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건교육원] 업무직(시설관리원) 채용공고 인천 / 무기계약직 / 2026.07.10 ~ 26.07.20 / 마감 한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.06.24 ~ 26.07.06 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건연구",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업안전보건공단",
-              "title": "한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.06.24 ~ 26.07.06 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302004",
-              "listText": "무기계약직 / 2026.07.10 ~ 26.07.20 / 마감 한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.06.24 ~ 26.07.06 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건연구원(대전)] 업무직(시설관리원) 채용공고 대전 / 무기계약직 / 2026.06.22 ~ 26.07.03 / 마감 한국산업안전보건공단 [건설업] '26년도 안전한 일터",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업안전보건공단",
-              "title": "한국산업안전보건공단 [안전보건공단 산업안전보건연구원(대전)] 업무직(시설관리원) 채용공고 대전 / 무기계약직 / 2026.06.22 ~ 26.07.03 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301927",
-              "listText": "무기계약직 / 2026.06.24 ~ 26.07.06 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건연구원(대전)] 업무직(시설관리원) 채용공고 대전 / 무기계약직 / 2026.06.22 ~ 26.07.03 / 마감 한국산업안전보건공단 [건설업] '26년도 안전한 일터 지킴이 채용공고 인천 외 7 / 비정규직 / 2026.06.08 ~ 26.06.18 / 마감",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국산업안전보건공단",
-              "title": "한국산업안전보건공단 [건설업] '26년도 안전한 일터 지킴이 채용공고 인천 외 7 / 비정규직 / 2026.06.08 ~ 26.06.18 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301440",
-              "listText": "무기계약직 / 2026.06.22 ~ 26.07.03 / 마감 한국산업안전보건공단 [건설업] '26년도 안전한 일터 지킴이 채용공고 인천 외 7 / 비정규직 / 2026.06.08 ~ 26.06.18 / 마감 1 2 3 저작권정책 &emsp; 이메일무단수집거부",
-              "sourceType": "ALIO"
-            }
-          ],
-          "rowTrace": []
-        }
-      ],
-      "diagnosticFiles": [
-        {
-          "org": "한국산업안전보건공단",
-          "htmlPath": "data/diagnostics/한국산업안전보건공단/list/page-1-raw.html",
-          "diagnosisPath": "data/diagnostics/한국산업안전보건공단/list/page-1-root-cause.json",
-          "rowsPath": "data/diagnostics/한국산업안전보건공단/list/page-1-rows.txt",
-          "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do"
-        },
-        {
-          "org": "한국산업안전보건공단",
-          "htmlPath": "data/diagnostics/한국산업안전보건공단/list/page-2-raw.html",
-          "diagnosisPath": "data/diagnostics/한국산업안전보건공단/list/page-2-root-cause.json",
-          "rowsPath": "data/diagnostics/한국산업안전보건공단/list/page-2-rows.txt",
-          "url": "https://kosha.or.kr/landing"
-        },
-        {
-          "org": "한국산업안전보건공단",
-          "htmlPath": "data/diagnostics/한국산업안전보건공단/list/page-3-raw.html",
-          "diagnosisPath": "data/diagnostics/한국산업안전보건공단/list/page-3-root-cause.json",
-          "rowsPath": "data/diagnostics/한국산업안전보건공단/list/page-3-rows.txt",
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y"
-        }
-      ],
-      "samples": [
-        {
-          "title": "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 6급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303583",
-          "adapter": ""
-        },
-        {
-          "title": "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 5급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303582",
-          "adapter": ""
-        },
-        {
-          "title": "한국산업안전보건공단 2026년도 하반기 신규직원(경력직 2급_산업보건(의학)) 채용공고 울산 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303580",
-          "adapter": ""
-        },
-        {
-          "title": "한국산업안전보건공단 [안전보건공단] 본부(울산) 업무직 채용공고 울산 / 무기계약직 / 2026.08.04 ~ 26.08.14 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303446",
-          "adapter": ""
-        },
-        {
-          "title": "한국산업안전보건공단 [안전보건공단] 2026년도 체험형 인턴 채용공고 서울 외 14 / 청년인턴(체험형) / 2026.07.24 ~ 26.08.04 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303050",
-          "adapter": ""
-        },
-        {
-          "title": "한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.07.22 ~ 26.08.03 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302974",
-          "adapter": ""
-        },
-        {
-          "title": "한국산업안전보건공단 [안전보건공단 산업안전보건교육원] 업무직(시설관리원) 채용공고 인천 / 무기계약직 / 2026.07.10 ~ 26.07.20 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302603",
-          "adapter": ""
-        },
-        {
-          "title": "한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.06.24 ~ 26.07.06 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302004",
-          "adapter": ""
-        },
-        {
-          "title": "한국산업안전보건공단 [안전보건공단 산업안전보건연구원(대전)] 업무직(시설관리원) 채용공고 대전 / 무기계약직 / 2026.06.22 ~ 26.07.03 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301927",
-          "adapter": ""
-        },
-        {
-          "title": "한국산업안전보건공단 [건설업] '26년도 안전한 일터 지킴이 채용공고 인천 외 7 / 비정규직 / 2026.06.08 ~ 26.06.18 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301440",
-          "adapter": ""
-        }
-      ],
-      "errors": [],
-      "selectedRootCause": {
-        "version": "1.1-passive",
-        "mode": "passive",
-        "org": "한국산업안전보건공단",
-        "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B3%B5%EB%8B%A8&search_yn=Y",
-        "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-        "listCounterFailureReason": "DOM_COUNT_ZERO",
-        "counterTrace": {
-          "source": "unavailable",
-          "rawDomRows": 0,
-          "uniqueVisibleTitleCount": 0,
-          "reportedVisiblePostCount": null,
-          "acceptedCandidateCount": 10,
-          "exactAgainstRaw": false,
-          "exactAgainstUniqueTitles": false
-        },
-        "candidateClassCounts": {
-          "RECRUIT_POST": 10
-        },
-        "counts": {
-          "visiblePostCount": null,
-          "candidateCount": 10,
-          "rawTableRows": 0,
-          "uniqueVisibleTitleCount": 0,
-          "sourceHtmlLength": 56810,
-          "missingRows": 0,
-          "extraCandidates": 10
-        },
-        "selectorCounts": {
-          "table tbody tr": 0,
-          "tr": 0,
-          "li": 125,
-          "article": 0,
-          "[onclick]": 9,
-          "[data-url]": 0,
-          "[data-href]": 0,
-          "a[href]": 58
-        },
-        "rejectReasonCounts": {},
-        "visibleTitles": [],
-        "extractedTitles": [
-          "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 6급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-          "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 5급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-          "한국산업안전보건공단 2026년도 하반기 신규직원(경력직 2급_산업보건(의학)) 채용공고 울산 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-          "한국산업안전보건공단 [안전보건공단] 본부(울산) 업무직 채용공고 울산 / 무기계약직 / 2026.08.04 ~ 26.08.14 / 진행중",
-          "한국산업안전보건공단 [안전보건공단] 2026년도 체험형 인턴 채용공고 서울 외 14 / 청년인턴(체험형) / 2026.07.24 ~ 26.08.04 / 마감",
-          "한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.07.22 ~ 26.08.03 / 마감",
-          "한국산업안전보건공단 [안전보건공단 산업안전보건교육원] 업무직(시설관리원) 채용공고 인천 / 무기계약직 / 2026.07.10 ~ 26.07.20 / 마감",
-          "한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.06.24 ~ 26.07.06 / 마감",
-          "한국산업안전보건공단 [안전보건공단 산업안전보건연구원(대전)] 업무직(시설관리원) 채용공고 대전 / 무기계약직 / 2026.06.22 ~ 26.07.03 / 마감",
-          "한국산업안전보건공단 [건설업] '26년도 안전한 일터 지킴이 채용공고 인천 외 7 / 비정규직 / 2026.06.08 ~ 26.06.18 / 마감"
-        ],
-        "missingRows": [],
-        "extraCandidates": [
-          {
-            "org": "한국산업안전보건공단",
-            "title": "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 6급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303583",
-            "listText": "h();\"> 진행상태 진행중 마감 한국산업안전보건공단 2026년도 하반기 신규직원(신입직 6급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 2026년도 하반기 신규직원(신입직 5급) 채용공고 서울 외 14 / 정규직",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "한국산업안전보건공단",
-            "title": "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 5급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303582",
-            "listText": "정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 2026년도 하반기 신규직원(신입직 5급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 2026년도 하반기 신규직원(경력직 2급_산업보건(의학)) 채용공고 울산 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 [안전보건공단] 본부(울산) 업무직 채용공고<",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "한국산업안전보건공단",
-            "title": "한국산업안전보건공단 2026년도 하반기 신규직원(경력직 2급_산업보건(의학)) 채용공고 울산 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303580",
-            "listText": "정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 2026년도 하반기 신규직원(경력직 2급_산업보건(의학)) 채용공고 울산 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 [안전보건공단] 본부(울산) 업무직 채용공고 울산 / 무기계약직 / 2026.08.04 ~ 26.08.14 / 진행중 한국산업안전보건공단 [안전보건공단] 2026년도 체험형 인턴 채용공고",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "한국산업안전보건공단",
-            "title": "한국산업안전보건공단 [안전보건공단] 본부(울산) 업무직 채용공고 울산 / 무기계약직 / 2026.08.04 ~ 26.08.14 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303446",
-            "listText": "정규직 / 2026.08.06 ~ 26.08.24 / 진행중 한국산업안전보건공단 [안전보건공단] 본부(울산) 업무직 채용공고 울산 / 무기계약직 / 2026.08.04 ~ 26.08.14 / 진행중 한국산업안전보건공단 [안전보건공단] 2026년도 체험형 인턴 채용공고 서울 외 14 / 청년인턴(체험형)",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "한국산업안전보건공단",
-            "title": "한국산업안전보건공단 [안전보건공단] 2026년도 체험형 인턴 채용공고 서울 외 14 / 청년인턴(체험형) / 2026.07.24 ~ 26.08.04 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303050",
-            "listText": "무기계약직 / 2026.08.04 ~ 26.08.14 / 진행중 한국산업안전보건공단 [안전보건공단] 2026년도 체험형 인턴 채용공고 서울 외 14 / 청년인턴(체험형) / 2026.07.24 ~ 26.08.04 / 마감 한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.07.22 ~ 26.08.03 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건교육",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "한국산업안전보건공단",
-            "title": "한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.07.22 ~ 26.08.03 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302974",
-            "listText": "청년인턴(체험형) / 2026.07.24 ~ 26.08.04 / 마감 한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.07.22 ~ 26.08.03 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건교육원] 업무직(시설관리원) 채용공고 인천 / 무기계약직 / 2026.07.10 ~ 26.07.20 / 마감 한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "한국산업안전보건공단",
-            "title": "한국산업안전보건공단 [안전보건공단 산업안전보건교육원] 업무직(시설관리원) 채용공고 인천 / 무기계약직 / 2026.07.10 ~ 26.07.20 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302603",
-            "listText": "무기계약직 / 2026.07.22 ~ 26.08.03 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건교육원] 업무직(시설관리원) 채용공고 인천 / 무기계약직 / 2026.07.10 ~ 26.07.20 / 마감 한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.06.24 ~ 26.07.06 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건연구",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "한국산업안전보건공단",
-            "title": "한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.06.24 ~ 26.07.06 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302004",
-            "listText": "무기계약직 / 2026.07.10 ~ 26.07.20 / 마감 한국산업안전보건공단 [안전보건공단 서울광역본부] 강원동부지사 업무직 보훈제한경쟁(환경미화원) 채용공고 강원 / 무기계약직 / 2026.06.24 ~ 26.07.06 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건연구원(대전)] 업무직(시설관리원) 채용공고 대전 / 무기계약직 / 2026.06.22 ~ 26.07.03 / 마감 한국산업안전보건공단 [건설업] '26년도 안전한 일터",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "한국산업안전보건공단",
-            "title": "한국산업안전보건공단 [안전보건공단 산업안전보건연구원(대전)] 업무직(시설관리원) 채용공고 대전 / 무기계약직 / 2026.06.22 ~ 26.07.03 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301927",
-            "listText": "무기계약직 / 2026.06.24 ~ 26.07.06 / 마감 한국산업안전보건공단 [안전보건공단 산업안전보건연구원(대전)] 업무직(시설관리원) 채용공고 대전 / 무기계약직 / 2026.06.22 ~ 26.07.03 / 마감 한국산업안전보건공단 [건설업] '26년도 안전한 일터 지킴이 채용공고 인천 외 7 / 비정규직 / 2026.06.08 ~ 26.06.18 / 마감",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "한국산업안전보건공단",
-            "title": "한국산업안전보건공단 [건설업] '26년도 안전한 일터 지킴이 채용공고 인천 외 7 / 비정규직 / 2026.06.08 ~ 26.06.18 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301440",
-            "listText": "무기계약직 / 2026.06.22 ~ 26.07.03 / 마감 한국산업안전보건공단 [건설업] '26년도 안전한 일터 지킴이 채용공고 인천 외 7 / 비정규직 / 2026.06.08 ~ 26.06.18 / 마감 1 2 3 저작권정책 &emsp; 이메일무단수집거부",
-            "sourceType": "ALIO"
-          }
-        ],
-        "rowTrace": []
-      }
+      "extractionDiagnostics": [],
+      "rootCauseDiagnostics": [],
+      "diagnosticFiles": [],
+      "samples": [],
+      "errors": []
     },
     "detail": {
-      "ok": true,
-      "attempted": 2,
-      "validated": 2,
-      "samples": [
-        {
-          "title": "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 6급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303583",
-          "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303583",
-          "textLength": 5026,
-          "attachmentCount": 2,
-          "error": ""
-        },
-        {
-          "title": "한국산업안전보건공단 2026년도 하반기 신규직원(신입직 5급) 채용공고 서울 외 14 / 정규직 / 2026.08.06 ~ 26.08.24 / 진행중",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303582",
-          "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303582",
-          "textLength": 10995,
-          "attachmentCount": 2,
-          "error": ""
-        }
-      ]
+      "ok": false,
+      "attempted": 0,
+      "validated": 0,
+      "samples": []
     },
     "attachment": {
-      "ok": true,
-      "discovered": 4,
-      "samples": [
-        {
-          "name": "2026년도 안전보건공단 하반기 채용공고문.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066561"
-        },
-        {
-          "name": "6급 직무설명서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066562"
-        },
-        {
-          "name": "2026년도 안전보건공단 하반기 채용공고문.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066557"
-        },
-        {
-          "name": "5급 직무설명서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066558"
-        }
-      ]
+      "ok": false,
+      "discovered": 0,
+      "samples": []
     }
   }
 }

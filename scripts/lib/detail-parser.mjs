@@ -9,6 +9,16 @@ export function decodeHtmlEntities(value = '') {
     .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)));
 }
 
+function decodeHtmlBytes(bytes, contentType = '') {
+  const utf8 = new TextDecoder('utf-8').decode(bytes);
+  const header = String(contentType).match(/charset\s*=\s*["']?([^;"'\s]+)/i)?.[1] || '';
+  const meta = utf8.match(/<meta[^>]+charset\s*=\s*["']?([^"'\s/>]+)/i)?.[1]
+    || utf8.match(/<meta[^>]+content\s*=\s*["'][^"']*charset\s*=\s*([^;"'\s]+)/i)?.[1] || '';
+  const raw = (header || meta || 'utf-8').toLowerCase();
+  const charset = /euc-?kr|ks_c_5601|cp949|windows-949/.test(raw) ? 'euc-kr' : 'utf-8';
+  try { return new TextDecoder(charset).decode(bytes); } catch { return utf8; }
+}
+
 export function cleanHtml(html = '') {
   return decodeHtmlEntities(String(html))
     .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
@@ -282,6 +292,9 @@ function titleTokens(value = '') {
 
 
 const DETAIL_BODY_SELECTORS = [
+  '.board_view', '.board-view', '.view_cont', '.view-content', '.view_content',
+  '.bbs_view', '.bbs-view', '.bbsContent', '.bbs_content', '.boardContent',
+  '.board_content', '.article-content', '.article_content', '.contArea', '.contentArea',
   /<(?:div|section|article|td)\b[^>]*(?:id|class)=["'][^"']*(?:board[_-]?(?:view|content|cont)|view[_-]?(?:content|cont|body)|bbs[_-]?(?:view|content|cont)|detail[_-]?(?:content|cont|body)|article[_-]?(?:content|body)|post[_-]?(?:content|body)|contents?|editor|fr-view|se-main-container|bo_v_con)[^"']*["'][^>]*>([\s\S]*?)<\/(?:div|section|article|td)>/gi,
   /<article\b[^>]*>([\s\S]*?)<\/article>/gi
 ];
@@ -406,6 +419,11 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
       const alt = decodeHtmlEntities(attrs.match(/\b(?:alt|title)\s*=\s*["']([^"']+)["']/i)?.[1] || '');
       return { url: absoluteUrl(src, finalUrl), alt };
     }).filter(item => item.url && !/(logo|icon|btn|banner|common|header|footer|sns|loading)/i.test(`${item.url} ${item.alt}`));
+    const metadataTitleText = [
+      ...[...html.matchAll(/<meta[^>]+(?:property|name)=["'](?:og:title|twitter:title)["'][^>]+content=["']([^"']+)["']/gi)].map(m => decodeHtmlEntities(m[1] || '')),
+      ...[...html.matchAll(/<title[^>]*>([\s\S]*?)<\/title>/gi)].map(m => cleanHtml(m[1] || '')),
+      ...[...html.matchAll(/<(?:h1|h2|h3|strong)[^>]*(?:class|id)=["'][^"']*(?:title|subject|tit)[^"']*["'][^>]*>([\s\S]*?)<\/(?:h1|h2|h3|strong)>/gi)].map(m => cleanHtml(m[1] || ''))
+    ].join(' ');
     const expectedTokens = titleTokens(expectedTitle);
     const expectedMatched = expectedTokens.filter(word => fullText.includes(word)).length;
     const titleEvidence = expectedTokens.length < 2 || expectedMatched / expectedTokens.length >= 0.35;
@@ -414,7 +432,8 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
     // actual notice in HWP/PDF attachments. A page with the exact list title plus a
     // real attachment is still a valid detail page; attachment contents are handled
     // by the next pipeline stage.
-    if (text.length < 100 && !(titleEvidence && attachments.length > 0 && fullText.length >= 30) && !(titleEvidence && contentImages.length > 0 && fullText.length >= 30)) throw new Error('detail body too short');
+    const structuralEvidence = titleEvidence && (attachments.length > 0 || contentImages.length > 0);
+    if (text.length < 100 && !(structuralEvidence && fullText.length >= 20)) throw new Error('detail body too short');
     const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)|게시물\s*목록|검색결과\s*\d+건|채용공고\s*목록/.test(fullText) && !/(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text) && !titleEvidence;
     if (looksLikeListOnly) throw new Error('list page detected');
     // Only call it a site error when the response lacks the expected notice title.

@@ -222,8 +222,8 @@
     },
     "list": {
       "status": "success",
-      "code": "LIST_EXACT",
-      "reason": "화면 게시글 10건 = 추출 10건",
+      "code": "LIST_VERIFIED_EXACT",
+      "reason": "실제 게시글 목록 검증 완료 · 화면 10건 = 추출 10건 · SOURCE_RECORD_EXACT",
       "evidence": [
         {
           "url": "https://uctf.or.kr/board/employment",
@@ -1043,7 +1043,7 @@
     },
     "list": {
       "ok": true,
-      "status": "exact",
+      "status": "verified-exact",
       "pagesChecked": 3,
       "visiblePostCount": 10,
       "candidateCount": 10,
@@ -1350,12 +1350,24 @@
       ],
       "rootCauseDiagnostics": [
         {
-          "version": "1.1-passive",
+          "version": "1.2-list-accuracy",
           "mode": "passive",
           "org": "울산문화관광재단",
           "url": "https://uctf.or.kr/board/employment",
           "probableCause": "PARTIAL_ROW_REJECTION",
           "listCounterFailureReason": "COUNTER_SELECTOR_MISMATCH",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "independentDomEvidence": true,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 1,
+            "extraCandidateCount": 9,
+            "visibleUniqueTitleCount": 1,
+            "extractedTitleCount": 9
+          },
           "counterTrace": {
             "source": "unavailable",
             "rawDomRows": 1,
@@ -1515,12 +1527,24 @@
           ]
         },
         {
-          "version": "1.1-passive",
+          "version": "1.2-list-accuracy",
           "mode": "passive",
           "org": "울산문화관광재단",
           "url": "https://uctf.or.kr/api/notices?page=0&category=%EC%B1%84%EC%9A%A9",
           "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
           "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+          "accuracyVerification": {
+            "verified": true,
+            "level": "SOURCE_RECORD_EXACT",
+            "independentDomEvidence": false,
+            "exactCount": true,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": true,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 10,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 10
+          },
           "counterTrace": {
             "source": "visible-board-rows",
             "rawDomRows": 0,
@@ -1642,12 +1666,24 @@
           "rowTrace": []
         },
         {
-          "version": "1.1-passive",
+          "version": "1.2-list-accuracy",
           "mode": "passive",
           "org": "울산문화관광재단",
           "url": "https://www.uctf.or.kr/board/employment",
           "probableCause": "PARTIAL_ROW_REJECTION",
           "listCounterFailureReason": "COUNTER_SELECTOR_MISMATCH",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "independentDomEvidence": true,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 1,
+            "extraCandidateCount": 9,
+            "visibleUniqueTitleCount": 1,
+            "extractedTitleCount": 9
+          },
           "counterTrace": {
             "source": "unavailable",
             "rawDomRows": 1,
@@ -1884,12 +1920,24 @@
       ],
       "errors": [],
       "selectedRootCause": {
-        "version": "1.1-passive",
+        "version": "1.2-list-accuracy",
         "mode": "passive",
         "org": "울산문화관광재단",
         "url": "https://uctf.or.kr/api/notices?page=0&category=%EC%B1%84%EC%9A%A9",
         "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
         "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+        "accuracyVerification": {
+          "verified": true,
+          "level": "SOURCE_RECORD_EXACT",
+          "independentDomEvidence": false,
+          "exactCount": true,
+          "exactTitleSet": false,
+          "strongAdapterRecordEvidence": true,
+          "missingTitleCount": 0,
+          "extraCandidateCount": 10,
+          "visibleUniqueTitleCount": 0,
+          "extractedTitleCount": 10
+        },
         "counterTrace": {
           "source": "visible-board-rows",
           "rawDomRows": 0,
@@ -2009,6 +2057,18 @@
           }
         ],
         "rowTrace": []
+      },
+      "accuracyVerification": {
+        "verified": true,
+        "level": "SOURCE_RECORD_EXACT",
+        "independentDomEvidence": false,
+        "exactCount": true,
+        "exactTitleSet": false,
+        "strongAdapterRecordEvidence": true,
+        "missingTitleCount": 0,
+        "extraCandidateCount": 10,
+        "visibleUniqueTitleCount": 0,
+        "extractedTitleCount": 10
       }
     },
     "detail": {

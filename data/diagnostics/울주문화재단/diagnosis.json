@@ -299,8 +299,8 @@
     },
     "list": {
       "status": "success",
-      "code": "LIST_EXACT",
-      "reason": "화면 게시글 1건 = 추출 1건",
+      "code": "LIST_VERIFIED_EXACT",
+      "reason": "실제 게시글 목록 검증 완료 · 화면 1건 = 추출 1건 · SOURCE_RECORD_EXACT",
       "evidence": [
         {
           "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
@@ -1003,7 +1003,7 @@
     },
     "list": {
       "ok": true,
-      "status": "exact",
+      "status": "verified-exact",
       "pagesChecked": 3,
       "visiblePostCount": 1,
       "candidateCount": 1,
@@ -1093,12 +1093,24 @@
       ],
       "rootCauseDiagnostics": [
         {
-          "version": "1.1-passive",
+          "version": "1.2-list-accuracy",
           "mode": "passive",
           "org": "울주문화재단",
           "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
           "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
           "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+          "accuracyVerification": {
+            "verified": true,
+            "level": "SOURCE_RECORD_EXACT",
+            "independentDomEvidence": false,
+            "exactCount": true,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": true,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 1,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 1
+          },
           "counterTrace": {
             "source": "visible-board-rows",
             "rawDomRows": 0,
@@ -1116,7 +1128,7 @@
             "candidateCount": 1,
             "rawTableRows": 0,
             "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 8280,
+            "sourceHtmlLength": 8279,
             "missingRows": 0,
             "extraCandidates": 1
           },
@@ -1150,12 +1162,24 @@
           "rowTrace": []
         },
         {
-          "version": "1.1-passive",
+          "version": "1.2-list-accuracy",
           "mode": "passive",
           "org": "울주문화재단",
           "url": "https://uljuculture.hubst.co.kr/",
           "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
           "listCounterFailureReason": "UNKNOWN",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "independentDomEvidence": false,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 0
+          },
           "counterTrace": {
             "source": "unavailable",
             "rawDomRows": 0,
@@ -1193,12 +1217,24 @@
           "rowTrace": []
         },
         {
-          "version": "1.1-passive",
+          "version": "1.2-list-accuracy",
           "mode": "passive",
           "org": "울주문화재단",
           "url": "https://uljuculture.hubst.co.kr/applicantMain/goNoticePage.do",
           "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
           "listCounterFailureReason": "UNKNOWN",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "independentDomEvidence": false,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 0
+          },
           "counterTrace": {
             "source": "unavailable",
             "rawDomRows": 0,
@@ -1268,12 +1304,24 @@
       ],
       "errors": [],
       "selectedRootCause": {
-        "version": "1.1-passive",
+        "version": "1.2-list-accuracy",
         "mode": "passive",
         "org": "울주문화재단",
         "url": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do",
         "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
         "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+        "accuracyVerification": {
+          "verified": true,
+          "level": "SOURCE_RECORD_EXACT",
+          "independentDomEvidence": false,
+          "exactCount": true,
+          "exactTitleSet": false,
+          "strongAdapterRecordEvidence": true,
+          "missingTitleCount": 0,
+          "extraCandidateCount": 1,
+          "visibleUniqueTitleCount": 0,
+          "extractedTitleCount": 1
+        },
         "counterTrace": {
           "source": "visible-board-rows",
           "rawDomRows": 0,
@@ -1291,7 +1339,7 @@
           "candidateCount": 1,
           "rawTableRows": 0,
           "uniqueVisibleTitleCount": 0,
-          "sourceHtmlLength": 8280,
+          "sourceHtmlLength": 8279,
           "missingRows": 0,
           "extraCandidates": 1
         },
@@ -1323,6 +1371,18 @@
           }
         ],
         "rowTrace": []
+      },
+      "accuracyVerification": {
+        "verified": true,
+        "level": "SOURCE_RECORD_EXACT",
+        "independentDomEvidence": false,
+        "exactCount": true,
+        "exactTitleSet": false,
+        "strongAdapterRecordEvidence": true,
+        "missingTitleCount": 0,
+        "extraCandidateCount": 1,
+        "visibleUniqueTitleCount": 0,
+        "extractedTitleCount": 1
       }
     },
     "detail": {

@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Remove retired institution data
+        run: node scripts/cleanup-retired-sources.mjs
+
       - name: Preserve previous pipeline report
         shell: bash
         run: |

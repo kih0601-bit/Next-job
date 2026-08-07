@@ -119,7 +119,7 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls }) => {
     alio: false,
     detail: true,
     requireValidDetail: true,
-    discoverListings: !directBoard,
+    discoverListings: org === '울산문화관광재단' ? true : !directBoard,
     maxListingPages: 4
   };
 });

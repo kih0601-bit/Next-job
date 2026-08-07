@@ -288,7 +288,36 @@ function titleFromBoardRow(row) {
   return cellTexts.sort((a,b) => b.length-a.length)[0] || '';
 }
 
-export function countVisibleBoardPosts(html = '') {
+export function countVisibleBoardPosts(html = '', source = null) {
+  const raw = String(html);
+  const org = source?.org || '';
+  const url = source?.url || '';
+
+  // Institution-specific counters for boards that do not expose normal <tr>/<a> rows.
+  if (/job\.alio\.go\.kr/i.test(url)) {
+    const ids = new Set([...raw.matchAll(/recruitView\.do\?idx=(\d+)/gi)].map(m => m[1]));
+    if (ids.size) return ids.size;
+  }
+  if (org === '한국석유공사' && /sub01_7_9\.jsp/i.test(url)) {
+    const ids = new Set([...raw.matchAll(/[?&](?:amp;)?num=(\d+)[^\"']*?[&](?:amp;)?mode=view[^\"']*?[&](?:amp;)?bid=RECRUIT/gi)].map(m => m[1]));
+    if (ids.size) return ids.size;
+  }
+  if (org === '울주군시설관리공단') {
+    const board = raw.match(/<table\b[^>]*class\s*=\s*([\"'])[^\"']*board_list[^\"']*\1[^>]*>[\s\S]*?<\/table>/i)?.[0] || '';
+    const ids = new Set([...board.matchAll(/<input\b[^>]*name\s*=\s*([\"'])nttId\1[^>]*value\s*=\s*([\"'])(\d+)\2/gi)].map(m => m[3]));
+    if (ids.size) return ids.size;
+  }
+  if (org === '울주문화재단') {
+    const ids = new Set([...raw.matchAll(/class\s*=\s*(["'])[^"']*rowArea[^"']*\1[^>]*opnIdx\s*=\s*(["'])([^"']+)\2/gi)].map(m => m[3]));
+    if (ids.size) return ids.size;
+  }
+  if (org === '울산문화관광재단' && /^\s*\{/.test(raw)) {
+    try {
+      const data = JSON.parse(raw);
+      if (Array.isArray(data.content)) return data.content.length;
+    } catch { /* not JSON */ }
+  }
+
   const rows = visibleBoardRows(html);
   const seen = new Set();
   for (const row of rows) {
@@ -296,7 +325,7 @@ export function countVisibleBoardPosts(html = '') {
     const action = row.block.match(/\bonclick\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
     const href = row.block.match(/<a\b[^>]*\bhref\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
     const id = action.match(/(?:view|fn_Detail|goView|fnView|detail|fn_egov_inqire_notice|goBoardArticle)\s*\(\s*["']?([^"')\s,]+)/i)?.[1]
-      || href.match(/[?&](?:idx|seq|no|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo)=([^&#]+)/i)?.[1]
+      || href.match(/[?&](?:idx|seq|no|num|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo)=([^&#]+)/i)?.[1]
       || normalizeBoardKey(title);
     if (id) seen.add(`${normalizeBoardKey(title)}|${id}`);
   }
@@ -315,8 +344,61 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     }
   } catch { /* continue with institution adapter */ }
 
+  if (source.org === '울산문화관광재단' && /^\s*\{/.test(String(html))) {
+    try {
+      const data = JSON.parse(String(html));
+      const items = Array.isArray(data.content) ? data.content : [];
+      const jobs = items.slice(0, 100).map(item => ({
+        org: source.org,
+        title: String(item.title || '').replace(/\s+/g, ' ').trim(),
+        link: absoluteUrl(`/board/employment/view/${item.id}`, 'https://uctf.or.kr/'),
+        listText: [item.title, item.category, item.state, item.createdDate || item.regDate || ''].filter(Boolean).join(' '),
+        adapter: `${source.org}:api-notices`
+      })).filter(item => validTitle(item.title));
+      Object.defineProperty(jobs, 'diagnostics', { value: { visiblePostCount: jobs.length, rowMode: true, anchors: 0, titleMatches: jobs.length, noUrl: 0, unsafeUrl: 0, accepted: jobs.length, rowFallbackAccepted: 0, clickableBlocksScanned: 0, clickableBlocksAccepted: 0, listOnlyAccepted: 0, titleSamples: jobs.slice(0,8).map(x=>x.title), unsafeSamples: [], actionSamples: [], candidateUrlSamples: jobs.slice(0,8).map(x=>({title:x.title,url:x.link,allowed:true})) }, enumerable: false });
+      return jobs;
+    } catch { /* fall through to HTML parser */ }
+  }
+
   const jobs = [];
   const seen = new Set();
+
+  // 울주군시설관리공단: 제목이 <a>가 아니라 submit input에 있고 nttId는 hidden input에 있다.
+  if (source.org === '울주군시설관리공단') {
+    const board = String(html).match(/<table\b[^>]*class\s*=\s*(["'])[^"']*board_list[^"']*\1[^>]*>[\s\S]*?<\/table>/i)?.[0] || '';
+    for (const match of board.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+      const block = match[0];
+      const id = block.match(/<input\b[^>]*name\s*=\s*(["'])nttId\1[^>]*value\s*=\s*(["'])(\d+)\2/i)?.[3] || '';
+      const title = decodeHtmlEntities(block.match(/<input\b[^>]*type\s*=\s*(["'])submit\1[^>]*value\s*=\s*(["'])([\s\S]*?)\2/i)?.[3] || '').replace(/\s+/g, ' ').trim();
+      if (!id || !validTitle(title)) continue;
+      const link = absoluteUrl(`/portal/bbs/selectArticleDetail.do?bbsId=BBSMSTR_000000000011&nttId=${encodeURIComponent(id)}`, source.url);
+      const key = `${source.org}|${id}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      jobs.push({ org: source.org, title, link: canonicalJobUrl(link), listText: cleanHtml(block).replace(/\s+/g, ' ').trim(), adapter: `${source.org}:hidden-nttid-row` });
+    }
+    if (jobs.length) {
+      Object.defineProperty(jobs, 'diagnostics', { value: { visiblePostCount: jobs.length, rowMode: true, anchors: 0, titleMatches: jobs.length, noUrl: 0, unsafeUrl: 0, accepted: jobs.length, rowFallbackAccepted: 0, clickableBlocksScanned: 0, clickableBlocksAccepted: 0, listOnlyAccepted: 0, titleSamples: jobs.slice(0,8).map(x=>x.title), unsafeSamples: [], actionSamples: [], candidateUrlSamples: [] }, enumerable: false });
+      return jobs;
+    }
+  }
+
+  // 울주문화재단: 공고 행 전체가 .rowArea[opnIdx]로 클릭되는 POST 방식이다.
+  if (source.org === '울주문화재단') {
+    for (const match of String(html).matchAll(/<[^>]+class\s*=\s*(["'])[^"']*rowArea[^"']*\1[^>]*opnIdx\s*=\s*(["'])([^"']+)\2[^>]*>([\s\S]*?)(?=<[^>]+class\s*=\s*(["'])[^"']*rowArea|$)/gi)) {
+      const id = match[3];
+      const block = match[0];
+      const clean = cleanHtml(block).replace(/\s+/g, ' ').trim();
+      const title = clean.replace(/^(?:진행중|마감|접수중|접수마감)\s*/,'').slice(0,260).trim();
+      if (!id || !validTitle(title)) continue;
+      jobs.push({ org: source.org, title, link: `${canonicalJobUrl(source.url)}#list-opnIdx-${encodeURIComponent(id)}`, listText: clean, adapter: `${source.org}:rowArea`, listOnly: true, listIdentity: id });
+    }
+    if (jobs.length) {
+      Object.defineProperty(jobs, 'diagnostics', { value: { visiblePostCount: jobs.length, rowMode: true, anchors: 0, titleMatches: jobs.length, noUrl: jobs.length, unsafeUrl: 0, accepted: jobs.length, rowFallbackAccepted: 0, clickableBlocksScanned: jobs.length, clickableBlocksAccepted: jobs.length, listOnlyAccepted: jobs.length, titleSamples: jobs.slice(0,8).map(x=>x.title), unsafeSamples: [], actionSamples: [], candidateUrlSamples: [] }, enumerable: false });
+      return jobs;
+    }
+  }
+
   const boardRows = visibleBoardRows(html);
   const diagnostics = { visiblePostCount: boardRows.length, rowMode: boardRows.length > 0, anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, clickableBlocksScanned: 0, clickableBlocksAccepted: 0, listOnlyAccepted: 0, titleSamples: [], unsafeSamples: [], actionSamples: [], candidateUrlSamples: [] };
 
@@ -334,7 +416,9 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       || row.block.match(/(?:data-)?(?:idx|seq|no|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo)\s*=\s*(["'])([^"']+)\1/i)?.[2]
       || `row-${row.start}`;
     const canonical = link ? canonicalJobUrl(link) : `${canonicalJobUrl(source.url)}#list-${encodeURIComponent(identity)}`;
-    const key = `${source.org}|${normalizeTitleForDedup(title)}|${canonical}`;
+    const key = source.org === '울산복지가족진흥사회서비스원'
+      ? `${source.org}|${normalizeTitleForDedup(title)}`
+      : `${source.org}|${normalizeTitleForDedup(title)}|${canonical}`;
     if (seen.has(key)) continue;
     seen.add(key);
     jobs.push({ org: source.org, title, link: canonical, listText: cleanHtml(row.block).replace(/\s+/g, ' ').trim(), adapter: `${source.org}:board-row`, ...(link ? {} : { listOnly: true, listIdentity: identity }) });
@@ -468,6 +552,9 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
 }
 
 export function discoverListingUrls(html, source) {
+  if (source.org === '울산문화관광재단') {
+    return [source.url, 'https://uctf.or.kr/api/notices?page=0&category=%EC%B1%84%EC%9A%A9'];
+  }
   if (!source.discoverListings) return [source.url];
   const urls = [source.url];
   const seen = new Set(urls.map(canonicalJobUrl));

@@ -2,198 +2,32 @@
   "org": "한국석유공사",
   "health": "degraded",
   "primaryCause": {
-    "stage": "list",
-    "status": "partial",
-    "code": "LIST_COUNT_EXACT_UNVERIFIED",
-    "reason": "개수는 15건으로 일치하지만 실제 게시글 제목 집합의 정확성은 아직 독립 검증되지 않음",
+    "stage": "detail",
+    "status": "failed",
+    "code": "DETAIL_EMPTY_BODY",
+    "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
     "evidence": [
       {
-        "url": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp",
-        "visiblePostCount": 15,
-        "rowMode": true,
-        "anchors": 141,
-        "titleMatches": 15,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 15,
-        "rowFallbackAccepted": 0,
-        "clickableBlocksScanned": 0,
-        "clickableBlocksAccepted": 0,
-        "listOnlyAccepted": 0,
-        "titleSamples": [
-          "2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�",
-          "2026�� �Ϲݱ� ����(ü����) ä����� [����]",
-          "2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)",
-          "2026�� ��ݱ� ����(�Ⱓ��) ä�� ���� ��� �ȳ�",
-          "2026�� ��ݱ� ����(�Ⱓ��) ä����� (����)",
-          "2025�� �ѱ��������� ���� ����ä�� ���� (����)",
-          "��2025�� ä����� �˸��̡� ���� ��û �ȳ� (����..",
-          "2025�⵵ �ѱ��������� ���� ä���ȹ(��)"
-        ],
-        "unsafeSamples": [],
-        "actionSamples": [],
-        "candidateUrlSamples": [],
-        "candidateCount": 15,
-        "exactMatch": true,
-        "missingCount": 0,
-        "extraCount": 0,
-        "countSource": "visible-board-rows"
+        "title": "2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�",
+        "requestedUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=73&psize=15&ses=USERSESSION&text=",
+        "ok": false,
+        "finalUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=73&psize=15&ses=USERSESSION&text=",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "final url is not a detail page"
       },
       {
-        "url": "https://m.knoc.co.kr/sub01/sub01_7_9.jsp",
-        "visiblePostCount": 15,
-        "rowMode": false,
-        "anchors": 264,
-        "titleMatches": 245,
-        "noUrl": 0,
-        "unsafeUrl": 0,
-        "accepted": 0,
-        "rowFallbackAccepted": 0,
-        "clickableBlocksScanned": 0,
-        "clickableBlocksAccepted": 0,
-        "listOnlyAccepted": 0,
-        "titleSamples": [
-          "���� �ٷΰ���",
-          "�ѱ���������",
-          "�˻��ϱ�",
-          "�α���",
-          "����Ʈ��",
-          "Ȩ����",
-          "�޴� �ݱ�",
-          "CEO �λ縻"
-        ],
-        "unsafeSamples": [],
-        "actionSamples": [],
-        "candidateUrlSamples": [],
-        "candidateCount": 0,
-        "exactMatch": false,
-        "missingCount": 15,
-        "extraCount": 0,
-        "countSource": "visible-board-rows"
-      },
-      {
-        "url": "https://www.knoc.co.kr/",
-        "visiblePostCount": null,
-        "rowMode": false,
-        "anchors": 105,
-        "titleMatches": 84,
-        "noUrl": 0,
-        "unsafeUrl": 1,
-        "accepted": 13,
-        "rowFallbackAccepted": 1,
-        "clickableBlocksScanned": 0,
-        "clickableBlocksAccepted": 0,
-        "listOnlyAccepted": 1,
-        "titleSamples": [
-          "�������ΰ���",
-          "�α���",
-          "ENGLISH",
-          "�ѱ���������",
-          "����Ұ�",
-          "������ �� �ֿ����",
-          "�ӿ� �� �濵��",
-          "ȸ�翬��"
-        ],
-        "unsafeSamples": [
-          {
-            "title": "Opinet �⸧���� �Ƴ��� ������ �ѱ��������� ���ǳ�",
-            "reason": "detail-url-pending",
-            "identity": "row-42893",
-            "row": "<li class=\"opinet\">\r\n\t\t\t\t\t\t<a href=\"https://www.opinet.co.kr/user/main/mainView.do\" target=\"_blank\">\r\n\t\t\t\t\t\t\t<h3>Opinet</h3>\r\n\t\t\t\t\t\t\t<p>�⸧���� �Ƴ��� ������ �ѱ��������� ���ǳ�</p>\r\n\t\t\t\t\t\t\t<img class=\"arrow\" src=\"images/main/i_go_03.png\" alt=\"ȭ��ǥ\">\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t</li>"
-          }
-        ],
-        "actionSamples": [],
-        "candidateUrlSamples": [
-          {
-            "title": "[�����ڷ�] �ѱ���������, ���� �� ������ �۾� ���� ã�� ���ð� ���� ����� �ǽ� �� ���»� ��� �� ���� ���� ���� ü�� ������ �(2026.07.29.) 2026-07-29",
-            "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=996&mode=view&bid=NEWS&field=subject&text=&page=1",
-            "allowed": true
-          },
-          {
-            "title": "[�����ڷ�] �ѱ���������, ���� �湮�� ���� ������� ����ȸ ����(2026.07.27.) 2026-07-27",
-            "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=995&mode=view&bid=NEWS&field=subject&text=&page=1",
-            "allowed": true
-          },
-          {
-            "title": "[�����ڷ�] �ѱ���������, ���� �������� ������ ������ ���� ����ȸ�� �ǽ�(2026.07.24.) 2026-07-24",
-            "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=994&mode=view&bid=NEWS&field=subject&text=&page=1",
-            "allowed": true
-          },
-          {
-            "title": "[�����ڷ�] �ѱ���������, ��������ĺ� �Ұ� ��2026 �糭���� �������� ����(2026.07.22.) 2026-07-22",
-            "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=993&mode=view&bid=NEWS&field=subject&text=&page=1",
-            "allowed": true
-          },
-          {
-            "title": "[�����ڷ�] �ѱ���������, �������硤�Ѽ����� �������ࡦ���� ��� ���� ����(2026.07.15.) 2026-07-15",
-            "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp?num=992&mode=view&bid=NEWS&field=subject&text=&page=1",
-            "allowed": true
-          },
-          {
-            "title": "�����ڷ� �ٷΰ���",
-            "url": "https://www.knoc.co.kr/sub11/sub11_1.jsp",
-            "allowed": true
-          },
-          {
-            "title": "���ں� ������ȸ",
-            "url": "https://www.opinet.co.kr/user/dopospdrg/dopOsPdrgSelect.do",
-            "allowed": false
-          },
-          {
-            "title": "���ں� ������ȸ",
-            "url": "https://www.knoc.co.kr/?id=tab1-1",
-            "allowed": true
-          },
-          {
-            "title": "���ں� ������ȸ",
-            "url": "https://www.knoc.co.kr/?id=tab1-2",
-            "allowed": true
-          },
-          {
-            "title": "���ں� ������ȸ",
-            "url": "https://www.knoc.co.kr/?id=tab1-3",
-            "allowed": true
-          },
-          {
-            "title": "��������-��������-�Ѽ��� ���� ���Ͽ� ���� ��������� (2026.07,15)",
-            "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
-            "allowed": true
-          },
-          {
-            "title": "UAE ADNOC�� CEO ��� (2026.07.08.)",
-            "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
-            "allowed": true
-          },
-          {
-            "title": "����-�ѱ������ڿ�����, �ؾ���°� ȸ�� �� ������ȸ ��� ���� �������� ü�� (2026.07.07)",
-            "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
-            "allowed": true
-          },
-          {
-            "title": "���ּ� ����, �ؿܻ������ ���� ���� ���� (2026.07.06.)",
-            "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
-            "allowed": true
-          },
-          {
-            "title": "���䴺�� �ٷΰ���",
-            "url": "https://www.knoc.co.kr/sub11/sub11_2.jsp",
-            "allowed": true
-          },
-          {
-            "title": "Opinet �⸧���� �Ƴ��� ������ �ѱ��������� ���ǳ�",
-            "url": "https://www.opinet.co.kr/user/main/mainView.do",
-            "allowed": false
-          }
-        ],
-        "candidateCount": 13,
-        "exactMatch": false,
-        "missingCount": null,
-        "extraCount": null,
-        "countSource": "unavailable"
+        "title": "2026�� �Ϲݱ� ����(ü����) ä����� [����]",
+        "requestedUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=72&psize=15&ses=USERSESSION&text=",
+        "ok": false,
+        "finalUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=72&psize=15&ses=USERSESSION&text=",
+        "textLength": 0,
+        "attachmentCount": 0,
+        "error": "final url is not a detail page"
       }
     ],
     "repairTarget": "scripts/collectors/institutions/한국석유공사.mjs",
-    "recommendedAction": "게시글 행/제목 집합을 독립적으로 식별해 실제 목록과 추출 결과의 제목 단위 일치 검증 추가"
+    "recommendedAction": "기관 전용 상세 본문 선택자 추가"
   },
   "diagnosis": {
     "http": {
@@ -444,9 +278,9 @@
       }
     },
     "list": {
-      "status": "partial",
-      "code": "LIST_COUNT_EXACT_UNVERIFIED",
-      "reason": "개수는 15건으로 일치하지만 실제 게시글 제목 집합의 정확성은 아직 독립 검증되지 않음",
+      "status": "success",
+      "code": "LIST_VERIFIED_EXACT",
+      "reason": "실제 게시글 목록 검증 완료 · 화면 15건 = 추출 15건 · TEMPLATE_TABLE_RECORD_EXACT",
       "evidence": [
         {
           "url": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp",
@@ -478,6 +312,25 @@
           "exactMatch": true,
           "missingCount": 0,
           "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 15,
+            "candidateCount": 15,
+            "matchedCount": 15,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "35 2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ� ����濵ó 2026-07-09 1757",
+              "34 2026�� �Ϲݱ� ����(ü����) ä����� [����] ����濵ó 2026-06-23 7087",
+              "33 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��) ����濵ó 2026-05-18 10742",
+              "32 2026�� ��ݱ� ����(�Ⱓ��) ä�� ���� ��� �ȳ� ����濵ó 2026-04-07 1786",
+              "31 2026�� ��ݱ� ����(�Ⱓ��) ä����� (����) ����濵ó 2026-03-18 3778",
+              "30 2025�� �ѱ��������� ���� ����ä�� ���� (����) ����濵ó 2025-04-24 65496",
+              "29 ��2025�� ä����� �˸��̡� ���� ��û �ȳ� (����.. ����濵ó 2025-04-18 5132",
+              "28 2025�⵵ �ѱ��������� ���� ä���ȹ(��) ����濵ó 2025-02-04 13677"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
           "countSource": "visible-board-rows"
         },
         {
@@ -510,6 +363,16 @@
           "exactMatch": false,
           "missingCount": 15,
           "extraCount": 0,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "visible-board-rows"
         },
         {
@@ -630,15 +493,57 @@
           "exactMatch": false,
           "missingCount": null,
           "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 13,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "[�����ڷ�] �ѱ���������, ���� �� ������ �۾� ���� ã�� ���ð� ���� ����� �ǽ� �� ���»� ��� �� ���� ���� ���� ü�� ������ �(2026.07.29.) 2026-07-29",
+              "[�����ڷ�] �ѱ���������, ���� �湮�� ���� ������� ����ȸ ����(2026.07.27.) 2026-07-27",
+              "[�����ڷ�] �ѱ���������, ���� �������� ������ ������ ���� ����ȸ�� �ǽ�(2026.07.24.) 2026-07-24",
+              "[�����ڷ�] �ѱ���������, ��������ĺ� �Ұ� ��2026 �糭���� �������� ����(2026.07.22.) 2026-07-22",
+              "[�����ڷ�] �ѱ���������, �������硤�Ѽ����� �������ࡦ���� ��� ���� ����(2026.07.15.) 2026-07-15",
+              "�����ڷ� �ٷΰ���",
+              "���ں� ������ȸ",
+              "��������-��������-�Ѽ��� ���� ���Ͽ� ���� ��������� (2026.07,15)",
+              "UAE ADNOC�� CEO ��� (2026.07.08.)",
+              "����-�ѱ������ڿ�����, �ؾ���°� ȸ�� �� ������ȸ ��� ���� �������� ü�� (2026.07.07)",
+              "���ּ� ����, �ؿܻ������ ���� ���� ���� (2026.07.06.)",
+              "���䴺�� �ٷΰ���"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "unavailable"
         }
       ]
     },
     "detail": {
-      "status": "blocked",
-      "code": "DETAIL_BLOCKED_BY_LIST",
-      "reason": "목록 단계 미통과로 상세 진단 보류",
-      "evidence": []
+      "status": "failed",
+      "code": "DETAIL_EMPTY_BODY",
+      "reason": "상세 응답은 받았지만 본문 텍스트를 찾지 못함",
+      "evidence": [
+        {
+          "title": "2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�",
+          "requestedUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=73&psize=15&ses=USERSESSION&text=",
+          "ok": false,
+          "finalUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=73&psize=15&ses=USERSESSION&text=",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "final url is not a detail page"
+        },
+        {
+          "title": "2026�� �Ϲݱ� ����(ü����) ä����� [����]",
+          "requestedUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=72&psize=15&ses=USERSESSION&text=",
+          "ok": false,
+          "finalUrl": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=72&psize=15&ses=USERSESSION&text=",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "final url is not a detail page"
+        }
+      ]
     },
     "attachment": {
       "status": "blocked",
@@ -694,7 +599,7 @@
     }
   },
   "repairTarget": "scripts/collectors/institutions/한국석유공사.mjs",
-  "recommendedAction": "게시글 행/제목 집합을 독립적으로 식별해 실제 목록과 추출 결과의 제목 단위 일치 검증 추가",
+  "recommendedAction": "기관 전용 상세 본문 선택자 추가",
   "stages": {
     "access": {
       "ok": true,
@@ -1255,8 +1160,8 @@
       }
     },
     "list": {
-      "ok": false,
-      "status": "count-exact-unverified",
+      "ok": true,
+      "status": "verified-exact",
       "pagesChecked": 3,
       "visiblePostCount": 15,
       "candidateCount": 15,
@@ -1297,6 +1202,25 @@
           "exactMatch": true,
           "missingCount": 0,
           "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 15,
+            "candidateCount": 15,
+            "matchedCount": 15,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "35 2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ� ����濵ó 2026-07-09 1757",
+              "34 2026�� �Ϲݱ� ����(ü����) ä����� [����] ����濵ó 2026-06-23 7087",
+              "33 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��) ����濵ó 2026-05-18 10742",
+              "32 2026�� ��ݱ� ����(�Ⱓ��) ä�� ���� ��� �ȳ� ����濵ó 2026-04-07 1786",
+              "31 2026�� ��ݱ� ����(�Ⱓ��) ä����� (����) ����濵ó 2026-03-18 3778",
+              "30 2025�� �ѱ��������� ���� ����ä�� ���� (����) ����濵ó 2025-04-24 65496",
+              "29 ��2025�� ä����� �˸��̡� ���� ��û �ȳ� (����.. ����濵ó 2025-04-18 5132",
+              "28 2025�⵵ �ѱ��������� ���� ä���ȹ(��) ����濵ó 2025-02-04 13677"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
           "countSource": "visible-board-rows"
         },
         {
@@ -1329,6 +1253,16 @@
           "exactMatch": false,
           "missingCount": 15,
           "extraCount": 0,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "visible-board-rows"
         },
         {
@@ -1449,20 +1383,63 @@
           "exactMatch": false,
           "missingCount": null,
           "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 13,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "[�����ڷ�] �ѱ���������, ���� �� ������ �۾� ���� ã�� ���ð� ���� ����� �ǽ� �� ���»� ��� �� ���� ���� ���� ü�� ������ �(2026.07.29.) 2026-07-29",
+              "[�����ڷ�] �ѱ���������, ���� �湮�� ���� ������� ����ȸ ����(2026.07.27.) 2026-07-27",
+              "[�����ڷ�] �ѱ���������, ���� �������� ������ ������ ���� ����ȸ�� �ǽ�(2026.07.24.) 2026-07-24",
+              "[�����ڷ�] �ѱ���������, ��������ĺ� �Ұ� ��2026 �糭���� �������� ����(2026.07.22.) 2026-07-22",
+              "[�����ڷ�] �ѱ���������, �������硤�Ѽ����� �������ࡦ���� ��� ���� ����(2026.07.15.) 2026-07-15",
+              "�����ڷ� �ٷΰ���",
+              "���ں� ������ȸ",
+              "��������-��������-�Ѽ��� ���� ���Ͽ� ���� ��������� (2026.07,15)",
+              "UAE ADNOC�� CEO ��� (2026.07.08.)",
+              "����-�ѱ������ڿ�����, �ؾ���°� ȸ�� �� ������ȸ ��� ���� �������� ü�� (2026.07.07)",
+              "���ּ� ����, �ؿܻ������ ���� ���� ���� (2026.07.06.)",
+              "���䴺�� �ٷΰ���"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "unavailable"
         }
       ],
       "rootCauseDiagnostics": [
         {
-          "version": "1.2-list-accuracy",
+          "version": "1.3-list-template-verification",
           "mode": "passive",
           "org": "한국석유공사",
           "url": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp",
           "probableCause": "PARTIAL_ROW_REJECTION",
           "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
           "accuracyVerification": {
-            "verified": false,
-            "level": "COUNT_EXACT_ONLY",
+            "verified": true,
+            "level": "TEMPLATE_TABLE_RECORD_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": true,
+              "template": "TABLE_RECORD",
+              "recordCount": 15,
+              "candidateCount": 15,
+              "matchedCount": 15,
+              "unmatchedTitles": [],
+              "recordSamples": [
+                "35 2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ� ����濵ó 2026-07-09 1757",
+                "34 2026�� �Ϲݱ� ����(ü����) ä����� [����] ����濵ó 2026-06-23 7087",
+                "33 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��) ����濵ó 2026-05-18 10742",
+                "32 2026�� ��ݱ� ����(�Ⱓ��) ä�� ���� ��� �ȳ� ����濵ó 2026-04-07 1786",
+                "31 2026�� ��ݱ� ����(�Ⱓ��) ä����� (����) ����濵ó 2026-03-18 3778",
+                "30 2025�� �ѱ��������� ���� ����ä�� ���� (����) ����濵ó 2025-04-24 65496",
+                "29 ��2025�� ä����� �˸��̡� ���� ��û �ȳ� (����.. ����濵ó 2025-04-18 5132",
+                "28 2025�⵵ �ѱ��������� ���� ä���ȹ(��) ����濵ó 2025-02-04 13677"
+              ],
+              "level": "TEMPLATE_TABLE_RECORD_EXACT"
+            },
             "independentDomEvidence": true,
             "exactCount": true,
             "exactTitleSet": false,
@@ -1566,14 +1543,14 @@
               "index": 0,
               "title": "2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�",
               "normalizedTitle": "2026",
-              "text": "35 2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ� ����濵ó 2026-07-09 1756",
+              "text": "35 2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ� ����濵ó 2026-07-09 1757",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "/sub01/sub01_7_9.jsp?page=1&amp;num=73&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15",
               "onclick": "",
               "dataUrl": "",
-              "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t35\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=73&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 07�� 09�� 00�� 00�� 00��\">2026-07-09</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=8101B5DC1543DD670AA7B1588C4E58CD&amp;fno=CAA9D618E777DC49BED5FEB33CC93CBB&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�.pdf : 72.257KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>1756</td>\n\t\t</tr>",
+              "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t35\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=73&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 07�� 09�� 00�� 00�� 00��\">2026-07-09</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=8101B5DC1543DD670AA7B1588C4E58CD&amp;fno=CAA9D618E777DC49BED5FEB33CC93CBB&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�.pdf : 72.257KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>1757</td>\n\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=69&psize=15&ses=USERSESSION&text=",
               "adapter": "한국석유공사:board-row",
@@ -1583,14 +1560,14 @@
               "index": 1,
               "title": "2026�� �Ϲݱ� ����(ü����) ä����� [����]",
               "normalizedTitle": "2026",
-              "text": "34 2026�� �Ϲݱ� ����(ü����) ä����� [����] ����濵ó 2026-06-23 7085",
+              "text": "34 2026�� �Ϲݱ� ����(ü����) ä����� [����] ����濵ó 2026-06-23 7087",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "/sub01/sub01_7_9.jsp?page=1&amp;num=72&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15",
               "onclick": "",
               "dataUrl": "",
-              "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t34\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=72&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(ü����) ä����� [����]</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 06�� 23�� 00�� 00�� 00��\">2026-06-23</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&amp;fno=C3C1D06546817246AB5A9EDE4A74D84C&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"1 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����.pdf : 435.384KB\" /></a>\n\t\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&amp;fno=BFB2242E89D78821BD8EB06BA08E6073&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_zip.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����_����.zip : 4,892.882KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>7085</td>\n\t\t</tr>",
+              "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t34\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=72&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(ü����) ä����� [����]</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 06�� 23�� 00�� 00�� 00��\">2026-06-23</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&amp;fno=C3C1D06546817246AB5A9EDE4A74D84C&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"1 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����.pdf : 435.384KB\" /></a>\n\t\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&amp;fno=BFB2242E89D78821BD8EB06BA08E6073&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_zip.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����_����.zip : 4,892.882KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>7087</td>\n\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=69&psize=15&ses=USERSESSION&text=",
               "adapter": "한국석유공사:board-row",
@@ -1600,14 +1577,14 @@
               "index": 2,
               "title": "2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)",
               "normalizedTitle": "2026",
-              "text": "33 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��) ����濵ó 2026-05-18 10740",
+              "text": "33 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��) ����濵ó 2026-05-18 10742",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "/sub01/sub01_7_9.jsp?page=1&amp;num=71&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15",
               "onclick": "",
               "dataUrl": "",
-              "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t33\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=71&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 05�� 18�� 00�� 00�� 00��\">2026-05-18</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=E0BAC17FDE31A0E0FC215445CD9E8A21&amp;fno=641A4D1ACAD51B1A2E0986F21F479934&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"�ѱ��������� 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��).pdf : 93.466KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>10740</td>\n\t\t</tr>",
+              "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t33\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=71&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 05�� 18�� 00�� 00�� 00��\">2026-05-18</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=E0BAC17FDE31A0E0FC215445CD9E8A21&amp;fno=641A4D1ACAD51B1A2E0986F21F479934&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"�ѱ��������� 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��).pdf : 93.466KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>10742</td>\n\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=69&psize=15&ses=USERSESSION&text=",
               "adapter": "한국석유공사:board-row",
@@ -1651,14 +1628,14 @@
               "index": 5,
               "title": "2025�� �ѱ��������� ���� ����ä�� ���� (����)",
               "normalizedTitle": "2025",
-              "text": "30 2025�� �ѱ��������� ���� ����ä�� ���� (����) ����濵ó 2025-04-24 65495",
+              "text": "30 2025�� �ѱ��������� ���� ����ä�� ���� (����) ����濵ó 2025-04-24 65496",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "/sub01/sub01_7_9.jsp?page=1&amp;num=68&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15",
               "onclick": "",
               "dataUrl": "",
-              "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t30\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=68&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2025�� �ѱ��������� ���� ����ä�� ���� (����)</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2025�� 04�� 24�� 20�� 28�� 39��\">2025-04-24</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=97405E3903E5C413954A256E0139683B&amp;fno=2F9CFE7970C5C025E12035DB024C1457&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2025�� �ѱ��������� ���� ����ä�� ����.pdf : 5,872.58KB\" /></a>\n\t\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=97405E3903E5C413954A256E0139683B&amp;fno=50F6C6217DBF3D6F50E455B7616711DC&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_zip.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2025�� �ѱ��������� ���� ����ä�� ����_����.zip : 17,265.526KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>65495</td>\n\t\t</tr>",
+              "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t30\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=68&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2025�� �ѱ��������� ���� ����ä�� ���� (����)</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2025�� 04�� 24�� 20�� 28�� 39��\">2025-04-24</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=97405E3903E5C413954A256E0139683B&amp;fno=2F9CFE7970C5C025E12035DB024C1457&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2025�� �ѱ��������� ���� ����ä�� ����.pdf : 5,872.58KB\" /></a>\n\t\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=97405E3903E5C413954A256E0139683B&amp;fno=50F6C6217DBF3D6F50E455B7616711DC&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_zip.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2025�� �ѱ��������� ���� ����ä�� ����_����.zip : 17,265.526KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>65496</td>\n\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=66&psize=15&ses=USERSESSION&text=",
               "adapter": "한국석유공사:board-row",
@@ -1837,7 +1814,7 @@
           ]
         },
         {
-          "version": "1.2-list-accuracy",
+          "version": "1.3-list-template-verification",
           "mode": "passive",
           "org": "한국석유공사",
           "url": "https://m.knoc.co.kr/sub01/sub01_7_9.jsp",
@@ -1846,6 +1823,17 @@
           "accuracyVerification": {
             "verified": false,
             "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
             "independentDomEvidence": false,
             "exactCount": false,
             "exactTitleSet": false,
@@ -1892,7 +1880,7 @@
           "rowTrace": []
         },
         {
-          "version": "1.2-list-accuracy",
+          "version": "1.3-list-template-verification",
           "mode": "passive",
           "org": "한국석유공사",
           "url": "https://www.knoc.co.kr/",
@@ -1901,6 +1889,30 @@
           "accuracyVerification": {
             "verified": false,
             "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 13,
+              "matchedCount": 0,
+              "unmatchedTitles": [
+                "[�����ڷ�] �ѱ���������, ���� �� ������ �۾� ���� ã�� ���ð� ���� ����� �ǽ� �� ���»� ��� �� ���� ���� ���� ü�� ������ �(2026.07.29.) 2026-07-29",
+                "[�����ڷ�] �ѱ���������, ���� �湮�� ���� ������� ����ȸ ����(2026.07.27.) 2026-07-27",
+                "[�����ڷ�] �ѱ���������, ���� �������� ������ ������ ���� ����ȸ�� �ǽ�(2026.07.24.) 2026-07-24",
+                "[�����ڷ�] �ѱ���������, ��������ĺ� �Ұ� ��2026 �糭���� �������� ����(2026.07.22.) 2026-07-22",
+                "[�����ڷ�] �ѱ���������, �������硤�Ѽ����� �������ࡦ���� ��� ���� ����(2026.07.15.) 2026-07-15",
+                "�����ڷ� �ٷΰ���",
+                "���ں� ������ȸ",
+                "��������-��������-�Ѽ��� ���� ���Ͽ� ���� ��������� (2026.07,15)",
+                "UAE ADNOC�� CEO ��� (2026.07.08.)",
+                "����-�ѱ������ڿ�����, �ؾ���°� ȸ�� �� ������ȸ ��� ���� �������� ü�� (2026.07.07)",
+                "���ּ� ����, �ؿܻ������ ���� ���� ���� (2026.07.06.)",
+                "���䴺�� �ٷΰ���"
+              ],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
             "independentDomEvidence": false,
             "exactCount": false,
             "exactTitleSet": false,
@@ -2159,15 +2171,35 @@
       ],
       "errors": [],
       "selectedRootCause": {
-        "version": "1.2-list-accuracy",
+        "version": "1.3-list-template-verification",
         "mode": "passive",
         "org": "한국석유공사",
         "url": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp",
         "probableCause": "PARTIAL_ROW_REJECTION",
         "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
         "accuracyVerification": {
-          "verified": false,
-          "level": "COUNT_EXACT_ONLY",
+          "verified": true,
+          "level": "TEMPLATE_TABLE_RECORD_EXACT",
+          "listVerificationTemplate": "TABLE_RECORD",
+          "templateRecordEvidence": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 15,
+            "candidateCount": 15,
+            "matchedCount": 15,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "35 2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ� ����濵ó 2026-07-09 1757",
+              "34 2026�� �Ϲݱ� ����(ü����) ä����� [����] ����濵ó 2026-06-23 7087",
+              "33 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��) ����濵ó 2026-05-18 10742",
+              "32 2026�� ��ݱ� ����(�Ⱓ��) ä�� ���� ��� �ȳ� ����濵ó 2026-04-07 1786",
+              "31 2026�� ��ݱ� ����(�Ⱓ��) ä����� (����) ����濵ó 2026-03-18 3778",
+              "30 2025�� �ѱ��������� ���� ����ä�� ���� (����) ����濵ó 2025-04-24 65496",
+              "29 ��2025�� ä����� �˸��̡� ���� ��û �ȳ� (����.. ����濵ó 2025-04-18 5132",
+              "28 2025�⵵ �ѱ��������� ���� ä���ȹ(��) ����濵ó 2025-02-04 13677"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
           "independentDomEvidence": true,
           "exactCount": true,
           "exactTitleSet": false,
@@ -2271,14 +2303,14 @@
             "index": 0,
             "title": "2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�",
             "normalizedTitle": "2026",
-            "text": "35 2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ� ����濵ó 2026-07-09 1756",
+            "text": "35 2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ� ����濵ó 2026-07-09 1757",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "/sub01/sub01_7_9.jsp?page=1&amp;num=73&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15",
             "onclick": "",
             "dataUrl": "",
-            "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t35\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=73&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 07�� 09�� 00�� 00�� 00��\">2026-07-09</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=8101B5DC1543DD670AA7B1588C4E58CD&amp;fno=CAA9D618E777DC49BED5FEB33CC93CBB&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�.pdf : 72.257KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>1756</td>\n\t\t</tr>",
+            "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t35\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=73&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 07�� 09�� 00�� 00�� 00��\">2026-07-09</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=8101B5DC1543DD670AA7B1588C4E58CD&amp;fno=CAA9D618E777DC49BED5FEB33CC93CBB&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ�.pdf : 72.257KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>1757</td>\n\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=69&psize=15&ses=USERSESSION&text=",
             "adapter": "한국석유공사:board-row",
@@ -2288,14 +2320,14 @@
             "index": 1,
             "title": "2026�� �Ϲݱ� ����(ü����) ä����� [����]",
             "normalizedTitle": "2026",
-            "text": "34 2026�� �Ϲݱ� ����(ü����) ä����� [����] ����濵ó 2026-06-23 7085",
+            "text": "34 2026�� �Ϲݱ� ����(ü����) ä����� [����] ����濵ó 2026-06-23 7087",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "/sub01/sub01_7_9.jsp?page=1&amp;num=72&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15",
             "onclick": "",
             "dataUrl": "",
-            "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t34\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=72&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(ü����) ä����� [����]</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 06�� 23�� 00�� 00�� 00��\">2026-06-23</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&amp;fno=C3C1D06546817246AB5A9EDE4A74D84C&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"1 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����.pdf : 435.384KB\" /></a>\n\t\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&amp;fno=BFB2242E89D78821BD8EB06BA08E6073&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_zip.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����_����.zip : 4,892.882KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>7085</td>\n\t\t</tr>",
+            "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t34\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=72&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(ü����) ä����� [����]</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 06�� 23�� 00�� 00�� 00��\">2026-06-23</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&amp;fno=C3C1D06546817246AB5A9EDE4A74D84C&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"1 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����.pdf : 435.384KB\" /></a>\n\t\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=9D227637271B3A5001C08F1E39DE4737&amp;fno=BFB2242E89D78821BD8EB06BA08E6073&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_zip.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2 - �ѱ��������� 2026�� �Ϲݱ� ����(ü����) ä�����_����.zip : 4,892.882KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>7087</td>\n\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=69&psize=15&ses=USERSESSION&text=",
             "adapter": "한국석유공사:board-row",
@@ -2305,14 +2337,14 @@
             "index": 2,
             "title": "2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)",
             "normalizedTitle": "2026",
-            "text": "33 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��) ����濵ó 2026-05-18 10740",
+            "text": "33 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��) ����濵ó 2026-05-18 10742",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "/sub01/sub01_7_9.jsp?page=1&amp;num=71&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15",
             "onclick": "",
             "dataUrl": "",
-            "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t33\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=71&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 05�� 18�� 00�� 00�� 00��\">2026-05-18</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=E0BAC17FDE31A0E0FC215445CD9E8A21&amp;fno=641A4D1ACAD51B1A2E0986F21F479934&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"�ѱ��������� 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��).pdf : 93.466KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>10740</td>\n\t\t</tr>",
+            "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t33\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=71&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��)</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2026�� 05�� 18�� 00�� 00�� 00��\">2026-05-18</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=E0BAC17FDE31A0E0FC215445CD9E8A21&amp;fno=641A4D1ACAD51B1A2E0986F21F479934&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"�ѱ��������� 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��).pdf : 93.466KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>10742</td>\n\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=69&psize=15&ses=USERSESSION&text=",
             "adapter": "한국석유공사:board-row",
@@ -2356,14 +2388,14 @@
             "index": 5,
             "title": "2025�� �ѱ��������� ���� ����ä�� ���� (����)",
             "normalizedTitle": "2025",
-            "text": "30 2025�� �ѱ��������� ���� ����ä�� ���� (����) ����濵ó 2025-04-24 65495",
+            "text": "30 2025�� �ѱ��������� ���� ����ä�� ���� (����) ����濵ó 2025-04-24 65496",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "/sub01/sub01_7_9.jsp?page=1&amp;num=68&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15",
             "onclick": "",
             "dataUrl": "",
-            "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t30\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=68&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2025�� �ѱ��������� ���� ����ä�� ���� (����)</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2025�� 04�� 24�� 20�� 28�� 39��\">2025-04-24</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=97405E3903E5C413954A256E0139683B&amp;fno=2F9CFE7970C5C025E12035DB024C1457&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2025�� �ѱ��������� ���� ����ä�� ����.pdf : 5,872.58KB\" /></a>\n\t\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=97405E3903E5C413954A256E0139683B&amp;fno=50F6C6217DBF3D6F50E455B7616711DC&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_zip.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2025�� �ѱ��������� ���� ����ä�� ����_����.zip : 17,265.526KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>65495</td>\n\t\t</tr>",
+            "html": "<tr>\n\t\t\t<td>\n\t\t\t\n\t\t\t30\n\t\t\t\n\t\t\t</td>\n\t\t\t<td class=\"subj\">\n\t\t\t<!-- ���� ���� ǥ�� -->\n\t\t\t\n\t\t\t\t<!-- ����� ���� ǥ�� -->\n\t\t\t\t\n\t\t\t\n\t\t\t<!-- ��� ���� ���� -->\n\t\t\t\n\t\t\t<!-- ��ũ  ���� -->\n\t\t\t\n\t\t\t\t<a href=\"/sub01/sub01_7_9.jsp?page=1&amp;num=68&amp;mode=view&amp;field=&amp;text=&amp;bid=RECRUIT&amp;ses=USERSESSION&amp;psize=15\" class=\"board\">\t\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\n\t\t\t<!-- ���� ��� -->\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t  \n\t\t\t\n\t\t\t\t\t\t2025�� �ѱ��������� ���� ����ä�� ���� (����)</a>\n\t\t\t\n\t\t\t\t\t\n\t\t\t<!-- ��ũ ��  -->\n\n\t\t\t<!-- New ������ -->\n\t\t\t<span ></span>\n\t\t\t<!-- Cool ������ -->\n\t\t\t\n\t\t\t<!-- ��� ���� -->\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>����濵ó</td>\n\t\t\t<td><span title=\"2025�� 04�� 24�� 20�� 28�� 39��\">2025-04-24</span></td>\n\t\t\t<td>\n\t\t\t\n\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=97405E3903E5C413954A256E0139683B&amp;fno=2F9CFE7970C5C025E12035DB024C1457&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_pdf.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2025�� �ѱ��������� ���� ����ä�� ����.pdf : 5,872.58KB\" /></a>\n\t\t\t\t\n\t\t\t\t\t <a target=\"_parent\" href=\"/servlet/Download?num=97405E3903E5C413954A256E0139683B&amp;fno=50F6C6217DBF3D6F50E455B7616711DC&amp;bid=RECRUIT&amp;callback=/sub01/sub01_7_9.jsp&amp;ses=USERSESSION\"><img src=\"/neoboard/skin/skin01/images/mime_zip.gif\" border=\"0\" width=\"16\" height=\"16\" alt=\"2025�� �ѱ��������� ���� ����ä�� ����_����.zip : 17,265.526KB\" /></a>\n\t\t\t\t\n\t\t\t\n\t\t\t</td>\n\t\t\t<td>65496</td>\n\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp?bid=RECRUIT&field=&mode=view&num=66&psize=15&ses=USERSESSION&text=",
             "adapter": "한국석유공사:board-row",
@@ -2542,8 +2574,28 @@
         ]
       },
       "accuracyVerification": {
-        "verified": false,
-        "level": "COUNT_EXACT_ONLY",
+        "verified": true,
+        "level": "TEMPLATE_TABLE_RECORD_EXACT",
+        "listVerificationTemplate": "TABLE_RECORD",
+        "templateRecordEvidence": {
+          "verified": true,
+          "template": "TABLE_RECORD",
+          "recordCount": 15,
+          "candidateCount": 15,
+          "matchedCount": 15,
+          "unmatchedTitles": [],
+          "recordSamples": [
+            "35 2026�� �Ϲݱ� ����(ü����) ä�� ������� �ȳ� ����濵ó 2026-07-09 1757",
+            "34 2026�� �Ϲݱ� ����(ü����) ä����� [����] ����濵ó 2026-06-23 7087",
+            "33 2026�� �Ϲݱ� ����(������, ����) ä���ȹ(��) ����濵ó 2026-05-18 10742",
+            "32 2026�� ��ݱ� ����(�Ⱓ��) ä�� ���� ��� �ȳ� ����濵ó 2026-04-07 1786",
+            "31 2026�� ��ݱ� ����(�Ⱓ��) ä����� (����) ����濵ó 2026-03-18 3778",
+            "30 2025�� �ѱ��������� ���� ����ä�� ���� (����) ����濵ó 2025-04-24 65496",
+            "29 ��2025�� ä����� �˸��̡� ���� ��û �ȳ� (����.. ����濵ó 2025-04-18 5132",
+            "28 2025�⵵ �ѱ��������� ���� ä���ȹ(��) ����濵ó 2025-02-04 13677"
+          ],
+          "level": "TEMPLATE_TABLE_RECORD_EXACT"
+        },
         "independentDomEvidence": true,
         "exactCount": true,
         "exactTitleSet": false,

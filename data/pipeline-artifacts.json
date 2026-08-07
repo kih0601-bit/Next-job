@@ -1,7 +1,7 @@
 {
   "version": "16.5-two-source-board-arrival",
   "generatedAt": "2026-08-07T05:12:52.896Z",
-  "sourceCount": 22,
+  "sourceCount": 21,
   "artifacts": [
     {
       "org": "한국석유공사",
@@ -3579,20 +3579,6 @@
       ],
       "scriptSnippets": [
         "\r\nvar fontFamily = \"NotoSans\";\r\n\r\nfunction retrieveNoticeDetailPage(){\t\t\r\n\tvar frm = document.mainFrm\r\n\tfrm.action = \"/applicantMain/goNoticePageDetail.do\";\r\n\tfrm.submit();\t\t\r\n}\r\n\r\nfunction retrieveNoticePage(){\t\t\r\n\tvar frm = document.mainFrm\r\n\tfrm.action = \"/applicantMain/goNoticePage.do\";\r\n\tfrm.submit();\t\t\r\n}\r\n\r\n$(document).ready(function(){\r\n\tchangeFont();\r\n\t\t\r\n\t$(\".rowArea\").click(function(){\t\t\r\n\t\t$(\"#postIdx\").val($(this).attr(\"postIdx\"));\r\n\t\tretrieveNoticeDetailPage();\r\n\t});\r\n\t\r\n\t$(\"#opnIdx\").change(function(){\r\n\t\tretrieveNoticePage();\r\n\t});\r\n\t\r\n\tif($(\".txtAlignCenter\").length){\r\n\t\t$(\"#contentArea\").attr(\"class\",\"hasSubImg\");\r\n\t}else{\r\n\t\t$(\"#contentArea\").attr(\"class\",\"noSubImg\");\r\n\t}\r\n});\r\n"
-      ]
-    },
-    {
-      "org": "울산광역시 타기관소식",
-      "stage": "access",
-      "requestedUrl": "https://job.alio.go.kr/",
-      "finalUrl": "https://job.alio.go.kr/",
-      "status": 200,
-      "contentType": "text/html; charset=UTF-8",
-      "htmlLength": 515,
-      "htmlHead": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\"  lang=\"ko\" xml:lang=\"ko\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\" />\r\n<meta http-equiv=\"refresh\" content=\"0; url=/main.do\" />\r\n<title>기획재정부 | 공공기관 채용정보 시스템</title>\r\n<script>\r\n\twindow.location.href=\"/main.do\";\r\n</script>\r\n</head>\r\n<body>\r\n</body>\r\n</html>\r\n",
-      "relevantSnippets": [],
-      "scriptSnippets": [
-        "\r\n\twindow.location.href=\"/main.do\";\r\n"
       ]
     }
   ]

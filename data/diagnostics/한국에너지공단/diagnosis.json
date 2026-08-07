@@ -33,7 +33,7 @@
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "3개 후보 URL HTTP 응답 성공",
+      "reason": "4개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -79,7 +79,9 @@
             "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
             "status": 200,
             "contentType": "text/html; charset=UTF-8"
-          }
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
         },
         {
           "url": "https://min24.energy.or.kr/job",
@@ -125,7 +127,9 @@
             "finalUrl": "https://min24.energy.or.kr/job/",
             "status": 200,
             "contentType": "text/html; charset=UTF-8"
-          }
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
         },
         {
           "url": "https://www.energy.or.kr/",
@@ -171,12 +175,58 @@
             "finalUrl": "https://www.energy.or.kr/",
             "status": 200,
             "contentType": "text/html; charset=UTF-8"
-          }
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed"
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "잡알리오",
+            "orgMatched": true,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 1581,
+            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
         }
       ]
     },
@@ -755,7 +805,9 @@
             "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
             "status": 200,
             "contentType": "text/html; charset=UTF-8"
-          }
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
         },
         {
           "url": "https://min24.energy.or.kr/job",
@@ -801,7 +853,9 @@
             "finalUrl": "https://min24.energy.or.kr/job/",
             "status": 200,
             "contentType": "text/html; charset=UTF-8"
-          }
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
         },
         {
           "url": "https://www.energy.or.kr/",
@@ -847,12 +901,58 @@
             "finalUrl": "https://www.energy.or.kr/",
             "status": 200,
             "contentType": "text/html; charset=UTF-8"
-          }
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed"
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "잡알리오",
+            "orgMatched": true,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 1581,
+            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
         }
       ],
       "verification": {
@@ -909,7 +1009,7 @@
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "3개 후보 URL HTTP 응답 성공",
+          "reason": "4개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -955,7 +1055,9 @@
                 "finalUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
                 "status": 200,
                 "contentType": "text/html; charset=UTF-8"
-              }
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
             },
             {
               "url": "https://min24.energy.or.kr/job",
@@ -1001,7 +1103,9 @@
                 "finalUrl": "https://min24.energy.or.kr/job/",
                 "status": 200,
                 "contentType": "text/html; charset=UTF-8"
-              }
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
             },
             {
               "url": "https://www.energy.or.kr/",
@@ -1047,12 +1151,58 @@
                 "finalUrl": "https://www.energy.or.kr/",
                 "status": 200,
                 "contentType": "text/html; charset=UTF-8"
-              }
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
             },
             {
               "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-              "ok": false,
-              "error": "fetch failed"
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "잡알리오",
+                "orgMatched": true,
+                "positiveHits": 3,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "채용\\s*정보",
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 3,
+                "boardType": {
+                  "type": "JOB_ALIO",
+                  "confidence": "high",
+                  "evidence": [
+                    "JOB-ALIO URL/본문 신호"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 1581,
+                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
             }
           ]
         },

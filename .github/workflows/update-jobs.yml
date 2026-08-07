@@ -51,6 +51,9 @@ jobs:
       - name: Run collector self-test
         run: node scripts/test-v11.mjs
 
+      - name: Remove retired institution data
+        run: node scripts/cleanup-retired-sources.mjs
+
       - name: Preserve previous pipeline report
         shell: bash
         run: |

@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "templates": {
+    "DIRECT_BOARD": "기관 공식 홈페이지 안의 채용게시판 URL 직접 접속",
+    "COMMON_PLATFORM": "Incruit/JOB-ALIO/Hubst 등 공통 채용 플랫폼",
+    "DEDICATED_RECRUIT_SITE": "본 홈페이지와 분리된 채용 전용 사이트/영역",
+    "API_BOARD": "공식 채용 화면 + API/JSON 목록 Adapter",
+    "REDIRECT_OR_ENTRY": "진입 페이지 또는 redirect를 거쳐 실제 목록에 도달",
+    "RESTRICTED_CUSTOM": "403/DNS/TLS 등 일반 접속이 어려운 기관 전용 transport fallback"
+  },
+  "addInstitutionFlow": [
+    "공식 채용게시판 URL 확인",
+    "기존 6개 accessTemplate 중 유형 선택",
+    "기관명/URL/platform 설정 추가",
+    "HTTP 응답과 실제 채용게시판 검증",
+    "기존 성공 기관 regression test 확인"
+  ]
+}

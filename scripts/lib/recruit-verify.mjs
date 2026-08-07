@@ -6,7 +6,6 @@ const POSITIVE = [
 ];
 const ORG_RULES = {
   '근로복지공단': { hosts: [/comwel\.incruit\.com$/i], url: [/index_main\.asp/i], html: [/viewhire\.asp\?projectid=/i, /incruit/i] },
-  '울산연구원': { hosts: [/(?:^|\.)uri\.re\.kr$/i], html: [/채용정보[\s\S]{0,6000}(?:공개채용|채용공고|최종합격|서류전형)/i, /울산연구원[\s\S]{0,12000}채용정보/i] },
   '한국산업안전보건공단': { hosts: [/kosha\.or\.kr$/i], url: [/recruitment\.do|notification\/jobncontract\/job/i], html: [/kosha-tboard-config|jobncontract|recruitment/i] },
   '한국산업인력공단': { hosts: [/hrdkorea\.or\.kr$/i], url: [/\/3\/1\/2\/2(?:[?#/]|$)/i], html: [/채용공고|인재채용|\/3\/1\/2\/2/i] },
   '한국석유공사': { hosts: [/knoc\.co\.kr$/i], url: [/sub01_7_9\.jsp/i], html: [/sub01_7_9\.jsp[^\"']*(?:num=|mode=view)|채용공고/i] },

@@ -146,6 +146,38 @@ export function buildListRootCauseDiagnostics({ html = '', source, inspection, s
   };
   const listCounterFailureReason = counterFailureReason({ rows, selectedCandidates, inspection, uniqueVisibleCount: uniqueVisibleTitles.length });
 
+  // Phase 49: list completion means the actual recruitment-board post list was read,
+  // not merely that two counters happened to match. Prefer independent DOM row/title
+  // evidence. Source-specific adapters can also provide strong record-level evidence
+  // when the board is API/JS based and does not expose normal <tr> rows.
+  const independentDomEvidence = rows.length > 0;
+  const exactTitleSet = independentDomEvidence
+    && missingRows.length === 0
+    && extraCandidates.length === 0
+    && uniqueVisibleTitles.length === selectedCandidates.length
+    && selectedCandidates.length === inspection.visiblePostCount;
+  const adapterDiagnostics = inspection?.diagnostics || {};
+  const strongAdapterRecordEvidence = !independentDomEvidence
+    && inspection.exactMatch
+    && adapterDiagnostics.rowMode === true
+    && Number(adapterDiagnostics.titleMatches || 0) === selectedCandidates.length
+    && Number(adapterDiagnostics.accepted || 0) === selectedCandidates.length
+    && Array.isArray(adapterDiagnostics.titleSamples)
+    && adapterDiagnostics.titleSamples.length > 0;
+  const accuracyVerified = Boolean(inspection.exactMatch && (exactTitleSet || strongAdapterRecordEvidence));
+  const accuracyVerification = {
+    verified: accuracyVerified,
+    level: exactTitleSet ? 'DOM_TITLE_SET_EXACT' : strongAdapterRecordEvidence ? 'SOURCE_RECORD_EXACT' : inspection.exactMatch ? 'COUNT_EXACT_ONLY' : 'NOT_EXACT',
+    independentDomEvidence,
+    exactCount: Boolean(inspection.exactMatch),
+    exactTitleSet,
+    strongAdapterRecordEvidence,
+    missingTitleCount: missingRows.length,
+    extraCandidateCount: extraCandidates.length,
+    visibleUniqueTitleCount: uniqueVisibleTitles.length,
+    extractedTitleCount: selectedCandidates.length
+  };
+
   let probableCause = 'UNDETERMINED';
   if (rows.length === 0 && selectedCandidates.length > 0) probableCause = 'VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE';
   else if (rows.length > 0 && selectedCandidates.length === 0 && missingRows.every(row => row.rejectionReason === 'DETAIL_SIGNAL_MISSING')) probableCause = 'DETAIL_SIGNAL_NOT_EXPOSED_IN_ROWS';
@@ -156,12 +188,13 @@ export function buildListRootCauseDiagnostics({ html = '', source, inspection, s
   else probableCause = 'NO_LIST_ROOT_CAUSE_DETECTED';
 
   return {
-    version: '1.1-passive',
+    version: '1.2-list-accuracy',
     mode: 'passive',
     org: source?.org || 'unknown',
     url: source?.url || '',
     probableCause,
     listCounterFailureReason,
+    accuracyVerification,
     counterTrace,
     candidateClassCounts,
     counts: {

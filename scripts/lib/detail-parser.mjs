@@ -315,60 +315,103 @@ function detailConfidence(text = '', expectedTitle = '') {
   return { structureSignals, matched, tokenCount: tokens.length, titleRatio };
 }
 
-export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', sourceOrg = '', allowedHosts = [] } = {}) {
+export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', sourceOrg = '', allowedHosts = [], request = null } = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    const response = await fetch(url, {
+  const baseHeaders = {
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+    'accept-language': 'ko-KR,ko;q=0.9,en;q=0.5',
+    accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+  };
+
+  async function requestOne(targetUrl, req = null) {
+    const method = String(req?.method || 'GET').toUpperCase();
+    const referer = req?.referer || new URL(targetUrl).origin + '/';
+    const response = await fetch(req?.url || targetUrl, {
       signal: controller.signal,
       redirect: 'follow',
-      headers: {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-        'accept-language': 'ko-KR,ko;q=0.9,en;q=0.5',
-        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        referer: new URL(url).origin + '/'
-      }
+      method,
+      headers: { ...baseHeaders, referer, ...(req?.headers || {}) },
+      ...(method === 'GET' || method === 'HEAD' ? {} : { body: req?.body || '' })
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response;
+  }
+
+  try {
+    // UCTF list is REST-backed. Prefer the matching REST detail object when the
+    // public /view/{id} shell does not server-render the notice body.
+    if (sourceOrg === '울산문화관광재단') {
+      const id = String(url).match(/\/board\/employment\/view\/([^/?#]+)/i)?.[1];
+      if (id) {
+        try {
+          const apiUrl = new URL(`/api/notices/${encodeURIComponent(id)}`, new URL(url).origin).href;
+          const apiResponse = await fetch(apiUrl, { signal: controller.signal, redirect: 'follow', headers: { ...baseHeaders, accept: 'application/json,text/plain,*/*', referer: new URL(url).origin + '/board/employment' } });
+          if (apiResponse.ok && /json/i.test(apiResponse.headers.get('content-type') || '')) {
+            const data = await apiResponse.json();
+            const item = data?.data || data?.content || data?.notice || data;
+            const title = cleanHtml(String(item?.title || item?.subject || ''));
+            const bodyRaw = item?.content || item?.contents || item?.body || item?.description || '';
+            const text = cleanHtml(String(bodyRaw));
+            const titleProbe = `${title} ${text}`;
+            const tokens = titleTokens(expectedTitle);
+            const matched = tokens.filter(word => titleProbe.includes(word)).length;
+            const titleEvidence = tokens.length < 2 || matched / tokens.length >= 0.35;
+            if (titleEvidence && (text.length >= 30 || title.length >= 10)) {
+              return { ok: true, finalUrl: url, text: [title, text].filter(Boolean).join('\n').slice(0, 70000), confidence: detailConfidence(text, expectedTitle), httpStatus: apiResponse.status, contentType: apiResponse.headers.get('content-type') || '', attachments: [], detailTransport: 'UCTF_API_DETAIL' };
+            }
+          }
+        } catch { /* fall through to public HTML detail */ }
+      }
+    }
+
+    const response = await requestOne(url, request);
     const contentType = response.headers.get('content-type') || '';
     if (!/html|text\//i.test(contentType)) throw new Error(`unsupported content-type: ${contentType}`);
     const html = await response.text();
     const fullText = cleanHtml(html).slice(0, 70000);
     const text = extractDetailBody(html, expectedTitle).slice(0, 70000);
-    if (text.length < 100) throw new Error('detail body too short');
-    const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)|게시물\s*목록|검색결과\s*\d+건|채용공고\s*목록/.test(fullText) && !/(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text);
-    if (looksLikeListOnly) throw new Error('list page detected');
-    if (/페이지의\s*주소가\s*올바른지|요청하신\s*페이지를\s*찾을\s*수|존재하지\s*않는\s*페이지|404\s*(?:not\s*found)?/i.test(fullText)) throw new Error('site error page detected');
-    if (/접근이\s*차단|비정상적인\s*접근|로그인이\s*필요|세션이\s*만료|captcha/i.test(fullText)) throw new Error('blocked or login page detected');
+    const finalUrl = response.url || request?.url || url;
+    const cookie = typeof response.headers.getSetCookie === 'function'
+      ? response.headers.getSetCookie().map(value => value.split(';')[0]).join('; ')
+      : (response.headers.get('set-cookie') || '').split(/,(?=[^;,]+=)/).map(value => value.split(';')[0]).join('; ');
+    const attachments = extractAttachments(html, finalUrl, { referer: finalUrl, cookie });
+    const expectedTokens = titleTokens(expectedTitle);
+    const expectedMatched = expectedTokens.filter(word => fullText.includes(word)).length;
+    const titleEvidence = expectedTokens.length < 2 || expectedMatched / expectedTokens.length >= 0.35;
 
-    const finalUrl = response.url || url;
+    // Many Korean public boards intentionally keep the HTML body short and put the
+    // actual notice in HWP/PDF attachments. A page with the exact list title plus a
+    // real attachment is still a valid detail page; attachment contents are handled
+    // by the next pipeline stage.
+    if (text.length < 100 && !(titleEvidence && attachments.length > 0 && fullText.length >= 30)) throw new Error('detail body too short');
+    const looksLikeListOnly = /전체\s*\d+건의\s*게시물|현재페이지\s*\(\d+\/\d+\)|게시물\s*목록|검색결과\s*\d+건|채용공고\s*목록/.test(fullText) && !/(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text) && !titleEvidence;
+    if (looksLikeListOnly) throw new Error('list page detected');
+    // Only call it a site error when the response lacks the expected notice title.
+    // Some public-site templates contain generic 404/error phrases in hidden markup.
+    if (/페이지의\s*주소가\s*올바른지|요청하신\s*페이지를\s*찾을\s*수|존재하지\s*않는\s*페이지|404\s*(?:not\s*found)?/i.test(fullText) && !titleEvidence) throw new Error('site error page detected');
+    if (/접근이\s*차단|비정상적인\s*접근|로그인이\s*필요|세션이\s*만료|captcha/i.test(fullText) && !titleEvidence) throw new Error('blocked or login page detected');
+
     const final = new URL(finalUrl);
-    const original = new URL(url);
+    const original = new URL(request?.url || url);
     const normalizedAllowedHosts = [original.hostname, ...allowedHosts].map(host => String(host).replace(/^www\./, ''));
     const finalHost = final.hostname.replace(/^www\./, '');
     if (!normalizedAllowedHosts.some(host => finalHost === host || finalHost.endsWith(`.${host}`))) throw new Error('unexpected redirect domain');
     if (/\/(?:index|main|home)(?:\.|\/|$)/i.test(final.pathname) && !final.search) throw new Error('home page redirect detected');
 
     const finalParams = [...final.searchParams.keys()];
-    const hasDetailPath = /(?:view|detail|read|select|article|boardView|recruitview|noticeView)/i.test(final.pathname);
-    const hasDetailParam = finalParams.some(key => /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|dataId|bbsId|bcIdx|boardSeq|contsId|recruitNo|recruit_no)$/i.test(key));
-    const cookie = typeof response.headers.getSetCookie === 'function'
-      ? response.headers.getSetCookie().map(value => value.split(';')[0]).join('; ')
-      : (response.headers.get('set-cookie') || '').split(/,(?=[^;,]+=)/).map(value => value.split(';')[0]).join('; ');
-    const attachments = extractAttachments(html, finalUrl, { referer: finalUrl, cookie });
+    const hasDetailPath = /(?:view|detail|read|select|article|boardView|recruitview|noticeView|content\.html)/i.test(final.pathname);
+    const hasDetailParam = finalParams.some(key => /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|dataId|bbsId|bcIdx|boardSeq|contsId|employmentId|recruitNo|recruit_no)$/i.test(key));
     const hasStrongBody = /(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text);
-    const expectedTokens = titleTokens(expectedTitle);
-    const expectedMatched = expectedTokens.filter(word => fullText.includes(word)).length;
-    const titleEvidence = expectedTokens.length < 2 || expectedMatched / expectedTokens.length >= 0.35;
-    if ((!hasDetailPath && !hasDetailParam && !hasStrongBody && !titleEvidence) || (/(?:list|recruit\.do|contents\.ulsan|noti06\.do)$/i.test(final.pathname) && !hasDetailParam && !hasStrongBody && !titleEvidence)) {
+    if ((!hasDetailPath && !hasDetailParam && !hasStrongBody && !titleEvidence) || (/(?:list|recruit\.do|contents\.ulsan|noti06\.do)$/i.test(final.pathname) && !hasDetailParam && !hasStrongBody && !titleEvidence && !request)) {
       throw new Error('final url is not a detail page');
     }
 
     const confidence = detailConfidence(text, expectedTitle);
     if (confidence.structureSignals < 1 && attachments.length === 0 && !(titleEvidence && text.length >= 140)) throw new Error('insufficient detail structure');
-    if (confidence.tokenCount >= 3 && confidence.titleRatio < 0.25 && attachments.length === 0) throw new Error('detail title mismatch');
-    return { ok: true, finalUrl, text, confidence, httpStatus: response.status, contentType, attachments };
+    if (confidence.tokenCount >= 3 && confidence.titleRatio < 0.25 && attachments.length === 0 && !titleEvidence) throw new Error('detail title mismatch');
+    return { ok: true, finalUrl, text: text || fullText, confidence, httpStatus: response.status, contentType, attachments, detailTransport: request?.method ? `FORM_${String(request.method).toUpperCase()}` : 'GET' };
   } catch (error) {
-    return { ok: false, finalUrl: url, text: '', attachments: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, finalUrl: request?.url || url, text: '', attachments: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
   } finally { clearTimeout(timer); }
 }

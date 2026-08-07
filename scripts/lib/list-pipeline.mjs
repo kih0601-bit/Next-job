@@ -17,19 +17,20 @@ export function normalizeBoardTitle(title = '') {
 }
 
 export function inspectListingPage(html, source) {
-  const candidates = extractCandidatesForSource(html, source, {
+  const sourceWithRaw = { ...source, __rawHtml: String(html) };
+  const candidates = extractCandidatesForSource(html, sourceWithRaw, {
     validTitle: permissiveBoardTitle,
     normalizeTitleForDedup: normalizeBoardTitle
   });
   const diagnostics = candidates.diagnostics || {};
-  const counted = countVisibleBoardPosts(html, source);
+  const counted = countVisibleBoardPosts(html, sourceWithRaw);
   const visiblePostCount = Number.isInteger(counted) && counted > 0
     ? counted
     : Number.isInteger(diagnostics.visiblePostCount) && diagnostics.visiblePostCount > 0
       ? diagnostics.visiblePostCount
       : null;
   const candidateCount = candidates.length;
-  const recordVerification = verifyExtractedListAgainstVisibleRecords(html, source, candidates);
+  const recordVerification = verifyExtractedListAgainstVisibleRecords(html, sourceWithRaw, candidates);
   const exactMatch = visiblePostCount !== null && candidateCount === visiblePostCount;
   const missingCount = visiblePostCount === null ? null : Math.max(0, visiblePostCount - candidateCount);
   const extraCount = visiblePostCount === null ? null : Math.max(0, candidateCount - visiblePostCount);

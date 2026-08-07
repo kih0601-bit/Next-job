@@ -6,10 +6,10 @@ import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 
-const VERSION = '16.2-list-source-specific-stabilization';
+const VERSION = '16.3-access-board-verification';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
-const ACCESS_TIMEOUT_MS = 10000;
+const ACCESS_TIMEOUT_MS = 18000;
 const LIST_TIMEOUT_MS = 10000;
 const MAX_ACCESS_URLS = 6;
 const MAX_HTML_EXCERPT = 18000;

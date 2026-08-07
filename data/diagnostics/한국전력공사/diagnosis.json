@@ -3,9 +3,9 @@
   "health": "degraded",
   "primaryCause": {
     "stage": "list",
-    "status": "partial",
-    "code": "LIST_COUNT_EXACT_UNVERIFIED",
-    "reason": "개수는 10건으로 일치하지만 실제 게시글 제목 집합의 정확성은 아직 독립 검증되지 않음",
+    "status": "failed",
+    "code": "LIST_COUNTER_FAILED",
+    "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
     "evidence": [
       {
         "url": "https://www.kepco.co.kr/home/about/careers.do",
@@ -216,32 +216,40 @@
         "exactMatch": false,
         "missingCount": null,
         "extraCount": null,
+        "recordVerification": {
+          "verified": false,
+          "template": "TABLE_RECORD",
+          "recordCount": 0,
+          "candidateCount": 100,
+          "matchedCount": 0,
+          "unmatchedTitles": [
+            "한국전력공사 로고",
+            "회사소개",
+            "KEPCO 소개 메뉴 열기",
+            "KEPCO 개요",
+            "CEO 인사말",
+            "경영방침",
+            "조직안내 메뉴 열기",
+            "해외지사·법인",
+            "출자회사",
+            "전국 본부 · 사업소",
+            "투자정보 메뉴 열기",
+            "IR정보"
+          ],
+          "recordSamples": [],
+          "level": "TEMPLATE_RECORD_MISMATCH"
+        },
         "countSource": "unavailable"
-      },
-      {
-        "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-        "anchors": 60,
-        "titleMatches": 30,
-        "noUrl": 6,
-        "unsafeUrl": 14,
-        "accepted": 10,
-        "rowFallbackAccepted": 0,
-        "visiblePostCount": 10,
-        "candidateCount": 10,
-        "exactMatch": true,
-        "missingCount": 0,
-        "extraCount": 0,
-        "countSource": "visible-board-rows"
       }
     ],
     "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
-    "recommendedAction": "게시글 행/제목 집합을 독립적으로 식별해 실제 목록과 추출 결과의 제목 단위 일치 검증 추가"
+    "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
   },
   "diagnosis": {
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "2개 후보 URL HTTP 응답 성공",
+      "reason": "1개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://www.kepco.co.kr/home/about/careers.do",
@@ -301,50 +309,8 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "verification": {
-            "ok": true,
-            "verified": true,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-            "score": 5,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": true,
-              "recruitKeyword": true,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": true
-            },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 3,
-            "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
-              "recruit(?:ment)?"
-            ],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 3,
-            "boardType": {
-              "type": "JOB_ALIO",
-              "confidence": "high",
-              "evidence": [
-                "JOB-ALIO URL/본문 신호"
-              ]
-            },
-            "institutionRule": false,
-            "institutionRuleEvidence": [],
-            "textLength": 1846,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-            "status": 200,
-            "contentType": "text/html;charset=UTF-8"
-          },
+          "ok": false,
+          "error": "fetch failed",
           "accessTemplate": "DEDICATED_RECRUIT_SITE",
           "requestProfile": "browser-default"
         }
@@ -397,9 +363,9 @@
       }
     },
     "list": {
-      "status": "partial",
-      "code": "LIST_COUNT_EXACT_UNVERIFIED",
-      "reason": "개수는 10건으로 일치하지만 실제 게시글 제목 집합의 정확성은 아직 독립 검증되지 않음",
+      "status": "failed",
+      "code": "LIST_COUNTER_FAILED",
+      "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
       "evidence": [
         {
           "url": "https://www.kepco.co.kr/home/about/careers.do",
@@ -610,22 +576,30 @@
           "exactMatch": false,
           "missingCount": null,
           "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 100,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "한국전력공사 로고",
+              "회사소개",
+              "KEPCO 소개 메뉴 열기",
+              "KEPCO 개요",
+              "CEO 인사말",
+              "경영방침",
+              "조직안내 메뉴 열기",
+              "해외지사·법인",
+              "출자회사",
+              "전국 본부 · 사업소",
+              "투자정보 메뉴 열기",
+              "IR정보"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "unavailable"
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "anchors": 60,
-          "titleMatches": 30,
-          "noUrl": 6,
-          "unsafeUrl": 14,
-          "accepted": 10,
-          "rowFallbackAccepted": 0,
-          "visiblePostCount": 10,
-          "candidateCount": 10,
-          "exactMatch": true,
-          "missingCount": 0,
-          "extraCount": 0,
-          "countSource": "visible-board-rows"
         }
       ]
     },
@@ -636,51 +610,10 @@
       "evidence": []
     },
     "attachment": {
-      "status": "success",
-      "code": "ATTACHMENT_FOUND",
-      "reason": "검증 표본에서 첨부 링크 9개 발견",
-      "evidence": [
-        {
-          "name": "기간제근로자 모집공고문_전력기자재센터.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066790"
-        },
-        {
-          "name": "붙임 4. 입사지원서 윤리서약동의서 개인정보수집이용동의서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066857"
-        },
-        {
-          "name": "붙임 2. 기간제 근로자 직무기술서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066792"
-        },
-        {
-          "name": "붙임 1. 신규채용자의 결격사유.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066793"
-        },
-        {
-          "name": "붙임 3. 블라인드 위반 감점기준.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066794"
-        },
-        {
-          "name": "1. 채용공고문.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066199"
-        },
-        {
-          "name": "2. 입사지원서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066200"
-        },
-        {
-          "name": "3. 직무기술서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066201"
-        }
-      ]
+      "status": "blocked",
+      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
+      "reason": "상세 단계 미통과로 첨부 진단 보류",
+      "evidence": []
     },
     "access": {
       "status": "success",
@@ -730,7 +663,7 @@
     }
   },
   "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
-  "recommendedAction": "게시글 행/제목 집합을 독립적으로 식별해 실제 목록과 추출 결과의 제목 단위 일치 검증 추가",
+  "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정",
   "stages": {
     "access": {
       "ok": true,
@@ -800,50 +733,8 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "verification": {
-            "ok": true,
-            "verified": true,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-            "score": 5,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": true,
-              "recruitKeyword": true,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": true
-            },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 3,
-            "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
-              "recruit(?:ment)?"
-            ],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 3,
-            "boardType": {
-              "type": "JOB_ALIO",
-              "confidence": "high",
-              "evidence": [
-                "JOB-ALIO URL/본문 신호"
-              ]
-            },
-            "institutionRule": false,
-            "institutionRuleEvidence": [],
-            "textLength": 1846,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-            "status": 200,
-            "contentType": "text/html;charset=UTF-8"
-          },
+          "ok": false,
+          "error": "fetch failed",
           "accessTemplate": "DEDICATED_RECRUIT_SITE",
           "requestProfile": "browser-default"
         }
@@ -903,7 +794,7 @@
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "2개 후보 URL HTTP 응답 성공",
+          "reason": "1개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://www.kepco.co.kr/home/about/careers.do",
@@ -963,50 +854,8 @@
             },
             {
               "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-              "ok": true,
-              "status": 200,
-              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-              "verification": {
-                "ok": true,
-                "verified": true,
-                "fallback": false,
-                "code": "RECRUIT_VERIFY_OK",
-                "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-                "score": 5,
-                "maxScore": 5,
-                "checks": {
-                  "httpDocument": true,
-                  "recruitKeyword": true,
-                  "boardStructure": true,
-                  "organizationMatch": true,
-                  "meaningfulBody": true
-                },
-                "title": "잡알리오",
-                "orgMatched": true,
-                "positiveHits": 3,
-                "positiveMatches": [
-                  "채용\\s*공고",
-                  "채용\\s*정보",
-                  "recruit(?:ment)?"
-                ],
-                "negativeHits": 0,
-                "negativeMatches": [],
-                "boardSignals": 3,
-                "boardType": {
-                  "type": "JOB_ALIO",
-                  "confidence": "high",
-                  "evidence": [
-                    "JOB-ALIO URL/본문 신호"
-                  ]
-                },
-                "institutionRule": false,
-                "institutionRuleEvidence": [],
-                "textLength": 1846,
-                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-                "status": 200,
-                "contentType": "text/html;charset=UTF-8"
-              },
+              "ok": false,
+              "error": "fetch failed",
               "accessTemplate": "DEDICATED_RECRUIT_SITE",
               "requestProfile": "browser-default"
             }
@@ -1114,16 +963,16 @@
     },
     "list": {
       "ok": false,
-      "status": "count-exact-unverified",
-      "pagesChecked": 2,
-      "visiblePostCount": 10,
-      "candidateCount": 10,
-      "missingCount": 0,
-      "extraCount": 0,
-      "exactMatch": true,
-      "selectedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-      "detailUrlReady": 10,
-      "listOnlyCount": 0,
+      "status": "count-unavailable-or-empty",
+      "pagesChecked": 1,
+      "visiblePostCount": null,
+      "candidateCount": 100,
+      "missingCount": null,
+      "extraCount": null,
+      "exactMatch": false,
+      "selectedUrl": "https://www.kepco.co.kr/home/about/careers.do",
+      "detailUrlReady": 9,
+      "listOnlyCount": 91,
       "extractionDiagnostics": [
         {
           "url": "https://www.kepco.co.kr/home/about/careers.do",
@@ -1334,27 +1183,35 @@
           "exactMatch": false,
           "missingCount": null,
           "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 100,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "한국전력공사 로고",
+              "회사소개",
+              "KEPCO 소개 메뉴 열기",
+              "KEPCO 개요",
+              "CEO 인사말",
+              "경영방침",
+              "조직안내 메뉴 열기",
+              "해외지사·법인",
+              "출자회사",
+              "전국 본부 · 사업소",
+              "투자정보 메뉴 열기",
+              "IR정보"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "unavailable"
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "anchors": 60,
-          "titleMatches": 30,
-          "noUrl": 6,
-          "unsafeUrl": 14,
-          "accepted": 10,
-          "rowFallbackAccepted": 0,
-          "visiblePostCount": 10,
-          "candidateCount": 10,
-          "exactMatch": true,
-          "missingCount": 0,
-          "extraCount": 0,
-          "countSource": "visible-board-rows"
         }
       ],
       "rootCauseDiagnostics": [
         {
-          "version": "1.2-list-accuracy",
+          "version": "1.3-list-template-verification",
           "mode": "passive",
           "org": "한국전력공사",
           "url": "https://www.kepco.co.kr/home/about/careers.do",
@@ -1363,6 +1220,30 @@
           "accuracyVerification": {
             "verified": false,
             "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 100,
+              "matchedCount": 0,
+              "unmatchedTitles": [
+                "한국전력공사 로고",
+                "회사소개",
+                "KEPCO 소개 메뉴 열기",
+                "KEPCO 개요",
+                "CEO 인사말",
+                "경영방침",
+                "조직안내 메뉴 열기",
+                "해외지사·법인",
+                "출자회사",
+                "전국 본부 · 사업소",
+                "투자정보 메뉴 열기",
+                "IR정보"
+              ],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
             "independentDomEvidence": false,
             "exactCount": false,
             "exactTitleSet": false,
@@ -2395,145 +2276,6 @@
             }
           ],
           "rowTrace": []
-        },
-        {
-          "version": "1.2-list-accuracy",
-          "mode": "passive",
-          "org": "한국전력공사",
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-          "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
-          "accuracyVerification": {
-            "verified": false,
-            "level": "COUNT_EXACT_ONLY",
-            "independentDomEvidence": false,
-            "exactCount": true,
-            "exactTitleSet": false,
-            "strongAdapterRecordEvidence": false,
-            "missingTitleCount": 0,
-            "extraCandidateCount": 10,
-            "visibleUniqueTitleCount": 0,
-            "extractedTitleCount": 10
-          },
-          "counterTrace": {
-            "source": "visible-board-rows",
-            "rawDomRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": 10,
-            "acceptedCandidateCount": 10,
-            "exactAgainstRaw": false,
-            "exactAgainstUniqueTitles": false
-          },
-          "candidateClassCounts": {
-            "RECRUIT_POST": 10
-          },
-          "counts": {
-            "visiblePostCount": 10,
-            "candidateCount": 10,
-            "rawTableRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 55551,
-            "missingRows": 0,
-            "extraCandidates": 10
-          },
-          "selectorCounts": {
-            "table tbody tr": 0,
-            "tr": 0,
-            "li": 125,
-            "article": 0,
-            "[onclick]": 11,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 60
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [],
-          "extractedTitles": [
-            "한국전력공사 기간제 근로자(대체인력) 채용공고[전력기자재센터(옥천)] 충북 / 비정규직 / 2026.08.07 ~ 26.08.21 / 진행중",
-            "한국전력공사 기간제근로자(대체인력) 채용공고 [제주본부] 제주 / 비정규직 / 2026.08.05 ~ 26.08.19 / 진행중",
-            "한국전력공사 기간제근로자(대체인력) 채용공고 [대구본부 동대구, 경주, 경산지사] 대구 외 1 / 비정규직 / 2026.07.31 ~ 26.08.14 / 진행중",
-            "한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 마감",
-            "한국전력공사 2026년 제2차 장애인 체험형 인턴 모집공고[경북본부] 경북 / 청년인턴(체험형) / 2026.07.23 ~ 26.08.06 / 마감",
-            "한국전력공사 기간제 근로자(대체인력) 채용공고[인재개발원] 서울 / 비정규직 / 2026.07.22 ~ 26.08.05 / 마감",
-            "한국전력공사 2026년 제3차 장애인 체험형인턴 채용공고 [강원본부] 강원 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.23 / 마감",
-            "한국전력공사 2026년 제2차 장애인 체험형 인턴 채용공고[남서울본부] 서울 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.30 / 마감",
-            "한국전력공사 기간제근로자(대체인력) 채용공고[부산울산본부] 부산 외 2 / 비정규직 / 2026.07.08 ~ 26.07.22 / 마감",
-            "한국전력공사 (수정) 기간제근로자(대체인력) 채용공고[대전세종충남본부 천안지사, 대덕유성지사] 대전 외 1 / 비정규직 / 2026.06.25 ~ 26.07.09 / 마감"
-          ],
-          "missingRows": [],
-          "extraCandidates": [
-            {
-              "org": "한국전력공사",
-              "title": "한국전력공사 기간제 근로자(대체인력) 채용공고[전력기자재센터(옥천)] 충북 / 비정규직 / 2026.08.07 ~ 26.08.21 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303625",
-              "listText": "h();\"> 진행상태 진행중 마감 한국전력공사 기간제 근로자(대체인력) 채용공고[전력기자재센터(옥천)] 충북 / 비정규직 / 2026.08.07 ~ 26.08.21 / 진행중 한국전력공사 기간제근로자(대체인력) 채용공고 [제주본부] 제주 / 비정규직 / 2026.08.05 ~ 26.08.19 / 진행중 한국전력공사 기간제근로자(대체인력) 채용공고 [대구본부 동대구, 경주, 경산지사]",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국전력공사",
-              "title": "한국전력공사 기간제근로자(대체인력) 채용공고 [제주본부] 제주 / 비정규직 / 2026.08.05 ~ 26.08.19 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303506",
-              "listText": "비정규직 / 2026.08.07 ~ 26.08.21 / 진행중 한국전력공사 기간제근로자(대체인력) 채용공고 [제주본부] 제주 / 비정규직 / 2026.08.05 ~ 26.08.19 / 진행중 한국전력공사 기간제근로자(대체인력) 채용공고 [대구본부 동대구, 경주, 경산지사] 대구 외 1 / 비정규직 / 2026.07.31 ~ 26.08.14 / 진행중 한국전력공사</d",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국전력공사",
-              "title": "한국전력공사 기간제근로자(대체인력) 채용공고 [대구본부 동대구, 경주, 경산지사] 대구 외 1 / 비정규직 / 2026.07.31 ~ 26.08.14 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303291",
-              "listText": "비정규직 / 2026.08.05 ~ 26.08.19 / 진행중 한국전력공사 기간제근로자(대체인력) 채용공고 [대구본부 동대구, 경주, 경산지사] 대구 외 1 / 비정규직 / 2026.07.31 ~ 26.08.14 / 진행중 한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 마감",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국전력공사",
-              "title": "한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303025",
-              "listText": "비정규직 / 2026.07.31 ~ 26.08.14 / 진행중 한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 마감 한국전력공사 2026년 제2차 장애인 체험형 인턴 모집공고[경북본부] 경북 / 청년인턴(체험형) / 2026.07.23 ~ 26.08.06 / 마감 한국전력공사 기간제 근로자(대체인력) 채용공고[인재개발원]",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국전력공사",
-              "title": "한국전력공사 2026년 제2차 장애인 체험형 인턴 모집공고[경북본부] 경북 / 청년인턴(체험형) / 2026.07.23 ~ 26.08.06 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303020",
-              "listText": "정규직 / 2026.07.23 ~ 26.08.06 / 마감 한국전력공사 2026년 제2차 장애인 체험형 인턴 모집공고[경북본부] 경북 / 청년인턴(체험형) / 2026.07.23 ~ 26.08.06 / 마감 한국전력공사 기간제 근로자(대체인력) 채용공고[인재개발원] 서울 / 비정규직 / 2026.07.22 ~ 26.08.05 / 마감 한국전력공사 2026년 제3차 장애인 체험형인턴 채용공고 [강원본부]",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국전력공사",
-              "title": "한국전력공사 기간제 근로자(대체인력) 채용공고[인재개발원] 서울 / 비정규직 / 2026.07.22 ~ 26.08.05 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302975",
-              "listText": "청년인턴(체험형) / 2026.07.23 ~ 26.08.06 / 마감 한국전력공사 기간제 근로자(대체인력) 채용공고[인재개발원] 서울 / 비정규직 / 2026.07.22 ~ 26.08.05 / 마감 한국전력공사 2026년 제3차 장애인 체험형인턴 채용공고 [강원본부] 강원 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.23 / 마감 한국전력공사 2026년 제2차 장애인 체험형 인턴 채용공고[남서울본부]</",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국전력공사",
-              "title": "한국전력공사 2026년 제3차 장애인 체험형인턴 채용공고 [강원본부] 강원 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.23 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302478",
-              "listText": "비정규직 / 2026.07.22 ~ 26.08.05 / 마감 한국전력공사 2026년 제3차 장애인 체험형인턴 채용공고 [강원본부] 강원 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.23 / 마감 한국전력공사 2026년 제2차 장애인 체험형 인턴 채용공고[남서울본부] 서울 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.30 / 마감 한국전력공사 기간제근로자(대체인력) 채용공고[부산울산본부]",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국전력공사",
-              "title": "한국전력공사 2026년 제2차 장애인 체험형 인턴 채용공고[남서울본부] 서울 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.30 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302474",
-              "listText": "청년인턴(체험형) / 2026.07.08 ~ 26.07.23 / 마감 한국전력공사 2026년 제2차 장애인 체험형 인턴 채용공고[남서울본부] 서울 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.30 / 마감 한국전력공사 기간제근로자(대체인력) 채용공고[부산울산본부] 부산 외 2 / 비정규직 / 2026.07.08 ~ 26.07.22 / 마감 <div class=\"wor",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국전력공사",
-              "title": "한국전력공사 기간제근로자(대체인력) 채용공고[부산울산본부] 부산 외 2 / 비정규직 / 2026.07.08 ~ 26.07.22 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302461",
-              "listText": "청년인턴(체험형) / 2026.07.08 ~ 26.07.30 / 마감 한국전력공사 기간제근로자(대체인력) 채용공고[부산울산본부] 부산 외 2 / 비정규직 / 2026.07.08 ~ 26.07.22 / 마감 한국전력공사 (수정) 기간제근로자(대체인력) 채용공고[대전세종충남본부 천안지사, 대덕유성지사] 대전 외 1 / 비정규직 / 2026.06.25 ~ 26.07.09 / 마감 <a href=\"#\" onclick=\"return fals",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "한국전력공사",
-              "title": "한국전력공사 (수정) 기간제근로자(대체인력) 채용공고[대전세종충남본부 천안지사, 대덕유성지사] 대전 외 1 / 비정규직 / 2026.06.25 ~ 26.07.09 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302111",
-              "listText": "비정규직 / 2026.07.08 ~ 26.07.22 / 마감 한국전력공사 (수정) 기간제근로자(대체인력) 채용공고[대전세종충남본부 천안지사, 대덕유성지사] 대전 외 1 / 비정규직 / 2026.06.25 ~ 26.07.09 / 마감 1 2 3 4 5",
-              "sourceType": "ALIO"
-            }
-          ],
-          "rowTrace": []
         }
       ],
       "diagnosticFiles": [
@@ -2543,290 +2285,1339 @@
           "diagnosisPath": "data/diagnostics/한국전력공사/list/page-1-root-cause.json",
           "rowsPath": "data/diagnostics/한국전력공사/list/page-1-rows.txt",
           "url": "https://www.kepco.co.kr/home/about/careers.do"
-        },
-        {
-          "org": "한국전력공사",
-          "htmlPath": "data/diagnostics/한국전력공사/list/page-2-raw.html",
-          "diagnosisPath": "data/diagnostics/한국전력공사/list/page-2-root-cause.json",
-          "rowsPath": "data/diagnostics/한국전력공사/list/page-2-rows.txt",
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y"
         }
       ],
       "samples": [
         {
-          "title": "한국전력공사 기간제 근로자(대체인력) 채용공고[전력기자재센터(옥천)] 충북 / 비정규직 / 2026.08.07 ~ 26.08.21 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303625",
-          "adapter": ""
+          "title": "한국전력공사 로고",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-6969",
+          "adapter": "한국전력공사"
         },
         {
-          "title": "한국전력공사 기간제근로자(대체인력) 채용공고 [제주본부] 제주 / 비정규직 / 2026.08.05 ~ 26.08.19 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303506",
-          "adapter": ""
+          "title": "회사소개",
+          "link": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+          "adapter": "한국전력공사"
         },
         {
-          "title": "한국전력공사 기간제근로자(대체인력) 채용공고 [대구본부 동대구, 경주, 경산지사] 대구 외 1 / 비정규직 / 2026.07.31 ~ 26.08.14 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303291",
-          "adapter": ""
+          "title": "KEPCO 소개 메뉴 열기",
+          "link": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+          "adapter": "한국전력공사"
         },
         {
-          "title": "한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303025",
-          "adapter": ""
+          "title": "KEPCO 개요",
+          "link": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+          "adapter": "한국전력공사"
         },
         {
-          "title": "한국전력공사 2026년 제2차 장애인 체험형 인턴 모집공고[경북본부] 경북 / 청년인턴(체험형) / 2026.07.23 ~ 26.08.06 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303020",
-          "adapter": ""
+          "title": "CEO 인사말",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-21220",
+          "adapter": "한국전력공사"
         },
         {
-          "title": "한국전력공사 기간제 근로자(대체인력) 채용공고[인재개발원] 서울 / 비정규직 / 2026.07.22 ~ 26.08.05 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302975",
-          "adapter": ""
+          "title": "경영방침",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-21618",
+          "adapter": "한국전력공사"
         },
         {
-          "title": "한국전력공사 2026년 제3차 장애인 체험형인턴 채용공고 [강원본부] 강원 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.23 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302478",
-          "adapter": ""
+          "title": "조직안내 메뉴 열기",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-22431",
+          "adapter": "한국전력공사"
         },
         {
-          "title": "한국전력공사 2026년 제2차 장애인 체험형 인턴 채용공고[남서울본부] 서울 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.30 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302474",
-          "adapter": ""
+          "title": "해외지사·법인",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-24085",
+          "adapter": "한국전력공사"
         },
         {
-          "title": "한국전력공사 기간제근로자(대체인력) 채용공고[부산울산본부] 부산 외 2 / 비정규직 / 2026.07.08 ~ 26.07.22 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302461",
-          "adapter": ""
+          "title": "출자회사",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-24503",
+          "adapter": "한국전력공사"
         },
         {
-          "title": "한국전력공사 (수정) 기간제근로자(대체인력) 채용공고[대전세종충남본부 천안지사, 대덕유성지사] 대전 외 1 / 비정규직 / 2026.06.25 ~ 26.07.09 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302111",
-          "adapter": ""
+          "title": "전국 본부 · 사업소",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-24943",
+          "adapter": "한국전력공사"
+        },
+        {
+          "title": "투자정보 메뉴 열기",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-26226",
+          "adapter": "한국전력공사"
+        },
+        {
+          "title": "IR정보",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-27497",
+          "adapter": "한국전력공사"
+        },
+        {
+          "title": "재무정보",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-27915",
+          "adapter": "한국전력공사"
+        },
+        {
+          "title": "주식정보",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-28344",
+          "adapter": "한국전력공사"
+        },
+        {
+          "title": "전자공고",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-28760",
+          "adapter": "한국전력공사"
+        },
+        {
+          "title": "인재채용",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-29192",
+          "adapter": "한국전력공사"
+        },
+        {
+          "title": "사업분야",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-30087",
+          "adapter": "한국전력공사"
+        },
+        {
+          "title": "송배전사업",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-30561",
+          "adapter": "한국전력공사"
+        },
+        {
+          "title": "판매 · 수요관리",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-31398",
+          "adapter": "한국전력공사"
+        },
+        {
+          "title": "에너지신사업",
+          "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-32241",
+          "adapter": "한국전력공사"
         }
       ],
       "errors": [],
       "selectedRootCause": {
-        "version": "1.2-list-accuracy",
+        "version": "1.3-list-template-verification",
         "mode": "passive",
         "org": "한국전력공사",
-        "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+        "url": "https://www.kepco.co.kr/home/about/careers.do",
         "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-        "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+        "listCounterFailureReason": "DOM_COUNT_ZERO",
         "accuracyVerification": {
           "verified": false,
-          "level": "COUNT_EXACT_ONLY",
+          "level": "NOT_EXACT",
+          "listVerificationTemplate": "TABLE_RECORD",
+          "templateRecordEvidence": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 100,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "한국전력공사 로고",
+              "회사소개",
+              "KEPCO 소개 메뉴 열기",
+              "KEPCO 개요",
+              "CEO 인사말",
+              "경영방침",
+              "조직안내 메뉴 열기",
+              "해외지사·법인",
+              "출자회사",
+              "전국 본부 · 사업소",
+              "투자정보 메뉴 열기",
+              "IR정보"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "independentDomEvidence": false,
-          "exactCount": true,
+          "exactCount": false,
           "exactTitleSet": false,
           "strongAdapterRecordEvidence": false,
           "missingTitleCount": 0,
-          "extraCandidateCount": 10,
+          "extraCandidateCount": 100,
           "visibleUniqueTitleCount": 0,
-          "extractedTitleCount": 10
+          "extractedTitleCount": 100
         },
         "counterTrace": {
-          "source": "visible-board-rows",
+          "source": "unavailable",
           "rawDomRows": 0,
           "uniqueVisibleTitleCount": 0,
-          "reportedVisiblePostCount": 10,
-          "acceptedCandidateCount": 10,
+          "reportedVisiblePostCount": null,
+          "acceptedCandidateCount": 100,
           "exactAgainstRaw": false,
           "exactAgainstUniqueTitles": false
         },
         "candidateClassCounts": {
-          "RECRUIT_POST": 10
+          "UNCLASSIFIED": 93,
+          "MENU_OR_IR": 5,
+          "RECRUIT_POST": 2
         },
         "counts": {
-          "visiblePostCount": 10,
-          "candidateCount": 10,
+          "visiblePostCount": null,
+          "candidateCount": 100,
           "rawTableRows": 0,
           "uniqueVisibleTitleCount": 0,
-          "sourceHtmlLength": 55551,
+          "sourceHtmlLength": 446816,
           "missingRows": 0,
-          "extraCandidates": 10
+          "extraCandidates": 100
         },
         "selectorCounts": {
           "table tbody tr": 0,
           "tr": 0,
-          "li": 125,
+          "li": 358,
           "article": 0,
-          "[onclick]": 11,
+          "[onclick]": 196,
           "[data-url]": 0,
           "[data-href]": 0,
-          "a[href]": 60
+          "a[href]": 445
         },
         "rejectReasonCounts": {},
         "visibleTitles": [],
         "extractedTitles": [
-          "한국전력공사 기간제 근로자(대체인력) 채용공고[전력기자재센터(옥천)] 충북 / 비정규직 / 2026.08.07 ~ 26.08.21 / 진행중",
-          "한국전력공사 기간제근로자(대체인력) 채용공고 [제주본부] 제주 / 비정규직 / 2026.08.05 ~ 26.08.19 / 진행중",
-          "한국전력공사 기간제근로자(대체인력) 채용공고 [대구본부 동대구, 경주, 경산지사] 대구 외 1 / 비정규직 / 2026.07.31 ~ 26.08.14 / 진행중",
-          "한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 마감",
-          "한국전력공사 2026년 제2차 장애인 체험형 인턴 모집공고[경북본부] 경북 / 청년인턴(체험형) / 2026.07.23 ~ 26.08.06 / 마감",
-          "한국전력공사 기간제 근로자(대체인력) 채용공고[인재개발원] 서울 / 비정규직 / 2026.07.22 ~ 26.08.05 / 마감",
-          "한국전력공사 2026년 제3차 장애인 체험형인턴 채용공고 [강원본부] 강원 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.23 / 마감",
-          "한국전력공사 2026년 제2차 장애인 체험형 인턴 채용공고[남서울본부] 서울 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.30 / 마감",
-          "한국전력공사 기간제근로자(대체인력) 채용공고[부산울산본부] 부산 외 2 / 비정규직 / 2026.07.08 ~ 26.07.22 / 마감",
-          "한국전력공사 (수정) 기간제근로자(대체인력) 채용공고[대전세종충남본부 천안지사, 대덕유성지사] 대전 외 1 / 비정규직 / 2026.06.25 ~ 26.07.09 / 마감"
+          "한국전력공사 로고",
+          "회사소개",
+          "KEPCO 소개 메뉴 열기",
+          "KEPCO 개요",
+          "CEO 인사말",
+          "경영방침",
+          "조직안내 메뉴 열기",
+          "해외지사·법인",
+          "출자회사",
+          "전국 본부 · 사업소",
+          "투자정보 메뉴 열기",
+          "IR정보",
+          "재무정보",
+          "주식정보",
+          "전자공고",
+          "인재채용",
+          "사업분야",
+          "송배전사업",
+          "판매 · 수요관리",
+          "에너지신사업",
+          "해외사업",
+          "연구개발",
+          "정보공개",
+          "정보공개제도 메뉴 열기",
+          "정보공개안내",
+          "정보공개절차",
+          "비공개 대상 정보",
+          "서식 및 수요분석",
+          "사전정보공표",
+          "공공데이터제공 메뉴 열기",
+          "공공데이터제공 제도",
+          "공공데이터제공 목록",
+          "공공데이터 설문조사",
+          "사업실명제",
+          "송변전 건설 정보공개 메뉴 열기",
+          "송변전 건설 사업현황",
+          "건설절차",
+          "보상 및 지원",
+          "전자파 정보",
+          "경영공시 메뉴 열기",
+          "경영공시 전체보기",
+          "내부규정 메뉴 열기",
+          "사규 및 하위 규범",
+          "제ㆍ개정 예고",
+          "ESG경영",
+          "한전의 ESG 메뉴 열기",
+          "ESG 개요",
+          "핵심성과",
+          "추진체계",
+          "중대성 평가",
+          "이해관계자 참여",
+          "환경E 메뉴 열기",
+          "환경경영",
+          "탄소중립",
+          "사회S 메뉴 열기",
+          "사회공헌",
+          "안전경영",
+          "동반성장(기업센터)",
+          "인권경영",
+          "인재경영",
+          "지배구조G 메뉴 열기",
+          "윤리경영",
+          "청렴경영",
+          "재취업 정보공유",
+          "ESG 리포트",
+          "ESG 데이터",
+          "홍보센터",
+          "뉴스룸 메뉴 열기",
+          "뉴스 · 미디어",
+          "공지사항",
+          "보도·설명자료",
+          "소셜미디어",
+          "홍보영상",
+          "전시관람 메뉴 열기",
+          "본사홍보관",
+          "전기박물관",
+          "문화 · 스포츠 메뉴 열기",
+          "한전아트센터",
+          "스포츠단",
+          "고객소통",
+          "고객소통안내",
+          "온라인 민원",
+          "본사방문 및 서면 민원",
+          "신문고 메뉴 열기",
+          "부패/부조리 신고",
+          "KEPCO 옴부즈만",
+          "안전신고 및 제안 메뉴 열기",
+          "안전신고",
+          "안전제안",
+          "정전피해배상제도",
+          "공공시설 개방",
+          "자료실 메뉴 열기",
+          "전력통계",
+          "배전인력조회",
+          "한전ON(새창열림) 전기요금 문의",
+          "전기사용 관련 고객서비스는 한전ON 으로 이동해주세요 (☏123) 전기요금 문의",
+          "전국사업소 한 눈에 보기",
+          "서울본부 (종로구, 중구 등 한강이북)",
+          "남서울본부 (영등포, 강남구 등 한강이남)",
+          "인천본부"
         ],
         "missingRows": [],
         "extraCandidates": [
           {
             "org": "한국전력공사",
-            "title": "한국전력공사 기간제 근로자(대체인력) 채용공고[전력기자재센터(옥천)] 충북 / 비정규직 / 2026.08.07 ~ 26.08.21 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303625",
-            "listText": "h();\"> 진행상태 진행중 마감 한국전력공사 기간제 근로자(대체인력) 채용공고[전력기자재센터(옥천)] 충북 / 비정규직 / 2026.08.07 ~ 26.08.21 / 진행중 한국전력공사 기간제근로자(대체인력) 채용공고 [제주본부] 제주 / 비정규직 / 2026.08.05 ~ 26.08.19 / 진행중 한국전력공사 기간제근로자(대체인력) 채용공고 [대구본부 동대구, 경주, 경산지사]",
-            "sourceType": "ALIO"
+            "title": "한국전력공사 로고",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-6969",
+            "listText": "한국전력공사 로고",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-6969"
           },
           {
             "org": "한국전력공사",
-            "title": "한국전력공사 기간제근로자(대체인력) 채용공고 [제주본부] 제주 / 비정규직 / 2026.08.05 ~ 26.08.19 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303506",
-            "listText": "비정규직 / 2026.08.07 ~ 26.08.21 / 진행중 한국전력공사 기간제근로자(대체인력) 채용공고 [제주본부] 제주 / 비정규직 / 2026.08.05 ~ 26.08.19 / 진행중 한국전력공사 기간제근로자(대체인력) 채용공고 [대구본부 동대구, 경주, 경산지사] 대구 외 1 / 비정규직 / 2026.07.31 ~ 26.08.14 / 진행중 한국전력공사</d",
-            "sourceType": "ALIO"
+            "title": "회사소개",
+            "link": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+            "listText": "// 창 크기 변경 시 onclick 이벤트 관리 $(window).resize(manageOnClickEvent); // 페이지 로드 시 첫 확인 manageOnClickEvent(); }); */ 회사소개 회사소개 미래를 밝히는 기술로 글로벌 에너지 산업을 이끌어 갑니다. KEPCO 소개 메뉴 열기",
+            "adapter": "한국전력공사"
           },
           {
             "org": "한국전력공사",
-            "title": "한국전력공사 기간제근로자(대체인력) 채용공고 [대구본부 동대구, 경주, 경산지사] 대구 외 1 / 비정규직 / 2026.07.31 ~ 26.08.14 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303291",
-            "listText": "비정규직 / 2026.08.05 ~ 26.08.19 / 진행중 한국전력공사 기간제근로자(대체인력) 채용공고 [대구본부 동대구, 경주, 경산지사] 대구 외 1 / 비정규직 / 2026.07.31 ~ 26.08.14 / 진행중 한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 마감",
-            "sourceType": "ALIO"
+            "title": "KEPCO 소개 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+            "listText": "h-inner\"> 회사소개 미래를 밝히는 기술로 글로벌 에너지 산업을 이끌어 갑니다. KEPCO 소개 메뉴 열기 KEPCO 개요 연혁",
+            "adapter": "한국전력공사"
           },
           {
             "org": "한국전력공사",
-            "title": "한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303025",
-            "listText": "비정규직 / 2026.07.31 ~ 26.08.14 / 진행중 한국전력공사 2026년도 NDIS데이터관리원 채용공고 강원 외 3 / 정규직 / 2026.07.23 ~ 26.08.06 / 마감 한국전력공사 2026년 제2차 장애인 체험형 인턴 모집공고[경북본부] 경북 / 청년인턴(체험형) / 2026.07.23 ~ 26.08.06 / 마감 한국전력공사 기간제 근로자(대체인력) 채용공고[인재개발원]",
-            "sourceType": "ALIO"
+            "title": "KEPCO 개요",
+            "link": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+            "listText": "KEPCO 개요 연혁 CEO 인사말",
+            "adapter": "한국전력공사"
           },
           {
             "org": "한국전력공사",
-            "title": "한국전력공사 2026년 제2차 장애인 체험형 인턴 모집공고[경북본부] 경북 / 청년인턴(체험형) / 2026.07.23 ~ 26.08.06 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303020",
-            "listText": "정규직 / 2026.07.23 ~ 26.08.06 / 마감 한국전력공사 2026년 제2차 장애인 체험형 인턴 모집공고[경북본부] 경북 / 청년인턴(체험형) / 2026.07.23 ~ 26.08.06 / 마감 한국전력공사 기간제 근로자(대체인력) 채용공고[인재개발원] 서울 / 비정규직 / 2026.07.22 ~ 26.08.05 / 마감 한국전력공사 2026년 제3차 장애인 체험형인턴 채용공고 [강원본부]",
-            "sourceType": "ALIO"
+            "title": "CEO 인사말",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-21220",
+            "listText": "CEO 인사말",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-21220"
           },
           {
             "org": "한국전력공사",
-            "title": "한국전력공사 기간제 근로자(대체인력) 채용공고[인재개발원] 서울 / 비정규직 / 2026.07.22 ~ 26.08.05 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302975",
-            "listText": "청년인턴(체험형) / 2026.07.23 ~ 26.08.06 / 마감 한국전력공사 기간제 근로자(대체인력) 채용공고[인재개발원] 서울 / 비정규직 / 2026.07.22 ~ 26.08.05 / 마감 한국전력공사 2026년 제3차 장애인 체험형인턴 채용공고 [강원본부] 강원 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.23 / 마감 한국전력공사 2026년 제2차 장애인 체험형 인턴 채용공고[남서울본부]</",
-            "sourceType": "ALIO"
+            "title": "경영방침",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-21618",
+            "listText": "경영방침",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-21618"
           },
           {
             "org": "한국전력공사",
-            "title": "한국전력공사 2026년 제3차 장애인 체험형인턴 채용공고 [강원본부] 강원 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.23 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302478",
-            "listText": "비정규직 / 2026.07.22 ~ 26.08.05 / 마감 한국전력공사 2026년 제3차 장애인 체험형인턴 채용공고 [강원본부] 강원 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.23 / 마감 한국전력공사 2026년 제2차 장애인 체험형 인턴 채용공고[남서울본부] 서울 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.30 / 마감 한국전력공사 기간제근로자(대체인력) 채용공고[부산울산본부]",
-            "sourceType": "ALIO"
+            "title": "조직안내 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-22431",
+            "listText": "조직안내 메뉴 열기 조직도",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-22431"
           },
           {
             "org": "한국전력공사",
-            "title": "한국전력공사 2026년 제2차 장애인 체험형 인턴 채용공고[남서울본부] 서울 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.30 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302474",
-            "listText": "청년인턴(체험형) / 2026.07.08 ~ 26.07.23 / 마감 한국전력공사 2026년 제2차 장애인 체험형 인턴 채용공고[남서울본부] 서울 / 청년인턴(체험형) / 2026.07.08 ~ 26.07.30 / 마감 한국전력공사 기간제근로자(대체인력) 채용공고[부산울산본부] 부산 외 2 / 비정규직 / 2026.07.08 ~ 26.07.22 / 마감 <div class=\"wor",
-            "sourceType": "ALIO"
+            "title": "해외지사·법인",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-24085",
+            "listText": "해외지사·법인",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-24085"
           },
           {
             "org": "한국전력공사",
-            "title": "한국전력공사 기간제근로자(대체인력) 채용공고[부산울산본부] 부산 외 2 / 비정규직 / 2026.07.08 ~ 26.07.22 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302461",
-            "listText": "청년인턴(체험형) / 2026.07.08 ~ 26.07.30 / 마감 한국전력공사 기간제근로자(대체인력) 채용공고[부산울산본부] 부산 외 2 / 비정규직 / 2026.07.08 ~ 26.07.22 / 마감 한국전력공사 (수정) 기간제근로자(대체인력) 채용공고[대전세종충남본부 천안지사, 대덕유성지사] 대전 외 1 / 비정규직 / 2026.06.25 ~ 26.07.09 / 마감 <a href=\"#\" onclick=\"return fals",
-            "sourceType": "ALIO"
+            "title": "출자회사",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-24503",
+            "listText": "출자회사",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-24503"
           },
           {
             "org": "한국전력공사",
-            "title": "한국전력공사 (수정) 기간제근로자(대체인력) 채용공고[대전세종충남본부 천안지사, 대덕유성지사] 대전 외 1 / 비정규직 / 2026.06.25 ~ 26.07.09 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=302111",
-            "listText": "비정규직 / 2026.07.08 ~ 26.07.22 / 마감 한국전력공사 (수정) 기간제근로자(대체인력) 채용공고[대전세종충남본부 천안지사, 대덕유성지사] 대전 외 1 / 비정규직 / 2026.06.25 ~ 26.07.09 / 마감 1 2 3 4 5",
-            "sourceType": "ALIO"
+            "title": "전국 본부 · 사업소",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-24943",
+            "listText": "전국 본부 · 사업소",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-24943"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "투자정보 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-26226",
+            "listText": "투자정보 메뉴 열기 IR정보",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-26226"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "IR정보",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-27497",
+            "listText": "IR정보",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-27497"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "재무정보",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-27915",
+            "listText": "재무정보",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-27915"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "주식정보",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-28344",
+            "listText": "주식정보",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-28344"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "전자공고",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-28760",
+            "listText": "전자공고",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-28760"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "인재채용",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-29192",
+            "listText": "인재채용",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-29192"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "사업분야",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-30087",
+            "listText": "사업분야 사업분야 안정적인 전력 공급부터 글로벌 신사업까지 미래 에너지 산업을 이끌어 갑니다. 송배전사업",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-30087"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "송배전사업",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-30561",
+            "listText": "송배전사업",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-30561"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "판매 · 수요관리",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-31398",
+            "listText": "판매 · 수요관리",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-31398"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "에너지신사업",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-32241",
+            "listText": "에너지신사업",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-32241"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "해외사업",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-33084",
+            "listText": "해외사업",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-33084"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "연구개발",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-33928",
+            "listText": "연구개발",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-33928"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "정보공개",
+            "link": "https://www.kepco.co.kr/home/disclosure/dissystem/disoverview/conts.do",
+            "listText": "정보공개 정보공개 정보 공개의 투명성을 확보하여 국민의 알 권리를 보장합니다. 정보공개제도 메뉴 열기",
+            "adapter": "한국전력공사"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "정보공개제도 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/disclosure/dissystem/disoverview/conts.do",
+            "listText": "-inner\"> 정보공개 정보 공개의 투명성을 확보하여 국민의 알 권리를 보장합니다. 정보공개제도 메뉴 열기 정보공개안내 정보공개절차 </",
+            "adapter": "한국전력공사"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "정보공개안내",
+            "link": "https://www.kepco.co.kr/home/disclosure/dissystem/disoverview/conts.do",
+            "listText": "정보공개안내 정보공개절차 비공개 대상 정보",
+            "adapter": "한국전력공사"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "정보공개절차",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-37048",
+            "listText": "정보공개절차",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-37048"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "비공개 대상 정보",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-37477",
+            "listText": "비공개 대상 정보",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-37477"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "서식 및 수요분석",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-37905",
+            "listText": "서식 및 수요분석",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-37905"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "사전정보공표",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-38344",
+            "listText": "사전정보공표",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-38344"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "공공데이터제공 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-39208",
+            "listText": "공공데이터제공 메뉴 열기 공공데이터제공 제도",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-39208"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "공공데이터제공 제도",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-40455",
+            "listText": "공공데이터제공 제도",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-40455"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "공공데이터제공 목록",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-40880",
+            "listText": "공공데이터제공 목록",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-40880"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "공공데이터 설문조사",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-41304",
+            "listText": "공공데이터 설문조사",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-41304"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "사업실명제",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-41738",
+            "listText": "사업실명제",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-41738"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "송변전 건설 정보공개 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-42597",
+            "listText": "송변전 건설 정보공개 메뉴 열기 송변전 건설 사업현황",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-42597"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "송변전 건설 사업현황",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-43899",
+            "listText": "송변전 건설 사업현황",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-43899"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "건설절차",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-44339",
+            "listText": "건설절차",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-44339"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "보상 및 지원",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-44778",
+            "listText": "보상 및 지원",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-44778"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "전자파 정보",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-45222",
+            "listText": "전자파 정보",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-45222"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "경영공시 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-45673",
+            "listText": "경영공시 메뉴 열기 경영공시 전체보기",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-45673"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "경영공시 전체보기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-46909",
+            "listText": "경영공시 전체보기",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-46909"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "내부규정 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-47776",
+            "listText": "내부규정 메뉴 열기 사규 및 하위 규범",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-47776"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "사규 및 하위 규범",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-49008",
+            "listText": "사규 및 하위 규범",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-49008"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "제ㆍ개정 예고",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-49445",
+            "listText": "제ㆍ개정 예고",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-49445"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "ESG경영",
+            "link": "https://www.kepco.co.kr/home/esg/kepcoesg/esgoverview.do",
+            "listText": "ESG경영 ESG경영 깨끗한 에너지를 연결되는 환경 경영, 탄소 중립을 실천하는 사회를 약속합니다. 한전의 ESG 메뉴 열기 <i class=",
+            "adapter": "한국전력공사"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "한전의 ESG 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/esg/kepcoesg/esgoverview.do",
+            "listText": "ESG경영 깨끗한 에너지를 연결되는 환경 경영, 탄소 중립을 실천하는 사회를 약속합니다. 한전의 ESG 메뉴 열기 ESG 개요 핵심성과",
+            "adapter": "한국전력공사"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "ESG 개요",
+            "link": "https://www.kepco.co.kr/home/esg/kepcoesg/esgoverview.do",
+            "listText": "ESG 개요 핵심성과 추진체계",
+            "adapter": "한국전력공사"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "핵심성과",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-52129",
+            "listText": "핵심성과",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-52129"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "추진체계",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-52546",
+            "listText": "추진체계",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-52546"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "중대성 평가",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-52954",
+            "listText": "중대성 평가",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-52954"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "이해관계자 참여",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-53370",
+            "listText": "이해관계자 참여",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-53370"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "환경E 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-53794",
+            "listText": "환경E 메뉴 열기 환경경영",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-53794"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "환경경영",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-55004",
+            "listText": "환경경영",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-55004"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "탄소중립",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-55420",
+            "listText": "탄소중립",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-55420"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "사회S 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-55832",
+            "listText": "사회S 메뉴 열기 사회공헌",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-55832"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "사회공헌",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-57121",
+            "listText": "사회공헌",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-57121"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "안전경영",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-57530",
+            "listText": "안전경영",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-57530"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "동반성장(기업센터)",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-57938",
+            "listText": "동반성장(기업센터)",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-57938"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "인권경영",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-58356",
+            "listText": "인권경영",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-58356"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "인재경영",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-58769",
+            "listText": "인재경영",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-58769"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "지배구조G 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-59189",
+            "listText": "지배구조G 메뉴 열기 이사회",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-59189"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "윤리경영",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-60892",
+            "listText": "윤리경영",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-60892"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "청렴경영",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-61297",
+            "listText": "청렴경영",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-61297"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "재취업 정보공유",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-61708",
+            "listText": "재취업 정보공유",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-61708"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "ESG 리포트",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-62131",
+            "listText": "ESG 리포트",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-62131"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "ESG 데이터",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-63230",
+            "listText": "ESG 데이터",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-63230"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "홍보센터",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-64404",
+            "listText": "홍보센터 홍보센터 국민과 함께하는 한국전력공사의 새로운 소식과 다양한 전시관람·문화 스포츠를 소개합니다. 뉴스룸 메뉴 열기 뉴스 · 미디어",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-64404"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "뉴스룸 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-64888",
+            "listText": "뉴스룸 메뉴 열기 뉴스 · 미디어",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-64888"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "뉴스 · 미디어",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-66266",
+            "listText": "뉴스 · 미디어",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-66266"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "공지사항",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-66671",
+            "listText": "공지사항",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-66671"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "보도·설명자료",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-67081",
+            "listText": "보도·설명자료",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-67081"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "소셜미디어",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-67489",
+            "listText": "소셜미디어",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-67489"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "홍보영상",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-68342",
+            "listText": "홍보영상",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-68342"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "전시관람 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-69168",
+            "listText": "전시관람 메뉴 열기 본사홍보관",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-69168"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "본사홍보관",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-70387",
+            "listText": "본사홍보관",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-70387"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "전기박물관",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-70807",
+            "listText": "전기박물관",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-70807"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "문화 · 스포츠 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-71221",
+            "listText": "문화 · 스포츠 메뉴 열기 한전아트센터",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-71221"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "한전아트센터",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-72440",
+            "listText": "한전아트센터",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-72440"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "스포츠단",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-72859",
+            "listText": "스포츠단",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-72859"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "고객소통",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-73378",
+            "listText": "고객소통 고객소통 고객의 입장에서 생각하고 고객의 말씀에 귀 기울이겠습니다. 고객소통안내",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-73378"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "고객소통안내",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-73853",
+            "listText": "고객소통안내",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-73853"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "온라인 민원",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-74742",
+            "listText": "온라인 민원",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-74742"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "본사방문 및 서면 민원",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-75786",
+            "listText": "본사방문 및 서면 민원",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-75786"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "신문고 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-76829",
+            "listText": "신문고 메뉴 열기 부패/부조리 신고",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-76829"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "부패/부조리 신고",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-78127",
+            "listText": "부패/부조리 신고",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-78127"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "KEPCO 옴부즈만",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-78546",
+            "listText": "KEPCO 옴부즈만",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-78546"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "안전신고 및 제안 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-79070",
+            "listText": "안전신고 및 제안 메뉴 열기 안전신고",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-79070"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "안전신고",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-80296",
+            "listText": "안전신고",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-80296"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "안전제안",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-80720",
+            "listText": "안전제안",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-80720"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "정전피해배상제도",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-81150",
+            "listText": "정전피해배상제도",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-81150"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "공공시설 개방",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-82231",
+            "listText": "공공시설 개방",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-82231"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "자료실 메뉴 열기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-83094",
+            "listText": "자료실 메뉴 열기 전력통계",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-83094"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "전력통계",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-84334",
+            "listText": "전력통계",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-84334"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "배전인력조회",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-84773",
+            "listText": "배전인력조회",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-84773"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "한전ON(새창열림) 전기요금 문의",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-85618",
+            "listText": "한전ON(새창열림) 전기요금 문의",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-85618"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "전기사용 관련 고객서비스는 한전ON 으로 이동해주세요 (☏123) 전기요금 문의",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-104816",
+            "listText": "전기사용 관련 고객서비스는 한전ON 으로 이동해주세요 (☏123)",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-104816"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "전국사업소 한 눈에 보기",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-111857",
+            "listText": "전국사업소 한 눈에 보기 서울본부 (종로구, 중구 등 한강이북) 남서울본부 (영등포, 강남구 등 한강이남) 인천본부 경기북부본부 경기본부 강원본부 충북본부 대전세종충남본부 전북본부 광주전남본부 대구본부 (포항, 경주, 경산, 칠곡 등 포함) 경북본부 (포항, 경주, 경산, 칠곡 등 제외) 부산울산본부 (김해, 양산 포함) 경남본부 (김해, 양산 제외) 제주본부",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-111857"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "서울본부 (종로구, 중구 등 한강이북)",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-112323",
+            "listText": "서울본부 (종로구, 중구 등 한강이북)",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-112323"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "남서울본부 (영등포, 강남구 등 한강이남)",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-112517",
+            "listText": "남서울본부 (영등포, 강남구 등 한강이남)",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-112517"
+          },
+          {
+            "org": "한국전력공사",
+            "title": "인천본부",
+            "link": "https://www.kepco.co.kr/home/about/careers.do#list-row-112719",
+            "listText": "인천본부",
+            "adapter": "한국전력공사",
+            "listOnly": true,
+            "listIdentity": "row-112719"
           }
         ],
         "rowTrace": []
       },
       "accuracyVerification": {
         "verified": false,
-        "level": "COUNT_EXACT_ONLY",
+        "level": "NOT_EXACT",
+        "listVerificationTemplate": "TABLE_RECORD",
+        "templateRecordEvidence": {
+          "verified": false,
+          "template": "TABLE_RECORD",
+          "recordCount": 0,
+          "candidateCount": 100,
+          "matchedCount": 0,
+          "unmatchedTitles": [
+            "한국전력공사 로고",
+            "회사소개",
+            "KEPCO 소개 메뉴 열기",
+            "KEPCO 개요",
+            "CEO 인사말",
+            "경영방침",
+            "조직안내 메뉴 열기",
+            "해외지사·법인",
+            "출자회사",
+            "전국 본부 · 사업소",
+            "투자정보 메뉴 열기",
+            "IR정보"
+          ],
+          "recordSamples": [],
+          "level": "TEMPLATE_RECORD_MISMATCH"
+        },
         "independentDomEvidence": false,
-        "exactCount": true,
+        "exactCount": false,
         "exactTitleSet": false,
         "strongAdapterRecordEvidence": false,
         "missingTitleCount": 0,
-        "extraCandidateCount": 10,
+        "extraCandidateCount": 100,
         "visibleUniqueTitleCount": 0,
-        "extractedTitleCount": 10
+        "extractedTitleCount": 100
       }
     },
     "detail": {
-      "ok": true,
-      "attempted": 2,
-      "validated": 2,
+      "ok": false,
+      "targetCount": 100,
+      "attempted": 9,
+      "validated": 0,
+      "failed": 9,
+      "missingDetailUrl": 91,
+      "coverageRatio": 0.09,
+      "validationRatio": 0,
       "samples": [
         {
-          "title": "한국전력공사 기간제 근로자(대체인력) 채용공고[전력기자재센터(옥천)] 충북 / 비정규직 / 2026.08.07 ~ 26.08.21 / 진행중",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303625",
-          "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303625",
-          "textLength": 1482,
-          "attachmentCount": 5,
-          "error": ""
+          "title": "회사소개",
+          "requestedUrl": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": false,
+          "finalUrl": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "transport": "",
+          "error": "home page redirect detected"
         },
         {
-          "title": "한국전력공사 기간제근로자(대체인력) 채용공고 [제주본부] 제주 / 비정규직 / 2026.08.05 ~ 26.08.19 / 진행중",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303506",
-          "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303506",
-          "textLength": 1587,
-          "attachmentCount": 4,
-          "error": ""
+          "title": "KEPCO 소개 메뉴 열기",
+          "requestedUrl": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": false,
+          "finalUrl": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "transport": "",
+          "error": "home page redirect detected"
+        },
+        {
+          "title": "KEPCO 개요",
+          "requestedUrl": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": false,
+          "finalUrl": "https://www.kepco.co.kr/home/about/introduce/overview.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "transport": "",
+          "error": "home page redirect detected"
+        },
+        {
+          "title": "정보공개",
+          "requestedUrl": "https://www.kepco.co.kr/home/disclosure/dissystem/disoverview/conts.do",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": false,
+          "finalUrl": "https://www.kepco.co.kr/home/disclosure/dissystem/disoverview/conts.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "transport": "",
+          "error": "home page redirect detected"
+        },
+        {
+          "title": "정보공개제도 메뉴 열기",
+          "requestedUrl": "https://www.kepco.co.kr/home/disclosure/dissystem/disoverview/conts.do",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": false,
+          "finalUrl": "https://www.kepco.co.kr/home/disclosure/dissystem/disoverview/conts.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "transport": "",
+          "error": "home page redirect detected"
+        },
+        {
+          "title": "정보공개안내",
+          "requestedUrl": "https://www.kepco.co.kr/home/disclosure/dissystem/disoverview/conts.do",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": false,
+          "finalUrl": "https://www.kepco.co.kr/home/disclosure/dissystem/disoverview/conts.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "transport": "",
+          "error": "home page redirect detected"
+        },
+        {
+          "title": "ESG경영",
+          "requestedUrl": "https://www.kepco.co.kr/home/esg/kepcoesg/esgoverview.do",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": false,
+          "finalUrl": "https://www.kepco.co.kr/home/esg/kepcoesg/esgoverview.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "transport": "",
+          "error": "home page redirect detected"
+        },
+        {
+          "title": "한전의 ESG 메뉴 열기",
+          "requestedUrl": "https://www.kepco.co.kr/home/esg/kepcoesg/esgoverview.do",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": false,
+          "finalUrl": "https://www.kepco.co.kr/home/esg/kepcoesg/esgoverview.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "transport": "",
+          "error": "home page redirect detected"
+        },
+        {
+          "title": "ESG 개요",
+          "requestedUrl": "https://www.kepco.co.kr/home/esg/kepcoesg/esgoverview.do",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": false,
+          "finalUrl": "https://www.kepco.co.kr/home/esg/kepcoesg/esgoverview.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "transport": "",
+          "error": "home page redirect detected"
         }
       ]
     },
     "attachment": {
-      "ok": true,
-      "discovered": 9,
-      "samples": [
-        {
-          "name": "기간제근로자 모집공고문_전력기자재센터.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066790"
-        },
-        {
-          "name": "붙임 4. 입사지원서 윤리서약동의서 개인정보수집이용동의서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066857"
-        },
-        {
-          "name": "붙임 2. 기간제 근로자 직무기술서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066792"
-        },
-        {
-          "name": "붙임 1. 신규채용자의 결격사유.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066793"
-        },
-        {
-          "name": "붙임 3. 블라인드 위반 감점기준.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066794"
-        },
-        {
-          "name": "1. 채용공고문.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066199"
-        },
-        {
-          "name": "2. 입사지원서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066200"
-        },
-        {
-          "name": "3. 직무기술서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066201"
-        }
-      ]
+      "ok": false,
+      "discovered": 0,
+      "samples": []
     }
   }
 }

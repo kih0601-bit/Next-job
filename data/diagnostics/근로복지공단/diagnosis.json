@@ -3,107 +3,69 @@
   "health": "degraded",
   "primaryCause": {
     "stage": "list",
-    "status": "partial",
-    "code": "LIST_COUNT_EXACT_UNVERIFIED",
-    "reason": "개수는 10건으로 일치하지만 실제 게시글 제목 집합의 정확성은 아직 독립 검증되지 않음",
+    "status": "failed",
+    "code": "LIST_COUNTER_FAILED",
+    "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
     "evidence": [
       {
         "url": "https://comwel.incruit.com/index_main.asp",
         "visiblePostCount": null,
         "rowMode": false,
         "anchors": 22,
-        "titleMatches": 15,
-        "noUrl": 0,
-        "unsafeUrl": 1,
-        "accepted": 2,
-        "rowFallbackAccepted": 0,
-        "clickableBlocksScanned": 0,
-        "clickableBlocksAccepted": 0,
-        "listOnlyAccepted": 1,
-        "titleSamples": [
-          "���� Ȩ������",
-          "���� �Ұ��ڷ�",
-          "�����",
-          "���� �� ����",
-          "����",
-          "�ٽɰ�ġ",
-          "�濵��ħ",
-          "����� �濵����"
-        ],
-        "unsafeSamples": [
-          {
-            "title": "�����",
-            "reason": "detail-url-pending",
-            "identity": "row-2450",
-            "row": "<li class=\"nav-list__item depth1\">\r\n\t\t\t\t\t\t\t<a href=\"https://www.comwel.or.kr/recruit/hp/ablman/ablmanView.do\" target=\"_blank\" class=\"link\">�����</a>\r\n\t\t\t\t\t\t</li>"
-          }
-        ],
-        "actionSamples": [],
-        "candidateUrlSamples": [
-          {
-            "title": "�����",
-            "url": "https://www.comwel.or.kr/recruit/hp/ablman/ablmanView.do",
-            "allowed": false
-          },
-          {
-            "title": "�ٷκ������� ��25�� 2�� �ű�����(������) ä�� ���� 2025.08.14.(��) ~ 2025.08.28.(��) 18:00:00 �ٷΰ���",
-            "url": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
-            "allowed": true
-          }
-        ],
-        "candidateCount": 2,
-        "exactMatch": false,
-        "missingCount": null,
-        "extraCount": null,
-        "countSource": "unavailable"
-      },
-      {
-        "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-        "visiblePostCount": null,
-        "rowMode": false,
-        "anchors": 0,
-        "titleMatches": 0,
+        "titleMatches": 13,
         "noUrl": 0,
         "unsafeUrl": 0,
-        "accepted": 0,
+        "accepted": 1,
         "rowFallbackAccepted": 0,
         "clickableBlocksScanned": 0,
         "clickableBlocksAccepted": 0,
         "listOnlyAccepted": 0,
-        "titleSamples": [],
+        "titleSamples": [
+          "공단 홈페이지",
+          "공단 소개자료",
+          "비전 및 전략",
+          "핵심가치",
+          "경영방침",
+          "중장기 경영전략",
+          "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+          "산재보상"
+        ],
         "unsafeSamples": [],
         "actionSamples": [],
-        "candidateUrlSamples": [],
-        "candidateCount": 0,
+        "candidateUrlSamples": [
+          {
+            "title": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+            "url": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+            "allowed": true
+          }
+        ],
+        "candidateCount": 1,
         "exactMatch": false,
         "missingCount": null,
         "extraCount": null,
+        "recordVerification": {
+          "verified": false,
+          "template": "TABLE_RECORD",
+          "recordCount": 0,
+          "candidateCount": 1,
+          "matchedCount": 0,
+          "unmatchedTitles": [
+            "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기"
+          ],
+          "recordSamples": [],
+          "level": "TEMPLATE_RECORD_MISMATCH"
+        },
         "countSource": "unavailable"
-      },
-      {
-        "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-        "anchors": 60,
-        "titleMatches": 30,
-        "noUrl": 6,
-        "unsafeUrl": 14,
-        "accepted": 10,
-        "rowFallbackAccepted": 0,
-        "visiblePostCount": 10,
-        "candidateCount": 10,
-        "exactMatch": true,
-        "missingCount": 0,
-        "extraCount": 0,
-        "countSource": "visible-board-rows"
       }
     ],
     "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
-    "recommendedAction": "게시글 행/제목 집합을 독립적으로 식별해 실제 목록과 추출 결과의 제목 단위 일치 검증 추가"
+    "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
   },
   "diagnosis": {
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "3개 후보 URL HTTP 응답 성공",
+      "reason": "1개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://comwel.incruit.com/index_main.asp",
@@ -116,19 +78,21 @@
             "fallback": false,
             "code": "RECRUIT_VERIFY_OK",
             "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
-            "score": 3,
+            "score": 5,
             "maxScore": 5,
             "checks": {
               "httpDocument": true,
-              "recruitKeyword": false,
+              "recruitKeyword": true,
               "boardStructure": true,
-              "organizationMatch": false,
+              "organizationMatch": true,
               "meaningfulBody": true
             },
-            "title": "�ٷκ������� ä�� Ȩ������",
-            "orgMatched": false,
-            "positiveHits": 0,
-            "positiveMatches": [],
+            "title": "근로복지공단 채용 홈페이지",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "채용\\s*공고"
+            ],
             "negativeHits": 0,
             "negativeMatches": [],
             "boardSignals": 1,
@@ -146,7 +110,7 @@
               "html:viewhire\\.asp\\?projectid=",
               "html:incruit"
             ],
-            "textLength": 354,
+            "textLength": 268,
             "requestedUrl": "https://comwel.incruit.com/index_main.asp",
             "finalUrl": "https://comwel.incruit.com/index_main.asp",
             "status": 200,
@@ -157,46 +121,8 @@
         },
         {
           "url": "https://comwel.saramin.co.kr/",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-          "verification": {
-            "ok": false,
-            "verified": false,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_ERROR_PAGE",
-            "reason": "오류·차단·비HTML 신호 0개",
-            "score": 2,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": false,
-              "recruitKeyword": false,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": false
-            },
-            "title": "근로복지공단 :: 인트로",
-            "orgMatched": true,
-            "positiveHits": 0,
-            "positiveMatches": [],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 1,
-            "boardType": {
-              "type": "UNKNOWN",
-              "confidence": "low",
-              "evidence": [
-                "명확한 게시판 구조 신호 없음"
-              ]
-            },
-            "institutionRule": false,
-            "institutionRuleEvidence": [],
-            "textLength": 24,
-            "requestedUrl": "https://comwel.saramin.co.kr/",
-            "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-            "status": 200,
-            "contentType": "text/html"
-          },
+          "ok": false,
+          "error": "fetch failed",
           "accessTemplate": "COMMON_PLATFORM",
           "requestProfile": "browser-default"
         },
@@ -216,50 +142,8 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "verification": {
-            "ok": true,
-            "verified": true,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-            "score": 5,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": true,
-              "recruitKeyword": true,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": true
-            },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 3,
-            "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
-              "recruit(?:ment)?"
-            ],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 3,
-            "boardType": {
-              "type": "JOB_ALIO",
-              "confidence": "high",
-              "evidence": [
-                "JOB-ALIO URL/본문 신호"
-              ]
-            },
-            "institutionRule": false,
-            "institutionRuleEvidence": [],
-            "textLength": 1821,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "status": 200,
-            "contentType": "text/html;charset=UTF-8"
-          },
+          "ok": false,
+          "error": "fetch failed",
           "accessTemplate": "COMMON_PLATFORM",
           "requestProfile": "browser-default"
         }
@@ -275,19 +159,21 @@
         "fallback": false,
         "code": "RECRUIT_VERIFY_OK",
         "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
-        "score": 3,
+        "score": 5,
         "maxScore": 5,
         "checks": {
           "httpDocument": true,
-          "recruitKeyword": false,
+          "recruitKeyword": true,
           "boardStructure": true,
-          "organizationMatch": false,
+          "organizationMatch": true,
           "meaningfulBody": true
         },
-        "title": "�ٷκ������� ä�� Ȩ������",
-        "orgMatched": false,
-        "positiveHits": 0,
-        "positiveMatches": [],
+        "title": "근로복지공단 채용 홈페이지",
+        "orgMatched": true,
+        "positiveHits": 1,
+        "positiveMatches": [
+          "채용\\s*공고"
+        ],
         "negativeHits": 0,
         "negativeMatches": [],
         "boardSignals": 1,
@@ -305,7 +191,7 @@
           "html:viewhire\\.asp\\?projectid=",
           "html:incruit"
         ],
-        "textLength": 354,
+        "textLength": 268,
         "requestedUrl": "https://comwel.incruit.com/index_main.asp",
         "finalUrl": "https://comwel.incruit.com/index_main.asp",
         "status": 200,
@@ -313,97 +199,59 @@
       }
     },
     "list": {
-      "status": "partial",
-      "code": "LIST_COUNT_EXACT_UNVERIFIED",
-      "reason": "개수는 10건으로 일치하지만 실제 게시글 제목 집합의 정확성은 아직 독립 검증되지 않음",
+      "status": "failed",
+      "code": "LIST_COUNTER_FAILED",
+      "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
       "evidence": [
         {
           "url": "https://comwel.incruit.com/index_main.asp",
           "visiblePostCount": null,
           "rowMode": false,
           "anchors": 22,
-          "titleMatches": 15,
-          "noUrl": 0,
-          "unsafeUrl": 1,
-          "accepted": 2,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 1,
-          "titleSamples": [
-            "���� Ȩ������",
-            "���� �Ұ��ڷ�",
-            "�����",
-            "���� �� ����",
-            "����",
-            "�ٽɰ�ġ",
-            "�濵��ħ",
-            "����� �濵����"
-          ],
-          "unsafeSamples": [
-            {
-              "title": "�����",
-              "reason": "detail-url-pending",
-              "identity": "row-2450",
-              "row": "<li class=\"nav-list__item depth1\">\r\n\t\t\t\t\t\t\t<a href=\"https://www.comwel.or.kr/recruit/hp/ablman/ablmanView.do\" target=\"_blank\" class=\"link\">�����</a>\r\n\t\t\t\t\t\t</li>"
-            }
-          ],
-          "actionSamples": [],
-          "candidateUrlSamples": [
-            {
-              "title": "�����",
-              "url": "https://www.comwel.or.kr/recruit/hp/ablman/ablmanView.do",
-              "allowed": false
-            },
-            {
-              "title": "�ٷκ������� ��25�� 2�� �ű�����(������) ä�� ���� 2025.08.14.(��) ~ 2025.08.28.(��) 18:00:00 �ٷΰ���",
-              "url": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
-              "allowed": true
-            }
-          ],
-          "candidateCount": 2,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
-        },
-        {
-          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-          "visiblePostCount": null,
-          "rowMode": false,
-          "anchors": 0,
-          "titleMatches": 0,
+          "titleMatches": 13,
           "noUrl": 0,
           "unsafeUrl": 0,
-          "accepted": 0,
+          "accepted": 1,
           "rowFallbackAccepted": 0,
           "clickableBlocksScanned": 0,
           "clickableBlocksAccepted": 0,
           "listOnlyAccepted": 0,
-          "titleSamples": [],
+          "titleSamples": [
+            "공단 홈페이지",
+            "공단 소개자료",
+            "비전 및 전략",
+            "핵심가치",
+            "경영방침",
+            "중장기 경영전략",
+            "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+            "산재보상"
+          ],
           "unsafeSamples": [],
           "actionSamples": [],
-          "candidateUrlSamples": [],
-          "candidateCount": 0,
+          "candidateUrlSamples": [
+            {
+              "title": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+              "url": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+              "allowed": true
+            }
+          ],
+          "candidateCount": 1,
           "exactMatch": false,
           "missingCount": null,
           "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 1,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "unavailable"
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "anchors": 60,
-          "titleMatches": 30,
-          "noUrl": 6,
-          "unsafeUrl": 14,
-          "accepted": 10,
-          "rowFallbackAccepted": 0,
-          "visiblePostCount": 10,
-          "candidateCount": 10,
-          "exactMatch": true,
-          "missingCount": 0,
-          "extraCount": 0,
-          "countSource": "visible-board-rows"
         }
       ]
     },
@@ -414,41 +262,10 @@
       "evidence": []
     },
     "attachment": {
-      "status": "success",
-      "code": "ATTACHMENT_FOUND",
-      "reason": "검증 표본에서 첨부 링크 6개 발견",
-      "evidence": [
-        {
-          "name": "260807 [순천병원] 별정직 의사(재활의학과) 직원 채용 공고문.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066916"
-        },
-        {
-          "name": "260807 [순천병원] 별정직 의사(재활의학과) 직원 채용 입사지원서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066917"
-        },
-        {
-          "name": "260807 [순천병원] 별정직 의사(재활의학과) 직원 채용 직무기술서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066918"
-        },
-        {
-          "name": "260807 [창원병원] 26년 상반기 청년(체험형)인턴 장애전형 채용공고문.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066866"
-        },
-        {
-          "name": "260807 [창원병원] 26년 상반기 청년(체험형)인턴 장애전형 입사지원서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066867"
-        },
-        {
-          "name": "260807 [창원병원] 26년 상반기 청년(체험형)인턴 장애전형 직무기술서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066868"
-        }
-      ]
+      "status": "blocked",
+      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
+      "reason": "상세 단계 미통과로 첨부 진단 보류",
+      "evidence": []
     },
     "access": {
       "status": "success",
@@ -460,19 +277,21 @@
         "fallback": false,
         "code": "RECRUIT_VERIFY_OK",
         "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
-        "score": 3,
+        "score": 5,
         "maxScore": 5,
         "checks": {
           "httpDocument": true,
-          "recruitKeyword": false,
+          "recruitKeyword": true,
           "boardStructure": true,
-          "organizationMatch": false,
+          "organizationMatch": true,
           "meaningfulBody": true
         },
-        "title": "�ٷκ������� ä�� Ȩ������",
-        "orgMatched": false,
-        "positiveHits": 0,
-        "positiveMatches": [],
+        "title": "근로복지공단 채용 홈페이지",
+        "orgMatched": true,
+        "positiveHits": 1,
+        "positiveMatches": [
+          "채용\\s*공고"
+        ],
         "negativeHits": 0,
         "negativeMatches": [],
         "boardSignals": 1,
@@ -490,7 +309,7 @@
           "html:viewhire\\.asp\\?projectid=",
           "html:incruit"
         ],
-        "textLength": 354,
+        "textLength": 268,
         "requestedUrl": "https://comwel.incruit.com/index_main.asp",
         "finalUrl": "https://comwel.incruit.com/index_main.asp",
         "status": 200,
@@ -499,7 +318,7 @@
     }
   },
   "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
-  "recommendedAction": "게시글 행/제목 집합을 독립적으로 식별해 실제 목록과 추출 결과의 제목 단위 일치 검증 추가",
+  "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정",
   "stages": {
     "access": {
       "ok": true,
@@ -522,19 +341,21 @@
             "fallback": false,
             "code": "RECRUIT_VERIFY_OK",
             "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
-            "score": 3,
+            "score": 5,
             "maxScore": 5,
             "checks": {
               "httpDocument": true,
-              "recruitKeyword": false,
+              "recruitKeyword": true,
               "boardStructure": true,
-              "organizationMatch": false,
+              "organizationMatch": true,
               "meaningfulBody": true
             },
-            "title": "�ٷκ������� ä�� Ȩ������",
-            "orgMatched": false,
-            "positiveHits": 0,
-            "positiveMatches": [],
+            "title": "근로복지공단 채용 홈페이지",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "채용\\s*공고"
+            ],
             "negativeHits": 0,
             "negativeMatches": [],
             "boardSignals": 1,
@@ -552,7 +373,7 @@
               "html:viewhire\\.asp\\?projectid=",
               "html:incruit"
             ],
-            "textLength": 354,
+            "textLength": 268,
             "requestedUrl": "https://comwel.incruit.com/index_main.asp",
             "finalUrl": "https://comwel.incruit.com/index_main.asp",
             "status": 200,
@@ -563,46 +384,8 @@
         },
         {
           "url": "https://comwel.saramin.co.kr/",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-          "verification": {
-            "ok": false,
-            "verified": false,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_ERROR_PAGE",
-            "reason": "오류·차단·비HTML 신호 0개",
-            "score": 2,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": false,
-              "recruitKeyword": false,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": false
-            },
-            "title": "근로복지공단 :: 인트로",
-            "orgMatched": true,
-            "positiveHits": 0,
-            "positiveMatches": [],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 1,
-            "boardType": {
-              "type": "UNKNOWN",
-              "confidence": "low",
-              "evidence": [
-                "명확한 게시판 구조 신호 없음"
-              ]
-            },
-            "institutionRule": false,
-            "institutionRuleEvidence": [],
-            "textLength": 24,
-            "requestedUrl": "https://comwel.saramin.co.kr/",
-            "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-            "status": 200,
-            "contentType": "text/html"
-          },
+          "ok": false,
+          "error": "fetch failed",
           "accessTemplate": "COMMON_PLATFORM",
           "requestProfile": "browser-default"
         },
@@ -622,50 +405,8 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "verification": {
-            "ok": true,
-            "verified": true,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-            "score": 5,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": true,
-              "recruitKeyword": true,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": true
-            },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 3,
-            "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
-              "recruit(?:ment)?"
-            ],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 3,
-            "boardType": {
-              "type": "JOB_ALIO",
-              "confidence": "high",
-              "evidence": [
-                "JOB-ALIO URL/본문 신호"
-              ]
-            },
-            "institutionRule": false,
-            "institutionRuleEvidence": [],
-            "textLength": 1821,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-            "status": 200,
-            "contentType": "text/html;charset=UTF-8"
-          },
+          "ok": false,
+          "error": "fetch failed",
           "accessTemplate": "COMMON_PLATFORM",
           "requestProfile": "browser-default"
         }
@@ -676,19 +417,21 @@
         "fallback": false,
         "code": "RECRUIT_VERIFY_OK",
         "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
-        "score": 3,
+        "score": 5,
         "maxScore": 5,
         "checks": {
           "httpDocument": true,
-          "recruitKeyword": false,
+          "recruitKeyword": true,
           "boardStructure": true,
-          "organizationMatch": false,
+          "organizationMatch": true,
           "meaningfulBody": true
         },
-        "title": "�ٷκ������� ä�� Ȩ������",
-        "orgMatched": false,
-        "positiveHits": 0,
-        "positiveMatches": [],
+        "title": "근로복지공단 채용 홈페이지",
+        "orgMatched": true,
+        "positiveHits": 1,
+        "positiveMatches": [
+          "채용\\s*공고"
+        ],
         "negativeHits": 0,
         "negativeMatches": [],
         "boardSignals": 1,
@@ -706,7 +449,7 @@
           "html:viewhire\\.asp\\?projectid=",
           "html:incruit"
         ],
-        "textLength": 354,
+        "textLength": 268,
         "requestedUrl": "https://comwel.incruit.com/index_main.asp",
         "finalUrl": "https://comwel.incruit.com/index_main.asp",
         "status": 200,
@@ -726,7 +469,7 @@
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "3개 후보 URL HTTP 응답 성공",
+          "reason": "1개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://comwel.incruit.com/index_main.asp",
@@ -739,19 +482,21 @@
                 "fallback": false,
                 "code": "RECRUIT_VERIFY_OK",
                 "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
-                "score": 3,
+                "score": 5,
                 "maxScore": 5,
                 "checks": {
                   "httpDocument": true,
-                  "recruitKeyword": false,
+                  "recruitKeyword": true,
                   "boardStructure": true,
-                  "organizationMatch": false,
+                  "organizationMatch": true,
                   "meaningfulBody": true
                 },
-                "title": "�ٷκ������� ä�� Ȩ������",
-                "orgMatched": false,
-                "positiveHits": 0,
-                "positiveMatches": [],
+                "title": "근로복지공단 채용 홈페이지",
+                "orgMatched": true,
+                "positiveHits": 1,
+                "positiveMatches": [
+                  "채용\\s*공고"
+                ],
                 "negativeHits": 0,
                 "negativeMatches": [],
                 "boardSignals": 1,
@@ -769,7 +514,7 @@
                   "html:viewhire\\.asp\\?projectid=",
                   "html:incruit"
                 ],
-                "textLength": 354,
+                "textLength": 268,
                 "requestedUrl": "https://comwel.incruit.com/index_main.asp",
                 "finalUrl": "https://comwel.incruit.com/index_main.asp",
                 "status": 200,
@@ -780,46 +525,8 @@
             },
             {
               "url": "https://comwel.saramin.co.kr/",
-              "ok": true,
-              "status": 200,
-              "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-              "verification": {
-                "ok": false,
-                "verified": false,
-                "fallback": false,
-                "code": "RECRUIT_VERIFY_ERROR_PAGE",
-                "reason": "오류·차단·비HTML 신호 0개",
-                "score": 2,
-                "maxScore": 5,
-                "checks": {
-                  "httpDocument": false,
-                  "recruitKeyword": false,
-                  "boardStructure": true,
-                  "organizationMatch": true,
-                  "meaningfulBody": false
-                },
-                "title": "근로복지공단 :: 인트로",
-                "orgMatched": true,
-                "positiveHits": 0,
-                "positiveMatches": [],
-                "negativeHits": 0,
-                "negativeMatches": [],
-                "boardSignals": 1,
-                "boardType": {
-                  "type": "UNKNOWN",
-                  "confidence": "low",
-                  "evidence": [
-                    "명확한 게시판 구조 신호 없음"
-                  ]
-                },
-                "institutionRule": false,
-                "institutionRuleEvidence": [],
-                "textLength": 24,
-                "requestedUrl": "https://comwel.saramin.co.kr/",
-                "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-                "status": 200,
-                "contentType": "text/html"
-              },
+              "ok": false,
+              "error": "fetch failed",
               "accessTemplate": "COMMON_PLATFORM",
               "requestProfile": "browser-default"
             },
@@ -839,50 +546,8 @@
             },
             {
               "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-              "ok": true,
-              "status": 200,
-              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-              "verification": {
-                "ok": true,
-                "verified": true,
-                "fallback": false,
-                "code": "RECRUIT_VERIFY_OK",
-                "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-                "score": 5,
-                "maxScore": 5,
-                "checks": {
-                  "httpDocument": true,
-                  "recruitKeyword": true,
-                  "boardStructure": true,
-                  "organizationMatch": true,
-                  "meaningfulBody": true
-                },
-                "title": "잡알리오",
-                "orgMatched": true,
-                "positiveHits": 3,
-                "positiveMatches": [
-                  "채용\\s*공고",
-                  "채용\\s*정보",
-                  "recruit(?:ment)?"
-                ],
-                "negativeHits": 0,
-                "negativeMatches": [],
-                "boardSignals": 3,
-                "boardType": {
-                  "type": "JOB_ALIO",
-                  "confidence": "high",
-                  "evidence": [
-                    "JOB-ALIO URL/본문 신호"
-                  ]
-                },
-                "institutionRule": false,
-                "institutionRuleEvidence": [],
-                "textLength": 1821,
-                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-                "status": 200,
-                "contentType": "text/html;charset=UTF-8"
-              },
+              "ok": false,
+              "error": "fetch failed",
               "accessTemplate": "COMMON_PLATFORM",
               "requestProfile": "browser-default"
             }
@@ -892,7 +557,7 @@
           "ok": true,
           "code": "RECRUIT_VERIFY_OK",
           "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
-          "score": 3,
+          "score": 5,
           "maxScore": 5,
           "boardType": {
             "type": "IFRAME",
@@ -907,19 +572,21 @@
             "fallback": false,
             "code": "RECRUIT_VERIFY_OK",
             "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
-            "score": 3,
+            "score": 5,
             "maxScore": 5,
             "checks": {
               "httpDocument": true,
-              "recruitKeyword": false,
+              "recruitKeyword": true,
               "boardStructure": true,
-              "organizationMatch": false,
+              "organizationMatch": true,
               "meaningfulBody": true
             },
-            "title": "�ٷκ������� ä�� Ȩ������",
-            "orgMatched": false,
-            "positiveHits": 0,
-            "positiveMatches": [],
+            "title": "근로복지공단 채용 홈페이지",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "채용\\s*공고"
+            ],
             "negativeHits": 0,
             "negativeMatches": [],
             "boardSignals": 1,
@@ -937,7 +604,7 @@
               "html:viewhire\\.asp\\?projectid=",
               "html:incruit"
             ],
-            "textLength": 354,
+            "textLength": 268,
             "requestedUrl": "https://comwel.incruit.com/index_main.asp",
             "finalUrl": "https://comwel.incruit.com/index_main.asp",
             "status": 200,
@@ -952,19 +619,21 @@
           "fallback": false,
           "code": "RECRUIT_VERIFY_OK",
           "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
-          "score": 3,
+          "score": 5,
           "maxScore": 5,
           "checks": {
             "httpDocument": true,
-            "recruitKeyword": false,
+            "recruitKeyword": true,
             "boardStructure": true,
-            "organizationMatch": false,
+            "organizationMatch": true,
             "meaningfulBody": true
           },
-          "title": "�ٷκ������� ä�� Ȩ������",
-          "orgMatched": false,
-          "positiveHits": 0,
-          "positiveMatches": [],
+          "title": "근로복지공단 채용 홈페이지",
+          "orgMatched": true,
+          "positiveHits": 1,
+          "positiveMatches": [
+            "채용\\s*공고"
+          ],
           "negativeHits": 0,
           "negativeMatches": [],
           "boardSignals": 1,
@@ -982,7 +651,7 @@
             "html:viewhire\\.asp\\?projectid=",
             "html:incruit"
           ],
-          "textLength": 354,
+          "textLength": 268,
           "requestedUrl": "https://comwel.incruit.com/index_main.asp",
           "finalUrl": "https://comwel.incruit.com/index_main.asp",
           "status": 200,
@@ -992,15 +661,15 @@
     },
     "list": {
       "ok": false,
-      "status": "count-exact-unverified",
-      "pagesChecked": 3,
-      "visiblePostCount": 10,
-      "candidateCount": 10,
-      "missingCount": 0,
-      "extraCount": 0,
-      "exactMatch": true,
-      "selectedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-      "detailUrlReady": 10,
+      "status": "count-unavailable-or-empty",
+      "pagesChecked": 1,
+      "visiblePostCount": null,
+      "candidateCount": 1,
+      "missingCount": null,
+      "extraCount": null,
+      "exactMatch": false,
+      "selectedUrl": "https://comwel.incruit.com/index_main.asp",
+      "detailUrlReady": 1,
       "listOnlyCount": 0,
       "extractionDiagnostics": [
         {
@@ -1008,93 +677,55 @@
           "visiblePostCount": null,
           "rowMode": false,
           "anchors": 22,
-          "titleMatches": 15,
-          "noUrl": 0,
-          "unsafeUrl": 1,
-          "accepted": 2,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 1,
-          "titleSamples": [
-            "���� Ȩ������",
-            "���� �Ұ��ڷ�",
-            "�����",
-            "���� �� ����",
-            "����",
-            "�ٽɰ�ġ",
-            "�濵��ħ",
-            "����� �濵����"
-          ],
-          "unsafeSamples": [
-            {
-              "title": "�����",
-              "reason": "detail-url-pending",
-              "identity": "row-2450",
-              "row": "<li class=\"nav-list__item depth1\">\r\n\t\t\t\t\t\t\t<a href=\"https://www.comwel.or.kr/recruit/hp/ablman/ablmanView.do\" target=\"_blank\" class=\"link\">�����</a>\r\n\t\t\t\t\t\t</li>"
-            }
-          ],
-          "actionSamples": [],
-          "candidateUrlSamples": [
-            {
-              "title": "�����",
-              "url": "https://www.comwel.or.kr/recruit/hp/ablman/ablmanView.do",
-              "allowed": false
-            },
-            {
-              "title": "�ٷκ������� ��25�� 2�� �ű�����(������) ä�� ���� 2025.08.14.(��) ~ 2025.08.28.(��) 18:00:00 �ٷΰ���",
-              "url": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
-              "allowed": true
-            }
-          ],
-          "candidateCount": 2,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "countSource": "unavailable"
-        },
-        {
-          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-          "visiblePostCount": null,
-          "rowMode": false,
-          "anchors": 0,
-          "titleMatches": 0,
+          "titleMatches": 13,
           "noUrl": 0,
           "unsafeUrl": 0,
-          "accepted": 0,
+          "accepted": 1,
           "rowFallbackAccepted": 0,
           "clickableBlocksScanned": 0,
           "clickableBlocksAccepted": 0,
           "listOnlyAccepted": 0,
-          "titleSamples": [],
+          "titleSamples": [
+            "공단 홈페이지",
+            "공단 소개자료",
+            "비전 및 전략",
+            "핵심가치",
+            "경영방침",
+            "중장기 경영전략",
+            "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+            "산재보상"
+          ],
           "unsafeSamples": [],
           "actionSamples": [],
-          "candidateUrlSamples": [],
-          "candidateCount": 0,
+          "candidateUrlSamples": [
+            {
+              "title": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+              "url": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+              "allowed": true
+            }
+          ],
+          "candidateCount": 1,
           "exactMatch": false,
           "missingCount": null,
           "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 1,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "countSource": "unavailable"
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "anchors": 60,
-          "titleMatches": 30,
-          "noUrl": 6,
-          "unsafeUrl": 14,
-          "accepted": 10,
-          "rowFallbackAccepted": 0,
-          "visiblePostCount": 10,
-          "candidateCount": 10,
-          "exactMatch": true,
-          "missingCount": 0,
-          "extraCount": 0,
-          "countSource": "visible-board-rows"
         }
       ],
       "rootCauseDiagnostics": [
         {
-          "version": "1.2-list-accuracy",
+          "version": "1.3-list-template-verification",
           "mode": "passive",
           "org": "근로복지공단",
           "url": "https://comwel.incruit.com/index_main.asp",
@@ -1103,35 +734,48 @@
           "accuracyVerification": {
             "verified": false,
             "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 1,
+              "matchedCount": 0,
+              "unmatchedTitles": [
+                "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기"
+              ],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
             "independentDomEvidence": false,
             "exactCount": false,
             "exactTitleSet": false,
             "strongAdapterRecordEvidence": false,
             "missingTitleCount": 0,
-            "extraCandidateCount": 2,
+            "extraCandidateCount": 1,
             "visibleUniqueTitleCount": 0,
-            "extractedTitleCount": 2
+            "extractedTitleCount": 1
           },
           "counterTrace": {
             "source": "unavailable",
             "rawDomRows": 0,
             "uniqueVisibleTitleCount": 0,
             "reportedVisiblePostCount": null,
-            "acceptedCandidateCount": 2,
+            "acceptedCandidateCount": 1,
             "exactAgainstRaw": false,
             "exactAgainstUniqueTitles": false
           },
           "candidateClassCounts": {
-            "UNCLASSIFIED": 2
+            "RECRUIT_POST": 1
           },
           "counts": {
             "visiblePostCount": null,
-            "candidateCount": 2,
+            "candidateCount": 1,
             "rawTableRows": 0,
             "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 9819,
+            "sourceHtmlLength": 9621,
             "missingRows": 0,
-            "extraCandidates": 2
+            "extraCandidates": 1
           },
           "selectorCounts": {
             "table tbody tr": 0,
@@ -1146,220 +790,16 @@
           "rejectReasonCounts": {},
           "visibleTitles": [],
           "extractedTitles": [
-            "�����",
-            "�ٷκ������� ��25�� 2�� �ű�����(������) ä�� ���� 2025.08.14.(��) ~ 2025.08.28.(��) 18:00:00 �ٷΰ���"
+            "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기"
           ],
           "missingRows": [],
           "extraCandidates": [
             {
               "org": "근로복지공단",
-              "title": "�����",
-              "link": "https://comwel.incruit.com/index_main.asp#list-row-2450",
-              "listText": "�����",
-              "adapter": "근로복지공단",
-              "listOnly": true,
-              "listIdentity": "row-2450"
-            },
-            {
-              "org": "근로복지공단",
-              "title": "�ٷκ������� ��25�� 2�� �ű�����(������) ä�� ���� 2025.08.14.(��) ~ 2025.08.28.(��) 18:00:00 �ٷΰ���",
+              "title": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
               "link": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
-              "listText": "�� 1 ���� ä���� ������ �Դϴ�. �ٷκ������� ��25�� 2�� �ű�����(������) ä�� ���� 2025.08.14.(��) ~ 2025.08.28.(��) 18:00:00 �ٷΰ��� ���� ����ȳ� <a href=\"https://www.youtube.com/channel/UCPHSl6",
+              "listText": ".08 총 1 건의 채용이 진행중 입니다. 근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기 공단 사업안내 <a href=\"https://www.youtube.com/channel/UCPHSl6Wko6Bg6-i42suzTAA\" target=\"",
               "adapter": "근로복지공단"
-            }
-          ],
-          "rowTrace": []
-        },
-        {
-          "version": "1.2-list-accuracy",
-          "mode": "passive",
-          "org": "근로복지공단",
-          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
-          "listCounterFailureReason": "UNKNOWN",
-          "accuracyVerification": {
-            "verified": false,
-            "level": "NOT_EXACT",
-            "independentDomEvidence": false,
-            "exactCount": false,
-            "exactTitleSet": false,
-            "strongAdapterRecordEvidence": false,
-            "missingTitleCount": 0,
-            "extraCandidateCount": 0,
-            "visibleUniqueTitleCount": 0,
-            "extractedTitleCount": 0
-          },
-          "counterTrace": {
-            "source": "unavailable",
-            "rawDomRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": null,
-            "acceptedCandidateCount": 0,
-            "exactAgainstRaw": true,
-            "exactAgainstUniqueTitles": true
-          },
-          "candidateClassCounts": {},
-          "counts": {
-            "visiblePostCount": null,
-            "candidateCount": 0,
-            "rawTableRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 5778,
-            "missingRows": 0,
-            "extraCandidates": 0
-          },
-          "selectorCounts": {
-            "table tbody tr": 0,
-            "tr": 0,
-            "li": 0,
-            "article": 0,
-            "[onclick]": 0,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 0
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [],
-          "extractedTitles": [],
-          "missingRows": [],
-          "extraCandidates": [],
-          "rowTrace": []
-        },
-        {
-          "version": "1.2-list-accuracy",
-          "mode": "passive",
-          "org": "근로복지공단",
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-          "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
-          "accuracyVerification": {
-            "verified": false,
-            "level": "COUNT_EXACT_ONLY",
-            "independentDomEvidence": false,
-            "exactCount": true,
-            "exactTitleSet": false,
-            "strongAdapterRecordEvidence": false,
-            "missingTitleCount": 0,
-            "extraCandidateCount": 10,
-            "visibleUniqueTitleCount": 0,
-            "extractedTitleCount": 10
-          },
-          "counterTrace": {
-            "source": "visible-board-rows",
-            "rawDomRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": 10,
-            "acceptedCandidateCount": 10,
-            "exactAgainstRaw": false,
-            "exactAgainstUniqueTitles": false
-          },
-          "candidateClassCounts": {
-            "RECRUIT_POST": 10
-          },
-          "counts": {
-            "visiblePostCount": 10,
-            "candidateCount": 10,
-            "rawTableRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 55685,
-            "missingRows": 0,
-            "extraCandidates": 10
-          },
-          "selectorCounts": {
-            "table tbody tr": 0,
-            "tr": 0,
-            "li": 125,
-            "article": 0,
-            "[onclick]": 11,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 60
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [],
-          "extractedTitles": [
-            "근로복지공단 [순천병원] 별정직 의사(재활의학과) 채용 공고 전남광주 / 정규직 / 2026.08.07 ~ 26.08.18 / 진행중",
-            "근로복지공단 [창원병원] 2026년도 상반기 청년(체험형)인턴 장애전형 채용 공고 경남 / 청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중",
-            "근로복지공단 [동해병원] 기간제 의사(재활의학과 전문의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-            "근로복지공단 [동해병원] 기간제 의사(진단검사의학과(병리과)) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-            "근로복지공단 [동해병원] 기간제 의사(응급실전담의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-            "근로복지공단 [근로복지공단] '26년 2차 신규직원(행정직) 채용 공고 서울 외 15 / 청년인턴(채용형) / 2026.08.05 ~ 26.08.19 / 진행중",
-            "근로복지공단 [안산병원] 기간제(약사) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-            "근로복지공단 [안산병원] 기간제(사무원) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-            "근로복지공단 [안산병원] 기간제(임상심리사) 채용공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-            "근로복지공단 [태백병원] 공무직(전기기계통신기사-기계분야) 채용 공고 강원 / 무기계약직 / 2026.08.05 ~ 26.08.12 / 진행중"
-          ],
-          "missingRows": [],
-          "extraCandidates": [
-            {
-              "org": "근로복지공단",
-              "title": "근로복지공단 [순천병원] 별정직 의사(재활의학과) 채용 공고 전남광주 / 정규직 / 2026.08.07 ~ 26.08.18 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303645",
-              "listText": "h();\"> 진행상태 진행중 마감 근로복지공단 [순천병원] 별정직 의사(재활의학과) 채용 공고 전남광주 / 정규직 / 2026.08.07 ~ 26.08.18 / 진행중 근로복지공단 [창원병원] 2026년도 상반기 청년(체험형)인턴 장애전형 채용 공고 경남 / 청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중 근로복지공단 [동해병원] 기간제 의사(재활의학과 전문의) 채",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "근로복지공단",
-              "title": "근로복지공단 [창원병원] 2026년도 상반기 청년(체험형)인턴 장애전형 채용 공고 경남 / 청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303640",
-              "listText": "정규직 / 2026.08.07 ~ 26.08.18 / 진행중 근로복지공단 [창원병원] 2026년도 상반기 청년(체험형)인턴 장애전형 채용 공고 경남 / 청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중 근로복지공단 [동해병원] 기간제 의사(재활의학과 전문의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(진단검사의학과(병리과)) 채용 공고",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "근로복지공단",
-              "title": "근로복지공단 [동해병원] 기간제 의사(재활의학과 전문의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303595",
-              "listText": "청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중 근로복지공단 [동해병원] 기간제 의사(재활의학과 전문의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(진단검사의학과(병리과)) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(응급실전담의) 채용 공고",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "근로복지공단",
-              "title": "근로복지공단 [동해병원] 기간제 의사(진단검사의학과(병리과)) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303594",
-              "listText": "비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(진단검사의학과(병리과)) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(응급실전담의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [근로복지공단] '26년 2차 신규직원(행정직) 채용 공고</div",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "근로복지공단",
-              "title": "근로복지공단 [동해병원] 기간제 의사(응급실전담의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303593",
-              "listText": "비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(응급실전담의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [근로복지공단] '26년 2차 신규직원(행정직) 채용 공고 서울 외 15 /",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "근로복지공단",
-              "title": "근로복지공단 [근로복지공단] '26년 2차 신규직원(행정직) 채용 공고 서울 외 15 / 청년인턴(채용형) / 2026.08.05 ~ 26.08.19 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303549",
-              "listText": "비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [근로복지공단] '26년 2차 신규직원(행정직) 채용 공고 서울 외 15 / 청년인턴(채용형) / 2026.08.05 ~ 26.08.19 / 진행중 근로복지공단 [안산병원] 기간제(약사) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(사무원) 채용 공고 <div cla",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "근로복지공단",
-              "title": "근로복지공단 [안산병원] 기간제(약사) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303530",
-              "listText": "청년인턴(채용형) / 2026.08.05 ~ 26.08.19 / 진행중 근로복지공단 [안산병원] 기간제(약사) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(사무원) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(임상심리사) 채용공고 <div c",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "근로복지공단",
-              "title": "근로복지공단 [안산병원] 기간제(사무원) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303529",
-              "listText": "비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(사무원) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(임상심리사) 채용공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [태백병원] 공무직(전기기계통신기사-기계분야) 채용 공고",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "근로복지공단",
-              "title": "근로복지공단 [안산병원] 기간제(임상심리사) 채용공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303528",
-              "listText": "비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(임상심리사) 채용공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [태백병원] 공무직(전기기계통신기사-기계분야) 채용 공고 강원 / 무기계약직 / 2026.08.05 ~ 26.08.12 / 진행중 <img src=\"/jobalio/img/btn_page_prev_end.png\" alt=\"처음페이지로 이동\"",
-              "sourceType": "ALIO"
-            },
-            {
-              "org": "근로복지공단",
-              "title": "근로복지공단 [태백병원] 공무직(전기기계통신기사-기계분야) 채용 공고 강원 / 무기계약직 / 2026.08.05 ~ 26.08.12 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303527",
-              "listText": "비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [태백병원] 공무직(전기기계통신기사-기계분야) 채용 공고 강원 / 무기계약직 / 2026.08.05 ~ 26.08.12 / 진행중 1 2 3 4 5",
-              "sourceType": "ALIO"
             }
           ],
           "rowTrace": []
@@ -1372,287 +812,150 @@
           "diagnosisPath": "data/diagnostics/근로복지공단/list/page-1-root-cause.json",
           "rowsPath": "data/diagnostics/근로복지공단/list/page-1-rows.txt",
           "url": "https://comwel.incruit.com/index_main.asp"
-        },
-        {
-          "org": "근로복지공단",
-          "htmlPath": "data/diagnostics/근로복지공단/list/page-2-raw.html",
-          "diagnosisPath": "data/diagnostics/근로복지공단/list/page-2-root-cause.json",
-          "rowsPath": "data/diagnostics/근로복지공단/list/page-2-rows.txt",
-          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp"
-        },
-        {
-          "org": "근로복지공단",
-          "htmlPath": "data/diagnostics/근로복지공단/list/page-3-raw.html",
-          "diagnosisPath": "data/diagnostics/근로복지공단/list/page-3-root-cause.json",
-          "rowsPath": "data/diagnostics/근로복지공단/list/page-3-rows.txt",
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y"
         }
       ],
       "samples": [
         {
-          "title": "근로복지공단 [순천병원] 별정직 의사(재활의학과) 채용 공고 전남광주 / 정규직 / 2026.08.07 ~ 26.08.18 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303645",
-          "adapter": ""
-        },
-        {
-          "title": "근로복지공단 [창원병원] 2026년도 상반기 청년(체험형)인턴 장애전형 채용 공고 경남 / 청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303640",
-          "adapter": ""
-        },
-        {
-          "title": "근로복지공단 [동해병원] 기간제 의사(재활의학과 전문의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303595",
-          "adapter": ""
-        },
-        {
-          "title": "근로복지공단 [동해병원] 기간제 의사(진단검사의학과(병리과)) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303594",
-          "adapter": ""
-        },
-        {
-          "title": "근로복지공단 [동해병원] 기간제 의사(응급실전담의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303593",
-          "adapter": ""
-        },
-        {
-          "title": "근로복지공단 [근로복지공단] '26년 2차 신규직원(행정직) 채용 공고 서울 외 15 / 청년인턴(채용형) / 2026.08.05 ~ 26.08.19 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303549",
-          "adapter": ""
-        },
-        {
-          "title": "근로복지공단 [안산병원] 기간제(약사) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303530",
-          "adapter": ""
-        },
-        {
-          "title": "근로복지공단 [안산병원] 기간제(사무원) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303529",
-          "adapter": ""
-        },
-        {
-          "title": "근로복지공단 [안산병원] 기간제(임상심리사) 채용공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303528",
-          "adapter": ""
-        },
-        {
-          "title": "근로복지공단 [태백병원] 공무직(전기기계통신기사-기계분야) 채용 공고 강원 / 무기계약직 / 2026.08.05 ~ 26.08.12 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303527",
-          "adapter": ""
+          "title": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+          "link": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+          "adapter": "근로복지공단"
         }
       ],
       "errors": [],
       "selectedRootCause": {
-        "version": "1.2-list-accuracy",
+        "version": "1.3-list-template-verification",
         "mode": "passive",
         "org": "근로복지공단",
-        "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
+        "url": "https://comwel.incruit.com/index_main.asp",
         "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-        "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+        "listCounterFailureReason": "DOM_COUNT_ZERO",
         "accuracyVerification": {
           "verified": false,
-          "level": "COUNT_EXACT_ONLY",
+          "level": "NOT_EXACT",
+          "listVerificationTemplate": "TABLE_RECORD",
+          "templateRecordEvidence": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 1,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
           "independentDomEvidence": false,
-          "exactCount": true,
+          "exactCount": false,
           "exactTitleSet": false,
           "strongAdapterRecordEvidence": false,
           "missingTitleCount": 0,
-          "extraCandidateCount": 10,
+          "extraCandidateCount": 1,
           "visibleUniqueTitleCount": 0,
-          "extractedTitleCount": 10
+          "extractedTitleCount": 1
         },
         "counterTrace": {
-          "source": "visible-board-rows",
+          "source": "unavailable",
           "rawDomRows": 0,
           "uniqueVisibleTitleCount": 0,
-          "reportedVisiblePostCount": 10,
-          "acceptedCandidateCount": 10,
+          "reportedVisiblePostCount": null,
+          "acceptedCandidateCount": 1,
           "exactAgainstRaw": false,
           "exactAgainstUniqueTitles": false
         },
         "candidateClassCounts": {
-          "RECRUIT_POST": 10
+          "RECRUIT_POST": 1
         },
         "counts": {
-          "visiblePostCount": 10,
-          "candidateCount": 10,
+          "visiblePostCount": null,
+          "candidateCount": 1,
           "rawTableRows": 0,
           "uniqueVisibleTitleCount": 0,
-          "sourceHtmlLength": 55685,
+          "sourceHtmlLength": 9621,
           "missingRows": 0,
-          "extraCandidates": 10
+          "extraCandidates": 1
         },
         "selectorCounts": {
           "table tbody tr": 0,
           "tr": 0,
-          "li": 125,
+          "li": 12,
           "article": 0,
-          "[onclick]": 11,
+          "[onclick]": 0,
           "[data-url]": 0,
           "[data-href]": 0,
-          "a[href]": 60
+          "a[href]": 22
         },
         "rejectReasonCounts": {},
         "visibleTitles": [],
         "extractedTitles": [
-          "근로복지공단 [순천병원] 별정직 의사(재활의학과) 채용 공고 전남광주 / 정규직 / 2026.08.07 ~ 26.08.18 / 진행중",
-          "근로복지공단 [창원병원] 2026년도 상반기 청년(체험형)인턴 장애전형 채용 공고 경남 / 청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중",
-          "근로복지공단 [동해병원] 기간제 의사(재활의학과 전문의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-          "근로복지공단 [동해병원] 기간제 의사(진단검사의학과(병리과)) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-          "근로복지공단 [동해병원] 기간제 의사(응급실전담의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-          "근로복지공단 [근로복지공단] '26년 2차 신규직원(행정직) 채용 공고 서울 외 15 / 청년인턴(채용형) / 2026.08.05 ~ 26.08.19 / 진행중",
-          "근로복지공단 [안산병원] 기간제(약사) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-          "근로복지공단 [안산병원] 기간제(사무원) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-          "근로복지공단 [안산병원] 기간제(임상심리사) 채용공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-          "근로복지공단 [태백병원] 공무직(전기기계통신기사-기계분야) 채용 공고 강원 / 무기계약직 / 2026.08.05 ~ 26.08.12 / 진행중"
+          "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기"
         ],
         "missingRows": [],
         "extraCandidates": [
           {
             "org": "근로복지공단",
-            "title": "근로복지공단 [순천병원] 별정직 의사(재활의학과) 채용 공고 전남광주 / 정규직 / 2026.08.07 ~ 26.08.18 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303645",
-            "listText": "h();\"> 진행상태 진행중 마감 근로복지공단 [순천병원] 별정직 의사(재활의학과) 채용 공고 전남광주 / 정규직 / 2026.08.07 ~ 26.08.18 / 진행중 근로복지공단 [창원병원] 2026년도 상반기 청년(체험형)인턴 장애전형 채용 공고 경남 / 청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중 근로복지공단 [동해병원] 기간제 의사(재활의학과 전문의) 채",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "근로복지공단",
-            "title": "근로복지공단 [창원병원] 2026년도 상반기 청년(체험형)인턴 장애전형 채용 공고 경남 / 청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303640",
-            "listText": "정규직 / 2026.08.07 ~ 26.08.18 / 진행중 근로복지공단 [창원병원] 2026년도 상반기 청년(체험형)인턴 장애전형 채용 공고 경남 / 청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중 근로복지공단 [동해병원] 기간제 의사(재활의학과 전문의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(진단검사의학과(병리과)) 채용 공고",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "근로복지공단",
-            "title": "근로복지공단 [동해병원] 기간제 의사(재활의학과 전문의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303595",
-            "listText": "청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중 근로복지공단 [동해병원] 기간제 의사(재활의학과 전문의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(진단검사의학과(병리과)) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(응급실전담의) 채용 공고",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "근로복지공단",
-            "title": "근로복지공단 [동해병원] 기간제 의사(진단검사의학과(병리과)) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303594",
-            "listText": "비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(진단검사의학과(병리과)) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(응급실전담의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [근로복지공단] '26년 2차 신규직원(행정직) 채용 공고</div",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "근로복지공단",
-            "title": "근로복지공단 [동해병원] 기간제 의사(응급실전담의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303593",
-            "listText": "비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [동해병원] 기간제 의사(응급실전담의) 채용 공고 강원 / 비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [근로복지공단] '26년 2차 신규직원(행정직) 채용 공고 서울 외 15 /",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "근로복지공단",
-            "title": "근로복지공단 [근로복지공단] '26년 2차 신규직원(행정직) 채용 공고 서울 외 15 / 청년인턴(채용형) / 2026.08.05 ~ 26.08.19 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303549",
-            "listText": "비정규직 / 2026.08.06 ~ 26.08.13 / 진행중 근로복지공단 [근로복지공단] '26년 2차 신규직원(행정직) 채용 공고 서울 외 15 / 청년인턴(채용형) / 2026.08.05 ~ 26.08.19 / 진행중 근로복지공단 [안산병원] 기간제(약사) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(사무원) 채용 공고 <div cla",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "근로복지공단",
-            "title": "근로복지공단 [안산병원] 기간제(약사) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303530",
-            "listText": "청년인턴(채용형) / 2026.08.05 ~ 26.08.19 / 진행중 근로복지공단 [안산병원] 기간제(약사) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(사무원) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(임상심리사) 채용공고 <div c",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "근로복지공단",
-            "title": "근로복지공단 [안산병원] 기간제(사무원) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303529",
-            "listText": "비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(사무원) 채용 공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(임상심리사) 채용공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [태백병원] 공무직(전기기계통신기사-기계분야) 채용 공고",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "근로복지공단",
-            "title": "근로복지공단 [안산병원] 기간제(임상심리사) 채용공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303528",
-            "listText": "비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [안산병원] 기간제(임상심리사) 채용공고 경기 / 비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [태백병원] 공무직(전기기계통신기사-기계분야) 채용 공고 강원 / 무기계약직 / 2026.08.05 ~ 26.08.12 / 진행중 <img src=\"/jobalio/img/btn_page_prev_end.png\" alt=\"처음페이지로 이동\"",
-            "sourceType": "ALIO"
-          },
-          {
-            "org": "근로복지공단",
-            "title": "근로복지공단 [태백병원] 공무직(전기기계통신기사-기계분야) 채용 공고 강원 / 무기계약직 / 2026.08.05 ~ 26.08.12 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303527",
-            "listText": "비정규직 / 2026.08.05 ~ 26.08.12 / 진행중 근로복지공단 [태백병원] 공무직(전기기계통신기사-기계분야) 채용 공고 강원 / 무기계약직 / 2026.08.05 ~ 26.08.12 / 진행중 1 2 3 4 5",
-            "sourceType": "ALIO"
+            "title": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+            "link": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+            "listText": ".08 총 1 건의 채용이 진행중 입니다. 근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기 공단 사업안내 <a href=\"https://www.youtube.com/channel/UCPHSl6Wko6Bg6-i42suzTAA\" target=\"",
+            "adapter": "근로복지공단"
           }
         ],
         "rowTrace": []
       },
       "accuracyVerification": {
         "verified": false,
-        "level": "COUNT_EXACT_ONLY",
+        "level": "NOT_EXACT",
+        "listVerificationTemplate": "TABLE_RECORD",
+        "templateRecordEvidence": {
+          "verified": false,
+          "template": "TABLE_RECORD",
+          "recordCount": 0,
+          "candidateCount": 1,
+          "matchedCount": 0,
+          "unmatchedTitles": [
+            "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기"
+          ],
+          "recordSamples": [],
+          "level": "TEMPLATE_RECORD_MISMATCH"
+        },
         "independentDomEvidence": false,
-        "exactCount": true,
+        "exactCount": false,
         "exactTitleSet": false,
         "strongAdapterRecordEvidence": false,
         "missingTitleCount": 0,
-        "extraCandidateCount": 10,
+        "extraCandidateCount": 1,
         "visibleUniqueTitleCount": 0,
-        "extractedTitleCount": 10
+        "extractedTitleCount": 1
       }
     },
     "detail": {
-      "ok": true,
-      "attempted": 2,
-      "validated": 2,
+      "ok": false,
+      "targetCount": 1,
+      "attempted": 1,
+      "validated": 0,
+      "failed": 1,
+      "missingDetailUrl": 0,
+      "coverageRatio": 1,
+      "validationRatio": 0,
       "samples": [
         {
-          "title": "근로복지공단 [순천병원] 별정직 의사(재활의학과) 채용 공고 전남광주 / 정규직 / 2026.08.07 ~ 26.08.18 / 진행중",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303645",
-          "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303645",
-          "textLength": 1322,
-          "attachmentCount": 3,
-          "error": ""
-        },
-        {
-          "title": "근로복지공단 [창원병원] 2026년도 상반기 청년(체험형)인턴 장애전형 채용 공고 경남 / 청년인턴(체험형) / 2026.08.07 ~ 26.08.14 / 진행중",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303640",
-          "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303640",
-          "textLength": 1469,
-          "attachmentCount": 3,
-          "error": ""
+          "title": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+          "requestedUrl": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": false,
+          "finalUrl": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "transport": "",
+          "error": "HTTP 400"
         }
       ]
     },
     "attachment": {
-      "ok": true,
-      "discovered": 6,
-      "samples": [
-        {
-          "name": "260807 [순천병원] 별정직 의사(재활의학과) 직원 채용 공고문.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066916"
-        },
-        {
-          "name": "260807 [순천병원] 별정직 의사(재활의학과) 직원 채용 입사지원서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066917"
-        },
-        {
-          "name": "260807 [순천병원] 별정직 의사(재활의학과) 직원 채용 직무기술서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066918"
-        },
-        {
-          "name": "260807 [창원병원] 26년 상반기 청년(체험형)인턴 장애전형 채용공고문.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066866"
-        },
-        {
-          "name": "260807 [창원병원] 26년 상반기 청년(체험형)인턴 장애전형 입사지원서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066867"
-        },
-        {
-          "name": "260807 [창원병원] 26년 상반기 청년(체험형)인턴 장애전형 직무기술서.hwp",
-          "type": "hwp",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3066868"
-        }
-      ]
+      "ok": false,
+      "discovered": 0,
+      "samples": []
     }
   }
 }

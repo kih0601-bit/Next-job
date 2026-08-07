@@ -44,8 +44,11 @@ export function canonicalJobUrl(link = '') {
   try {
     const url = new URL(link);
     url.hash = '';
+    const hasDetailIdentity = [...url.searchParams.keys()].some(key => DETAIL_PARAM.test(key));
     for (const key of [...url.searchParams.keys()]) {
-      if (LIST_QUERY_KEYS.has(key) && !DETAIL_PARAM.test(key)) url.searchParams.delete(key);
+      // menuNo/mId can be routing keys required by eGov detail pages. Preserve them
+      // once a post identity is present, while still stripping pagination/search noise.
+      if (LIST_QUERY_KEYS.has(key) && !DETAIL_PARAM.test(key) && !(hasDetailIdentity && /^(?:menuNo|mId)$/i.test(key))) url.searchParams.delete(key);
     }
     const sorted = [...url.searchParams.entries()].sort(([a], [b]) => a.localeCompare(b));
     url.search = '';
@@ -170,6 +173,73 @@ function urlsFromBlock(block = '', source) {
 }
 
 
+
+function hiddenFormRequest(block = '', source, { formId = '', actionPattern = null, overrides = {} } = {}) {
+  const forms = [...String(block).matchAll(/<form\b([^>]*)>([\s\S]*?)<\/form>/gi)];
+  for (const match of forms) {
+    const attrs = match[1] || '';
+    const body = match[2] || '';
+    const id = attrs.match(/\b(?:id|name)\s*=\s*(["'])([^"']+)\1/i)?.[2] || '';
+    const action = attrs.match(/\baction\s*=\s*(["'])([^"']+)\1/i)?.[2] || '';
+    if (formId && id !== formId) continue;
+    if (actionPattern && !actionPattern.test(action)) continue;
+    const params = new URLSearchParams();
+    for (const input of body.matchAll(/<input\b([^>]*)>/gi)) {
+      const a = input[1] || '';
+      const name = a.match(/\bname\s*=\s*(["'])([^"']+)\1/i)?.[2];
+      const value = a.match(/\bvalue\s*=\s*(["'])([^"']*)\1/i)?.[2] || '';
+      if (name) params.set(decodeHtmlEntities(name), decodeHtmlEntities(value));
+    }
+    for (const [key, value] of Object.entries(overrides)) params.set(key, String(value));
+    const target = absoluteUrl(action || source.url, source.url);
+    if (!target) continue;
+    return { method: 'POST', url: target, body: params.toString(), headers: { 'content-type': 'application/x-www-form-urlencoded' }, referer: source.url };
+  }
+  return null;
+}
+
+function upaPostRequest(block = '', source, idx = '') {
+  if (!idx) return null;
+  const page = String(source.__rawHtml || '');
+  const form = page.match(/<form\b[^>]*(?:id|name)=["']viewForm["'][^>]*action=["']([^"']+)["'][^>]*>([\s\S]*?)<\/form>/i);
+  if (!form) return null;
+  const params = new URLSearchParams();
+  for (const input of form[2].matchAll(/<input\b([^>]*)>/gi)) {
+    const attrs = input[1] || '';
+    const name = attrs.match(/\bname\s*=\s*(["'])([^"']+)\1/i)?.[2];
+    const value = attrs.match(/\bvalue\s*=\s*(["'])([^"']*)\1/i)?.[2] || '';
+    if (name) params.set(decodeHtmlEntities(name), decodeHtmlEntities(value));
+  }
+  const listForm = page.match(/<form\b[^>]*(?:id|name)=["'](?:listForm|list)["'][^>]*>([\s\S]*?)<\/form>/i);
+  if (listForm) {
+    for (const input of listForm[1].matchAll(/<input\b([^>]*)>/gi)) {
+      const attrs = input[1] || '';
+      const name = attrs.match(/\bname\s*=\s*(["'])([^"']+)\1/i)?.[2];
+      const value = attrs.match(/\bvalue\s*=\s*(["'])([^"']*)\1/i)?.[2] || '';
+      if (name && !params.has(name)) params.set(decodeHtmlEntities(name), decodeHtmlEntities(value));
+    }
+  }
+  const rawAction = decodeHtmlEntities(form[1]).replace(/idx=a(?=(&|$))/i, `idx=${encodeURIComponent(idx)}`);
+  return { method: 'POST', url: absoluteUrl(rawAction, source.url), body: params.toString(), headers: { 'content-type': 'application/x-www-form-urlencoded' }, referer: source.url };
+}
+
+function ewpPostRequest(source, idx = '') {
+  if (!idx) return null;
+  const page = String(source.__rawHtml || '');
+  const form = page.match(/<form\b[^>]*name=["']myform["'][^>]*>([\s\S]*?)<\/form>/i);
+  if (!form) return null;
+  const params = new URLSearchParams();
+  for (const input of form[1].matchAll(/<input\b([^>]*)>/gi)) {
+    const attrs = input[1] || '';
+    const name = attrs.match(/\bname\s*=\s*(["'])([^"']+)\1/i)?.[2];
+    const value = attrs.match(/\bvalue\s*=\s*(["'])([^"']*)\1/i)?.[2] || '';
+    if (name) params.set(decodeHtmlEntities(name), decodeHtmlEntities(value));
+  }
+  params.set('state', 'view');
+  params.set('idx', idx);
+  return { method: 'POST', url: absoluteUrl('/kor/subpage/content.html', source.url), body: params.toString(), headers: { 'content-type': 'application/x-www-form-urlencoded' }, referer: source.url };
+}
+
 function sourceSpecificDetailUrls(block = '', source) {
   const urls = [];
   const push = value => {
@@ -212,6 +282,19 @@ function sourceSpecificDetailUrls(block = '', source) {
     const ids = new Set();
     for (const match of block.matchAll(/(?:goBoardArticle\(\s*["']|[?&]nttId=)(\d+)/gi)) ids.add(match[1]);
     for (const id of ids) push(`/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=${id}`);
+  }
+
+  if (source.org === '울산시설공단') {
+    const id = block.match(/name=["']employmentId["'][^>]*value=["']([^"']+)["']/i)?.[1];
+    if (id) push(`/uimc/notify/noti06/selectEmploymentArticle.do?employmentId=${encodeURIComponent(id)}&bbsId=BBSMSTR_000000000022`);
+  }
+
+  if (source.org === '한국동서발전') {
+    const id = block.match(/(?:onclick=["'][^"']*|href=["']javascript:)?view\(\s*(\d+)\s*\)/i)?.[1];
+    if (id) {
+      const pc = (() => { try { return new URL(source.url).searchParams.get('pc') || ''; } catch { return ''; } })();
+      push(`/kor/subpage/content.html?${pc ? `pc=${encodeURIComponent(pc)}&` : ''}state=view&idx=${encodeURIComponent(id)}`);
+    }
   }
 
   return urls;
@@ -379,10 +462,10 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       const clean = cleanHtml(block).replace(/\s+/g, ' ').trim();
       const title = clean.replace(/^(?:진행중|마감|접수중|접수마감)\s*/,'').slice(0,260).trim();
       if (!id || !validTitle(title)) continue;
-      jobs.push({ org: source.org, title, link: `${canonicalJobUrl(source.url)}#list-opnIdx-${encodeURIComponent(id)}`, listText: clean, adapter: `${source.org}:rowArea`, listOnly: true, listIdentity: id });
+      jobs.push({ org: source.org, title, link: absoluteUrl('/applicantMain/goJobOpeningDetailPage.do', source.url), listText: clean, adapter: `${source.org}:rowArea-post`, listIdentity: id, detailRequest: { method: 'POST', url: absoluteUrl('/applicantMain/goJobOpeningDetailPage.do', source.url), body: new URLSearchParams({ orgIdx: '1090', opnIdx: id, openType: '', boardType: '0' }).toString(), headers: { 'content-type': 'application/x-www-form-urlencoded' }, referer: source.url } });
     }
     if (jobs.length) {
-      Object.defineProperty(jobs, 'diagnostics', { value: { visiblePostCount: jobs.length, rowMode: true, anchors: 0, titleMatches: jobs.length, noUrl: jobs.length, unsafeUrl: 0, accepted: jobs.length, rowFallbackAccepted: 0, clickableBlocksScanned: jobs.length, clickableBlocksAccepted: jobs.length, listOnlyAccepted: jobs.length, titleSamples: jobs.slice(0,8).map(x=>x.title), unsafeSamples: [], actionSamples: [], candidateUrlSamples: [] }, enumerable: false });
+      Object.defineProperty(jobs, 'diagnostics', { value: { visiblePostCount: jobs.length, rowMode: true, anchors: 0, titleMatches: jobs.length, noUrl: 0, unsafeUrl: 0, accepted: jobs.length, rowFallbackAccepted: 0, clickableBlocksScanned: jobs.length, clickableBlocksAccepted: jobs.length, listOnlyAccepted: 0, titleSamples: jobs.slice(0,8).map(x=>x.title), unsafeSamples: [], actionSamples: [], candidateUrlSamples: jobs.slice(0,8).map(x=>({ title:x.title, url:x.link, allowed:true })) }, enumerable: false });
       return jobs;
     }
   }
@@ -409,7 +492,17 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       : `${source.org}|${normalizeTitleForDedup(title)}|${canonical}`;
     if (seen.has(key)) continue;
     seen.add(key);
-    jobs.push({ org: source.org, title, link: canonical, listText: cleanHtml(row.block).replace(/\s+/g, ' ').trim(), adapter: `${source.org}:board-row`, ...(link ? {} : { listOnly: true, listIdentity: identity }) });
+    let detailRequest = null;
+    if (source.org === '울산시설공단') {
+      detailRequest = hiddenFormRequest(row.block, source, { actionPattern: /selectEmploymentArticle\.do/i });
+    } else if (source.org === '울산항만공사') {
+      const idx = row.block.match(/data-req-get-p-idx=["'](\d+)["']/i)?.[1] || '';
+      detailRequest = upaPostRequest(row.block, source, idx);
+    } else if (source.org === '한국동서발전') {
+      const idx = row.block.match(/(?:onclick=["'][^"']*|href=["']javascript:)?view\(\s*(\d+)\s*\)/i)?.[1] || '';
+      detailRequest = ewpPostRequest(source, idx);
+    }
+    jobs.push({ org: source.org, title, link: canonical, listText: cleanHtml(row.block).replace(/\s+/g, ' ').trim(), adapter: `${source.org}:board-row`, ...(detailRequest ? { detailRequest } : {}), ...(link ? {} : { listOnly: true, listIdentity: identity }) });
     diagnostics.accepted += 1;
     diagnostics.titleMatches += 1;
     if (!link) { diagnostics.listOnlyAccepted += 1; diagnostics.noUrl += 1; }

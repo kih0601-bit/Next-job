@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "scope": "first-page-detail-verification",
+  "completionRule": "목록 단계에서 검증된 첫 페이지의 모든 공고가 상세 URL 1:1 연결, 상세 HTTP 응답, 동일 공고 검증, 실제 본문 추출까지 모두 성공해야 기관 상세 1페이지 완료",
+  "templates": {
+    "PATH_VIEW": "경로 자체에 /view/, /detail/, /read/ 등이 포함된 상세페이지",
+    "QUERY_ID": "idx, seq, nttId 등 게시글 식별 query parameter 기반 상세페이지",
+    "JAVASCRIPT_RECOVERED": "목록 onclick/javascript 함수에서 복구한 상세주소",
+    "COMMON_PLATFORM": "JOB-ALIO/Incruit 등 공통 채용 플랫폼 상세페이지",
+    "API_DETAIL": "API/JSON 응답을 상세 데이터로 사용하는 구조",
+    "CUSTOM": "기존 유형에 안전하게 포함되지 않는 기관별 예외"
+  },
+  "finalGoal": "첫 페이지 검증 이후 pagination 전체 페이지의 모든 공고와 상세 본문으로 확장"
+}

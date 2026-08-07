@@ -120,4 +120,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls, accessTemplate, accessConfi
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.9-20-sources-list-accuracy';
+export const SOURCE_REGISTRY_VERSION = '15.10-20-sources-list-templates';

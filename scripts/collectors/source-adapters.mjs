@@ -539,6 +539,94 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
   return jobs;
 }
 
+
+// Phase 50 list-verification templates. These do not create candidates; they only
+// identify the board's visible record containers and prove that every extracted
+// title belongs to one distinct visible record. This keeps extraction and
+// verification as separate responsibilities.
+export const LIST_VERIFICATION_TEMPLATES = Object.freeze({
+  ALIO_CARD: 'ALIO_CARD',
+  API_CONTENT: 'API_CONTENT',
+  ROWAREA_RECORD: 'ROWAREA_RECORD',
+  HIDDEN_NTTID_ROW: 'HIDDEN_NTTID_ROW',
+  TABLE_RECORD: 'TABLE_RECORD'
+});
+
+export function listVerificationTemplateFor(source = {}) {
+  const url = String(source.url || '');
+  if (/job\.alio\.go\.kr/i.test(url)) return LIST_VERIFICATION_TEMPLATES.ALIO_CARD;
+  if (source.org === '울산문화관광재단' && /^\s*\{/.test(String(source.__rawHtml || ''))) return LIST_VERIFICATION_TEMPLATES.API_CONTENT;
+  if (source.org === '울주문화재단') return LIST_VERIFICATION_TEMPLATES.ROWAREA_RECORD;
+  if (source.org === '울주군시설관리공단') return LIST_VERIFICATION_TEMPLATES.HIDDEN_NTTID_ROW;
+  return LIST_VERIFICATION_TEMPLATES.TABLE_RECORD;
+}
+
+function recordTextsForVerification(html = '', source = {}) {
+  const raw = String(html);
+  const template = listVerificationTemplateFor({ ...source, __rawHtml: raw });
+  if (template === LIST_VERIFICATION_TEMPLATES.API_CONTENT) {
+    try {
+      const data = JSON.parse(raw);
+      return { template, records: (Array.isArray(data.content) ? data.content : []).map(item => String(item.title || '').replace(/\s+/g, ' ').trim()).filter(Boolean) };
+    } catch { return { template, records: [] }; }
+  }
+  if (template === LIST_VERIFICATION_TEMPLATES.ALIO_CARD) {
+    const records = [...raw.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)]
+      .map(m => m[0]).filter(block => /recruitView\.do\?idx=|recruitView\s*\(/i.test(block))
+      .map(block => cleanHtml(block).replace(/\s+/g, ' ').trim()).filter(Boolean);
+    return { template, records };
+  }
+  if (template === LIST_VERIFICATION_TEMPLATES.ROWAREA_RECORD) {
+    const records = [...raw.matchAll(/<[^>]+class\s*=\s*(["'])[^"']*rowArea[^"']*\1[^>]*opnIdx\s*=\s*(["'])[^"']+\2[^>]*>([\s\S]*?)(?=<[^>]+class\s*=\s*(["'])[^"']*rowArea|$)/gi)]
+      .map(m => cleanHtml(m[0]).replace(/\s+/g, ' ').trim()).filter(Boolean);
+    return { template, records };
+  }
+  if (template === LIST_VERIFICATION_TEMPLATES.HIDDEN_NTTID_ROW) {
+    const board = raw.match(/<table\b[^>]*class\s*=\s*(["'])[^"']*board_list[^"']*\1[^>]*>[\s\S]*?<\/table>/i)?.[0] || '';
+    const byId = new Map();
+    for (const match of board.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+      const block = match[0];
+      const id = block.match(/name\s*=\s*(["'])nttId\1[^>]*value\s*=\s*(["'])(\d+)\2/i)?.[3] || '';
+      if (!id || !/type\s*=\s*(["'])submit\1/i.test(block)) continue;
+      const title = decodeHtmlEntities(block.match(/<input\b[^>]*type\s*=\s*(["'])submit\1[^>]*value\s*=\s*(["'])([\s\S]*?)\2/i)?.[3] || '').replace(/\s+/g, ' ').trim();
+      if (!byId.has(id)) byId.set(id, `${title} ${cleanHtml(block).replace(/\s+/g, ' ').trim()}`.trim());
+    }
+    return { template, records: [...byId.values()].filter(Boolean) };
+  }
+  const records = visibleBoardRows(raw).map(row => cleanHtml(row.block).replace(/\s+/g, ' ').trim()).filter(Boolean);
+  return { template, records };
+}
+
+export function verifyExtractedListAgainstVisibleRecords(html = '', source = {}, candidates = []) {
+  const { template, records } = recordTextsForVerification(html, source);
+  const normalizedRecords = records.map(normalizeBoardKey);
+  const used = new Set();
+  const matched = [];
+  const unmatched = [];
+  for (const candidate of candidates) {
+    const title = normalizeBoardKey(candidate.title || '');
+    let index = -1;
+    if (title) {
+      index = normalizedRecords.findIndex((record, i) => !used.has(i) && (record.includes(title) || title.includes(record)));
+    }
+    if (index >= 0) {
+      used.add(index);
+      matched.push({ title: candidate.title, recordIndex: index });
+    } else unmatched.push(candidate.title);
+  }
+  const verified = candidates.length > 0 && records.length === candidates.length && unmatched.length === 0 && used.size === records.length;
+  return {
+    verified,
+    template,
+    recordCount: records.length,
+    candidateCount: candidates.length,
+    matchedCount: matched.length,
+    unmatchedTitles: unmatched.slice(0, 12),
+    recordSamples: records.slice(0, 8),
+    level: verified ? `TEMPLATE_${template}_EXACT` : 'TEMPLATE_RECORD_MISMATCH'
+  };
+}
+
 export function discoverListingUrls(html, source) {
   if (source.org === '울산문화관광재단') {
     return [source.url, 'https://uctf.or.kr/api/notices?page=0&category=%EC%B1%84%EC%9A%A9'];

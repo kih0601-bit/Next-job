@@ -1,7 +1,247 @@
 {
-  "generatedAt": "2026-08-07T02:56:30.994Z",
+  "generatedAt": "2026-08-07T04:51:53.667Z",
   "mode": "warning",
-  "passed": true,
-  "regressionCount": 0,
-  "regressions": []
+  "passed": false,
+  "regressionCount": 3,
+  "regressions": [
+    {
+      "org": "울산연구원",
+      "health": "failed",
+      "primaryCause": {
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://www.uri.re.kr/",
+            "ok": false,
+            "error": "fetch failed"
+          },
+          {
+            "url": "https://www.uri.re.kr/index.do",
+            "ok": false,
+            "error": "HTTP 403"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+            "ok": false,
+            "error": "fetch failed"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산연구원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "detail": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "attachment": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
+    {
+      "org": "울산광역시 타기관소식",
+      "health": "failed",
+      "primaryCause": {
+        "stage": "recruitVerify",
+        "status": "failed",
+        "code": "RECRUIT_VERIFY_FAILED",
+        "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+        "evidence": {
+          "ok": false,
+          "verified": false,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_ERROR_PAGE",
+          "reason": "오류·차단·비HTML 신호 0개",
+          "score": 1,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": false,
+            "recruitKeyword": true,
+            "boardStructure": false,
+            "organizationMatch": false,
+            "meaningfulBody": false
+          },
+          "title": "기획재정부 | 공공기관 채용정보 시스템",
+          "orgMatched": false,
+          "positiveHits": 1,
+          "positiveMatches": [
+            "채용\\s*정보"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 0,
+          "boardType": {
+            "type": "JOB_ALIO",
+            "confidence": "high",
+            "evidence": [
+              "JOB-ALIO URL/본문 신호"
+            ]
+          },
+          "institutionRule": false,
+          "institutionRuleEvidence": [],
+          "textLength": 21,
+          "requestedUrl": "https://job.alio.go.kr/",
+          "finalUrl": "https://job.alio.go.kr/",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8"
+        },
+        "repairTarget": "scripts/lib/recruit-verify.mjs",
+        "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "attachment": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
+    {
+      "org": "울산남구도시관리공단",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "list",
+        "status": "failed",
+        "code": "LIST_COUNTER_FAILED",
+        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+        "evidence": [
+          {
+            "url": "https://recruit.incruit.com/uncmc/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 5,
+            "titleMatches": 3,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [
+              "������",
+              "������",
+              "������"
+            ],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://uncmc.incruit.com/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://www.uncmc.or.kr/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "countSource": "unavailable"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
+        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    }
+  ]
 }

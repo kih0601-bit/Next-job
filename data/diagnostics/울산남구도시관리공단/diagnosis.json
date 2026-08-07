@@ -12,7 +12,7 @@
         "visiblePostCount": null,
         "rowMode": false,
         "anchors": 5,
-        "titleMatches": 3,
+        "titleMatches": 0,
         "noUrl": 0,
         "unsafeUrl": 0,
         "accepted": 0,
@@ -20,11 +20,7 @@
         "clickableBlocksScanned": 0,
         "clickableBlocksAccepted": 0,
         "listOnlyAccepted": 0,
-        "titleSamples": [
-          "������",
-          "������",
-          "������"
-        ],
+        "titleSamples": [],
         "unsafeSamples": [],
         "actionSamples": [],
         "candidateUrlSamples": [],
@@ -76,6 +72,39 @@
           "level": "TEMPLATE_RECORD_MISMATCH"
         },
         "countSource": "unavailable"
+      },
+      {
+        "url": "https://www.uncmc.or.kr/",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 0,
+        "titleMatches": 0,
+        "noUrl": 0,
+        "unsafeUrl": 0,
+        "accepted": 0,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 0,
+        "titleSamples": [],
+        "unsafeSamples": [],
+        "actionSamples": [],
+        "candidateUrlSamples": [],
+        "candidateCount": 0,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "recordVerification": {
+          "verified": false,
+          "template": "TABLE_RECORD",
+          "recordCount": 0,
+          "candidateCount": 0,
+          "matchedCount": 0,
+          "unmatchedTitles": [],
+          "recordSamples": [],
+          "level": "TEMPLATE_RECORD_MISMATCH"
+        },
+        "countSource": "unavailable"
       }
     ],
     "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
@@ -85,7 +114,7 @@
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "2개 후보 URL HTTP 응답 성공",
+      "reason": "3개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://recruit.incruit.com/uncmc/",
@@ -97,7 +126,7 @@
             "verified": true,
             "fallback": false,
             "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
             "score": 3,
             "maxScore": 5,
             "checks": {
@@ -107,15 +136,16 @@
               "organizationMatch": false,
               "meaningfulBody": false
             },
-            "title": "��걤���ó������ð������� ä��Ȩ������",
+            "title": "울산광역시남구도시관리공단 채용홈페이지",
             "orgMatched": false,
-            "positiveHits": 1,
+            "positiveHits": 2,
             "positiveMatches": [
+              "채용\\s*공고",
               "recruit(?:ment)?"
             ],
             "negativeHits": 0,
             "negativeMatches": [],
-            "boardSignals": 1,
+            "boardSignals": 2,
             "boardType": {
               "type": "DIV_CARD",
               "confidence": "medium",
@@ -125,7 +155,7 @@
             },
             "institutionRule": false,
             "institutionRuleEvidence": [],
-            "textLength": 154,
+            "textLength": 115,
             "requestedUrl": "https://recruit.incruit.com/uncmc/",
             "finalUrl": "https://recruit.incruit.com/uncmc/",
             "status": 200,
@@ -145,19 +175,21 @@
             "fallback": false,
             "code": "RECRUIT_VERIFY_ERROR_PAGE",
             "reason": "오류·차단·비HTML 신호 0개",
-            "score": 0,
+            "score": 1,
             "maxScore": 5,
             "checks": {
               "httpDocument": false,
-              "recruitKeyword": false,
+              "recruitKeyword": true,
               "boardStructure": false,
               "organizationMatch": false,
               "meaningfulBody": false
             },
-            "title": "��걤���ó������ð������� ä������",
+            "title": "울산광역시남구도시관리공단 채용정보",
             "orgMatched": false,
-            "positiveHits": 0,
-            "positiveMatches": [],
+            "positiveHits": 1,
+            "positiveMatches": [
+              "채용\\s*정보"
+            ],
             "negativeHits": 0,
             "negativeMatches": [],
             "boardSignals": 0,
@@ -170,7 +202,7 @@
             },
             "institutionRule": false,
             "institutionRuleEvidence": [],
-            "textLength": 29,
+            "textLength": 18,
             "requestedUrl": "https://uncmc.incruit.com/",
             "finalUrl": "https://uncmc.incruit.com/",
             "status": 200,
@@ -188,8 +220,46 @@
         },
         {
           "url": "https://www.uncmc.or.kr/",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.uncmc.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_FAILED",
+            "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 229,
+            "requestedUrl": "https://www.uncmc.or.kr/",
+            "finalUrl": "https://www.uncmc.or.kr/",
+            "status": 200,
+            "contentType": "text/html"
+          },
           "accessTemplate": "COMMON_PLATFORM",
           "requestProfile": "browser-default"
         }
@@ -198,13 +268,13 @@
     "recruitVerify": {
       "status": "success",
       "code": "RECRUIT_VERIFY_OK",
-      "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+      "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
       "evidence": {
         "ok": true,
         "verified": true,
         "fallback": false,
         "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+        "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
         "score": 3,
         "maxScore": 5,
         "checks": {
@@ -214,15 +284,16 @@
           "organizationMatch": false,
           "meaningfulBody": false
         },
-        "title": "��걤���ó������ð������� ä��Ȩ������",
+        "title": "울산광역시남구도시관리공단 채용홈페이지",
         "orgMatched": false,
-        "positiveHits": 1,
+        "positiveHits": 2,
         "positiveMatches": [
+          "채용\\s*공고",
           "recruit(?:ment)?"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 1,
+        "boardSignals": 2,
         "boardType": {
           "type": "DIV_CARD",
           "confidence": "medium",
@@ -232,7 +303,7 @@
         },
         "institutionRule": false,
         "institutionRuleEvidence": [],
-        "textLength": 154,
+        "textLength": 115,
         "requestedUrl": "https://recruit.incruit.com/uncmc/",
         "finalUrl": "https://recruit.incruit.com/uncmc/",
         "status": 200,
@@ -249,7 +320,7 @@
           "visiblePostCount": null,
           "rowMode": false,
           "anchors": 5,
-          "titleMatches": 3,
+          "titleMatches": 0,
           "noUrl": 0,
           "unsafeUrl": 0,
           "accepted": 0,
@@ -257,11 +328,7 @@
           "clickableBlocksScanned": 0,
           "clickableBlocksAccepted": 0,
           "listOnlyAccepted": 0,
-          "titleSamples": [
-            "������",
-            "������",
-            "������"
-          ],
+          "titleSamples": [],
           "unsafeSamples": [],
           "actionSamples": [],
           "candidateUrlSamples": [],
@@ -313,6 +380,39 @@
             "level": "TEMPLATE_RECORD_MISMATCH"
           },
           "countSource": "unavailable"
+        },
+        {
+          "url": "https://www.uncmc.or.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "countSource": "unavailable"
         }
       ]
     },
@@ -331,13 +431,13 @@
     "access": {
       "status": "success",
       "code": "RECRUIT_VERIFY_OK",
-      "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+      "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
       "evidence": {
         "ok": true,
         "verified": true,
         "fallback": false,
         "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+        "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
         "score": 3,
         "maxScore": 5,
         "checks": {
@@ -347,15 +447,16 @@
           "organizationMatch": false,
           "meaningfulBody": false
         },
-        "title": "��걤���ó������ð������� ä��Ȩ������",
+        "title": "울산광역시남구도시관리공단 채용홈페이지",
         "orgMatched": false,
-        "positiveHits": 1,
+        "positiveHits": 2,
         "positiveMatches": [
+          "채용\\s*공고",
           "recruit(?:ment)?"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 1,
+        "boardSignals": 2,
         "boardType": {
           "type": "DIV_CARD",
           "confidence": "medium",
@@ -365,7 +466,7 @@
         },
         "institutionRule": false,
         "institutionRuleEvidence": [],
-        "textLength": 154,
+        "textLength": 115,
         "requestedUrl": "https://recruit.incruit.com/uncmc/",
         "finalUrl": "https://recruit.incruit.com/uncmc/",
         "status": 200,
@@ -396,7 +497,7 @@
             "verified": true,
             "fallback": false,
             "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
             "score": 3,
             "maxScore": 5,
             "checks": {
@@ -406,15 +507,16 @@
               "organizationMatch": false,
               "meaningfulBody": false
             },
-            "title": "��걤���ó������ð������� ä��Ȩ������",
+            "title": "울산광역시남구도시관리공단 채용홈페이지",
             "orgMatched": false,
-            "positiveHits": 1,
+            "positiveHits": 2,
             "positiveMatches": [
+              "채용\\s*공고",
               "recruit(?:ment)?"
             ],
             "negativeHits": 0,
             "negativeMatches": [],
-            "boardSignals": 1,
+            "boardSignals": 2,
             "boardType": {
               "type": "DIV_CARD",
               "confidence": "medium",
@@ -424,7 +526,7 @@
             },
             "institutionRule": false,
             "institutionRuleEvidence": [],
-            "textLength": 154,
+            "textLength": 115,
             "requestedUrl": "https://recruit.incruit.com/uncmc/",
             "finalUrl": "https://recruit.incruit.com/uncmc/",
             "status": 200,
@@ -444,19 +546,21 @@
             "fallback": false,
             "code": "RECRUIT_VERIFY_ERROR_PAGE",
             "reason": "오류·차단·비HTML 신호 0개",
-            "score": 0,
+            "score": 1,
             "maxScore": 5,
             "checks": {
               "httpDocument": false,
-              "recruitKeyword": false,
+              "recruitKeyword": true,
               "boardStructure": false,
               "organizationMatch": false,
               "meaningfulBody": false
             },
-            "title": "��걤���ó������ð������� ä������",
+            "title": "울산광역시남구도시관리공단 채용정보",
             "orgMatched": false,
-            "positiveHits": 0,
-            "positiveMatches": [],
+            "positiveHits": 1,
+            "positiveMatches": [
+              "채용\\s*정보"
+            ],
             "negativeHits": 0,
             "negativeMatches": [],
             "boardSignals": 0,
@@ -469,7 +573,7 @@
             },
             "institutionRule": false,
             "institutionRuleEvidence": [],
-            "textLength": 29,
+            "textLength": 18,
             "requestedUrl": "https://uncmc.incruit.com/",
             "finalUrl": "https://uncmc.incruit.com/",
             "status": 200,
@@ -487,8 +591,46 @@
         },
         {
           "url": "https://www.uncmc.or.kr/",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.uncmc.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_FAILED",
+            "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 229,
+            "requestedUrl": "https://www.uncmc.or.kr/",
+            "finalUrl": "https://www.uncmc.or.kr/",
+            "status": 200,
+            "contentType": "text/html"
+          },
           "accessTemplate": "COMMON_PLATFORM",
           "requestProfile": "browser-default"
         }
@@ -498,7 +640,7 @@
         "verified": true,
         "fallback": false,
         "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+        "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
         "score": 3,
         "maxScore": 5,
         "checks": {
@@ -508,15 +650,16 @@
           "organizationMatch": false,
           "meaningfulBody": false
         },
-        "title": "��걤���ó������ð������� ä��Ȩ������",
+        "title": "울산광역시남구도시관리공단 채용홈페이지",
         "orgMatched": false,
-        "positiveHits": 1,
+        "positiveHits": 2,
         "positiveMatches": [
+          "채용\\s*공고",
           "recruit(?:ment)?"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 1,
+        "boardSignals": 2,
         "boardType": {
           "type": "DIV_CARD",
           "confidence": "medium",
@@ -526,7 +669,7 @@
         },
         "institutionRule": false,
         "institutionRuleEvidence": [],
-        "textLength": 154,
+        "textLength": 115,
         "requestedUrl": "https://recruit.incruit.com/uncmc/",
         "finalUrl": "https://recruit.incruit.com/uncmc/",
         "status": 200,
@@ -542,11 +685,11 @@
       "diagnosis": {
         "ok": true,
         "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+        "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "2개 후보 URL HTTP 응답 성공",
+          "reason": "3개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://recruit.incruit.com/uncmc/",
@@ -558,7 +701,7 @@
                 "verified": true,
                 "fallback": false,
                 "code": "RECRUIT_VERIFY_OK",
-                "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+                "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
                 "score": 3,
                 "maxScore": 5,
                 "checks": {
@@ -568,15 +711,16 @@
                   "organizationMatch": false,
                   "meaningfulBody": false
                 },
-                "title": "��걤���ó������ð������� ä��Ȩ������",
+                "title": "울산광역시남구도시관리공단 채용홈페이지",
                 "orgMatched": false,
-                "positiveHits": 1,
+                "positiveHits": 2,
                 "positiveMatches": [
+                  "채용\\s*공고",
                   "recruit(?:ment)?"
                 ],
                 "negativeHits": 0,
                 "negativeMatches": [],
-                "boardSignals": 1,
+                "boardSignals": 2,
                 "boardType": {
                   "type": "DIV_CARD",
                   "confidence": "medium",
@@ -586,7 +730,7 @@
                 },
                 "institutionRule": false,
                 "institutionRuleEvidence": [],
-                "textLength": 154,
+                "textLength": 115,
                 "requestedUrl": "https://recruit.incruit.com/uncmc/",
                 "finalUrl": "https://recruit.incruit.com/uncmc/",
                 "status": 200,
@@ -606,19 +750,21 @@
                 "fallback": false,
                 "code": "RECRUIT_VERIFY_ERROR_PAGE",
                 "reason": "오류·차단·비HTML 신호 0개",
-                "score": 0,
+                "score": 1,
                 "maxScore": 5,
                 "checks": {
                   "httpDocument": false,
-                  "recruitKeyword": false,
+                  "recruitKeyword": true,
                   "boardStructure": false,
                   "organizationMatch": false,
                   "meaningfulBody": false
                 },
-                "title": "��걤���ó������ð������� ä������",
+                "title": "울산광역시남구도시관리공단 채용정보",
                 "orgMatched": false,
-                "positiveHits": 0,
-                "positiveMatches": [],
+                "positiveHits": 1,
+                "positiveMatches": [
+                  "채용\\s*정보"
+                ],
                 "negativeHits": 0,
                 "negativeMatches": [],
                 "boardSignals": 0,
@@ -631,7 +777,7 @@
                 },
                 "institutionRule": false,
                 "institutionRuleEvidence": [],
-                "textLength": 29,
+                "textLength": 18,
                 "requestedUrl": "https://uncmc.incruit.com/",
                 "finalUrl": "https://uncmc.incruit.com/",
                 "status": 200,
@@ -649,8 +795,46 @@
             },
             {
               "url": "https://www.uncmc.or.kr/",
-              "ok": false,
-              "error": "fetch failed",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.uncmc.or.kr/",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_FAILED",
+                "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+                "score": 3,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": false,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": true
+                },
+                "title": "",
+                "orgMatched": false,
+                "positiveHits": 0,
+                "positiveMatches": [],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 229,
+                "requestedUrl": "https://www.uncmc.or.kr/",
+                "finalUrl": "https://www.uncmc.or.kr/",
+                "status": 200,
+                "contentType": "text/html"
+              },
               "accessTemplate": "COMMON_PLATFORM",
               "requestProfile": "browser-default"
             }
@@ -659,7 +843,7 @@
         "recruitVerify": {
           "ok": true,
           "code": "RECRUIT_VERIFY_OK",
-          "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+          "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
           "score": 3,
           "maxScore": 5,
           "boardType": {
@@ -674,7 +858,7 @@
             "verified": true,
             "fallback": false,
             "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
             "score": 3,
             "maxScore": 5,
             "checks": {
@@ -684,15 +868,16 @@
               "organizationMatch": false,
               "meaningfulBody": false
             },
-            "title": "��걤���ó������ð������� ä��Ȩ������",
+            "title": "울산광역시남구도시관리공단 채용홈페이지",
             "orgMatched": false,
-            "positiveHits": 1,
+            "positiveHits": 2,
             "positiveMatches": [
+              "채용\\s*공고",
               "recruit(?:ment)?"
             ],
             "negativeHits": 0,
             "negativeMatches": [],
-            "boardSignals": 1,
+            "boardSignals": 2,
             "boardType": {
               "type": "DIV_CARD",
               "confidence": "medium",
@@ -702,7 +887,7 @@
             },
             "institutionRule": false,
             "institutionRuleEvidence": [],
-            "textLength": 154,
+            "textLength": 115,
             "requestedUrl": "https://recruit.incruit.com/uncmc/",
             "finalUrl": "https://recruit.incruit.com/uncmc/",
             "status": 200,
@@ -716,7 +901,7 @@
           "verified": true,
           "fallback": false,
           "code": "RECRUIT_VERIFY_OK",
-          "reason": "채용 키워드 1개 · 게시판 신호 1개 확인",
+          "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
           "score": 3,
           "maxScore": 5,
           "checks": {
@@ -726,15 +911,16 @@
             "organizationMatch": false,
             "meaningfulBody": false
           },
-          "title": "��걤���ó������ð������� ä��Ȩ������",
+          "title": "울산광역시남구도시관리공단 채용홈페이지",
           "orgMatched": false,
-          "positiveHits": 1,
+          "positiveHits": 2,
           "positiveMatches": [
+            "채용\\s*공고",
             "recruit(?:ment)?"
           ],
           "negativeHits": 0,
           "negativeMatches": [],
-          "boardSignals": 1,
+          "boardSignals": 2,
           "boardType": {
             "type": "DIV_CARD",
             "confidence": "medium",
@@ -744,7 +930,7 @@
           },
           "institutionRule": false,
           "institutionRuleEvidence": [],
-          "textLength": 154,
+          "textLength": 115,
           "requestedUrl": "https://recruit.incruit.com/uncmc/",
           "finalUrl": "https://recruit.incruit.com/uncmc/",
           "status": 200,
@@ -755,7 +941,7 @@
     "list": {
       "ok": false,
       "status": "count-unavailable-or-empty",
-      "pagesChecked": 2,
+      "pagesChecked": 3,
       "visiblePostCount": null,
       "candidateCount": 0,
       "missingCount": null,
@@ -770,7 +956,7 @@
           "visiblePostCount": null,
           "rowMode": false,
           "anchors": 5,
-          "titleMatches": 3,
+          "titleMatches": 0,
           "noUrl": 0,
           "unsafeUrl": 0,
           "accepted": 0,
@@ -778,11 +964,7 @@
           "clickableBlocksScanned": 0,
           "clickableBlocksAccepted": 0,
           "listOnlyAccepted": 0,
-          "titleSamples": [
-            "������",
-            "������",
-            "������"
-          ],
+          "titleSamples": [],
           "unsafeSamples": [],
           "actionSamples": [],
           "candidateUrlSamples": [],
@@ -804,6 +986,39 @@
         },
         {
           "url": "https://uncmc.incruit.com/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://www.uncmc.or.kr/",
           "visiblePostCount": null,
           "rowMode": false,
           "anchors": 0,
@@ -882,7 +1097,7 @@
             "candidateCount": 0,
             "rawTableRows": 0,
             "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 8672,
+            "sourceHtmlLength": 8529,
             "missingRows": 0,
             "extraCandidates": 0
           },
@@ -948,7 +1163,7 @@
             "candidateCount": 0,
             "rawTableRows": 0,
             "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 375,
+            "sourceHtmlLength": 351,
             "missingRows": 0,
             "extraCandidates": 0
           },
@@ -968,6 +1183,182 @@
           "missingRows": [],
           "extraCandidates": [],
           "rowTrace": []
+        },
+        {
+          "version": "1.3-list-template-verification",
+          "mode": "passive",
+          "org": "울산남구도시관리공단",
+          "url": "https://www.uncmc.or.kr/",
+          "probableCause": "DETAIL_SIGNAL_NOT_EXPOSED_IN_ROWS",
+          "listCounterFailureReason": "COUNTER_SELECTOR_MISMATCH",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "independentDomEvidence": true,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 3,
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 3,
+            "extractedTitleCount": 0
+          },
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 3,
+            "uniqueVisibleTitleCount": 3,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 0,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {},
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 3,
+            "uniqueVisibleTitleCount": 3,
+            "sourceHtmlLength": 399,
+            "missingRows": 3,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 3,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {
+            "DETAIL_SIGNAL_MISSING": 3
+          },
+          "visibleTitles": [
+            "Detect time",
+            "172.17.54.11 (x-forward-for : 135.232.201.240 )",
+            "http://www.uncmc.or.kr/"
+          ],
+          "extractedTitles": [],
+          "missingRows": [
+            {
+              "index": 0,
+              "title": "Detect time",
+              "normalizedTitle": "detect time",
+              "text": "Detect time 2026-08-08 03:05:54",
+              "hasDate": true,
+              "hasSequence": false,
+              "hasAction": false,
+              "href": "",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n<td>Detect time</td>\r\n<td>2026-08-08 03:05:54</td>\r\n</tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "DETAIL_SIGNAL_MISSING"
+            },
+            {
+              "index": 1,
+              "title": "172.17.54.11 (x-forward-for : 135.232.201.240 )",
+              "normalizedTitle": "172 17 54 11 x forward for 135 232 201 240",
+              "text": "Detect client IP 172.17.54.11 (x-forward-for : 135.232.201.240 )",
+              "hasDate": false,
+              "hasSequence": false,
+              "hasAction": false,
+              "href": "",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n<td>Detect client IP</td>\r\n<td>172.17.54.11 (x-forward-for : 135.232.201.240 )</td>\r\n</tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "DETAIL_SIGNAL_MISSING"
+            },
+            {
+              "index": 2,
+              "title": "http://www.uncmc.or.kr/",
+              "normalizedTitle": "http www uncmc or kr",
+              "text": "Detect URL http://www.uncmc.or.kr/",
+              "hasDate": false,
+              "hasSequence": false,
+              "hasAction": false,
+              "href": "",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n<td>Detect URL</td>\r\n<td>http://www.uncmc.or.kr/</td>\r\n</tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "DETAIL_SIGNAL_MISSING"
+            }
+          ],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "Detect time",
+              "normalizedTitle": "detect time",
+              "text": "Detect time 2026-08-08 03:05:54",
+              "hasDate": true,
+              "hasSequence": false,
+              "hasAction": false,
+              "href": "",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n<td>Detect time</td>\r\n<td>2026-08-08 03:05:54</td>\r\n</tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "DETAIL_SIGNAL_MISSING"
+            },
+            {
+              "index": 1,
+              "title": "172.17.54.11 (x-forward-for : 135.232.201.240 )",
+              "normalizedTitle": "172 17 54 11 x forward for 135 232 201 240",
+              "text": "Detect client IP 172.17.54.11 (x-forward-for : 135.232.201.240 )",
+              "hasDate": false,
+              "hasSequence": false,
+              "hasAction": false,
+              "href": "",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n<td>Detect client IP</td>\r\n<td>172.17.54.11 (x-forward-for : 135.232.201.240 )</td>\r\n</tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "DETAIL_SIGNAL_MISSING"
+            },
+            {
+              "index": 2,
+              "title": "http://www.uncmc.or.kr/",
+              "normalizedTitle": "http www uncmc or kr",
+              "text": "Detect URL http://www.uncmc.or.kr/",
+              "hasDate": false,
+              "hasSequence": false,
+              "hasAction": false,
+              "href": "",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n<td>Detect URL</td>\r\n<td>http://www.uncmc.or.kr/</td>\r\n</tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "DETAIL_SIGNAL_MISSING"
+            }
+          ]
         }
       ],
       "diagnosticFiles": [
@@ -984,6 +1375,13 @@
           "diagnosisPath": "data/diagnostics/울산남구도시관리공단/list/page-2-root-cause.json",
           "rowsPath": "data/diagnostics/울산남구도시관리공단/list/page-2-rows.txt",
           "url": "https://uncmc.incruit.com/"
+        },
+        {
+          "org": "울산남구도시관리공단",
+          "htmlPath": "data/diagnostics/울산남구도시관리공단/list/page-3-raw.html",
+          "diagnosisPath": "data/diagnostics/울산남구도시관리공단/list/page-3-root-cause.json",
+          "rowsPath": "data/diagnostics/울산남구도시관리공단/list/page-3-rows.txt",
+          "url": "https://www.uncmc.or.kr/"
         }
       ],
       "samples": [],
@@ -1033,7 +1431,7 @@
           "candidateCount": 0,
           "rawTableRows": 0,
           "uniqueVisibleTitleCount": 0,
-          "sourceHtmlLength": 8672,
+          "sourceHtmlLength": 8529,
           "missingRows": 0,
           "extraCandidates": 0
         },

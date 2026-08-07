@@ -6,7 +6,7 @@ import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 
-const VERSION = '16.3-access-board-verification';
+const VERSION = '16.4-strict-board-arrival';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 2;
 const ACCESS_TIMEOUT_MS = 18000;
@@ -91,12 +91,12 @@ async function fetchHtml(url, timeoutMs = 22000, referer = '') {
 async function accessiblePages(source) {
   const attempts = [];
   const pages = [];
-  for (const url of (source.accessUrls || [source.url]).slice(0, MAX_ACCESS_URLS)) {
+  for (const [accessPriority, url] of (source.accessUrls || [source.url]).slice(0, MAX_ACCESS_URLS).entries()) {
     try {
       const result = await fetchHtml(url, ACCESS_TIMEOUT_MS, source.homepage || '');
       const verification = inspectRecruitPage({ ...result, requestedUrl: url, org: source.org });
       attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl, verification });
-      pages.push({ ...result, requestedUrl: url, verification });
+      pages.push({ ...result, requestedUrl: url, verification, accessPriority });
     } catch (error) {
       attempts.push({ url, ok: false, error: error.name === 'AbortError' ? 'timeout' : error.message });
     }

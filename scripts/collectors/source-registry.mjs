@@ -75,10 +75,6 @@ const RAW_SOURCES = [
   { org: '울산경제일자리진흥원', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL' }, urls: [
     'https://www.ubpi.or.kr/sub/?mcode=0403080000',
     'https://www.ubpi.or.kr/' ] },
-  { org: '울산연구원', accessTemplate: 'RESTRICTED_CUSTOM', accessConfig: { platform: 'URI_OFFICIAL' }, urls: [
-    // Official URI recruitment surface. GitHub runners may need the URI-specific transport fallback.
-    'https://www.uri.re.kr/index.do',
-    'https://www.uri.re.kr/' ] },
   { org: '울산문화관광재단', accessTemplate: 'API_BOARD', accessConfig: { platform: 'UCTF_API' }, urls: [
     'https://uctf.or.kr/board/employment',
     'https://www.uctf.or.kr/board/employment',
@@ -124,4 +120,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls, accessTemplate, accessConfi
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.8-access-template-registry';
+export const SOURCE_REGISTRY_VERSION = '15.9-20-sources-list-accuracy';

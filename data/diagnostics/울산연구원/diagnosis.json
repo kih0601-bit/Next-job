@@ -1,57 +1,365 @@
 {
   "org": "울산연구원",
-  "health": "failed",
+  "health": "degraded",
   "primaryCause": {
-    "stage": "recruitVerify",
+    "stage": "list",
     "status": "failed",
-    "code": "RECRUIT_VERIFY_FAILED",
-    "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
-    "evidence": {
-      "ok": false,
-      "verified": false,
-      "fallback": false,
-      "code": "RECRUIT_VERIFY_FAILED",
-      "reason": "채용 게시판 검증 점수 4/5 · 필수 조건 미충족",
-      "score": 4,
-      "maxScore": 5,
-      "checks": {
-        "httpDocument": true,
-        "recruitKeyword": false,
-        "boardStructure": true,
-        "organizationMatch": true,
-        "meaningfulBody": true
+    "code": "LIST_COUNTER_FAILED",
+    "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+    "evidence": [
+      {
+        "url": "https://uill.uri.re.kr/",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 165,
+        "titleMatches": 142,
+        "noUrl": 1,
+        "unsafeUrl": 2,
+        "accepted": 43,
+        "rowFallbackAccepted": 6,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 3,
+        "titleSamples": [
+          "본문 바로가기",
+          "온라인 교육",
+          "온국민 배움터",
+          "G-SEEK",
+          "K-MOOC",
+          "울산연구원",
+          "울산연구원",
+          "평생교육연구실"
+        ],
+        "unsafeSamples": [
+          {
+            "title": "문해교육센터",
+            "reason": "detail-url-pending",
+            "identity": "row-12458",
+            "row": "<li><a class=\"depth1-accordion\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"문해교육센터\">문해교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"문해교육센터 소개\">문해교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "울산지역경제교육센터",
+            "reason": "detail-url-pending",
+            "identity": "row-17317",
+            "row": "<li><a class=\"depth1-accordion\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산지역경제교육센터\">울산지역경제교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"울산지역경제교육센터 소개\">울산지역경제교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "메뉴닫기",
+            "reason": "no-url-detail-pending",
+            "identity": "row-21564",
+            "row": "<li class=\"side-menu-close-button\"><a\r\n\t\t\t\t\t\thref=\"javascript:void(0)\" onclick=\"closeSideMenu()\" title=\"메뉴닫기\"><span\r\n\t\t\t\t\t\t\tstyle=\"display: none;\">메뉴닫기</span></a></li>"
+          }
+        ],
+        "actionSamples": [
+          {
+            "title": "문해교육센터",
+            "action": "return false;"
+          },
+          {
+            "title": "울산지역경제교육센터",
+            "action": "return false;"
+          },
+          {
+            "title": "메뉴닫기",
+            "action": "closeSideMenu()"
+          }
+        ],
+        "candidateUrlSamples": [
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/#go-main",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/integratedSearch.do?searchKeyword=",
+            "allowed": true
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "http://www.ueec.or.kr/",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/contents/05/BBS_0000000000000028/contentsList.do",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://www.all.go.kr/",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://www.gseek.kr/main/intro",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "http://new.kmooc.kr/",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "http://www.uri.re.kr/",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/common/login.do",
+            "allowed": true
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/?id=wrap",
+            "allowed": true
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/?id=header",
+            "allowed": true
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/?id=btmZin",
+            "allowed": true
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/?id=btmZOut",
+            "allowed": true
+          },
+          {
+            "title": "울산 평생교육 강사",
+            "url": "https://uill.uri.re.kr/education/knwldInstr/knwldInstrIntro.do",
+            "allowed": true
+          },
+          {
+            "title": "문해교육센터",
+            "url": "https://uill.uri.re.kr/contents/literacy/intro.do",
+            "allowed": false
+          },
+          {
+            "title": "부설센터",
+            "url": "https://uill.uri.re.kr/;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home",
+            "allowed": true
+          }
+        ],
+        "candidateCount": 43,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
       },
-      "title": "울산연구원 평생교육연구실",
-      "orgMatched": true,
-      "positiveHits": 0,
-      "positiveMatches": [],
-      "negativeHits": 0,
-      "negativeMatches": [],
-      "boardSignals": 1,
-      "boardType": {
-        "type": "UL_LIST",
-        "confidence": "medium",
-        "evidence": [
-          "ul/ol + li 구조 발견"
-        ]
-      },
-      "textLength": 4717,
-      "requestedUrl": "https://uill.uri.re.kr/",
-      "finalUrl": "https://uill.uri.re.kr/",
-      "status": 200,
-      "contentType": "text/html; charset=UTF-8"
-    },
-    "repairTarget": "scripts/lib/recruit-verify.mjs",
-    "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인"
+      {
+        "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 102,
+        "titleMatches": 77,
+        "noUrl": 1,
+        "unsafeUrl": 9,
+        "accepted": 12,
+        "rowFallbackAccepted": 1,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 10,
+        "titleSamples": [
+          "본문 바로가기",
+          "온라인 교육",
+          "온국민 배움터",
+          "G-SEEK",
+          "K-MOOC",
+          "울산연구원",
+          "울산연구원",
+          "평생교육연구실"
+        ],
+        "unsafeSamples": [
+          {
+            "title": "울산 평생교육 강사",
+            "reason": "detail-url-pending",
+            "identity": "row-6799",
+            "row": "<li><a class=\"depth1-accordion\" href=\"\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산 평생교육 강사\">울산 평생교육 강사</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/knwldInstr/knwldInstrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"소개\">소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "문해교육센터",
+            "reason": "detail-url-pending",
+            "identity": "row-7608",
+            "row": "<li><a class=\"depth1-accordion\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"문해교육센터\">문해교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"문해교육센터 소개\">문해교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "부설센터",
+            "reason": "detail-url-pending",
+            "identity": "row-12203",
+            "row": "<li><a class=\"gnb-menu1\"\r\n\t\t\t\t\t\t\t\t\thref=\";jsessionid=xySibgddpVDmKmmCuakWv1hKv7dSt5yGch9Nthnq136RkkSoTeQ1fiEqagzg4Ly0.uill_servlet_home\"\r\n\t\t\t\t\t\t\t\t\ttitle=\"부설센터\">부설센터</a>\r\n\t\t\t\t\t\t\t\t\t<div class=\"gnb-depth-menu-wrap\">\r\n\t\t\t\t\t\t\t\t\t\t<ul class=\"gnb-depth-menu\">\r\n\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth1-accordion\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산지역경제교육센터\">울산지역경제교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"울산지역경제교육센터 소개\">울산지역경제교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "울산지역경제교육센터",
+            "reason": "detail-url-pending",
+            "identity": "row-12467",
+            "row": "<li><a class=\"depth1-accordion\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산지역경제교육센터\">울산지역경제교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"울산지역경제교육센터 소개\">울산지역경제교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "인증강사",
+            "reason": "detail-url-pending",
+            "identity": "row-13623",
+            "row": "<li><a class=\"gnb-menu1\"\r\n\t\t\t\t\t\t\t\t\thref=\"/education/certInstrctr/certInstrctrIntro.do;jsessionid=xySibgddpVDmKmmCuakWv1hKv7dSt5yGch9Nthnq136RkkSoTeQ1fiEqagzg4Ly0.uill_servlet_home\"\r\n\t\t\t\t\t\t\t\t\ttitle=\"인증강사\">인증강사</a>\r\n\t\t\t\t\t\t\t\t\t<div class=\"gnb-depth-menu-wrap\">\r\n\t\t\t\t\t\t\t\t\t\t<ul class=\"gnb-depth-menu\">\r\n\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth1-accordion\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"인증 강사 소개\">인증 강사 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"인증강사 제도 소개\">인증강사 제도 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "인증 강사 소개",
+            "reason": "detail-url-pending",
+            "identity": "row-13931",
+            "row": "<li><a class=\"depth1-accordion\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"인증 강사 소개\">인증 강사 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"인증강사 제도 소개\">인증강사 제도 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "인증 강사 신청",
+            "reason": "detail-url-pending",
+            "identity": "row-14834",
+            "row": "<li><a class=\"depth1-accordion\" href=\"/education/certInstrctr/certInstrctrReqstAgree.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"인증 강사 신청\">인증 강사 신청</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/certInstrctr/certInstrctrReqstAgree.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"인증강사 신청\">인증강사 신청</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+          },
+          {
+            "title": "메뉴닫기",
+            "reason": "no-url-detail-pending",
+            "identity": "row-16714",
+            "row": "<li class=\"side-menu-close-button\"><a\r\n\t\t\t\t\t\thref=\"javascript:void(0)\" onclick=\"closeSideMenu()\" title=\"메뉴닫기\"><span\r\n\t\t\t\t\t\t\tstyle=\"display: none;\">메뉴닫기</span></a></li>"
+          }
+        ],
+        "actionSamples": [
+          {
+            "title": "울산 평생교육 강사",
+            "action": "return false;"
+          },
+          {
+            "title": "문해교육센터",
+            "action": "return false;"
+          },
+          {
+            "title": "울산지역경제교육센터",
+            "action": "return false;"
+          },
+          {
+            "title": "인증 강사 소개",
+            "action": "return false;"
+          },
+          {
+            "title": "인증 강사 신청",
+            "action": "return false;"
+          },
+          {
+            "title": "메뉴닫기",
+            "action": "closeSideMenu()"
+          },
+          {
+            "title": "이 페이지 프린트하기",
+            "action": "javascript:window.print();"
+          }
+        ],
+        "candidateUrlSamples": [
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01#go-main",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/integratedSearch.do?searchKeyword=",
+            "allowed": true
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "http://www.ueec.or.kr/",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/contents/05/BBS_0000000000000028/contentsList.do",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://www.all.go.kr/",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://www.gseek.kr/main/intro",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "http://new.kmooc.kr/",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "http://www.uri.re.kr/",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/common/login.do",
+            "allowed": false
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=wrap",
+            "allowed": true
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=header",
+            "allowed": true
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=btmZin",
+            "allowed": true
+          },
+          {
+            "title": "본문 바로가기",
+            "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=btmZOut",
+            "allowed": true
+          },
+          {
+            "title": "울산 평생교육 강사",
+            "url": "https://uill.uri.re.kr/education/knwldInstr/knwldInstrIntro.do",
+            "allowed": false
+          },
+          {
+            "title": "문해교육센터",
+            "url": "https://uill.uri.re.kr/contents/literacy/intro.do",
+            "allowed": false
+          },
+          {
+            "title": "부설센터",
+            "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/;jsessionid=xySibgddpVDmKmmCuakWv1hKv7dSt5yGch9Nthnq136RkkSoTeQ1fiEqagzg4Ly0.uill_servlet_home",
+            "allowed": false
+          }
+        ],
+        "candidateCount": 12,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "countSource": "unavailable"
+      }
+    ],
+    "repairTarget": "scripts/collectors/institutions/울산연구원.mjs",
+    "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
   },
   "diagnosis": {
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "1개 후보 URL HTTP 응답 성공",
+      "reason": "2개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
-          "url": "http://www.uri.re.kr/",
+          "url": "https://www.uri.re.kr/",
+          "ok": false,
+          "error": "fetch failed"
+        },
+        {
+          "url": "https://www.uri.re.kr/index.do",
           "ok": false,
           "error": "HTTP 403"
         },
@@ -61,11 +369,11 @@
           "status": 200,
           "finalUrl": "https://uill.uri.re.kr/",
           "verification": {
-            "ok": false,
-            "verified": false,
+            "ok": true,
+            "verified": true,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_FAILED",
-            "reason": "채용 게시판 검증 점수 4/5 · 필수 조건 미충족",
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "기관 전용 채용게시판 규칙 확인 (host:uill.uri.re.kr, url-pattern, html:채용정보|채용공고|BBS_0000000000000041)",
             "score": 4,
             "maxScore": 5,
             "checks": {
@@ -89,6 +397,12 @@
                 "ul/ol + li 구조 발견"
               ]
             },
+            "institutionRule": true,
+            "institutionRuleEvidence": [
+              "host:uill.uri.re.kr",
+              "url-pattern",
+              "html:채용정보|채용공고|BBS_0000000000000041"
+            ],
             "textLength": 4717,
             "requestedUrl": "https://uill.uri.re.kr/",
             "finalUrl": "https://uill.uri.re.kr/",
@@ -98,90 +412,443 @@
         },
         {
           "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
-          "ok": false,
-          "error": "timeout"
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [
+              "url-pattern"
+            ],
+            "textLength": 7813,
+            "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+            "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
         }
       ]
     },
     "recruitVerify": {
-      "status": "failed",
-      "code": "RECRUIT_VERIFY_FAILED",
-      "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
       "evidence": {
-        "ok": false,
-        "verified": false,
+        "ok": true,
+        "verified": true,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_FAILED",
-        "reason": "채용 게시판 검증 점수 4/5 · 필수 조건 미충족",
-        "score": 4,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+        "score": 5,
         "maxScore": 5,
         "checks": {
           "httpDocument": true,
-          "recruitKeyword": false,
+          "recruitKeyword": true,
           "boardStructure": true,
           "organizationMatch": true,
           "meaningfulBody": true
         },
-        "title": "울산연구원 평생교육연구실",
+        "title": "울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록",
         "orgMatched": true,
-        "positiveHits": 0,
-        "positiveMatches": [],
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용"
+        ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 1,
+        "boardSignals": 5,
         "boardType": {
-          "type": "UL_LIST",
-          "confidence": "medium",
+          "type": "HTML_TABLE",
+          "confidence": "high",
           "evidence": [
-            "ul/ol + li 구조 발견"
+            "table/tr 구조 발견"
           ]
         },
-        "textLength": 4717,
-        "requestedUrl": "https://uill.uri.re.kr/",
-        "finalUrl": "https://uill.uri.re.kr/",
+        "institutionRule": false,
+        "institutionRuleEvidence": [
+          "url-pattern"
+        ],
+        "textLength": 7813,
+        "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+        "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
         "status": 200,
         "contentType": "text/html; charset=UTF-8"
       }
     },
     "list": {
-      "status": "blocked",
-      "code": "LIST_BLOCKED_BY_RECRUIT_VERIFY",
-      "reason": "채용 게시판 검증 실패로 목록 진단 보류",
-      "evidence": {
-        "ok": false,
-        "verified": false,
-        "fallback": false,
-        "code": "RECRUIT_VERIFY_FAILED",
-        "reason": "채용 게시판 검증 점수 4/5 · 필수 조건 미충족",
-        "score": 4,
-        "maxScore": 5,
-        "checks": {
-          "httpDocument": true,
-          "recruitKeyword": false,
-          "boardStructure": true,
-          "organizationMatch": true,
-          "meaningfulBody": true
+      "status": "failed",
+      "code": "LIST_COUNTER_FAILED",
+      "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+      "evidence": [
+        {
+          "url": "https://uill.uri.re.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 165,
+          "titleMatches": 142,
+          "noUrl": 1,
+          "unsafeUrl": 2,
+          "accepted": 43,
+          "rowFallbackAccepted": 6,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 3,
+          "titleSamples": [
+            "본문 바로가기",
+            "온라인 교육",
+            "온국민 배움터",
+            "G-SEEK",
+            "K-MOOC",
+            "울산연구원",
+            "울산연구원",
+            "평생교육연구실"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "문해교육센터",
+              "reason": "detail-url-pending",
+              "identity": "row-12458",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"문해교육센터\">문해교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"문해교육센터 소개\">문해교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "울산지역경제교육센터",
+              "reason": "detail-url-pending",
+              "identity": "row-17317",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산지역경제교육센터\">울산지역경제교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"울산지역경제교육센터 소개\">울산지역경제교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "메뉴닫기",
+              "reason": "no-url-detail-pending",
+              "identity": "row-21564",
+              "row": "<li class=\"side-menu-close-button\"><a\r\n\t\t\t\t\t\thref=\"javascript:void(0)\" onclick=\"closeSideMenu()\" title=\"메뉴닫기\"><span\r\n\t\t\t\t\t\t\tstyle=\"display: none;\">메뉴닫기</span></a></li>"
+            }
+          ],
+          "actionSamples": [
+            {
+              "title": "문해교육센터",
+              "action": "return false;"
+            },
+            {
+              "title": "울산지역경제교육센터",
+              "action": "return false;"
+            },
+            {
+              "title": "메뉴닫기",
+              "action": "closeSideMenu()"
+            }
+          ],
+          "candidateUrlSamples": [
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/#go-main",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/integratedSearch.do?searchKeyword=",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://www.ueec.or.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/05/BBS_0000000000000028/contentsList.do",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://www.all.go.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://www.gseek.kr/main/intro",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://new.kmooc.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://www.uri.re.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/common/login.do",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/?id=wrap",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/?id=header",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/?id=btmZin",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/?id=btmZOut",
+              "allowed": true
+            },
+            {
+              "title": "울산 평생교육 강사",
+              "url": "https://uill.uri.re.kr/education/knwldInstr/knwldInstrIntro.do",
+              "allowed": true
+            },
+            {
+              "title": "문해교육센터",
+              "url": "https://uill.uri.re.kr/contents/literacy/intro.do",
+              "allowed": false
+            },
+            {
+              "title": "부설센터",
+              "url": "https://uill.uri.re.kr/;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home",
+              "allowed": true
+            }
+          ],
+          "candidateCount": 43,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
         },
-        "title": "울산연구원 평생교육연구실",
-        "orgMatched": true,
-        "positiveHits": 0,
-        "positiveMatches": [],
-        "negativeHits": 0,
-        "negativeMatches": [],
-        "boardSignals": 1,
-        "boardType": {
-          "type": "UL_LIST",
-          "confidence": "medium",
-          "evidence": [
-            "ul/ol + li 구조 발견"
-          ]
-        },
-        "textLength": 4717,
-        "requestedUrl": "https://uill.uri.re.kr/",
-        "finalUrl": "https://uill.uri.re.kr/",
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8"
-      }
+        {
+          "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 102,
+          "titleMatches": 77,
+          "noUrl": 1,
+          "unsafeUrl": 9,
+          "accepted": 12,
+          "rowFallbackAccepted": 1,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 10,
+          "titleSamples": [
+            "본문 바로가기",
+            "온라인 교육",
+            "온국민 배움터",
+            "G-SEEK",
+            "K-MOOC",
+            "울산연구원",
+            "울산연구원",
+            "평생교육연구실"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "울산 평생교육 강사",
+              "reason": "detail-url-pending",
+              "identity": "row-6799",
+              "row": "<li><a class=\"depth1-accordion\" href=\"\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산 평생교육 강사\">울산 평생교육 강사</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/knwldInstr/knwldInstrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"소개\">소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "문해교육센터",
+              "reason": "detail-url-pending",
+              "identity": "row-7608",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"문해교육센터\">문해교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"문해교육센터 소개\">문해교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "부설센터",
+              "reason": "detail-url-pending",
+              "identity": "row-12203",
+              "row": "<li><a class=\"gnb-menu1\"\r\n\t\t\t\t\t\t\t\t\thref=\";jsessionid=xySibgddpVDmKmmCuakWv1hKv7dSt5yGch9Nthnq136RkkSoTeQ1fiEqagzg4Ly0.uill_servlet_home\"\r\n\t\t\t\t\t\t\t\t\ttitle=\"부설센터\">부설센터</a>\r\n\t\t\t\t\t\t\t\t\t<div class=\"gnb-depth-menu-wrap\">\r\n\t\t\t\t\t\t\t\t\t\t<ul class=\"gnb-depth-menu\">\r\n\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth1-accordion\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산지역경제교육센터\">울산지역경제교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"울산지역경제교육센터 소개\">울산지역경제교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "울산지역경제교육센터",
+              "reason": "detail-url-pending",
+              "identity": "row-12467",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산지역경제교육센터\">울산지역경제교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"울산지역경제교육센터 소개\">울산지역경제교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "인증강사",
+              "reason": "detail-url-pending",
+              "identity": "row-13623",
+              "row": "<li><a class=\"gnb-menu1\"\r\n\t\t\t\t\t\t\t\t\thref=\"/education/certInstrctr/certInstrctrIntro.do;jsessionid=xySibgddpVDmKmmCuakWv1hKv7dSt5yGch9Nthnq136RkkSoTeQ1fiEqagzg4Ly0.uill_servlet_home\"\r\n\t\t\t\t\t\t\t\t\ttitle=\"인증강사\">인증강사</a>\r\n\t\t\t\t\t\t\t\t\t<div class=\"gnb-depth-menu-wrap\">\r\n\t\t\t\t\t\t\t\t\t\t<ul class=\"gnb-depth-menu\">\r\n\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth1-accordion\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"인증 강사 소개\">인증 강사 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"인증강사 제도 소개\">인증강사 제도 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "인증 강사 소개",
+              "reason": "detail-url-pending",
+              "identity": "row-13931",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"인증 강사 소개\">인증 강사 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"인증강사 제도 소개\">인증강사 제도 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "인증 강사 신청",
+              "reason": "detail-url-pending",
+              "identity": "row-14834",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/education/certInstrctr/certInstrctrReqstAgree.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"인증 강사 신청\">인증 강사 신청</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/certInstrctr/certInstrctrReqstAgree.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"인증강사 신청\">인증강사 신청</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "메뉴닫기",
+              "reason": "no-url-detail-pending",
+              "identity": "row-16714",
+              "row": "<li class=\"side-menu-close-button\"><a\r\n\t\t\t\t\t\thref=\"javascript:void(0)\" onclick=\"closeSideMenu()\" title=\"메뉴닫기\"><span\r\n\t\t\t\t\t\t\tstyle=\"display: none;\">메뉴닫기</span></a></li>"
+            }
+          ],
+          "actionSamples": [
+            {
+              "title": "울산 평생교육 강사",
+              "action": "return false;"
+            },
+            {
+              "title": "문해교육센터",
+              "action": "return false;"
+            },
+            {
+              "title": "울산지역경제교육센터",
+              "action": "return false;"
+            },
+            {
+              "title": "인증 강사 소개",
+              "action": "return false;"
+            },
+            {
+              "title": "인증 강사 신청",
+              "action": "return false;"
+            },
+            {
+              "title": "메뉴닫기",
+              "action": "closeSideMenu()"
+            },
+            {
+              "title": "이 페이지 프린트하기",
+              "action": "javascript:window.print();"
+            }
+          ],
+          "candidateUrlSamples": [
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01#go-main",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/integratedSearch.do?searchKeyword=",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://www.ueec.or.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/05/BBS_0000000000000028/contentsList.do",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://www.all.go.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://www.gseek.kr/main/intro",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://new.kmooc.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://www.uri.re.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/common/login.do",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=wrap",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=header",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=btmZin",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=btmZOut",
+              "allowed": true
+            },
+            {
+              "title": "울산 평생교육 강사",
+              "url": "https://uill.uri.re.kr/education/knwldInstr/knwldInstrIntro.do",
+              "allowed": false
+            },
+            {
+              "title": "문해교육센터",
+              "url": "https://uill.uri.re.kr/contents/literacy/intro.do",
+              "allowed": false
+            },
+            {
+              "title": "부설센터",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/;jsessionid=xySibgddpVDmKmmCuakWv1hKv7dSt5yGch9Nthnq136RkkSoTeQ1fiEqagzg4Ly0.uill_servlet_home",
+              "allowed": false
+            }
+          ],
+          "candidateCount": 12,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ]
     },
     "detail": {
       "status": "blocked",
@@ -196,61 +863,73 @@
       "evidence": []
     },
     "access": {
-      "status": "failed",
-      "code": "RECRUIT_VERIFY_FAILED",
-      "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+      "status": "success",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
       "evidence": {
-        "ok": false,
-        "verified": false,
+        "ok": true,
+        "verified": true,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_FAILED",
-        "reason": "채용 게시판 검증 점수 4/5 · 필수 조건 미충족",
-        "score": 4,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+        "score": 5,
         "maxScore": 5,
         "checks": {
           "httpDocument": true,
-          "recruitKeyword": false,
+          "recruitKeyword": true,
           "boardStructure": true,
           "organizationMatch": true,
           "meaningfulBody": true
         },
-        "title": "울산연구원 평생교육연구실",
+        "title": "울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록",
         "orgMatched": true,
-        "positiveHits": 0,
-        "positiveMatches": [],
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용"
+        ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 1,
+        "boardSignals": 5,
         "boardType": {
-          "type": "UL_LIST",
-          "confidence": "medium",
+          "type": "HTML_TABLE",
+          "confidence": "high",
           "evidence": [
-            "ul/ol + li 구조 발견"
+            "table/tr 구조 발견"
           ]
         },
-        "textLength": 4717,
-        "requestedUrl": "https://uill.uri.re.kr/",
-        "finalUrl": "https://uill.uri.re.kr/",
+        "institutionRule": false,
+        "institutionRuleEvidence": [
+          "url-pattern"
+        ],
+        "textLength": 7813,
+        "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+        "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
         "status": 200,
         "contentType": "text/html; charset=UTF-8"
       }
     }
   },
-  "repairTarget": "scripts/lib/recruit-verify.mjs",
-  "recommendedAction": "기관별 채용 키워드·게시판 검증 근거를 확인",
+  "repairTarget": "scripts/collectors/institutions/울산연구원.mjs",
+  "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정",
   "stages": {
     "access": {
-      "ok": false,
+      "ok": true,
       "httpOk": true,
-      "recruitVerifyOk": false,
-      "requestedUrl": "https://uill.uri.re.kr/",
-      "finalUrl": "https://uill.uri.re.kr/",
-      "activeRecruitUrl": "",
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+      "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+      "activeRecruitUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
       "attempts": [
         {
-          "url": "http://www.uri.re.kr/",
+          "url": "https://www.uri.re.kr/",
+          "ok": false,
+          "error": "fetch failed"
+        },
+        {
+          "url": "https://www.uri.re.kr/index.do",
           "ok": false,
           "error": "HTTP 403"
         },
@@ -260,11 +939,11 @@
           "status": 200,
           "finalUrl": "https://uill.uri.re.kr/",
           "verification": {
-            "ok": false,
-            "verified": false,
+            "ok": true,
+            "verified": true,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_FAILED",
-            "reason": "채용 게시판 검증 점수 4/5 · 필수 조건 미충족",
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "기관 전용 채용게시판 규칙 확인 (host:uill.uri.re.kr, url-pattern, html:채용정보|채용공고|BBS_0000000000000041)",
             "score": 4,
             "maxScore": 5,
             "checks": {
@@ -288,6 +967,12 @@
                 "ul/ol + li 구조 발견"
               ]
             },
+            "institutionRule": true,
+            "institutionRuleEvidence": [
+              "host:uill.uri.re.kr",
+              "url-pattern",
+              "html:채용정보|채용공고|BBS_0000000000000041"
+            ],
             "textLength": 4717,
             "requestedUrl": "https://uill.uri.re.kr/",
             "finalUrl": "https://uill.uri.re.kr/",
@@ -297,63 +982,118 @@
         },
         {
           "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
-          "ok": false,
-          "error": "timeout"
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [
+              "url-pattern"
+            ],
+            "textLength": 7813,
+            "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+            "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
         }
       ],
       "verification": {
-        "ok": false,
-        "verified": false,
+        "ok": true,
+        "verified": true,
         "fallback": false,
-        "code": "RECRUIT_VERIFY_FAILED",
-        "reason": "채용 게시판 검증 점수 4/5 · 필수 조건 미충족",
-        "score": 4,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+        "score": 5,
         "maxScore": 5,
         "checks": {
           "httpDocument": true,
-          "recruitKeyword": false,
+          "recruitKeyword": true,
           "boardStructure": true,
           "organizationMatch": true,
           "meaningfulBody": true
         },
-        "title": "울산연구원 평생교육연구실",
+        "title": "울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록",
         "orgMatched": true,
-        "positiveHits": 0,
-        "positiveMatches": [],
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용"
+        ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 1,
+        "boardSignals": 5,
         "boardType": {
-          "type": "UL_LIST",
-          "confidence": "medium",
+          "type": "HTML_TABLE",
+          "confidence": "high",
           "evidence": [
-            "ul/ol + li 구조 발견"
+            "table/tr 구조 발견"
           ]
         },
-        "textLength": 4717,
-        "requestedUrl": "https://uill.uri.re.kr/",
-        "finalUrl": "https://uill.uri.re.kr/",
+        "institutionRule": false,
+        "institutionRuleEvidence": [
+          "url-pattern"
+        ],
+        "textLength": 7813,
+        "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+        "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
         "status": 200,
         "contentType": "text/html; charset=UTF-8"
       },
       "boardType": {
-        "type": "UL_LIST",
-        "confidence": "medium",
+        "type": "HTML_TABLE",
+        "confidence": "high",
         "evidence": [
-          "ul/ol + li 구조 발견"
+          "table/tr 구조 발견"
         ]
       },
       "diagnosis": {
-        "ok": false,
-        "code": "RECRUIT_VERIFY_FAILED",
-        "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
+        "ok": true,
+        "code": "RECRUIT_VERIFY_FALLBACK_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "1개 후보 URL HTTP 응답 성공",
+          "reason": "2개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
-              "url": "http://www.uri.re.kr/",
+              "url": "https://www.uri.re.kr/",
+              "ok": false,
+              "error": "fetch failed"
+            },
+            {
+              "url": "https://www.uri.re.kr/index.do",
               "ok": false,
               "error": "HTTP 403"
             },
@@ -363,11 +1103,11 @@
               "status": 200,
               "finalUrl": "https://uill.uri.re.kr/",
               "verification": {
-                "ok": false,
-                "verified": false,
+                "ok": true,
+                "verified": true,
                 "fallback": false,
-                "code": "RECRUIT_VERIFY_FAILED",
-                "reason": "채용 게시판 검증 점수 4/5 · 필수 조건 미충족",
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "기관 전용 채용게시판 규칙 확인 (host:uill.uri.re.kr, url-pattern, html:채용정보|채용공고|BBS_0000000000000041)",
                 "score": 4,
                 "maxScore": 5,
                 "checks": {
@@ -391,6 +1131,12 @@
                     "ul/ol + li 구조 발견"
                   ]
                 },
+                "institutionRule": true,
+                "institutionRuleEvidence": [
+                  "host:uill.uri.re.kr",
+                  "url-pattern",
+                  "html:채용정보|채용공고|BBS_0000000000000041"
+                ],
                 "textLength": 4717,
                 "requestedUrl": "https://uill.uri.re.kr/",
                 "finalUrl": "https://uill.uri.re.kr/",
@@ -400,122 +1146,1625 @@
             },
             {
               "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
-              "ok": false,
-              "error": "timeout"
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 5,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [
+                  "url-pattern"
+                ],
+                "textLength": 7813,
+                "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+                "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              }
             }
           ]
         },
         "recruitVerify": {
-          "ok": false,
-          "code": "RECRUIT_VERIFY_FAILED",
-          "reason": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음",
-          "score": 4,
+          "ok": true,
+          "code": "RECRUIT_VERIFY_FALLBACK_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+          "score": 5,
           "maxScore": 5,
           "boardType": {
-            "type": "UL_LIST",
-            "confidence": "medium",
+            "type": "HTML_TABLE",
+            "confidence": "high",
             "evidence": [
-              "ul/ol + li 구조 발견"
+              "table/tr 구조 발견"
             ]
           },
           "evidence": {
-            "ok": false,
-            "verified": false,
+            "ok": true,
+            "verified": true,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_FAILED",
-            "reason": "채용 게시판 검증 점수 4/5 · 필수 조건 미충족",
-            "score": 4,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+            "score": 5,
             "maxScore": 5,
             "checks": {
               "httpDocument": true,
-              "recruitKeyword": false,
+              "recruitKeyword": true,
               "boardStructure": true,
               "organizationMatch": true,
               "meaningfulBody": true
             },
-            "title": "울산연구원 평생교육연구실",
+            "title": "울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록",
             "orgMatched": true,
-            "positiveHits": 0,
-            "positiveMatches": [],
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용"
+            ],
             "negativeHits": 0,
             "negativeMatches": [],
-            "boardSignals": 1,
+            "boardSignals": 5,
             "boardType": {
-              "type": "UL_LIST",
-              "confidence": "medium",
+              "type": "HTML_TABLE",
+              "confidence": "high",
               "evidence": [
-                "ul/ol + li 구조 발견"
+                "table/tr 구조 발견"
               ]
             },
-            "textLength": 4717,
-            "requestedUrl": "https://uill.uri.re.kr/",
-            "finalUrl": "https://uill.uri.re.kr/",
+            "institutionRule": false,
+            "institutionRuleEvidence": [
+              "url-pattern"
+            ],
+            "textLength": 7813,
+            "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+            "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
             "status": 200,
             "contentType": "text/html; charset=UTF-8"
           }
         },
-        "activeRecruitUrl": "",
+        "activeRecruitUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
+        "selectedRequestedUrl": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
         "verification": {
-          "ok": false,
-          "verified": false,
+          "ok": true,
+          "verified": true,
           "fallback": false,
-          "code": "RECRUIT_VERIFY_FAILED",
-          "reason": "채용 게시판 검증 점수 4/5 · 필수 조건 미충족",
-          "score": 4,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+          "score": 5,
           "maxScore": 5,
           "checks": {
             "httpDocument": true,
-            "recruitKeyword": false,
+            "recruitKeyword": true,
             "boardStructure": true,
             "organizationMatch": true,
             "meaningfulBody": true
           },
-          "title": "울산연구원 평생교육연구실",
+          "title": "울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록",
           "orgMatched": true,
-          "positiveHits": 0,
-          "positiveMatches": [],
+          "positiveHits": 2,
+          "positiveMatches": [
+            "채용\\s*공고",
+            "직원\\s*채용"
+          ],
           "negativeHits": 0,
           "negativeMatches": [],
-          "boardSignals": 1,
+          "boardSignals": 5,
           "boardType": {
-            "type": "UL_LIST",
-            "confidence": "medium",
+            "type": "HTML_TABLE",
+            "confidence": "high",
             "evidence": [
-              "ul/ol + li 구조 발견"
+              "table/tr 구조 발견"
             ]
           },
-          "textLength": 4717,
-          "requestedUrl": "https://uill.uri.re.kr/",
-          "finalUrl": "https://uill.uri.re.kr/",
+          "institutionRule": false,
+          "institutionRuleEvidence": [
+            "url-pattern"
+          ],
+          "textLength": 7813,
+          "requestedUrl": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+          "finalUrl": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&mId=001004001003000000",
           "status": 200,
           "contentType": "text/html; charset=UTF-8"
         }
-      },
-      "error": "1개 URL은 HTTP 응답했지만 채용 게시판으로 검증되지 않음"
+      }
     },
     "list": {
       "ok": false,
-      "status": "unknown",
-      "pagesChecked": 0,
+      "status": "count-unavailable-or-empty",
+      "pagesChecked": 2,
       "visiblePostCount": null,
-      "candidateCount": 0,
+      "candidateCount": 43,
       "missingCount": null,
       "extraCount": null,
       "exactMatch": false,
-      "selectedUrl": "",
-      "detailUrlReady": 0,
-      "listOnlyCount": 0,
-      "extractionDiagnostics": [],
-      "rootCauseDiagnostics": [],
-      "diagnosticFiles": [],
-      "samples": [],
-      "errors": []
+      "selectedUrl": "https://uill.uri.re.kr/",
+      "detailUrlReady": 40,
+      "listOnlyCount": 3,
+      "extractionDiagnostics": [
+        {
+          "url": "https://uill.uri.re.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 165,
+          "titleMatches": 142,
+          "noUrl": 1,
+          "unsafeUrl": 2,
+          "accepted": 43,
+          "rowFallbackAccepted": 6,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 3,
+          "titleSamples": [
+            "본문 바로가기",
+            "온라인 교육",
+            "온국민 배움터",
+            "G-SEEK",
+            "K-MOOC",
+            "울산연구원",
+            "울산연구원",
+            "평생교육연구실"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "문해교육센터",
+              "reason": "detail-url-pending",
+              "identity": "row-12458",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"문해교육센터\">문해교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"문해교육센터 소개\">문해교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "울산지역경제교육센터",
+              "reason": "detail-url-pending",
+              "identity": "row-17317",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산지역경제교육센터\">울산지역경제교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"울산지역경제교육센터 소개\">울산지역경제교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "메뉴닫기",
+              "reason": "no-url-detail-pending",
+              "identity": "row-21564",
+              "row": "<li class=\"side-menu-close-button\"><a\r\n\t\t\t\t\t\thref=\"javascript:void(0)\" onclick=\"closeSideMenu()\" title=\"메뉴닫기\"><span\r\n\t\t\t\t\t\t\tstyle=\"display: none;\">메뉴닫기</span></a></li>"
+            }
+          ],
+          "actionSamples": [
+            {
+              "title": "문해교육센터",
+              "action": "return false;"
+            },
+            {
+              "title": "울산지역경제교육센터",
+              "action": "return false;"
+            },
+            {
+              "title": "메뉴닫기",
+              "action": "closeSideMenu()"
+            }
+          ],
+          "candidateUrlSamples": [
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/#go-main",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/integratedSearch.do?searchKeyword=",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://www.ueec.or.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/05/BBS_0000000000000028/contentsList.do",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://www.all.go.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://www.gseek.kr/main/intro",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://new.kmooc.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://www.uri.re.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/common/login.do",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/?id=wrap",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/?id=header",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/?id=btmZin",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/?id=btmZOut",
+              "allowed": true
+            },
+            {
+              "title": "울산 평생교육 강사",
+              "url": "https://uill.uri.re.kr/education/knwldInstr/knwldInstrIntro.do",
+              "allowed": true
+            },
+            {
+              "title": "문해교육센터",
+              "url": "https://uill.uri.re.kr/contents/literacy/intro.do",
+              "allowed": false
+            },
+            {
+              "title": "부설센터",
+              "url": "https://uill.uri.re.kr/;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home",
+              "allowed": true
+            }
+          ],
+          "candidateCount": 43,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 102,
+          "titleMatches": 77,
+          "noUrl": 1,
+          "unsafeUrl": 9,
+          "accepted": 12,
+          "rowFallbackAccepted": 1,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 10,
+          "titleSamples": [
+            "본문 바로가기",
+            "온라인 교육",
+            "온국민 배움터",
+            "G-SEEK",
+            "K-MOOC",
+            "울산연구원",
+            "울산연구원",
+            "평생교육연구실"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "울산 평생교육 강사",
+              "reason": "detail-url-pending",
+              "identity": "row-6799",
+              "row": "<li><a class=\"depth1-accordion\" href=\"\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산 평생교육 강사\">울산 평생교육 강사</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/knwldInstr/knwldInstrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"소개\">소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "문해교육센터",
+              "reason": "detail-url-pending",
+              "identity": "row-7608",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"문해교육센터\">문해교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/literacy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"문해교육센터 소개\">문해교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "부설센터",
+              "reason": "detail-url-pending",
+              "identity": "row-12203",
+              "row": "<li><a class=\"gnb-menu1\"\r\n\t\t\t\t\t\t\t\t\thref=\";jsessionid=xySibgddpVDmKmmCuakWv1hKv7dSt5yGch9Nthnq136RkkSoTeQ1fiEqagzg4Ly0.uill_servlet_home\"\r\n\t\t\t\t\t\t\t\t\ttitle=\"부설센터\">부설센터</a>\r\n\t\t\t\t\t\t\t\t\t<div class=\"gnb-depth-menu-wrap\">\r\n\t\t\t\t\t\t\t\t\t\t<ul class=\"gnb-depth-menu\">\r\n\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth1-accordion\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산지역경제교육센터\">울산지역경제교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"울산지역경제교육센터 소개\">울산지역경제교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "울산지역경제교육센터",
+              "reason": "detail-url-pending",
+              "identity": "row-12467",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"울산지역경제교육센터\">울산지역경제교육센터</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/contents/economy/intro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"울산지역경제교육센터 소개\">울산지역경제교육센터 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "인증강사",
+              "reason": "detail-url-pending",
+              "identity": "row-13623",
+              "row": "<li><a class=\"gnb-menu1\"\r\n\t\t\t\t\t\t\t\t\thref=\"/education/certInstrctr/certInstrctrIntro.do;jsessionid=xySibgddpVDmKmmCuakWv1hKv7dSt5yGch9Nthnq136RkkSoTeQ1fiEqagzg4Ly0.uill_servlet_home\"\r\n\t\t\t\t\t\t\t\t\ttitle=\"인증강사\">인증강사</a>\r\n\t\t\t\t\t\t\t\t\t<div class=\"gnb-depth-menu-wrap\">\r\n\t\t\t\t\t\t\t\t\t\t<ul class=\"gnb-depth-menu\">\r\n\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth1-accordion\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"인증 강사 소개\">인증 강사 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"인증강사 제도 소개\">인증강사 제도 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "인증 강사 소개",
+              "reason": "detail-url-pending",
+              "identity": "row-13931",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"인증 강사 소개\">인증 강사 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/certInstrctr/certInstrctrIntro.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"인증강사 제도 소개\">인증강사 제도 소개</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "인증 강사 신청",
+              "reason": "detail-url-pending",
+              "identity": "row-14834",
+              "row": "<li><a class=\"depth1-accordion\" href=\"/education/certInstrctr/certInstrctrReqstAgree.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tonclick=\"return false;\" title=\"인증 강사 신청\">인증 강사 신청</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"depth2-panel\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li><a class=\"depth2\" href=\"/education/certInstrctr/certInstrctrReqstAgree.do\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttitle=\"인증강사 신청\">인증강사 신청</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
+            },
+            {
+              "title": "메뉴닫기",
+              "reason": "no-url-detail-pending",
+              "identity": "row-16714",
+              "row": "<li class=\"side-menu-close-button\"><a\r\n\t\t\t\t\t\thref=\"javascript:void(0)\" onclick=\"closeSideMenu()\" title=\"메뉴닫기\"><span\r\n\t\t\t\t\t\t\tstyle=\"display: none;\">메뉴닫기</span></a></li>"
+            }
+          ],
+          "actionSamples": [
+            {
+              "title": "울산 평생교육 강사",
+              "action": "return false;"
+            },
+            {
+              "title": "문해교육센터",
+              "action": "return false;"
+            },
+            {
+              "title": "울산지역경제교육센터",
+              "action": "return false;"
+            },
+            {
+              "title": "인증 강사 소개",
+              "action": "return false;"
+            },
+            {
+              "title": "인증 강사 신청",
+              "action": "return false;"
+            },
+            {
+              "title": "메뉴닫기",
+              "action": "closeSideMenu()"
+            },
+            {
+              "title": "이 페이지 프린트하기",
+              "action": "javascript:window.print();"
+            }
+          ],
+          "candidateUrlSamples": [
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01#go-main",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/integratedSearch.do?searchKeyword=",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://www.ueec.or.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/05/BBS_0000000000000028/contentsList.do",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://www.all.go.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://www.gseek.kr/main/intro",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://new.kmooc.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "http://www.uri.re.kr/",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/common/login.do",
+              "allowed": false
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=wrap",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=header",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=btmZin",
+              "allowed": true
+            },
+            {
+              "title": "본문 바로가기",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01&id=btmZOut",
+              "allowed": true
+            },
+            {
+              "title": "울산 평생교육 강사",
+              "url": "https://uill.uri.re.kr/education/knwldInstr/knwldInstrIntro.do",
+              "allowed": false
+            },
+            {
+              "title": "문해교육센터",
+              "url": "https://uill.uri.re.kr/contents/literacy/intro.do",
+              "allowed": false
+            },
+            {
+              "title": "부설센터",
+              "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/;jsessionid=xySibgddpVDmKmmCuakWv1hKv7dSt5yGch9Nthnq136RkkSoTeQ1fiEqagzg4Ly0.uill_servlet_home",
+              "allowed": false
+            }
+          ],
+          "candidateCount": 12,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "countSource": "unavailable"
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산연구원",
+          "url": "https://uill.uri.re.kr/",
+          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+          "listCounterFailureReason": "DOM_COUNT_ZERO",
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 43,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {
+            "UNCLASSIFIED": 35,
+            "RECRUIT_POST": 8
+          },
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 43,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 114330,
+            "missingRows": 0,
+            "extraCandidates": 43
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 167,
+            "article": 0,
+            "[onclick]": 56,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 173
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [
+            "본문 바로가기",
+            "울산 평생교육 강사",
+            "문해교육센터",
+            "부설센터",
+            "울산지역경제교육센터",
+            "인증강사",
+            "인증 강사 소개",
+            "인증 강사 신청",
+            "지원 상태 확인",
+            "메뉴닫기",
+            "\\n'; strVal += ' '+data.damoaLctreList[idx].itemNm+' \\n'; strVal += ' 강사 : '+data.damoaLctreList[idx].itemA+' \\n'; strVal += ' 학습기간 : '+data.damoaLctreList[idx].itemB+' \\n'; strVal += ' 기관명 : '+data.damoaLctreList[idx].itemE+' \\n'; strVal += '",
+            "\\n'; strVal += ' '+data.damoaInsttList[idx].itemNm+' \\n'; strVal += ' 운영상태 : '+data.damoaInsttList[idx].itemA+' \\n'; strVal += ' 대표전화 : '+data.damoaInsttList[idx].itemB+' \\n'; strVal += '",
+            "\\n'; strVal += ' '+data.damoaInstrctrList[idx].itemNm+' \\n'; strVal += ' 학습분야 : '+data.damoaInstrctrList[idx].itemA+' \\n'; strVal += ' 상세분야 : '+data.damoaInstrctrList[idx].itemB+' \\n'; strVal += '",
+            "공지사항 2026년 성인문해교과서 무상보급 신청 안내",
+            "공지사항 2026년 울산 문해교사 대상 공고",
+            "공지사항 제안서 평가결과 공개",
+            "공지사항 2026 평생교육 강사 인력풀(pool) 연계 지원사업 선정 결과 안내",
+            "공지사항 2026년 울산 문해교사 보수교육 참가 신청 안내",
+            "공지사항 2026년 상반기 장학생 선발 안내",
+            "보도자료 중구, 지역 평생교육 발전 머리 맞대… 관계자 공동연수",
+            "보도자료 중구, 울산지역 평생교육 관계자 워크숍",
+            "보도자료 울산연구원 '2026 평생교육 강사' 수료식",
+            "보도자료 울산연구원, 지역 평생교육 현장 이끌 수료자 70명 배출",
+            "보도자료 울산연구원, 상반기 장학생 선발",
+            "보도자료 울산연구원 장학생 369명 모집…AI미래인재 부문 신설",
+            "--> 타기관소식 [울산창조경제혁신센터]「2026예비창업패키지 창업준비 아카데미」 프로그램 홍보",
+            "--> 타기관소식 [국가평생교육진흥원] 「2026년 제23회 대한민국 평생학습대상」연장공고 안내",
+            "--> 타기관소식 [재단법인광주광역시인재평생교육진흥원] 'AI 시대, 평생교육의 경쟁력을 다시 설계하다!' 평생학습 연수센터 7-8월 특별과정 안내",
+            "--> 타기관소식 [춘해보건대학교 평생교육원] 심신 회복 웰빙 플라잉요가 강좌 안내 - 평생교육이용권 수강료 결재 가능",
+            "--> 타기관소식 [재공고] 2026년도 제4회 울산광역시 동구 지방임기제공무원 임용시험 시행계획 재공고",
+            "--> 타기관소식 [한국IT여성기업인협회] 현장형AX전문 강사양성 모집 홍보(~ 5.31)",
+            "강좌정보",
+            "기관정보",
+            "강사정보",
+            "국가평생교육원",
+            "풍경을 담는 어반 스케치(심화) 강좌 강사 : 조혜정 학습기간 : 2026-07-06 ~ 2026-09-21 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "향긋한 커피향! 바리스타 (수) 강좌 강사 : 김시윤 학습기간 : 2026-07-08 ~ 2026-09-16 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "처음 배우는 미싱 기초 홈패션 강좌 강사 : 김미영 학습기간 : 2026-07-08 ~ 2026-09-23 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "풍경을 담는 어반 스케치(기초) 강좌 강사 : 조혜정 학습기간 : 2026-07-07 ~ 2026-09-15 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "미싱으로 가방 & 옷 만들기 및 수선하기 강좌 강사 : 김미영 학습기간 : 2026-07-07 ~ 2026-09-22 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "선과 명암의 이야기, 소묘 강좌 강사 : 길혜정 학습기간 : 2026-07-06 ~ 2026-09-07 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "--> 울산 평생교육강사 풀(POOL) 지식·재능·노하우가 있는 울산 평생교육강사에 대해 소개합니다.",
+            "장학 자료실 필요하신 정보를 손쉽게 찾아보세요."
+          ],
+          "missingRows": [],
+          "extraCandidates": [
+            {
+              "org": "울산연구원",
+              "title": "본문 바로가기",
+              "link": "https://uill.uri.re.kr/integratedSearch.do",
+              "listText": "tyle.zoom = nowZoom + \"%\"; if(nowZoom == 70) { alert(\"더이상 축소할 수 없습니다.\"); } if(nowZoom == 150) { alert(\"더이상 확대할 수 없습니다.\"); } } //]]> 울산연구원 평생교육연구실 본문 바로가기 <hea",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "울산 평생교육 강사",
+              "link": "https://uill.uri.re.kr/education/knwldInstr/knwldInstrIntro.do",
+              "listText": "title=\"평생교육사업 소개\">평생교육사업 소개 공모(지원)사업 접수 울산 평생교육 강사 소개 지원 신청 온라인교육 문해교육센터",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "문해교육센터",
+              "link": "https://uill.uri.re.kr#list-row-12458",
+              "listText": "문해교육센터 문해교육센터 소개",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-12458"
+            },
+            {
+              "org": "울산연구원",
+              "title": "부설센터",
+              "link": "https://uill.uri.re.kr/;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home",
+              "listText": "울산평생학습박람회 부설센터 울산지역경제교육센터 울산지역경제교육센터 소개 기부안내 <!-",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "울산지역경제교육센터",
+              "link": "https://uill.uri.re.kr#list-row-17317",
+              "listText": "울산지역경제교육센터 울산지역경제교육센터 소개",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-17317"
+            },
+            {
+              "org": "울산연구원",
+              "title": "인증강사",
+              "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrIntro.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home",
+              "listText": "\">기부안내 기부현황 인증강사 인증 강사 소개 인증강사 제도 소개 인증강사 신청 안내 인증강사 목록",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "인증 강사 소개",
+              "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrIntro.do",
+              "listText": "certInstrctr/certInstrctrIntro.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home\" title=\"인증강사\">인증강사 인증 강사 소개 인증강사 제도 소개 인증강사 신청 안내 인증강사 목록 인증 강",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "인증 강사 신청",
+              "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrReqstAgree.do",
+              "listText": "r/certInstrctrInfoList.do\" title=\"인증강사 목록\">인증강사 목록 인증 강사 신청 인증강사 신청 지원 상태 확인 <span style=\"display: no",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "지원 상태 확인",
+              "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrReqstDetail.do",
+              "listText": "인증강사 신청 지원 상태 확인 사이트맵 <input id=\"search-box-input\" class=\"search-box-input\" type=\"text\" placeholder=\"검색어를 입력하세요.\" onkeypress=\"javascript:integratedEnte",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "메뉴닫기",
+              "link": "https://uill.uri.re.kr#list-row-21564",
+              "listText": "메뉴닫기",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-21564"
+            },
+            {
+              "org": "울산연구원",
+              "title": "\\n'; strVal += ' '+data.damoaLctreList[idx].itemNm+' \\n'; strVal += ' 강사 : '+data.damoaLctreList[idx].itemA+' \\n'; strVal += ' 학습기간 : '+data.damoaLctreList[idx].itemB+' \\n'; strVal += ' 기관명 : '+data.damoaLctreList[idx].itemE+' \\n'; strVal += '",
+              "link": "https://uill.uri.re.kr/'+encodeURI(data.damoaLctreList[idx].itemD)+'",
+              "listText": "//damoa-tabcontent-list-damoa-center for ( var idx in data.damoaLctreList ) { var strVal = ''; strVal += ' \\n'; strVal += ' \\n'; strVal += ' '+data.damoaLctreList[idx].itemNm+' \\n'; strVal += ' 강사 : '+data.damoaLctreList[idx].itemA+' \\n'; strVal += ' 학습기간 : '+data.damoaLctreList[idx].itemB+' \\n'; strVal += ' 기관명 : '+data.damoaLctreList[idx].itemE+' \\n'; strVal += ' \\n'; strVal += ' \\n'; $(\"#damoa-tabcontent-list-damoa-class\").append(strVal); } if ( $(\"#damoaSearchCondition\").val() == '01' ){ $(\"#nav_class\").trigger(\"click\"); } } if ( $(\"#damoaSearchCondition\").val() == '02' || $(\"#damoaSearchCondition\").val() == '' ){ //damoa-tabcontent-list-damoa-total $(\"#damoa-tabcontent-list-damoa-center\").empty(); $(\"#damoa-tabcontent-list-damoa-center\").removeClass(\"slick-initialized\"); $(\"#damoa-tabcontent-list-damoa-center\").removeClass(\"slick-slider\"); if ( data.damoaInsttList.length == 0 ) { $(\"#damoa-tabcontent-list-damoa-center\").append('",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "\\n'; strVal += ' '+data.damoaInsttList[idx].itemNm+' \\n'; strVal += ' 운영상태 : '+data.damoaInsttList[idx].itemA+' \\n'; strVal += ' 대표전화 : '+data.damoaInsttList[idx].itemB+' \\n'; strVal += '",
+              "link": "https://uill.uri.re.kr/'+encodeURI(data.damoaInsttList[idx].itemD)+'",
+              "listText": "//damoa-tabcontent-list-damoa-center for ( var idx in data.damoaInsttList ) { var strVal = ''; strVal += ' \\n'; strVal += ' \\n'; strVal += ' '+data.damoaInsttList[idx].itemNm+' \\n'; strVal += ' 운영상태 : '+data.damoaInsttList[idx].itemA+' \\n'; strVal += ' 대표전화 : '+data.damoaInsttList[idx].itemB+' \\n'; strVal += ' \\n'; strVal += ' \\n'; $(\"#damoa-tabcontent-list-damoa-center\").append(strVal); } if ( $(\"#damoaSearchCondition\").val() == '02' ){ $(\"#nav_center\").trigger(\"click\"); } } if ( $(\"#damoaSearchCondition\").val() == '03' || $(\"#damoaSearchCondition\").val() == '' ){ //damoa-tabcontent-list-damoa-total $(\"#damoa-tabcontent-list-damoa-teacher\").empty(); $(\"#damoa-tabcontent-list-damoa-teacher\").removeClass(\"slick-initialized\"); $(\"#damoa-tabcontent-list-damoa-teacher\").removeClass(\"slick-slider\"); if ( data.damoaInstrctrList.length == 0 ) { $(\"#damoa-tabcontent-list-damoa-teacher\").append('<p class=\"no-results\" style=\"height:158",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "\\n'; strVal += ' '+data.damoaInstrctrList[idx].itemNm+' \\n'; strVal += ' 학습분야 : '+data.damoaInstrctrList[idx].itemA+' \\n'; strVal += ' 상세분야 : '+data.damoaInstrctrList[idx].itemB+' \\n'; strVal += '",
+              "link": "https://uill.uri.re.kr/'+encodeURI(data.damoaInstrctrList[idx].itemD)+'",
+              "listText": "//damoa-tabcontent-list-damoa-center for ( var idx in data.damoaInstrctrList ) { var strVal = ''; strVal += ' \\n'; strVal += ' \\n'; strVal += ' '+data.damoaInstrctrList[idx].itemNm+' \\n'; strVal += ' 학습분야 : '+data.damoaInstrctrList[idx].itemA+' \\n'; strVal += ' 상세분야 : '+data.damoaInstrctrList[idx].itemB+' \\n'; strVal += ' \\n'; strVal += ' \\n'; $(\"#damoa-tabcontent-list-damoa-teacher\").append(strVal); } if ( $(\"#damoaSearchCondition\").val() == '03' ){ $(\"#nav_teacher\").trigger(\"click\"); } } if ( $(\"#damoaSearchCondition\").val() == '' ){ //damoa-tabcontent-list-damoa-total //$(\"#damoa-tabcontent-list-damoa-class\").slick(\"unslick\"); $(\"#damoa-tabcontent-list-damoa-total\").empty(); $(\"#damoa-tabcontent-list-damoa-total\").removeClass(\"slick-initialized\"); $(\"#damoa-tabcontent-list-damoa-total\").removeClass(\"slick-slider\"); //damoa-tabcontent-list-damoa-center //damoa-tabcontent-list-damoa-center if ( data.damoaLc",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "공지사항 2026년 성인문해교과서 무상보급 신청 안내",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004799",
+              "listText": "\" title=\"더보기\"> 공지사항 2026년 성인문해교과서 무상보급 신청 안내 2026-08-04 공지사항 2026년 울산 문해교사 대상 공고 2026-07-20",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "공지사항 2026년 울산 문해교사 대상 공고",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004789",
+              "listText": "지사항 2026년 성인문해교과서 무상보급 신청 안내 2026-08-04 공지사항 2026년 울산 문해교사 대상 공고 2026-07-20 공지사항 제안서 평가결과 공개 2026-07-16",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "공지사항 제안서 평가결과 공개",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004788",
+              "listText": "01\">공지사항 2026년 울산 문해교사 대상 공고 2026-07-20 공지사항 제안서 평가결과 공개 2026-07-16 공지사항 2026 평생교육 강사 인력풀(pool) 연계 지원사업 선정 결과 안내 2026-07-06 <a href=\"/contents/01/BBS_0000000000000041/contentsDetail.do?bbsId=BBS_0000000000000041&nttId=NTT_0000000000004762&bbsAttrbCd=01\" title=\"2026년 울",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "공지사항 2026 평생교육 강사 인력풀(pool) 연계 지원사업 선정 결과 안내",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004786",
+              "listText": "outline-01\">공지사항 제안서 평가결과 공개 2026-07-16 공지사항 2026 평생교육 강사 인력풀(pool) 연계 지원사업 선정 결과 안내 2026-07-06 공지사항 2026년 울산 문해교사 보수교육 참가 신청 안내 2026-06-10",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "공지사항 2026년 울산 문해교사 보수교육 참가 신청 안내",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004762",
+              "listText": "평생교육 강사 인력풀(pool) 연계 지원사업 선정 결과 안내 2026-07-06 공지사항 2026년 울산 문해교사 보수교육 참가 신청 안내 2026-06-10 공지사항 2026년 상반기 장학생 선발 안내 2026-05-29 <a href=\"/contents",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "공지사항 2026년 상반기 장학생 선발 안내",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004757",
+              "listText": "2026년 울산 문해교사 보수교육 참가 신청 안내 2026-06-10 공지사항 2026년 상반기 장학생 선발 안내 2026-05-29 보도자료 중구, 지역 평생교육 발전 머리 맞대… 관계자 공동연수 2026-06-30",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "보도자료 중구, 지역 평생교육 발전 머리 맞대… 관계자 공동연수",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004784",
+              "listText": "보도자료 중구, 지역 평생교육 발전 머리 맞대… 관계자 공동연수 2026-06-30 보도자료 중구, 울산지역 평생교육 관계자 워크숍 2026-06-30",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "보도자료 중구, 울산지역 평생교육 관계자 워크숍",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004783",
+              "listText": "pan>중구, 지역 평생교육 발전 머리 맞대… 관계자 공동연수 2026-06-30 보도자료 중구, 울산지역 평생교육 관계자 워크숍 2026-06-30 보도자료 울산연구원 '2026 평생교육 강사' 수료식 2026-05-22 <a href=\"/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004749&bbsAttrbCd=01\" title=\"울산연구원, 지역 평생교육 현장",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "보도자료 울산연구원 '2026 평생교육 강사' 수료식",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004750",
+              "listText": "\">보도자료 중구, 울산지역 평생교육 관계자 워크숍 2026-06-30 보도자료 울산연구원 '2026 평생교육 강사' 수료식 2026-05-22 보도자료 울산연구원, 지역 평생교육 현장 이끌 수료자 70명 배출 2026-05-22",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "보도자료 울산연구원, 지역 평생교육 현장 이끌 수료자 70명 배출",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004749",
+              "listText": "울산연구원 '2026 평생교육 강사' 수료식 2026-05-22 보도자료 울산연구원, 지역 평생교육 현장 이끌 수료자 70명 배출 2026-05-22 보도자료 울산연구원, 상반기 장학생 선발 2026-03-26",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "보도자료 울산연구원, 상반기 장학생 선발",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004659",
+              "listText": "an>울산연구원, 지역 평생교육 현장 이끌 수료자 70명 배출 2026-05-22 보도자료 울산연구원, 상반기 장학생 선발 2026-03-26 보도자료 울산연구원 장학생 369명 모집…AI미래인재 부문 신설 2026-03-26",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "보도자료 울산연구원 장학생 369명 모집…AI미래인재 부문 신설",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658",
+              "listText": "e-02\">보도자료 울산연구원, 상반기 장학생 선발 2026-03-26 보도자료 울산연구원 장학생 369명 모집…AI미래인재 부문 신설 2026-03-26",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "--> 타기관소식 [울산창조경제혁신센터]「2026예비창업패키지 창업준비 아카데미」 프로그램 홍보",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004798",
+              "listText": "타기관소식 [울산창조경제혁신센터]「2026예비창업패키지 창업준비 아카데미」 프로그램 홍보 2026-07-30 <span clas",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "--> 타기관소식 [국가평생교육진흥원] 「2026년 제23회 대한민국 평생학습대상」연장공고 안내",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004785",
+              "listText": "026예비창업패키지 창업준비 아카데미」 프로그램 홍보 2026-07-30 타기관소식 [국가평생교육진흥원] 「2026년 제23회 대한민국 평생학습대상」연장공고 안내 2026-06-30 경영공시 [재단법인광주광역시인재평생교육",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "--> 타기관소식 [재단법인광주광역시인재평생교육진흥원] 'AI 시대, 평생교육의 경쟁력을 다시 설계하다!' 평생학습 연수센터 7-8월 특별과정 안내",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004782",
+              "listText": "026년 제23회 대한민국 평생학습대상」연장공고 안내 2026-06-30 타기관소식 [재단법인광주광역시인재평생교육진흥원] 'AI 시대, 평생교육의 경쟁력을 다시 설계하다!' 평생학습 연수센터 7-8월 특별과정 안내 2026-06-25",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "--> 타기관소식 [춘해보건대학교 평생교육원] 심신 회복 웰빙 플라잉요가 강좌 안내 - 평생교육이용권 수강료 결재 가능",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004763",
+              "listText": "' 평생학습 연수센터 7-8월 특별과정 안내 2026-06-25 타기관소식 [춘해보건대학교 평생교육원] 심신 회복 웰빙 플라잉요가 강좌 안내 - 평생교육이용권 수강료 결재 가능 2026-06-10",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "--> 타기관소식 [재공고] 2026년도 제4회 울산광역시 동구 지방임기제공무원 임용시험 시행계획 재공고",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004752",
+              "listText": "잉요가 강좌 안내 - 평생교육이용권 수강료 결재 가능 2026-06-10 타기관소식 [재공고] 2026년도 제4회 울산광역시 동구 지방임기제공무원 임용시험 시행계획 재공고 2026-05-26 <span class=\"prefac",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "--> 타기관소식 [한국IT여성기업인협회] 현장형AX전문 강사양성 모집 홍보(~ 5.31)",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004747",
+              "listText": "역시 동구 지방임기제공무원 임용시험 시행계획 재공고 2026-05-26 타기관소식 [한국IT여성기업인협회] 현장형AX전문 강사양성 모집 홍보(~ 5.31) 2026-05-21 퀵 메뉴 평생교육 장학금 <a class=\"quick-menu-list-03\" href=\"/damoa/lecture/lectur",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "강좌정보",
+              "link": "https://uill.uri.re.kr/?id=nav_class",
+              "listText": "전체 강좌정보 기관정보 강사정보 국가평생교육원 <li class=\"d",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "기관정보",
+              "link": "https://uill.uri.re.kr/?id=nav_center",
+              "listText": "amoa('damoa-total'); return false;\" title=\"전체\">전체 강좌정보 기관정보 강사정보 국가평생교육원 무엇을 찾으시나요?",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "강사정보",
+              "link": "https://uill.uri.re.kr/?id=nav_teacher",
+              "listText": "damoa-class'); return false;\" title=\"강좌정보\">강좌정보 기관정보 강사정보 국가평생교육원 무엇을 찾으시나요?",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "국가평생교육원",
+              "link": "https://uill.uri.re.kr/?id=nav_teacher",
+              "listText": "oa-center'); return false;\" title=\"기관정보\">기관정보 강사정보 국가평생교육원 무엇을 찾으시나요? 전체 강좌정보",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "풍경을 담는 어반 스케치(심화) 강좌 강사 : 조혜정 학습기간 : 2026-07-06 ~ 2026-09-21 기관명 : 울산광역시 북구청(북구평생학습관)",
+              "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17183",
+              "listText": "/p> --> 풍경을 담는 어반 스케치(심화) 강좌 강사 : 조혜정 학습기간 : 2026-07-06 ~ 2026-09-21 기관명 : 울산광역시 북구청(북구평생학습관) 향긋한 커피향! 바리스타 (수) 강좌 강사 : 김시윤 학습기간 : 2026-07-08 ~ 2026-09-16 기관명 :",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "향긋한 커피향! 바리스타 (수) 강좌 강사 : 김시윤 학습기간 : 2026-07-08 ~ 2026-09-16 기관명 : 울산광역시 북구청(북구평생학습관)",
+              "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17190",
+              "listText": "구평생학습관) 향긋한 커피향! 바리스타 (수) 강좌 강사 : 김시윤 학습기간 : 2026-07-08 ~ 2026-09-16 기관명 : 울산광역시 북구청(북구평생학습관) 처음 배우는 미싱 기초 홈패션 강좌 강사 : 김미영 학습기간 : 2026-07-08 ~ 2026-09-23 기관명 : 울산",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "처음 배우는 미싱 기초 홈패션 강좌 강사 : 김미영 학습기간 : 2026-07-08 ~ 2026-09-23 기관명 : 울산광역시 북구청(북구평생학습관)",
+              "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17189",
+              "listText": "구평생학습관) 처음 배우는 미싱 기초 홈패션 강좌 강사 : 김미영 학습기간 : 2026-07-08 ~ 2026-09-23 기관명 : 울산광역시 북구청(북구평생학습관) 울산대학교RISE사업단 기관 운영상태 : 운영중 대표전화 : 052-712-8452 <",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "풍경을 담는 어반 스케치(기초) 강좌 강사 : 조혜정 학습기간 : 2026-07-07 ~ 2026-09-15 기관명 : 울산광역시 북구청(북구평생학습관)",
+              "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17188",
+              "listText": "구청(북구평생학습관) 풍경을 담는 어반 스케치(기초) 강좌 강사 : 조혜정 학습기간 : 2026-07-07 ~ 2026-09-15 기관명 : 울산광역시 북구청(북구평생학습관) 미싱으로 가방 & 옷 만들기 및 수선하기 강좌 강사 : 김미영 학습기간 : 2026-07-07 ~ 2026-09-22 <p class=\"damoa-content-list-",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "미싱으로 가방 & 옷 만들기 및 수선하기 강좌 강사 : 김미영 학습기간 : 2026-07-07 ~ 2026-09-22 기관명 : 울산광역시 북구청(북구평생학습관)",
+              "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17187",
+              "listText": "구청(북구평생학습관) 미싱으로 가방 & 옷 만들기 및 수선하기 강좌 강사 : 김미영 학습기간 : 2026-07-07 ~ 2026-09-22 기관명 : 울산광역시 북구청(북구평생학습관) 선과 명암의 이야기, 소묘 강좌 강사 : 길혜정 학습기간 : 2026-07-06 ~ 2026-09-07 기관명 : 울산광역시 북구청(",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "선과 명암의 이야기, 소묘 강좌 강사 : 길혜정 학습기간 : 2026-07-06 ~ 2026-09-07 기관명 : 울산광역시 북구청(북구평생학습관)",
+              "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17186",
+              "listText": "구청(북구평생학습관) 선과 명암의 이야기, 소묘 강좌 강사 : 길혜정 학습기간 : 2026-07-06 ~ 2026-09-07 기관명 : 울산광역시 북구청(북구평생학습관) <a href=\"/damoa/institution/institutionIntro.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?insttId=1380\" title=\"울산대학교RISE사업단\"",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "--> 울산 평생교육강사 풀(POOL) 지식·재능·노하우가 있는 울산 평생교육강사에 대해 소개합니다.",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000001417",
+              "listText": "class=\"education-content-description\">울산 시민의 문해 및 기초교육을 제공하여 생활의 질적 향상을 도모합니다. 울산 평생교육강사 풀(POOL) 지식·재능·노하우가 있는 울산 평생교육강사에 대해 소개합니다. 공모(지원)사업 접수 온라인을 통해 공모 사업에 빠르게 접수하실 수 있습니다. 평생학습자료실 평생학습에 관한 자료를 공유합니다.",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "장학 자료실 필요하신 정보를 손쉽게 찾아보세요.",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000004/contentsList.do?bbsAttrbCd=01&bbsId=BBS_0000000000000004&nttId=&searchCondition2=02",
+              "listText": "온라인으로 장학금 지급확인서 빠르게 신청해보세요. 장학 자료실 필요하신 정보를 손쉽게 찾아보세요. 기부 안내 기부 현황 기부금 영수증 신청",
+              "adapter": "울산연구원"
+            }
+          ],
+          "rowTrace": []
+        },
+        {
+          "version": "1.1-passive",
+          "mode": "passive",
+          "org": "울산연구원",
+          "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01",
+          "probableCause": "NON_ROW_CANDIDATES_OR_COUNTER_MISMATCH",
+          "listCounterFailureReason": "COUNTER_SELECTOR_MISMATCH",
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 1,
+            "uniqueVisibleTitleCount": 1,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 12,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {
+            "UNCLASSIFIED": 11,
+            "RECRUIT_POST": 1
+          },
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 12,
+            "rawTableRows": 1,
+            "uniqueVisibleTitleCount": 1,
+            "sourceHtmlLength": 62245,
+            "missingRows": 0,
+            "extraCandidates": 11
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 5,
+            "li": 104,
+            "article": 0,
+            "[onclick]": 53,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 102
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [
+            "울산연구원 장학생 369명 모집…AI미래인재 부문 신설 < 울산 < 사회 < 기사본문 - 경상일보"
+          ],
+          "extractedTitles": [
+            "본문 바로가기",
+            "울산 평생교육 강사",
+            "문해교육센터",
+            "부설센터",
+            "울산지역경제교육센터",
+            "인증강사",
+            "인증 강사 소개",
+            "인증 강사 신청",
+            "지원 상태 확인",
+            "메뉴닫기",
+            "이 페이지 프린트하기",
+            "울산연구원 장학생 369명 모집…AI미래인재 부문 신설 < 울산 < 사회 < 기사본문 - 경상일보"
+          ],
+          "missingRows": [],
+          "extraCandidates": [
+            {
+              "org": "울산연구원",
+              "title": "본문 바로가기",
+              "link": "https://uill.uri.re.kr/integratedSearch.do",
+              "listText": "e.startsWith = function(searchString, position) { position = position || 0; return this.indexOf(searchString, position) === position; }; } 울산연구원 평생교육연구실 - 보도자료 본문 바로가기 <hea",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "울산 평생교육 강사",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658#list-row-6799",
+              "listText": "울산 평생교육 강사 소개",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-6799"
+            },
+            {
+              "org": "울산연구원",
+              "title": "문해교육센터",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658#list-row-7608",
+              "listText": "문해교육센터 문해교육센터 소개",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-7608"
+            },
+            {
+              "org": "울산연구원",
+              "title": "부설센터",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658#list-row-12203",
+              "listText": "부설센터 울산지역경제교육센터 울산지역경제교육센터 소개",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-12203"
+            },
+            {
+              "org": "울산연구원",
+              "title": "울산지역경제교육센터",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658#list-row-12467",
+              "listText": "울산지역경제교육센터 울산지역경제교육센터 소개",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-12467"
+            },
+            {
+              "org": "울산연구원",
+              "title": "인증강사",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658#list-row-13623",
+              "listText": "인증강사 인증 강사 소개 인증강사 제도 소개",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-13623"
+            },
+            {
+              "org": "울산연구원",
+              "title": "인증 강사 소개",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658#list-row-13931",
+              "listText": "인증 강사 소개 인증강사 제도 소개",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-13931"
+            },
+            {
+              "org": "울산연구원",
+              "title": "인증 강사 신청",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658#list-row-14834",
+              "listText": "인증 강사 신청 인증강사 신청",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-14834"
+            },
+            {
+              "org": "울산연구원",
+              "title": "지원 상태 확인",
+              "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrReqstDetail.do",
+              "listText": "인증강사 신청 지원 상태 확인 사이트맵 <input id=\"search-box-input\" class=\"search-box-input\" type=\"text\" placeholder=\"검색어를 입력하세요.\" onkeypress=\"javascript:integratedEnte",
+              "adapter": "울산연구원"
+            },
+            {
+              "org": "울산연구원",
+              "title": "메뉴닫기",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658#list-row-16714",
+              "listText": "메뉴닫기",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-16714"
+            },
+            {
+              "org": "울산연구원",
+              "title": "이 페이지 프린트하기",
+              "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658#list-row-31794",
+              "listText": "이 페이지 프린트하기",
+              "adapter": "울산연구원",
+              "listOnly": true,
+              "listIdentity": "row-31794"
+            }
+          ],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "울산연구원 장학생 369명 모집…AI미래인재 부문 신설 < 울산 < 사회 < 기사본문 - 경상일보",
+              "normalizedTitle": "울산연구원 장학생 369명 모집 ai미래인재 부문 신설 울산 사회 기사본문 경상일보",
+              "text": "울산시와 울산연구원은 25일 지역 인재 육성과 교육 기회 확대를 위해 ‘2026년 상반기 장학생 선발 계획’을 공고하고 장학금 지원 신청 접수를 시작했다. 올해는 기존 장학사업에 더해 ‘AI수도 울산 미래인재 장학금’을 새로 도입한 것이 눈에 띈다. 상반기 장학금은 등록금 지원형과 학업 장려형으로 나눠 △울산인재장학금 △우수장학금 △다자녀장학금 △만학도장학금 △생활장학금 △AI수도 울산 미래인재 장학금 등 6개 부문으로 운영된다. 총 369명에게 약 5억3600만원이 지급되며, 대학생은 물론 고등학생까지 지원 대상에 포함된다. 특히 신설된 AI수도 울산 미래인재 장학금은 AI, 드론, 로봇, 빅데이터, 코딩 등 관련 분야 전국대회 입상자를 대상으로 하는 성과 기반 장학제도다. 울산에 주민등록을 둔 초·중·고·대학생 30명을 선발해 1인당 100만원을 지원한다. 지원 자격은 최근 3년간 전국 단위 대회 3위 이내 입상자다. 또 울산 소재 고등학교 졸업자뿐 아니라 검정고시 합격자도 신청할 수 있도록 해 다양한 학습 경로를 거친 학생들에게도 기회를 넓혔다. 장학금 신청은 이날부터 다음달 3일까지 울산연구원 평생교육연구실 홈페이지를 통해 온라인으로 접수한 뒤 관련 서류를 이메일로 제출하면 된다. 최종 대상자는 서류심사와 장학생 선발 심의위원회를 거쳐 6월 중 확정될 예정이다. 석현주기자 **언론사: 경상일보 울산연구원 장학생 369명 모집…AI미래인재 부문 신설",
+              "hasDate": false,
+              "hasSequence": false,
+              "hasAction": true,
+              "href": "https://www.ksilbo.co.kr/news/articleView.html?idxno=1052349",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr  class=\"table-detail-content\"  >\r\n                                    <td><p><p><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">울산시와 울산연구원은 25일 지역 인재 육성과 교육 기회 확대를 위해 ‘2026년 상반기 장학생 선발 계획’을 공고하고 장학금 지원 신청 접수를 시작했다.</span><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">올해는 기존 장학사업에 더해 ‘AI수도 울산 미래인재 장학금’을 새로 도입한 것이 눈에 띈다. 상반기 장학금은 등록금 지원형과 학업 장려형으로 나눠 △울산인재장학금 △우수장학금 △다자녀장학금 △만학도장학금 △생활장학금 △AI수도 울산 미래인재 장학금 등 6개 부문으로 운영된다. 총 369명에게 약 5억3600만원이 지급되며, 대학생은 물론 고등학생까지 지원 대상에 포함된다.</span><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">특히 신설된 AI수도 울산 미래인재 장학금은 AI, 드론, 로봇, 빅데이터, 코딩 등 관련 분야 전국대회 입상자를 대상으로 하는 성과 기반 장학제도다.</span><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">울산에 주민등록을 둔 초·중·고·대학생 30명을 선발해 1인당 100만원을 지원한다. 지원 자격은 최근 3년간 전국 단위 대회 3위 이내 입상자다.</span><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">또 울산 소재 고등학교 졸업자뿐 아니라 검정고시 합격자도 신청할 수 있도록 해 다양한 학습 경로를 거친 학생들에게도 기회를 넓혔다.</span><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><br style=\"box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">장학금 신청은 이날부터 다음달 3일까지 울산연구원 평생교육연구실 홈페이지를 통해 온라인으로 접수한 뒤 관련 서류를 이메일로 제출하면 된다. 최종 대상자는 서류심사와 장학생 선발 심의위원회를 거쳐 6월 중 확정될 예정이다.&nbsp;</span></p><p><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">&nbsp;</span></p><p><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">석현주기자</span></p><p><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">&nbsp;</span></p><p><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">&nbsp;</span></p><p><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">&nbsp;</span></p><p><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">**언론사: 경상일보</span></p><p><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\">&nbsp;</span></p><p><a href=\"https://www.ksilbo.co.kr/news/articleView.html?idxno=1052349\">울산연구원 장학생 369명 모집…AI미래인재 부문 신설 &lt; 울산 &lt; 사회 &lt; 기사본문 - 경상일보</a><span style=\"font-family: Arial, Helvetica, sans-serif; font-size: 16px; letter-spacing: -1px;\"></span></p></p></td>\r\n                                </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658#list-row-38977",
+              "adapter": "울산연구원",
+              "rejectionReason": ""
+            }
+          ]
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "울산연구원",
+          "htmlPath": "data/diagnostics/울산연구원/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/울산연구원/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/울산연구원/list/page-1-rows.txt",
+          "url": "https://uill.uri.re.kr/"
+        },
+        {
+          "org": "울산연구원",
+          "htmlPath": "data/diagnostics/울산연구원/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/울산연구원/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/울산연구원/list/page-2-rows.txt",
+          "url": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658&bbsAttrbCd=01"
+        }
+      ],
+      "samples": [
+        {
+          "title": "본문 바로가기",
+          "link": "https://uill.uri.re.kr/integratedSearch.do",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "울산 평생교육 강사",
+          "link": "https://uill.uri.re.kr/education/knwldInstr/knwldInstrIntro.do",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "문해교육센터",
+          "link": "https://uill.uri.re.kr#list-row-12458",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "부설센터",
+          "link": "https://uill.uri.re.kr/;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "울산지역경제교육센터",
+          "link": "https://uill.uri.re.kr#list-row-17317",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "인증강사",
+          "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrIntro.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "인증 강사 소개",
+          "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrIntro.do",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "인증 강사 신청",
+          "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrReqstAgree.do",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "지원 상태 확인",
+          "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrReqstDetail.do",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "메뉴닫기",
+          "link": "https://uill.uri.re.kr#list-row-21564",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "\\n'; strVal += ' '+data.damoaLctreList[idx].itemNm+' \\n'; strVal += ' 강사 : '+data.damoaLctreList[idx].itemA+' \\n'; strVal += ' 학습기간 : '+data.damoaLctreList[idx].itemB+' \\n'; strVal += ' 기관명 : '+data.damoaLctreList[idx].itemE+' \\n'; strVal += '",
+          "link": "https://uill.uri.re.kr/'+encodeURI(data.damoaLctreList[idx].itemD)+'",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "\\n'; strVal += ' '+data.damoaInsttList[idx].itemNm+' \\n'; strVal += ' 운영상태 : '+data.damoaInsttList[idx].itemA+' \\n'; strVal += ' 대표전화 : '+data.damoaInsttList[idx].itemB+' \\n'; strVal += '",
+          "link": "https://uill.uri.re.kr/'+encodeURI(data.damoaInsttList[idx].itemD)+'",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "\\n'; strVal += ' '+data.damoaInstrctrList[idx].itemNm+' \\n'; strVal += ' 학습분야 : '+data.damoaInstrctrList[idx].itemA+' \\n'; strVal += ' 상세분야 : '+data.damoaInstrctrList[idx].itemB+' \\n'; strVal += '",
+          "link": "https://uill.uri.re.kr/'+encodeURI(data.damoaInstrctrList[idx].itemD)+'",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "공지사항 2026년 성인문해교과서 무상보급 신청 안내",
+          "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004799",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "공지사항 2026년 울산 문해교사 대상 공고",
+          "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004789",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "공지사항 제안서 평가결과 공개",
+          "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004788",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "공지사항 2026 평생교육 강사 인력풀(pool) 연계 지원사업 선정 결과 안내",
+          "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004786",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "공지사항 2026년 울산 문해교사 보수교육 참가 신청 안내",
+          "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004762",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "공지사항 2026년 상반기 장학생 선발 안내",
+          "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004757",
+          "adapter": "울산연구원"
+        },
+        {
+          "title": "보도자료 중구, 지역 평생교육 발전 머리 맞대… 관계자 공동연수",
+          "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004784",
+          "adapter": "울산연구원"
+        }
+      ],
+      "errors": [
+        "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsId=BBS_0000000000000081&nttId=NTT_0000000000004782&bbsAttrbCd=01: response body too short"
+      ],
+      "selectedRootCause": {
+        "version": "1.1-passive",
+        "mode": "passive",
+        "org": "울산연구원",
+        "url": "https://uill.uri.re.kr/",
+        "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+        "listCounterFailureReason": "DOM_COUNT_ZERO",
+        "counterTrace": {
+          "source": "unavailable",
+          "rawDomRows": 0,
+          "uniqueVisibleTitleCount": 0,
+          "reportedVisiblePostCount": null,
+          "acceptedCandidateCount": 43,
+          "exactAgainstRaw": false,
+          "exactAgainstUniqueTitles": false
+        },
+        "candidateClassCounts": {
+          "UNCLASSIFIED": 35,
+          "RECRUIT_POST": 8
+        },
+        "counts": {
+          "visiblePostCount": null,
+          "candidateCount": 43,
+          "rawTableRows": 0,
+          "uniqueVisibleTitleCount": 0,
+          "sourceHtmlLength": 114330,
+          "missingRows": 0,
+          "extraCandidates": 43
+        },
+        "selectorCounts": {
+          "table tbody tr": 0,
+          "tr": 0,
+          "li": 167,
+          "article": 0,
+          "[onclick]": 56,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 173
+        },
+        "rejectReasonCounts": {},
+        "visibleTitles": [],
+        "extractedTitles": [
+          "본문 바로가기",
+          "울산 평생교육 강사",
+          "문해교육센터",
+          "부설센터",
+          "울산지역경제교육센터",
+          "인증강사",
+          "인증 강사 소개",
+          "인증 강사 신청",
+          "지원 상태 확인",
+          "메뉴닫기",
+          "\\n'; strVal += ' '+data.damoaLctreList[idx].itemNm+' \\n'; strVal += ' 강사 : '+data.damoaLctreList[idx].itemA+' \\n'; strVal += ' 학습기간 : '+data.damoaLctreList[idx].itemB+' \\n'; strVal += ' 기관명 : '+data.damoaLctreList[idx].itemE+' \\n'; strVal += '",
+          "\\n'; strVal += ' '+data.damoaInsttList[idx].itemNm+' \\n'; strVal += ' 운영상태 : '+data.damoaInsttList[idx].itemA+' \\n'; strVal += ' 대표전화 : '+data.damoaInsttList[idx].itemB+' \\n'; strVal += '",
+          "\\n'; strVal += ' '+data.damoaInstrctrList[idx].itemNm+' \\n'; strVal += ' 학습분야 : '+data.damoaInstrctrList[idx].itemA+' \\n'; strVal += ' 상세분야 : '+data.damoaInstrctrList[idx].itemB+' \\n'; strVal += '",
+          "공지사항 2026년 성인문해교과서 무상보급 신청 안내",
+          "공지사항 2026년 울산 문해교사 대상 공고",
+          "공지사항 제안서 평가결과 공개",
+          "공지사항 2026 평생교육 강사 인력풀(pool) 연계 지원사업 선정 결과 안내",
+          "공지사항 2026년 울산 문해교사 보수교육 참가 신청 안내",
+          "공지사항 2026년 상반기 장학생 선발 안내",
+          "보도자료 중구, 지역 평생교육 발전 머리 맞대… 관계자 공동연수",
+          "보도자료 중구, 울산지역 평생교육 관계자 워크숍",
+          "보도자료 울산연구원 '2026 평생교육 강사' 수료식",
+          "보도자료 울산연구원, 지역 평생교육 현장 이끌 수료자 70명 배출",
+          "보도자료 울산연구원, 상반기 장학생 선발",
+          "보도자료 울산연구원 장학생 369명 모집…AI미래인재 부문 신설",
+          "--> 타기관소식 [울산창조경제혁신센터]「2026예비창업패키지 창업준비 아카데미」 프로그램 홍보",
+          "--> 타기관소식 [국가평생교육진흥원] 「2026년 제23회 대한민국 평생학습대상」연장공고 안내",
+          "--> 타기관소식 [재단법인광주광역시인재평생교육진흥원] 'AI 시대, 평생교육의 경쟁력을 다시 설계하다!' 평생학습 연수센터 7-8월 특별과정 안내",
+          "--> 타기관소식 [춘해보건대학교 평생교육원] 심신 회복 웰빙 플라잉요가 강좌 안내 - 평생교육이용권 수강료 결재 가능",
+          "--> 타기관소식 [재공고] 2026년도 제4회 울산광역시 동구 지방임기제공무원 임용시험 시행계획 재공고",
+          "--> 타기관소식 [한국IT여성기업인협회] 현장형AX전문 강사양성 모집 홍보(~ 5.31)",
+          "강좌정보",
+          "기관정보",
+          "강사정보",
+          "국가평생교육원",
+          "풍경을 담는 어반 스케치(심화) 강좌 강사 : 조혜정 학습기간 : 2026-07-06 ~ 2026-09-21 기관명 : 울산광역시 북구청(북구평생학습관)",
+          "향긋한 커피향! 바리스타 (수) 강좌 강사 : 김시윤 학습기간 : 2026-07-08 ~ 2026-09-16 기관명 : 울산광역시 북구청(북구평생학습관)",
+          "처음 배우는 미싱 기초 홈패션 강좌 강사 : 김미영 학습기간 : 2026-07-08 ~ 2026-09-23 기관명 : 울산광역시 북구청(북구평생학습관)",
+          "풍경을 담는 어반 스케치(기초) 강좌 강사 : 조혜정 학습기간 : 2026-07-07 ~ 2026-09-15 기관명 : 울산광역시 북구청(북구평생학습관)",
+          "미싱으로 가방 & 옷 만들기 및 수선하기 강좌 강사 : 김미영 학습기간 : 2026-07-07 ~ 2026-09-22 기관명 : 울산광역시 북구청(북구평생학습관)",
+          "선과 명암의 이야기, 소묘 강좌 강사 : 길혜정 학습기간 : 2026-07-06 ~ 2026-09-07 기관명 : 울산광역시 북구청(북구평생학습관)",
+          "--> 울산 평생교육강사 풀(POOL) 지식·재능·노하우가 있는 울산 평생교육강사에 대해 소개합니다.",
+          "장학 자료실 필요하신 정보를 손쉽게 찾아보세요."
+        ],
+        "missingRows": [],
+        "extraCandidates": [
+          {
+            "org": "울산연구원",
+            "title": "본문 바로가기",
+            "link": "https://uill.uri.re.kr/integratedSearch.do",
+            "listText": "tyle.zoom = nowZoom + \"%\"; if(nowZoom == 70) { alert(\"더이상 축소할 수 없습니다.\"); } if(nowZoom == 150) { alert(\"더이상 확대할 수 없습니다.\"); } } //]]> 울산연구원 평생교육연구실 본문 바로가기 <hea",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "울산 평생교육 강사",
+            "link": "https://uill.uri.re.kr/education/knwldInstr/knwldInstrIntro.do",
+            "listText": "title=\"평생교육사업 소개\">평생교육사업 소개 공모(지원)사업 접수 울산 평생교육 강사 소개 지원 신청 온라인교육 문해교육센터",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "문해교육센터",
+            "link": "https://uill.uri.re.kr#list-row-12458",
+            "listText": "문해교육센터 문해교육센터 소개",
+            "adapter": "울산연구원",
+            "listOnly": true,
+            "listIdentity": "row-12458"
+          },
+          {
+            "org": "울산연구원",
+            "title": "부설센터",
+            "link": "https://uill.uri.re.kr/;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home",
+            "listText": "울산평생학습박람회 부설센터 울산지역경제교육센터 울산지역경제교육센터 소개 기부안내 <!-",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "울산지역경제교육센터",
+            "link": "https://uill.uri.re.kr#list-row-17317",
+            "listText": "울산지역경제교육센터 울산지역경제교육센터 소개",
+            "adapter": "울산연구원",
+            "listOnly": true,
+            "listIdentity": "row-17317"
+          },
+          {
+            "org": "울산연구원",
+            "title": "인증강사",
+            "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrIntro.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home",
+            "listText": "\">기부안내 기부현황 인증강사 인증 강사 소개 인증강사 제도 소개 인증강사 신청 안내 인증강사 목록",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "인증 강사 소개",
+            "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrIntro.do",
+            "listText": "certInstrctr/certInstrctrIntro.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home\" title=\"인증강사\">인증강사 인증 강사 소개 인증강사 제도 소개 인증강사 신청 안내 인증강사 목록 인증 강",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "인증 강사 신청",
+            "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrReqstAgree.do",
+            "listText": "r/certInstrctrInfoList.do\" title=\"인증강사 목록\">인증강사 목록 인증 강사 신청 인증강사 신청 지원 상태 확인 <span style=\"display: no",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "지원 상태 확인",
+            "link": "https://uill.uri.re.kr/education/certInstrctr/certInstrctrReqstDetail.do",
+            "listText": "인증강사 신청 지원 상태 확인 사이트맵 <input id=\"search-box-input\" class=\"search-box-input\" type=\"text\" placeholder=\"검색어를 입력하세요.\" onkeypress=\"javascript:integratedEnte",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "메뉴닫기",
+            "link": "https://uill.uri.re.kr#list-row-21564",
+            "listText": "메뉴닫기",
+            "adapter": "울산연구원",
+            "listOnly": true,
+            "listIdentity": "row-21564"
+          },
+          {
+            "org": "울산연구원",
+            "title": "\\n'; strVal += ' '+data.damoaLctreList[idx].itemNm+' \\n'; strVal += ' 강사 : '+data.damoaLctreList[idx].itemA+' \\n'; strVal += ' 학습기간 : '+data.damoaLctreList[idx].itemB+' \\n'; strVal += ' 기관명 : '+data.damoaLctreList[idx].itemE+' \\n'; strVal += '",
+            "link": "https://uill.uri.re.kr/'+encodeURI(data.damoaLctreList[idx].itemD)+'",
+            "listText": "//damoa-tabcontent-list-damoa-center for ( var idx in data.damoaLctreList ) { var strVal = ''; strVal += ' \\n'; strVal += ' \\n'; strVal += ' '+data.damoaLctreList[idx].itemNm+' \\n'; strVal += ' 강사 : '+data.damoaLctreList[idx].itemA+' \\n'; strVal += ' 학습기간 : '+data.damoaLctreList[idx].itemB+' \\n'; strVal += ' 기관명 : '+data.damoaLctreList[idx].itemE+' \\n'; strVal += ' \\n'; strVal += ' \\n'; $(\"#damoa-tabcontent-list-damoa-class\").append(strVal); } if ( $(\"#damoaSearchCondition\").val() == '01' ){ $(\"#nav_class\").trigger(\"click\"); } } if ( $(\"#damoaSearchCondition\").val() == '02' || $(\"#damoaSearchCondition\").val() == '' ){ //damoa-tabcontent-list-damoa-total $(\"#damoa-tabcontent-list-damoa-center\").empty(); $(\"#damoa-tabcontent-list-damoa-center\").removeClass(\"slick-initialized\"); $(\"#damoa-tabcontent-list-damoa-center\").removeClass(\"slick-slider\"); if ( data.damoaInsttList.length == 0 ) { $(\"#damoa-tabcontent-list-damoa-center\").append('",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "\\n'; strVal += ' '+data.damoaInsttList[idx].itemNm+' \\n'; strVal += ' 운영상태 : '+data.damoaInsttList[idx].itemA+' \\n'; strVal += ' 대표전화 : '+data.damoaInsttList[idx].itemB+' \\n'; strVal += '",
+            "link": "https://uill.uri.re.kr/'+encodeURI(data.damoaInsttList[idx].itemD)+'",
+            "listText": "//damoa-tabcontent-list-damoa-center for ( var idx in data.damoaInsttList ) { var strVal = ''; strVal += ' \\n'; strVal += ' \\n'; strVal += ' '+data.damoaInsttList[idx].itemNm+' \\n'; strVal += ' 운영상태 : '+data.damoaInsttList[idx].itemA+' \\n'; strVal += ' 대표전화 : '+data.damoaInsttList[idx].itemB+' \\n'; strVal += ' \\n'; strVal += ' \\n'; $(\"#damoa-tabcontent-list-damoa-center\").append(strVal); } if ( $(\"#damoaSearchCondition\").val() == '02' ){ $(\"#nav_center\").trigger(\"click\"); } } if ( $(\"#damoaSearchCondition\").val() == '03' || $(\"#damoaSearchCondition\").val() == '' ){ //damoa-tabcontent-list-damoa-total $(\"#damoa-tabcontent-list-damoa-teacher\").empty(); $(\"#damoa-tabcontent-list-damoa-teacher\").removeClass(\"slick-initialized\"); $(\"#damoa-tabcontent-list-damoa-teacher\").removeClass(\"slick-slider\"); if ( data.damoaInstrctrList.length == 0 ) { $(\"#damoa-tabcontent-list-damoa-teacher\").append('<p class=\"no-results\" style=\"height:158",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "\\n'; strVal += ' '+data.damoaInstrctrList[idx].itemNm+' \\n'; strVal += ' 학습분야 : '+data.damoaInstrctrList[idx].itemA+' \\n'; strVal += ' 상세분야 : '+data.damoaInstrctrList[idx].itemB+' \\n'; strVal += '",
+            "link": "https://uill.uri.re.kr/'+encodeURI(data.damoaInstrctrList[idx].itemD)+'",
+            "listText": "//damoa-tabcontent-list-damoa-center for ( var idx in data.damoaInstrctrList ) { var strVal = ''; strVal += ' \\n'; strVal += ' \\n'; strVal += ' '+data.damoaInstrctrList[idx].itemNm+' \\n'; strVal += ' 학습분야 : '+data.damoaInstrctrList[idx].itemA+' \\n'; strVal += ' 상세분야 : '+data.damoaInstrctrList[idx].itemB+' \\n'; strVal += ' \\n'; strVal += ' \\n'; $(\"#damoa-tabcontent-list-damoa-teacher\").append(strVal); } if ( $(\"#damoaSearchCondition\").val() == '03' ){ $(\"#nav_teacher\").trigger(\"click\"); } } if ( $(\"#damoaSearchCondition\").val() == '' ){ //damoa-tabcontent-list-damoa-total //$(\"#damoa-tabcontent-list-damoa-class\").slick(\"unslick\"); $(\"#damoa-tabcontent-list-damoa-total\").empty(); $(\"#damoa-tabcontent-list-damoa-total\").removeClass(\"slick-initialized\"); $(\"#damoa-tabcontent-list-damoa-total\").removeClass(\"slick-slider\"); //damoa-tabcontent-list-damoa-center //damoa-tabcontent-list-damoa-center if ( data.damoaLc",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "공지사항 2026년 성인문해교과서 무상보급 신청 안내",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004799",
+            "listText": "\" title=\"더보기\"> 공지사항 2026년 성인문해교과서 무상보급 신청 안내 2026-08-04 공지사항 2026년 울산 문해교사 대상 공고 2026-07-20",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "공지사항 2026년 울산 문해교사 대상 공고",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004789",
+            "listText": "지사항 2026년 성인문해교과서 무상보급 신청 안내 2026-08-04 공지사항 2026년 울산 문해교사 대상 공고 2026-07-20 공지사항 제안서 평가결과 공개 2026-07-16",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "공지사항 제안서 평가결과 공개",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004788",
+            "listText": "01\">공지사항 2026년 울산 문해교사 대상 공고 2026-07-20 공지사항 제안서 평가결과 공개 2026-07-16 공지사항 2026 평생교육 강사 인력풀(pool) 연계 지원사업 선정 결과 안내 2026-07-06 <a href=\"/contents/01/BBS_0000000000000041/contentsDetail.do?bbsId=BBS_0000000000000041&nttId=NTT_0000000000004762&bbsAttrbCd=01\" title=\"2026년 울",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "공지사항 2026 평생교육 강사 인력풀(pool) 연계 지원사업 선정 결과 안내",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004786",
+            "listText": "outline-01\">공지사항 제안서 평가결과 공개 2026-07-16 공지사항 2026 평생교육 강사 인력풀(pool) 연계 지원사업 선정 결과 안내 2026-07-06 공지사항 2026년 울산 문해교사 보수교육 참가 신청 안내 2026-06-10",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "공지사항 2026년 울산 문해교사 보수교육 참가 신청 안내",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004762",
+            "listText": "평생교육 강사 인력풀(pool) 연계 지원사업 선정 결과 안내 2026-07-06 공지사항 2026년 울산 문해교사 보수교육 참가 신청 안내 2026-06-10 공지사항 2026년 상반기 장학생 선발 안내 2026-05-29 <a href=\"/contents",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "공지사항 2026년 상반기 장학생 선발 안내",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000004757",
+            "listText": "2026년 울산 문해교사 보수교육 참가 신청 안내 2026-06-10 공지사항 2026년 상반기 장학생 선발 안내 2026-05-29 보도자료 중구, 지역 평생교육 발전 머리 맞대… 관계자 공동연수 2026-06-30",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "보도자료 중구, 지역 평생교육 발전 머리 맞대… 관계자 공동연수",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004784",
+            "listText": "보도자료 중구, 지역 평생교육 발전 머리 맞대… 관계자 공동연수 2026-06-30 보도자료 중구, 울산지역 평생교육 관계자 워크숍 2026-06-30",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "보도자료 중구, 울산지역 평생교육 관계자 워크숍",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004783",
+            "listText": "pan>중구, 지역 평생교육 발전 머리 맞대… 관계자 공동연수 2026-06-30 보도자료 중구, 울산지역 평생교육 관계자 워크숍 2026-06-30 보도자료 울산연구원 '2026 평생교육 강사' 수료식 2026-05-22 <a href=\"/contents/01/BBS_0000000000000042/contentsDetail.do?bbsId=BBS_0000000000000042&nttId=NTT_0000000000004749&bbsAttrbCd=01\" title=\"울산연구원, 지역 평생교육 현장",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "보도자료 울산연구원 '2026 평생교육 강사' 수료식",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004750",
+            "listText": "\">보도자료 중구, 울산지역 평생교육 관계자 워크숍 2026-06-30 보도자료 울산연구원 '2026 평생교육 강사' 수료식 2026-05-22 보도자료 울산연구원, 지역 평생교육 현장 이끌 수료자 70명 배출 2026-05-22",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "보도자료 울산연구원, 지역 평생교육 현장 이끌 수료자 70명 배출",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004749",
+            "listText": "울산연구원 '2026 평생교육 강사' 수료식 2026-05-22 보도자료 울산연구원, 지역 평생교육 현장 이끌 수료자 70명 배출 2026-05-22 보도자료 울산연구원, 상반기 장학생 선발 2026-03-26",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "보도자료 울산연구원, 상반기 장학생 선발",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004659",
+            "listText": "an>울산연구원, 지역 평생교육 현장 이끌 수료자 70명 배출 2026-05-22 보도자료 울산연구원, 상반기 장학생 선발 2026-03-26 보도자료 울산연구원 장학생 369명 모집…AI미래인재 부문 신설 2026-03-26",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "보도자료 울산연구원 장학생 369명 모집…AI미래인재 부문 신설",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000042/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000042&nttId=NTT_0000000000004658",
+            "listText": "e-02\">보도자료 울산연구원, 상반기 장학생 선발 2026-03-26 보도자료 울산연구원 장학생 369명 모집…AI미래인재 부문 신설 2026-03-26",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "--> 타기관소식 [울산창조경제혁신센터]「2026예비창업패키지 창업준비 아카데미」 프로그램 홍보",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004798",
+            "listText": "타기관소식 [울산창조경제혁신센터]「2026예비창업패키지 창업준비 아카데미」 프로그램 홍보 2026-07-30 <span clas",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "--> 타기관소식 [국가평생교육진흥원] 「2026년 제23회 대한민국 평생학습대상」연장공고 안내",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004785",
+            "listText": "026예비창업패키지 창업준비 아카데미」 프로그램 홍보 2026-07-30 타기관소식 [국가평생교육진흥원] 「2026년 제23회 대한민국 평생학습대상」연장공고 안내 2026-06-30 경영공시 [재단법인광주광역시인재평생교육",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "--> 타기관소식 [재단법인광주광역시인재평생교육진흥원] 'AI 시대, 평생교육의 경쟁력을 다시 설계하다!' 평생학습 연수센터 7-8월 특별과정 안내",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004782",
+            "listText": "026년 제23회 대한민국 평생학습대상」연장공고 안내 2026-06-30 타기관소식 [재단법인광주광역시인재평생교육진흥원] 'AI 시대, 평생교육의 경쟁력을 다시 설계하다!' 평생학습 연수센터 7-8월 특별과정 안내 2026-06-25",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "--> 타기관소식 [춘해보건대학교 평생교육원] 심신 회복 웰빙 플라잉요가 강좌 안내 - 평생교육이용권 수강료 결재 가능",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004763",
+            "listText": "' 평생학습 연수센터 7-8월 특별과정 안내 2026-06-25 타기관소식 [춘해보건대학교 평생교육원] 심신 회복 웰빙 플라잉요가 강좌 안내 - 평생교육이용권 수강료 결재 가능 2026-06-10",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "--> 타기관소식 [재공고] 2026년도 제4회 울산광역시 동구 지방임기제공무원 임용시험 시행계획 재공고",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004752",
+            "listText": "잉요가 강좌 안내 - 평생교육이용권 수강료 결재 가능 2026-06-10 타기관소식 [재공고] 2026년도 제4회 울산광역시 동구 지방임기제공무원 임용시험 시행계획 재공고 2026-05-26 <span class=\"prefac",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "--> 타기관소식 [한국IT여성기업인협회] 현장형AX전문 강사양성 모집 홍보(~ 5.31)",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000081/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000081&nttId=NTT_0000000000004747",
+            "listText": "역시 동구 지방임기제공무원 임용시험 시행계획 재공고 2026-05-26 타기관소식 [한국IT여성기업인협회] 현장형AX전문 강사양성 모집 홍보(~ 5.31) 2026-05-21 퀵 메뉴 평생교육 장학금 <a class=\"quick-menu-list-03\" href=\"/damoa/lecture/lectur",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "강좌정보",
+            "link": "https://uill.uri.re.kr/?id=nav_class",
+            "listText": "전체 강좌정보 기관정보 강사정보 국가평생교육원 <li class=\"d",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "기관정보",
+            "link": "https://uill.uri.re.kr/?id=nav_center",
+            "listText": "amoa('damoa-total'); return false;\" title=\"전체\">전체 강좌정보 기관정보 강사정보 국가평생교육원 무엇을 찾으시나요?",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "강사정보",
+            "link": "https://uill.uri.re.kr/?id=nav_teacher",
+            "listText": "damoa-class'); return false;\" title=\"강좌정보\">강좌정보 기관정보 강사정보 국가평생교육원 무엇을 찾으시나요?",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "국가평생교육원",
+            "link": "https://uill.uri.re.kr/?id=nav_teacher",
+            "listText": "oa-center'); return false;\" title=\"기관정보\">기관정보 강사정보 국가평생교육원 무엇을 찾으시나요? 전체 강좌정보",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "풍경을 담는 어반 스케치(심화) 강좌 강사 : 조혜정 학습기간 : 2026-07-06 ~ 2026-09-21 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17183",
+            "listText": "/p> --> 풍경을 담는 어반 스케치(심화) 강좌 강사 : 조혜정 학습기간 : 2026-07-06 ~ 2026-09-21 기관명 : 울산광역시 북구청(북구평생학습관) 향긋한 커피향! 바리스타 (수) 강좌 강사 : 김시윤 학습기간 : 2026-07-08 ~ 2026-09-16 기관명 :",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "향긋한 커피향! 바리스타 (수) 강좌 강사 : 김시윤 학습기간 : 2026-07-08 ~ 2026-09-16 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17190",
+            "listText": "구평생학습관) 향긋한 커피향! 바리스타 (수) 강좌 강사 : 김시윤 학습기간 : 2026-07-08 ~ 2026-09-16 기관명 : 울산광역시 북구청(북구평생학습관) 처음 배우는 미싱 기초 홈패션 강좌 강사 : 김미영 학습기간 : 2026-07-08 ~ 2026-09-23 기관명 : 울산",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "처음 배우는 미싱 기초 홈패션 강좌 강사 : 김미영 학습기간 : 2026-07-08 ~ 2026-09-23 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17189",
+            "listText": "구평생학습관) 처음 배우는 미싱 기초 홈패션 강좌 강사 : 김미영 학습기간 : 2026-07-08 ~ 2026-09-23 기관명 : 울산광역시 북구청(북구평생학습관) 울산대학교RISE사업단 기관 운영상태 : 운영중 대표전화 : 052-712-8452 <",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "풍경을 담는 어반 스케치(기초) 강좌 강사 : 조혜정 학습기간 : 2026-07-07 ~ 2026-09-15 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17188",
+            "listText": "구청(북구평생학습관) 풍경을 담는 어반 스케치(기초) 강좌 강사 : 조혜정 학습기간 : 2026-07-07 ~ 2026-09-15 기관명 : 울산광역시 북구청(북구평생학습관) 미싱으로 가방 & 옷 만들기 및 수선하기 강좌 강사 : 김미영 학습기간 : 2026-07-07 ~ 2026-09-22 <p class=\"damoa-content-list-",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "미싱으로 가방 & 옷 만들기 및 수선하기 강좌 강사 : 김미영 학습기간 : 2026-07-07 ~ 2026-09-22 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17187",
+            "listText": "구청(북구평생학습관) 미싱으로 가방 & 옷 만들기 및 수선하기 강좌 강사 : 김미영 학습기간 : 2026-07-07 ~ 2026-09-22 기관명 : 울산광역시 북구청(북구평생학습관) 선과 명암의 이야기, 소묘 강좌 강사 : 길혜정 학습기간 : 2026-07-06 ~ 2026-09-07 기관명 : 울산광역시 북구청(",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "선과 명암의 이야기, 소묘 강좌 강사 : 길혜정 학습기간 : 2026-07-06 ~ 2026-09-07 기관명 : 울산광역시 북구청(북구평생학습관)",
+            "link": "https://uill.uri.re.kr/damoa/lecture/lectureDetail.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?lctreId=17186",
+            "listText": "구청(북구평생학습관) 선과 명암의 이야기, 소묘 강좌 강사 : 길혜정 학습기간 : 2026-07-06 ~ 2026-09-07 기관명 : 울산광역시 북구청(북구평생학습관) <a href=\"/damoa/institution/institutionIntro.do;jsessionid=JpGplprIWaAaZ6aeuMlW8sTVdcdaixSCcytC8A4uhlO91KsqTzBOduzgbitvnHtQ.uill_servlet_home?insttId=1380\" title=\"울산대학교RISE사업단\"",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "--> 울산 평생교육강사 풀(POOL) 지식·재능·노하우가 있는 울산 평생교육강사에 대해 소개합니다.",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000041/contentsDetail.do?bbsAttrbCd=01&bbsId=BBS_0000000000000041&nttId=NTT_0000000000001417",
+            "listText": "class=\"education-content-description\">울산 시민의 문해 및 기초교육을 제공하여 생활의 질적 향상을 도모합니다. 울산 평생교육강사 풀(POOL) 지식·재능·노하우가 있는 울산 평생교육강사에 대해 소개합니다. 공모(지원)사업 접수 온라인을 통해 공모 사업에 빠르게 접수하실 수 있습니다. 평생학습자료실 평생학습에 관한 자료를 공유합니다.",
+            "adapter": "울산연구원"
+          },
+          {
+            "org": "울산연구원",
+            "title": "장학 자료실 필요하신 정보를 손쉽게 찾아보세요.",
+            "link": "https://uill.uri.re.kr/contents/01/BBS_0000000000000004/contentsList.do?bbsAttrbCd=01&bbsId=BBS_0000000000000004&nttId=&searchCondition2=02",
+            "listText": "온라인으로 장학금 지급확인서 빠르게 신청해보세요. 장학 자료실 필요하신 정보를 손쉽게 찾아보세요. 기부 안내 기부 현황 기부금 영수증 신청",
+            "adapter": "울산연구원"
+          }
+        ],
+        "rowTrace": []
+      }
     },
     "detail": {
       "ok": false,
-      "attempted": 0,
+      "attempted": 2,
       "validated": 0,
-      "samples": []
+      "samples": [
+        {
+          "title": "본문 바로가기",
+          "requestedUrl": "https://uill.uri.re.kr/integratedSearch.do",
+          "ok": false,
+          "finalUrl": "https://uill.uri.re.kr/integratedSearch.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "final url is not a detail page"
+        },
+        {
+          "title": "울산 평생교육 강사",
+          "requestedUrl": "https://uill.uri.re.kr/education/knwldInstr/knwldInstrIntro.do",
+          "ok": false,
+          "finalUrl": "https://uill.uri.re.kr/education/knwldInstr/knwldInstrIntro.do",
+          "textLength": 0,
+          "attachmentCount": 0,
+          "error": "final url is not a detail page"
+        }
+      ]
     },
     "attachment": {
       "ok": false,

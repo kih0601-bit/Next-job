@@ -10,1239 +10,1341 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE HTML>
-<html lang="KO">
+<html lang="ko">
 <head>
-		
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<meta name="keywords" content="">
-	<meta name="description" content=""> 
-	<link rel="canonical" href="">
-    <meta property="og:type" content="website"> 
-	<meta property="og:title" content="">
-	<meta property="og:description" content="">
-	<meta property="og:image" content="">
-	<meta property="og:url" content="">
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="">
-	<meta name="twitter:description" content="">
-	<meta name="twitter:image" content="">
-	<meta name="twitter:domain" content="">
-	<link rel="stylesheet" href="/jobalio/css/reset.css">
-	<link rel="stylesheet" href="/jobalio/css/style.css">
-	<link rel="stylesheet" href="/jobalio/css/swiper.css">
-	<link rel="stylesheet" type="text/css" href="/css/lib/select2.min.css" />
-	<script src="/jobalio/js/jquery-1.9.1.min.js"></script>
-	<script src="/jobalio/js/jquery.easing.1.3.js"></script>
-	<script src="/jobalio/js/jquery.bxslider.js"></script>
-	<script src="/jobalio/js/swiper.js"></script> 
-	<script src="/jobalio/js/script.js"></script> 
-	<script src="/jobalio/js/respond.src.js"></script> 
-	<script src="/jobalio/js/app_util.js"></script> 
-	<script type="text/javascript" src="/js/lib/select2.full.js"></script>
+<meta charset="UTF-8">
+<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />-->
+<meta name="viewport" content="initial-scale=1, width=device-width">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="keywords" content="한국수력원자력 채용">
+<meta name="description" content="한국수력원자력 채용"> 
+<link rel="canonical" href="">
+<meta property="og:type" content="website"> 
+<meta property="og:title" content="한국수력원자력 채용">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
+<meta property="og:url" content="">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="한국수력원자력 채용">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="">
+<meta name="twitter:domain" content="">
+
+
+<link rel="stylesheet" href="/recruit/common/css/reset.css">
+<link rel="stylesheet" href="/recruit/common/css/fullpage.css">
+<link rel="stylesheet" href="/recruit/common/css/swiper.css">
+<link rel="stylesheet" href="/recruit/common/css/style.css">
+
+<script src="/recruit/common/js/jquery-1.11.0.min.js"></script>
+<script src="/recruit/common/js/jquery.bpopup.min.js"></script>
+<script src="/recruit/common/js/jquery-ui.js"></script>
+<script src="/recruit/common/js/fullpage.js"></script> 
+<script src="/recruit/common/js/swiper.js"></script> 
+
+<!-- <script src="/khnp/js/common.js"></script> -->
+<script src="/recruit/common/js/script.js"></script> 
+<script src="/recruit/common/js/cmmn.js"></script> 
+<script src="/recruit/common/js/ibSheetCmmn.js"></script> 
+<script src="/recruit/common/js/respond.src.js"></script> 
+
+<script type="text/javascript" src="/recruit/common/js/rsa/jsbn.js"></script>
+<script type="text/javascript" src="/recruit/common/js/rsa/rsa.js"></script>
+<script type="text/javascript" src="/recruit/common/js/rsa/prng4.js"></script>
+<script type="text/javascript" src="/recruit/common/js/rsa/rng.js"></script>
+
+<script src="/recruit/common/js/sheet/ibleaders.js"></script>
+<script src="/recruit/common/js/sheet/ibsheetinfo.js"></script>
+<script src="/recruit/common/js/sheet/ibsheet.js"></script>
+
+<!-- calendar  -->
+<link rel="stylesheet" href="/recruit/common/js/calendar/jquery-ui.css" />
+<link rel="stylesheet" href="/recruit/common/js/calendar/jquery.ui.all.css" />
+<script src="/recruit/common/js/calendar/jquery.ui.core.js"></script>
+<script src="/recruit/common/js/calendar/jquery.ui.datepicker-ko.js"></script>
+<script src="/recruit/common/js/calendar/calendar.js"></script>
+<!-- // calendar  -->
+
+
+<title>한국수력원자력 채용</title>
+<script>
+$(document).ready(function(){
+	cf_Initialization();
 	
-	<div class="loading">
-		<div class="img"><img src="/jobalio/img/ico_loading.png" alt="loading..."></div>
-	</div>
+	$("#pop_down_btn").click(function(){
+		$("#khnpPopDiv").html("");
+		$(".pop_layer").hide();
+
+	});
 	
-	<title>잡알리오</title>
-	
-	<script>
-		var	data = [{id: '(재)예술경영지원센터', text: '(재)예술경영지원센터'},{id: '(재)우체국금융개발원', text: '(재)우체국금융개발원'},{id: '(재)우체국시설관리단', text: '(재)우체국시설관리단'},{id: '(재)일제강제동원피해자지원재단', text: '(재)일제강제동원피해자지원재단'},{id: '(재)축산환경관리원', text: '(재)축산환경관리원'},{id: '(재)한국보건의료정보원', text: '(재)한국보건의료정보원'},{id: '(재)한국통계정보원', text: '(재)한국통계정보원'},{id: '(재)한국통계진흥원', text: '(재)한국통계진흥원'},{id: '(주)강원랜드', text: '(주)강원랜드'},{id: '(주)공영홈쇼핑', text: '(주)공영홈쇼핑'},{id: '(주)한국가스기술공사', text: '(주)한국가스기술공사'},{id: '88관광개발(주)', text: '88관광개발(주)'},{id: 'KDI국제정책대학원', text: 'KDI국제정책대학원'},{id: '가덕도신공항건설공단', text: '가덕도신공항건설공단'},{id: '가축위생방역지원본부', text: '가축위생방역지원본부'},{id: '강원대학교병원', text: '강원대학교병원'},{id: '강원대학교치과병원', text: '강원대학교치과병원'},{id: '건강보험심사평가원', text: '건강보험심사평가원'},{id: '건설근로자공제회', text: '건설근로자공제회'},{id: '건축공간연구원', text: '건축공간연구원'},{id: '게임물관리위원회', text: '게임물관리위원회'},{id: '경북대학교병원', text: '경북대학교병원'},{id: '경북대학교치과병원', text: '경북대학교치과병원'},{id: '경상국립대학교병원', text: '경상국립대학교병원'},{id: '경제인문사회연구회', text: '경제인문사회연구회'},{id: '공간정보산업진흥원', text: '공간정보산업진흥원'},{id: '공간정보품질관리원', text: '공간정보품질관리원'},{id: '공무원연금공단', text: '공무원연금공단'},{id: '과학기술사업화진흥원', text: '과학기술사업화진흥원'},{id: '과학기술정책연구원', text: '과학기술정책연구원'},{id: '국가과학기술인력개발원', text: '국가과학기술인력개발원'},{id: '국가생명윤리정책원', text: '국가생명윤리정책원'},{id: '국가수리과학연구소', text: '국가수리과학연구소'},{id: '국가아동권리보장원', text: '국가아동권리보장원'},{id: '국가유산진흥원', text: '국가유산진흥원'},{id: '국가철도공단', text: '국가철도공단'},{id: '국가평생교육진흥원', text: '국가평생교육진흥원'},{id: '국립공원공단', text: '국립공원공단'},{id: '국립광주과학관', text: '국립광주과학관'},{id: '국립낙동강생물자원관', text: '국립낙동강생물자원관'},{id: '국립농업박물관', text: '국립농업박물관'},{id: '국립대구과학관', text: '국립대구과학관'},{id: '국립박물관문화재단', text: '국립박물관문화재단'},{id: '국립부산과학관', text: '국립부산과학관'},{id: '국립생태원', text: '국립생태원'},{id: '국립아시아문화전당재단', text: '국립아시아문화전당재단'},{id: '국립암센터', text: '국립암센터'},{id: '국립울진해양과학관', text: '국립울진해양과학관'},{id: '국립인천해양박물관', text: '국립인천해양박물관'},{id: '국립중앙의료원', text: '국립중앙의료원'},{id: '국립항공박물관', text: '국립항공박물관'},{id: '국립해양박물관', text: '국립해양박물관'},{id: '국립해양생물자원관', text: '국립해양생물자원관'},{id: '국립호남권생물자원관', text: '국립호남권생물자원관'},{id: '국민건강보험공단', text: '국민건강보험공단'},{id: '국민건강보험공단 일산병원', text: '국민건강보험공단 일산병원'},{id: '국민연금공단', text: '국민연금공단'},{id: '국방과학연구소', text: '국방과학연구소'},{id: '국방기술진흥연구소', text: '국방기술진흥연구소'},{id: '국방기술품질원', text: '국방기술품질원'},{id: '국방전직교육원', text: '국방전직교육원'},{id: '국악방송', text: '국악방송'},{id: '국제방송교류재단', text: '국제방송교류재단'},{id: '국제식물검역인증원', text: '국제식물검역인증원'},{id: '국토교통과학기술진흥원', text: '국토교통과학기술진흥원'},{id: '국토안전관리원', text: '국토안전관리원'},{id: '국토연구원', text: '국토연구원'},{id: '그랜드코리아레저(주)', text: '그랜드코리아레저(주)'},{id: '극지연구소', text: '극지연구소'},{id: '근로복지공단', text: '근로복지공단'},{id: '기술보증기금', text: '기술보증기금'},{id: '기초과학연구원', text: '기초과학연구원'},{id: '남북교류협력지원협회', text: '남북교류협력지원협회'},{id: '노사발전재단', text: '노사발전재단'},{id: '농림수산식품교육문화정보원', text: '농림수산식품교육문화정보원'},{id: '농림식품기술기획평가원', text: '농림식품기술기획평가원'},{id: '농업정책보험금융원', text: '농업정책보험금융원'},{id: '대구경북첨단의료산업진흥재단', text: '대구경북첨단의료산업진흥재단'},{id: '대외경제정책연구원', text: '대외경제정책연구원'},{id: '대한무역투자진흥공사', text: '대한무역투자진흥공사'},{id: '대한법률구조공단', text: '대한법률구조공단'},{id: '대한석탄공사', text: '대한석탄공사'},{id: '대한장애인체육회', text: '대한장애인체육회'},{id: '대한적십자사', text: '대한적십자사'},{id: '대한체육회', text: '대한체육회'},{id: '독립기념관', text: '독립기념관'},{id: '동남권원자력의학원', text: '동남권원자력의학원'},{id: '동북아역사재단', text: '동북아역사재단'},{id: '무역안보관리원', text: '무역안보관리원'},{id: '민주화운동기념사업회', text: '민주화운동기념사업회'},{id: '부산대학교병원', text: '부산대학교병원'},{id: '부산대학교치과병원', text: '부산대학교치과병원'},{id: '부산항만공사', text: '부산항만공사'},{id: '북한이탈주민지원재단', text: '북한이탈주민지원재단'},{id: '분당서울대학교병원', text: '분당서울대학교병원'},{id: '사립학교교직원연금공단', text: '사립학교교직원연금공단'},{id: '산업연구원', text: '산업연구원'},{id: '새만금개발공사', text: '새만금개발공사'},{id: '서민금융진흥원', text: '서민금융진흥원'},{id: '서울대학교병원', text: '서울대학교병원'},{id: '서울대학교치과병원', text: '서울대학교치과병원'},{id: '서울올림픽기념국민체육진흥공단', text: '서울올림픽기념국민체육진흥공단'},{id: '서울요양원', text: '서울요양원'},{id: '선박해양플랜트연구소', text: '선박해양플랜트연구소'},{id: '세종학당재단', text: '세종학당재단'},{id: '소상공인시장진흥공단', text: '소상공인시장진흥공단'},{id: '소프트웨어정책연구소', text: '소프트웨어정책연구소'},{id: '수도권매립지관리공사', text: '수도권매립지관리공사'},{id: '스포츠윤리센터', text: '스포츠윤리센터'},{id: '시청자미디어재단', text: '시청자미디어재단'},{id: '식품안전정보원', text: '식품안전정보원'},{id: '신용보증기금', text: '신용보증기금'},{id: '신용보증재단중앙회', text: '신용보증재단중앙회'},{id: '아시아·태평양경제협력체 기후센터', text: '아시아·태평양경제협력체 기후센터'},{id: '양육비이행관리원', text: '양육비이행관리원'},{id: '에너지경제연구원', text: '에너지경제연구원'},{id: '여수광양항만공사', text: '여수광양항만공사'},{id: '연구개발특구진흥재단', text: '연구개발특구진흥재단'},{id: '영상물등급위원회', text: '영상물등급위원회'},{id: '영화진흥위원회', text: '영화진흥위원회'},{id: '예금보험공사', text: '예금보험공사'},{id: '예술의전당', text: '예술의전당'},{id: '오송첨단의료산업진흥재단', text: '오송첨단의료산업진흥재단'},{id: '우체국물류지원단', text: '우체국물류지원단'},{id: '울산항만공사', text: '울산항만공사'},{id: '육아정책연구소', text: '육아정책연구소'},{id: '의료기관평가인증원', text: '의료기관평가인증원'},{id: '인천국제공항공사', text: '인천국제공항공사'},{id: '인천항만공사', text: '인천항만공사'},{id: '자동차손해배상진흥원', text: '자동차손해배상진흥원'},{id: '재단법인 건설기술교육원', text: '재단법인 건설기술교육원'},{id: '재단법인 대한건설기계안전관리원', text: '재단법인 대한건설기계안전관리원'},{id: '재단법인 장애인기업종합지원센터', text: '재단법인 장애인기업종합지원센터'},{id: '재단법인 한국공공조직은행', text: '재단법인 한국공공조직은행'},{id: '재단법인 한국에너지재단', text: '재단법인 한국에너지재단'},{id: '재단법인 한국자활복지개발원', text: '재단법인 한국자활복지개발원'},{id: '재단법인 한국장기조직기증원', text: '재단법인 한국장기조직기증원'},{id: '재외동포협력센터', text: '재외동포협력센터'},{id: '전국재해구호협회', text: '전국재해구호협회'},{id: '전남대학교병원', text: '전남대학교병원'},{id: '전북대학교병원', text: '전북대학교병원'},{id: '전쟁기념사업회', text: '전쟁기념사업회'},{id: '정보통신기획평가원', text: '정보통신기획평가원'},{id: '정보통신산업진흥원', text: '정보통신산업진흥원'},{id: '정보통신정책연구원', text: '정보통신정책연구원'},{id: '정부법무공단', text: '정부법무공단'},{id: '제주국제자유도시개발센터', text: '제주국제자유도시개발센터'},{id: '제주대학교병원', text: '제주대학교병원'},{id: '주식회사 에스알', text: '주식회사 에스알'},{id: '주택관리공단(주)', text: '주택관리공단(주)'},{id: '주택도시보증공사', text: '주택도시보증공사'},{id: '중소기업기술정보진흥원', text: '중소기업기술정보진흥원'},{id: '중소기업은행', text: '중소기업은행'},{id: '중소벤처기업연구원', text: '중소벤처기업연구원'},{id: '중소벤처기업진흥공단', text: '중소벤처기업진흥공단'},{id: '중앙사회서비스원', text: '중앙사회서비스원'},{id: '차세대수치예보모델개발사업단', text: '차세대수치예보모델개발사업단'},{id: '창업진흥원', text: '창업진흥원'},{id: '축산물품질평가원', text: '축산물품질평가원'},{id: '충남대학교병원', text: '충남대학교병원'},{id: '충북대학교병원', text: '충북대학교병원'},{id: '코레일관광개발(주)', text: '코레일관광개발(주)'},{id: '코레일네트웍스(주)', text: '코레일네트웍스(주)'},{id: '코레일로지스(주)', text: '코레일로지스(주)'},{id: '코레일유통(주)', text: '코레일유통(주)'},{id: '코레일테크(주)', text: '코레일테크(주)'},{id: '태권도진흥재단', text: '태권도진흥재단'},{id: '통일연구원', text: '통일연구원'},{id: '학교법인한국폴리텍', text: '학교법인한국폴리텍'},{id: '한국가스공사', text: '한국가스공사'},{id: '한국가스안전공사', text: '한국가스안전공사'},{id: '한국개발연구원', text: '한국개발연구원'},{id: '한국건강가정진흥원', text: '한국건강가정진흥원'},{id: '한국건강증진개발원', text: '한국건강증진개발원'},{id: '한국고용노동교육원', text: '한국고용노동교육원'},{id: '한국고용정보원', text: '한국고용정보원'},{id: '한국고전번역원', text: '한국고전번역원'},{id: '한국공예디자인문화진흥원', text: '한국공예디자인문화진흥원'},{id: '한국공정거래조정원', text: '한국공정거래조정원'},{id: '한국공항공사', text: '한국공항공사'},{id: '한국과학기술기획평가원', text: '한국과학기술기획평가원'},{id: '한국과학창의재단', text: '한국과학창의재단'},{id: '한국관광공사', text: '한국관광공사'},{id: '한국관세정보원', text: '한국관세정보원'},{id: '한국광해광업공단', text: '한국광해광업공단'},{id: '한국교육개발원', text: '한국교육개발원'},{id: '한국교육과정평가원', text: '한국교육과정평가원'},{id: '한국교육학술정보원', text: '한국교육학술정보원'},{id: '한국교통안전공단', text: '한국교통안전공단'},{id: '한국교통연구원', text: '한국교통연구원'},{id: '한국국방연구원', text: '한국국방연구원'},{id: '한국국제교류재단', text: '한국국제교류재단'},{id: '한국국제보건의료재단', text: '한국국제보건의료재단'},{id: '한국국제협력단', text: '한국국제협력단'},{id: '한국국토정보공사', text: '한국국토정보공사'},{id: '한국기상산업기술원', text: '한국기상산업기술원'},{id: '한국기술교육대학교', text: '한국기술교육대학교'},{id: '한국나노기술원', text: '한국나노기술원'},{id: '한국남동발전(주)', text: '한국남동발전(주)'},{id: '한국남부발전(주)', text: '한국남부발전(주)'},{id: '한국노동연구원', text: '한국노동연구원'},{id: '한국노인인력개발원', text: '한국노인인력개발원'},{id: '한국농수산식품유통공사', text: '한국농수산식품유통공사'},{id: '한국농어촌공사', text: '한국농어촌공사'},{id: '한국농업기술진흥원', text: '한국농업기술진흥원'},{id: '한국농촌경제연구원', text: '한국농촌경제연구원'},{id: '한국데이터산업진흥원', text: '한국데이터산업진흥원'},{id: '한국도로공사', text: '한국도로공사'},{id: '한국도로공사서비스(주)', text: '한국도로공사서비스(주)'},{id: '한국도로교통공단', text: '한국도로교통공단'},{id: '한국도박문제예방치유원', text: '한국도박문제예방치유원'},{id: '한국동서발전(주)', text: '한국동서발전(주)'},{id: '한국등산·트레킹지원센터', text: '한국등산·트레킹지원센터'},{id: '한국디자인진흥원', text: '한국디자인진흥원'},{id: '한국로봇산업진흥원', text: '한국로봇산업진흥원'},{id: '한국마사회', text: '한국마사회'},{id: '한국마약퇴치운동본부', text: '한국마약퇴치운동본부'},{id: '한국무역보험공사', text: '한국무역보험공사'},{id: '한국문학번역원', text: '한국문학번역원'},{id: '한국문화관광연구원', text: '한국문화관광연구원'},{id: '한국문화예술교육진흥원', text: '한국문화예술교육진흥원'},{id: '한국문화예술위원회', text: '한국문화예술위원회'},{id: '한국문화정보원', text: '한국문화정보원'},{id: '한국문화진흥주식회사', text: '한국문화진흥주식회사'},{id: '한국물기술인증원', text: '한국물기술인증원'},{id: '한국발명진흥회', text: '한국발명진흥회'},{id: '한국방송광고진흥공사', text: '한국방송광고진흥공사'},{id: '한국방송통신전파진흥원', text: '한국방송통신전파진흥원'},{id: '한국법무보호복지공단', text: '한국법무보호복지공단'},{id: '한국법제연구원', text: '한국법제연구원'},{id: '한국벤처투자', text: '한국벤처투자'},{id: '한국보건복지인재원', text: '한국보건복지인재원'},{id: '한국보건사회연구원', text: '한국보건사회연구원'},{id: '한국보건산업진흥원', text: '한국보건산업진흥원'},{id: '한국보건의료연구원', text: '한국보건의료연구원'},{id: '한국보건의료인국가시험원', text: '한국보건의료인국가시험원'},{id: '한국보훈복지의료공단', text: '한국보훈복지의료공단'},{id: '한국부동산원', text: '한국부동산원'},{id: '한국사학진흥재단', text: '한국사학진흥재단'},{id: '한국사회보장정보원', text: '한국사회보장정보원'},{id: '한국사회복지협의회', text: '한국사회복지협의회'},{id: '한국사회적기업진흥원', text: '한국사회적기업진흥원'},{id: '한국산림복지진흥원', text: '한국산림복지진흥원'},{id: '한국산업기술기획평가원', text: '한국산업기술기획평가원'},{id: '한국산업기술시험원', text: '한국산업기술시험원'},{id: '한국산업기술진흥원', text: '한국산업기술진흥원'},{id: '한국산업단지공단', text: '한국산업단지공단'},{id: '한국산업안전보건공단', text: '한국산업안전보건공단'},{id: '한국산업은행', text: '한국산업은행'},{id: '한국산업인력공단', text: '한국산업인력공단'},{id: '한국상하수도협회', text: '한국상하수도협회'},{id: '한국생명존중희망재단', text: '한국생명존중희망재단'},{id: '한국서부발전(주)', text: '한국서부발전(주)'},{id: '한국석유공사', text: '한국석유공사'},{id: '한국석유관리원', text: '한국석유관리원'},{id: '한국세라믹기술원', text: '한국세라믹기술원'},{id: '한국소방산업기술원', text: '한국소방산업기술원'},{id: '한국소비자원', text: '한국소비자원'},{id: '한국수력원자력(주)', text: '한국수력원자력(주)'},{id: '한국수목원정원관리원', text: '한국수목원정원관리원'},{id: '한국수산자원공단', text: '한국수산자원공단'},{id: '한국수자원공사', text: '한국수자원공사'},{id: '한국수자원조사기술원', text: '한국수자원조사기술원'},{id: '한국수출입은행', text: '한국수출입은행'},{id: '한국스포츠레저(주)', text: '한국스포츠레저(주)'},{id: '한국승강기안전공단', text: '한국승강기안전공단'},{id: '한국식품산업클러스터진흥원', text: '한국식품산업클러스터진흥원'},{id: '한국식품안전관리인증원', text: '한국식품안전관리인증원'},{id: '한국양성평등교육진흥원', text: '한국양성평등교육진흥원'},{id: '한국어촌어항공단', text: '한국어촌어항공단'},{id: '한국언론진흥재단', text: '한국언론진흥재단'},{id: '한국에너지공단', text: '한국에너지공단'},{id: '한국에너지기술평가원', text: '한국에너지기술평가원'},{id: '한국에너지정보문화재단', text: '한국에너지정보문화재단'},{id: '한국여성과학기술인육성재단', text: '한국여성과학기술인육성재단'},{id: '한국여성인권진흥원', text: '한국여성인권진흥원'},{id: '한국여성정책연구원', text: '한국여성정책연구원'},{id: '한국연구재단', text: '한국연구재단'},{id: '한국영상자료원', text: '한국영상자료원'},{id: '한국영유아보육·교육진흥원', text: '한국영유아보육·교육진흥원'},{id: '한국예술인복지재단', text: '한국예술인복지재단'},{id: '한국우편사업진흥원', text: '한국우편사업진흥원'},{id: '한국원산지정보원', text: '한국원산지정보원'},{id: '한국원자력안전기술원', text: '한국원자력안전기술원'},{id: '한국원자력안전재단', text: '한국원자력안전재단'},{id: '한국원자력의학원', text: '한국원자력의학원'},{id: '한국원자력통제기술원', text: '한국원자력통제기술원'},{id: '한국원자력환경공단', text: '한국원자력환경공단'},{id: '한국의료기기안전정보원', text: '한국의료기기안전정보원'},{id: '한국의료분쟁조정중재원', text: '한국의료분쟁조정중재원'},{id: '한국의약품안전관리원', text: '한국의약품안전관리원'},{id: '한국인터넷진흥원', text: '한국인터넷진흥원'},{id: '한국임업진흥원', text: '한국임업진흥원'},{id: '한국자산관리공사', text: '한국자산관리공사'},{id: '한국잡월드', text: '한국잡월드'},{id: '한국장애인개발원', text: '한국장애인개발원'},{id: '한국장애인고용공단', text: '한국장애인고용공단'},{id: '한국장학재단', text: '한국장학재단'},{id: '한국재정정보원', text: '한국재정정보원'},{id: '한국저작권보호원', text: '한국저작권보호원'},{id: '한국저작권위원회', text: '한국저작권위원회'},{id: '한국전기안전공사', text: '한국전기안전공사'},{id: '한국전력거래소', text: '한국전력거래소'},{id: '한국전력공사', text: '한국전력공사'},{id: '한국전력국제원자력대학원대학교', text: '한국전력국제원자력대학원대학교'},{id: '한국전력기술주식회사', text: '한국전력기술주식회사'},{id: '한국제품안전관리원', text: '한국제품안전관리원'},{id: '한국조세재정연구원', text: '한국조세재정연구원'},{id: '한국조폐공사', text: '한국조폐공사'},{id: '한국주택금융공사', text: '한국주택금융공사'},{id: '한국중부발전(주)', text: '한국중부발전(주)'},{id: '한국중소벤처기업유통원', text: '한국중소벤처기업유통원'},{id: '한국지능정보사회진흥원', text: '한국지능정보사회진흥원'},{id: '한국지식재산보호원', text: '한국지식재산보호원'},{id: '한국지식재산연구원', text: '한국지식재산연구원'},{id: '한국지역난방공사', text: '한국지역난방공사'},{id: '한국직업능력연구원', text: '한국직업능력연구원'},{id: '한국철도공사', text: '한국철도공사'},{id: '한국청소년상담복지개발원', text: '한국청소년상담복지개발원'},{id: '한국청소년정책연구원', text: '한국청소년정책연구원'},{id: '한국청소년활동진흥원', text: '한국청소년활동진흥원'},{id: '한국체육산업개발(주)', text: '한국체육산업개발(주)'},{id: '한국출판문화산업진흥원', text: '한국출판문화산업진흥원'},{id: '한국치산기술협회', text: '한국치산기술협회'},{id: '한국콘텐츠진흥원', text: '한국콘텐츠진흥원'},{id: '한국탄소산업진흥원', text: '한국탄소산업진흥원'},{id: '한국토지주택공사', text: '한국토지주택공사'},{id: '한국투자공사', text: '한국투자공사'},{id: '한국특허기술진흥원', text: '한국특허기술진흥원'},{id: '한국특허전략개발원', text: '한국특허전략개발원'},{id: '한국특허정보원', text: '한국특허정보원'},{id: '한국학중앙연구원', text: '한국학중앙연구원'},{id: '한국한의약진흥원', text: '한국한의약진흥원'},{id: '한국항로표지기술원', text: '한국항로표지기술원'},{id: '한국해양과학기술원', text: '한국해양과학기술원'},{id: '한국해양교통안전공단', text: '한국해양교통안전공단'},{id: '한국해양수산개발원', text: '한국해양수산개발원'},{id: '한국해양수산연수원', text: '한국해양수산연수원'},{id: '한국해양조사협회', text: '한국해양조사협회'},{id: '한국해양진흥공사', text: '한국해양진흥공사'},{id: '한국해외인프라도시개발지원공사', text: '한국해외인프라도시개발지원공사'},{id: '한국행정연구원', text: '한국행정연구원'},{id: '한국형사·법무정책연구원', text: '한국형사·법무정책연구원'},{id: '한국환경공단', text: '한국환경공단'},{id: '한국환경보전원', text: '한국환경보전원'},{id: '한국환경산업기술원', text: '한국환경산업기술원'},{id: '한국환경연구원', text: '한국환경연구원'},{id: '한식진흥원', text: '한식진흥원'},{id: '한전KDN', text: '한전KDN'},{id: '한전KPS(주)', text: '한전KPS(주)'},{id: '한전MCS(주)', text: '한전MCS(주)'},{id: '한전원자력연료주식회사', text: '한전원자력연료주식회사'},{id: '항공안전기술원', text: '항공안전기술원'},{id: '해양수산과학기술진흥원', text: '해양수산과학기술진흥원'},{id: '해양환경공단', text: '해양환경공단'},];
-		
-		$(document).ready(function(){
-
-
-            //fnPopupRendar("M");
-
-
-			if(isApp()){
-				$("#pcEvent").hide();
-				$("#iosEvent").show();
-			}else{
-				$("#iosEvent").hide();
-				$("#pcEvent").show();
-			}
-			
-			//popup cookie setting
-			getCookie('main_popup1');
-			getCookie('main_popup2');
-			getCookie('main_popup3');
-			
-			//활성화
-			$("#gnb01").addClass("on");
-			
-			$('#org_name').select2({
-	  			data: data
-	  			,width: "100%"
-	  		});
-			
-//			$('#org_name').css("margin-left","10px");
-
-			var hiddenParam = $('#hidden_org_name').attr('data-value');
-			if(hiddenParam){
-				$('#org_name').val(hiddenParam).trigger('change.select2');
-			}
-			
-			$(".detailClass").each(function(){
-				 
-			 });
-			
-			$(".locationClass").each(function(){
-				 
-			 });
-			
-			$(".areaClass").each(function(){
-				 
-			 });
-			
-			$(".workClass").each(function(){
-				 
-			 });
-			 
-			 $(".careerClass").each(function(){
-				 
-			 });
-			 
-			$(".educationClass").each(function(){
-			 
-			});
-			
-			
-			$(function() {
-				$('input[name=eduType]').click(function(e){
-					var chkVal = e.target.value;
-					var chkYN = e.target.checked;
-					
-					$('input[name=eduType]').prop("checked", false);
-					if(chkYN == true){
-						$('input#'+chkVal).prop("checked", true);
-					}
-				})
-			});
-			
-			$(".educationClass").each(function(){
-			 
-			});
-			
-			init_detail_code();
-			init_location();
-			init_area();
-		});
-		
-		function fn_selectDetailCode() {
-			init_detail_code();
-			$(".pop_reqruitArea").fadeOut("fast");
-		}
-		function fn_selectLocation() {
-			init_location();
-			$(".pop_workArea").fadeOut("fast");
-		}
-		function fn_selectArea() {
-			init_area();
-			$(".pop_areaList").fadeOut("fast");
-		}
-		
-		function fn_reset() {
-			$('input[name="detail_code"]').removeAttr('checked');
-			$('input[name="location"]').removeAttr('checked');
-			$('input[name="area"]').removeAttr('checked');
-			$('input[name="work_type"]').removeAttr('checked');
-			$('input[name="career"]').removeAttr('checked');
-			$('input[name="education"]').removeAttr('checked');
-			$('input[name="eduType"]').removeAttr('checked');
-			$('input[name="replacement"]').removeAttr('checked');
-			$('#org_type').val('');
-			$('#org_name').val('').trigger('change');
-			$('#tit01').val('');
-			
-		}
-		
-		function fn_search() {
-			//학력정보를 선택하면 학력정보 구분 값 필수로 입력받게
-			if($('input[name=education]').is(":checked") == true){
-				if($('input[name=eduType]').is(":checked") == false){
-					alert("학력정보 구분값을 선택해 주세요.");
-					return;
-				}
-			}
-			
-			var f = document.frm;
-			$('#search_yn').val('Y');
-			f.action = "/mobile2021/recruit/recruit.do";
-			f.pageNo.value = "1";
-			f.submit();
-		}
-		
-		function viewsub(idx) {
-			$('#view_'+idx).attr('href','#');
-			
-			var form = document.frm;
-			$("#idx").val(idx);
-			form.action = "/mobile2021/recruit/recruitView.do";
-			form.submit();
-		}
-		
-		function addRecruit() {
-			/* var frm = document.frm;
-
-			if( $('input[name=idxs]:checked').size() < 1) {
-				alert("선택한 채용정보가 없습니다.")
-				return;
-			}
-			
-			frm.action = "/mobile2021/recruit/insertRecruit.do";
-			frm.submit(); */
-			
-			//23.01.31 ajax로 변경
-			$.ajax({
-				type : "POST",
-				url : "/mobile2021/recruit/insertRecruit.do",
-				data : $("#frm").serialize(),
-				dataType: 'json',
-				success: function(data) {
-					if(data.resultmessage == "LN"){
-						alert("로그인 해 주세요.");
-						location.href="/main.do";
-					}else{
-						alert(data.resultmessage);
-					}
-				},
-				error : function(msg) {
-					alert("관심채용정보등록을 실패했습니다.");
-				}
-			}); 
-		}
-		
-		function init_detail_code() {
-			if( $('input[name="detail_code"]:checked').size() > 0) {
-				$("#detailResult").html("&nbsp");
-				$("input[name='detail_code']:checked").each(function(index) { 
-
-					var chk = $("input[name='detail_code']:checked").length-1;
-					
-					if(index != chk){
-						$("#detailResult").append($("#"+this.value).html()+" 외"+chk);
-						return false;
-					}else{
-						$("#detailResult").append($("#"+this.value).html());
-					}
-				})
-			}else {
-				$("#detailResult").html("표준직무(NCS)");
-			}
-		}
-		
-		function init_location() {
-			if( $('input[name="location"]:checked').size() > 0) {
-				$("#locationResult").html("&nbsp");
-				$("input[name='location']:checked").each(function(index) { 
-
-					var chk = $("input[name='location']:checked").length-1;
-					
-					if(index != chk){
-						$("#locationResult").append($("#"+this.value).html()+" 외"+chk);
-						return false;
-					}else{
-						$("#locationResult").append($("#"+this.value).html());
-					}
-				})
-			}else {
-				$("#locationResult").html("근무지");
-			}
-		}
-		
-		function init_area() {
-			if( $('input[name="area"]:checked').size() > 0) {
-				$("#areaResult").html("&nbsp");
-				$("input[name='area']:checked").each(function(index) { 
-
-					var chk = $("input[name='area']:checked").length-1;
-					
-					if(index != chk){
-						$("#areaResult").append($("#"+this.value).html()+" 외"+chk);
-						return false;
-					}else{
-						$("#areaResult").append($("#"+this.value).html());
-					}
-				})
-			}else {
-				$("#areaResult").html("근무분야");
-			}
-		}
-		
-		function fnEnterEvent(e, fn){
-			if(e.keyCode == 13){
-				eval(fn);
-				return false;
-			}
-			else{
-				return true;
-			}
-		}
-		
-	</script>
+	// 팝업 레이어 드래그
+	$("#wrap .pop_layer").draggable();
+	//alert(cf_IsMobile());  
+	if(cf_IsMobile()){
+		$("#m_header").show();
+		$("#header").hide();
+	}else{
+		$("#header").show();
+		$("#m_header").hide();
+	}
+});
+</script>
 </head>
+
 <body>
 
-<form id="frm" name="frm" method="get">
-	<input type="hidden" name="_csrf" value=""/>
-	<input type="hidden" name="pageNo" id="pageNo" value="1" /> 
-	<input type="hidden" name="apba_type" id="apba_type" />
-	<input type="hidden" name="idx" id="idx" />
-	<input type="hidden" name="search_yn" id="search_yn" value="Y" />
-	
-	<div id="wrap">
-        <div class="popup-background" style=""></div>
-		<!-- header -->
-				
-		
-
-
-
-
-
-
-
-	 	 
-		<script type="text/javascript">
-			$(document).ready(function(){
-				if(!isApp()){
-					$('#pushAgree').hide();
-					mobileCheck();
-				}
-				
-				function mobileCheck() {
-					
-					if(navigator.userAgent.match(/Android/i)){
-						$('.androidDownBanner').show();
-						
-					}else if(navigator.userAgent.match(/iPhone/i)){
-						$('.iosDownBanner').show();
-					}
-				}
-
-				//로그인이 되어있고 조회날짜가 어제인 경우에만 알람여부 조회
-				if('' != '' && '' != '' && '' != '20260807'){
-					//로그인이 되어있고 한번도 조회하지 않았을때만 알람여부 조회
-					
-					$.ajax({
-						url : '/api/isNewAlarmExist.do',
-						type : 'POST',
-						dataType: 'json',
-						success: function(data) {
-							console.log(data);
-							if(data.flag == 'SUCC'){
-								if(data.NewAlarmYn == 'Y'){
-									$('#newAlarm').removeClass('disable');
-								}
-							}
-						},
-						error : function(msg) {
-							//alert("실패했습니다.");
-							console.log("header error msg: " +msg);
-						}
-					}); 
-				}
-			});
-		
-			function fn_chkPush(getPushYn){
-				
-				$.ajax({
-					url : '/api/pushAgree.do',
-					type : 'POST',
-					headers: { "X-CSRF-TOKEN" : ""},
-					data : {'push_agree' : getPushYn},
-					dataType: 'text',
-					success: function(data) {
-						               
-						if(data == 'Y'){
-							alert('푸시 수신 동의 처리가 완료되었습니다.');
-							
-							$('#pushAgree').removeAttr('onclick');
-							$('#pushAgree').attr('onclick','javascript:fn_chkPush("N");');
-							
-							$('#pushAgreeBtn').removeAttr('onclick');
-							$('#pushAgreeBtn').attr('onclick','javascript:fn_chkPush("N");');
-							$('#pushAgreeBtn').addClass('on');
-							
-						}else if(data == 'N'){
-							alert('푸시 수신 거부 처리가 완료되었습니다.');
-							
-							$('#pushAgree').removeAttr('onclick');
-							$('#pushAgree').attr('onclick','javascript:fn_chkPush("Y");');
-							
-							$('#pushAgreeBtn').removeAttr('onclick');
-							$('#pushAgreeBtn').attr('onclick','javascript:fn_chkPush("Y");');
-							$('#pushAgreeBtn').removeClass('on');
-						}
-						
-					},
-					error : function(msg) {
-						alert("잠시 후 다시 시도해주십시요.");
-					}
-				});
-			}
-			
-		</script>
-		<div id="header">
-			<a href="#" class="btn_fullmenu"><img src="/jobalio/img/btn_fullmenu.png" alt="전체메뉴"></a>
-			<h1><a href="/mobile2021/recruit/recruit.do"><img src="/jobalio/img/img_logo.png" alt="잡알리오"></a></h1>
-			<div class="mymenu">
-				
-				
-					
-					
-					
-						<a href="/mobile2021/member/login.do"><img src="/jobalio/img/ico_people.png" alt="마이페이지"></a>
-					
-				
-			</div>
-			<div class="gnb">
-				<ul>
-					<li><a href="/mobile2021/recruit/recruit.do" id="gnb01">공공기관 채용정보</a></li>
-					<li><a href="/mobile2021/info/info.do" id="gnb02">공공기관 정보</a></li>
-					<li><a href="/mobile2021/introduce/introduce.do" id="gnb03">잡알리오 소개</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="fullmenu">
-			<div class="inner">
-				<a href="#" class="close_fullmenu"><img src="/jobalio/img/btn_close.png" alt="닫기"></a>
-
-	
-				<!-- 로그아웃 상태 -->
-				<div class="info">
-					<div class="name"><strong>회원님</strong></div>
-					<p>로그인하여 더 많은 정보를 확인해 보세요.</p>
-					<div class="btn">
-						<ul>
-							
-							<li><a href="/mobile2021/member/login.do">로그인</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="fullmenu_list">
-					<ul>
-						<li>
-							<a href="/mobile2021/introduce/introduce.do" class="noChild">잡알리오 소개</a>
-						</li>
-						<li>
-							<a href="/mobile2021/recruit/recruit.do" class="noChild">공공기관 채용정보</a>
-						</li>
-						<li>
-							<a href="#">공공기관 정보</a>
-							<ul>
-								<li><a href="/mobile2021/info/info.do">공공기관 이란?</a></li>
-								<li><a href="/mobile2021/info/info02.do">공공기관 정보</a></li>
-								<li><a href="/mobile2021/info/info03.do">공공기관 비교</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">마이페이지</a>
-							<ul>
-								<li><a href="/mobile2021/recruit/adoptrecruit.do">맞춤 채용정보</a></li>
-								<li><a href="/mobile2021/recruit/favoritinfo.do">관심 채용정보</a></li>
-<!-- 								<li><a href="/mobile2021/info/favoritorg.do">관심 공공기관</a></li> -->
-							</ul>
-						</li>
-					</ul>
-				</div>
-				<!-- //로그아웃 상태 -->
-	
-	
-
-				<div class="banner">
-					<ul>
-						<li><a href="https://www.alio.go.kr" target="_blank" title="새창"><img src="/jobalio/img/img_leftBanner01.png" alt="알리오포털"></a></li>
-						<li><a href="https://www.alioplus.go.kr" target="_blank" title="새창"><img src="/jobalio/img/img_leftBanner02.png" alt="알리오플러스"></a></li>
-						<li><a href="https://www.mofe.go.kr" target="_blank" title="새창"><img src="/jobalio/img/img_leftBanner03.png" alt="재정경제부"></a></li>
-						<li  class="androidDownBanner" style="display:none;"><a href="https://play.google.com/store/apps/details?id=com.moef.jobalio" target="_blank" title="새창"><img src="/jobalio/img/img_leftBanner04.jpg" alt="구글플레이어 다운로드"></a></li>
-						<li  class="iosDownBanner" style="display:none;"><a href="itms-apps://itunes.apple.com/kr/app/apple-store/id1584600459" target="_blank" title="새창"><img src="/jobalio/img/img_leftBanner05.jpg" alt="애플 다운로드"></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<!-- //header -->
-
-		<div id="container">
-			<div class="recruit_wrap">
-                
-<link rel="stylesheet" type="text/css" href="/css/swiper/swiper.css" media="all"/>
-<link rel="stylesheet" type="text/css" href="/css/swiper/swiper.min.css" media="all"/>
-<script type="text/javascript" src="/js/swiper/swiper.js"></script>
-<script type="text/javascript" src="/js/swiper/swiper.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="/css/mainPop.css" media="all"/>
-<script src="/js/popup/popup-common.js" type="text/javascript" charset="UTF-8"></script>
-
-
-
-<div class="swiper_wrap popupSwiper" style="display: none;"></div>
-<div class="popupText" style="display: none;"></div>
-
-
-<div class="swiper_wrap popupSwiper_m" style="display: none;"></div>
-<div class="popupText-m" style="display: none;"></div>
-
-
-				<div class="section">
-					<div class="recruit_search">
-						<h2>채용검색</h2>
-						<a href="#" class="open_pop_share">공유하기</a>
-						<div class="search_area">
-							<ul>
-								<li><a href="#" class="open_pop_reqruitArea" id="detailResult">표준직무(NCS)</a></li>
-								<li><a href="#" class="open_pop_workArea" id="locationResult">근무지</a></li>
-								<li><a href="#" class="open_pop_areaList" id="areaResult">근무분야</a></li>
-								
-							</ul>
-							<!-- 24.08.20 검색조건 추가 -->
-							<ul>
-								<li class="selectbox">
-									<select title="검색조건 선택" name="search_type" id="search_type">
-										<option selected="selected" value="">전체</option>
-										<option  value="title">제목</option>
-										<option  value="treat_con">우대조건</option>
-										<option  value="elig">응시자격</option>
-										<option  value="pref_con">우대내용</option>
-									</select>
-								</li>
-								<li class="searchbox"><input type="text" name="keyword" id="tit01" value="" placeholder="검색어를 입력해주세요." onkeypress="return fnEnterEvent(event,'fn_search()');"></li>
-							</ul>
-						</div>
-						<div class="btn_area">
-							<ul>
-								<li><a href="#" class="btn_style02 open_recruit_detailSearch">상세검색</a></li>
-								<li><a href="javascript:fn_search();">검색</a></li>
-							</ul>
-						</div>
-						<div class="recruit_detailSearch">
-							<div class="section">
-								<h3>고용형태</h3>
-								<ul class="chk_list">
-									<li><label class="chkN"><input type="checkbox" name="work_type" class="workClass" value="R1010"><span></span> 정규직</label></li>
-									<li><label class="chkN"><input type="checkbox" name="work_type" class="workClass" value="R1030"><span></span> 무기계약직</label></li>
-									<li><label class="chkN"><input type="checkbox" name="work_type" class="workClass" value="R1040"><span></span> 비정규직</label></li>
-									<li class="two"><label class="chkN"><input type="checkbox" name="work_type" class="workClass" value="R1060"><span></span> 청년인턴(체험형)</label></li>
-									<li class="two"><label class="chkN"><input type="checkbox" name="work_type" class="workClass" value="R1070"><span></span> 청년인턴(채용형)</label></li>
-								</ul>
-							</div>
-							<div class="section">
-								<h3>채용구분</h3>
-								<ul class="chk_list">
-									<li><label class="chkN"><input type="checkbox" name="career" class="careerClass" value="R2010"><span></span> 신입</label></li>
-									<li><label class="chkN"><input type="checkbox" name="career" class="careerClass" value="R2020"><span></span> 경력</label></li>
-									<li><label class="chkN"><input type="checkbox" name="career" class="careerClass" value="R2030"><span></span> 신입+경력</label></li>
-									<li><label class="chkN"><input type="checkbox" name="career" class="careerClass" value="R2040"><span></span> 외국인 전형</label></li>
-								</ul>
-							</div>
-							<div class="section">
-								<h3>학력정보</h3>
-								<ul class="chk_list">
-									<li><label class="chkN"><input type="radio" id="single" name="eduType" value="single"  ><span></span> 단일(AND)</label></li>
-									<li><label class="chkN"><input type="radio" id="multi" name="eduType" value="multi"  ><span></span> 중복(OR)</label></li>
-								</ul>
-								<ul class="chk_list">
-									<li><label class="chkN"><input type="checkbox" name="education" class="educationClass" value="R7010"><span></span> 학력무관</label></li>
-									<li><label class="chkN"><input type="checkbox" name="education" class="educationClass" value="R7020"><span></span> 중졸이하</label></li>
-									<li><label class="chkN"><input type="checkbox" name="education" class="educationClass" value="R7030"><span></span> 고졸</label></li>
-									<li><label class="chkN"><input type="checkbox" name="education" class="educationClass" value="R7040"><span></span> 대졸(2-3년)</label></li>
-									<li><label class="chkN"><input type="checkbox" name="education" class="educationClass" value="R7050"><span></span> 대졸(4년)</label></li>
-									<li><label class="chkN"><input type="checkbox" name="education" class="educationClass" value="R7060"><span></span> 석사</label></li>
-									<li><label class="chkN"><input type="checkbox" name="education" class="educationClass" value="R7070"><span></span> 박사</label></li>
-								</ul>
-							</div>
-							<div class="section">
-								<h3>기관유형</h3>
-								<div class="select">
-									<select title="기관유형 선택" name="org_type" id="org_type">
-										<option selected="selected" value="">전체</option>
-										<option value="A2001" >공기업(시장형)</option>
-										<option value="A2002" >공기업(준시장형)</option>
-										<option value="A2003" >준정부기관(기금관리형)</option>
-										<option value="A2004" >준정부기관(위탁집행형)</option>
-										<option value="A2005" >기타공공기관</option>
-									</select>
-								</div>
-							</div>
-							<div class="section">
-								<h3>기관명</h3>
-								<div id="hidden_org_name" data-value='한국수력원자력' style="display:none;"></div>
-								<div class="select">
-									<select id="org_name" name="org_name">
-										<option value="">전체</option>
-										
-									</select>
-								</div>
-							</div> 
-							<div class="section">
-								<div class="btn_area02">
-									<ul>
-										<li class="long"><a href="javascript:fn_search();" class="btn_style01">검색</a></li>
-										<li class="two"><a href="javascript:fn_reset();" class="btn_style02">초기화</a></li>
-										<li class="two"><a href="#" class="btn_style03 close_recruit_detailSearch">닫기</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="section">
-					<h2>채용정보</h2>
-					<div class="sort">
-						<ul>
-							<li>
-								<select name="order" id="order" onchange="fn_search();">
-									<option value="REG_DATE" selected="selected">등록일순</option>
-									<option value="TERM_END" >마감일순</option>
-								</select>
-							</li>
-							<li>
-								<select name="ing" id="ing" onchange="fn_search();">
-									<option value="" selected="selected">진행상태</option>
-									<option value="2" >진행중</option>
-									<option value="3" >마감</option>
-								</select>
-							</li>
-						</ul>
-					</div>
-					
-					<div class="recruit_list">
-						<ul>
-							
-								
-									
-										<li>
-											<a href="/mobile2021/recruit/recruitView.do?idx=303141">
-												<div class="workPlace">한국수력원자력(주)</div>
-												<div class="tit">2026년도 제7차 경력사원(전문계약직) 선발</div>
-												<div class="date">
-													
-													
-													 
-													
-														
-													 
-													전남광주 
-													
-												 /  
-												 	 
-												 	 
-												 	
-														
-													  
-													비정규직 
-													
-												 / 2026.07.28 ~ 26.08.12
-												 / 
-														
-															<span class="cate01">진행중</span>
-														
-														
-														
-													
-												</div>
-											</a>
-											
-										</li>
-									
-										<li>
-											<a href="/mobile2021/recruit/recruitView.do?idx=303140">
-												<div class="workPlace">한국수력원자력(주)</div>
-												<div class="tit">2026년도 제6차 경력사원(전문원, 경력직원) 선발</div>
-												<div class="date">
-													
-													
-													 
-													
-														
-													
-														
-													
-														
-													
-														
-													 
-													경기 
-													
-														외 3
-													
-												 /  
-												 	 
-												 	 
-												 	
-														
-													  
-													정규직 
-													
-												 / 2026.07.28 ~ 26.08.12
-												 / 
-														
-															<span class="cate01">진행중</span>
-														
-														
-														
-													
-												</div>
-											</a>
-											
-										</li>
-									
-										<li>
-											<a href="/mobile2021/recruit/recruitView.do?idx=302994">
-												<div class="workPlace">한국수력원자력(주)</div>
-												<div class="tit">2026년도 제4차 신입사원(고졸수준 일반전형) 선발</div>
-												<div class="date">
-													
-													
-													 
-													
-														
-													
-														
-													
-														
-													
-														
-													
-														
-													
-														
-													
-														
-													
-														
-													
-														
-													 
-													부산 
-													
-														외 8
-													
-												 /  
-												 	 
-												 	 
-												 	
-														
-													  
-													정규직 
-													
-												 / 2026.07.23 ~ 26.08.07
-												 / 
-														
-															<span class="cate01">진행중</span>
-														
-														
-														
-													
-												</div>
-											</a>
-											
-										</li>
-									
-										<li>
-											<a href="/mobile2021/recruit/recruitView.do?idx=302977">
-												<div class="workPlace">한국수력원자력(주)</div>
-												<div class="tit">2026년 제2차 체코원전사업처 기간제근로자(통·번역사) 채용</div>
-												<div class="date">
-													
-													
-													 
-													
-														
-													 
-													경북 
-													
-												 /  
-												 	 
-												 	 
-												 	
-														
-													  
-													비정규직 
-													
-												 / 2026.07.23 ~ 26.08.07
-												 / 
-														
-															<span class="cate01">진행중</span>
-														
-														
-														
-													
-												</div>
-											</a>
-											
-										</li>
-									
-										<li>
-											<a href="/mobile2021/recruit/recruitView.do?idx=302968">
-												<div class="workPlace">한국수력원자력(주)</div>
-												<div class="tit">2026년도 제3차 신입사원(대졸수준) 선발</div>
-												<div class="date">
-													
-													
-													 
-													
-														
-													
-														
-													
-														
-													
-														
-													
-														
-													
-														
-													
-														
-													
-														
-													
-														
-													 
-													부산 
-													
-														외 8
-													
-												 /  
-												 	 
-												 	 
-												 	
-														
-													  
-													정규직 
-													
-												 / 2026.07.22 ~ 26.08.06
-												 / 
-														
-														
-															<span class="cate02">마감</span>
-														
-														
-													
-												</div>
-											</a>
-											
-										</li>
-									
-										<li>
-											<a href="/mobile2021/recruit/recruitView.do?idx=302701">
-												<div class="workPlace">한국수력원자력(주)</div>
-												<div class="tit">2026년도 엘다바건설소 기간제근로자(러시아어 통·번역사) 채용</div>
-												<div class="date">
-													
-													
-													 
-													
-														
-													 
-													해외 
-													
-												 /  
-												 	 
-												 	 
-												 	
-														
-													  
-													비정규직 
-													
-												 / 2026.07.15 ~ 26.07.30
-												 / 
-														
-														
-															<span class="cate02">마감</span>
-														
-														
-													
-												</div>
-											</a>
-											
-										</li>
-									
-										<li>
-											<a href="/mobile2021/recruit/recruitView.do?idx=302128">
-												<div class="workPlace">한국수력원자력(주)</div>
-												<div class="tit">2026년도 제2차 신입사원(청원경찰) 선발</div>
-												<div class="date">
-													
-													
-													 
-													
-														
-													
-														
-													
-														
-													 
-													울산 
-													
-														외 2
-													
-												 /  
-												 	 
-												 	 
-												 	
-														
-													  
-													정규직 
-													
-												 / 2026.06.30 ~ 26.07.15
-												 / 
-														
-														
-															<span class="cate02">마감</span>
-														
-														
-													
-												</div>
-											</a>
-											
-										</li>
-									
-										<li>
-											<a href="/mobile2021/recruit/recruitView.do?idx=302089">
-												<div class="workPlace">한국수력원자력(주)</div>
-												<div class="tit">2026년도 제5차 경력사원(한울본부 청경대장) 선발</div>
-												<div class="date">
-													
-													
-													 
-													
-														
-													 
-													경북 
-													
-												 /  
-												 	 
-												 	 
-												 	
-														
-													  
-													정규직 
-													
-												 / 2026.06.29 ~ 26.07.14
-												 / 
-														
-														
-															<span class="cate02">마감</span>
-														
-														
-													
-												</div>
-											</a>
-											
-										</li>
-									
-										<li>
-											<a href="/mobile2021/recruit/recruitView.do?idx=301938">
-												<div class="workPlace">한국수력원자력(주)</div>
-												<div class="tit">2026년도 제4차 경력사원(전문계약직) 선발</div>
-												<div class="date">
-													
-													
-													 
-													
-														
-													
-														
-													 
-													울산 
-													
-														외 1
-													
-												 /  
-												 	 
-												 	 
-												 	
-														
-													  
-													비정규직 
-													
-												 / 2026.06.23 ~ 26.07.08
-												 / 
-														
-														
-															<span class="cate02">마감</span>
-														
-														
-													
-												</div>
-											</a>
-											
-										</li>
-									
-										<li>
-											<a href="/mobile2021/recruit/recruitView.do?idx=301118">
-												<div class="workPlace">한국수력원자력(주)</div>
-												<div class="tit">2026년 제2차 해외원전건설처 기간제근로자(통·번역사) 채용</div>
-												<div class="date">
-													
-													
-													 
-													
-														
-													 
-													경북 
-													
-												 /  
-												 	 
-												 	 
-												 	
-														
-													  
-													비정규직 
-													
-												 / 2026.06.04 ~ 26.06.19
-												 / 
-														
-														
-															<span class="cate02">마감</span>
-														
-														
-													
-												</div>
-											</a>
-											
-										</li>
-									
-								
-	
-								
-							
-						</ul>
-					</div>
-					<div class="paging">
-						<a href="#" onclick="return false;" class="btn"><img src="/jobalio/img/btn_page_prev_end.png" alt="처음페이지로 이동" /></a>
-<a href="#" onclick="return false;" class="btn"><img src="/jobalio/img/btn_page_prev.png" alt="이전페이지로 이동" /></a>
-<strong>1</strong>
-<a href="#" onclick="goPage(2);return false;" >2</a>
-<a href="#" onclick="goPage(3);return false;" >3</a>
-<a href="#" onclick="return false;" class="btn"><img src="/jobalio/img/btn_page_next.png" alt="다음페이지로 이동" /></a>
-<a href="#" onclick="goPage(3);return false;" class="btn"><img src="/jobalio/img/btn_page_next_end.png" alt="마지막페이지로 이동" /></a>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<!-- footer -->
-				
-		<div id="footer" text-algint="center">
-			<div class="foot_menu">
-				<p>
-					<a href="/mobile2021/copyright.do">저작권정책</a> &emsp;&nbsp;
-					<a href="/mobile2021/email.do">이메일무단수집거부</a> &emsp;&nbsp;
-					<a href="/mobile2021/privacy.do">개인정보처리방침</a>
+<div id="wrap">
+	<!-- ===================== popUp 레이어 =================== -->
+	<div class="pop_layer" id="dragPopLayer">
+		<div class="pop_warp">
+			<div class="p_title">
+				<h2></h2>
+				<p class="pop_down">
+					<a href="javascript:;" id="pop_down_btn" title="닫기"><img src="/recruit/common/img/btn_fullmenuClo_20201130.png" alt="닫기"></a>
 				</p>
 			</div>
-			<div class="address">
-				(우)30112 세종특별자치시 도움6로 42 정부세종청사 재정경제부
-			</div>
-			<div class="copyright">
-				Copyright © 2011 Ministry of Finance and Economy. 
-				<br>
-				Republic of Korea. Some Right Reserved.
+			<div class="pop_content">
+				<div class="popup_list" id="khnpPopDiv"></div>
 			</div>
 		</div>
-		<!-- //footer -->
-		
 	</div>
 	
-	<!-- 표준직무(NCS) 선택 팝업 -->
-	<div class="pop_reqruitArea">
-		<div class="inner">
-			<h2>표준직무(NCS) 선택</h2>
-			<a href="#" class="close_pop_reqruitArea" onclick="javascript:fn_selectDetailCode();"><img src="/jobalio/img/btn_close.png" alt="닫기"></a>
-			<div class="list">
+	<!-- ===================== popUp 레이어 =================== -->
+	<!-- ********************************************************* PC 메뉴 ********************************************************* -->
+
+	<div id="header" style="display:none;">
+		<h1 style="z-index:999;"><a href="/recruit/main/index.do"><img src="/recruit/common/img/img_logo.png" alt="한국수력원자력 채용"/></a></h1>
+		<div class="go_ch">
+			<ul>
+	            <li><a href="javascript:;" id="on1"  onClick="fn_btnOn('1')" style="color:#5789cb">일반 채용</a></li>
+	            <li><a href="https://www.khnp.co.kr/trecruit" id="on2"  onClick="fn_btnOn('2')">기간제 채용</a></li>
+	            <li><a href="javascript:;" id="on3"  onClick="fn_btnOn('3')">개인정보 처리방침</a></li>
+	        </ul>
+	    </div>
+		<div class="gnb">
+			<ul>			
+
+<li>
+    <a href='/recruit/ri00/RI10100.do?mid=MI000000000000000498' id='gnb01'>채용안내</a>
+    <ul>
+         <li><a href='/recruit/ri00/RI10100.do?mid=MI000000000000000498'>핵심가치와 인재상</a></li>
+         <li><a href='/recruit/ri00/RI30100.do?mid=MI000000000000000498'>근무조건 및 대우</a></li>
+         <li><a href='/recruit/ri00/RI50100.do?mid=MI000000000000000498'>직무소개</a></li>
+    </ul>
+</li>
+<li>
+    <a href='/recruit/rj00/RJ10100.do?mid=MI000000000000000484' id='gnb02'>채용공고</a>
+    <ul>
+         <li><a href='/recruit/rj00/RJ10100.do?mid=MI000000000000000484'>채용공고</a></li>
+         <li><a href='/recruit/rj00/RJ20100.do?mid=MI000000000000000484'>공지사항</a></li>
+    </ul>
+</li>
+<li>
+    <a href='/recruit/rk10/RK10000.do?mid=MI000000000000000487' id='gnb03'>나의채용</a>
+    <ul>
+         <li><a href='/recruit/rk10/RK10100.do?mid=MI000000000000000487'>입사지원</a></li>
+         <li><a href='/recruit/rk00/RK30100.do?mid=MI000000000000000487'>합격확인</a></li>
+         <li><a href='/recruit/rk00/RK10540.do?mid=MI000000000000000487'>수험표출력</a></li>
+         <li><a href='/recruit/rk60/RK10430.do?mid=MI000000000000000487'>지원서출력</a></li>
+    </ul>
+</li>
+<li>
+    <a href='/recruit/inquiry/list0010.do?mid=MI000000000000000489' id='gnb04'>채용문의</a>
+    <ul>
+         <li><a href='/recruit/inquiry/list0010.do?mid=MI000000000000000489'>FAQ</a></li>
+         <li><a href='/recruit/inquiry/RL20160.do?mid=MI000000000000000489'>Q&A</a></li>
+         <li><a href='/recruit/rl30/RL30200.do?mid=MI000000000000000489'>채용서류 반환청구</a></li>
+    </ul>
+</li>
+<li>
+    <a href='/recruit/rn00/RN10000.do?mid=MI000000000000000542' id='gnb05'>고졸합격자관리</a>
+    <ul>
+         <li><a href='/recruit/rn00/RN10130.do?mid=MI000000000000000542'>인적사항</a></li>
+         <li><a href='/recruit/highSchool/RN20100.do?mid=MI000000000000000542'>공지사항</a></li>
+         <li><a href='/recruit/highSchool/RN30100.do?mid=MI000000000000000542'>Q&A</a></li>
+    </ul>
+</li>
+<li>
+    <a href='/recruit/rk50/RK50100.do?mid=MI000000000000000492' id='gnb06'>사회형평인재</a>
+    <ul>
+         <li><a href='/recruit/rk50/RK50100.do?mid=MI000000000000000492'>사회형평인재 상시등록</a></li>
+    </ul>
+</li>
+
+			</ul>
+		</div>
+		<a href="#" class="btn_fullmenu"><img src="/recruit/common/img/btn_fullmenu.png" alt="전체메뉴"/></a>
+		<div class="bg_sub_gnb"></div>
+	</div>
+	
+
+	<!-- ********************************************************* 모바일 메뉴 ********************************************************* -->
+	<div id="m_header" style="display:none;">
+		<h1><a href="/recruit/main/index.do"><img src="/recruit/common/img/img_logo_m.png" alt="한국수력원자력 채용"/></a></h1>		
+		<a href="#" class="open_mobile_fullmenu"><img src="/recruit/common/img/btn_mobile_fullmenu.png" alt="모바일 전체메뉴"/></a>
+		<div class="mobile_fullmenu">
+			<div class="in">
+				<h1><a href="#"><img src="/recruit/common/img/img_logo_m02.png" alt="한국수력원자력 채용"/></a></h1>
+				<a href="#" class="close_mobile_fullmenu"><img src="/recruit/common/img/btn_close.png" alt="닫기"/></a>
 				<ul>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600001"><span></span><span id="R600001">사업관리</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600002"><span></span><span id="R600002">경영·회계·사무</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600003"><span></span><span id="R600003">금융·보험</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600004"><span></span><span id="R600004">교육·자연·사회과학</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600005"><span></span><span id="R600005">법률·경찰·소방·교도·국방</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600006"><span></span><span id="R600006">보건·의료</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600007"><span></span><span id="R600007">사회복지·종교</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600008"><span></span><span id="R600008">문화·예술·디자인·방송</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600009"><span></span><span id="R600009">운전·운송</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600010"><span></span><span id="R600010">영업판매</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600011"><span></span><span id="R600011">경비·청소</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600012"><span></span><span id="R600012">이용·숙박·여행·오락·스포츠</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600013"><span></span><span id="R600013">음식서비스</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600014"><span></span><span id="R600014">건설</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600015"><span></span><span id="R600015">기계</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600016"><span></span><span id="R600016">재료</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600017"><span></span><span id="R600017">화학</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600018"><span></span><span id="R600018">섬유·의복</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600019"><span></span><span id="R600019">전기·전자</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600020"><span></span><span id="R600020">정보통신</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600021"><span></span><span id="R600021">식품가공</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600022"><span></span><span id="R600022">인쇄·목재·가구·공예</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600023"><span></span><span id="R600023">환경·에너지·안전</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600024"><span></span><span id="R600024">농림어업</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="detail_code" class="detailClass" value="R600025"><span></span><span id="R600025">연구</span></label></li>
+					<li>
+						<a href="/recruit/ri00/RI10100.do?mid=MI000000000000000498">채용안내</a>
+						<ul>
+							<li><a href="/recruit/ri00/RI10100.do?mid=MI000000000000000498">핵심가치와 인재상</a></li>
+							
+							<li><a href="/recruit/ri00/RI30100.do?mid=MI000000000000000498">근무조건 및 대우</a></li>
+							
+							<li><a href="/recruit/ri00/RI50100.do?">직무소개</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/recruit/rj00/RJ10100.do?mid=MI000000000000000484">채용공고</a>
+						<ul>
+							<li><a href="/recruit/rj00/RJ10100.do?mid=MI000000000000000484">채용공고</a></li>
+							<li><a href="/recruit/rj00/RJ20100.do?mid=MI000000000000000484">공지사항</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/recruit/rk00/RK20110.do?mid=MI000000000000000487">나의채용</a>
+						<ul>
+							
+							<li><a href="/recruit/rk00/RK30100.do?mid=MI000000000000000487">합격확인</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/recruit/inquiry/list0010.do?mid=MI000000000000000489">채용문의</a>
+						<ul>
+							<li><a href="/recruit/inquiry/list0010.do?mid=MI000000000000000489">FAQ</a></li>
+							<li><a href="/recruit/inquiry/RL20100.do?mid=MI000000000000000489">Q&amp;A</a></li>
+						</ul>
+					</li>
+					<!-- 
+					<li>
+						<a href="/recruit/WEB-INF/html_user/people/REKQ0020_NEW.jsp">한수원사람들</a>
+						<ul>
+							<li><a href="/recruit/WEB-INF/html_user/people/REKQ0020_NEW.jsp">한수원JOB스케치</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/recruit/WEB-INF/html_user/sub/highSchool/RECMQ0190_NEW.jsp">고졸합격자관리</a>
+						<ul>
+							<li><a href="/recruit/WEB-INF/html_user/highSchool/RECMQ0190_NEW.jsp">인적사항</a></li>
+							<li><a href="/recruit/WEB-INF/html_user/highSchool/REHQ0020_NEW.jsp">공지사항</a></li>
+							<li><a href="/recruit/WEB-INF/html_user/highSchool/REHQ0030_NEW.jsp">Q&amp;A</a></li>
+						</ul>
+					</li>
+					 -->
 				</ul>
 			</div>
-			<div class="btn">
-				<a href="javascript:fn_selectDetailCode();">확인</a>
-			</div>
 		</div>
 	</div>
-	<!-- //표준직무(NCS) 선택 팝업 -->
+
+	<!-- //모바일 메뉴 -->
+
+<script type="text/javascript">
+//증빙서류 팝업
+function fnGuideApplicantPop(){	
+	fn_OpenPopup('/recruit/rk20/RK10330.do', 800, 700);
+}
+
+//가점 및 우대요건 입력방법 팝업
+function fnPrimeScorePop(){	
+	//ASIS 나의채용 > 입사지원 > 지원서작성 접근시 전문계약직일 경우에만
+	//TOBE 나의채용 > 입사지원 > 다음 > rk00.selectApplyerInfo > rk10301.jsp > $("#btn_Next").click(function(){
+	//전문진 계약직구분은 넘어옴 recrGubunId AND B.RECR_GUBUN_ID IN ( 'BB010001' /*전문계약직(정보보안)*/, 'OO010001' /*전문계약직(사업금융)*/ ) 이면 팝업호출함.
+	fn_OpenPopup('/recruit/rk20/RK10340.do', '720', '450'); 
+}
 	
-	<!-- 근무지 선택 팝업 -->
-	<div class="pop_workArea">
-		<div class="inner">
-			<h2>근무지 선택</h2>
-			<a href="#" class="close_pop_workArea" onclick="javascript:fn_selectLocation();"><img src="/jobalio/img/btn_close.png" alt="닫기"></a>
-			<div class="list">
-				<ul>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3009"><span></span><span id="R3009">해외</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3010"><span></span><span id="R3010">서울특별시</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3011"><span></span><span id="R3011">인천광역시</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3012"><span></span><span id="R3012">대전광역시</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3013"><span></span><span id="R3013">대구광역시</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3014"><span></span><span id="R3014">부산광역시</span></label></li>
+function fn_btnOn(param) { 
+	//20241119 최지현 수정
+	if(param == "3") {		//popup 개인정보처리방침
+		//fn_OpenPopup('/recruit/rk20/RK10350.do', 800, 700);
+		fn_OpenPopup('https://www.khnp.co.kr/main/contents.do?key=3567', 1200, 710);
+	}
+}
+
+</script>
+
+	
+	<!-- wrap -->			
+	<div id="container">
+		<ul id="menu" class="main_nav">
+			<li data-menuanchor="mainSection0" class="active"><a href="#mainSection0">진행중인 채용</a></li>
+			<li data-menuanchor="mainSection1"><a href="#mainSection1">한국수력원자력 인재상</a></li>
+			<li data-menuanchor="mainSection2"><a href="#mainSection2">공지사항</a></li>
+		</ul>
+		<div id="fullpage">
+			<div id="section0" class="section fp-section">
+				<form id="recrOpeningForm">
+					<input type="hidden" name="recrOpeningId" id="recrOpeningId" />
+					<input type="hidden" name="recrOpeningNm" id="recrOpeningNm" />
+					<input type="hidden" name="recrGubunId" id="recrGubunId" />
+					<input type="hidden" name="recrGubunNm" id="recrGubunNm" />
+					<input type="hidden" name="openingSeq" id="openingSeq" />
+					<input type="hidden" name="srchRecrOpeningId"  id="srchRecrOpeningId" >
+					<input type="hidden" name="rnum" id="rnum" >
 					
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3016"><span></span><span id="R3016">울산광역시</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3017"><span></span><span id="R3017">경기도</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3018"><span></span><span id="R3018">강원도</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3019"><span></span><span id="R3019">충청남도</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3020"><span></span><span id="R3020">충청북도</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3021"><span></span><span id="R3021">경상북도</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3022"><span></span><span id="R3022">경상남도</span></label></li>
-					
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3027"><span></span><span id="R3027">전남광주통합특별시</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3024"><span></span><span id="R3024">전라북도</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3025"><span></span><span id="R3025">제주특별자치도</span></label></li>
-					<li><label class="chkN"><input type="checkbox" name="location" class="locationClass" value="R3026"><span></span><span id="R3026">세종특별자치시</span></label></li>
-				</ul>
+					<div class="sectionCont">
+						<h2>진행중인 채용</h2>
+						<div class="sub_txt">Energy TRUST 당신과 함께 만들어가겠습니다.</div>
+						<div class="notice_list_wrap">
+							<a href="javascript:fn_More();" class="btn_more">더보기</a>
+							<div class="notice_list swiper-container">
+								<div class="swiper-button-prev"></div>
+								<ul class="swiper-wrapper">
+									
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2025II01', '2025년도 제5차 신입사원(고졸수준) 선발', 'II010001', '고졸수준 신입사원', '1', '21', 'N')">
+											<div class="txt">
+													
+													<div class="cate01">고졸수준 신입사원</div>
+													<div class="subject">2025년도 제5차 신입사원(고졸수준) 선발</div>
+													<p>선발예정인원 : 35명</p>
+													<!-- 
+													<div class="date">
+														2025.11.05 ~ 2027.12.31 
+														<span>(D-511)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026UU04', '2026년도 제4차 신입사원(고졸수준 일반전형)  선발', 'UU010001', '고졸수준 신입사원(일반)', '4', '20', 'Y')">
+											<div class="txt">
+													
+													<div class="cate02">고졸수준 신입사원(일반)</div>
+													<div class="subject">2026년도 제4차 신입사원(고졸수준 일반전형)  선발</div>
+													<p>선발예정인원 : 32명</p>
+													<!-- 
+													<div class="date">
+														2026.07.23 ~ 2027.03.30 
+														<span>(D-235)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026AA03', '2026년도 제3차 신입사원(대졸수준) 선발', 'AA010001', '대졸신입', '3', '19', 'N')">
+											<div class="txt">
+													
+													<div class="cate03">대졸신입</div>
+													<div class="subject">2026년도 제3차 신입사원(대졸수준) 선발</div>
+													<p>선발예정인원 : 199명</p>
+													<!-- 
+													<div class="date">
+														2026.07.22 ~ 2027.03.29 
+														<span>(D-234)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026FF03', '2026년도 제3차 신입사원(사회형평전형) 선발', 'FF010001', '사회형평적채용', '3', '18', 'N')">
+											<div class="txt">
+													
+													<div class="cate04">사회형평적채용</div>
+													<div class="subject">2026년도 제3차 신입사원(사회형평전형) 선발</div>
+													<p>선발예정인원 : 10명</p>
+													<!-- 
+													<div class="date">
+														2026.07.22 ~ 2027.03.29 
+														<span>(D-234)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026GG03', '2026년도 제3차 신입사원(보훈특별전형) 선발', 'GG010001', '보훈특별전형채용', '3', '17', 'N')">
+											<div class="txt">
+													
+													<div class="cate05">보훈특별전형채용</div>
+													<div class="subject">2026년도 제3차 신입사원(보훈특별전형) 선발</div>
+													<p>선발예정인원 : 20명</p>
+													<!-- 
+													<div class="date">
+														2026.07.22 ~ 2027.03.29 
+														<span>(D-234)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026RR04', '2026년도 제4차 경력사원(전문계약직) 선발', 'RR010001', '전문경력직', '4', '16', 'N')">
+											<div class="txt">
+													
+													<div class="cate06">전문경력직</div>
+													<div class="subject">2026년도 제4차 경력사원(전문계약직) 선발</div>
+													<p>선발예정인원 : 2명</p>
+													<!-- 
+													<div class="date">
+														2026.06.23 ~ 2026.12.30 
+														<span>(D-145)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026RR06', '2026년도 제6차 경력사원(전문원, 경력직원) 선발', 'RR010001', '전문경력직', '6', '15', 'Y')">
+											<div class="txt">
+													
+													<div class="cate07">전문경력직</div>
+													<div class="subject">2026년도 제6차 경력사원(전문원, 경력직원) 선발</div>
+													<p>선발예정인원 : 6명</p>
+													<!-- 
+													<div class="date">
+														2026.07.22 ~ 2026.12.27 
+														<span>(D-142)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026RR07', '2026년도 제7차 경력사원(전문계약직) 선발', 'RR010001', '전문경력직', '7', '14', 'Y')">
+											<div class="txt">
+													
+														
+													
+													<div class="cate01">전문경력직</div>
+													<div class="subject">2026년도 제7차 경력사원(전문계약직) 선발</div>
+													<p>선발예정인원 : 1명</p>
+													<!-- 
+													<div class="date">
+														2026.07.22 ~ 2026.12.27 
+														<span>(D-142)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026HH01', '2026년도 제2차 신입사원(청원경찰) 선발', 'HH010001', '청원경찰', '1', '13', 'N')">
+											<div class="txt">
+													
+													<div class="cate02">청원경찰</div>
+													<div class="subject">2026년도 제2차 신입사원(청원경찰) 선발</div>
+													<p>선발예정인원 : 8명</p>
+													<!-- 
+													<div class="date">
+														2026.06.30 ~ 2026.11.30 
+														<span>(D-115)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026HH02', '2026년도 제2차 신입사원(청원경찰 보훈특별) 선발', 'HH010001', '청원경찰', '2', '12', 'N')">
+											<div class="txt">
+													
+													<div class="cate03">청원경찰</div>
+													<div class="subject">2026년도 제2차 신입사원(청원경찰 보훈특별) 선발</div>
+													<p>선발예정인원 : 2명</p>
+													<!-- 
+													<div class="date">
+														2026.06.30 ~ 2026.11.30 
+														<span>(D-115)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026RR05', '2026년도 제5차 경력사원(한울본부 청경대장) 선발', 'RR010001', '전문경력직', '5', '11', 'N')">
+											<div class="txt">
+													
+													<div class="cate04">전문경력직</div>
+													<div class="subject">2026년도 제5차 경력사원(한울본부 청경대장) 선발</div>
+													<p>선발예정인원 : 1명</p>
+													<!-- 
+													<div class="date">
+														2026.06.29 ~ 2026.11.30 
+														<span>(D-115)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026AA01', '2026년도 제1차 신입사원(대졸수준) 선발', 'AA010001', '대졸신입', '1', '10', 'N')">
+											<div class="txt">
+													
+													<div class="cate05">대졸신입</div>
+													<div class="subject">2026년도 제1차 신입사원(대졸수준) 선발</div>
+													<p>선발예정인원 : 180명</p>
+													<!-- 
+													<div class="date">
+														2026.03.04 ~ 2026.10.25 
+														<span>(D-79)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026FF01', '2026년도 제1차 신입사원(대졸수준 사회형평) 선발', 'FF010001', '사회형평적채용', '1', '9', 'N')">
+											<div class="txt">
+													
+													<div class="cate06">사회형평적채용</div>
+													<div class="subject">2026년도 제1차 신입사원(대졸수준 사회형평) 선발</div>
+													<p>선발예정인원 : 12명</p>
+													<!-- 
+													<div class="date">
+														2026.03.04 ~ 2026.10.25 
+														<span>(D-79)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2025FF06', '2025년도 제6차 신입사원(대졸수준 사회형평 전형)  선발', 'FF010001', '사회형평적채용', '6', '8', 'N')">
+											<div class="txt">
+													
+													<div class="cate07">사회형평적채용</div>
+													<div class="subject">2025년도 제6차 신입사원(대졸수준 사회형평 전형)  선발</div>
+													<p>선발예정인원 : 9명</p>
+													<!-- 
+													<div class="date">
+														2025.12.08 ~ 2026.10.25 
+														<span>(D-79)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026GG01', '2026년도 제1차 신입사원(대졸수준 보훈특별) 선발', 'GG010001', '보훈특별전형채용', '1', '7', 'N')">
+											<div class="txt">
+													
+														
+													
+													<div class="cate01">보훈특별전형채용</div>
+													<div class="subject">2026년도 제1차 신입사원(대졸수준 보훈특별) 선발</div>
+													<p>선발예정인원 : 18명</p>
+													<!-- 
+													<div class="date">
+														2026.03.04 ~ 2026.10.25 
+														<span>(D-79)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026RR02', '2026년도 제2차 경력사원(연구원, 전문원, 경력직원) 선발', 'RR010001', '전문경력직', '2', '6', 'N')">
+											<div class="txt">
+													
+													<div class="cate02">전문경력직</div>
+													<div class="subject">2026년도 제2차 경력사원(연구원, 전문원, 경력직원) 선발</div>
+													<p>선발예정인원 : 16명</p>
+													<!-- 
+													<div class="date">
+														2026.03.05 ~ 2026.10.11 
+														<span>(D-65)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026RR03', '2026년도 제3차 경력사원(전문계약직) 선발', 'RR010001', '전문경력직', '3', '5', 'N')">
+											<div class="txt">
+													
+													<div class="cate03">전문경력직</div>
+													<div class="subject">2026년도 제3차 경력사원(전문계약직) 선발</div>
+													<p>선발예정인원 : 2명</p>
+													<!-- 
+													<div class="date">
+														2026.03.05 ~ 2026.10.11 
+														<span>(D-65)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026CC01', '2026년도 제1차 경력사원(5(을)직급) 선발', 'CC010001', '5직급', '1', '4', 'N')">
+											<div class="txt">
+													
+													<div class="cate04">5직급</div>
+													<div class="subject">2026년도 제1차 경력사원(5(을)직급) 선발</div>
+													<p>선발예정인원 : 8명</p>
+													<!-- 
+													<div class="date">
+														2026.03.03 ~ 2026.09.13 
+														<span>(D-37)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2026DD01', '2026년도 제1차 경력사원(공무직) 선발', 'DD010001', '공무직 근로자', '1', '3', 'N')">
+											<div class="txt">
+													
+													<div class="cate05">공무직 근로자</div>
+													<div class="subject">2026년도 제1차 경력사원(공무직) 선발</div>
+													<p>선발예정인원 : 8명</p>
+													<!-- 
+													<div class="date">
+														2026.03.03 ~ 2026.09.13 
+														<span>(D-37)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2025RR08', '2025년도 제8차 경력사원(연구원, 전문원, 경력직원)', 'RR010001', '전문경력직', '8', '2', 'N')">
+											<div class="txt">
+													
+													<div class="cate06">전문경력직</div>
+													<div class="subject">2025년도 제8차 경력사원(연구원, 전문원, 경력직원)</div>
+													<p>선발예정인원 : 3명</p>
+													<!-- 
+													<div class="date">
+														2025.12.22 ~ 2026.06.21 
+														<span>(D--47)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="javascript:fn_MovePage('2025RR09', '2025년도 제9차 경력사원(전문계약직) 선발', 'RR010001', '전문경력직', '9', '1', 'N')">
+											<div class="txt">
+													
+													<div class="cate07">전문경력직</div>
+													<div class="subject">2025년도 제9차 경력사원(전문계약직) 선발</div>
+													<p>선발예정인원 : 2명</p>
+													<!-- 
+													<div class="date">
+														2025.12.22 ~ 2026.06.21 
+														<span>(D--47)</span> 
+													</div>
+													-->
+												</div>
+											</a>
+										</li>
+										
+										
+									
+								</ul>
+								<div class="swiper-button-next"></div>
+								<div class="swiper-pagination"></div>
+							</div>
+						</div>
+						<div class="ico_scroll"><img src="/recruit/common/img/ico_scroll.png" alt="SCROLL"/></div>
+					</div>
+				</form>
 			</div>
-			<div class="btn">
-				<a href="javascript:fn_selectLocation();">확인</a>
+			
+			<div id="section1" class="section fp-section">
+				<div class="sectionCont">
+					<h2>직무소개</h2>
+					<div class="notice_list_wrap">
+						<div class="notice_list swiper-container">
+							<div class="swiper-button-prev"></div>
+							<ul class="swiper-wrapper">
+							
+							
+									
+										<li class="swiper-slide">
+											<a href="https://www.youtube.com/watch?v=303RNSxqatU " style="padding:5px;" target="_blank">
+											<div class="txt" style="display:table; margin:auto;">
+													
+													<div class="subject" style="height:140px; display:table-cell; vertical-align:middle;">
+														
+														
+														
+														<img src="https://img.youtube.com/vi/303RNSxqatU/0.jpg" style="width:100%; height:auto; max-height:160px; object-fit:cover;"/>
+													</div>
+													
+												</div>
+											</a>
+											
+											<div class="date" style="font-size: 16px; color: #000; line-height:150%; font-weight:400; padding-left:10px; padding-right:10px;">
+												
+													
+													한울원자력본부 브이로그! '... <br> 등록일 : 2026.03.10
+													
+													
+													
+											</div>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="https://www.youtube.com/watch?v=WTOSOrortBs " style="padding:5px;" target="_blank">
+											<div class="txt" style="display:table; margin:auto;">
+													
+													<div class="subject" style="height:140px; display:table-cell; vertical-align:middle;">
+														
+														
+														
+														<img src="https://img.youtube.com/vi/WTOSOrortBs/0.jpg" style="width:100%; height:auto; max-height:160px; object-fit:cover;"/>
+													</div>
+													
+												</div>
+											</a>
+											
+											<div class="date" style="font-size: 16px; color: #000; line-height:150%; font-weight:400; padding-left:10px; padding-right:10px;">
+												
+													
+													사업개발처 브이로그! '팔방... <br> 등록일 : 2026.03.10
+													
+													
+													
+											</div>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="https://www.youtube.com/watch?v=f6Icx8p_pZs " style="padding:5px;" target="_blank">
+											<div class="txt" style="display:table; margin:auto;">
+													
+													<div class="subject" style="height:140px; display:table-cell; vertical-align:middle;">
+														
+														
+														
+														<img src="https://img.youtube.com/vi/f6Icx8p_pZs/0.jpg" style="width:100%; height:auto; max-height:160px; object-fit:cover;"/>
+													</div>
+													
+												</div>
+											</a>
+											
+											<div class="date" style="font-size: 16px; color: #000; line-height:150%; font-weight:400; padding-left:10px; padding-right:10px;">
+												
+													
+													월성원자력본부 브이로그! '... <br> 등록일 : 2026.03.10
+													
+													
+													
+											</div>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="https://www.youtube.com/watch?v=ALxWfcWdSSI " style="padding:5px;" target="_blank">
+											<div class="txt" style="display:table; margin:auto;">
+													
+													<div class="subject" style="height:140px; display:table-cell; vertical-align:middle;">
+														
+														
+														
+														<img src="https://img.youtube.com/vi/ALxWfcWdSSI/0.jpg" style="width:100%; height:auto; max-height:160px; object-fit:cover;"/>
+													</div>
+													
+												</div>
+											</a>
+											
+											<div class="date" style="font-size: 16px; color: #000; line-height:150%; font-weight:400; padding-left:10px; padding-right:10px;">
+												
+													
+													고리원자력본부 브이로그! 시... <br> 등록일 : 2026.03.10
+													
+													
+													
+											</div>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="https://www.youtube.com/watch?v=-Wf9dTQAw6k " style="padding:5px;" target="_blank">
+											<div class="txt" style="display:table; margin:auto;">
+													
+													<div class="subject" style="height:140px; display:table-cell; vertical-align:middle;">
+														
+														
+														
+														<img src="https://img.youtube.com/vi/-Wf9dTQAw6k/0.jpg" style="width:100%; height:auto; max-height:160px; object-fit:cover;"/>
+													</div>
+													
+												</div>
+											</a>
+											
+											<div class="date" style="font-size: 16px; color: #000; line-height:150%; font-weight:400; padding-left:10px; padding-right:10px;">
+												
+													
+													월성원자력본부 브이로그! 발... <br> 등록일 : 2026.03.10
+													
+													
+													
+											</div>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="https://www.youtube.com/watch?v=9Nezuwlx53o " style="padding:5px;" target="_blank">
+											<div class="txt" style="display:table; margin:auto;">
+													
+													<div class="subject" style="height:140px; display:table-cell; vertical-align:middle;">
+														
+														
+														
+														<img src="https://img.youtube.com/vi/9Nezuwlx53o/0.jpg" style="width:100%; height:auto; max-height:160px; object-fit:cover;"/>
+													</div>
+													
+												</div>
+											</a>
+											
+											<div class="date" style="font-size: 16px; color: #000; line-height:150%; font-weight:400; padding-left:10px; padding-right:10px;">
+												
+													
+													고리원자력본부 브이로그! 발... <br> 등록일 : 2026.03.10
+													
+													
+													
+											</div>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="https://www.youtube.com/watch?v=uPFO8gOKfyc " style="padding:5px;" target="_blank">
+											<div class="txt" style="display:table; margin:auto;">
+													
+													<div class="subject" style="height:140px; display:table-cell; vertical-align:middle;">
+														
+														
+														
+														<img src="https://img.youtube.com/vi/uPFO8gOKfyc/0.jpg" style="width:100%; height:auto; max-height:160px; object-fit:cover;"/>
+													</div>
+													
+												</div>
+											</a>
+											
+											<div class="date" style="font-size: 16px; color: #000; line-height:150%; font-weight:400; padding-left:10px; padding-right:10px;">
+												
+													
+													월성원자력본부 브이로그! 안... <br> 등록일 : 2025.08.11
+													
+													
+													
+											</div>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="https://www.youtube.com/watch?v=tWSAd37a3_o " style="padding:5px;" target="_blank">
+											<div class="txt" style="display:table; margin:auto;">
+													
+														
+													
+													<div class="subject" style="height:140px; display:table-cell; vertical-align:middle;">
+														
+														
+														
+														<img src="https://img.youtube.com/vi/tWSAd37a3_o/0.jpg" style="width:100%; height:auto; max-height:160px; object-fit:cover;"/>
+													</div>
+													
+												</div>
+											</a>
+											
+											<div class="date" style="font-size: 16px; color: #000; line-height:150%; font-weight:400; padding-left:10px; padding-right:10px;">
+												
+													
+													고리원자력본부 브이로그! 의... <br> 등록일 : 2025.08.11
+													
+													
+													
+											</div>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+											<a href="https://www.youtube.com/watch?v=gd4T2btzyos " style="padding:5px;" target="_blank">
+											<div class="txt" style="display:table; margin:auto;">
+													
+													<div class="subject" style="height:140px; display:table-cell; vertical-align:middle;">
+														
+														
+														
+														<img src="https://img.youtube.com/vi/gd4T2btzyos/0.jpg" style="width:100%; height:auto; max-height:160px; object-fit:cover;"/>
+													</div>
+													
+												</div>
+											</a>
+											
+											<div class="date" style="font-size: 16px; color: #000; line-height:150%; font-weight:400; padding-left:10px; padding-right:10px;">
+												
+													
+													월성원자력본부 브이로그! 릴... <br> 등록일 : 2025.08.11
+													
+													
+													
+											</div>
+										</li>
+										
+										
+									
+							</ul>
+							<div class="swiper-button-next"></div>
+							<div class="swiper-pagination"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="section2" class="section fp-section">
+				<div class="sectionCont">
+					<h2>공지사항</h2>
+					<div class="notice_list_wrap">
+						<a href="/recruit/rj00/RJ20100.do" class="btn_more">더보기</a>
+						<!-- <a href="javascript:fn_popUpVideo();" class="btn_more">더보기</a> -->
+						<div class="notice_list swiper-container">
+							<div class="swiper-button-prev"></div>
+							<ul class="swiper-wrapper">
+							
+							
+									
+										<li class="swiper-slide">
+												<a href="/recruit/rj00/RJ20110.do?board_seq= 17253 ">
+											<div class="txt">
+													
+													<div class="subject">2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식</div>
+													
+													<div class="date">등록일 : 2026.07.28 </div>
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+												<a href="/recruit/rj00/RJ20110.do?board_seq= 17152 ">
+											<div class="txt">
+													
+													<div class="subject">[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항</div>
+													
+													<div class="date">등록일 : 2026.07.24 </div>
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+												<a href="/recruit/rj00/RJ20110.do?board_seq= 17134 ">
+											<div class="txt">
+													
+													<div class="subject">[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드</div>
+													
+													<div class="date">등록일 : 2026.07.23 </div>
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+												<a href="/recruit/rj00/RJ20110.do?board_seq= 17078 ">
+											<div class="txt">
+													
+													<div class="subject">[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드</div>
+													
+													<div class="date">등록일 : 2026.07.22 </div>
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+												<a href="/recruit/rj00/RJ20110.do?board_seq= 17092 ">
+											<div class="txt">
+													
+													<div class="subject">2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식</div>
+													
+													<div class="date">등록일 : 2026.07.22 </div>
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+												<a href="/recruit/rj00/RJ20110.do?board_seq= 17016 ">
+											<div class="txt">
+													
+													<div class="subject">2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내</div>
+													
+													<div class="date">등록일 : 2026.07.08 </div>
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+												<a href="/recruit/rj00/RJ20110.do?board_seq= 16805 ">
+											<div class="txt">
+													
+													<div class="subject">2026년도 청원경찰 선발 관련 공지사항(수정)</div>
+													
+													<div class="date">등록일 : 2026.04.22 </div>
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+												<a href="/recruit/rj00/RJ20110.do?board_seq= 16272 ">
+											<div class="txt">
+													
+														
+													
+													<div class="subject">[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지</div>
+													
+													<div class="date">등록일 : 2026.03.26 </div>
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+												<a href="/recruit/rj00/RJ20110.do?board_seq= 15762 ">
+											<div class="txt">
+													
+													<div class="subject">2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식</div>
+													
+													<div class="date">등록일 : 2026.03.04 </div>
+												</div>
+											</a>
+										</li>
+										
+										
+									
+										<li class="swiper-slide">
+												<a href="/recruit/rj00/RJ20110.do?board_seq= 15760 ">
+											<div class="txt">
+													
+													<div class="subject">2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내</div>
+													
+													<div class="date">등록일 : 2026.03.04 </div>
+												</div>
+											</a>
+										</li>
+										
+										
+									
+
+							</ul>
+							<div class="swiper-button-next"></div>
+							<div class="swiper-pagination"></div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- //근무지 선택 팝업 -->
+	<!-- wrap -->	
+
+<script src="/recruit/common/js/netfunnel.js"></script>	
+<script>
+$(document).ready(function(){
 	
-	<!-- 근무분야 선택 팝업 -->
-	<div class="pop_areaList">
-		<div class="inner">
-			<h2>근무분야 선택</h2>
-			<a href="#" class="close_pop_areaList" onclick="javascript:fn_selectArea();"><img src="/jobalio/img/btn_close.png" alt="닫기"></a>
-			<div class="list">
-				<ul>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8010"><span></span><span id="R8010">일반직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8011"><span></span><span id="R8011">행정직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8012"><span></span><span id="R8012">경영직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8013"><span></span><span id="R8013">사무직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8014"><span></span><span id="R8014">관리직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8015"><span></span><span id="R8015">연구직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8016"><span></span><span id="R8016">기술직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8017"><span></span><span id="R8017">시설직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8018"><span></span><span id="R8018">전산직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8019"><span></span><span id="R8019">교수직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8020"><span></span><span id="R8020">의사직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8021"><span></span><span id="R8021">간호직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8022"><span></span><span id="R8022">약무직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8023"><span></span><span id="R8023">보건직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8024"><span></span><span id="R8024">위생직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8025"><span></span><span id="R8025">기능직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8026"><span></span><span id="R8026">운영직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8027"><span></span><span id="R8027">공무직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8028"><span></span><span id="R8028">안전직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8029"><span></span><span id="R8029">교원직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8030"><span></span><span id="R8030">별정직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8031"><span></span><span id="R8031">계약직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8032"><span></span><span id="R8032">전문직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8033"><span></span><span id="R8033">운영직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8034"><span></span><span id="R8034">상담직</span></label></li>
-											
-						<li><label class="chkN"><input type="checkbox" name="area" class="areaClass" value="R8099"><span></span><span id="R8099">기타</span></label></li>
-					
-				</ul>
-			</div>
-			<div class="btn">
-				<a href="javascript:fn_selectArea();">확인</a>
-			</div>
-		</div>
-	</div>
-	<!-- //근무분야 선택 팝업 -->
-</form>
+	//netfunnel 끝 
+	NetFunnel_Complete();
 	
-	<!-- 클립보드복사 팝업 -->
-	<div class="pop_share">
-		<div class="inner">
-			<h2>클립보드에 주소가 복사 되었습니다.</h2>
-			<a href="#" class="close_pop_share"><img src="/jobalio/img/btn_close.png" alt="닫기"></a>
-		</div>
-	</div>
-	<!-- //클립보드복사 팝업 -->
-	
-	<!-- 메인 팝업1-->
-	
-	<!-- //메인 팝업1-->
-	
-	
-	<!-- 메인 팝업2-->
-	
-	<!-- //메인 팝업2-->
-	
-	<!-- 메인 팝업3. 시스템 점검 공지-->
-	
-	<!-- //메인 팝업3-->
+	// 사전공지를 위한 알림
+	var v_data = cf_LoadJsonData("/recruit/cmmn/RZ0010/jsonIndexAlert.do");
+	if( v_data.items.status != null && v_data.items.status == 'A' ){
+		alert(v_data.items.memo);
+	}
+	/* //비밀번호확인 오류메세지 처리
+	if( cf_ToString('') != '') {
+		alert('');
+		alert('');
+		alert("test");
+	}else{
+		alert("test123");
+	} */
 	
 	
 	
-	<script type="text/javascript">
-		/* 팝업 관련 함수 */
-		function setCookie( id, value, expiredays ) {
-		    var todayDate = new Date();
-		    todayDate.setDate( todayDate.getDate() + expiredays );
-		    document.cookie = id + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
-		    $("#"+id).fadeOut('300');
+		//fn_popUpVideo();
+		 	
+	
+});
+
+//<![CDATA[
+	var myFullpage = new fullpage('#fullpage', {
+		anchors: ['mainSection0', 'mainSection1', 'mainSection2'],
+		/* anchors: ['mainSection0',  'mainSection2'], */
+		menu: '#menu',
+		lazyLoad: true,
+		responsiveWidth : 1021
+	});
+	
+	var swiper = new Swiper('#section0 .notice_list.swiper-container', {
+		slidesPerView: 2,
+		slidesPerColumn: 2,
+		spaceBetween: 10,
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+		pagination: {
+			el: '.swiper-pagination',
+		},
+		breakpoints: {
+			761: {
+				slidesPerView: 2,
+				slidesPerColumn: 2,
+				spaceBetween: 20,
+			},
+			1021: {
+				slidesPerView: 4,
+				slidesPerColumn: 2,
+				spaceBetween: 20,
+			},
 		}
-		function getCookie(id) {
-		    var cookiedata = document.cookie;
-		    if ( cookiedata.indexOf(id+"=done") < 0 ){
-		    	$("#"+id).show();
-		    }else {
-		    	$("#"+id).hide();
-		    }
+	});
+	
+	var swiper = new Swiper('#section1 .notice_list.swiper-container', {
+		slidesPerView: 2,
+		slidesPerColumn: 2,
+		spaceBetween: 10,
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+		pagination: {
+			el: '.swiper-pagination',
+		},
+		breakpoints: {
+			761: {
+				slidesPerView: 2,
+				slidesPerColumn: 2,
+				spaceBetween: 20,
+			},
+			1021: {
+				slidesPerView: 4,
+				slidesPerColumn: 2,
+				spaceBetween: 20,
+			},
 		}
-		function closePopup(pIdx){
-			$('#main_popup'+pIdx).hide();
+	});
+	
+	var swiper = new Swiper('#section2 .notice_list.swiper-container', {
+		slidesPerView: 2,
+		slidesPerColumn: 2,
+		spaceBetween: 10,
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+		pagination: {
+			el: '.swiper-pagination',
+		},
+		breakpoints: {
+			761: {
+				slidesPerView: 2,
+				slidesPerColumn: 2,
+				spaceBetween: 20,
+			},
+			1021: {
+				slidesPerView: 4,
+				slidesPerColumn: 2,
+				spaceBetween: 20,
+			},
+		}
+	});
+
+	//쿠키 정보 확인
+	function getCookie(name){
+		var wcname = name + '=';
+		var wcstart, wcend, end;
+		var i = 0;
+		
+		while(i <= document.cookie.length) {            
+	  		wcstart = i;  
+			wcend   = (i + wcname.length);            
+			if(document.cookie.substring(wcstart, wcend) == wcname) {                    
+				if((end = document.cookie.indexOf(';', wcend)) == -1)                           
+					end = document.cookie.length;                    
+				return document.cookie.substring(wcend, end);            
+	  		}            
+			i = document.cookie.indexOf('', i) + 1;            
+	  		if(i == 0) break;    
+	  	}    
+		return '';
+	}
+	
+	 	 
+	
+	
+//]]>
+
+	function fn_More(){
+		/* if( '' ){
+			alert("입사지원은 PC에서만 가능합니다.");
+			return;
+		}
+		
+		if(cf_IsMobile()) {
+			alert("입사지원은 PC에서만 가능합니다.");
+			return;
+		} */
+		
+		if(cf_IsMobile()) {
+			$("#recrOpeningForm").attr({'action':'/recruit/rj00/RJ10100.do?mid=MI000000000000000484','method':'post'}).submit();
+		}else{
+			$("#recrOpeningForm").attr({'action':'/recruit/rk10/RK10100.do?mid=MI000000000000000487','method':'post'}).submit();
+		}
+		
+	}
+	
+	function fn_popUpVideo(){
+		
+		// 쿠키정보 가져오기
+		if(getCookie('cookie_video') != 'rangs1') { 
+			
+			//window.open("/recruit/fus/main/pops0020v.do?m_seq=582&m_group=3", "_blank", "width=700, height=410 ,resizable=no, scrollbars=no, left=100, top=0");
+			//window.open("/recruit/fus/main/pops0020v.do?m_seq=582&m_group=3", "_blank", "width=700, height=420 ,resizable=no, scrollbars=no, left=100, top=0");
 		}
 		
 		
-		/* --팝업 관련 함수 */
-	</script>
+		
+	}
+
+	function fn_MovePage(recrOpeningId, recrOpeningNm, recrGubunId, recrGubunNm, openingSeq, rnum, open){
+		/* if( '' ){
+			alert("입사지원은 PC에서만 가능합니다.");
+			return;
+		}*/
+		
+		if(cf_IsMobile()) {
+			$("#srchRecrOpeningId").val(recrOpeningId);	
+			cf_SearchAjax("recrOpeningForm", "/recruit/rj00/jsonRn00RN10110.do", function(data){
+				if(data.success){
+					$("#srchRecrOpeningId").val(recrOpeningId);	
+					$("#rnum").val(rnum);	
+					$("#recrOpeningForm").attr("action", "/recruit/rj00/RJ10110.do");
+					$("#recrOpeningForm").attr("method", "POST");
+					$("#recrOpeningForm").submit();
+		 		}else{
+		 			alert('상세내역이 존재하지 않습니다.');
+		 		}
+		 	});
+		}else{
+			$("#recrOpeningId").val(recrOpeningId);
+			$("#recrOpeningNm").val(recrOpeningNm);
+			$("#recrGubunId").val(recrGubunId);
+			$("#recrGubunNm").val(recrGubunNm);
+			$("#openingSeq").val(openingSeq);
+			
+			if(open != "Y"){
+				alert("해당 공고의 입사지원서 작성기간이 아닙니다.");
+					return;
+			}
+			
+			cf_SearchAjax("recrOpeningForm", "/recruit/rk10/jsonRk10RK10120.do", function(data){
+				if(data.applyDt == 'Y'){
+					$("#recrOpeningForm").attr({'action':'/recruit/rk00/RK10301.do','method':'post'}).submit();
+	 			}else{
+	 				alert("해당 공고의 입사지원서 작성기간이 아닙니다.");
+	 				return;
+	 			} 
+			});		
+		}
+	}
+	
+</script>
+<!-- footer -->		
+   
+</div>
 </body>
-</html>
+</html>	

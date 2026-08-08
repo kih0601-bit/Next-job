@@ -8,6 +8,64 @@
     "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
     "evidence": [
       {
+        "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+        "visiblePostCount": null,
+        "rowMode": false,
+        "anchors": 56,
+        "titleMatches": 47,
+        "noUrl": 1,
+        "unsafeUrl": 0,
+        "accepted": 1,
+        "rowFallbackAccepted": 0,
+        "clickableBlocksScanned": 0,
+        "clickableBlocksAccepted": 0,
+        "listOnlyAccepted": 1,
+        "titleSamples": [
+          "▶본문 바로가기",
+          "▶주메뉴 바로가기",
+          "수시채용",
+          "KEPCO 홈",
+          "채용공고",
+          "채용공고",
+          "채용절차",
+          "입사지원관리"
+        ],
+        "unsafeSamples": [
+          {
+            "title": "수료증 출력(체험형 인턴)",
+            "reason": "no-url-detail-pending",
+            "identity": "row-6435",
+            "row": "<li><a style=\"cursor:pointer\" onclick=\"javascript:fnc_Certi();\">수료증 출력(체험형 인턴)</a></li>"
+          }
+        ],
+        "actionSamples": [
+          {
+            "title": "수료증 출력(체험형 인턴)",
+            "action": "javascript:fnc_Certi();"
+          }
+        ],
+        "candidateUrlSamples": [],
+        "candidateCount": 1,
+        "exactMatch": false,
+        "missingCount": null,
+        "extraCount": null,
+        "recordVerification": {
+          "verified": false,
+          "template": "TABLE_RECORD",
+          "recordCount": 0,
+          "candidateCount": 1,
+          "matchedCount": 0,
+          "unmatchedTitles": [
+            "수료증 출력(체험형 인턴)"
+          ],
+          "recordSamples": [],
+          "level": "TEMPLATE_RECORD_MISMATCH"
+        },
+        "verifiedEmpty": false,
+        "emptyMarker": "",
+        "countSource": "unavailable"
+      },
+      {
         "url": "https://recruit.kepco.co.kr:444/frt/main.do",
         "visiblePostCount": null,
         "rowMode": false,
@@ -65,6 +123,11 @@
           }
         ],
         "candidateUrlSamples": [
+          {
+            "title": "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 2026.07.30 ~ 2026.08.06 서류심사중",
+            "url": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=C&employSeq=1",
+            "allowed": true
+          },
           {
             "title": "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 2026.07.30 ~ 2026.08.06 서류심사중",
             "url": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
@@ -391,8 +454,56 @@
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "2개 후보 URL HTTP 응답 성공",
+      "reason": "3개 후보 URL HTTP 응답 성공",
       "evidence": [
+        {
+          "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "- 채용공고 | KEPCO 채용 -",
+            "orgMatched": false,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 593,
+            "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+            "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          },
+          "accessTemplate": "DEDICATED_RECRUIT_SITE",
+          "requestProfile": "browser-default"
+        },
         {
           "url": "https://recruit.kepco.co.kr:444/frt/main.do",
           "ok": true,
@@ -509,7 +620,7 @@
     },
     "recruitVerify": {
       "status": "success",
-      "code": "RECRUIT_VERIFY_OK",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
       "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
       "evidence": {
         "ok": true,
@@ -558,6 +669,64 @@
       "code": "LIST_COUNTER_FAILED",
       "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
       "evidence": [
+        {
+          "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 56,
+          "titleMatches": 47,
+          "noUrl": 1,
+          "unsafeUrl": 0,
+          "accepted": 1,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 1,
+          "titleSamples": [
+            "▶본문 바로가기",
+            "▶주메뉴 바로가기",
+            "수시채용",
+            "KEPCO 홈",
+            "채용공고",
+            "채용공고",
+            "채용절차",
+            "입사지원관리"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "수료증 출력(체험형 인턴)",
+              "reason": "no-url-detail-pending",
+              "identity": "row-6435",
+              "row": "<li><a style=\"cursor:pointer\" onclick=\"javascript:fnc_Certi();\">수료증 출력(체험형 인턴)</a></li>"
+            }
+          ],
+          "actionSamples": [
+            {
+              "title": "수료증 출력(체험형 인턴)",
+              "action": "javascript:fnc_Certi();"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 1,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 1,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "수료증 출력(체험형 인턴)"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable"
+        },
         {
           "url": "https://recruit.kepco.co.kr:444/frt/main.do",
           "visiblePostCount": null,
@@ -616,6 +785,11 @@
             }
           ],
           "candidateUrlSamples": [
+            {
+              "title": "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 2026.07.30 ~ 2026.08.06 서류심사중",
+              "url": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=C&employSeq=1",
+              "allowed": true
+            },
             {
               "title": "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 2026.07.30 ~ 2026.08.06 서류심사중",
               "url": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
@@ -950,7 +1124,7 @@
     },
     "access": {
       "status": "success",
-      "code": "RECRUIT_VERIFY_OK",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
       "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
       "evidence": {
         "ok": true,
@@ -1008,6 +1182,54 @@
       "status": 200,
       "contentType": "text/html; charset=utf-8",
       "attempts": [
+        {
+          "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "- 채용공고 | KEPCO 채용 -",
+            "orgMatched": false,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 593,
+            "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+            "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          },
+          "accessTemplate": "DEDICATED_RECRUIT_SITE",
+          "requestProfile": "browser-default"
+        },
         {
           "url": "https://recruit.kepco.co.kr:444/frt/main.do",
           "ok": true,
@@ -1171,13 +1393,61 @@
       },
       "diagnosis": {
         "ok": true,
-        "code": "RECRUIT_VERIFY_OK",
+        "code": "RECRUIT_VERIFY_FALLBACK_OK",
         "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "2개 후보 URL HTTP 응답 성공",
+          "reason": "3개 후보 URL HTTP 응답 성공",
           "attempts": [
+            {
+              "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+                "score": 4,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": true
+                },
+                "title": "- 채용공고 | KEPCO 채용 -",
+                "orgMatched": false,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 2,
+                "boardType": {
+                  "type": "UL_LIST",
+                  "confidence": "medium",
+                  "evidence": [
+                    "ul/ol + li 구조 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 593,
+                "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+                "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+                "status": 200,
+                "contentType": "text/html; charset=utf-8"
+              },
+              "accessTemplate": "DEDICATED_RECRUIT_SITE",
+              "requestProfile": "browser-default"
+            },
             {
               "url": "https://recruit.kepco.co.kr:444/frt/main.do",
               "ok": true,
@@ -1294,7 +1564,7 @@
         },
         "recruitVerify": {
           "ok": true,
-          "code": "RECRUIT_VERIFY_OK",
+          "code": "RECRUIT_VERIFY_FALLBACK_OK",
           "reason": "채용 키워드 3개 · 게시판 신호 1개 확인",
           "score": 5,
           "maxScore": 5,
@@ -1395,7 +1665,7 @@
     "list": {
       "ok": false,
       "status": "count-unavailable-or-empty",
-      "pagesChecked": 2,
+      "pagesChecked": 3,
       "visiblePostCount": null,
       "candidateCount": 100,
       "missingCount": null,
@@ -1405,6 +1675,64 @@
       "detailUrlReady": 9,
       "listOnlyCount": 91,
       "extractionDiagnostics": [
+        {
+          "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 56,
+          "titleMatches": 47,
+          "noUrl": 1,
+          "unsafeUrl": 0,
+          "accepted": 1,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 1,
+          "titleSamples": [
+            "▶본문 바로가기",
+            "▶주메뉴 바로가기",
+            "수시채용",
+            "KEPCO 홈",
+            "채용공고",
+            "채용공고",
+            "채용절차",
+            "입사지원관리"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "수료증 출력(체험형 인턴)",
+              "reason": "no-url-detail-pending",
+              "identity": "row-6435",
+              "row": "<li><a style=\"cursor:pointer\" onclick=\"javascript:fnc_Certi();\">수료증 출력(체험형 인턴)</a></li>"
+            }
+          ],
+          "actionSamples": [
+            {
+              "title": "수료증 출력(체험형 인턴)",
+              "action": "javascript:fnc_Certi();"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 1,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 1,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "수료증 출력(체험형 인턴)"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable"
+        },
         {
           "url": "https://recruit.kepco.co.kr:444/frt/main.do",
           "visiblePostCount": null,
@@ -1463,6 +1791,11 @@
             }
           ],
           "candidateUrlSamples": [
+            {
+              "title": "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 2026.07.30 ~ 2026.08.06 서류심사중",
+              "url": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=C&employSeq=1",
+              "allowed": true
+            },
             {
               "title": "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 2026.07.30 ~ 2026.08.06 서류심사중",
               "url": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
@@ -1787,6 +2120,88 @@
           "version": "1.3-list-template-verification",
           "mode": "passive",
           "org": "한국전력공사",
+          "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+          "listCounterFailureReason": "DOM_COUNT_ZERO",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 1,
+              "matchedCount": 0,
+              "unmatchedTitles": [
+                "수료증 출력(체험형 인턴)"
+              ],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "independentDomEvidence": false,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 1,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 1
+          },
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 1,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 1
+          },
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 1,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 17898,
+            "missingRows": 0,
+            "extraCandidates": 1
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 40,
+            "article": 0,
+            "[onclick]": 1,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 55
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [
+            "수료증 출력(체험형 인턴)"
+          ],
+          "missingRows": [],
+          "extraCandidates": [
+            {
+              "org": "한국전력공사",
+              "title": "수료증 출력(체험형 인턴)",
+              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do#list-row-6435",
+              "listText": "수료증 출력(체험형 인턴)",
+              "adapter": "한국전력공사",
+              "listOnly": true,
+              "listIdentity": "row-6435"
+            }
+          ],
+          "rowTrace": []
+        },
+        {
+          "version": "1.3-list-template-verification",
+          "mode": "passive",
+          "org": "한국전력공사",
           "url": "https://recruit.kepco.co.kr:444/frt/main.do",
           "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
           "listCounterFailureReason": "DOM_COUNT_ZERO",
@@ -1877,9 +2292,18 @@
             {
               "org": "한국전력공사",
               "title": "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 2026.07.30 ~ 2026.08.06 서류심사중",
-              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employId=C&employSeq=1&employYear=2026",
               "listText": "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 2026.07.30 ~ 2026.08.06 서류심사중",
-              "adapter": "한국전력공사"
+              "adapter": "한국전력공사",
+              "detailRequest": {
+                "method": "POST",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+                "body": "employYear=2026&employId=C&employSeq=1",
+                "headers": {
+                  "content-type": "application/x-www-form-urlencoded"
+                },
+                "referer": "https://recruit.kepco.co.kr:444/frt/main.do"
+              }
             },
             {
               "org": "한국전력공사",
@@ -2993,13 +3417,20 @@
           "htmlPath": "data/diagnostics/한국전력공사/list/page-1-raw.html",
           "diagnosisPath": "data/diagnostics/한국전력공사/list/page-1-root-cause.json",
           "rowsPath": "data/diagnostics/한국전력공사/list/page-1-rows.txt",
-          "url": "https://recruit.kepco.co.kr:444/frt/main.do"
+          "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do"
         },
         {
           "org": "한국전력공사",
           "htmlPath": "data/diagnostics/한국전력공사/list/page-2-raw.html",
           "diagnosisPath": "data/diagnostics/한국전력공사/list/page-2-root-cause.json",
           "rowsPath": "data/diagnostics/한국전력공사/list/page-2-rows.txt",
+          "url": "https://recruit.kepco.co.kr:444/frt/main.do"
+        },
+        {
+          "org": "한국전력공사",
+          "htmlPath": "data/diagnostics/한국전력공사/list/page-3-raw.html",
+          "diagnosisPath": "data/diagnostics/한국전력공사/list/page-3-root-cause.json",
+          "rowsPath": "data/diagnostics/한국전력공사/list/page-3-rows.txt",
           "url": "https://www.kepco.co.kr/home/about/careers.do"
         }
       ],
@@ -4302,7 +4733,7 @@
           "textLength": 0,
           "attachmentCount": 0,
           "transport": "",
-          "error": "fetch failed"
+          "error": "home page redirect detected"
         },
         {
           "title": "한전의 ESG 메뉴 열기",
@@ -4314,7 +4745,7 @@
           "textLength": 0,
           "attachmentCount": 0,
           "transport": "",
-          "error": "fetch failed"
+          "error": "home page redirect detected"
         },
         {
           "title": "ESG 개요",
@@ -4326,7 +4757,7 @@
           "textLength": 0,
           "attachmentCount": 0,
           "transport": "",
-          "error": "fetch failed"
+          "error": "home page redirect detected"
         }
       ]
     },

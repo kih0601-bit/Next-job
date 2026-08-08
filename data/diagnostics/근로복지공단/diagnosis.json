@@ -17,7 +17,7 @@
         "textLength": 0,
         "attachmentCount": 0,
         "transport": "",
-        "error": "HTTP 400"
+        "error": "fetch failed"
       }
     ],
     "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
@@ -27,8 +27,98 @@
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "2개 후보 URL HTTP 응답 성공",
+      "reason": "3개 후보 URL HTTP 응답 성공",
       "evidence": [
+        {
+          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 2,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": false
+            },
+            "title": "근로복지공단 :: 인트로",
+            "orgMatched": true,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 24,
+            "requestedUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+            "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+            "status": 200,
+            "contentType": "text/html"
+          },
+          "accessTemplate": "COMMON_PLATFORM",
+          "requestProfile": "browser-default"
+        },
+        {
+          "url": "https://comwel.saramin.co.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 2,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": false
+            },
+            "title": "근로복지공단 :: 인트로",
+            "orgMatched": true,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 24,
+            "requestedUrl": "https://comwel.saramin.co.kr/",
+            "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+            "status": 200,
+            "contentType": "text/html"
+          },
+          "accessTemplate": "COMMON_PLATFORM",
+          "requestProfile": "browser-default"
+        },
         {
           "url": "https://comwel.incruit.com/index_main.asp",
           "ok": true,
@@ -82,51 +172,6 @@
           "requestProfile": "browser-default"
         },
         {
-          "url": "https://comwel.saramin.co.kr/",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-          "verification": {
-            "ok": false,
-            "verified": false,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_ERROR_PAGE",
-            "reason": "오류·차단·비HTML 신호 0개",
-            "score": 2,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": false,
-              "recruitKeyword": false,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": false
-            },
-            "title": "근로복지공단 :: 인트로",
-            "orgMatched": true,
-            "positiveHits": 0,
-            "positiveMatches": [],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 1,
-            "boardType": {
-              "type": "UNKNOWN",
-              "confidence": "low",
-              "evidence": [
-                "명확한 게시판 구조 신호 없음"
-              ]
-            },
-            "institutionRule": false,
-            "institutionRuleEvidence": [],
-            "textLength": 24,
-            "requestedUrl": "https://comwel.saramin.co.kr/",
-            "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-            "status": 200,
-            "contentType": "text/html"
-          },
-          "accessTemplate": "COMMON_PLATFORM",
-          "requestProfile": "browser-default"
-        },
-        {
           "url": "https://www.comwel.or.kr/comwel/noti/recruit.jsp",
           "ok": false,
           "error": "HTTP 400",
@@ -151,7 +196,7 @@
     },
     "recruitVerify": {
       "status": "success",
-      "code": "RECRUIT_VERIFY_OK",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
       "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
       "evidence": {
         "ok": true,
@@ -204,6 +249,76 @@
       "reason": "실제 게시글 목록 검증 완료 · 화면 1건 = 추출 1건 · SOURCE_RECORD_EXACT",
       "evidence": [
         {
+          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable"
+        },
+        {
           "url": "https://comwel.incruit.com/index_main.asp",
           "visiblePostCount": 1,
           "rowMode": true,
@@ -247,41 +362,6 @@
           "verifiedEmpty": false,
           "emptyMarker": "",
           "countSource": "adapter-diagnostics"
-        },
-        {
-          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-          "visiblePostCount": null,
-          "rowMode": false,
-          "anchors": 0,
-          "titleMatches": 0,
-          "noUrl": 0,
-          "unsafeUrl": 0,
-          "accepted": 0,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 0,
-          "titleSamples": [],
-          "unsafeSamples": [],
-          "actionSamples": [],
-          "candidateUrlSamples": [],
-          "candidateCount": 0,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "recordVerification": {
-            "verified": false,
-            "template": "TABLE_RECORD",
-            "recordCount": 0,
-            "candidateCount": 0,
-            "matchedCount": 0,
-            "unmatchedTitles": [],
-            "recordSamples": [],
-            "level": "TEMPLATE_RECORD_MISMATCH"
-          },
-          "verifiedEmpty": false,
-          "emptyMarker": "",
-          "countSource": "unavailable"
         }
       ]
     },
@@ -300,7 +380,7 @@
           "textLength": 0,
           "attachmentCount": 0,
           "transport": "",
-          "error": "HTTP 400"
+          "error": "fetch failed"
         }
       ]
     },
@@ -312,7 +392,7 @@
     },
     "access": {
       "status": "success",
-      "code": "RECRUIT_VERIFY_OK",
+      "code": "RECRUIT_VERIFY_FALLBACK_OK",
       "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
       "evidence": {
         "ok": true,
@@ -374,51 +454,44 @@
       "contentType": "text/html",
       "attempts": [
         {
-          "url": "https://comwel.incruit.com/index_main.asp",
+          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://comwel.incruit.com/index_main.asp",
+          "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
           "verification": {
-            "ok": true,
-            "verified": true,
+            "ok": false,
+            "verified": false,
             "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
-            "score": 5,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 2,
             "maxScore": 5,
             "checks": {
-              "httpDocument": true,
-              "recruitKeyword": true,
+              "httpDocument": false,
+              "recruitKeyword": false,
               "boardStructure": true,
               "organizationMatch": true,
-              "meaningfulBody": true
+              "meaningfulBody": false
             },
-            "title": "근로복지공단 채용 홈페이지",
+            "title": "근로복지공단 :: 인트로",
             "orgMatched": true,
-            "positiveHits": 1,
-            "positiveMatches": [
-              "채용\\s*공고"
-            ],
+            "positiveHits": 0,
+            "positiveMatches": [],
             "negativeHits": 0,
             "negativeMatches": [],
             "boardSignals": 1,
             "boardType": {
-              "type": "IFRAME",
-              "confidence": "high",
+              "type": "UNKNOWN",
+              "confidence": "low",
               "evidence": [
-                "iframe 태그 발견"
+                "명확한 게시판 구조 신호 없음"
               ]
             },
-            "institutionRule": true,
-            "institutionRuleEvidence": [
-              "host:comwel.incruit.com",
-              "url-pattern",
-              "html:viewhire\\.asp\\?projectid=",
-              "html:incruit"
-            ],
-            "textLength": 268,
-            "requestedUrl": "https://comwel.incruit.com/index_main.asp",
-            "finalUrl": "https://comwel.incruit.com/index_main.asp",
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 24,
+            "requestedUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+            "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
             "status": 200,
             "contentType": "text/html"
           },
@@ -464,6 +537,58 @@
             "textLength": 24,
             "requestedUrl": "https://comwel.saramin.co.kr/",
             "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+            "status": 200,
+            "contentType": "text/html"
+          },
+          "accessTemplate": "COMMON_PLATFORM",
+          "requestProfile": "browser-default"
+        },
+        {
+          "url": "https://comwel.incruit.com/index_main.asp",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://comwel.incruit.com/index_main.asp",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "근로복지공단 채용 홈페이지",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "채용\\s*공고"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "institutionRule": true,
+            "institutionRuleEvidence": [
+              "host:comwel.incruit.com",
+              "url-pattern",
+              "html:viewhire\\.asp\\?projectid=",
+              "html:incruit"
+            ],
+            "textLength": 268,
+            "requestedUrl": "https://comwel.incruit.com/index_main.asp",
+            "finalUrl": "https://comwel.incruit.com/index_main.asp",
             "status": 200,
             "contentType": "text/html"
           },
@@ -545,13 +670,103 @@
       },
       "diagnosis": {
         "ok": true,
-        "code": "RECRUIT_VERIFY_OK",
+        "code": "RECRUIT_VERIFY_FALLBACK_OK",
         "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "2개 후보 URL HTTP 응답 성공",
+          "reason": "3개 후보 URL HTTP 응답 성공",
           "attempts": [
+            {
+              "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 2,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": false,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": false
+                },
+                "title": "근로복지공단 :: 인트로",
+                "orgMatched": true,
+                "positiveHits": 0,
+                "positiveMatches": [],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "UNKNOWN",
+                  "confidence": "low",
+                  "evidence": [
+                    "명확한 게시판 구조 신호 없음"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 24,
+                "requestedUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+                "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+                "status": 200,
+                "contentType": "text/html"
+              },
+              "accessTemplate": "COMMON_PLATFORM",
+              "requestProfile": "browser-default"
+            },
+            {
+              "url": "https://comwel.saramin.co.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 2,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": false,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": false
+                },
+                "title": "근로복지공단 :: 인트로",
+                "orgMatched": true,
+                "positiveHits": 0,
+                "positiveMatches": [],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "UNKNOWN",
+                  "confidence": "low",
+                  "evidence": [
+                    "명확한 게시판 구조 신호 없음"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 24,
+                "requestedUrl": "https://comwel.saramin.co.kr/",
+                "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+                "status": 200,
+                "contentType": "text/html"
+              },
+              "accessTemplate": "COMMON_PLATFORM",
+              "requestProfile": "browser-default"
+            },
             {
               "url": "https://comwel.incruit.com/index_main.asp",
               "ok": true,
@@ -605,51 +820,6 @@
               "requestProfile": "browser-default"
             },
             {
-              "url": "https://comwel.saramin.co.kr/",
-              "ok": true,
-              "status": 200,
-              "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-              "verification": {
-                "ok": false,
-                "verified": false,
-                "fallback": false,
-                "code": "RECRUIT_VERIFY_ERROR_PAGE",
-                "reason": "오류·차단·비HTML 신호 0개",
-                "score": 2,
-                "maxScore": 5,
-                "checks": {
-                  "httpDocument": false,
-                  "recruitKeyword": false,
-                  "boardStructure": true,
-                  "organizationMatch": true,
-                  "meaningfulBody": false
-                },
-                "title": "근로복지공단 :: 인트로",
-                "orgMatched": true,
-                "positiveHits": 0,
-                "positiveMatches": [],
-                "negativeHits": 0,
-                "negativeMatches": [],
-                "boardSignals": 1,
-                "boardType": {
-                  "type": "UNKNOWN",
-                  "confidence": "low",
-                  "evidence": [
-                    "명확한 게시판 구조 신호 없음"
-                  ]
-                },
-                "institutionRule": false,
-                "institutionRuleEvidence": [],
-                "textLength": 24,
-                "requestedUrl": "https://comwel.saramin.co.kr/",
-                "finalUrl": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-                "status": 200,
-                "contentType": "text/html"
-              },
-              "accessTemplate": "COMMON_PLATFORM",
-              "requestProfile": "browser-default"
-            },
-            {
               "url": "https://www.comwel.or.kr/comwel/noti/recruit.jsp",
               "ok": false,
               "error": "HTTP 400",
@@ -674,7 +844,7 @@
         },
         "recruitVerify": {
           "ok": true,
-          "code": "RECRUIT_VERIFY_OK",
+          "code": "RECRUIT_VERIFY_FALLBACK_OK",
           "reason": "기관 전용 채용게시판 규칙 확인 (host:comwel.incruit.com, url-pattern, html:viewhire\\.asp\\?projectid=, html:incruit)",
           "score": 5,
           "maxScore": 5,
@@ -781,7 +951,7 @@
     "list": {
       "ok": true,
       "status": "verified-exact",
-      "pagesChecked": 2,
+      "pagesChecked": 3,
       "visiblePostCount": 1,
       "candidateCount": 1,
       "missingCount": 0,
@@ -791,6 +961,76 @@
       "detailUrlReady": 1,
       "listOnlyCount": 0,
       "extractionDiagnostics": [
+        {
+          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable"
+        },
+        {
+          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable"
+        },
         {
           "url": "https://comwel.incruit.com/index_main.asp",
           "visiblePostCount": 1,
@@ -835,44 +1075,141 @@
           "verifiedEmpty": false,
           "emptyMarker": "",
           "countSource": "adapter-diagnostics"
-        },
-        {
-          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-          "visiblePostCount": null,
-          "rowMode": false,
-          "anchors": 0,
-          "titleMatches": 0,
-          "noUrl": 0,
-          "unsafeUrl": 0,
-          "accepted": 0,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 0,
-          "titleSamples": [],
-          "unsafeSamples": [],
-          "actionSamples": [],
-          "candidateUrlSamples": [],
-          "candidateCount": 0,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "recordVerification": {
-            "verified": false,
-            "template": "TABLE_RECORD",
-            "recordCount": 0,
-            "candidateCount": 0,
-            "matchedCount": 0,
-            "unmatchedTitles": [],
-            "recordSamples": [],
-            "level": "TEMPLATE_RECORD_MISMATCH"
-          },
-          "verifiedEmpty": false,
-          "emptyMarker": "",
-          "countSource": "unavailable"
         }
       ],
       "rootCauseDiagnostics": [
+        {
+          "version": "1.3-list-template-verification",
+          "mode": "passive",
+          "org": "근로복지공단",
+          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "listCounterFailureReason": "UNKNOWN",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "independentDomEvidence": false,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 0
+          },
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 0,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {},
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 5778,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        },
+        {
+          "version": "1.3-list-template-verification",
+          "mode": "passive",
+          "org": "근로복지공단",
+          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "listCounterFailureReason": "UNKNOWN",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "independentDomEvidence": false,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 0
+          },
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 0,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {},
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 5778,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        },
         {
           "version": "1.3-list-template-verification",
           "mode": "passive",
@@ -952,72 +1289,6 @@
             }
           ],
           "rowTrace": []
-        },
-        {
-          "version": "1.3-list-template-verification",
-          "mode": "passive",
-          "org": "근로복지공단",
-          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
-          "listCounterFailureReason": "UNKNOWN",
-          "accuracyVerification": {
-            "verified": false,
-            "level": "NOT_EXACT",
-            "listVerificationTemplate": "TABLE_RECORD",
-            "templateRecordEvidence": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
-              "candidateCount": 0,
-              "matchedCount": 0,
-              "unmatchedTitles": [],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
-            },
-            "independentDomEvidence": false,
-            "exactCount": false,
-            "exactTitleSet": false,
-            "strongAdapterRecordEvidence": false,
-            "missingTitleCount": 0,
-            "extraCandidateCount": 0,
-            "visibleUniqueTitleCount": 0,
-            "extractedTitleCount": 0
-          },
-          "counterTrace": {
-            "source": "unavailable",
-            "rawDomRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": null,
-            "acceptedCandidateCount": 0,
-            "exactAgainstRaw": true,
-            "exactAgainstUniqueTitles": true
-          },
-          "candidateClassCounts": {},
-          "counts": {
-            "visiblePostCount": null,
-            "candidateCount": 0,
-            "rawTableRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 5778,
-            "missingRows": 0,
-            "extraCandidates": 0
-          },
-          "selectorCounts": {
-            "table tbody tr": 0,
-            "tr": 0,
-            "li": 0,
-            "article": 0,
-            "[onclick]": 0,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 0
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [],
-          "extractedTitles": [],
-          "missingRows": [],
-          "extraCandidates": [],
-          "rowTrace": []
         }
       ],
       "diagnosticFiles": [
@@ -1026,7 +1297,7 @@
           "htmlPath": "data/diagnostics/근로복지공단/list/page-1-raw.html",
           "diagnosisPath": "data/diagnostics/근로복지공단/list/page-1-root-cause.json",
           "rowsPath": "data/diagnostics/근로복지공단/list/page-1-rows.txt",
-          "url": "https://comwel.incruit.com/index_main.asp"
+          "url": "https://comwel.saramin.co.kr/service/comwel/index.asp"
         },
         {
           "org": "근로복지공단",
@@ -1034,6 +1305,13 @@
           "diagnosisPath": "data/diagnostics/근로복지공단/list/page-2-root-cause.json",
           "rowsPath": "data/diagnostics/근로복지공단/list/page-2-rows.txt",
           "url": "https://comwel.saramin.co.kr/service/comwel/index.asp"
+        },
+        {
+          "org": "근로복지공단",
+          "htmlPath": "data/diagnostics/근로복지공단/list/page-3-raw.html",
+          "diagnosisPath": "data/diagnostics/근로복지공단/list/page-3-root-cause.json",
+          "rowsPath": "data/diagnostics/근로복지공단/list/page-3-rows.txt",
+          "url": "https://comwel.incruit.com/index_main.asp"
         }
       ],
       "samples": [
@@ -1170,7 +1448,7 @@
           "textLength": 0,
           "attachmentCount": 0,
           "transport": "",
-          "error": "HTTP 400"
+          "error": "fetch failed"
         }
       ]
     },

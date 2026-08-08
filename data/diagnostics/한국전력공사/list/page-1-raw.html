@@ -1,5 +1,14 @@
 
 
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+
+
+
+
 
 
 
@@ -31,32 +40,46 @@
 
 
 
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="ko">
-  
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta http-equiv="Cache-control" content="no-cahe, no-store, must-revalidate">
-    <title>KEPCO 채용</title>
-    <link rel="stylesheet" type="text/css" href="/publish/frt/css/reset.css?after">
+    <meta http-equiv="Cache-Control" content="no-cahe, no-store, must-revalidate">
+    <title>- 채용공고 | KEPCO 채용 -</title>
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-TRQ52WG2WV" integrity="sha384-5J6Webe1l1bADj1OpDO59DTtj+5eXv5vPxf8qYSE6lUkiy84aoZqF9wRSXrbZTN8" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/publish/frt/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/publish/frt/css/jquery-ui-1.12.1.custom.css">
-    <link rel="stylesheet" type="text/css" href="/publish/frt/css/all.min.css?after">
+	<link rel="stylesheet" type="text/css" href="/publish/frt/css/jquery-ui-timepicker-addon.css">
+    <link rel="stylesheet" type="text/css" href="/publish/frt/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/publish/frt/css/main.css?after2">
-	<link rel="stylesheet" href="/publish/frt/css/swiper.min.css?after"/>
-
-    <script type="text/javascript" src="/publish/frt/js/jquery-3.7.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="/publish/frt/css/sub.css">
+    <script type="text/javascript" src="/publish/frt/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/publish/frt/js/jquery-ui-1.12.1.custom.js"></script>
-	<script type="text/javascript" src="/publish/frt/js/swiper.min.js"></script>
+	<script type="text/javascript" src="/publish/frt/js/jquery-ui-timepicker-addon.js"></script>
     <script type="text/javascript" src="/publish/frt/js/all.min.js"></script>
-	<script type="text/javascript" src="/publish/frt/js/common.js"></script>
-	<script type="text/javascript" src="/publish/frt/js/board.js"></script>
-</head>
-
-<!-- Google tag (gtag.js) -->
-<script src="https://www.googletagmanager.com/gtag/js?id=G-TRQ52WG2WV" crossorigin="anonymous"></script>
-
+	<script type="text/javascript" src="/publish/frt/js/common_re.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -64,45 +87,57 @@
   gtag('config', 'G-TRQ52WG2WV');
 </script>
 
-<body onload="javascript:fnc_kakaoPop();">  
+</head>
 
-<script>
-	$(document).ready(function(){
-		$("#btn_close").click(function(){
-			$("#top_bn").hide();
-		});
-		$(".popup").hide();
-		var state = "";
+
+<body>
+	<div id="skipnavi">
+		<a href="#container">▶본문 바로가기</a>
+		<a href="#gnb_area">▶주메뉴 바로가기</a>
+	</div>
+	<div id="wrapper">
+        <!-- header --> 
 		
-	});
-	function fncPopClose(idx){
-		$("#popup_"+idx).hide();
-	};
 
-	function fnc_kakaoPop() { 
-	var x_pos = (screen.availWidth-505)/2;
-	var y_pos = (screen.availHeight-660)/2
-
-	window.open('', 'popup_request','left=100,top=100,width=596,height=646');	
-	$("#defaultFrm").attr({"action" : "/frt/frt0001/kakaopop.do", "method" : "post", "target" : "popup_request" , "onsubmit" : ""}).submit();	
-
-	//window.open('', 'popup_inspect','left=700,top=100,width=540,height=270');	
-	//$("#defaultFrm").attr({"action" : "/frt/frt0001/inspectpop.do", "method" : "post", "target" : "popup_inspect" , "onsubmit" : ""}).submit();	
-
-	}
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-	</script>
-    <div id="skipnavi">
-        <a href="#container">▶본문 바로가기</a>
-        <a href="#gnb_area">▶주메뉴 바로가기</a>
-    </div>
-    <div id="wrapper">
-    	
-        <!-- header -->
 
-        
- <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- header -->
+<script>
 
 function fnc_Certi(){
 
@@ -118,6 +153,8 @@ function fnc_Certi(){
 }
 
 </script>
+ 
+ 
  <header id="header" class="gnbSlideEach">
             <a href="#" class="menu-btn">
                 <img src="/publish/frt/images/common/btn_toggle.png" alt="">
@@ -130,9 +167,8 @@ function fnc_Certi(){
                         <span>&nbsp;|&nbsp;<a href="https://recruit.kepco.co.kr:444/sangsi/index.jsp" target="_self"><font color="gray" style="font-size:13px;">수시채용</font></a></span>
                     </div>
                     <div class="utill_wrap">
-           
+                    	
                         	<a href="http://home.kepco.co.kr">KEPCO 홈</a>
-
                         <a href="/frt/siteMap.do" class="btn_toggle"><img src="/publish/frt/images/common/btn_toggle.png" alt=""></a>
                     </div>
                 </div>
@@ -143,8 +179,8 @@ function fnc_Certi(){
 		                     <div class="depthBox">
 		                         <div class="gnb_txt"><strong>채용공고</strong></div>
 		                         <ul class="depth_menu">
-		                             <li><a href="/frt/frt0001/list.do">채용공고</a></li>
-		                             <li><a href="/frt/frt0002/list.do">채용절차</a></li>
+		                             <li><a href="../frt0001/list.do">채용공고</a></li>
+		                             <li><a href="../frt0002/list.do">채용절차</a></li>
 		                         </ul>
 		                     </div>
 		                 </div>
@@ -155,12 +191,12 @@ function fnc_Certi(){
 		                     <div class="depthBox">
 		                         <div class="gnb_txt"><strong>입사지원관리</strong></div>
 		                         <ul class="depth_menu">
-		                             <li><a href="/frt/frt0003/list.do">지원서 작성</a></li>
-		                             <li><a href="/frt/frt0004/list.do">지원서 수정삭제</a></li>
-		                             <li><a href="/frt/frt0005/list.do">전형결과 확인</a></li>
-		                             <li><a href="/frt/frt0006/list.do">채용서류 반환 청구</a></li>
-		                             <li><a href="/frt/frt0007/list.do">이의신청</a></li>
-									 <li><a href="/frt/frt0014/list.do">상시지원 POOL 등록</a></li>
+		                             <li><a href="../frt0003/list.do">지원서 작성</a></li>
+		                             <li><a href="../frt0004/list.do">지원서 수정삭제</a></li>
+		                             <li><a href="../frt0005/list.do">전형결과 확인</a></li>
+		                             <li><a href="../frt0006/list.do">채용서류 반환 청구</a></li>
+		                             <li><a href="../frt0007/list.do">이의신청</a></li>
+		                             <li><a href="../frt0014/list.do">상시지원 POOL 등록</a></li>
 		                         </ul>
 		                     </div>
 		                 </div>
@@ -171,9 +207,9 @@ function fnc_Certi(){
 		                     <div class="depthBox">
 		                         <div class="gnb_txt"><strong>인사제도</strong></div>
 		                         <ul class="depth_menu">
-		                             <li><a href="/frt/frt0008/list.do">인재상</a></li>
-		                             <li><a href="/frt/frt0009/list.do">인재육성</a></li>
-		                             <li><a href="/frt/frt0010/list.do">직무소개</a></li>
+		                             <li><a href="../frt0008/list.do">인재상</a></li>
+		                             <li><a href="../frt0009/list.do">인재육성</a></li>
+		                             <li><a href="../frt0010/list.do">직무소개</a></li>
 		                         </ul>
 		                     </div>
 		                 </div>
@@ -184,11 +220,10 @@ function fnc_Certi(){
                             <div class="depthBox">
                                 <div class="gnb_txt"><strong>채용문의</strong></div>
                                 <ul class="depth_menu">
-                                    <li><a href="/frt/frt0011/list.do">공지사항</a></li>
-                                    <li><a href="/frt/frt0012/list.do">자주하는 질문(FAQ)</a></li>
-                                    <li><a href="/frt/frt0015/list.do">공개채용 문의</a></li>
-									<li><a style="cursor:pointer" onclick="javascript:fnc_Certi();">수료증 출력(체험형 인턴)</a></li>
-
+                                    <li><a href="../frt0011/list.do">공지사항</a></li>
+                                    <li><a href="../frt0012/list.do">자주하는 질문(FAQ)</a></li>
+                                    <li><a href="../frt0015/list.do">공개채용 문의</a></li>
+								    <li><a style="cursor:pointer" onclick="javascript:fnc_Certi();">수료증 출력(체험형 인턴)</a></li>							
                                 </ul>
                             </div>
                         </div>
@@ -198,40 +233,45 @@ function fnc_Certi(){
             <!-- m_gnb -->
             <nav class="pushy pushy-left" data-focus="#first-link">
                 <div class="pushy-content">
-                  
+                    <div class="pushy-top clear">
+                        <span class="left">
+                            
+                        </span>
+                    </div>
                     <ul>
                         <li class="pushy-submenu pushy-submenu-closed">
                             <button id="first-link"><span>채용공고</span><i class="fas fa-plus"></i></button>
                             <ul>
-                                <li class="pushy-link"><a href="/frt/frt0001/list.do">채용공고</a></li>
-                                <li class="pushy-link"><a href="/frt/frt0002/list.do">채용절차</a></li>
+                                <li class="pushy-link"><a href="../frt0001/list.do">채용공고</a></li>
+                                <li class="pushy-link"><a href="../frt0002/list.do">채용절차</a></li>
                             </ul>
                         </li>
                         <li class="pushy-submenu pushy-submenu-closed">
                             <button><span>입사지원관리</span><i class="fas fa-plus"></i></button>
                             <ul>
-                                <li class="pushy-link"><a href="/frt/frt0003/list.do">지원서 작성</a></li>
-                                <li class="pushy-link"><a href="/frt/frt0004/list.do">지원서 수정삭제</a></li>
-                                <li class="pushy-link"><a href="/frt/frt0005/list.do">전형결과 확인</a></li>
-                                <li class="pushy-link"><a href="/frt/frt0006/list.do">채용서류 반환 청구</a></li>
-                                <li class="pushy-link"><a href="/frt/frt0007/list.do">이의신청</a></li>
-                                <li class="pushy-link"><a href="/frt/frt0014/list.do">상시지원 POOL 등록</a></li>
+                                <li class="pushy-link"><a href="../frt0003/list.do">지원서 작성</a></li>
+                                <li class="pushy-link"><a href="../frt0004/list.do">지원서 수정삭제</a></li>
+                                <li class="pushy-link"><a href="../frt0005/list.do">전형결과 확인</a></li>
+                                <li class="pushy-link"><a href="../frt0006/list.do">채용서류 반환 청구</a></li>
+                                <li class="pushy-link"><a href="../frt0007/list.do">이의신청</a></li>
+                                <li class="pushy-link"><a href="../frt0014/list.do">상시지원 POOL 등록</a></li>
                             </ul>
                         </li>
                         <li class="pushy-submenu pushy-submenu-closed">
                             <button><span>인사제도</span><i class="fas fa-plus"></i></button>
                             <ul>
-                                <li class="pushy-link"><a href="/frt/frt0008/list.do">인재상</a></li>
-                                <li class="pushy-link"><a href="/frt/frt0009/list.do">인재육성</a></li>
-                                <li class="pushy-link"><a href="/frt/frt0010/list.do">직무소개</a></li>
+                                <li class="pushy-link"><a href="../frt0008/list.do">인재상</a></li>
+                                <li class="pushy-link"><a href="../frt0009/list.do">인재육성</a></li>
+                                <li class="pushy-link"><a href="../frt0010/list.do">직무소개</a></li>
                             </ul>
                         </li>
                         <li class="pushy-submenu pushy-submenu-closed">
                             <button><span>채용문의</span><i class="fas fa-plus"></i></button>
                             <ul>
-                                <li class="pushy-link"><a href="/frt/frt0011/list.do">공지사항</a></li>
-                                <li class="pushy-link"><a href="/frt/frt0012/list.do">자주하는 질문(FAQ)</a></li>
-                                <li class="pushy-link"><a href="/frt/frt0015/list.do">공개채용 문의</a></li>
+                                <li class="pushy-link"><a href="../frt0011/list.do">공지사항</a></li>
+                                <li class="pushy-link"><a href="../frt0012/list.do">자주하는 질문(FAQ)</a></li>
+                                <li class="pushy-link"><a href="../frt0015/list.do">공개채용 문의</a></li>
+                                <li><a href="../frt0006/list.do">채용서류 반환 청구</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -240,45 +280,143 @@ function fnc_Certi(){
             <div class="site-overlay"></div>
             <!-- //m_gnb -->
             <script type="text/javascript" src="/publish/frt/js/pushy.js"></script>
-        </header>       
 
-        <!-- //header -->
-        <!-- container 시작 -->
-        <div id="container">
-        	
-            <div class="main_visual main1">
-                <img src="/publish/frt/images/main/big_logo.png" class="main_bg" alt="">
-                <div class="main_wrap">
-                    <h2 class="main_tit">Global Energy & Solution Leader, <span class="bold">KEPCO</span></h2>
-                    <span class="sub_tit">한국전력공사와 함께 <span class="bold">꿈을 펼쳐 나아갈</span> 인재를 모집합니다.</span>
-					<div class="img_wrap">
-						<div class="main_img main01">
-							<img src="/publish/frt/images/main/main_img07.png" alt="">
-							<img src="/publish/frt/images/main/bubble01.png" alt="" class="bubble bubble01">
-						</div>
-						<div class="main_img main02">
-							<img src="/publish/frt/images/main/main_img08.png" alt="">
-						</div>
-						<div class="main_img main03">
-							<img src="/publish/frt/images/main/main_img09.png" alt="">
-							<img src="/publish/frt/images/main/bubble02.png" alt="" class="bubble bubble02">
-						</div>
-						<div class="main_img main04">
-							<img src="/publish/frt/images/main/main_img10.png" alt="">
-							<img src="/publish/frt/images/main/bubble03.png" alt="" class="bubble bubble03">
-						</div>
-					</div>
-                    <a href="/frt/frt0001/list.do" class="ing_more">진행 중인 <span class="bold">채용공고</span><img src="/publish/frt/images/main/icon_more.png" alt=""></a>
-                </div>
-            </div>
-			<form id="defaultFrm" name="defaultFrm" action="/frt/main.do;RECRUIT_ID=AkTgewbIbuJ7t5hyzfqwGGnU_OKeh5ahv2nd7zDpLb28e5cZQqun!1344704514!1703146228" method="post">
-				<input type="hidden" id="sSeq" name="sSeq"/>
-				<input type="hidden" id="employYear" name="employYear"/>
-				<input type="hidden" id="employId" name="employId"/>
-				<input type="hidden" id="employSeq" name="employSeq"/>
-			</form>
-            <div id="content">
-                				
+        </header>
+		
+
+        <!--// header -->     
+		<!-- container -->
+      	<div id="container">      	
+			
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+
+
+
+
+
+<div class="loaction_area">
+     <div class="location_box clear">
+       <a href="/frt/main.do"><img src="/publish/frt/images/sub/icon_home.png" alt=""></a>
+       <div class="fake_select js-fake-select open">
+         <button type="button" class="my_value js-my-value">채용공고</button>
+         <ul class="a_list js-a-list">
+	         
+				
+		            <li><a href="/frt/frt0003/list.do">입사지원관리</a></li>
+		            <li><a href="/frt/frt0008/list.do">인사제도</a></li>
+		            <li><a href="/frt/frt0011/list.do">채용문의</a></li>
+				
+				
+				
+				
+				
+			
+         </ul>
+       </div>
+       <div class="fake_select js-fake-select open">
+       <button type="button" class="my_value js-my-value selected">채용공고</button>
+         <ul class="a_list js-a-list">
+         	
+         		
+         			
+           				<li><a href="/frt/frt0001/list.do">채용공고</a></li>
+         			
+         			
+         			
+         			
+         			
+         		
+           	
+         		
+         			
+           				<li><a href="/frt/frt0002/list.do">채용절차</a></li>
+         			
+         			
+         			
+         			
+         			
+         		
+           	
+         </ul>
+       </div>
+     </div>
+ </div>
+
+            <div class="content type02">
+			    <!--// header -->
+				
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           				
 				<script>
 				
 				function fncChatpup(){
@@ -322,120 +460,142 @@ function fnc_Certi(){
 	                <a href="javascript:fncPoolClose();">
 	                	<img src="/publish/frt/images/main/icon_close.png" style="position:absolute;bottom:-25%;right:0%;"></img>
 	                </a>
-                </div>  
-                <div class="content_wrap">
-                    <div class="swiper-container mySwiper">
-                       	
-                       		
-                       			
-                        		<div class="swiper-wrapper">
-                        			
-                        				
-                        					
-		                        			<div class="swiper-slide">
-				                                <a href="javascript:void(0)" onclick="fncPageBoard('view','/frt/frt0001/view.do','2026,C,1','employYear,employId,employSeq');">	
-				                                    <span class="category">NDIS데이터관리원채용</span>
-				                                    <span class="tit">2026년도 NDIS데이터관리원 채용</span> 
-				                                    <span class="date_wrap">
-				                                        <img src="/publish/frt/images/main/icon_calendar.png" alt="">
-				                                        <!-- <span class="dday">D-15</span> -->
-				                                        <span class="date">2026.07.30 ~ 2026.08.06</span>
-				                                    </span>
-				                                    
-				                                    	<span class="state">서류심사중</span>
-				                                    
-				                                </a>
-				                            </div>
-			                            
-                        			
-                        				
-                        			
-                        				
-                        			
-                        				
-                        			
-                        				
-                        			
-                        				
-                        			
-                        				
-                        			
-                        				
-                        			
-                        				
-                        			
-                        				
-                        			
-                        			</div>                
-                        			                        			
-                        		
-                        		
-                        	        
-                        <div class="swiper-scrollbar"></div>
-                    </div>
-                    <script>
-                        var swiper = new Swiper(".mySwiper", {
-                        slidesPerView: 3,
-                          scrollbar: {
-                            el: ".swiper-scrollbar",
-                            hide: false,
-                          },
-                          autoplay: {
-                                delay: 2500,
-                            },
-                            breakpoints: {
-                                1250: {
-                                slidesPerView: 2,
-                                },
-                                768: {
-                                slidesPerView: 1,
-                                }
-                            }
-                        });
-                    </script>
-                    <div class="result_wrap">
-                        <span class="tit">공지사항</span>
-                        <a href="/frt/frt0011/list.do" class="btn_more"><img src="/publish/frt/images/main/icon_more_white.png" alt=""></a>
-                        <ul class="result_list">
-                        	
-                        		
-                        		<li onclick="fncPageBoard('view','/frt/frt0011/view.do','4240','sSeq');" style="cursor:pointer;">[2026년도 고졸채용] 예비합격자(합격자X)...</li>
-                        		
-                        	
-                        		
-                        		<li onclick="fncPageBoard('view','/frt/frt0011/view.do','4222','sSeq');" style="cursor:pointer;">[2026년도 제2차 전문직원 채용] 예비합격...</li>
-                        		
-                        	
-                        		
-                        		<li onclick="fncPageBoard('view','/frt/frt0011/view.do','4221','sSeq');" style="cursor:pointer;">[2026년도 제2차 전문직원 채용] 2차전형...</li>
-                        		
-                        	
-                        		
-                        		<li onclick="fncPageBoard('view','/frt/frt0011/view.do','4220','sSeq');" style="cursor:pointer;">[2026년도 고졸 채용] 면접대상자 일정 공...</li>
-                        		
-                        	
-                        		
-                        		<li onclick="fncPageBoard('view','/frt/frt0011/view.do','4202','sSeq');" style="cursor:pointer;">[2026년도 고졸 채용] 필기전형 합격자 발...</li>
-                        		
-                        	
-                        		
-                        	
-                        		
-                        	
-                        		
-                        	
-                        		
-                        	
-                        		
-                        	
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                </div>                  
+ 
+
+				<!-- contents -->			
+				
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/publish/frt/js/board.js"></script>
+
+<script>
+	$(document).ready(function(){
+    	fncPageBoard('addList','addList.do','1');
+	});
+//<!-- 오프라인 접수 추가 로직start-->
+	function fncClickOffline(){
+		alert("채용공고문을 참고하시어 이메일, 방문 또는 우편접수하시기 바랍니다");
+		return;
+	}
+//<!-- 오프라인 접수 추가 로직end-->	
+	function fncMovePage_receptInfo(employ_year, employ_id, employ_seq){
+		
+		$('#employYear').val(employ_year);
+		$('#employId').val(employ_id);
+		$('#employSeq').val(employ_seq);
+
+		var x_pos = (screen.availWidth-505)/2;
+		var y_pos = (screen.availHeight-660)/2
+
+		//window.open('/popup/main_popup2.jsp', 'popup3','left='+x_pos+',top='+y_pos+',width=700,height=205');
+		var xwidth ="";
+		var yheight ="";
+
+		if(employ_id == "1" || employ_id == "4"){
+
+			if(employ_id=="4"){
+				yheight ="500";
+				xwidth ="800";
+
+			}else{
+				xwidth ="1400";
+				yheight ="600";
+			}
+		}else if(employ_id == "6"){
+
+
+		xwidth ="800";
+		yheight ="250";
+
+		}else if(employ_id == "5"){
+		xwidth ="1600";
+		yheight ="800";
+
+		}else if(employ_id == "C"){
+		xwidth ="800";
+		yheight ="250";
+		}else if(employ_id == "9"){
+		xwidth ="550";
+		yheight ="500";
+
+		}else if(employ_id == "D"){
+		xwidth ="1600";
+		yheight ="300";
+
+		}else if(employ_id == "A"){
+		xwidth ="1000";
+		yheight ="600";
+
+		}else if(employ_id == "F"){
+
+//		xwidth ="1000";
+		xwidth ="1600";
+		yheight ="250";
+
+		}else if(employ_id == "G"){
+		xwidth ="800";
+		yheight ="250";
+		}else if(employ_id == "E"){
+		xwidth ="1200";
+		yheight ="400";
+
+		}else{
+		xwidth ="550";
+		yheight ="115";
+		}
+
+		 x_pos = (screen.availWidth-xwidth)/2;
+		 y_pos = (screen.availHeight-yheight)/2
+		
+		var winobj = null;
+
+	    winobj = window.open("", "info","scrollbars=yes,left="+x_pos+", top="+y_pos+",width="+xwidth+",height="+yheight);
+
+		$("#defaultFrm").attr({"action" : "/frt/frt0001/recruit_info2pop.do", "method" : "post", "target" : "info" , "onsubmit" : ""}).submit();						
+
+	}	
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRQ52WG2WV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TRQ52WG2WV');
+</script>
+
+
+<form id="defaultFrm" name="defaultFrm" action="/frt/frt0001/list.do;RECRUIT_ID=74PgvvNBrlmuvBSlr_7L6fbM-vSJXhtfEl5K98sBciDtmXCsW0fQ!1703146228!-1570554762" method="post">
+	<input id="pageIndex" name="pageIndex" type="hidden" value="1"/>
+	<input type="hidden" id="employYear" name="employYear"/>
+	<input type="hidden" id="employId" name="employId"/>
+	<input type="hidden" id="employSeq" name="employSeq"/>
+<h2 class="tit">채용공고</h2>               
+                <div class="tbl">
+</form>
+			</div>
+			<!-- //container -->
         </div>
-        <!-- //container -->
-        <!-- footer 시작 -->
-          
+	</div>
+	
 
 	<script>
 		function fncPopClose(idx){
@@ -472,6 +632,9 @@ function fnc_Certi(){
                 height: null
             });
         });
-    </script>       
-
-</body>
+    </script>
+    <!-- //wrap -->
+ </body>
+</html>
+			
+		 

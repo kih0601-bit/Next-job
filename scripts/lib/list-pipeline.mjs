@@ -30,6 +30,8 @@ export function inspectListingPage(html, source) {
       ? diagnostics.visiblePostCount
       : null;
   const candidateCount = candidates.length;
+  const explicitEmptyMarker = String(source?.accessConfig?.verifiedEmptyText || '').trim();
+  const verifiedEmpty = candidateCount === 0 && Boolean(explicitEmptyMarker) && cleanHtml(String(html)).includes(explicitEmptyMarker);
   const recordVerification = verifyExtractedListAgainstVisibleRecords(html, sourceWithRaw, candidates);
   const exactMatch = visiblePostCount !== null && candidateCount === visiblePostCount;
   const missingCount = visiblePostCount === null ? null : Math.max(0, visiblePostCount - candidateCount);
@@ -40,7 +42,7 @@ export function inspectListingPage(html, source) {
     else if (candidateCount === 0) status = 'failed';
     else status = 'partial';
   } else if (candidateCount === 0) {
-    status = 'empty-or-wrong-page';
+    status = verifiedEmpty ? 'verified-empty' : 'empty-or-wrong-page';
   }
   return {
     candidates,
@@ -58,6 +60,8 @@ export function inspectListingPage(html, source) {
       missingCount,
       extraCount,
       recordVerification,
+      verifiedEmpty,
+      emptyMarker: verifiedEmpty ? explicitEmptyMarker : '',
       countSource: visiblePostCount !== null
         ? (Number.isInteger(counted) && counted > 0 ? 'visible-board-rows' : 'adapter-diagnostics')
         : 'unavailable'

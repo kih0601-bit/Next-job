@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 const ENTITY_MAP = {
   '&amp;': '&', '&quot;': '"', '&#39;': "'", '&lt;': '<', '&gt;': '>', '&nbsp;': ' '
 };
@@ -351,7 +353,9 @@ function writeDetailDiagnostic({ org = 'unknown', expectedTitle = '', requestedU
       requestMethod: request?.method || 'GET',
       verdict
     }, null, 2));
-  } catch {}
+  } catch (diagnosticError) {
+    console.error(`[detail-diagnostic] ${org || 'unknown'}: ${diagnosticError?.message || diagnosticError}`);
+  }
 }
 
 export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', sourceOrg = '', allowedHosts = [], request = null } = {}) {

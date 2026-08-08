@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "purpose": "반복 패치 방지 및 기관별 현재 병목 추적",
   "authoritativeCodeBaseline": "최신 Actions ZIP",
-  "lastObservedVersion": 76,
-  "pendingValidationVersion": 77,
+  "lastObservedVersion": 78,
+  "pendingValidationVersion": 79,
   "rules": {
     "strictDocumentCompletion": "documentAnalysis.ok=true는 선정된 실제 문서 분석 대상이 모두 성공한 경우만",
     "documentCapability": "capabilityOk=true는 실제 문서 최소 1개 이상 파싱 가능 검증이며 전체 완료와 다름",
@@ -220,9 +220,10 @@
         "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 78,
       "pendingAction": "v77 encrypted preview 원본 복원 검증",
-      "pendingValidationVersion": 77
+      "pendingValidationVersion": 77,
+      "pendingPatch": "v79: bare-domain official board routes first; www + government fallbacks preserved"
     },
     {
       "org": "울산북구시설관리공단",
@@ -449,9 +450,10 @@
         "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 78,
       "pendingAction": "v77 HWP fallback 검증",
-      "pendingValidationVersion": 77
+      "pendingValidationVersion": 77,
+      "pendingPatch": "v79: administrative form excluded from strict coverage only when substantive recruitment document exists"
     },
     {
       "org": "울산테크노파크",
@@ -628,8 +630,9 @@
         "repairTarget": "scripts/collectors/institutions/한국동서발전.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75,
-      "pendingAction": "외부 502 재현 여부 확인"
+      "lastObservedVersion": 78,
+      "pendingAction": "외부 502 재현 여부 확인",
+      "pendingPatch": "v79: remove site-wide certification PDFs from recruitment attachments; new_download contract left evidence-gated"
     },
     {
       "org": "한국산업안전보건공단",

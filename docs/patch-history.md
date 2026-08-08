@@ -46,3 +46,16 @@
 - 울산정보산업진흥원: HWP 저텍스트 시 LibreOffice fallback.
 - 울산복지가족진흥사회서비스원: /u 가짜 href와 encrypted preview identity 결합, preview/TTS 중복 제거, preview 내부 원본 download 복원 시도.
 - strict document completion 기준 유지.
+
+
+## v79 — 재실행(78) 기준 잔여 3기관 원인 한정 패치
+- 울산복지가족진흥사회서비스원: 78에서 `www.wfps.or.kr`/`www.uwfdi.re.kr` TCP 443 timeout이 반복됐지만 동일 공식 게시판의 bare-domain 경로가 존재함을 확인. `wfps.or.kr`/`uwfdi.re.kr` 공식 경로를 www 경로보다 먼저 시도하도록 추가. 울산시/남구 fallback은 유지.
+- 한국동서발전: 상세 HTML footer의 웹접근성·웹개방성·ISO 인증 PDF가 채용 첨부로 오탐되어 표본 분석을 왜곡한 원인을 확정. 해당 site-wide 인증 문서를 첨부 후보에서 제거. 실제 `new_download.html` 채용 첨부는 그대로 유지하며, 다운로드 계약은 추가 evidence 없이 추측 수정하지 않음.
+- 울산정보산업진흥원: 실패한 1건은 실제 `이의신청서.hwp`로 다운로드는 성공했으나 양식 특성상 추출 text가 20자 미만. 같은 공고에 `직무기술서/채용공고` 같은 substantive 문서가 있을 때에만 이의신청서·신원진술서·결격서약서 등 행정 양식을 strict document coverage 대상에서 제외. 일반 HWP 실패를 성공으로 위장하지 않음.
+- 공통 Parser 확대 금지 원칙 유지: 이번 변경은 78 evidence로 확인된 bare-domain route, footer 인증문서, 비내용 행정양식 세 원인만 반영.
+
+### v79 다음 Actions 검증
+- 복지가족진흥사회서비스원: bare-domain 공식 채용게시판 HTTP/채용게시판 검증 통과 여부.
+- 동서발전: attachmentDiscovery 표본에서 웹접근성/ISO 문서 제거 여부. `new_download.html` 실채용 첨부가 HTML로 남으면 해당 요청의 onclick/form/body evidence를 저장한 뒤 실계약만 수정.
+- UIPA: 이의신청서 때문에 partial이 되지 않고 substantive 문서 분석 결과로 strict 완료 판정되는지 확인.
+- 기존 17 healthy 기관 회귀 0건 확인.

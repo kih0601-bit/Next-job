@@ -108,9 +108,15 @@ function counterFailureReason({ rows, selectedCandidates, inspection, uniqueVisi
 
 export function buildListRootCauseDiagnostics({ html = '', source, inspection, selectedCandidates = [] }) {
   const rows = collectRows(html);
-  const accepted = new Map(selectedCandidates.map(item => [normalizeBoardTitle(item.title), item]));
+  const acceptedBuckets = new Map();
+  for (const item of selectedCandidates) {
+    const key = normalizeBoardTitle(item.title);
+    if (!acceptedBuckets.has(key)) acceptedBuckets.set(key, []);
+    acceptedBuckets.get(key).push(item);
+  }
   const rowTrace = rows.map(row => {
-    const candidate = accepted.get(row.normalizedTitle);
+    const bucket = acceptedBuckets.get(row.normalizedTitle) || [];
+    const candidate = bucket.shift();
     return {
       ...row,
       accepted: Boolean(candidate),
@@ -191,7 +197,7 @@ export function buildListRootCauseDiagnostics({ html = '', source, inspection, s
   else probableCause = 'NO_LIST_ROOT_CAUSE_DETECTED';
 
   return {
-    version: '1.3-list-template-verification',
+    version: '1.4-duplicate-title-safe-diagnostics',
     mode: 'passive',
     org: source?.org || 'unknown',
     url: source?.url || '',

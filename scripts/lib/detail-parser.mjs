@@ -390,6 +390,38 @@ function writeDetailDiagnostic({ org = 'unknown', expectedTitle = '', requestedU
   }
 }
 
+
+async function externalAttachmentScriptSource(html = '', baseUrl = '', sourceOrg = '', signal = undefined) {
+  if (sourceOrg !== '한국에너지공단') return { source: String(html), scripts: [] };
+  const scriptUrls = [...String(html).matchAll(/<script\b[^>]*\bsrc\s*=\s*(["'])([^"']*(?:CtitFile|file)[^"']*\.js(?:\?[^"']*)?)\1/gi)]
+    .map(match => absoluteUrl(match[2], baseUrl))
+    .filter(Boolean);
+  const unique = [...new Set(scriptUrls)].slice(0, 4);
+  if (!unique.length) return { source: String(html), scripts: [] };
+  const scripts = [];
+  for (const scriptUrl of unique) {
+    try {
+      const response = await fetch(scriptUrl, {
+        signal,
+        redirect: 'follow',
+        headers: {
+          'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
+          accept: 'text/javascript,application/javascript,*/*;q=0.8',
+          referer: baseUrl
+        }
+      });
+      if (!response.ok) continue;
+      const body = await response.text();
+      if (body.length < 20) continue;
+      scripts.push({ url: response.url || scriptUrl, body: body.slice(0, 120000) });
+    } catch { /* evidence-only enhancement; normal detail parsing must continue */ }
+  }
+  return {
+    source: `${String(html)}\n${scripts.map(item => `<script data-nextjob-external="${item.url}">${item.body}</script>`).join('\n')}`,
+    scripts
+  };
+}
+
 export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', sourceOrg = '', allowedHosts = [], request = null } = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -532,7 +564,8 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
     const cookie = typeof response.headers.getSetCookie === 'function'
       ? response.headers.getSetCookie().map(value => value.split(';')[0]).join('; ')
       : (response.headers.get('set-cookie') || '').split(/,(?=[^;,]+=)/).map(value => value.split(';')[0]).join('; ');
-    const attachments = extractAttachments(html, finalUrl, { referer: finalUrl, cookie });
+    const externalAttachmentScripts = await externalAttachmentScriptSource(html, finalUrl, sourceOrg, controller.signal);
+    const attachments = extractAttachments(externalAttachmentScripts.source, finalUrl, { referer: finalUrl, cookie });
     const imageScope = sourceOrg === '울산정보산업진흥원'
       ? (html.match(/<dd\b[^>]*class=["'][^"']*\bcont\b[^"']*["'][^>]*>[\s\S]*?<\/dd>/i)?.[0] || html)
       : html;
@@ -591,7 +624,7 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
     if (confidence.tokenCount >= 3 && confidence.titleRatio < 0.25 && attachments.length === 0 && !titleEvidence) throw new Error('detail title mismatch');
     const attachmentSignalCount = (html.match(/첨부(?:파일)?|다운로드|download|filedown|atchfile|fileSeq|fileDown|fileDownload|downFile|ctitFile|data-file-url|data-download-url/gi) || []).length;
     const explicitNoAttachment = /(?:첨부파일[^<\n]{0,80})?(?:등록된\s*파일이\s*없습니다|첨부(?:된)?\s*파일이\s*없습니다|첨부파일\s*없음|등록된\s*첨부파일이\s*없습니다)/i.test(fullText) || (sourceOrg === '울주문화재단' && /hubst\.co\.kr/i.test(finalUrl) && attachments.length === 0 && !FILE_EXT.test(fullText));
-    return { ok: true, finalUrl, text: text || fullText, confidence, httpStatus: response.status, contentType, attachments, contentImages, attachmentSignalCount, explicitNoAttachment, rawHtml: html, detailTransport: request?.method ? `FORM_${String(request.method).toUpperCase()}` : (contentImages.length ? 'IMAGE_CONTENT_PAGE' : 'GET') };
+    return { ok: true, finalUrl, text: text || fullText, confidence, httpStatus: response.status, contentType, attachments, contentImages, attachmentSignalCount, explicitNoAttachment, rawHtml: html, externalAttachmentScripts: externalAttachmentScripts.scripts.map(item => ({ url:item.url, body:item.body })), detailTransport: request?.method ? `FORM_${String(request.method).toUpperCase()}` : (contentImages.length ? 'IMAGE_CONTENT_PAGE' : 'GET') };
   } catch (error) {
     return { ok: false, finalUrl: request?.url || url, text: '', attachments: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
   } finally { clearTimeout(timer); }

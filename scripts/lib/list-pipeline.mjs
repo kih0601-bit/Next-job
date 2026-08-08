@@ -23,7 +23,13 @@ export function inspectListingPage(html, source) {
     normalizeTitleForDedup: normalizeBoardTitle
   });
   const diagnostics = candidates.diagnostics || {};
-  const counted = countVisibleBoardPosts(html, sourceWithRaw);
+  const countedRaw = countVisibleBoardPosts(html, sourceWithRaw);
+  const counted = Number.isInteger(countedRaw)
+    ? countedRaw
+    : Number.isInteger(countedRaw?.count)
+      ? countedRaw.count
+      : null;
+  const countTemplate = typeof countedRaw === 'object' && countedRaw ? (countedRaw.template || '') : '';
   const visiblePostCount = Number.isInteger(counted) && counted > 0
     ? counted
     : Number.isInteger(diagnostics.visiblePostCount) && diagnostics.visiblePostCount > 0
@@ -63,8 +69,9 @@ export function inspectListingPage(html, source) {
       verifiedEmpty,
       emptyMarker: verifiedEmpty ? explicitEmptyMarker : '',
       countSource: visiblePostCount !== null
-        ? (Number.isInteger(counted) && counted > 0 ? 'visible-board-rows' : 'adapter-diagnostics')
-        : 'unavailable'
+        ? (Number.isInteger(counted) && counted > 0 ? (countTemplate || 'visible-board-rows') : 'adapter-diagnostics')
+        : 'unavailable',
+      countTemplate
     }
   };
 }

@@ -1,39 +1,53 @@
 {
-  "generatedAt": "2026-08-08T16:20:07.073Z",
-  "schemaVersion": "1.0.0",
-  "policy": "지원조건을 required/preferred/unknown으로 분리. 문서>상세>목록>제목 근거 우선. 현재는 관측/검증용이며 신규 hard filter로 사용하지 않음.",
+  "generatedAt": "2026-08-08T16:49:59.217Z",
+  "schemaVersion": "1.1.0",
+  "policy": [
+    "필터 연구용 표본은 최종 jobs.json 통과 여부와 분리한다.",
+    "문서/상세/목록 근거가 있는 실제 공고 단위로 1개 표본을 만든다.",
+    "PDF/HWP/HWPX 등 첨부파일명은 독립 공고로 집계하지 않고 공고의 근거로 귀속한다.",
+    "지원조건은 required/preferred/unknown으로 관측하며 아직 신규 hard filter로 사용하지 않는다."
+  ],
   "summary": {
     "acceptedJobs": 0,
-    "withStructuredRequirements": 0,
-    "needsReview": 0,
-    "ineligibleByKnownHardRequirement": 0
+    "sampledPostings": 8,
+    "sampledInstitutions": 5,
+    "documentBackedPostings": 1,
+    "detailBackedPostings": 8
   },
-  "jobs": [],
-  "vacancyDecisions": [
-    {
-      "org": "한국산업안전보건공단",
-      "vacancyId": "list-selection",
-      "vacancyName": "2026년 제2차 산업안전보건연구원(대전) 업무직(시설관리원) 채용 공고",
-      "status": "list-rejected",
-      "reason": "목록에 마감 문구가 명시됨",
-      "supportRequirements": null,
-      "supportEligibility": null
+  "categoryStats": {
+    "location": {
+      "postings": 7,
+      "required": 0,
+      "preferred": 0,
+      "unknown": 7,
+      "institutions": [
+        "울산북구시설관리공단",
+        "울산시설공단",
+        "울산정보산업진흥원",
+        "울산항만공사"
+      ],
+      "institutionCount": 4
     },
+    "employment": {
+      "postings": 1,
+      "required": 1,
+      "preferred": 0,
+      "unknown": 0,
+      "institutions": [
+        "울산북구시설관리공단"
+      ],
+      "institutionCount": 1
+    }
+  },
+  "samples": [
     {
-      "org": "한국산업안전보건공단",
-      "vacancyId": "list-selection",
-      "vacancyName": "2026년 제2차 산업안전보건연구원(대전) 업무직(시설관리원) 채용 공고",
-      "status": "list-rejected",
-      "reason": "목록에 마감 문구가 명시됨",
-      "supportRequirements": null,
-      "supportEligibility": null
-    },
-    {
+      "sampleKey": "한국산업안전보건공단::vacancy-1",
       "org": "한국산업안전보건공단",
       "vacancyId": "vacancy-1",
-      "vacancyName": "2026년도 안전보건공단 하반기 채용 공고",
-      "status": "review-needed",
-      "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+      "title": "2026년도 안전보건공단 하반기 채용 공고",
+      "link": "",
+      "collectorStatus": "review-needed",
+      "collectorReason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
       "supportRequirements": {
         "schemaVersion": "1.0.0",
         "sourcePriority": "detail>list>title",
@@ -68,151 +82,23 @@
         "status": "eligible-or-no-hard-conflict",
         "reasons": [],
         "unresolved": []
-      }
-    },
-    {
-      "org": "한국산업안전보건공단",
-      "vacancyId": "vacancy-1",
-      "vacancyName": "2026년도 안전보건공단 제3차 업무직 채용 공고",
-      "status": "review-needed",
-      "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
-      "supportRequirements": {
-        "schemaVersion": "1.0.0",
-        "sourcePriority": "detail>list>title",
-        "evidenceSources": {
-          "title": true,
-          "list": true,
-          "detail": true,
-          "document": false
-        },
-        "education": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "licenses": [],
-        "experience": [],
-        "major": [],
-        "identity": [],
-        "location": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "employment": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "other": []
       },
-      "supportEligibility": {
-        "status": "eligible-or-no-hard-conflict",
-        "reasons": [],
-        "unresolved": []
-      }
-    },
-    {
-      "org": "한국산업안전보건공단",
-      "vacancyId": "vacancy-1",
-      "vacancyName": "2026년도 안전보건공단 제2차 업무직 및 기간제 채용 공고",
-      "status": "excluded",
-      "reason": "인턴·기간제·계약직 등 제외 고용형태",
-      "supportRequirements": {
-        "schemaVersion": "1.0.0",
-        "sourcePriority": "detail>list>title",
-        "evidenceSources": {
-          "title": true,
-          "list": true,
-          "detail": true,
-          "document": false
-        },
-        "education": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "licenses": [],
-        "experience": [],
-        "major": [],
-        "identity": [],
-        "location": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "employment": {
-          "values": [
-            "기간제"
-          ],
-          "level": "required",
-          "evidence": [
-            "2026년도 안전보건공단 제2차 업무직 및 기간제 채용 공고",
-            "1200001 N 2260002 20260605112655 2026년도 안전보건공단 제2차 업무직 및 기간제 채용 공고 20260605112655 20260605112655G0K9S3 20260605112655G0K9S3 20260605 Y 4560 20*** Y 20260605 7 N 0 4560 관리자 <p class=\"0\" style=\"text-align:center;word-break:keep-all;mso-pagination:none;text-autos",
-            "2026 년도 안전보건공단 제 2 차 업무직 및 기간제 채용 공고"
-          ]
-        },
-        "other": []
+      "evidenceSources": {
+        "title": true,
+        "list": true,
+        "detail": true,
+        "document": false
       },
-      "supportEligibility": {
-        "status": "eligible-or-no-hard-conflict",
-        "reasons": [],
-        "unresolved": []
-      }
+      "attachmentEvidence": []
     },
     {
-      "org": "한국산업안전보건공단",
-      "vacancyId": "vacancy-1",
-      "vacancyName": "2026년도 안전보건공단 제1차 기간제 근로자 채용 공고",
-      "status": "review-needed",
-      "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
-      "supportRequirements": {
-        "schemaVersion": "1.0.0",
-        "sourcePriority": "detail>list>title",
-        "evidenceSources": {
-          "title": true,
-          "list": true,
-          "detail": true,
-          "document": false
-        },
-        "education": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "licenses": [],
-        "experience": [],
-        "major": [],
-        "identity": [],
-        "location": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "employment": {
-          "values": [
-            "기간제"
-          ],
-          "level": "required",
-          "evidence": [
-            "2026년도 안전보건공단 제1차 기간제 근로자 채용 공고",
-            "1200001 N 2260002 20260324090439 2026년도 안전보건공단 제1차 기간제 근로자 채용 공고 20260324090439 20260324090439EKIS33 20260324090439EKIS33 20260324 Y 3480 20*** Y 20260324 10 N 0 3480 관리자 <p><br></p><p style=\"text-align: center;\"><b>2026년도 안전보건공단 제1차 기간제 근로자 채용 공고</b></p><p st"
-          ]
-        },
-        "other": []
-      },
-      "supportEligibility": {
-        "status": "eligible-or-no-hard-conflict",
-        "reasons": [],
-        "unresolved": []
-      }
-    },
-    {
+      "sampleKey": "울산항만공사::vacancy-1",
       "org": "울산항만공사",
       "vacancyId": "vacancy-1",
-      "vacancyName": "2026년 울산항만공사 연간 채용 계획 사전 안내",
-      "status": "review-needed",
-      "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
+      "title": "2026년 울산항만공사 연간 채용 계획 사전 안내",
+      "link": "",
+      "collectorStatus": "review-needed",
+      "collectorReason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인",
       "supportRequirements": {
         "schemaVersion": "1.0.0",
         "sourcePriority": "document>detail>list>title",
@@ -238,7 +124,7 @@
           "level": "unknown",
           "evidence": [
             "2026년 울산항만공사 연간 채용 계획 사전 안내",
-            "공지 2026년 울산항만공사 연간 채용 계획 사전 안내 인사노무부 2026-04-10 4,622",
+            "공지 2026년 울산항만공사 연간 채용 계획 사전 안내 인사노무부 2026-04-10 4,624",
             "1. 업 체 명: 울산항만공사",
             "2. 주 소: 울산광역시 남구 장생포고래로 271"
           ]
@@ -254,14 +140,23 @@
         "status": "eligible-or-no-hard-conflict",
         "reasons": [],
         "unresolved": []
-      }
+      },
+      "evidenceSources": {
+        "title": true,
+        "list": true,
+        "detail": true,
+        "document": true
+      },
+      "attachmentEvidence": []
     },
     {
+      "sampleKey": "울산시설공단::vacancy-1",
       "org": "울산시설공단",
       "vacancyId": "vacancy-1",
-      "vacancyName": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
-      "status": "review-needed",
-      "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인",
+      "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+      "link": "",
+      "collectorStatus": "review-needed",
+      "collectorReason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인",
       "supportRequirements": {
         "schemaVersion": "1.0.0",
         "sourcePriority": "detail>list>title",
@@ -287,7 +182,7 @@
           "level": "unknown",
           "evidence": [
             "2026년도 제2회 울산시설공단 신규직원 채용 공고 2026년도 제2회 울산시설공단 신규직원 채용 공고",
-            "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4937",
+            "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4940",
             "2026년도 제2회 울산시설공단 신규직원 채용 공고"
           ]
         },
@@ -302,14 +197,23 @@
         "status": "eligible-or-no-hard-conflict",
         "reasons": [],
         "unresolved": []
-      }
+      },
+      "evidenceSources": {
+        "title": true,
+        "list": true,
+        "detail": true,
+        "document": false
+      },
+      "attachmentEvidence": []
     },
     {
+      "sampleKey": "울산시설공단::vacancy-2",
       "org": "울산시설공단",
       "vacancyId": "vacancy-2",
-      "vacancyName": "(2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.hwpx [122446 byte]",
-      "status": "review-needed",
-      "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인",
+      "title": "(2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.hwpx [122446 byte]",
+      "link": "",
+      "collectorStatus": "review-needed",
+      "collectorReason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인",
       "supportRequirements": {
         "schemaVersion": "1.0.0",
         "sourcePriority": "detail>list>title",
@@ -335,7 +239,7 @@
           "level": "unknown",
           "evidence": [
             "2026년도 제2회 울산시설공단 신규직원 채용 공고 (2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.hwpx [122446 byte]",
-            "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4937",
+            "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4940",
             "1. (2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.hwpx [122446 byte]"
           ]
         },
@@ -350,14 +254,23 @@
         "status": "eligible-or-no-hard-conflict",
         "reasons": [],
         "unresolved": []
-      }
+      },
+      "evidenceSources": {
+        "title": true,
+        "list": true,
+        "detail": true,
+        "document": false
+      },
+      "attachmentEvidence": []
     },
     {
+      "sampleKey": "울산시설공단::vacancy-3",
       "org": "울산시설공단",
       "vacancyId": "vacancy-3",
-      "vacancyName": "(2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.pdf [1231749 byte]",
-      "status": "review-needed",
-      "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인",
+      "title": "(2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.pdf [1231749 byte]",
+      "link": "",
+      "collectorStatus": "review-needed",
+      "collectorReason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인",
       "supportRequirements": {
         "schemaVersion": "1.0.0",
         "sourcePriority": "detail>list>title",
@@ -383,7 +296,7 @@
           "level": "unknown",
           "evidence": [
             "2026년도 제2회 울산시설공단 신규직원 채용 공고 (2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.pdf [1231749 byte]",
-            "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4937",
+            "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4940",
             "2. (2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.pdf [1231749 byte]"
           ]
         },
@@ -398,14 +311,23 @@
         "status": "eligible-or-no-hard-conflict",
         "reasons": [],
         "unresolved": []
-      }
+      },
+      "evidenceSources": {
+        "title": true,
+        "list": true,
+        "detail": true,
+        "document": false
+      },
+      "attachmentEvidence": []
     },
     {
+      "sampleKey": "울산시설공단::vacancy-4",
       "org": "울산시설공단",
       "vacancyId": "vacancy-4",
-      "vacancyName": "(첨부)채용시험 이의신청서(울산시설공단).hwpx [36312 byte]",
-      "status": "review-needed",
-      "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인",
+      "title": "(첨부)채용시험 이의신청서(울산시설공단).hwpx [36312 byte]",
+      "link": "",
+      "collectorStatus": "review-needed",
+      "collectorReason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인",
       "supportRequirements": {
         "schemaVersion": "1.0.0",
         "sourcePriority": "detail>list>title",
@@ -431,7 +353,7 @@
           "level": "unknown",
           "evidence": [
             "2026년도 제2회 울산시설공단 신규직원 채용 공고 (첨부)채용시험 이의신청서(울산시설공단).hwpx [36312 byte]",
-            "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4937",
+            "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4940",
             "5. (첨부)채용시험 이의신청서(울산시설공단).hwpx [36312 byte]"
           ]
         },
@@ -446,14 +368,23 @@
         "status": "eligible-or-no-hard-conflict",
         "reasons": [],
         "unresolved": []
-      }
+      },
+      "evidenceSources": {
+        "title": true,
+        "list": true,
+        "detail": true,
+        "document": false
+      },
+      "attachmentEvidence": []
     },
     {
+      "sampleKey": "울산북구시설관리공단::vacancy-1",
       "org": "울산북구시설관리공단",
       "vacancyId": "vacancy-1",
-      "vacancyName": "울산광역시 북구시설관리공단에 종사할 기간제근로자 채용계획을 붙임과 같이 공고합니다.",
-      "status": "excluded",
-      "reason": "인턴·기간제·계약직 등 제외 고용형태",
+      "title": "울산광역시 북구시설관리공단에 종사할 기간제근로자 채용계획을 붙임과 같이 공고합니다.",
+      "link": "",
+      "collectorStatus": "excluded",
+      "collectorReason": "인턴·기간제·계약직 등 제외 고용형태",
       "supportRequirements": {
         "schemaVersion": "1.0.0",
         "sourcePriority": "detail>list>title",
@@ -489,7 +420,7 @@
           "level": "required",
           "evidence": [
             "2026년 제3회 기간제근로자 채용 공고 울산광역시 북구시설관리공단에 종사할 기간제근로자 채용계획을 붙임과 같이 공고합니다.",
-            "2026년 제3회 기간제근로자 채용 공고 첨부파일 관리자 2026-08-03 432",
+            "2026년 제3회 기간제근로자 채용 공고 첨부파일 관리자 2026-08-03 434",
             "울산광역시 북구시설관리공단에 종사할 기간제근로자 채용계획을 붙임과 같이 공고합니다."
           ]
         },
@@ -499,118 +430,23 @@
         "status": "eligible-or-no-hard-conflict",
         "reasons": [],
         "unresolved": []
-      }
-    },
-    {
-      "org": "울산북구시설관리공단",
-      "vacancyId": "vacancy-2",
-      "vacancyName": "2026년 제3회 북구시설관리공단 기간제근로자 채용 공고문.hwpx",
-      "status": "excluded",
-      "reason": "인턴·기간제·계약직 등 제외 고용형태",
-      "supportRequirements": {
-        "schemaVersion": "1.0.0",
-        "sourcePriority": "detail>list>title",
-        "evidenceSources": {
-          "title": true,
-          "list": true,
-          "detail": true,
-          "document": false
-        },
-        "education": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "licenses": [],
-        "experience": [],
-        "major": [],
-        "identity": [],
-        "location": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "employment": {
-          "values": [
-            "기간제"
-          ],
-          "level": "required",
-          "evidence": [
-            "2026년 제3회 기간제근로자 채용 공고 2026년 제3회 북구시설관리공단 기간제근로자 채용 공고문.hwpx",
-            "2026년 제3회 기간제근로자 채용 공고 첨부파일 관리자 2026-08-03 432",
-            "2026년 제3회 북구시설관리공단 기간제근로자 채용 공고문.hwpx"
-          ]
-        },
-        "other": []
       },
-      "supportEligibility": {
-        "status": "eligible-or-no-hard-conflict",
-        "reasons": [],
-        "unresolved": []
-      }
-    },
-    {
-      "org": "울산북구시설관리공단",
-      "vacancyId": "vacancy-1",
-      "vacancyName": "2026년 제2회 기간제근로자 채용 공고",
-      "status": "excluded",
-      "reason": "인턴·기간제·계약직 등 제외 고용형태",
-      "supportRequirements": {
-        "schemaVersion": "1.0.0",
-        "sourcePriority": "detail>list>title",
-        "evidenceSources": {
-          "title": true,
-          "list": true,
-          "detail": true,
-          "document": false
-        },
-        "education": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "licenses": [],
-        "experience": [],
-        "major": [],
-        "identity": [],
-        "location": {
-          "values": [
-            "울산"
-          ],
-          "level": "unknown",
-          "evidence": [
-            "울산광역시 북구 시설관리공단",
-            "울산광역시북구청 바로가기",
-            "울산광역시 북구시설관리공단 공고 제2026-21호",
-            "울산광역시 북구시설관리공단에 종사할 기간제근로자 채용계획을 붙임과 같이 공고합니다."
-          ]
-        },
-        "employment": {
-          "values": [
-            "기간제"
-          ],
-          "level": "required",
-          "evidence": [
-            "2026년 제2회 기간제근로자 채용 공고",
-            "288 2026년 제2회 기간제근로자 채용 공고 첨부파일 관리자 2026-04-30 2568",
-            "울산광역시 북구시설관리공단에 종사할 기간제근로자 채용계획을 붙임과 같이 공고합니다.",
-            "기간제근로자 채용 공고문(26년 2회).hwp"
-          ]
-        },
-        "other": []
+      "evidenceSources": {
+        "title": true,
+        "list": true,
+        "detail": true,
+        "document": false
       },
-      "supportEligibility": {
-        "status": "eligible-or-no-hard-conflict",
-        "reasons": [],
-        "unresolved": []
-      }
+      "attachmentEvidence": []
     },
     {
+      "sampleKey": "울산정보산업진흥원::vacancy-1",
       "org": "울산정보산업진흥원",
       "vacancyId": "vacancy-1",
-      "vacancyName": "울산정보산업진흥원 2026년 4차 직원 채용 공고",
-      "status": "review-needed",
-      "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인",
+      "title": "울산정보산업진흥원 2026년 4차 직원 채용 공고",
+      "link": "",
+      "collectorStatus": "review-needed",
+      "collectorReason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인",
       "supportRequirements": {
         "schemaVersion": "1.0.0",
         "sourcePriority": "detail>list>title",
@@ -636,7 +472,7 @@
           "level": "unknown",
           "evidence": [
             "울산정보산업진흥원 2026년 4차 직원 채용 공고",
-            "257 울산정보산업진흥원 2026년 4차 직원 채용 공고 2026.06.04 1,509 종료",
+            "257 울산정보산업진흥원 2026년 4차 직원 채용 공고 2026.06.04 1,512 종료",
             "울산정보산업진흥원 2026년 4차 직원 채용 공고 2026.06.04"
           ]
         },
@@ -651,55 +487,14 @@
         "status": "eligible-or-no-hard-conflict",
         "reasons": [],
         "unresolved": []
-      }
-    },
-    {
-      "org": "울산정보산업진흥원",
-      "vacancyId": "vacancy-1",
-      "vacancyName": "울산정보산업진흥원 2026년 3차 직원 채용 공고",
-      "status": "review-needed",
-      "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 채용 구조 부족, 학력 조건 미확인, 허용 고용형태 미확인, 마감일 미확인",
-      "supportRequirements": {
-        "schemaVersion": "1.0.0",
-        "sourcePriority": "detail>list>title",
-        "evidenceSources": {
-          "title": true,
-          "list": true,
-          "detail": true,
-          "document": false
-        },
-        "education": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "licenses": [],
-        "experience": [],
-        "major": [],
-        "identity": [],
-        "location": {
-          "values": [
-            "울산"
-          ],
-          "level": "unknown",
-          "evidence": [
-            "울산정보산업진흥원 2026년 3차 직원 채용 공고",
-            "256 울산정보산업진흥원 2026년 3차 직원 채용 공고 2026.05.22 1,643 종료",
-            "울산정보산업진흥원 2026년 3차 직원 채용 공고 2026.05.22"
-          ]
-        },
-        "employment": {
-          "values": [],
-          "level": "unknown",
-          "evidence": []
-        },
-        "other": []
       },
-      "supportEligibility": {
-        "status": "eligible-or-no-hard-conflict",
-        "reasons": [],
-        "unresolved": []
-      }
+      "evidenceSources": {
+        "title": true,
+        "list": true,
+        "detail": true,
+        "document": false
+      },
+      "attachmentEvidence": []
     }
   ]
 }

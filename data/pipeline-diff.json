@@ -1,161 +1,77 @@
 {
-  "generatedAt": "2026-08-08T16:20:08.643Z",
+  "generatedAt": "2026-08-08T16:50:00.913Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 2,
-    "regressed": 2,
-    "unchanged": 16
+    "improved": 1,
+    "regressed": 1,
+    "unchanged": 18
   },
   "changes": [
     {
-      "org": "한국전력공사",
-      "health": "degraded",
+      "org": "울산복지가족진흥사회서비스원",
+      "health": "failed",
       "primaryCause": {
-        "stage": "detail",
+        "stage": "http",
         "status": "failed",
-        "code": "DETAIL_BODY_PARTIAL",
-        "reason": "첫 페이지 9건 중 1건만 상세 본문 검증 성공",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
         "evidence": [
           {
-            "title": "2026년도 NDIS데이터관리원 채용",
-            "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": true,
-            "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "textLength": 987,
-            "attachmentCount": 1,
-            "attachmentSignalCount": 9,
-            "explicitNoAttachment": false,
-            "transport": "FORM_POST",
-            "error": ""
+            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
           },
           {
-            "title": "2026년도 제2차 전문직원 채용",
-            "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
+            "url": "https://www.wfps.or.kr/",
             "ok": false,
-            "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 0,
-            "explicitNoAttachment": false,
-            "transport": "",
-            "error": "fetch failed"
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.wfps.or.kr/\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
           },
           {
-            "title": "2026년도 4직급 고졸 신입사원 채용 공고",
-            "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
+            "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
             "ok": false,
-            "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 0,
-            "explicitNoAttachment": false,
-            "transport": "",
-            "error": "fetch failed"
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.uwfdi.re.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
           },
           {
-            "title": "2026년도 제1차 체험형 청년인턴 모집공고",
-            "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
+            "url": "https://www.uwfdi.re.kr/",
             "ok": false,
-            "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 0,
-            "explicitNoAttachment": false,
-            "transport": "",
-            "error": "fetch failed"
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.uwfdi.re.kr/\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
           },
           {
-            "title": "2026년 상반기 보훈채용 모집 공고",
-            "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
+            "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
             "ok": false,
-            "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 0,
-            "explicitNoAttachment": false,
-            "transport": "",
-            "error": "fetch failed"
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
           },
           {
-            "title": "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
-            "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
+            "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
             "ok": false,
-            "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 0,
-            "explicitNoAttachment": false,
-            "transport": "",
-            "error": "fetch failed"
-          },
-          {
-            "title": "2026년 상반기 전기원 채용 공고",
-            "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": false,
-            "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 0,
-            "explicitNoAttachment": false,
-            "transport": "",
-            "error": "fetch failed"
-          },
-          {
-            "title": "2026년도 상반기 4직급 대졸수준 채용 공고",
-            "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": false,
-            "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 0,
-            "explicitNoAttachment": false,
-            "transport": "",
-            "error": "fetch failed"
-          },
-          {
-            "title": "2026년도 제1차 전문직원 채용",
-            "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": false,
-            "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
-            "textLength": 0,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 0,
-            "explicitNoAttachment": false,
-            "transport": "",
-            "error": "fetch failed"
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
           }
         ],
-        "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
         "access": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "list": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "detail": {
           "from": true,
@@ -164,12 +80,12 @@
         },
         "attachmentDiscovery": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "attachmentDownload": {
-          "from": true,
-          "to": true,
+          "from": false,
+          "to": false,
           "change": "same"
         },
         "documentAnalysis": {
@@ -625,53 +541,6 @@
       "regressed": false
     },
     {
-      "org": "울산복지가족진흥사회서비스원",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "documentAnalysis": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
-    {
       "org": "울산북구시설관리공단",
       "health": "degraded",
       "primaryCause": {
@@ -992,12 +861,12 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -1081,17 +950,17 @@
           "change": "same"
         },
         "attachmentDownload": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -1186,6 +1055,53 @@
         }
       },
       "improved": false,
+      "regressed": false
+    },
+    {
+      "org": "한국전력공사",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "documentAnalysis": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": true,
       "regressed": false
     }
   ]

@@ -397,6 +397,22 @@ export function countVisibleBoardPosts(html = '', source = null) {
   const org = source?.org || '';
   const url = source?.url || '';
 
+  if (org === '한국전력공사' && /recruit\.kepco\.co\.kr/i.test(url)) {
+    const ids = new Set();
+    for (const m of raw.matchAll(/fncPageBoard\(\s*["']view["']\s*,\s*["'][^"']*\/frt\/frt0001\/view\.do["']\s*,\s*["']([^"']+)["']\s*,\s*["']([^"']+)["']\s*\)/gi)) {
+      ids.add(`${m[1]}|${m[2]}`);
+    }
+    if (ids.size) return ids.size;
+  }
+
+  if (org === '한국산업안전보건공단' && /^\s*\{/.test(raw)) {
+    try {
+      const payload = JSON.parse(raw);
+      const rows = payload?.data?.boardList;
+      if (Array.isArray(rows)) return rows.length;
+    } catch { /* not KOSHA JSON */ }
+  }
+
   if (org === '근로복지공단') {
     const ids = new Set();
     for (const m of raw.matchAll(/<a\b[^>]*\bclass\s*=\s*(["'])[^"']*\bmain-job\b[^"']*\1[^>]*\bhref\s*=\s*(["'])([^"']*[?&]projectid=(\d+)[^"']*)\2/gi)) ids.add(m[4]);
@@ -500,6 +516,77 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
 
   const jobs = [];
   const seen = new Set();
+
+  // 한국전력공사: list.do itself is only a shell. addList.do returns rows whose
+  // exact detail call is fncPageBoard('view','/frt/frt0001/view.do',...).
+  if (source.org === '한국전력공사' && /recruit\.kepco\.co\.kr/i.test(source.url)) {
+    const blocks = [
+      ...String(html).matchAll(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi),
+      ...String(html).matchAll(/<li\b[^>]*>[\s\S]*?<\/li>/gi)
+    ].map(m => m[0]).filter(block => /fncPageBoard\(\s*["']view["']\s*,\s*["'][^"']*\/frt\/frt0001\/view\.do/i.test(block));
+    for (const block of blocks) {
+      const decoded = kepcoPageBoard(block, source);
+      if (!decoded?.link || !decoded?.request) continue;
+      let title = cleanHtml(
+        block.match(/<(?:a|td|strong|span|p)\b[^>]*(?:class|title)=["'][^"']*(?:tit|title|subject|name)[^"']*["'][^>]*>([\s\S]*?)<\/(?:a|td|strong|span|p)>/i)?.[1]
+        || block.match(/<a\b[^>]*>([\s\S]*?)<\/a>/i)?.[1]
+        || block
+      ).replace(/\s+/g, ' ').trim();
+      title = title.replace(/^(?:채용|모집|공고)\s*/,'').trim();
+      if (!validTitle(title)) continue;
+      const key = `${source.org}|${canonicalJobUrl(decoded.link)}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      jobs.push({
+        org: source.org,
+        title,
+        link: canonicalJobUrl(decoded.link),
+        listText: cleanHtml(block).replace(/\s+/g,' ').trim(),
+        adapter: `${source.org}:dynamic-addList`,
+        detailRequest: decoded.request
+      });
+    }
+    if (jobs.length) {
+      Object.defineProperty(jobs, 'diagnostics', { value: {
+        visiblePostCount: jobs.length, rowMode: true, anchors: jobs.length, titleMatches: jobs.length,
+        noUrl: 0, unsafeUrl: 0, accepted: jobs.length, rowFallbackAccepted: 0,
+        clickableBlocksScanned: jobs.length, clickableBlocksAccepted: jobs.length, listOnlyAccepted: 0,
+        titleSamples: jobs.slice(0,8).map(x=>x.title), unsafeSamples: [], actionSamples: [],
+        candidateUrlSamples: jobs.slice(0,8).map(x=>({title:x.title,url:x.link,allowed:true}))
+      }, enumerable: false });
+      return jobs;
+    }
+  }
+
+  // 한국산업안전보건공단: official SPA TBoard API response.
+  if (source.org === '한국산업안전보건공단' && /^\s*\{/.test(String(html))) {
+    try {
+      const payload = JSON.parse(String(html));
+      const rows = Array.isArray(payload?.data?.boardList) ? payload.data.boardList : [];
+      const titleKeys = ['pstTtl','pstSj','pstTitle','title','subject','sj','ttl','bbsTtl','artclSj','pstNm'];
+      for (const row of rows) {
+        const pstNo = String(row?.pstNo || row?.postNo || row?.pstSn || row?.id || '').trim();
+        const title = cleanHtml(String(titleKeys.map(k => row?.[k]).find(Boolean) || '')).replace(/\s+/g,' ').trim();
+        if (!pstNo || !validTitle(title)) continue;
+        const link = `https://www.kosha.or.kr/notification/jobncontract/job/jobdata?bbsId=B2025021400005&pstNo=${encodeURIComponent(pstNo)}`;
+        const key = `${source.org}|${pstNo}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        const listText = Object.values(row).filter(v => ['string','number'].includes(typeof v)).join(' ').replace(/\s+/g,' ').trim();
+        jobs.push({ org: source.org, title, link, listText, adapter: `${source.org}:tboard-api`, listIdentity: pstNo });
+      }
+      if (jobs.length || rows.length === 0) {
+        Object.defineProperty(jobs, 'diagnostics', { value: {
+          visiblePostCount: rows.length, rowMode: true, anchors: 0, titleMatches: jobs.length,
+          noUrl: 0, unsafeUrl: 0, accepted: jobs.length, rowFallbackAccepted: 0,
+          clickableBlocksScanned: 0, clickableBlocksAccepted: 0, listOnlyAccepted: 0,
+          titleSamples: jobs.slice(0,8).map(x=>x.title), unsafeSamples: [], actionSamples: [],
+          candidateUrlSamples: jobs.slice(0,8).map(x=>({title:x.title,url:x.link,allowed:true}))
+        }, enumerable: false });
+        return jobs;
+      }
+    } catch { /* fall through */ }
+  }
 
   if(source.org==='근로복지공단'&&/comwel\.saramin\.co\.kr\/service\/comwel\/\d+\/applicant\/apply\/recruit_default\.asp/i.test(source.url)){
     const body=String(html),heading=decodeHtmlEntities(body.match(/<td\b[^>]*font-size:\s*34px[^>]*>\s*<b>([\s\S]*?)<\/b>/i)?.[1]||'');

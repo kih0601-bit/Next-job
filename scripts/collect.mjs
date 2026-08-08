@@ -845,26 +845,87 @@ if (pipelineReport.payload) {
 }
 
 
+const requirementSamples = sources.flatMap(source => {
+  const seen = new Set();
+  return (source.vacancyDecisions || []).flatMap(decision => {
+    const analysis = decision.analysis || {};
+    const requirements = analysis.supportRequirements || null;
+    const hasEvidence = Boolean(
+      requirements && (
+        requirements.evidenceSources?.document ||
+        requirements.evidenceSources?.detail ||
+        requirements.evidenceSources?.list
+      )
+    );
+    if (!hasEvidence) return [];
+
+    // One sample represents one real posting/vacancy. Attachment filenames are
+    // evidence belonging to that posting, never independent vacancies.
+    const rawKey = decision.link || decision.detailUrl || decision.vacancyId || decision.vacancyName || '';
+    const attachmentLike = /\.(pdf|hwp|hwpx|docx?|xlsx?|zip)$/i.test(String(decision.vacancyName || '').trim());
+    if (attachmentLike && !decision.link && !decision.detailUrl) return [];
+
+    const sampleKey = `${source.org}::${rawKey || decision.vacancyName}`;
+    if (seen.has(sampleKey)) return [];
+    seen.add(sampleKey);
+
+    return [{
+      sampleKey,
+      org: source.org,
+      vacancyId: decision.vacancyId || '',
+      title: decision.vacancyName || '',
+      link: decision.link || decision.detailUrl || '',
+      collectorStatus: decision.status || '',
+      collectorReason: decision.reason || '',
+      supportRequirements: requirements,
+      supportEligibility: analysis.supportEligibility || null,
+      evidenceSources: requirements.evidenceSources || {},
+      attachmentEvidence: analysis.documentAnalysis?.results || []
+    }];
+  });
+});
+
+const requirementCategoryStats = {};
+for (const sample of requirementSamples) {
+  const req = sample.supportRequirements || {};
+  for (const category of ['education','licenses','experience','major','identity','location','employment','other']) {
+    const value = req[category];
+    const rows = Array.isArray(value) ? value : (value?.values || []).map(item => ({ value:item, level:value.level || 'unknown' }));
+    if (!rows.length) continue;
+    const stat = requirementCategoryStats[category] ||= { postings:0, required:0, preferred:0, unknown:0, institutions:[] };
+    stat.postings += 1;
+    stat.institutions.push(sample.org);
+    for (const row of rows) {
+      const level = row?.level || 'unknown';
+      if (level === 'required') stat.required += 1;
+      else if (level === 'preferred') stat.preferred += 1;
+      else stat.unknown += 1;
+    }
+  }
+}
+for (const stat of Object.values(requirementCategoryStats)) {
+  stat.institutions = [...new Set(stat.institutions)].sort();
+  stat.institutionCount = stat.institutions.length;
+}
+
 const requirementReport = {
   generatedAt: nowIso,
-  schemaVersion: '1.0.0',
-  policy: '지원조건을 required/preferred/unknown으로 분리. 문서>상세>목록>제목 근거 우선. 현재는 관측/검증용이며 신규 hard filter로 사용하지 않음.',
+  schemaVersion: '1.1.0',
+  policy: [
+    '필터 연구용 표본은 최종 jobs.json 통과 여부와 분리한다.',
+    '문서/상세/목록 근거가 있는 실제 공고 단위로 1개 표본을 만든다.',
+    'PDF/HWP/HWPX 등 첨부파일명은 독립 공고로 집계하지 않고 공고의 근거로 귀속한다.',
+    '지원조건은 required/preferred/unknown으로 관측하며 아직 신규 hard filter로 사용하지 않는다.'
+  ],
   summary: {
     acceptedJobs: jobs.length,
-    withStructuredRequirements: jobs.filter(job => Boolean(job.supportRequirements)).length,
-    needsReview: jobs.filter(job => job.supportEligibility?.status === 'needs-review').length,
-    ineligibleByKnownHardRequirement: jobs.filter(job => job.supportEligibility?.status === 'ineligible').length
+    sampledPostings: requirementSamples.length,
+    sampledInstitutions: [...new Set(requirementSamples.map(sample => sample.org))].length,
+    documentBackedPostings: requirementSamples.filter(sample => sample.evidenceSources?.document).length,
+    detailBackedPostings: requirementSamples.filter(sample => sample.evidenceSources?.detail).length
   },
-  jobs: jobs.map(job => ({org:job.org,title:job.title,link:job.link,supportRequirements:job.supportRequirements||null,supportEligibility:job.supportEligibility||null})),
-  vacancyDecisions: sources.flatMap(source => (source.vacancyDecisions || []).map(decision => ({
-    org:source.org,
-    vacancyId:decision.vacancyId,
-    vacancyName:decision.vacancyName,
-    status:decision.status,
-    reason:decision.reason||'',
-    supportRequirements:decision.analysis?.supportRequirements||null,
-    supportEligibility:decision.analysis?.supportEligibility||null
-  })))
+  categoryStats: requirementCategoryStats,
+  samples: requirementSamples
 };
 
 await Promise.all([

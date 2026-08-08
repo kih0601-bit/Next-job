@@ -470,7 +470,7 @@ function koshaTboardPayload(serviceId, data = {}, page = 1) {
       siteCode: '50', channelType: 'web', boardId: 'B2025021400005', serviceId,
       ...(serviceId === 'boardList' ? { pagingInfo: { curPageCo: String(page), rowsPerPage: '10' } } : {})
     },
-    data: serviceId === 'boardList' ? { sortType: '01', sortOrder: '0', ...data } : { ...data }
+    data: serviceId === 'boardList' ? { sortType: '01', sortOrder: '1', ...data } : { ...data }
   };
 }
 async function fetchKoshaTboardList(page=1){

@@ -313,7 +313,8 @@ async function enrichCandidate(candidate, source) {
     detail = await fetchDetail(candidate.link, {
       expectedTitle: candidate.title,
       sourceOrg: source.org,
-      allowedHosts: source.alio ? ['job.alio.go.kr', 'alio.go.kr'] : [sourceHost]
+      allowedHosts: source.alio ? ['job.alio.go.kr', 'alio.go.kr'] : [sourceHost],
+      request: candidate.detailRequest || null
     });
   }
   if (source.requireValidDetail && !detail.ok) {
@@ -451,16 +452,30 @@ function mergeCounts(target, source) {
   return target;
 }
 
+
+function serializeHtmlForm(html='',formId='defaultFrm',overrides={}){
+ const form=String(html).match(new RegExp(`<form\\b[^>]*(?:id|name)=["']${formId}["'][^>]*>[\\s\\S]*?<\\/form>`,'i'))?.[0]||String(html),p=new URLSearchParams();
+ for(const m of form.matchAll(/<input\b([^>]*)>/gi)){const a=m[1]||'',n=a.match(/\bname\s*=\s*(["'])([^"']+)\1/i)?.[2];if(!n)continue;p.set(n,a.match(/\bvalue\s*=\s*(["'])([\s\S]*?)\1/i)?.[2]||'');}for(const[k,v]of Object.entries(overrides))p.set(k,String(v));return p.toString();
+}
+async function fetchKepcoDynamicList(html,baseUrl,source){
+ if(source.org!=='한국전력공사'||!/fncPageBoard\(\s*["']addList["']\s*,\s*["']addList\.do["']\s*,\s*["']1["']\s*\)/i.test(String(html)))return null;
+ const url=new URL('addList.do',baseUrl).href,body=serializeHtmlForm(html,'defaultFrm',{pageIndex:'1'}),c=new AbortController(),timer=setTimeout(()=>c.abort(),15000);
+ try{const r=await fetch(url,{signal:c.signal,redirect:'follow',method:'POST',headers:{'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36','accept-language':'ko-KR,ko;q=0.9',accept:'text/html,*/*','content-type':'application/x-www-form-urlencoded',referer:baseUrl},body});if(!r.ok)throw new Error(`HTTP ${r.status}`);return{html:await r.text(),finalUrl:r.url||url,status:r.status};}finally{clearTimeout(timer);}
+}
+
 async function fetchSource(source) {
   try {
     const access = await fetchFirstAccessible(source);
     const html = access.html;
     const activeSource = { ...source, url: access.finalUrl || access.requestedUrl };
     const listingUrls = discoverListingUrls(html, activeSource);
+    let kepcoDynamic = null;
+    if(source.org==='한국전력공사'){try{kepcoDynamic=await fetchKepcoDynamicList(html,activeSource.url,source);}catch(error){console.error(`[dynamic-list] ${source.org}: ${error.message}`);}}
     const candidateMap = new Map();
     const extractionDiagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, titleSamples: [], unsafeSamples: [] };
     for (const listingUrl of listingUrls) {
       let listingHtml = listingUrl === activeSource.url ? html : '';
+      if(kepcoDynamic&&listingUrl===activeSource.url) listingHtml=kepcoDynamic.html;
       if (!listingHtml) {
         try { listingHtml = (await fetchHtml(listingUrl, 22000, { referer: activeSource.url }, source)).html; }
         catch { continue; }

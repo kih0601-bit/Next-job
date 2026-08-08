@@ -10,7 +10,7 @@ import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } fro
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 
-const VERSION = '17.6-known-issues-and-evidence';
+const VERSION = '17.7-dynamic-list-and-current-campaign';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const ACCESS_TIMEOUT_MS = 18000;
@@ -145,6 +145,19 @@ async function fetchHtml(url, timeoutMs = 22000, referer = '', source = {}) {
     }
   }
   throw lastError || new Error('no access transport available');
+}
+
+
+function htmlFormBody(html='',formId='defaultFrm',overrides={}){
+  const form=String(html).match(new RegExp(`<form\\b[^>]*(?:id|name)=["']${formId}["'][^>]*>[\\s\\S]*?<\\/form>`,'i'))?.[0]||String(html),p=new URLSearchParams();
+  for(const m of form.matchAll(/<input\b([^>]*)>/gi)){const a=m[1]||'',n=a.match(/\bname\s*=\s*(["'])([^"']+)\1/i)?.[2];if(!n)continue;const t=(a.match(/\btype\s*=\s*(["'])([^"']+)\1/i)?.[2]||'text').toLowerCase();if(['submit','button','image','file'].includes(t))continue;p.set(n,decodeHtmlEntities(a.match(/\bvalue\s*=\s*(["'])([\s\S]*?)\1/i)?.[2]||''));}for(const[k,v]of Object.entries(overrides))p.set(k,String(v));return p.toString();
+}
+async function fetchPostHtml(url,body,timeoutMs=22000,referer=''){
+ const c=new AbortController(),timer=setTimeout(()=>c.abort(),timeoutMs);try{const r=await fetch(url,{signal:c.signal,redirect:'follow',method:'POST',headers:{...headers(referer),'content-type':'application/x-www-form-urlencoded'},body});if(!r.ok)throw new Error(`HTTP ${r.status}`);const ct=r.headers.get('content-type')||'',b=new Uint8Array(await r.arrayBuffer()),q=new TextDecoder('utf-8').decode(b.slice(0,Math.min(b.length,8192)));return{html:decodeResponseBytes(b,ct,q),status:r.status,finalUrl:r.url||url,contentType:ct};}finally{clearTimeout(timer);}
+}
+async function kepcoDynamicListing(page,source){
+ if(source.org!=='한국전력공사')return null;const html=String(page?.html||'');if(!/fncPageBoard\(\s*["']addList["']\s*,\s*["']addList\.do["']\s*,\s*["']1["']\s*\)/i.test(html))return null;
+ const base=page.finalUrl||page.requestedUrl||source.url,url=new URL('addList.do',base).href,body=htmlFormBody(html,'defaultFrm',{pageIndex:'1'});return{...await fetchPostHtml(url,body,LIST_TIMEOUT_MS,base),requestedUrl:url,requestMethod:'POST'};
 }
 
 async function accessiblePages(source) {
@@ -326,7 +339,7 @@ async function captureKoshaSpaAssets(source,page){
   const html=String(page?.html||''); if(!/<div\s+id=["']app["'][^>]*>\s*<\/div>/i.test(html)) return [];
   const baseUrl=page.finalUrl||page.requestedUrl||source.url;
   const initialSrcs=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)].map(m=>m[1])
-    .filter(v=>/(?:kosha-tboard-config|kosha-tboard-common|\/static\/js\/index-)/i.test(v));
+    .filter(v=>/(?:kosha-tboard-config|kosha-tboard-common|kosha-tboard-interface|\/static\/js\/index-)/i.test(v));
   const dir=`data/diagnostics/${safeName(source.org)}/spa`; await fs.mkdir(dir,{recursive:true});
   const assets=[], queued=[...new Set(initialSrcs.map(src=>new URL(src,baseUrl).href))], seen=new Set();
 
@@ -341,11 +354,13 @@ async function captureKoshaSpaAssets(source,page){
       const apiLike=[...text.matchAll(/["'`](\/[^"'`]{2,260}(?:api|board|bbs|job|recruit|notice|list|search|pst|process)[^"'`]{0,260})["'`]/gi)]
         .map(m=>m[1]).filter(v=>!/\.(?:png|jpg|gif|svg|css|woff|ttf)(?:[?#]|$)/i.test(v));
       const jobChunks=[...text.matchAll(/["'](?:\.\/)?(VCPBC02001M01-[A-Za-z0-9_-]+\.js)["']/g)].map(m=>m[1]);
+      if(/kosha-tboard-config\.js/i.test(assetUrl)){const u=new URL('/stdtboard/js/kosha-tboard-interface.js',baseUrl).href;if(!seen.has(u)&&!queued.includes(u))queued.push(u);}
+      const boardIds=[...text.matchAll(/B\d{13,}/g)].map(m=>m[0]),serviceIds=[...text.matchAll(/(?:serviceId|reqId)\s*[:=]\s*["']([^"']+)["']/g)].map(m=>m[1]);
       for(const chunk of [...new Set(jobChunks)]){
         const chunkUrl=new URL(`/static/js/${chunk}`,baseUrl).href;
         if(!seen.has(chunkUrl) && !queued.includes(chunkUrl)) queued.push(chunkUrl);
       }
-      assets.push({assetUrl,file,status:result.status,finalUrl:result.finalUrl,apiLike:[...new Set(apiLike)].slice(0,160),jobChunks:[...new Set(jobChunks)]});
+      assets.push({assetUrl,file,status:result.status,finalUrl:result.finalUrl,apiLike:[...new Set(apiLike)].slice(0,160),jobChunks:[...new Set(jobChunks)],boardIds:[...new Set(boardIds)],serviceIds:[...new Set(serviceIds)].slice(0,120)});
     }catch(error){assets.push({assetUrl,error:error.name==='AbortError'?'timeout':error.message});}
   }
   await fs.writeFile(`${dir}/asset-index.json`,`${JSON.stringify({generatedAt:new Date().toISOString(),baseUrl,assets},null,2)}\n`,'utf8');
@@ -404,6 +419,7 @@ async function probeSource(source, artifacts) {
         }
       }
     }
+    if(source.org==='한국전력공사'){for(const item of [...listingPages]){if(!item.page)continue;try{const d=await kepcoDynamicListing(item.page,source);if(d)listingPages.unshift({page:d,source:{...source,url:d.finalUrl||d.requestedUrl}});}catch(error){report.list.errors.push(`KEPCO dynamic-list: ${error.name==='AbortError'?'timeout':error.message}`);}}}
     const pageResults = [];
     for (const [pageIndex, item] of listingPages.slice(0, MAX_LISTING_PAGES).entries()) {
       const url = item.source.url;

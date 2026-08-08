@@ -1,0 +1,902 @@
+{
+  "schemaVersion": "1.0.0",
+  "purpose": "반복 패치 방지 및 기관별 현재 병목 추적",
+  "authoritativeCodeBaseline": "최신 Actions ZIP",
+  "lastObservedVersion": 75,
+  "pendingValidationVersion": "76-revised",
+  "rules": {
+    "strictDocumentCompletion": "documentAnalysis.ok=true는 선정된 실제 문서 분석 대상이 모두 성공한 경우만",
+    "documentCapability": "capabilityOk=true는 실제 문서 최소 1개 이상 파싱 가능 검증이며 전체 완료와 다름",
+    "uiCandidatePolicy": "명확한 UI 이미지는 제외. 실제 문서가 있으면 이미지는 제외하고 이미지뿐인 공고는 OCR 후보 유지",
+    "noRepeatedSpeculation": "patch-history 확인 후 evidence 없는 동일 추측 패치 반복 금지"
+  },
+  "sources": [
+    {
+      "org": "근로복지공단",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
+      "documentAnalysis": {
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "울산경제일자리진흥원",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
+      "documentAnalysis": {
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산경제일자리진흥원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "울산남구도시관리공단",
+      "access": "success",
+      "list": "verified-empty",
+      "detail": "success",
+      "attachmentDiscovery": "not-required-no-posts",
+      "attachmentDownload": "not-required",
+      "documentAnalysis": {
+        "status": "not-required",
+        "strictOk": true,
+        "attempted": 0,
+        "parsed": 0,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과 · 첨부/문서분석 대상 없음",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "울산도시공사",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
+      "documentAnalysis": {
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산도시공사.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "울산문화관광재단",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
+      "documentAnalysis": {
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산문화관광재단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "울산복지가족진흥사회서비스원",
+      "access": "failed",
+      "list": "unknown",
+      "detail": "failed",
+      "attachmentDiscovery": "failed",
+      "attachmentDownload": "not-evaluated",
+      "documentAnalysis": {
+        "status": "not-evaluated",
+        "strictOk": false,
+        "attempted": 0,
+        "parsed": 0,
+        "observedCapability": false
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "모든 후보 URL HTTP 접속 실패",
+      "primaryCause": {
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.wfps.or.kr/",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.wfps.or.kr/\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.uwfdi.re.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.uwfdi.re.kr/",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.uwfdi.re.kr/\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75,
+      "pendingAction": "접속 timeout 재현 여부 확인"
+    },
+    {
+      "org": "울산북구시설관리공단",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "success",
+      "documentAnalysis": {
+        "status": "success",
+        "strictOk": true,
+        "attempted": 1,
+        "parsed": 1,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산북구시설관리공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "울산시설공단",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "failed",
+      "attachmentDownload": "blocked-by-discovery",
+      "documentAnalysis": {
+        "status": "blocked-by-download",
+        "strictOk": false,
+        "attempted": 0,
+        "parsed": 0,
+        "observedCapability": false
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "첨부 발견/추출",
+      "primaryCause": {
+        "stage": "attachment",
+        "status": "unknown",
+        "code": "ATTACHMENT_ZERO_UNRESOLVED",
+        "reason": "첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함",
+        "evidence": [
+          {
+            "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
+            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003114",
+            "requestMethod": "GET",
+            "template": "CUSTOM",
+            "ok": true,
+            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003114",
+            "textLength": 322,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 14,
+            "explicitNoAttachment": false,
+            "transport": "GET",
+            "error": ""
+          },
+          {
+            "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
+            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003090",
+            "requestMethod": "GET",
+            "template": "CUSTOM",
+            "ok": true,
+            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003090",
+            "textLength": 275,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 12,
+            "explicitNoAttachment": false,
+            "transport": "GET",
+            "error": ""
+          },
+          {
+            "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
+            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003064",
+            "requestMethod": "GET",
+            "template": "CUSTOM",
+            "ok": true,
+            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003064",
+            "textLength": 298,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 12,
+            "explicitNoAttachment": false,
+            "transport": "GET",
+            "error": ""
+          },
+          {
+            "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003056",
+            "requestMethod": "GET",
+            "template": "CUSTOM",
+            "ok": true,
+            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003056",
+            "textLength": 355,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 12,
+            "explicitNoAttachment": false,
+            "transport": "GET",
+            "error": ""
+          },
+          {
+            "title": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
+            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003032",
+            "requestMethod": "GET",
+            "template": "CUSTOM",
+            "ok": true,
+            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003032",
+            "textLength": 275,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 12,
+            "explicitNoAttachment": false,
+            "transport": "GET",
+            "error": ""
+          },
+          {
+            "title": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003031",
+            "requestMethod": "GET",
+            "template": "CUSTOM",
+            "ok": true,
+            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003031",
+            "textLength": 421,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 16,
+            "explicitNoAttachment": false,
+            "transport": "GET",
+            "error": ""
+          },
+          {
+            "title": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
+            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003026",
+            "requestMethod": "GET",
+            "template": "CUSTOM",
+            "ok": true,
+            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003026",
+            "textLength": 298,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 12,
+            "explicitNoAttachment": false,
+            "transport": "GET",
+            "error": ""
+          },
+          {
+            "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
+            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003023",
+            "requestMethod": "GET",
+            "template": "CUSTOM",
+            "ok": true,
+            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003023",
+            "textLength": 417,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 19,
+            "explicitNoAttachment": false,
+            "transport": "GET",
+            "error": ""
+          },
+          {
+            "title": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
+            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003022",
+            "requestMethod": "GET",
+            "template": "CUSTOM",
+            "ok": true,
+            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003022",
+            "textLength": 355,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 12,
+            "explicitNoAttachment": false,
+            "transport": "GET",
+            "error": ""
+          },
+          {
+            "title": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
+            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003006",
+            "requestMethod": "GET",
+            "template": "CUSTOM",
+            "ok": true,
+            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003006",
+            "textLength": 421,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 16,
+            "explicitNoAttachment": false,
+            "transport": "GET",
+            "error": ""
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산시설공단.mjs",
+        "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
+      },
+      "lastObservedVersion": 75,
+      "pendingAction": "attachment-resolution raw detail/snippet으로 실제 다운로드 호출 확정"
+    },
+    {
+      "org": "울산정보산업진흥원",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "success",
+      "documentAnalysis": {
+        "status": "partial",
+        "strictOk": false,
+        "attempted": 3,
+        "parsed": 2,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "문서 분석",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "울산테크노파크",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
+      "documentAnalysis": {
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "울산항만공사",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "success",
+      "documentAnalysis": {
+        "status": "success",
+        "strictOk": true,
+        "attempted": 1,
+        "parsed": 1,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산항만공사.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "울주군시설관리공단",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
+      "documentAnalysis": {
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "울주문화재단",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "not-required-no-attachments",
+      "attachmentDownload": "not-required",
+      "documentAnalysis": {
+        "status": "not-required",
+        "strictOk": true,
+        "attempted": 0,
+        "parsed": 0,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과 · 첨부/문서분석 대상 없음",
+      "primaryCause": {
+        "stage": "attachment",
+        "status": "unknown",
+        "code": "ATTACHMENT_ZERO_UNRESOLVED",
+        "reason": "첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함",
+        "evidence": [
+          {
+            "title": "일반 (재)울주문화재단 2026년도 제2차 직원 채용 재공고 접수기간 2026-07-10(금) 11:00 ~ 2026-07-20(월) 18:00 공지사항 0 건 접수마감 개인정보처리방침 이메일주소 무단수집거부 ⓒ KPDI HR Co.,Ltd. HUBST",
+            "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningDetailPage.do",
+            "requestMethod": "POST",
+            "template": "FORM_POST",
+            "ok": true,
+            "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningDetailPage.do",
+            "textLength": 4862,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 4,
+            "explicitNoAttachment": true,
+            "transport": "FORM_POST",
+            "error": ""
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울주문화재단.mjs",
+        "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "한국동서발전",
+      "access": "failed",
+      "list": "unknown",
+      "detail": "failed",
+      "attachmentDiscovery": "failed",
+      "attachmentDownload": "not-evaluated",
+      "documentAnalysis": {
+        "status": "not-evaluated",
+        "strictOk": false,
+        "attempted": 0,
+        "parsed": 0,
+        "observedCapability": false
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "모든 후보 URL HTTP 접속 실패",
+      "primaryCause": {
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+            "ok": false,
+            "error": "HTTP 502",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.ewp.co.kr/",
+            "ok": false,
+            "error": "HTTP 502",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+            "ok": false,
+            "error": "fetch failed",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/한국동서발전.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75,
+      "pendingAction": "외부 502 재현 여부 확인"
+    },
+    {
+      "org": "한국산업안전보건공단",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "failed",
+      "documentAnalysis": {
+        "status": "failed",
+        "strictOk": false,
+        "attempted": 4,
+        "parsed": 0,
+        "observedCapability": false
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "첨부 다운로드",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/한국산업안전보건공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75,
+      "pendingAction": "fileDown metadata 재귀 탐색; 미해결 시 raw JSON evidence 확인"
+    },
+    {
+      "org": "한국산업인력공단",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-partial",
+      "documentAnalysis": {
+        "status": "sample-partial",
+        "strictOk": false,
+        "attempted": 2,
+        "parsed": 1,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "첨부 다운로드",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/한국산업인력공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75,
+      "pendingAction": "HRDK 중복 첨부 후보 제거 후 attachSeq 실파일 1건 기준 검증"
+    },
+    {
+      "org": "한국석유공사",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
+      "documentAnalysis": {
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 1,
+        "parsed": 1,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/한국석유공사.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "한국수력원자력",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
+      "documentAnalysis": {
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    },
+    {
+      "org": "한국에너지공단",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "failed",
+      "attachmentDownload": "blocked-by-discovery",
+      "documentAnalysis": {
+        "status": "blocked-by-download",
+        "strictOk": false,
+        "attempted": 0,
+        "parsed": 0,
+        "observedCapability": false
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "첨부 발견/추출",
+      "primaryCause": {
+        "stage": "attachment",
+        "status": "unknown",
+        "code": "ATTACHMENT_ZERO_UNRESOLVED",
+        "reason": "첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함",
+        "evidence": [
+          {
+            "title": "한국에너지공단 공무직(미화) 채용(사회형평인재 제한경쟁)",
+            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=135",
+            "requestMethod": "POST",
+            "template": "FORM_POST",
+            "ok": true,
+            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
+            "textLength": 635,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 6,
+            "explicitNoAttachment": false,
+            "transport": "FORM_POST",
+            "error": ""
+          },
+          {
+            "title": "한국에너지공단 청년인턴(체험형) 채용 공고",
+            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=134",
+            "requestMethod": "POST",
+            "template": "FORM_POST",
+            "ok": true,
+            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
+            "textLength": 726,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 10,
+            "explicitNoAttachment": false,
+            "transport": "FORM_POST",
+            "error": ""
+          },
+          {
+            "title": "한국에너지공단 공무직(시설관리 일반) 채용 공고",
+            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=133",
+            "requestMethod": "POST",
+            "template": "FORM_POST",
+            "ok": true,
+            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
+            "textLength": 613,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 6,
+            "explicitNoAttachment": false,
+            "transport": "FORM_POST",
+            "error": ""
+          },
+          {
+            "title": "한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)",
+            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=132",
+            "requestMethod": "POST",
+            "template": "FORM_POST",
+            "ok": true,
+            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
+            "textLength": 634,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 6,
+            "explicitNoAttachment": false,
+            "transport": "FORM_POST",
+            "error": ""
+          },
+          {
+            "title": "한국에너지공단 공무직(미화) 채용(사회형평인재 제한경쟁)",
+            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=131",
+            "requestMethod": "POST",
+            "template": "FORM_POST",
+            "ok": true,
+            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
+            "textLength": 633,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 6,
+            "explicitNoAttachment": false,
+            "transport": "FORM_POST",
+            "error": ""
+          },
+          {
+            "title": "한국에너지공단 전문경력직 채용 공고",
+            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=130",
+            "requestMethod": "POST",
+            "template": "FORM_POST",
+            "ok": true,
+            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
+            "textLength": 574,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 6,
+            "explicitNoAttachment": false,
+            "transport": "FORM_POST",
+            "error": ""
+          },
+          {
+            "title": "한국에너지공단 신입직원(채용형 인턴) 채용 공고",
+            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=129",
+            "requestMethod": "POST",
+            "template": "FORM_POST",
+            "ok": true,
+            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
+            "textLength": 639,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 8,
+            "explicitNoAttachment": false,
+            "transport": "FORM_POST",
+            "error": ""
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/한국에너지공단.mjs",
+        "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
+      },
+      "lastObservedVersion": 75,
+      "pendingAction": "CtitFile JS 원문/함수/endpoint evidence로 실제 첨부 호출 확정"
+    },
+    {
+      "org": "한국전력공사",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
+      "documentAnalysis": {
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
+      },
+      "filter": "not-finalized",
+      "save": "not-finalized",
+      "bottleneck": "전체 파이프라인 통과",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "lastObservedVersion": 75
+    }
+  ],
+  "batchPolicy": "파악된 문제는 다음 수정본 한 회차에 묶어 반영. 미확정 원인은 같은 수정본에서 evidence 산출을 강화."
+}

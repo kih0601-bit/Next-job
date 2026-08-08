@@ -240,6 +240,15 @@ function ewpPostRequest(source, idx = '') {
   return { method: 'POST', url: absoluteUrl('/kor/subpage/content.html', source.url), body: params.toString(), headers: { 'content-type': 'application/x-www-form-urlencoded' }, referer: source.url };
 }
 
+function ubimcPostRequest(block = '', source) {
+  const action = block.match(/<form\b[^>]*method=["']post["'][^>]*action=["']([^"']*selectBoardArticle\.do[^"']*)["']/i)?.[1]
+    || '/cop/bbs/selectBoardArticle.do';
+  const call = block.match(/fn_egov_inqire_notice\(\s*["'](\d+)["']\s*,\s*["']([^"']+)["']\s*\)/i);
+  if (!call) return null;
+  const params = new URLSearchParams({ bbsId: call[2], nttId: call[1], menuNo: '2040000', pageIndex: '1', searchCnd: '', searchWrd: '', sCaId01: '', sCaId02: '' });
+  return { method:'POST', url:absoluteUrl(action, source.url), body:params.toString(), headers:{'content-type':'application/x-www-form-urlencoded'}, referer:source.url };
+}
+
 function sourceSpecificDetailUrls(block = '', source) {
   const urls = [];
   const push = value => {
@@ -497,6 +506,8 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       // The canonical GET article URL is publicly readable. 52's form POST replay
       // was rejected with HTTP 403 by the live site, so keep the recovered GET URL.
       detailRequest = null;
+    } else if (source.org === '울산북구시설관리공단') {
+      detailRequest = ubimcPostRequest(row.block, source);
     } else if (source.org === '울산항만공사') {
       const idx = row.block.match(/data-req-get-p-idx=["'](\d+)["']/i)?.[1] || '';
       detailRequest = upaPostRequest(row.block, source, idx);

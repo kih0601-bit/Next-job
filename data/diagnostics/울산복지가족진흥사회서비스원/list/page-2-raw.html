@@ -1,85 +1,4046 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+  	<meta name="format-detection" content="telephone=no">
+    <title>울산광역시 대표누리집 &gt; 시정소식 &gt; 새소식 &gt; 타기관 소식 | 목록</title>
+    <link rel="shortcut icon" href="/u/favicon.ico" type="image/x-icon" />
+  	<link type="text/css" rel="stylesheet" href="/u/storyCms/common/css/xeicon.min.css" />
+  	<link type="text/css" rel="stylesheet" href="/u/storyCms/rep/css/87.css?dt=20260130131246" /> <!-- common.css -->
+  	<link type="text/css" rel="stylesheet" href="/u/storyCms/rep/css/88.css?dt=20260512151215" /> <!-- layout.css -->
+  	<link type="text/css" rel="stylesheet" href="/u/storyCms/rep/css/89.css?dt=20260320133236" /> <!-- content.css -->
+  	<link type="text/css" rel="stylesheet" href="/u/storyCms/rep/css/124.css?dt=20260130161208" /> <!-- sub.css -->
+  	<link type="text/css" rel="stylesheet" href="/u/storyCms/rep/css/214.css?dt=20201219175703" /> <!-- animation.css-->
+  	<link type="text/css" rel="stylesheet" href="/u/storyCms/rep/css/132.css?dt=20260202093820" /> <!-- bbs.css -->
+  	<link type="text/css" rel="stylesheet" href="/u/storyCms/common/css/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/u/storyCms/common/css/holdon.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/u/storyCms/common/css/holdon.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/u/storyCms/res/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="/u/storyCms/res/slick/slick-theme.css"/>
+  	<!--[if lt IE 9]>
+	<script src="/u/storyCms/common/js/html5shiv.min.js"></script>
+	<script src="/u/storyCms/common/js/respond.min.js"></script>
+	<![endif]-->
+	<script src="/u/storyCms/common/js/jquery-1.11.3.min.js"></script>
+	<script src="/u/storyCms/common/js/jquery-migrate-1.2.1.min.js"></script>
+  	<script src="/u/storyCms/common/js/jquery-ui.min.js"></script>
+	<script src="/u/storyCms/common/js/jquery.cookie.js"></script>
+    <script src="/u/storyCms/common/js/holdon.min.js"></script>
+	<script src="/u/storyCms/common/js/holdon.min.js"></script>
+	<script src="/u/storyCms/res/slick/slick.min.js"></script>
+  	<script src="/u/storyCms/common/js/HHCommon.js?dt=20260320112429"></script>
+  	<script src="/u/storyCms/bbs/js/HHCommon.js?dt=20251010180718"></script>
+  	<script type="text/javascript" src="/u/storyCms/rep/js/126.js?dt=20250131143053"></script> <!-- common.js -->
+  	<script type="text/javascript" src="/u/storyCms/rep/js/1751.js?dt=20210108153148"></script> <!-- 스타일링 제이쿼리 -->
+  	<script>
+	if (document.location.protocol == 'http:' && window.location.hostname != 'localhost' && window.location.hostname != '106.247.251.2') {
+    	document.location.href = document.location.href.replace('http:', 'https:');
+	}
+	</script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXBBCS487T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-<!doctype html>
+      gtag('config', 'G-SXBBCS487T');
+    </script>
+</head>
+<body>
+  <script type="text/javascript">
+  const remoteIp = '48.214.54.100';
+</script>
+<script src="/u/common/tracer/tracerapi_org.js"></script>
+<link rel="stylesheet" href="/u/common/tracer/tracer.css" />
+<script>
+const setHost = 'www.ulsan.go.kr';
+const setPort = '443';
+const setPageUrl = '/u/rep/contents.do?mId=001004001003000000';
 
-<html lang="ko" xml:lang="ko">
+function showRealPage() {
+	$("#waitPage").css("display","none");
+}
 
-    <head>
+function showWaitPage(type) {
+	$("#waitPage").css("display","block");
+	$("#isWaitPage").css("display","none");
+	$("#isRejectPage").css("display","none");
+	$("isNotUse").css("display","none");
+	
+	if ( type == 'W' ) {
+		$("#isWaitPage").css("display","block");
+	} else if ( type == 'NE' ) {
+		$("#isNotUse").css("display","block");
+	} else if ( type == 'R' ) {
+		$("#isRejectPage").css("display","block");
+	}
+}
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+function checkInAPI() {
+	var host=setHost;
+	var port=setPort;
+	var pageUrl=setPageUrl; // 사용자가 접근한 페이지 URL
+	var ip = "48.214.54.100"; // 페이지에 접근한 사용자 IP
+	var loginId = "48.214.54.100"; // 페이지에 접근한 사용자 IP
+  
+  console.log('setPageUrl : ' + setPageUrl);
 
-        <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+	callTracerApiInput(host, ip, loginId, port, pageUrl, this);
+}
 
-        <meta http-equiv="Cache-Control" content="no-cache"/>
+function checkOutAPI() {
+	var host=setHost;
+	var port=setPort;
+	var pageUrl=setPageUrl; // 사용자가 접근한 페이지 URL
+	var ip = "48.214.54.100"; // 페이지에 접근한 사용자 IP
+	var loginId = "48.214.54.100"; // 페이지에 접근한 사용자 IP
 
-        <meta http-equiv="Pragma" content="no-cache"/>
+	callTracerApiOutput(host, ip, loginId, port, pageUrl, this);
+}
 
-        <meta http-equiv="imagetoolbar" content="no"/>
+// 대기열 끝난 후 호출 함수
+function callBackTracer() {
+	console.log('[Tracer API END]');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    checkInAPI();
+});
+</script>
+<div id="waitPage" style="display:none">
+	<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <link rel="stylesheet" href="/u/common/tracer/tracer.css" />
+
+<script type="text/javascript">
+
+function checkCntData() {
+    var host = this_host;
+    var ip =  this_ip;
+    var loginId = this_loginId;
+    var port = this_port;
+    var pageUrl = this_pageUrl;
+    var sendThis = this_sendThis
+
+    callTracerApiInputData(host, ip, loginId, port, pageUrl, sendThis);
+
+    var waitCnt = this_waitCnt;
+	
+    if ( waitCnt == "0" || waitCnt == "E") {
+      showRealPage();
+      callBackTracer();
+    } else {
+         var $el = $("#wait_value");
+         var waitCnt = this_waitCnt;
+	 if ( $.isNumeric(waitCnt) ) {
+	     $el.html("고객님의 대기열은 <span style=\"font-size:22px;color:red;font-weight:bold;\">"+comma(Math.floor(waitCnt))+"</span> 명입니다.");
+	} else {
+	  // alert("AAA"+opener.this_waitCnt+"AAA");
+
+	}
+    }
+
+}
+
+playAlert = setInterval(function() {
+    if ( this_isWait == "T" ) {
+	 checkCntData();
+    } 
+}, 1000);
+
+$(document).ready(function() {
+    var $el = $("#wait_value");
+    $el.html("고객님의 대기열을 확인중입니다.");
+    //checkCntData();
+});
 
 
-
-        <meta name="NaverBot" content="All" />
-
-        <meta name="NaverBot" content="index, follow" />
-
-        <meta name="Yeti" content="All" />
-
-        <meta name="Yeti" content="index, follow" />
-
-
-
-        <meta name="author" content="inplus(cs@inplusweb.com)"/>
-
-        <meta name="copyright" content="COPYRIGHT 2022inplusweb ALL RIGHT RESERVED."/>
-
-        <meta name="language" content="ko"/>
+function createCookie() {
+	var now = new Date();
+	  var time = now.getTime();
+	  var expireTime = time + 1000*36000;
+	  now.setTime(expireTime);
+	  var tempExp = 'Wed, 31 Oct 2020 08:50:17 GMT';
+	  document.cookie = 'SESSIONID=hjpark123;expires='+now.toGMTString()+';path=/';
+	  //console.log(document.cookie);
+}
 
 
+/* setInterval(function() {
+	window.location.href='login.do';
+		}, 20000); */
 
-        <meta name="title" content="" /><!-- seo에 등록된 타이틀 -->
+function comma(num){
+    var len, point, str; 
+       
+    num = num + ""; 
+    point = num.length % 3 ;
+    len = num.length; 
+   
+    str = num.substring(0, point); 
+    while (point < len) { 
+        if (str != "") str += ","; 
+        str += num.substring(point, point + 3); 
+        point += 3; 
+    } 
+     
+    return str;
+}
+</script>
 
-        <meta name="description" content=""/>
+</head>
+<body class="blank">
 
-        <meta name="keywords" content=""/>
+<form id="listForm_tracer" method="POST" class="mt-repeater form-horizontal" action="">
+</form>
+<div class="login-containerT" style="">
+    <div class="row" id="isWaitPage" style="display:none">
+	<div class="mobile-size" style="border: 4px solid #033074;width:100%;height:auto;overflow:hidden;">
+        <div class="col-md-12" style="width:100%;height:auto;background:#fff;border: 8px solid #d0dcea;">
+		<div class="main_logo"style="position:absolute;right:2%;top:12px;"> <img src="/u/common/tracer/logo2.png" style="width:90px;height:auto;margin-top: 20px;" alt="tracer"> </div>
+        	<div class="text-center" style="padding-top:20px;"></div>
+            <div class="text-center m-b-md">
+                <h3 style="font-weight:bold;font-size:22px;color:#033074;margin-top:5px;letter-spacing: -0.04em;text-align: center;">서비스 접근 대기 중입니다. </h3>
+            </div>
+		<div id="loading3" style="margin-bottom:30px;">
+                                                <div class="line1"></div><div class="line2"></div><div class="line3"></div><div class="line4"></div>
+                                                <div class="line5"></div><div class="line6"></div><div class="line7"></div><div class="line8"></div>
+                                                <div class="line9"></div><div class="line10"></div><div class="line11"></div><div class="line12"></div>
+                                                <div class="line13"></div><div class="line14"></div><div class="line15"></div><div class="line16"></div>
+                                        </div>
+
+            <div class="hpanel" style="width:88%;margin: 0 auto;background:#d0dcea;padding: 14px 0 14px 0;margin-top:20px;">
+                <div class="panel-bodyT" style="border:none;">
+			<div id="wait_value"></div>
+                    
+                   <div class="sub_text"style="letter-spacing: -0.04em;font-weight:600;font-size:0.8em;color:#1e1e1e;padding: 0 20px 0 20px;">현재 접속 사용자가 많아 대기중이며, <br> 잠시만 기다리시면 자동 접속됩니다.</div>	
+                </div>
+            </div>
+		<div style="text-align:right;padding:10px 10px 6px;font-size:10px;opacity:0.8;">TRACER - Copyright 2018-2020 WELLCONN Corp.</div>
+        </div>
+	</div>
+    </div>
 
 
+	<div class="row" id="isRejectPage" style="display:none">
+	<div class="mobile-size" style="border: 4px solid #033074;width:100%;height:auto;overflow:hidden;">
+        <div class="col-md-12" style="width:100%;background:#fff;border: 8px solid #d0dcea;">
+		<div class="main_logo" style="position:absolute;right:2%;top:12px;"> <img src="/u/common/tracer/logo2.png" style="width:90px;height:auto;margin-top: 10px;" alt="tracer"> </div>
+        	<div class="text-center" style="padding-top:20px;"></div>
+            <div class="text-center m-b-md">
+                <h3 style="font-weight:bold;font-size:22px;color:#033074;margin-top:5px;letter-spacing: -0.04em;text-align: center;">서비스 접속이 차단 되었습니다. </h3>
+            </div>
+            <div class="hpanel" style="width:88%;margin: 0 auto;background:#d0dcea;padding: 16px 0 16px 0;margin-top:0px;">
+                <div class="panel-bodyT" style="border:none;">
+			<div id="wait_value2"></div>
+                   <div class="sub_text"style="letter-spacing: -0.04em;font-weight:600;font-size:1.0em;color:#1e1e1e;">현재 접속하신 아이피에서는<br> 접속이 불가능합니다.</div>
+                </div>
+            </div>
+		<div style="text-align:right;padding:16px 10px 6px;font-size:10px;opacity:0.8;">TRACER - Copyright 2018-2020  WELLCONN Corp.</div>
+        </div>
+	</div>
+    </div>
 
-        <meta property="og:type" content="website"/>
-
-        <meta property="og:title" content="홈페이지명"/>
-
-        <meta property="og:description" content="" />
-
-        <meta property="og:keywords" content="" />
-
-        <meta property="og:image" content="/page/img/img-meta.jpg" />
-
-        <meta property="og:url" content="" />
-
-
-
-        <title>홈페이지명</title>
-
-        <link rel="shortcut icon" href="/favicon.ico"/>
-
-        <link rel="canonical" href="" />
-
+	<div class="row" id="isNotUse" style="display:none">
+	<div class="mobile-size" style="border: 4px solid #033074;width:100%;height:auto;overflow:hidden;">
+        <div class="col-md-12" style="width:100%;background:#fff;border: 8px solid #d0dcea;">
+		<div class="main_logo" style="position:absolute;right:2%;top:12px;"> <img src="/u/common/tracer/logo2.png" style="width:90px;height:auto;margin-top: 10px;" alt="tracer" /> </div>
+        	<div class="text-center" style="padding-top:20px;"></div>
+            <div class="text-center m-b-md">
+                <h3 style="font-weight:bold;font-size:22px;color:#033074;margin-top:5px;letter-spacing: -0.04em;text-align: center;">서비스 접속이 불가합니다. </h3>
+            </div>
+            <div class="hpanel" style="width:88%;margin: 0 auto;background:#d0dcea;padding: 16px 0 16px 0;margin-top:0px;">
+                <div class="panel-bodyT" style="border:none;">
+			<div id="wait_value2"></div>
+                   <div class="sub_text"style="letter-spacing: -0.04em;font-weight:600;font-size:1.0em;color:#1e1e1e;">접속량이 많아 접속이 불가능합니다.<br> 잠시 후 다시 접속해주세요</div>
+                </div>
+            </div>
+		<div style="text-align:right;padding:16px 10px 6px;font-size:10px;opacity:0.8;">TRACER - Copyright 2018-2020  WELLCONN Corp.</div>
+        </div>
+	</div>
+    </div>
 
 
-        <script type="text/javascript">
-
-        //<![CDATA[
-
-        self.location.href = "/webuser/page/main.html";
-
-        //]]>
-
-        </script>
-
-    </head>
-
-    <body>
-
-    </body>
-
+</div>
+<div id="waitBackground"></div>
+</body>
 </html>
+</div><noscript>
+		이 사이트의 기능을 모두 활용하기 위해서는 자바스크립트를 활성화 시킬 필요가 있습니다.
+		<a href="http://www.enable-javascript.com/ko/" target="_blank" title="새창">
+		브라우저에서 자바스크립트를 활성화하는 방법</a>을 참고 하세요.
+	</noscript>
+	<div id="skip_nav">
+		<ul>
+			<li><a class="accessibility" href="#gnb">주요 메뉴로 건너뛰기</a></li>
+			<li><a class="accessibility" href="#contents_inner">본문으로가기</a></li>
+		</ul>
+	</div>
+  	<div id="wrap">
+      	<!--Header : ST-->
+		<div id="uiux-top">
+	<div class="toggle-wrap">
+		<div class="toggle-head">
+			<div class="inner">
+				<span class="nuri-txt">이 누리집은 대한민국 공식 전자정부 누리집입니다.</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="top_layout">
+	<div class="lnb_box">
+		<div class="inner lnb_inner">
+			<ul class="link_tm">
+				<li class="pc"><a href="https://www.mois.go.kr/frt/sub/popup/p_taegugki_banner/screen.do" class="flag" target="_blank" title="[새창]국가상징">국가상징</a></li>
+				<li class="pc_mo"><a href="https://www.ulsan.go.kr/u/calamity/" target="_blank" title="[새창]재난대응">재난대응</a></li>
+              <li class="pc_mo"><a href="https://www.ulsan.go.kr/s/statData/contents.do?mId=001005002001000000" target="_blank" title="[새창]울산인구 통계페이지 바로가기">울산 인구(1,117,650명, '26년 5월 기준 외국인 포함)</a></li>
+              	<li class="link_tm_mo"><a href="https://map.ulsan.go.kr/" target="_blank" title="[새창]울산스마트맵">울산스마트맵</a></li>
+				<li class="link_tm_mo"> <a href="https://www.ulsan.go.kr/tour" target="_blank" title="[새창]울산관광">울산관광</a>
+				<li class="link_tm_mo"><a href="https://www.ujf.or.kr/job" target="_blank" title="[새창]울산일자리포털">일자리포털</a></li>
+				<li class="link_tm_mo"><a href="https://www.ulsan.go.kr/s/ulsanyouth" target="_blank" title="[새창]울산청년정책플랫폼U-PAGE">청년정책플랫폼</a></li>
+			</ul>
+			<ul class="util_tm">
+				<li class="tlang_box"><button type="button" onclick="MLanguage.toggle();" class="lang_selc"><span>LANGUAGE</span><em class="sr-only">열기</em></button>
+					<!--open상태일때 : lang_selc open 추가-->
+					<div class="lang_listbox">
+						<!--open상태일때 : lang_listbox open 추가-->
+						<ul>
+							<li><a href="/u/english/">English</a></li>
+							<li><a href="/u/japanese/">Japanese</a></li>
+							<li><a href="/u/chinese/">Chinese</a></li>
+						</ul>
+					</div>
+				</li>
+				<!--<li><span class="screen_out">SNS 모음</span>
+							<ul class="tsns_box">
+								<li><a href="https://story.kakao.com/ch/ulsan/feed" class="sns_cacao" target="_blank" title="[새창]카카오스토리"><span class="screen_out">카카오스토리</span></a></li>
+								<li><a href="https://www.facebook.com/ulsannuri.kr" class="sns_facebook" target="_blank" title="[새창]페이스북"><span class="screen_out">페이스북</span></a></li>
+								<li><a href="https://twitter.com/ulsannuri/" class="sns_twitter" target="_blank" title="[새창]X"><span class="screen_out">X</span></a></li>
+								<li><a href="https://blog.naver.com/ulsan_nuri" class="sns_blog" target="_blank" title="[새창]네이버블로그"><span class="screen_out">네이버블로그</span></a></li>
+								<li><a href="https://www.instagram.com/ulsancity/" class="sns_instagram" target="_blank" title="[새창]인스타그램"><span class="screen_out">인스타그램</span></a></li>
+								<li><a href="https://www.youtube.com/channel/UCTHZPqsEmZLP5rrCLXJFwNg" class="sns_youtube" target="_blank" title="[새창]유투브"><span class="screen_out">유투브</span></a></li>
+							</ul>
+						</li>-->
+			</ul>
+		</div>
+	</div>
+	<div class="tophead_box">
+		<div class="inner tophead_inner">
+			<h1 class="logo"><a href="/u/rep/">울산광역시</a></h1>
 
+			<div class="view_m l_srch"><button type="button" class="m_srchbtn" onclick="SearchBtn.toggle();"><span class="blind">검색창열기</span></button></div>
+			<!--태블릿이하 출력 : 버튼클릭시 (검색창열기 -> 검색창닫기)-->
+			<div class="search_box">
+				<!--모바일 m_srchbtn 클릭시 open추가-->
+				<form id="RsaSearchForm1" name="RsaSearchForm1" method="post" action="https://www.ulsan.go.kr/search/front/Search.jsp" target="_blank">
+					<fieldset>
+						<legend>통합검색</legend>
+						<label for="srch_list" class="blind">검색조건</label>
+						<select id="srch_list" title="검색 분야를 선택하세요">
+							<option value="통합검색" selected="selected">통합검색</option>
+							<option value="메뉴검색">메뉴검색</option>
+							<option value="업무/직원">업무</option>
+							<option value="게시판">게시판</option>
+							<option value="시장실">시장실</option>
+						</select>
+						<label for="qt" class="blind">검색어 입력</label>
+						<span class="srch_txt"><input type="text" id="qt" name="qt" placeholder="검색어를 입력하세요"></span>
+						<button type="submit" class="btn_sch" title="새 창 열림"><span class="blind">검색</span></button>
+					</fieldset>
+				</form>
+				<div class="view_m l_srchclose"><button type="button" class="m_srchclose" onclick="SearchBtn.toggle();"><span class="blind">검색창닫기</span></button></div>
+			</div>
+			<!--해울이 챗봇 : ST -->
+			<div class="chatbot_mo">
+				<a href="https://www.ulsan.go.kr/iChat" onclick="window.open(this.href,'_blank','width=500,height=800,resizable=0,scrollbars=1');return false;" title="민원상담 해울이 챗봇" target="_blank"><img src="https://www.ulsan.go.kr/u/storyCms/rep/images/main/float_banner_iChat02_2.png" alt="민원상담 해울이 챗봇" /></a>
+			</div>
+			<!--날씨정보 : ST -->
+			<div class="weather_box">
+				<a href="http://www.weather.go.kr/weather/main.jsp" target="_blank" title="[새창]기상청">
+
+						<div class="wth_info">
+							<div class="wth_infoinner">
+								<p class="wth_icon"><span><img src="/u/storyCms/common/images/weather/weathericon_4.png" alt="흐림" /></span></p>
+								<p class="wth_infotxt"><span class="temp">
+										28.6</span><span>℃</span><span>울산시</span></p>
+							</div>
+						</div>
+
+						<div class="wth_txt">
+							<p>미세먼지(
+								<em>
+									좋음</em>
+								)
+							</p>
+							<p>초미세먼지(
+								<em>
+									좋음</em>
+								)
+							</p>
+							<p>
+								
+									방사능수치(<em>
+										111(
+										nSv/h)
+									</em>)
+								</p>
+						</div>
+					</a>
+			</div>
+			<!--날씨정보 : ED -->
+			<div class="all_m"><a href="/u/rep/contents.ulsan?mId=001005008009000000"><span class="blind">사이트맵</span></a></div>
+			<div class="view_m r_menu"><a href="#menuOpen" class="m_menubtn"><span class="blind">메뉴보기</span></a></div>
+			<!--태블릿이하 출력-->
+		</div>
+	</div>
+
+	<!--PC nav : ST-->
+	<div class="nav_pcbox">
+		<div class="nav_inner">
+			<h2 class="blind">대메뉴</h2>
+			<nav id="gnb">
+				<ul class="tm_dep01">
+					<li><a href="#" class="tm_tit01 re_mcon01"><span>
+							민 원</span></a>
+						<div class="tm_depbg">
+							<div class="tm_depinner">
+								<div class="tm_copybox">
+									<p class="tm_copyinner tm_con1"><strong>
+											민 원</strong><span>
+											시민들의 신청민원 적극적으로 처리해 드리겠습니다.</span></p>
+								</div>
+								<div>
+								<ul class="tm_dep02">
+									<li>
+						<a href="/u/rep/contents.ulsan?mId=001001001000000000"  class="tm_tit02 m_3dep"><span>
+													울산시에 바란다</span>
+												</a>
+										</li>
+	<li>
+<a href="/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000244&amp;mId=001001012002000000"  class="tm_tit02 m_3dep"><span>
+													울산신문고</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001001012002000000"  class=""><span>
+													국민신문고(민원)</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001012003000000"  class=""><span>
+													국민신문고(제안)</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001012004000000"  class=""><span>
+													청원24</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001012006000000"  class=""><span>
+													안전신문고</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001002000000000"  class="tm_tit02 m_3dep"><span>
+													민원상담신청</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001001002002000000"  class=""><span>
+													사전민원심사청구</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001002003000000"  class=""><span>
+													무료법률상담</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001002008000000"  class=""><span>
+													주택 피해・고충상담 지원센터</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001002004000000"  class=""><span>
+													국민콜110 채팅상담</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001002005000000"  class=""><span>
+													방문민원 처리공개</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001002006000000"  class=""><span>
+													120 울산민원센터</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001002007000000"  class=""><span>
+													원스톱 기업지원창구</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001004000000000"  class="tm_tit02 m_3dep"><span>
+													민원안내</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001001004001000000"  class=""><span>
+													민원사무편람</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001004002000000"  class=""><span>
+													민원서식받기</span>
+												</a>
+										</li>
+		<li>
+	<a href="http://www.gov.kr/portal/"  target="
+												_blank" title="새창" class=" open_win"><span>
+													정부24</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001004003000000"  class=""><span>
+													무인민원발급기</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001004004000000"  class=""><span>
+													민원후견인제</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001004005000000"  class=""><span>
+													여권발급안내</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001004007000000"  class=""><span>
+													온라인 출생신고 안내</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://www.ulsan.go.kr/fax"  target="
+												_blank" title="새창" class=" open_win"><span>
+													팩스발송 결과 조회</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="http://www.ulsan.go.kr/s/uapc/main.ulsan"  target="
+												_blank" title="새창" class="tm_tit02 m_3dep open_win"><span>
+													자치경찰위원회</span>
+												</a>
+										</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001003000000000"  class="tm_tit02 m_3dep"><span>
+													시민고충처리위원회</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001001003011000000"  class=""><span>
+													시민고충처리위원회 소개</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001003008000000"  class=""><span>
+													고충민원 처리 안내</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001003009000000"  class=""><span>
+													고충민원 처리절차</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001003010000000"  class=""><span>
+													고충민원 신청 및 결과</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001009001000000"  class="tm_tit02 m_3dep"><span>
+													인권센터 (인권침해 신고)</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001001009001000000"  class=""><span>
+													인권센터 소개</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001009002000000"  class=""><span>
+													상담ㆍ처리 절차</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001009003000000"  class=""><span>
+													상담 신청</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001009004000000"  class=""><span>
+													결정례</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001009005000000"  class=""><span>
+													인권 자료실</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001011000000000"  class="tm_tit02 m_3dep"><span>
+													청원신청</span>
+												</a>
+										</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001005000000000"  class="tm_tit02 m_3dep"><span>
+													민원처리FAQ</span>
+												</a>
+										</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001006000000000"  class="tm_tit02 m_3dep"><span>
+													행정서비스헌장</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001001006001000000"  class=""><span>
+													개념 및 추진배경</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001006002000000"  class=""><span>
+													공통 이행기준</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001006003000000"  class=""><span>
+													부서별 행정서비스헌장</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001006004000000"  class=""><span>
+													고객만족도조사결과</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007000000000"  class="tm_tit02 m_3dep"><span>
+													신고센터</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001001007003000000"  class=""><span>
+													부패ㆍ공익 신고</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007001000000"  class=""><span>
+													공무원친절/불친절신고</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007002000000"  class=""><span>
+													공직비리 신고</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007015000000"  class=""><span>
+													소극행정 신고센터</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007004000000"  class=""><span>
+													청탁금지법 신고센터</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007005000000"  class=""><span>
+													예산낭비신고센터</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007006000000"  class=""><span>
+													환경신문고</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007007000000"  class=""><span>
+													규제개혁 신고센터</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007008000000"  class=""><span>
+													규제입증요청</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007022000000"  class=""><span>
+													민생규제 개선센터</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007011000000"  class=""><span>
+													국가유산 부실수리 신고 등</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007016000000"  class=""><span>
+													부동산 불법행위 통합 신고센터</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007012000000"  class=""><span>
+													부동산 불법거래 신고</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007014000000"  class=""><span>
+													시(市) 사업장 안전보건신고</span>
+												</a>
+										</li>
+		<li>
+	<a href=" http://www.safetyreport.go.kr/api?apiKey=63100000XY022UGD797MPMB6961#safeReport"  target="
+												_blank" title="새창" class=" open_win"><span>
+													안전신문고</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://www.clean.go.kr/menu.es?mid=a10204000000"  target="
+												_blank" title="새창" class=" open_win"><span>
+													복지·보조금부정신고</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://mfds.go.kr/wpge/m_46/de010406l001.do"  target="
+												_blank" title="새창" class=" open_win"><span>
+													식품안전소비자신고</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		</ul>
+		</div>
+		</div>
+		</div>
+		</li>
+	<li><a href="#" class="tm_tit01 re_mcon02"><span>
+							소통참여</span></a>
+						<div class="tm_depbg">
+							<div class="tm_depinner">
+								<div class="tm_copybox">
+									<p class="tm_copyinner tm_con2"><strong>
+											소통참여</strong><span>
+											시민과 함께 소통하고 시민의 의견을 귀담아 듣겠습니다.</span></p>
+								</div>
+								<div>
+								<ul class="tm_dep02">
+									<li>
+						<a href="/u/rep/contents.ulsan?mId=001002003000000000"  class="tm_tit02 m_3dep"><span>
+													칭찬합시다</span>
+												</a>
+										</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001002004000000000"  class="tm_tit02 m_3dep"><span>
+													자유게시판</span>
+												</a>
+										</li>
+	<li>
+<a href="http://www.ulsan.go.kr/s/jumin/"  target="
+												_blank" title="새창" class="tm_tit02 m_3dep open_win"><span>
+													주민참여예산</span>
+												</a>
+										</li>
+	<li>
+<a href="https://www.juminegov.go.kr/"  target="
+												_blank" title="새창" class="tm_tit02 m_3dep open_win"><span>
+													주민e직접</span>
+												</a>
+										</li>
+				</ul>
+		</div>
+	</div>
+</div>
+</li>
+<li><a href="#" class="tm_tit01 re_mcon03"><span>
+							정보공개</span></a>
+						<div class="tm_depbg">
+							<div class="tm_depinner">
+								<div class="tm_copybox">
+									<p class="tm_copyinner tm_con3"><strong>
+											정보공개</strong><span>
+											시민의 알 권리 충족을 위해 모든 정보공개에 최선을 다하겠습니다.</span></p>
+								</div>
+								<div>
+								<ul class="tm_dep02">
+									<li>
+						<a href="/u/rep/contents.ulsan?mId=001003001000000000"  class="tm_tit02 m_3dep"><span>
+													행정정보공개</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001003001001000000"  class=""><span>
+													정보공개제도</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003001002000000"  class=""><span>
+													사전정보공표</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003001003000000"  class=""><span>
+													사전공표 대상정보</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003001004000000"  class=""><span>
+													정보목록</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003001005000000"  class=""><span>
+													청사 신축비용</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/gov/transfer/policyRlnm/list.ulsan?mId=001004007002000000"  target="
+												_blank" title="새창" class=" open_win"><span>
+													정책실명제</span>
+												</a>
+										</li>
+		<li>
+	<a href="http://www.open.go.kr/"  target="
+												_blank" title="새창" class=" open_win"><span>
+													결재문서공개</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003001008000000"  class=""><span>
+													정책연구용역 결과</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003010000000000"  class="tm_tit02 m_3dep"><span>
+													즐겨찾는 정보</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="https://www.ulsan.go.kr/u/rep/transfer/director/list.ulsan?mId=001003002003000000"  target="
+												_blank" title="새창" class=" open_win"><span>
+													업무추진비</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://contract.ulsan.go.kr/contract/contract_info/"  target="
+												_blank" title="새창" class=" open_win"><span>
+													계약정보(1천만원 이상)</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://contract.ulsan.go.kr/contract/contract_info/private_contract/all"  target="
+												_blank" title="새창" class=" open_win"><span>
+													계약정보(500만원 이상)</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://www.ulsan.go.kr/u/gov/bbs/list.ulsan?bbsId=BBS_0000000000000120&amp;mId=001003004000000000"  target="
+												_blank" title="새창" class=" open_win"><span>
+													감사 결과</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://www.ulsan.go.kr/u/tax/bbs/list.ulsan?bbsId=BBS_0000000000000109&amp;mId=001002002000000000"  target="
+												_blank" title="새창" class=" open_win"><span>
+													재정 정보</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000029&amp;mId=001004006000000000"  target="
+												_blank" title="새창" class=" open_win"><span>
+													주요 업무계획</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://www.ulsan.go.kr/u/gov/contents.ulsan?mId=001004010002000000"  target="
+												_blank" title="새창" class=" open_win"><span>
+													주요 평가결과</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003002000000000"  class="tm_tit02 m_3dep"><span>
+													업무추진비</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001003002007000000"  class=""><span>
+													시장</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003002001000000"  class=""><span>
+													행정부시장</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003002002000000"  class=""><span>
+													경제부시장</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003002006000000"  class=""><span>
+													경제자유구역청장</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003002003000000"  class=""><span>
+													실·국장(신)</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003002004000000"  class=""><span>
+													실·국장(구)</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003002005000000"  class=""><span>
+													부서장</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003003000000000"  class="tm_tit02 m_3dep"><span>
+													위원회 운영정보</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001003003001000000"  class=""><span>
+													위원회 설치현황</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003003002000000"  class=""><span>
+													위원회 개최결과</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003004000000000"  class="tm_tit02 m_3dep"><span>
+													백 서</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001003004001000000"  class=""><span>
+													시정백서</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003004002000000"  class=""><span>
+													승격백서</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003004003000000"  class=""><span>
+													광역시 승격 10주년</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003004004000000"  class=""><span>
+													환경백서</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003004005000000"  class=""><span>
+													태화강 국가정원 백서</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="https://www.ulsan.go.kr/u/metro/contents.ulsan?mId=001007004002001000"  target="
+												_blank" title="새창" class="tm_tit02 m_3dep open_win"><span>
+													데이터개방</span>
+												</a>
+										</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003006000000000"  class="tm_tit02 m_3dep"><span>
+													계약정보공개</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001003006001000000"  class=""><span>
+													계약정보공개시스템</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001003007000000000"  class="tm_tit02 m_3dep"><span>
+													행정자료</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001003007001000000"  class=""><span>
+													행정 간행물</span>
+												</a>
+										</li>
+		<li>
+	<a href="http://www.ulsan.go.kr/ref/"  target="
+												_blank" title="새창" class=" open_win"><span>
+													행정자료실(해울이도서관)</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="https://www.elis.go.kr/locgovalr/locgovClAlrList?ctpvSggCd=31000"  target="
+												_blank" title="새창" class="tm_tit02 m_3dep open_win"><span>
+													자치법규(조례·규칙)</span>
+												</a>
+										</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003009000000000"  class="tm_tit02 m_3dep"><span>
+													상품권구매내역</span>
+												</a>
+										</li>
+				</ul>
+		</div>
+	</div>
+</div>
+</li>
+<li><a href="#" class="tm_tit01 re_mcon04"><span>
+							시정소식</span></a>
+						<div class="tm_depbg">
+							<div class="tm_depinner">
+								<div class="tm_copybox">
+									<p class="tm_copyinner tm_con4"><strong>
+											시정소식</strong><span>
+											시민들이 알아야 할 시정소식을 빠르고 정확하게 알려 드립니다.</span></p>
+								</div>
+								<div>
+								<ul class="tm_dep02">
+									<li>
+						<a href="/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000003&amp;mId=001004001001000000"  class="tm_tit02 m_3dep on"><span>
+													새소식</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001004001001000000"  class=" on"><span>
+													울산소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004001002000000"  class=" on"><span>
+													구군소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004001003000000"  class=" on"><span>
+													타기관 소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004001004000000"  class=" on"><span>
+													대기경보상황</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004002000000000"  class="tm_tit02 m_3dep"><span>
+													고시공고(입법예고 포함)</span>
+												</a>
+										</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004003000000000"  class="tm_tit02 m_3dep"><span>
+													보도 / 해명</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001004003001000000"  class=""><span>
+													보도자료</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004003002000000"  class=""><span>
+													해명자료</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004004000000000"  class="tm_tit02 m_3dep"><span>
+													공보</span>
+												</a>
+										</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004005000000000"  class="tm_tit02 m_3dep"><span>
+													홍보</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001004005004000000"  class=""><span>
+													시정홍보영상</span>
+												</a>
+										</li>
+		<li>
+	<a href="/s/news/main.ulsan"  target="
+												_blank" title="새창" class=" open_win"><span>
+													시정뉴스</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004005005000000"  class=""><span>
+													ODA 사진전</span>
+												</a>
+										</li>
+		<li>
+	<a href="http://webzine.ulsan.go.kr/"  target="
+												_blank" title="새창" class=" open_win"><span>
+													헬로울산</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004005006000000"  class=""><span>
+													시정소식지</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004005003000000"  class=""><span>
+													카드뉴스</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004005007000000"  class=""><span>
+													이장·통장회의 홍보자료</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004006000000000"  class="tm_tit02 m_3dep"><span>
+													주·월간 업무계획</span>
+												</a>
+										</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004008000000000"  class="tm_tit02 m_3dep"><span>
+													시험정보</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001004008001000000"  class=""><span>
+													시험공고</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004008002000000"  class=""><span>
+													시험장소공고</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004008003000000"  class=""><span>
+													합격자공고</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004008004000000"  class=""><span>
+													경쟁률</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://local.gosi.go.kr/klid/main/main.do"  target="
+												_blank" title="새창" class=" open_win"><span>
+													인터넷 원서접수/성적조회</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004008007000000"  class=""><span>
+													Q&amp;A게시판</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001004008008000000"  class=""><span>
+													타기관 시험정보</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		</ul>
+		</div>
+		</div>
+		</div>
+		</li>
+	<li><a href="#" class="tm_tit01 re_mcon05"><span>
+							울산소개</span></a>
+						<div class="tm_depbg">
+							<div class="tm_depinner">
+								<div class="tm_copybox">
+									<p class="tm_copyinner tm_con5"><strong>
+											울산소개</strong><span>
+											울산의 모든 것을 알려 드립니다.</span></p>
+								</div>
+								<div>
+								<ul class="tm_dep02">
+									<li>
+						<a href="/u/rep/contents.ulsan?mId=001005001000000000"  class="tm_tit02 m_3dep"><span>
+													울산의 비전</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001005001001000000"  class=""><span>
+													시정비전</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005001003000000"  class=""><span>
+													주요업무계획</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005001004000000"  class=""><span>
+													울산시정</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001005009001000000"  class="tm_tit02 m_3dep"><span>
+													사이버 보훈관</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001005009001000000"  class=""><span>
+													사이버 보훈관 안내</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005009003000000"  class=""><span>
+													독립기념관</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005009002000000"  class=""><span>
+													호국 기념관</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005002000000000"  class="tm_tit02 m_3dep"><span>
+													울산의 현황</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001005002001000000"  class=""><span>
+													자연여건</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005002002000000"  class=""><span>
+													행정구역</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005002003000000"  class=""><span>
+													행정지도</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005002004000000"  class=""><span>
+													연혁</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005002005000000"  class=""><span>
+													울산광역시사(2002)</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005002006000000"  class=""><span>
+													울산을 한권에 담다(2017)</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005002007000000"  class=""><span>
+													울산의 기록들</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005005000000000"  class="tm_tit02 m_3dep"><span>
+													시의상징</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001005005001000000"  class=""><span>
+													심벌마크</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005005002000000"  class=""><span>
+													브랜드슬로건</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005005003000000"  class=""><span>
+													캐릭터</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005005004000000"  class=""><span>
+													시목 시화 시조</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005005008000000"  class=""><span>
+													울산시가</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005005005000000"  class=""><span>
+													시민헌장</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005005006000000"  class=""><span>
+													울산색</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005005007000000"  class=""><span>
+													울산문양</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005007000000000"  class="tm_tit02 m_3dep"><span>
+													시청안내</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001005007001000000"  class=""><span>
+													행정조직도</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005007002000000"  class=""><span>
+													전화 · 팩스번호안내 (대표052-120)</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005007003000000"  class=""><span>
+													직원검색</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005007004000000"  class=""><span>
+													청사안내</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005007005000000"  class=""><span>
+													견학신청</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005007006000000"  class=""><span>
+													찾아오시는길</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005007007000000"  class=""><span>
+													시민홀 대관</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005008000000000"  class="tm_tit02 m_3dep"><span>
+													이용안내</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/rep/contents.ulsan?mId=001005008001000000"  class=""><span>
+													개인정보처리방침</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005008002000000"  class=""><span>
+													영상정보처리기기 운영 · 관리방침</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005008003000000"  class=""><span>
+													저작권보호 정책</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005008004000000"  class=""><span>
+													웹 접근성 품질인증</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005008005000000"  class=""><span>
+													파일뷰어 다운로드</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005008006000000"  class=""><span>
+													관련누리집</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005008007000000"  class=""><span>
+													배너모음</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005008008000000"  class=""><span>
+													이용약관</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/rep/contents.ulsan?mId=001005008009000000"  class=""><span>
+													사이트맵</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		</ul>
+		</div>
+		</div>
+		</div>
+		</li>
+	<li><a href="#" class="tm_tit01 re_mcon06"><span>
+							분야별정보</span></a>
+						<div class="tm_depbg">
+							<div class="tm_depinner">
+								<div class="tm_copybox">
+									<p class="tm_copyinner tm_con6"><strong>
+											분야별정보</strong><span>
+											울산시정의 각종 정보를 분야별로 알려 드립니다.</span></p>
+								</div>
+								<div>
+								<ul class="tm_dep02">
+									<li>
+						<a href="/u/safe/main.ulsan"  class="tm_tit02 m_3dep"><span>
+													안 전</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/safe/contents.ulsan?mId=001001000000000000"  class=""><span>
+													새소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/safe/contents.ulsan?mId=001002001001000000"  class=""><span>
+													안전정책</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/safe/contents.ulsan?mId=001003001001000000"  class=""><span>
+													재난</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/safe/contents.ulsan?mId=001004001001001000"  class=""><span>
+													사회재난산업안전</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/safe/contents.ulsan?mId=001005001000000000"  class=""><span>
+													민생사법경찰</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/welfare/main.ulsan"  class="tm_tit02 m_3dep"><span>
+													복 지</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/welfare/contents.ulsan?mId=001001000000000000"  class=""><span>
+													새소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/welfare/contents.ulsan?mId=001003001000000000"  class=""><span>
+													출산보육</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/welfare/contents.ulsan?mId=001004001000000000"  class=""><span>
+													아동복지</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/welfare/contents.ulsan?mId=001005001001000000"  class=""><span>
+													기초생활보장</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/welfare/contents.ulsan?mId=001011002000000000"  class=""><span>
+													보훈</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/welfare/contents.ulsan?mId=001006001000000000"  class=""><span>
+													노인복지</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/welfare/contents.ulsan?mId=001007001000000000"  class=""><span>
+													장애인복지</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/welfare/contents.ulsan?mId=001008001000000000"  class=""><span>
+													여성복지</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/welfare/contents.ulsan?mId=001009001000000000"  class=""><span>
+													청소년육성</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/welfare/contents.ulsan?mId=001010008000000000"  class=""><span>
+													외국인/다문화지원</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/health/main.ulsan"  class="tm_tit02 m_3dep"><span>
+													보건 / 건강</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/health/contents.ulsan?mId=001001000000000000"  class=""><span>
+													새소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/health/contents.ulsan?mId=001002001000000000"  class=""><span>
+													코로나19</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/health/contents.ulsan?mId=001003001000000000"  class=""><span>
+													보건정책</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/health/contents.ulsan?mId=001004001000000000"  class=""><span>
+													건강도시</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/health/contents.ulsan?mId=001005001000000000"  class=""><span>
+													감염병관리</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/health/contents.ulsan?mId=001006001000000000"  class=""><span>
+													위생정보</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/health/contents.ulsan?mId=001007001000000000"  class=""><span>
+													의료정보</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/culture/main.ulsan"  class="tm_tit02 m_3dep"><span>
+													문화 / 관광</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/culture/contents.ulsan?mId=001001000000000000"  class=""><span>
+													새소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/culture/contents.ulsan?mId=001003001001000000"  class=""><span>
+													문화예술</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://www.ulsanculture.kr/"  target="
+												_blank" title="새창" class=" open_win"><span>
+													울산문화24</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://www.ulsan.go.kr/tour/kor/main.ulsan"  target="
+												_blank" title="새창" class=" open_win"><span>
+													울산관광</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://whataulsan.com/"  target="
+												_blank" title="새창" class=" open_win"><span>
+													왔어울산</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/culture/contents.ulsan?mId=001005001000000000"  class=""><span>
+													체육지원</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/culture/contents.do?mId=001006001000000000"  class=""><span>
+													민간·공동체정원</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://2028ulsanexpo.or.kr/"  target="
+												_blank" title="새창" class=" open_win"><span>
+													2028 울산국제정원박람회</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/economy/main.ulsan"  class="tm_tit02 m_3dep"><span>
+													경제 / 일자리</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/economy/contents.ulsan?mId=001001000000000000"  class=""><span>
+													새소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/economy/contents.ulsan?mId=001002001005000000"  class=""><span>
+													지역경제/노동</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://job.ubpi.or.kr/job/main.do"  target="
+												_blank" title="새창" class=" open_win"><span>
+													일자리/창업</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/economy/contents.do?mId=001012001001000000"  class=""><span>
+													투자유치/통상교류</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/economy/contents.ulsan?mId=001007001000000000"  class=""><span>
+													중소벤처기업</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/economy/contents.ulsan?mId=001008001000000000"  class=""><span>
+													사회적경제</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/economy/contents.ulsan?mId=001009016000000000"  class=""><span>
+													농축산</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/economy/contents.ulsan?mId=001010001000000000"  class=""><span>
+													수산진흥</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/economy/contents.ulsan?mId=001003001000000000"  class=""><span>
+													혁신산업</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/economy/contents.ulsan?mId=001005001000000000"  class=""><span>
+													에너지산업</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/envi/main.ulsan"  class="tm_tit02 m_3dep"><span>
+													환경 / 녹지</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/envi/contents.ulsan?mId=001001000000000000"  class=""><span>
+													새소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/envi/contents.ulsan?mId=001002002001000000"  class=""><span>
+													환경정책</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/envi/contents.ulsan?mId=001003001001000000"  class=""><span>
+													환경보전</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/envi/contents.ulsan?mId=001004001001000000"  class=""><span>
+													하수관리</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/envi/contents.ulsan?mId=001005001001000000"  class=""><span>
+													자원순환</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/envi/contents.ulsan?mId=001007001001001000"  class=""><span>
+													맑은물정책</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/envi/contents.ulsan?mId=001006001001000000"  class=""><span>
+													녹지공원</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/traffic/main.ulsan"  class="tm_tit02 m_3dep"><span>
+													교통 / 도시 / 산업단지</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/traffic/contents.ulsan?mId=001001000000000000"  class=""><span>
+													새소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/traffic/contents.ulsan?mId=001002001000000000"  class=""><span>
+													교통기획</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/traffic/contents.ulsan?mId=001003001000000000"  class=""><span>
+													버스택시</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/traffic/contents.ulsan?mId=001006001000000000"  class=""><span>
+													광역교통</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/traffic/contents.do?mId=001007001000000000"  class=""><span>
+													도시계획</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/traffic/contents.do?mId=001008001000000000"  class=""><span>
+													도시균형개발</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/traffic/contents.do?mId=001009001000000000"  class=""><span>
+													혁신도시</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/traffic/contents.do?mId=001010001000000000"  class=""><span>
+													산업단지</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/metro/main.ulsan"  class="tm_tit02 m_3dep"><span>
+													건설 / 주택 / 토지</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/metro/bbs/list.ulsan?bbsId=BBS_0000000000000090&amp;mId=001001000000000000"  class=""><span>
+													새소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/metro/contents.do?mId=001009001000000000"  class=""><span>
+													건설도로</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/metro/contents.ulsan?mId=001004019000000000"  class=""><span>
+													건축정책</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/metro/contents.ulsan?mId=001008011001000000"  class=""><span>
+													주택허가</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/metro/contents.ulsan?mId=001003001000000000"  class=""><span>
+													도시경관</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/metro/transfer/brief/list.ulsan?mId=001005001000000000"  class=""><span>
+													토지정보</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/metro/contents.ulsan?mId=001007007004000000"  class=""><span>
+													스마트도시</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/tax/main.ulsan"  class="tm_tit02 m_3dep"><span>
+													세금 / 재정</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/tax/bbs/list.ulsan?bbsId=BBS_0000000000000107&amp;mId=001001000000000000"  class=""><span>
+													새소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/tax/bbs/list.ulsan?bbsId=BBS_0000000000000108&amp;mId=001002001000000000"  class=""><span>
+													재정</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/tax/contents.ulsan?mId=001003005000000000"  class=""><span>
+													예산</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/tax/contents.ulsan?mId=001004001000000000"  class=""><span>
+													세금</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/tax/contents.ulsan?mId=001005001000000000"  class=""><span>
+													공유재산</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://www.wetax.go.kr/tcp/loi/J030401M01.do"  class=""><span>
+													전국 부동산 종합정보</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		<li>
+	<a href="/u/gov/main.ulsan"  class="tm_tit02 m_3dep"><span>
+													행 정</span>
+												</a>
+										<ul class="tm_dep03">
+		<li>
+<a href="/u/gov/bbs/list.ulsan?bbsId=BBS_0000000000000116&amp;mId=001001000000000000"  class=""><span>
+													새소식</span>
+												</a>
+										</li>
+		<li>
+	<a href="http://www.ulsan.go.kr/s/news/"  target="
+												_blank" title="새창" class=" open_win"><span>
+													홍보</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/gov/contents.ulsan?mId=001003001000000000"  class=""><span>
+													감사</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/gov/contents.ulsan?mId=001004001000000000"  class=""><span>
+													기획</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/gov/contents.ulsan?mId=001005001000000000"  class=""><span>
+													행정지원</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/gov/contents.ulsan?mId=001006001000000000"  class=""><span>
+													법무</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/gov/contents.ulsan?mId=001011001000000000"  class=""><span>
+													규제개혁</span>
+												</a>
+										</li>
+		<li>
+	<a href="https://www.ulsan.go.kr/s/statData/contents.do?contentsId=3616"  target="
+												_blank" title="새창" class=" open_win"><span>
+													통계</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/gov/contents.ulsan?mId=001007001000000000"  class=""><span>
+													인재교육</span>
+												</a>
+										</li>
+		<li>
+	<a href="/u/gov/contents.ulsan?mId=001013001000000000"  class=""><span>
+													전입세대 지원</span>
+												</a>
+										</li>
+		</ul>
+		</li>
+		</ul>
+		</div>
+		</div>
+		</div>
+		</li>
+	</ul>
+</nav>
+</div>
+</div>
+<!--PC nav : ED-->
+<!--Mobile nav : ST-->
+<div id="menuOpen" class="nav_mbox">
+	<div class="nav_inner">
+		<h2 class="blind">대메뉴</h2>
+		<!--태블릿 이하 언어선택 출력 : ST -->
+		<div class="m_langbox">
+			<button type="button" onclick="$('.lang_listbox').toggle();" class="lang_selc"><span>LANGUAGE</span></button>
+			<div class="lang_listbox">
+				<!--open상태일때 : lang_listbox open 추가-->
+				<ul>
+					<li><a href="/u/english/">English</a></li>
+					<li><a href="/u/japanese/">Japanese</a></li>
+					<li><a href="/u/chinese/">Chinese</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--태블릿 이하 언어선택 출력 : ED -->
+		<nav>
+			<ul class="tm_dep01">
+				<li><a href="/u/rep/contents.ulsan?mId=001001001000000000"  class="tm_tit01 re_mcon01"><span>
+						민 원</span></a>
+					<div class="tm_depbg" >
+						<div class="tm_depinner">
+							<div class="tm_copybox">
+								<p class="tm_copyinner tm_con1"><strong>
+										민 원</strong><span>
+										시민들의 신청민원 적극적으로 처리해 드리겠습니다.</span></p>
+							</div>
+							<ul class="tm_dep02">
+							<li>
+					<a href="/u/rep/contents.ulsan?mId=001001001000000000"  class="tm_tit02"><span>
+												울산시에 바란다</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000244&amp;mId=001001012002000000"  class="tm_tit02 m_3dep"><span>
+												울산신문고</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001001012002000000"  class="tm_tit03"><span>
+												국민신문고(민원)</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001012003000000"  class="tm_tit03"><span>
+												국민신문고(제안)</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001012004000000"  class="tm_tit03"><span>
+												청원24</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001012006000000"  class="tm_tit03"><span>
+												안전신문고</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001002000000000"  class="tm_tit02 m_3dep"><span>
+												민원상담신청</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001001002002000000"  class="tm_tit03"><span>
+												사전민원심사청구</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001002003000000"  class="tm_tit03"><span>
+												무료법률상담</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001002008000000"  class="tm_tit03"><span>
+												주택 피해・고충상담 지원센터</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001002004000000"  class="tm_tit03"><span>
+												국민콜110 채팅상담</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001002005000000"  class="tm_tit03"><span>
+												방문민원 처리공개</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001002006000000"  class="tm_tit03"><span>
+												120 울산민원센터</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001002007000000"  class="tm_tit03"><span>
+												원스톱 기업지원창구</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001004000000000"  class="tm_tit02 m_3dep"><span>
+												민원안내</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001001004001000000"  class="tm_tit03"><span>
+												민원사무편람</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001004002000000"  class="tm_tit03"><span>
+												민원서식받기</span>
+										</a>
+									</li>
+	<li>
+<a href="http://www.gov.kr/portal/"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												정부24</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001004003000000"  class="tm_tit03"><span>
+												무인민원발급기</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001004004000000"  class="tm_tit03"><span>
+												민원후견인제</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001004005000000"  class="tm_tit03"><span>
+												여권발급안내</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001004007000000"  class="tm_tit03"><span>
+												온라인 출생신고 안내</span>
+										</a>
+									</li>
+	<li>
+<a href="https://www.ulsan.go.kr/fax"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												팩스발송 결과 조회</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="http://www.ulsan.go.kr/s/uapc/main.ulsan"  target="
+											_blank" title="새창" class="tm_tit02 open_win"><span>
+												자치경찰위원회</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001003000000000"  class="tm_tit02 m_3dep"><span>
+												시민고충처리위원회</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001001003011000000"  class="tm_tit03"><span>
+												시민고충처리위원회 소개</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001003008000000"  class="tm_tit03"><span>
+												고충민원 처리 안내</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001003009000000"  class="tm_tit03"><span>
+												고충민원 처리절차</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001003010000000"  class="tm_tit03"><span>
+												고충민원 신청 및 결과</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001009001000000"  class="tm_tit02 m_3dep"><span>
+												인권센터 (인권침해 신고)</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001001009001000000"  class="tm_tit03"><span>
+												인권센터 소개</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001009002000000"  class="tm_tit03"><span>
+												상담ㆍ처리 절차</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001009003000000"  class="tm_tit03"><span>
+												상담 신청</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001009004000000"  class="tm_tit03"><span>
+												결정례</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001009005000000"  class="tm_tit03"><span>
+												인권 자료실</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001011000000000"  class="tm_tit02"><span>
+												청원신청</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001005000000000"  class="tm_tit02"><span>
+												민원처리FAQ</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001006000000000"  class="tm_tit02 m_3dep"><span>
+												행정서비스헌장</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001001006001000000"  class="tm_tit03"><span>
+												개념 및 추진배경</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001006002000000"  class="tm_tit03"><span>
+												공통 이행기준</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001006003000000"  class="tm_tit03"><span>
+												부서별 행정서비스헌장</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001006004000000"  class="tm_tit03"><span>
+												고객만족도조사결과</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007000000000"  class="tm_tit02 m_3dep"><span>
+												신고센터</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001001007003000000"  class="tm_tit03"><span>
+												부패ㆍ공익 신고</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007001000000"  class="tm_tit03"><span>
+												공무원친절/불친절신고</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007002000000"  class="tm_tit03"><span>
+												공직비리 신고</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007015000000"  class="tm_tit03"><span>
+												소극행정 신고센터</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007004000000"  class="tm_tit03 m_4dep"><span>
+												청탁금지법 신고센터</span>
+										</a>
+									<ul class="tm_dep04"><li></li>
+<li>
+	<a href="/u/rep/contents.ulsan?mId=001001007004001000"  class=""><span>
+												청탁금지법 신고</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007004002000"  class=""><span>
+												청탁금지법 소개</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007004003000"  class=""><span>
+												FAQ</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007005000000"  class="tm_tit03"><span>
+												예산낭비신고센터</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007006000000"  class="tm_tit03"><span>
+												환경신문고</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007007000000"  class="tm_tit03"><span>
+												규제개혁 신고센터</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007008000000"  class="tm_tit03"><span>
+												규제입증요청</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007022000000"  class="tm_tit03"><span>
+												민생규제 개선센터</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007011000000"  class="tm_tit03"><span>
+												국가유산 부실수리 신고 등</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007016000000"  class="tm_tit03"><span>
+												부동산 불법행위 통합 신고센터</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007012000000"  class="tm_tit03"><span>
+												부동산 불법거래 신고</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001001007014000000"  class="tm_tit03"><span>
+												시(市) 사업장 안전보건신고</span>
+										</a>
+									</li>
+	<li>
+<a href=" http://www.safetyreport.go.kr/api?apiKey=63100000XY022UGD797MPMB6961#safeReport"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												안전신문고</span>
+										</a>
+									</li>
+	<li>
+<a href="https://www.clean.go.kr/menu.es?mid=a10204000000"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												복지·보조금부정신고</span>
+										</a>
+									</li>
+	<li>
+<a href="https://mfds.go.kr/wpge/m_46/de010406l001.do"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												식품안전소비자신고</span>
+										</a>
+									</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</li>
+<li><a href="/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000020&amp;mId=001002003000000000"  class="tm_tit01 re_mcon02"><span>
+						소통참여</span></a>
+					<div class="tm_depbg" >
+						<div class="tm_depinner">
+							<div class="tm_copybox">
+								<p class="tm_copyinner tm_con2"><strong>
+										소통참여</strong><span>
+										시민과 함께 소통하고 시민의 의견을 귀담아 듣겠습니다.</span></p>
+							</div>
+							<ul class="tm_dep02">
+							<li>
+					<a href="/u/rep/contents.ulsan?mId=001002003000000000"  class="tm_tit02"><span>
+												칭찬합시다</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001002004000000000"  class="tm_tit02"><span>
+												자유게시판</span>
+										</a>
+									</li>
+	<li>
+<a href="http://www.ulsan.go.kr/s/jumin/"  target="
+											_blank" title="새창" class="tm_tit02 open_win"><span>
+												주민참여예산</span>
+										</a>
+									</li>
+	<li>
+<a href="https://www.juminegov.go.kr/"  target="
+											_blank" title="새창" class="tm_tit02 open_win"><span>
+												주민e직접</span>
+										</a>
+									</li>
+			</ul>
+	</div>
+</div>
+</li>
+<li><a href="/u/rep/contents.ulsan?mId=001003001001000000"  class="tm_tit01 re_mcon03"><span>
+						정보공개</span></a>
+					<div class="tm_depbg" >
+						<div class="tm_depinner">
+							<div class="tm_copybox">
+								<p class="tm_copyinner tm_con3"><strong>
+										정보공개</strong><span>
+										시민의 알 권리 충족을 위해 모든 정보공개에 최선을 다하겠습니다.</span></p>
+							</div>
+							<ul class="tm_dep02">
+							<li>
+					<a href="/u/rep/contents.ulsan?mId=001003001000000000"  class="tm_tit02 m_3dep"><span>
+												행정정보공개</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001003001001000000"  class="tm_tit03"><span>
+												정보공개제도</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003001002000000"  class="tm_tit03"><span>
+												사전정보공표</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003001003000000"  class="tm_tit03"><span>
+												사전공표 대상정보</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003001004000000"  class="tm_tit03"><span>
+												정보목록</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003001005000000"  class="tm_tit03"><span>
+												청사 신축비용</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/gov/transfer/policyRlnm/list.ulsan?mId=001004007002000000"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												정책실명제</span>
+										</a>
+									</li>
+	<li>
+<a href="http://www.open.go.kr/"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												결재문서공개</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003001008000000"  class="tm_tit03"><span>
+												정책연구용역 결과</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003010000000000"  class="tm_tit02 m_3dep"><span>
+												즐겨찾는 정보</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="https://www.ulsan.go.kr/u/rep/transfer/director/list.ulsan?mId=001003002003000000"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												업무추진비</span>
+										</a>
+									</li>
+	<li>
+<a href="https://contract.ulsan.go.kr/contract/contract_info/"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												계약정보(1천만원 이상)</span>
+										</a>
+									</li>
+	<li>
+<a href="https://contract.ulsan.go.kr/contract/contract_info/private_contract/all"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												계약정보(500만원 이상)</span>
+										</a>
+									</li>
+	<li>
+<a href="https://www.ulsan.go.kr/u/gov/bbs/list.ulsan?bbsId=BBS_0000000000000120&amp;mId=001003004000000000"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												감사 결과</span>
+										</a>
+									</li>
+	<li>
+<a href="https://www.ulsan.go.kr/u/tax/bbs/list.ulsan?bbsId=BBS_0000000000000109&amp;mId=001002002000000000"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												재정 정보</span>
+										</a>
+									</li>
+	<li>
+<a href="https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000029&amp;mId=001004006000000000"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												주요 업무계획</span>
+										</a>
+									</li>
+	<li>
+<a href="https://www.ulsan.go.kr/u/gov/contents.ulsan?mId=001004010002000000"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												주요 평가결과</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003002000000000"  class="tm_tit02 m_3dep"><span>
+												업무추진비</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001003002007000000"  class="tm_tit03"><span>
+												시장</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003002001000000"  class="tm_tit03"><span>
+												행정부시장</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003002002000000"  class="tm_tit03"><span>
+												경제부시장</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003002006000000"  class="tm_tit03"><span>
+												경제자유구역청장</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003002003000000"  class="tm_tit03"><span>
+												실·국장(신)</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003002004000000"  class="tm_tit03"><span>
+												실·국장(구)</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003002005000000"  class="tm_tit03"><span>
+												부서장</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003003000000000"  class="tm_tit02 m_3dep"><span>
+												위원회 운영정보</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001003003001000000"  class="tm_tit03"><span>
+												위원회 설치현황</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003003002000000"  class="tm_tit03"><span>
+												위원회 개최결과</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003004000000000"  class="tm_tit02 m_3dep"><span>
+												백 서</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001003004001000000"  class="tm_tit03"><span>
+												시정백서</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003004002000000"  class="tm_tit03"><span>
+												승격백서</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003004003000000"  class="tm_tit03"><span>
+												광역시 승격 10주년</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003004004000000"  class="tm_tit03"><span>
+												환경백서</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003004005000000"  class="tm_tit03"><span>
+												태화강 국가정원 백서</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="https://www.ulsan.go.kr/u/metro/contents.ulsan?mId=001007004002001000"  target="
+											_blank" title="새창" class="tm_tit02 open_win"><span>
+												데이터개방</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003006000000000"  class="tm_tit02 m_3dep"><span>
+												계약정보공개</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001003006001000000"  class="tm_tit03"><span>
+												계약정보공개시스템</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003007000000000"  class="tm_tit02 m_3dep"><span>
+												행정자료</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001003007001000000"  class="tm_tit03"><span>
+												행정 간행물</span>
+										</a>
+									</li>
+	<li>
+<a href="http://www.ulsan.go.kr/ref/"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												행정자료실(해울이도서관)</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="https://www.elis.go.kr/locgovalr/locgovClAlrList?ctpvSggCd=31000"  target="
+											_blank" title="새창" class="tm_tit02 open_win"><span>
+												자치법규(조례·규칙)</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001003009000000000"  class="tm_tit02"><span>
+												상품권구매내역</span>
+										</a>
+									</li>
+			</ul>
+	</div>
+</div>
+</li>
+<li><a href="/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000003&amp;mId=001004001001000000"  class="tm_tit01 re_mcon04 on"><span>
+						시정소식</span></a>
+					<div class="tm_depbg"  style="display:block;">
+						<div class="tm_depinner">
+							<div class="tm_copybox">
+								<p class="tm_copyinner tm_con4"><strong>
+										시정소식</strong><span>
+										시민들이 알아야 할 시정소식을 빠르고 정확하게 알려 드립니다.</span></p>
+							</div>
+							<ul class="tm_dep02">
+							<li>
+					<a href="/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000003&amp;mId=001004001001000000"  class="tm_tit02 m_3dep on"><span>
+												새소식</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001004001001000000"  class="tm_tit03"><span>
+												울산소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004001002000000"  class="tm_tit03"><span>
+												구군소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004001003000000"  class="tm_tit03 on"><span>
+												타기관 소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004001004000000"  class="tm_tit03"><span>
+												대기경보상황</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004002000000000"  class="tm_tit02"><span>
+												고시공고(입법예고 포함)</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004003000000000"  class="tm_tit02 m_3dep"><span>
+												보도 / 해명</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001004003001000000"  class="tm_tit03"><span>
+												보도자료</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004003002000000"  class="tm_tit03"><span>
+												해명자료</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004004000000000"  class="tm_tit02"><span>
+												공보</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004005000000000"  class="tm_tit02 m_3dep"><span>
+												홍보</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001004005004000000"  class="tm_tit03"><span>
+												시정홍보영상</span>
+										</a>
+									</li>
+	<li>
+<a href="/s/news/main.ulsan"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												시정뉴스</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004005005000000"  class="tm_tit03"><span>
+												ODA 사진전</span>
+										</a>
+									</li>
+	<li>
+<a href="http://webzine.ulsan.go.kr/"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												헬로울산</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004005006000000"  class="tm_tit03"><span>
+												시정소식지</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004005003000000"  class="tm_tit03"><span>
+												카드뉴스</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004005007000000"  class="tm_tit03"><span>
+												이장·통장회의 홍보자료</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004006000000000"  class="tm_tit02"><span>
+												주·월간 업무계획</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004008000000000"  class="tm_tit02 m_3dep"><span>
+												시험정보</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001004008001000000"  class="tm_tit03"><span>
+												시험공고</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004008002000000"  class="tm_tit03"><span>
+												시험장소공고</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004008003000000"  class="tm_tit03"><span>
+												합격자공고</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004008004000000"  class="tm_tit03"><span>
+												경쟁률</span>
+										</a>
+									</li>
+	<li>
+<a href="https://local.gosi.go.kr/klid/main/main.do"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												인터넷 원서접수/성적조회</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004008007000000"  class="tm_tit03"><span>
+												Q&amp;A게시판</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001004008008000000"  class="tm_tit03"><span>
+												타기관 시험정보</span>
+										</a>
+									</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</li>
+<li><a href="/u/rep/contents.ulsan?mId=001005001001000000"  class="tm_tit01 re_mcon05"><span>
+						울산소개</span></a>
+					<div class="tm_depbg" >
+						<div class="tm_depinner">
+							<div class="tm_copybox">
+								<p class="tm_copyinner tm_con5"><strong>
+										울산소개</strong><span>
+										울산의 모든 것을 알려 드립니다.</span></p>
+							</div>
+							<ul class="tm_dep02">
+							<li>
+					<a href="/u/rep/contents.ulsan?mId=001005001000000000"  class="tm_tit02 m_3dep"><span>
+												울산의 비전</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001005001001000000"  class="tm_tit03"><span>
+												시정비전</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005001003000000"  class="tm_tit03"><span>
+												주요업무계획</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005001004000000"  class="tm_tit03"><span>
+												울산시정</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001005009001000000"  class="tm_tit02 m_3dep"><span>
+												사이버 보훈관</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001005009001000000"  class="tm_tit03"><span>
+												사이버 보훈관 안내</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005009003000000"  class="tm_tit03"><span>
+												독립기념관</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005009002000000"  class="tm_tit03"><span>
+												호국 기념관</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005002000000000"  class="tm_tit02 m_3dep"><span>
+												울산의 현황</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001005002001000000"  class="tm_tit03"><span>
+												자연여건</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005002002000000"  class="tm_tit03"><span>
+												행정구역</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005002003000000"  class="tm_tit03"><span>
+												행정지도</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005002004000000"  class="tm_tit03"><span>
+												연혁</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005002005000000"  class="tm_tit03"><span>
+												울산광역시사(2002)</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005002006000000"  class="tm_tit03"><span>
+												울산을 한권에 담다(2017)</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005002007000000"  class="tm_tit03"><span>
+												울산의 기록들</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005005000000000"  class="tm_tit02 m_3dep"><span>
+												시의상징</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001005005001000000"  class="tm_tit03"><span>
+												심벌마크</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005005002000000"  class="tm_tit03"><span>
+												브랜드슬로건</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005005003000000"  class="tm_tit03"><span>
+												캐릭터</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005005004000000"  class="tm_tit03"><span>
+												시목 시화 시조</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005005008000000"  class="tm_tit03"><span>
+												울산시가</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005005005000000"  class="tm_tit03"><span>
+												시민헌장</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005005006000000"  class="tm_tit03"><span>
+												울산색</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005005007000000"  class="tm_tit03"><span>
+												울산문양</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005007000000000"  class="tm_tit02 m_3dep"><span>
+												시청안내</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001005007001000000"  class="tm_tit03"><span>
+												행정조직도</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005007002000000"  class="tm_tit03"><span>
+												전화 · 팩스번호안내 (대표052-120)</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005007003000000"  class="tm_tit03"><span>
+												직원검색</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005007004000000"  class="tm_tit03"><span>
+												청사안내</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005007005000000"  class="tm_tit03"><span>
+												견학신청</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005007006000000"  class="tm_tit03"><span>
+												찾아오시는길</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005007007000000"  class="tm_tit03"><span>
+												시민홀 대관</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005008000000000"  class="tm_tit02 m_3dep"><span>
+												이용안내</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/rep/contents.ulsan?mId=001005008001000000"  class="tm_tit03"><span>
+												개인정보처리방침</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005008002000000"  class="tm_tit03"><span>
+												영상정보처리기기 운영 · 관리방침</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005008003000000"  class="tm_tit03"><span>
+												저작권보호 정책</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005008004000000"  class="tm_tit03"><span>
+												웹 접근성 품질인증</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005008005000000"  class="tm_tit03"><span>
+												파일뷰어 다운로드</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005008006000000"  class="tm_tit03"><span>
+												관련누리집</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005008007000000"  class="tm_tit03"><span>
+												배너모음</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005008008000000"  class="tm_tit03"><span>
+												이용약관</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/rep/contents.ulsan?mId=001005008009000000"  class="tm_tit03"><span>
+												사이트맵</span>
+										</a>
+									</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</li>
+<li><a href="#"  class="tm_tit01 re_mcon06"><span>
+						분야별정보</span></a>
+					<div class="tm_depbg" >
+						<div class="tm_depinner">
+							<div class="tm_copybox">
+								<p class="tm_copyinner tm_con6"><strong>
+										분야별정보</strong><span>
+										울산시정의 각종 정보를 분야별로 알려 드립니다.</span></p>
+							</div>
+							<ul class="tm_dep02">
+							<li>
+					<a href="/u/safe/main.ulsan"  class="tm_tit02 m_3dep"><span>
+												안 전</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/safe/contents.ulsan?mId=001001000000000000"  class="tm_tit03"><span>
+												새소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/safe/contents.ulsan?mId=001002001001000000"  class="tm_tit03"><span>
+												안전정책</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/safe/contents.ulsan?mId=001003001001000000"  class="tm_tit03"><span>
+												재난</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/safe/contents.ulsan?mId=001004001001001000"  class="tm_tit03"><span>
+												사회재난산업안전</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/safe/contents.ulsan?mId=001005001000000000"  class="tm_tit03"><span>
+												민생사법경찰</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/welfare/main.ulsan"  class="tm_tit02 m_3dep"><span>
+												복 지</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/welfare/contents.ulsan?mId=001001000000000000"  class="tm_tit03"><span>
+												새소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/welfare/contents.ulsan?mId=001003001000000000"  class="tm_tit03"><span>
+												출산보육</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/welfare/contents.ulsan?mId=001004001000000000"  class="tm_tit03"><span>
+												아동복지</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/welfare/contents.ulsan?mId=001005001001000000"  class="tm_tit03"><span>
+												기초생활보장</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/welfare/contents.ulsan?mId=001011002000000000"  class="tm_tit03"><span>
+												보훈</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/welfare/contents.ulsan?mId=001006001000000000"  class="tm_tit03"><span>
+												노인복지</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/welfare/contents.ulsan?mId=001007001000000000"  class="tm_tit03"><span>
+												장애인복지</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/welfare/contents.ulsan?mId=001008001000000000"  class="tm_tit03"><span>
+												여성복지</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/welfare/contents.ulsan?mId=001009001000000000"  class="tm_tit03"><span>
+												청소년육성</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/welfare/contents.ulsan?mId=001010008000000000"  class="tm_tit03"><span>
+												외국인/다문화지원</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/health/main.ulsan"  class="tm_tit02 m_3dep"><span>
+												보건 / 건강</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/health/contents.ulsan?mId=001001000000000000"  class="tm_tit03"><span>
+												새소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/health/contents.ulsan?mId=001002001000000000"  class="tm_tit03"><span>
+												코로나19</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/health/contents.ulsan?mId=001003001000000000"  class="tm_tit03"><span>
+												보건정책</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/health/contents.ulsan?mId=001004001000000000"  class="tm_tit03"><span>
+												건강도시</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/health/contents.ulsan?mId=001005001000000000"  class="tm_tit03"><span>
+												감염병관리</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/health/contents.ulsan?mId=001006001000000000"  class="tm_tit03"><span>
+												위생정보</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/health/contents.ulsan?mId=001007001000000000"  class="tm_tit03"><span>
+												의료정보</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/culture/main.ulsan"  class="tm_tit02 m_3dep"><span>
+												문화 / 관광</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/culture/contents.ulsan?mId=001001000000000000"  class="tm_tit03"><span>
+												새소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/culture/contents.ulsan?mId=001003001001000000"  class="tm_tit03"><span>
+												문화예술</span>
+										</a>
+									</li>
+	<li>
+<a href="https://www.ulsanculture.kr/"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												울산문화24</span>
+										</a>
+									</li>
+	<li>
+<a href="https://www.ulsan.go.kr/tour/kor/main.ulsan"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												울산관광</span>
+										</a>
+									</li>
+	<li>
+<a href="https://whataulsan.com/"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												왔어울산</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/culture/contents.ulsan?mId=001005001000000000"  class="tm_tit03"><span>
+												체육지원</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/culture/contents.do?mId=001006001000000000"  class="tm_tit03"><span>
+												민간·공동체정원</span>
+										</a>
+									</li>
+	<li>
+<a href="https://2028ulsanexpo.or.kr/"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												2028 울산국제정원박람회</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/economy/main.ulsan"  class="tm_tit02 m_3dep"><span>
+												경제 / 일자리</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/economy/contents.ulsan?mId=001001000000000000"  class="tm_tit03"><span>
+												새소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/economy/contents.ulsan?mId=001002001005000000"  class="tm_tit03"><span>
+												지역경제/노동</span>
+										</a>
+									</li>
+	<li>
+<a href="https://job.ubpi.or.kr/job/main.do"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												일자리/창업</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/economy/contents.do?mId=001012001001000000"  class="tm_tit03"><span>
+												투자유치/통상교류</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/economy/contents.ulsan?mId=001007001000000000"  class="tm_tit03"><span>
+												중소벤처기업</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/economy/contents.ulsan?mId=001008001000000000"  class="tm_tit03"><span>
+												사회적경제</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/economy/contents.ulsan?mId=001009016000000000"  class="tm_tit03"><span>
+												농축산</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/economy/contents.ulsan?mId=001010001000000000"  class="tm_tit03"><span>
+												수산진흥</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/economy/contents.ulsan?mId=001003001000000000"  class="tm_tit03"><span>
+												혁신산업</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/economy/contents.ulsan?mId=001005001000000000"  class="tm_tit03"><span>
+												에너지산업</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/envi/main.ulsan"  class="tm_tit02 m_3dep"><span>
+												환경 / 녹지</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/envi/contents.ulsan?mId=001001000000000000"  class="tm_tit03"><span>
+												새소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/envi/contents.ulsan?mId=001002002001000000"  class="tm_tit03"><span>
+												환경정책</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/envi/contents.ulsan?mId=001003001001000000"  class="tm_tit03"><span>
+												환경보전</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/envi/contents.ulsan?mId=001004001001000000"  class="tm_tit03"><span>
+												하수관리</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/envi/contents.ulsan?mId=001005001001000000"  class="tm_tit03"><span>
+												자원순환</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/envi/contents.ulsan?mId=001007001001001000"  class="tm_tit03"><span>
+												맑은물정책</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/envi/contents.ulsan?mId=001006001001000000"  class="tm_tit03"><span>
+												녹지공원</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/traffic/main.ulsan"  class="tm_tit02 m_3dep"><span>
+												교통 / 도시 / 산업단지</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/traffic/contents.ulsan?mId=001001000000000000"  class="tm_tit03"><span>
+												새소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/traffic/contents.ulsan?mId=001002001000000000"  class="tm_tit03"><span>
+												교통기획</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/traffic/contents.ulsan?mId=001003001000000000"  class="tm_tit03"><span>
+												버스택시</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/traffic/contents.ulsan?mId=001006001000000000"  class="tm_tit03"><span>
+												광역교통</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/traffic/contents.do?mId=001007001000000000"  class="tm_tit03"><span>
+												도시계획</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/traffic/contents.do?mId=001008001000000000"  class="tm_tit03"><span>
+												도시균형개발</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/traffic/contents.do?mId=001009001000000000"  class="tm_tit03"><span>
+												혁신도시</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/traffic/contents.do?mId=001010001000000000"  class="tm_tit03"><span>
+												산업단지</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/metro/main.ulsan"  class="tm_tit02 m_3dep"><span>
+												건설 / 주택 / 토지</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/metro/bbs/list.ulsan?bbsId=BBS_0000000000000090&amp;mId=001001000000000000"  class="tm_tit03"><span>
+												새소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/metro/contents.do?mId=001009001000000000"  class="tm_tit03"><span>
+												건설도로</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/metro/contents.ulsan?mId=001004019000000000"  class="tm_tit03"><span>
+												건축정책</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/metro/contents.ulsan?mId=001008011001000000"  class="tm_tit03"><span>
+												주택허가</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/metro/contents.ulsan?mId=001003001000000000"  class="tm_tit03"><span>
+												도시경관</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/metro/transfer/brief/list.ulsan?mId=001005001000000000"  class="tm_tit03"><span>
+												토지정보</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/metro/contents.ulsan?mId=001007007004000000"  class="tm_tit03"><span>
+												스마트도시</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/tax/main.ulsan"  class="tm_tit02 m_3dep"><span>
+												세금 / 재정</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/tax/bbs/list.ulsan?bbsId=BBS_0000000000000107&amp;mId=001001000000000000"  class="tm_tit03"><span>
+												새소식</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/tax/bbs/list.ulsan?bbsId=BBS_0000000000000108&amp;mId=001002001000000000"  class="tm_tit03"><span>
+												재정</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/tax/contents.ulsan?mId=001003005000000000"  class="tm_tit03"><span>
+												예산</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/tax/contents.ulsan?mId=001004001000000000"  class="tm_tit03"><span>
+												세금</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/tax/contents.ulsan?mId=001005001000000000"  class="tm_tit03"><span>
+												공유재산</span>
+										</a>
+									</li>
+	<li>
+<a href="https://www.wetax.go.kr/tcp/loi/J030401M01.do"  class="tm_tit03"><span>
+												전국 부동산 종합정보</span>
+										</a>
+									</li>
+	</ul>
+	</li>
+	<li>
+<a href="/u/gov/main.ulsan"  class="tm_tit02 m_3dep"><span>
+												행 정</span>
+										</a>
+									<ul class="tm_dep03"><li>
+	<a href="/u/gov/bbs/list.ulsan?bbsId=BBS_0000000000000116&amp;mId=001001000000000000"  class="tm_tit03"><span>
+												새소식</span>
+										</a>
+									</li>
+	<li>
+<a href="http://www.ulsan.go.kr/s/news/"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												홍보</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/gov/contents.ulsan?mId=001003001000000000"  class="tm_tit03"><span>
+												감사</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/gov/contents.ulsan?mId=001004001000000000"  class="tm_tit03"><span>
+												기획</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/gov/contents.ulsan?mId=001005001000000000"  class="tm_tit03"><span>
+												행정지원</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/gov/contents.ulsan?mId=001006001000000000"  class="tm_tit03"><span>
+												법무</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/gov/contents.ulsan?mId=001011001000000000"  class="tm_tit03"><span>
+												규제개혁</span>
+										</a>
+									</li>
+	<li>
+<a href="https://www.ulsan.go.kr/s/statData/contents.do?contentsId=3616"  target="
+											_blank" title="새창" class="tm_tit03 open_win"><span>
+												통계</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/gov/contents.ulsan?mId=001007001000000000"  class="tm_tit03"><span>
+												인재교육</span>
+										</a>
+									</li>
+	<li>
+<a href="/u/gov/contents.ulsan?mId=001013001000000000"  class="tm_tit03"><span>
+												전입세대 지원</span>
+										</a>
+									</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<!--Mobile nav : ED-->
+<!--모바일 전용배경처리-->
+<div class="nav_bg"></div>
+</div>
+<!--Header : ED-->
+		<!--Cont : ST-->
+      	<div id="body_layout">
+          	<div class="body_inner">
+              	<!--leftMenu : st-->
+				<aside>
+	<div class="leftm_tit ltit_bg04">
+						<h2>시정소식</h2>
+					</div>
+                <ul class="leftm_list ul_dep01"><li>
+				<a href="/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000003&amp;mId=001004001001000000" class=" on"><span>새소식</span></a>
+		                <ul class="ul_dep02" style="display:block;"><li><a href="/u/rep/contents.ulsan?mId=001004001001000000" class=""><span>울산소식</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004001002000000" class=""><span>구군소식</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004001003000000" class=" on"><span>타기관 소식</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004001004000000" class=""><span>대기경보상황</span></a>
+		                </li></ul></li><li><a href="/u/rep/contents.ulsan?mId=001004002000000000" class=""><span>고시공고(입법예고 포함)</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004003000000000" class=""><span>보도 / 해명</span></a>
+		                <ul class="ul_dep02" style="display:none;"><li><a href="/u/rep/contents.ulsan?mId=001004003001000000" class=""><span>보도자료</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004003002000000" class=""><span>해명자료</span></a>
+		                </li></ul></li><li><a href="/u/rep/contents.ulsan?mId=001004004000000000" class=""><span>공보</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004005000000000" class=""><span>홍보</span></a>
+		                <ul class="ul_dep02" style="display:none;"><li><a href="/u/rep/contents.ulsan?mId=001004005004000000" class=""><span>시정홍보영상</span></a>
+		                </li><li><a href="/s/news/main.ulsan" class="open_win" target="_blank" title="새창으로 열림"><span>시정뉴스</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004005005000000" class=""><span>ODA 사진전</span></a>
+		                </li><li><a href="http://webzine.ulsan.go.kr/" class="open_win" target="_blank" title="새창으로 열림"><span>헬로울산</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004005006000000" class=""><span>시정소식지</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004005003000000" class=""><span>카드뉴스</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004005007000000" class=""><span>이장·통장회의 홍보자료</span></a>
+		                </li></ul></li><li><a href="/u/rep/contents.ulsan?mId=001004006000000000" class=""><span>주·월간 업무계획</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004008000000000" class=""><span>시험정보</span></a>
+		                <ul class="ul_dep02" style="display:none;"><li><a href="/u/rep/contents.ulsan?mId=001004008001000000" class=""><span>시험공고</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004008002000000" class=""><span>시험장소공고</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004008003000000" class=""><span>합격자공고</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004008004000000" class=""><span>경쟁률</span></a>
+		                </li><li><a href="https://local.gosi.go.kr/klid/main/main.do" class="open_win" target="_blank" title="새창으로 열림"><span>인터넷 원서접수/성적조회</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004008007000000" class=""><span>Q&amp;A게시판</span></a>
+		                </li><li><a href="/u/rep/contents.ulsan?mId=001004008008000000" class=""><span>타기관 시험정보</span></a>
+		                </li></ul></li></ul></aside><!--leftMenu : ed-->
+              	<!--contents : st-->
+				<div id="contents_inner" class="contents_inner">
+                  	<!--linemap : st-->
+					<div class="line_map">
+	<h2>타기관 소식</h2>
+	<div class="util_box">
+		<ul class="location_box">
+<li>
+				<a href="/u/rep" title="홈 바로가기">
+					<i class="xi-home"></i><span class="sound_only">홈 바로가기</span>
+				</a>
+			</li>
+			<li>
+								<a href="/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000003&amp;mId=001004001001000000">
+									<span>시정소식</span>
+								</a>
+							</li>
+						<li>
+								<a href="/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000003&amp;mId=001004001001000000">
+									<span>새소식</span>
+								</a>
+							</li>
+						<li class="on"><span>타기관 소식</span></li>
+							</ul>
+		<div class="sns_box">
+			<ul>
+				<li><a class="sns_print" href="#print" onclick="window.print();return false;">프린트</a></li>
+				<li><a class="sns_share" href="#snsBtn" onclick="SnsShare.toggle();return false;" aria-expanded="false">SNS공유</a>
+					<div class="sns_inner">
+						<a class="sns_cacao" href="#kakao" onclick="HHCommon.SnsShare('kakao', '타기관 소식');" title="새창">카카오스토리</a> 
+						<a class="sns_facebook" href="#facebook" onclick="HHCommon.SnsShare('facebook', '타기관 소식');" title="새창">페이스북</a> 
+						<a class="sns_twitter" href="#X" onclick="HHCommon.SnsShare('twitter', '타기관 소식');" title="새창">X</a> 
+						<a class="sns_blog" href="#band" onclick="HHCommon.SnsShare('band', '타기관 소식');" title="새창">네이버밴드</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--linemap : ed-->
+                  	<!--content : st-->
+            		<script type="text/javascript">
+//<![CDATA[
+    
+	$(function() {
+		
+	});
+	
+	function goPage(curPage){
+        var frm = document.getElementById('listForm');
+        frm.page.value = curPage;
+        frm.action = '/u/rep/bbs/list.do?bbsId=BBS_0000000000000030&mId=001004001003000000';
+        frm.submit();
+        return false;
+    }
+	
+    function fn_search(){
+        var frm = document.getElementById('listForm');
+        frm.page.value = 1;
+        frm.action = '/u/rep/bbs/list.do?bbsId=BBS_0000000000000030&mId=001004001003000000';
+        frm.submit();
+        return false;
+    }
+	
+	function fn_insert() {
+		var frm = document.getElementById('listForm');
+        frm.action = '/u/rep/bbs/write.do?bbsId=BBS_0000000000000030&mId=001004001003000000';
+        frm.submit();
+		return false;
+	}
+	
+	function fn_view(dataId) {
+		var frm = document.getElementById('listForm');
+        frm.action = '/u/rep/bbs/view.do?bbsId=BBS_0000000000000030&mId=001004001003000000&dataId='+dataId;
+        frm.submit();
+		return false;
+	}
+	
+//]]>
+</script>
+<div class="content_box">
+	
+	<div id="bbsAreaDiv">
+			<form id="listForm" name="listForm" action="/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000030&amp;mId=001004001003000000" method="post">
+			<input type="hidden" name="page" id="page" value="1" />
+		
+			<h2 class="tit_h2">게시판 검색</h2>
+			<div class="board_topbox m_b_20">
+				<div class="boardtop_txtinner t_icon t_icon09">
+					<div class="t_txt">
+						<p class="board_total">총 게시물 : <strong>2,367</strong> 건</p>
+						<div class="search_tbox" id="searchField">
+							<dl>
+								<dt class="blind">검색옵션</dt>
+								<dd class="search_listbox">
+									<label for="searchType" class="blind">검색분류</label>
+									<select name="searchType" id="searchType">
+										<option value="DATA_TITLE" >제목</option>
+										<option value="DATA_CONTENT" >내용</option>
+										<option value="CREATE_USER_NM" >작성자</option>
+									</select>
+								</dd>
+								<dd class="search_txtbox">
+									<label for="searchTxt" class="blind">검색어 입력</label>
+									<input type="text" name="searchTxt" id="searchTxt" value="">
+								</dd>
+								<dd class="search_btnbox"><button type="submit" onclick="fn_search();" title="검색"><span>검색</span></button></dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</div>
+			<table class="tbl_bd_list txt_c valg_m">
+				<caption>[대표홈페이지] 타기관 소식 - 번호, 제목, 작성일자, 조회수 제공 표</caption>
+				<colgroup>
+					<col style="width:8%;" class="re_blind7" />
+					<col style="width:auto;" />
+					<col style="width:100px;" />
+					<col style="width:100px;" class="re_blind7" />
+					</colgroup>
+				<thead>
+                  	<tr>
+					<th scope="col" class="re_blind7">번호</th>
+					<th scope="col">제목</th>
+					<th scope="col">작성일자</th>
+					<th scope="col" class="re_blind7">조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+							<td class="re_blind7">2367</td>
+								    <td class="ta_l" style="padding-left:0px;">
+								    		<a href="./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182909" onclick="fn_view('182909');return false;">
+								    			울산웨일즈야구단 사무국 직원 채용 공고</a>
+								    		</td>
+								    <td>
+									    	2026.08.07</td>
+								    <td class="re_blind7">42</td>
+								    </tr>
+					<tr>
+							<td class="re_blind7">2366</td>
+								    <td class="ta_l" style="padding-left:0px;">
+								    		<a href="./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182862" onclick="fn_view('182862');return false;">
+								    			(부산광역시) 위해축산물 긴급회수문 게재</a>
+								    		</td>
+								    <td>
+									    	2026.08.05</td>
+								    <td class="re_blind7">33</td>
+								    </tr>
+					<tr>
+							<td class="re_blind7">2365</td>
+								    <td class="ta_l" style="padding-left:0px;">
+								    		<a href="./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182860" onclick="fn_view('182860');return false;">
+								    			울산시설공단 임원 공개모집 공고</a>
+								    		</td>
+								    <td>
+									    	2026.08.05</td>
+								    <td class="re_blind7">49</td>
+								    </tr>
+					<tr>
+							<td class="re_blind7">2364</td>
+								    <td class="ta_l" style="padding-left:0px;">
+								    		<a href="./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182846" onclick="fn_view('182846');return false;">
+								    			울산테크노파크  직원(청년인턴) 채용 공고</a>
+								    		</td>
+								    <td>
+									    	2026.08.04</td>
+								    <td class="re_blind7">31</td>
+								    </tr>
+					<tr>
+							<td class="re_blind7">2363</td>
+								    <td class="ta_l" style="padding-left:0px;">
+								    		<a href="./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182830" onclick="fn_view('182830');return false;">
+								    			대통령 직속 빛의 위원회《빛의 혁명》기록물 수집</a>
+								    		</td>
+								    <td>
+									    	2026.08.04</td>
+								    <td class="re_blind7">20</td>
+								    </tr>
+					<tr>
+							<td class="re_blind7">2362</td>
+								    <td class="ta_l" style="padding-left:0px;">
+								    		<a href="./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182795" onclick="fn_view('182795');return false;">
+								    			울산시설공단 울산시립어린이테마파크 놀이지도 기간제근로자 추가채용 </a>
+								    		</td>
+								    <td>
+									    	2026.08.03</td>
+								    <td class="re_blind7">30</td>
+								    </tr>
+					<tr>
+							<td class="re_blind7">2361</td>
+								    <td class="ta_l" style="padding-left:0px;">
+								    		<a href="./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182720" onclick="fn_view('182720');return false;">
+								    			울산광역시 명예사회복지공무원 활동지원센터 직원 채용 공고</a>
+								    		</td>
+								    <td>
+									    	2026.07.30</td>
+								    <td class="re_blind7">165</td>
+								    </tr>
+					<tr>
+							<td class="re_blind7">2360</td>
+								    <td class="ta_l" style="padding-left:0px;">
+								    		<a href="./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182640" onclick="fn_view('182640');return false;">
+								    			2026년 AI디지털튜터 양성 교육 하반기 교육생 모집 안내</a>
+								    		</td>
+								    <td>
+									    	2026.07.28</td>
+								    <td class="re_blind7">111</td>
+								    </tr>
+					<tr>
+							<td class="re_blind7">2359</td>
+								    <td class="ta_l" style="padding-left:0px;">
+								    		<a href="./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182613" onclick="fn_view('182613');return false;">
+								    			울산광역시체육회 기간제근로자(장애인) 채용 공고</a>
+								    		</td>
+								    <td>
+									    	2026.07.27</td>
+								    <td class="re_blind7">100</td>
+								    </tr>
+					<tr>
+							<td class="re_blind7">2358</td>
+								    <td class="ta_l" style="padding-left:0px;">
+								    		<a href="./view.do?mId=001004001003000000&amp;bbsId=BBS_0000000000000030&amp;dataId=182595" onclick="fn_view('182595');return false;">
+								    			(울산신용보증재단) 울산신용보증재단 이사장 공개모집 재공고</a>
+								    		</td>
+								    <td>
+									    	2026.07.24</td>
+								    <td class="re_blind7">52</td>
+								    </tr>
+					</tbody>
+			</table>
+			<div id="paginateDiv">
+					<ul class="pagination">
+						<li><a href="#none" onclick="goPage(1);" title="처음 페이지" class="btn first">처음으로</a></li><li><a href="#none" onclick="goPage(1);" title="이전 페이지" class="btn prev">이전페이지</a></li><li class=active><a href="#none" title="현재페이지" class="btn">1</a></li><li><a href="#none" onclick="goPage(2);" title="2 페이지" class="btn">2</a></li><li><a href="#none" onclick="goPage(3);" title="3 페이지" class="btn">3</a></li><li><a href="#none" onclick="goPage(4);" title="4 페이지" class="btn">4</a></li><li><a href="#none" onclick="goPage(5);" title="5 페이지" class="btn">5</a></li><li><a href="#none" onclick="goPage(6);" title="다음 페이지" class="btn next">다음페이지</a></li><li><a href="#none" onclick="goPage(237);" title="마지막 페이지" class="btn last">마지막으로</a></li>
+</ul>
+				</div>
+			<div class="bd_btnbox ta_r">
+				</div>
+			</form>
+		</div>
+	</div><!--content : ed-->
+                  	<!--만족도 : st-->
+                  	<div class="stf_box">
+    	<div class="stf_line" style="display:none;">
+			<p class="stf_txt stf_r"><strong>최종수정일</strong><span>2026-08-07</span></p></div>
+			
+		<div class="stf_srchbox">
+			<form name="satis-form" id="satis-form" action="/" onsubmit="return false;">
+				<fieldset>
+					<legend>만족도 조사</legend>
+					<div class="stf_fix">
+						<div class="stf_srchinner">
+							<dl>
+								<dt>이 페이지에서 제공하는 정보에 대하여 만족하십니까?</dt>
+								<dd><label for="researchScore5"><input type="radio" id="researchScore5" name="researchScore" value="5">매우만족</label></dd>
+								<dd><label for="researchScore4"><input type="radio" id="researchScore4" name="researchScore" value="4">만족</label></dd>
+								<dd><label for="researchScore3"><input type="radio" id="researchScore3" name="researchScore" value="3">보통</label></dd>
+								<dd><label for="researchScore2"><input type="radio" id="researchScore2" name="researchScore" value="2">불만족</label></dd>
+								<dd><label for="researchScore1"><input type="radio" id="researchScore1" name="researchScore" value="1">매우불만족</label></dd>
+                              	<dd class="user_comt"><label for="researchContent" class="blind">의견입력</label><input type="text" id="researchContent" name="researchContent" value=""></dd>
+							</dl>
+							</div>
+						<button type="submit" class="srf_btn" onclick="HHStatistics.researchInsertProc('SID_000001', '001004001003000000', '/u', $('#satis-form'));">평가하기</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+      	</div><!--만족도 : ed-->
+                </div>
+				<!--contents : ed-->
+          	</div>
+        </div>
+		<!--Cont : ED-->
+		<!--Footer : ST-->
+		<div id="foot_layout">
+<div class="foot_addbox">
+<h2 class="blind">관련사이트 모음</h2>
+
+<div class="foot_addinner">
+<div class="link_box"><button type="button" role="button" aria-expanded="false"><span>실국사업소</span></button><!--class="open" 추가-->
+
+<div class="link_cont long"><!--class="open" 추가-->
+<h3>본청</h3>
+
+<ul>
+	<li><a href="https://www.ulsan.go.kr/s/uapc/contents.ulsan?mId=001002004000000000" target="_blank" title="[새창]자치경찰위원회">자치경찰위원회</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310744" target="_blank" title="[새창]공보담당관">공보담당관</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310002" target="_blank" title="[새창]감사관">감사관</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310626" target="_blank" title="[새창]인권담당관">권익인권담당관</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310368&oucode=" target="_blank" title="[새창]기획조정실">기획조정실</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310417&oucode=" target="_blank" title="[새창]시민안전실">시민안전실</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310660&oucode=" target="_blank" title="[새창]경제산업실">경제산업실</a></li>
+    <li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310747&oucode=6310750" target="_blank" title="[새창]AI수도추진본부">AI수도추진본부</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310728&oucode=" target="_blank" title="[새창]기업투자국">기업투자국</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310443&oucode=" target="_blank" title="[새창]문화관광체육국">문화관광체육국</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310629&oucode=" target="_blank" title="[새창]도시국">도시국</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310709&oucode=" target="_blank" title="[새창]복지보훈여성국">복지보훈여성국</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001005007001001000" target="_blank" title="[새창]환경국">환경국</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310554&oucode=" target="_blank" title="[새창]시민건강국">시민건강국</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310607&oucode=" target="_blank" title="[새창]건설주택국">건설주택국</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310606&oucode=" target="_blank" title="[새창]교통국">교통국</a></li>
+	<li><a href=" https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310519&oucode=" target="_blank" title="[새창]녹지정원국">녹지정원국</a></li>
+	<li><a href="https://www.ulsan.go.kr/u/rep/transfer/staff/list2.ulsan?mId=001005007001006000&parentoucode=6310630&oucode=" target="_blank" title="[새창]행정국">행정국</a></li>
+	<li><a href="https://fire.ulsan.go.kr" target="_blank" title="[새창]소방본부">소방본부</a></li>
+	<li><a href="https://www.council.ulsan.kr" target="_blank" title="[새창]울산광역시의회">울산광역시의회</a></li>
+</ul>
+
+<h3>직속기관&middot;사업소&middot;출장소&middot;합의제행정기관</h3>
+
+<ul>
+	<li><a href="/s/uihe/" target="_blank" title="[새창]보건환경연구원">보건환경연구원</a></li>
+	<li><a href="/s/atc/" target="_blank" title="[새창]농업기술센터">농업기술센터</a></li>
+	<li><a href="https://fire.ulsan.go.kr/page/joongbu/greeting.do" target="_blank" title="[새창]중부소방서">중부소방서</a></li>
+	<li><a href="https://fire.ulsan.go.kr/page/nambu/greeting.do" target="_blank" title="[새창]남부소방서">남부소방서</a></li>
+	<li><a href="https://fire.ulsan.go.kr/page/dongbu/greeting.do" target="_blank" title="[새창]동부소방서">동부소방서</a></li>
+	<li><a href="https://fire.ulsan.go.kr/page/bukbu/greeting.do" target="_blank" title="[새창]북부소방서">북부소방서</a></li>
+	<li><a href="https://fire.ulsan.go.kr/page/onsan/greeting.do" target="_blank" title="[새창]남울주소방서">남울주소방서</a></li>
+	<li><a href="https://fire.ulsan.go.kr/page/ulju/greeting.do" target="_blank" title="[새창]서울주소방서">서울주소방서</a></li>
+	<li><a href="https://fire.ulsan.go.kr/safety/" target="_blank" title="[새창]울산안전체험관">울산안전체험관</a></li>
+	<li><a href="https://water.ulsan.go.kr" target="_blank" title="[새창]상수도사업본부">상수도사업본부</a></li>
+	<li><a href="/u/rep/contents.ulsan?mId=001005007001005000&amp;parentoucode=6310113" target="_blank" title="[새창]종합건설본부">종합건설본부</a></li>
+	<li><a href="https://ucac.ulsan.go.kr" target="_blank" title="[새창]문화예술회관">문화예술회관</a></li>
+	<li><a href="/s/museum/" target="_blank" title="[새창]울산박물관">울산박물관</a></li>
+	<li><a href="https://library.ulsan.go.kr" target="_blank" title="[새창]울산도서관">울산도서관</a></li>
+	<li><a href="/s/uam/" target="_blank" title="[새창]울산시립미술관">울산시립미술관</a></li>
+	<li><a href="/u/rep/contents.ulsan?mId=001005007001005000&amp;parentoucode=6310382" target="_blank" title="[새창]서울본부">서울본부</a></li>
+	<li><a href="/s/vehicle/" target="_blank" title="[새창]차량등록사업소">차량등록사업소</a></li>
+	<li><a href="/u/envi/contents.ulsan?mId=001004001001000000" target="_blank" title="[새창]용연수질개선사업소">용연수질개선사업소</a></li>
+	<li><a href="/u/envi/contents.ulsan?mId=001004002001000000" target="_blank" title="[새창]온산수질개선사업소">온산수질개선사업소</a></li>
+	<li><a href="/s/market/" target="_blank" title="[새창]농수산물도매시장">농수산물도매시장</a></li>
+	<li><a href="/s/usabt/" target="_blank" title="[새창]울산수목원">울산수목원</a></li>
+	<li><a href="/s/ufez/" target="_blank" title="[새창]울산경제자유구역청">울산경제자유구역청</a></li>
+	<li><a href="/s/uapc" target="_blank" title="[새창]자치경찰위원회">자치경찰위원회</a></li>
+</ul>
+</div>
+</div>
+
+<div class="link_box"><button type="button" role="button" aria-expanded="false"><span>주요 누리집</span></button>
+
+<div class="link_cont long">
+<h3>경제ㆍ일자리</h3>
+
+<ul>
+	<li><a href="/s/consumer/" target="_blank" title="[새창]소비자센터">소비자센터</a></li>
+	<li><a href="https://job.ubpi.or.kr/job/main.do" target="_blank" title="[새창]울산일자리포털">울산일자리포털</a></li>
+	<li><a href="https://www.ulsan.go.kr/aml/" target="_blank" title="[새창]농기계임대사업">농기계임대사업</a></li>
+	<li><a href="/s/ind/" target="_blank" title="[새창]울산일반산업단지">울산일반산업단지</a></li>
+</ul>
+
+<h3>교통ㆍ주택ㆍ토지</h3>
+
+<ul>
+	<li><a href="https://its.ulsan.kr" target="_blank" title="[새창]교통관리센터">교통관리센터</a></li>
+	<li><a href="https://its.ulsan.kr/walletfree" target="_blank" title="[새창]지갑없는주차장">지값없는주차장</a></li>
+	<li><a href="https://carfree.ulsan.go.kr/" target="_blank" title="[새창]승용차요일제">승용차요일제</a></li>
+	<li><a href="/s/lost/" target="_blank" title="[새창]대중교통분실물관리센터">대중교통분실물관리센터</a></li>
+	<li><a href="/s/house" target="_blank" title="[새창]울산주거지원사업">울산주거지원사업</a></li>
+	<li><a href="https://www.ulsan.go.kr/archive" target="_blank" title="[새창]도시경관기록">도시경관기록</a></li>
+	<li><a href="/u/metro/contents.ulsan?mId=001005012001000000" target="_blank" title="[새창]부동산 종합정보">부동산 종합정보</a></li>
+</ul>
+
+<h3>문화ㆍ관광</h3>
+
+<ul>
+	<li><a href="/s/dgmuseum" target="_blank" title="[새창]대곡박물관">대곡박물관</a></li>
+	<li><a href="/s/bangucheonpetroglyphs" target="_blank" title="[새창]반구천의암각화">반구천의암각화</a></li>
+	<li><a href="/s/bangudae/" target="_blank" title="[새창]암각화박물관">암각화박물관</a></li>
+	<li><a href="https://tour.ulsan.go.kr/" target="_blank" title="[새창]울산관광">울산관광</a></li>
+	<li><a href="/s/museum/" target="_blank" title="[새창]울산박물관">울산박물관</a></li>
+	<li><a href="/s/garden/" target="_blank" title="[새창]태화강국가정원">태화강국가정원</a></li>
+	<li><a href="https://www.ulsan.go.kr/photo" target="_blank" title="[새창]포토울산">포토울산</a></li>
+	<li><a href="http://ulsan.grandculture.net/" target="_blank" title="[새창]울산역사문화대전">울산역사문화대전</a></li>
+	<li><a href="https://ucac.ulsan.go.kr" target="_blank" title="[새창]문화예술회관">문화예술회관</a></li>
+	<li><a href="https://library.ulsan.go.kr " target="_blank" title="[새창]울산도서관">울산도서관</a></li>
+	<li><a href="/s/uam" target="_blank" title="[새창]울산시립미술관">울산시립미술관</a></li>
+	<li><a href="/s/usabt/" target="_blank" title="[새창]울산수목원">울산수목원</a></li>
+    <li><a href="https://www.ulsan.go.kr/ugarden/user/main.do" target="_blank" title="[새창]울산정원지원센터">울산정원지원센터</a></li>
+</ul>
+
+<h3>복지ㆍ환경</h3>
+
+<ul>
+	<li><a href="/s/afc" target="_blank" title="[새창]고령친화도시울산">고령친화도시울산</a></li>
+	<li><a href="http://www.usfr.or.kr/" target="_blank" title="[새창]외국인주민지원센터">외국인주민지원센터</a></li>
+	<li><a href="https://ulsan.childcare.go.kr/ccef/main.jsp" target="_blank" title="[새창]울산육아종합지원센터">울산육아종합지원센터</a></li>
+	<li><a href="https://www.ulsan.go.kr/lca/main" target="_blank" title="[새창]울산컵(순환컵)">울산컵(순환컵)</a></li>
+</ul>
+
+<h3>예산ㆍ회계</h3>
+
+<ul>
+	<li><a href="https://contract.ulsan.go.kr/" target="_blank" title="[새창]계약정보공개시스템">계약정보공개시스템</a></li>
+</ul>
+
+<h3>의회</h3>
+
+<ul>
+	<li><a href="https://www.council.ulsan.kr/" target="_blank" title="[새창]의회홈페이지">의회홈페이지</a></li>
+	<li><a href="https://www.council.ulsan.kr/minutes" target="_blank" title="[새창]의회홈페이지">의회회의록</a></li>
+</ul>
+
+<h3>정책참여</h3>
+
+<ul>
+	<li><a href="/s/ulsanyouth" target="_blank" title="[새창]울산청년정책플랫폼 U-PAGE">울산청년정책플랫폼 U-PAGE</a></li>
+	<li><a href="/s/jumin/" target="_blank" title="[새창]주민참여예산">주민참여예산</a></li>
+</ul>
+
+<h3>행정</h3>
+
+<ul>
+	<li><a href="/s/e-committee/" target="_blank" title="[새창]사이버위원회">사이버위원회</a></li>
+	<li><a href="/s/statData/" target="_blank" title="[새창]통계">통계</a></li>
+	<li><a href="/ref/subhomepage1/usmn000.jsp" target="_blank" title="[새창]행정자료실(해울이도서관)">행정자료실(해울이도서관)</a></li>
+	<li><a href="http://data.ulsan.go.kr/index.ulsan" target="_blank" title="[새창]공공데이터포털">공공데이터포털</a></li>
+	<li><a href="https://ulsan.go.kr/y/yes/main.do" target="_blank" title="[새창]울산모아 통합예약">울산모아 통합예약</a></li>
+	<li><a href="/s/logins" target="_blank" title="[새창]울산시통합회원">울산시통합회원</a></li>
+	<li><a href="/s/news/" target="_blank" title="[새창]시정뉴스">시정뉴스</a></li>
+	<li><a href="http://webzine.ulsan.go.kr/main.do" target="_blank" title="[새창]울산광역시청웹진">울산광역시웹진(헬로울산)</a></li>
+	<li><a href="https://www.ulsan1365.or.kr/" target="_blank" title="[새창]자원봉사센터">자원봉사센터</a></li>
+	<li><a href="http://minwon.ulsan.go.kr/citynet/jsp/cmm/admsrv/index.jsp" target="_blank" title="[새창]외부사용자 행정서비스">외부사용자 행정서비스</a></li>
+	<li><a href="https://www.elis.go.kr/locgovalr/locgovClAlrList?ctpvSggCd=31000" target="_blank" title="[새창]자치법규(조례, 규칙)">자치법규조례, 규칙</a></li>
+</ul>
+</div>
+</div>
+
+<div class="link_box"><button type="button" role="button" aria-expanded="false"><span>구&middot;군 누리집</span></button>
+
+<div class="link_cont">
+<ul>
+	<li><i class="junggu"></i><a href="https://www.junggu.ulsan.kr/" target="_blank" title="[새창]중구 누리집">중구 누리집</a></li>
+	<li><i class="namgu"></i><a href="https://www.ulsannamgu.go.kr/" target="_blank" title="[새창]남구 누리집">남구 누리집</a></li>
+	<li><i class="donggu"></i><a href="https://www.donggu.ulsan.kr" target="_blank" title="[새창]동구 누리집">동구 누리집</a></li>
+	<li><i class="bukgu"></i><a href="https://www.bukgu.ulsan.kr/" target="_blank" title="[새창]북구 누리집">북구 누리집</a></li>
+	<li><i class="ulju"></i><a href="https://www.ulju.ulsan.kr" target="_blank" title="[새창]울주군 누리집">울주군 누리집</a></li>
+</ul>
+</div>
+</div>
+
+<div class="link_box"><button type="button" role="button" aria-expanded="false"><span>유관기관</span></button>
+
+<div class="link_cont long">
+<ul>
+	<li><a href="https://www.ftc.go.kr" target="_blank" title="[새창]공정거래위원회">공정거래위원회</a></li>
+	<li><a href="https://nqs.kdca.go.kr/nqs/quaStation/ulsan.do?gubun=greeting" target="_blank" title="[새창]국립울산검역소">국립울산검역소</a></li>
+	<li><a href="https://www.comwel.or.kr" target="_blank" title="[새창]근로복지공단">근로복지공단</a></li>
+	<li><a href="https://www.me.go.kr/ndg" target="_blank" title="[새창]낙동강유역환경청">낙동강유역환경청</a></li>
+	<li><a href="https://www.koreapost.go.kr/bs/680/" target="_blank" title="[새창]남울산우체국">남울산우체국</a></li>
+	<li><a href="https://www.moel.go.kr/" target="_blank" title="[새창]고용노동부">고용노동부</a></li>
+	<li><a href="https://www.klac.or.kr" target="_blank" title="[새창]대한법률구조공단">대한법률구조공단</a></li>
+	<li><a href="https://kostat.go.kr/regional/dn/index.action" target="_blank" title="[새창]동남지방통계청">동남지방통계청</a></li>
+	<li><a href="https://b.nts.go.kr/dongulsan/main.do" target="_blank" title="[새창]동울산세무서">동울산세무서</a></li>
+	<li><a href="https://www.koreapost.go.kr/bs/682/" target="_blank" title="[새창]동울산우체국">동울산우체국</a></li>
+	<li><a href="https://www.police.go.kr" target="_blank" title="[새창]경찰청">경찰청</a></li>
+	<li><a href="https://www.keei.re.kr" target="_blank" title="[새창]에너지경제연구원">에너지경제연구원</a></li>
+	<li><a href="https://www.energy.or.kr" target="_blank" title="[새창]한국에너지공단">한국에너지공단</a></li>
+	<li><a href="https://www.moel.go.kr/local/ulsan/index.do" target="_blank" title="[새창]울산고용노동지청">울산고용노동지청</a></li>
+	<li><a href="https://www.umca.co.kr/" target="_blank" title="[새창]울산도시공사">울산도시공사</a></li>
+	<li><a href="https://usrc.kr/" target="_blank" title="[새창]도시재생지원센터">도시재생지원센터</a></li>
+	<li><a href="https://www.uri.re.kr/" target="_blank" title="[새창]울산연구원">울산연구원</a></li>
+	<li><a href="https://ulsan.korcham.net" target="_blank" title="[새창]울산상공회의소">울산상공회의소</a></li>
+	<li><a href="https://us.nec.go.kr" target="_blank" title="[새창]울산광역시선거관리위원회">울산광역시선거관리위원회</a></li>
+	<li><a href="https://b.nts.go.kr/ulsan/main.do" target="_blank" title="[새창]울산세무서">울산세무서</a></li>
+	<li><a href="https://www.uic.or.kr/main/mainPage.do" target="_blank" title="[새창]울산시설공단">울산시설공단</a></li>
+	<li><a href="https://www.usw.or.kr/" target="_blank" title="[새창]울산여성인력개발센터">울산여성인력개발센터</a></li>
+	<li><a href="https://www.koreapost.go.kr/bs/681/" target="_blank" title="[새창]울산우체국">울산우체국</a></li>
+	<li><a href="https://www.koroad.or.kr/main/board/9/board_list.do?bcstIdx1=71&amp;bcstIdx2=98" target="_blank" title="[새창]울산운전면허시험장">울산운전면허시험장</a></li>
+	<li><a href="https://www.crms.go.kr/lay1/S1T303C304/contents.do" target="_blank" title="[새창]울산전파관리소">울산전파관리소</a></li>
+	<li><a href="https://www.spo.go.kr/site/ulsan/main.do" target="_blank" title="[새창]울산지방검찰청">울산지방검찰청</a></li>
+	<li><a href="https://ulsan.scourt.go.kr/main/new/Main.work" target="_blank" title="[새창]울산지방법원">울산지방법원</a></li>
+	<li><a href="https://ulsan.mof.go.kr" target="_blank" title="[새창]울산지방해양수산청">울산지방해양수산청</a></li>
+	<li><a href="https://www.utp.or.kr" target="_blank" title="[새창]울산테크노파크">울산테크노파크</a></li>
+	<li><a href="https://uill.uri.re.kr/" target="_blank" title="[새창]인재평생교육센터">인재평생교육센터</a></li>
+	<li><a href="https://www.upa.or.kr" target="_blank" title="[새창]울산항만공사">울산항만공사</a></li>
+	<li><a href="http://www.ushg.co.kr/" target="_blank" title="[새창]울산향교">울산향교</a></li>
+	<li><a href="https://www.lx.or.kr" target="_blank" title="[새창]LX한국국토정보공사">LX한국국토정보공사</a></li>
+	<li><a href="https://www.ex.co.kr" target="_blank" title="[새창]한국도로공사">한국도로공사</a></li>
+	<li><a href="https://www.ksure.or.kr" target="_blank" title="[새창]한국무역보험공사">한국무역보험공사</a></li>
+	<li><a href="http://www.hrdkorea.or.kr" target="_blank" title="[새창]한국산업인력공단">한국산업인력공단</a></li>
+	<li><a href="https://www.knoc.co.kr" target="_blank" title="[새창]한국석유공사">한국석유공사</a></li>
+	<li><a href="https://www.fira.or.kr" target="_blank" title="[새창]한국수산자원공단">한국수산자원공단</a></li>
+	<li><a href="https://www.kwdi.re.kr" target="_blank" title="[새창]한국여성정책연구원">한국여성정책연구원</a></li>
+	<li><a href="https://www.kead.or.kr" target="_blank" title="[새창]한국장애인고용공단">한국장애인고용공단</a></li>
+	<li><a href="https://www.kesco.or.kr" target="_blank" title="[새창]한국전기안전공사">한국전기안전공사</a></li>
+	<li><a href="https://home.kepco.co.kr/kepco/BR/BRAAPP001/main.do?teamJisaCd=5500&amp;menuCd=FN1413" target="_blank" title="[새창]한국전력공사 부산울산본부">한국전력공사 부산울산본부</a></li>
+	<li><a href="https://www.kwater.or.kr" target="_blank" title="[새창]K water">K water</a></li>
+	<li><a href="https://www.kgs.or.kr/ulsan/index.do" target="_blank" title="[새창]한국가스안전공사 울산본부">한국가스안전공사 울산본부</a></li>
+	<li><a href="https://www.kotra.or.kr" target="_blank" title="[새창]KOTRA 무역투자24">KOTRA 무역투자24</a></li>
+	<li><a href="https://www.kotsa.or.kr" target="_blank" title="[새창]TS한국교통안전공단">TS한국교통안전공단</a></li>
+	<li><a href="https://www.kosha.or.kr/" target="_blank" title="[새창]안전보건공단">안전보건공단</a></li>
+	<li><a href="https://www.ndmi.go.kr/" target="_blank" title="[새창]국립재난안전연구원">국립재난안전연구원</a></li>
+	<li><a href="http://www.w1.or.kr/womenhall" target="_blank" title="[새창]울산광역시여성회관">울산광역시여성회관</a></li>
+	<li><a href="https://kcmf.or.kr/comc/ulsan/" target="_blank" title="[새창]울산시청자미디어센터">울산시청자미디어센터</a></li>
+	<li><a href="http://www.gaok.or.kr/gaok/main/main.do" target="_blank" title="[새창]대한민국시도지사협의회">대한민국시도지사협의회</a></li>
+	<li><a href="https://www.uctf.or.kr/?lang=ko" target="_blank" title="[새창]울산문광광화재단">울산문화관광재단</a></li>
+	<li><a href="http://usjahwal.or.kr/" target="_blank" title="[새창]울산광역자활센터">울산광역자활센터</a></li>
+	<li><a href="https://www.weather.go.kr/w/index.do#close" target="_blank" title="[새창]기상청 날씨누리">기상청 날씨누리</a></li>
+	<li><a href="https://khnp.co.kr/saeul/main.office" target="_blank" title="[새창]새울원자력본부">새울원자력본부</a></li>
+	<li><a href="https://www.2050cnc.go.kr" target="_blank" title="[새창]국가기후대응위원회">국가기후대응위원회</a></li>
+    <li><a href="https://www.gaok.or.kr/" target="_blank" title="[새창]대한민국 시도지사협의회">대한민국 시도지사협의회</a></li>
+</ul>
+</div>
+</div>
+
+<div class="link_box"><button type="button" role="button" aria-expanded="false"><span>중소기업지원</span></button>
+
+<div class="link_cont">
+<ul>
+	<li><a href="/u/economy/transfer/entrprsPr/list.ulsan?mId=001007002005000000" target="_blank" title="[새창]기업홍보마당">기업홍보마당</a></li>
+	<li><a href="https://www.uepa.or.kr" target="_blank" title="[새창]울산경제진흥원">울산경제진흥원</a></li>
+	<li><a href="https://www.ulsanshinbo.co.kr" target="_blank" title="[새창]울산신용보증재단">울산신용보증재단</a></li>
+	<li><a href="https://www.utp.or.kr" target="_blank" title="[새창]울산테크노파크">울산테크노파크</a></li>
+	<li><a href="https://www.bizinfo.go.kr" target="_blank" title="[새창]중소기업지원종합정보">중소기업지원종합정보</a></li>
+	<li><a href="https://www.sos1379.go.kr" target="_blank" title="[새창]기업공감원스톱서비스">기업공감원스톱서비스</a></li>
+	<li><a href="https://www.ksure.or.kr/rh-fx/index.do" target="_blank" title="[새창]환위험관리 지원센터">환위험관리 지원센터</a></li>
+	<li><a href="https://uipa.or.kr" target="_blank" title="[새창]울산정보산업진흥원">울산정보산업진흥원</a></li>
+	<li><a href="https://www.uhdc.kr:449/main/" target="_blank" title="[새창]울산소상공인 행복드림센터">울산소상공인 행복드림센터</a></li>
+	<li><a href="https://www.debc.or.kr/" target="_blank" title="[새창](재)장애인기업종합지원센터">(재)장애인기업종합지원센터</a></li>
+	<li><a href="https://www.ultrade.kr/" target="_blank" title="[새창]울산통상지원시스템">울산통상지원시스템</a></li>
+</ul>
+</div>
+</div>
+
+<div class="link_box"><a class="btn_banner" href="/u/rep/contents.ulsan?mId=001005008007000000"><span>배너모음</span></a></div>
+</div>
+</div>
+
+<div class="foot_inner">
+<div class="foot_box">
+<p class="foot_logo"><span class="blind">울산광역시 로고</span></p>
+
+<div class="foot_infobox">
+<ul>
+	<li><a href="/u/rep/contents.ulsan?mId=001005008001000000"><strong>개인정보처리방침</strong></a></li>
+	<li><a href="/u/rep/contents.ulsan?mId=001005008008000000">이용약관</a></li>
+	<li><a href="/u/rep/contents.ulsan?mId=001005008003000000">저작권보호정책</a></li>
+	<li><a href="/u/rep/contents.ulsan?mId=001005007006001000">오시는길</a></li>
+	<li><a href="/u/rep/contents.ulsan?mId=001005007002001000">전화(팩스)번호안내</a></li>
+	<li><a href="/u/rep/contents.ulsan?mId=001005007004000000">청사안내</a></li>
+	<li><a href="/u/rep/contents.ulsan?mId=001005008005000000">뷰어다운로드</a></li>
+</ul>
+
+<div class="foot_txtbox">
+<div class="foot_txt_l">
+<address>(44675) 울산광역시 남구 중앙로 201 (신정동)</address>
+
+<p >120울산민원센터 평일 09:00~20:00 야간&middot;공휴일 당직실 전환</p>
+</div>
+
+<div class="foot_txt_r">
+<p class="tel">대표전화 : <strong>052-120</strong></p>
+</div>
+</div>
+
+<div class="move_top"><a href="#body_layout"><span class="blind">상단으로 가기</span></a></div>
+
+<p class="txt_email">본 홈페이지에 게시된 전자우편주소는 개인정보보호법 및 정보통신망법에 따라 무단 수집을 거부합니다. Ulsan Metropolitan City all rights reserved.</p>
+</div>
+
+<p class="foot_wa"><a href="/u/rep/contents.ulsan?mId=001005008004000000"><span class="blind">과학기술정보통신부 WA(WEB접근성) 품질인증 마크, 웹와치(WebWatch) 2024.2.6 ~ 2025.2.5</span></a></p>
+</div>
+</div>
+</div>
+<!--Footer : ED-->
+	</div>
+</body>
+</html>

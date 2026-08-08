@@ -377,7 +377,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
 
   if (!selected.length) {
     return {
-      text: '', results, successful: 0, attempted: 0, discovered: attachments.length,
+      text: '', results, successful: 0, attempted: 0, downloaded: 0, discovered: attachments.length,
       analyzerVersion: ANALYZER_VERSION, diagnostics: summarizeResults(results)
     };
   }
@@ -426,6 +426,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
           contentDisposition: meta.contentDisposition,
           signature: meta.signature,
           transport: meta.transport || '',
+          downloaded: true,
           ok: true,
           size: meta.size,
           textLength: extracted.text.length,
@@ -446,6 +447,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
           signature: meta?.signature || '',
           transport: meta?.transport || '',
           size: meta?.size || 0,
+          downloaded: Boolean(meta?.size),
           ok: false,
           error: error.message,
           commandError: serializeCommandError(error),
@@ -459,6 +461,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
   }
 
   const successful = results.filter(result => result.ok);
+  const downloaded = results.filter(result => result.downloaded);
   return {
     text: successful
       .filter(result => result.priority >= 40)
@@ -468,6 +471,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
     results,
     successful: successful.length,
     attempted: results.length,
+    downloaded: downloaded.length,
     discovered: attachments.length,
     analyzerVersion: ANALYZER_VERSION,
     diagnostics: summarizeResults(results)

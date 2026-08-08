@@ -501,7 +501,11 @@ async function fetchSource(source) {
       try{
         kepcoDynamic=await fetchKepcoDynamicList(html,activeSource.url,source);
         if(kepcoDynamic?.html) listingUrls=[activeSource.url];
-      }catch(error){console.error(`[dynamic-list] ${source.org}: ${error.message}`);}
+        else throw new Error('authoritative addList response unavailable');
+      }catch(error){
+        console.error(`[dynamic-list] ${source.org}: ${error.message}`);
+        listingUrls=[];
+      }
     }
     if(source.org==='한국산업안전보건공단'){
       try{

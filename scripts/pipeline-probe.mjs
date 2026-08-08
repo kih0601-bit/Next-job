@@ -5,12 +5,12 @@ import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.m
 import { discoverListingUrls } from './collectors/source-adapters.mjs';
 import { inspectListingPage } from './lib/list-pipeline.mjs';
 import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics.mjs';
-import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
+import { cleanHtml, fetchDetail, decodeHtmlEntities } from './lib/detail-parser.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 
-const VERSION = '18.0-first-page-pipeline-finalize';
+const VERSION = '18.1-first-page-pipeline-20of20-target';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const ACCESS_TIMEOUT_MS = 18000;
@@ -473,6 +473,10 @@ async function probeSource(source, artifacts) {
       if(authoritativeDynamic){
         listingPages.splice(0, listingPages.length, authoritativeDynamic);
         artifacts.push({org:source.org,stage:'authoritative-dynamic-list',url:authoritativeDynamic.source.url,reason:'frt0001/addList.do only'});
+      } else {
+        listingPages.splice(0, listingPages.length);
+        report.list.errors.push('KEPCO authoritative dynamic-list unavailable; shell fallback blocked');
+        artifacts.push({org:source.org,stage:'authoritative-dynamic-list',error:'unavailable',reason:'shell fallback blocked'});
       }
     }
     if(source.org==='한국산업안전보건공단'){

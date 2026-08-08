@@ -66,6 +66,9 @@ jobs:
       - name: Probe institution pipelines
         run: node scripts/pipeline-probe.mjs
 
+      - name: Collect job postings
+        run: node scripts/collect.mjs
+
       - name: Build unified institution report
         run: node scripts/build-unified-report.mjs
 
@@ -80,9 +83,6 @@ jobs:
 
       - name: Update pipeline history
         run: node scripts/update-pipeline-history.mjs
-
-      - name: Collect job postings
-        run: node scripts/collect.mjs
 
       - name: Verify debug outputs
         shell: bash

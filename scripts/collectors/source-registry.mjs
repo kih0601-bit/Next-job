@@ -86,7 +86,13 @@ const RAW_SOURCES = [
     'https://www.uctf.or.kr/board/employment',
     'https://uctf.or.kr/' ] },
   { org: '울산복지가족진흥사회서비스원', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL_WITH_GOV_FALLBACK', transportChain: ['fetch', 'curl'] }, urls: [
-    // Primary and legacy official recruitment boards.
+    // Primary and legacy official recruitment boards. The 78 Actions evidence timed out
+    // only on www.* hosts while the same official boards are published on bare hosts too.
+    // Try bare domains first so a broken www route does not fail the whole institution.
+    'https://wfps.or.kr/webuser/employment/list.html',
+    'https://wfps.or.kr/',
+    'https://uwfdi.re.kr/webuser/employment/list.html',
+    'https://uwfdi.re.kr/',
     'https://www.wfps.or.kr/webuser/employment/list.html',
     'https://www.wfps.or.kr/',
     'https://www.uwfdi.re.kr/webuser/employment/list.html',

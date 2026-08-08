@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-08T14:00:07.218Z",
+  "generatedAt": "2026-08-08T14:13:25.714Z",
   "baselineAvailable": true,
   "summary": {
     "improved": 0,
-    "regressed": 1,
-    "unchanged": 19
+    "regressed": 0,
+    "unchanged": 20
   },
   "changes": [
     {
@@ -13,15 +13,167 @@
       "primaryCause": {
         "stage": "list",
         "status": "failed",
-        "code": "LIST_PAGE_FETCH_FAILED",
-        "reason": "목록 후보 페이지를 가져오지 못함: KEPCO dynamic-list: timeout | KEPCO dynamic-list: timeout | KEPCO authoritative dynamic-list unavailable; shell fallback blocked",
+        "code": "LIST_COUNTER_FAILED",
+        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
         "evidence": [
-          "KEPCO dynamic-list: timeout",
-          "KEPCO dynamic-list: timeout",
-          "KEPCO authoritative dynamic-list unavailable; shell fallback blocked"
+          {
+            "url": "https://recruit.kepco.co.kr:444/frt/frt0001/addList.do",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 31,
+            "titleMatches": 22,
+            "noUrl": 22,
+            "unsafeUrl": 0,
+            "accepted": 22,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 22,
+            "titleSamples": [
+              "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 접수일 : 2026.07.30 ~ 2026.08.06",
+              "서류심사중",
+              "전문인력(계약직) 채용 2026년도 제2차 전문직원 채용 접수일 : 2026.06.09 ~ 2026.06.16",
+              "채용종료",
+              "4직급 고졸 채용 2026년도 4직급 고졸 신입사원 채용 공고 접수일 : 2026.06.04 ~ 2026.06.12",
+              "채용종료",
+              "체험형 인턴 선발 2026년도 제1차 체험형 청년인턴 모집공고 접수일 : 2026.04.16 ~ 2026.04.23",
+              "채용종료"
+            ],
+            "unsafeSamples": [
+              {
+                "title": "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 접수일 : 2026.07.30 ~ 2026.08.06",
+                "reason": "no-url-detail-pending",
+                "identity": "row-325",
+                "row": "<li class=\"state_ing\" >\r\n                        <a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,C,1','employYear,employId,employSeq');\">\r\n\t\r\n                            <!-- <span class=\"dday\">D-100</span> -->\r\n                            <span class=\"category\">NDIS데이터관리원채용</span><br>\r\n                            <span class=\"tit\">2026년도 NDIS데이터관리원 채용</span> \r\n                            <span class=\"date\">접수일 : 2026.07.30 ~ 2026.08.06</span>\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t<a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,C,1','employYear,employId,employSeq');\">\r\n\t\t\t                            \t<span class=\"state\"> 서류심사중</span>\r\n\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n                            \r\n\r\n                    </li>"
+              },
+              {
+                "title": "서류심사중",
+                "reason": "no-url-detail-pending",
+                "identity": "row-822",
+                "row": "<li class=\"state_ing\" >\r\n                        <a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,C,1','employYear,employId,employSeq');\">\r\n\t\r\n                            <!-- <span class=\"dday\">D-100</span> -->\r\n                            <span class=\"category\">NDIS데이터관리원채용</span><br>\r\n                            <span class=\"tit\">2026년도 NDIS데이터관리원 채용</span> \r\n                            <span class=\"date\">접수일 : 2026.07.30 ~ 2026.08.06</span>\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t<a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,C,1','employYear,employId,employSeq');\">\r\n\t\t\t                            \t<span class=\"state\"> 서류심사중</span>\r\n\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n                            \r\n\r\n                    </li>"
+              },
+              {
+                "title": "전문인력(계약직) 채용 2026년도 제2차 전문직원 채용 접수일 : 2026.06.09 ~ 2026.06.16",
+                "reason": "no-url-detail-pending",
+                "identity": "row-1156",
+                "row": "<li class=\"state_end\" >\r\n                        <a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,D,2','employYear,employId,employSeq');\">\r\n\t\r\n                            <!-- <span class=\"dday\">D-100</span> -->\r\n                            <span class=\"category\">전문인력(계약직) 채용\r\n</span><br>\r\n                            <span class=\"tit\">2026년도 제2차 전문직원 채용</span> \r\n                            <span class=\"date\">접수일 : 2026.06.09 ~ 2026.06.16</span>\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t<a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,D,2','employYear,employId,employSeq');\">\r\n\t\t\t                            \t<span class=\"state\"> 채용종료</span>\r\n\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n                            \r\n\r\n                    </li>"
+              },
+              {
+                "title": "채용종료",
+                "reason": "no-url-detail-pending",
+                "identity": "row-1653",
+                "row": "<li class=\"state_end\" >\r\n                        <a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,D,2','employYear,employId,employSeq');\">\r\n\t\r\n                            <!-- <span class=\"dday\">D-100</span> -->\r\n                            <span class=\"category\">전문인력(계약직) 채용\r\n</span><br>\r\n                            <span class=\"tit\">2026년도 제2차 전문직원 채용</span> \r\n                            <span class=\"date\">접수일 : 2026.06.09 ~ 2026.06.16</span>\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t<a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,D,2','employYear,employId,employSeq');\">\r\n\t\t\t                            \t<span class=\"state\"> 채용종료</span>\r\n\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n                            \r\n\r\n                    </li>"
+              },
+              {
+                "title": "4직급 고졸 채용 2026년도 4직급 고졸 신입사원 채용 공고 접수일 : 2026.06.04 ~ 2026.06.12",
+                "reason": "no-url-detail-pending",
+                "identity": "row-1986",
+                "row": "<li class=\"state_end\" >\r\n                        <a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,4,1','employYear,employId,employSeq');\">\r\n\t\r\n                            <!-- <span class=\"dday\">D-100</span> -->\r\n                            <span class=\"category\">4직급 고졸 채용\r\n</span><br>\r\n                            <span class=\"tit\">2026년도 4직급 고졸 신입사원 채용 공고</span> \r\n                            <span class=\"date\">접수일 : 2026.06.04 ~ 2026.06.12</span>\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t<a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,4,1','employYear,employId,employSeq');\">\r\n\t\t\t                            \t<span class=\"state\"> 채용종료</span>\r\n\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n                            \r\n\r\n                    </li>"
+              },
+              {
+                "title": "채용종료",
+                "reason": "no-url-detail-pending",
+                "identity": "row-2486",
+                "row": "<li class=\"state_end\" >\r\n                        <a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,4,1','employYear,employId,employSeq');\">\r\n\t\r\n                            <!-- <span class=\"dday\">D-100</span> -->\r\n                            <span class=\"category\">4직급 고졸 채용\r\n</span><br>\r\n                            <span class=\"tit\">2026년도 4직급 고졸 신입사원 채용 공고</span> \r\n                            <span class=\"date\">접수일 : 2026.06.04 ~ 2026.06.12</span>\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t<a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,4,1','employYear,employId,employSeq');\">\r\n\t\t\t                            \t<span class=\"state\"> 채용종료</span>\r\n\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n                            \r\n\r\n                    </li>"
+              },
+              {
+                "title": "체험형 인턴 선발 2026년도 제1차 체험형 청년인턴 모집공고 접수일 : 2026.04.16 ~ 2026.04.23",
+                "reason": "no-url-detail-pending",
+                "identity": "row-2819",
+                "row": "<li class=\"state_end\" >\r\n                        <a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,5,1','employYear,employId,employSeq');\">\r\n\t\r\n                            <!-- <span class=\"dday\">D-100</span> -->\r\n                            <span class=\"category\">체험형 인턴 선발\r\n</span><br>\r\n                            <span class=\"tit\">2026년도 제1차 체험형 청년인턴 모집공고</span> \r\n                            <span class=\"date\">접수일 : 2026.04.16 ~ 2026.04.23</span>\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t<a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,5,1','employYear,employId,employSeq');\">\r\n\t\t\t                            \t<span class=\"state\"> 채용종료</span>\r\n\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n                            \r\n\r\n                    </li>"
+              },
+              {
+                "title": "채용종료",
+                "reason": "no-url-detail-pending",
+                "identity": "row-3319",
+                "row": "<li class=\"state_end\" >\r\n                        <a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,5,1','employYear,employId,employSeq');\">\r\n\t\r\n                            <!-- <span class=\"dday\">D-100</span> -->\r\n                            <span class=\"category\">체험형 인턴 선발\r\n</span><br>\r\n                            <span class=\"tit\">2026년도 제1차 체험형 청년인턴 모집공고</span> \r\n                            <span class=\"date\">접수일 : 2026.04.16 ~ 2026.04.23</span>\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t<a style=\"cursor:pointer\" onclick=\"fncPageBoard('view','view.do','2026,5,1','employYear,employId,employSeq');\">\r\n\t\t\t                            \t<span class=\"state\"> 채용종료</span>\r\n\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n                            \r\n\r\n                    </li>"
+              }
+            ],
+            "actionSamples": [
+              {
+                "title": "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 접수일 : 2026.07.30 ~ 2026.08.06",
+                "action": "fncPageBoard('view','view.do','2026,C,1','employYear,employId,employSeq');"
+              },
+              {
+                "title": "서류심사중",
+                "action": "fncPageBoard('view','view.do','2026,C,1','employYear,employId,employSeq');"
+              },
+              {
+                "title": "전문인력(계약직) 채용 2026년도 제2차 전문직원 채용 접수일 : 2026.06.09 ~ 2026.06.16",
+                "action": "fncPageBoard('view','view.do','2026,D,2','employYear,employId,employSeq');"
+              },
+              {
+                "title": "채용종료",
+                "action": "fncPageBoard('view','view.do','2026,D,2','employYear,employId,employSeq');"
+              },
+              {
+                "title": "4직급 고졸 채용 2026년도 4직급 고졸 신입사원 채용 공고 접수일 : 2026.06.04 ~ 2026.06.12",
+                "action": "fncPageBoard('view','view.do','2026,4,1','employYear,employId,employSeq');"
+              },
+              {
+                "title": "채용종료",
+                "action": "fncPageBoard('view','view.do','2026,4,1','employYear,employId,employSeq');"
+              },
+              {
+                "title": "체험형 인턴 선발 2026년도 제1차 체험형 청년인턴 모집공고 접수일 : 2026.04.16 ~ 2026.04.23",
+                "action": "fncPageBoard('view','view.do','2026,5,1','employYear,employId,employSeq');"
+              },
+              {
+                "title": "채용종료",
+                "action": "fncPageBoard('view','view.do','2026,5,1','employYear,employId,employSeq');"
+              },
+              {
+                "title": "4직급 보훈 채용 2026년 상반기 보훈채용 모집 공고 접수일 : 2026.04.16 ~ 2026.04.23",
+                "action": "fncPageBoard('view','view.do','2026,E,1','employYear,employId,employSeq');"
+              },
+              {
+                "title": "채용종료",
+                "action": "fncPageBoard('view','view.do','2026,E,1','employYear,employId,employSeq');"
+              },
+              {
+                "title": "전문인력(4직급) 채용 2026년도 제1차 4(나)직급 전문인력 채용(발전직군) 접수일 : 2026.04.01 ~ 2026.04.08",
+                "action": "fncPageBoard('view','view.do','2026,F,1','employYear,employId,employSeq');"
+              },
+              {
+                "title": "채용종료",
+                "action": "fncPageBoard('view','view.do','2026,F,1','employYear,employId,employSeq');"
+              }
+            ],
+            "candidateUrlSamples": [],
+            "candidateCount": 22,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "recordVerification": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 22,
+              "matchedCount": 0,
+              "unmatchedTitles": [
+                "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 접수일 : 2026.07.30 ~ 2026.08.06",
+                "서류심사중",
+                "전문인력(계약직) 채용 2026년도 제2차 전문직원 채용 접수일 : 2026.06.09 ~ 2026.06.16",
+                "채용종료",
+                "4직급 고졸 채용 2026년도 4직급 고졸 신입사원 채용 공고 접수일 : 2026.06.04 ~ 2026.06.12",
+                "채용종료",
+                "체험형 인턴 선발 2026년도 제1차 체험형 청년인턴 모집공고 접수일 : 2026.04.16 ~ 2026.04.23",
+                "채용종료",
+                "4직급 보훈 채용 2026년 상반기 보훈채용 모집 공고 접수일 : 2026.04.16 ~ 2026.04.23",
+                "채용종료",
+                "전문인력(4직급) 채용 2026년도 제1차 4(나)직급 전문인력 채용(발전직군) 접수일 : 2026.04.01 ~ 2026.04.08",
+                "채용종료"
+              ],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "verifiedEmpty": false,
+            "emptyMarker": "",
+            "countSource": "unavailable"
+          }
         ],
         "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
       },
       "stages": {
         "access": {
@@ -228,13 +380,13 @@
           "change": "same"
         },
         "attachment": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         }
       },
       "improved": false,
-      "regressed": true
+      "regressed": false
     },
     {
       "org": "근로복지공단",

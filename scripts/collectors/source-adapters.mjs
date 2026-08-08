@@ -267,6 +267,58 @@ function kepcoPageBoard(block='',source){
   for(const [k,v] of params) display.searchParams.set(k,v);
   return {link:display.href,request:{method:'POST',url:endpoint,body:params.toString(),headers:{'content-type':'application/x-www-form-urlencoded'},referer:source.url}};
 }
+
+function energyAgencyDetailRequest(block = '', source = {}) {
+  if (source.org !== '한국에너지공단') return null;
+  const id = block.match(/fn_Detail\s*\(\s*["']?(\d+)["']?\s*\)/i)?.[1] || '';
+  if (!id) return null;
+
+  const page = String(source.__rawHtml || '');
+  const form = page.match(/<form\b[^>]*(?:id|name)\s*=\s*["']frm["'][^>]*>([\s\S]*?)<\/form>/i)?.[1] || '';
+  const params = new URLSearchParams();
+
+  for (const input of form.matchAll(/<input\b([^>]*)>/gi)) {
+    const attrs = input[1] || '';
+    const name = attrs.match(/\bname\s*=\s*(["'])([^"']+)\1/i)?.[2] || '';
+    if (!name) continue;
+    const type = (attrs.match(/\btype\s*=\s*(["'])([^"']+)\1/i)?.[2] || 'text').toLowerCase();
+    if (['submit','button','image','file'].includes(type)) continue;
+    const value = attrs.match(/\bvalue\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
+    params.set(decodeHtmlEntities(name), decodeHtmlEntities(value));
+  }
+
+  // The live page sets itemyear with JavaScript after rendering, so recover it
+  // from the visible row first and then the page's JS default.
+  const rowYear = cleanHtml(block).match(/\b(20\d{2})[-./년]/)?.[1] || '';
+  const jsYear = page.match(/itemyear\s*=\s*["'](20\d{2})["']/i)?.[1]
+    || page.match(/itemyear\s*=\s*["']["'][\s\S]{0,120}?itemyear\s*=\s*["'](20\d{2})["']/i)?.[1]
+    || '';
+  const year = rowYear || jsYear || String(new Date().getFullYear());
+
+  params.set('siteCd', params.get('siteCd') || '001000000000000');
+  params.set('boardName', params.get('boardName') || 'job');
+  params.set('boardNo', id);
+  params.set('itemyear', year);
+  if (!params.has('item8')) params.set('item8', '');
+  if (!params.has('searchfield')) params.set('searchfield', 'ALL');
+  if (!params.has('searchword')) params.set('searchword', '');
+
+  const endpoint = absoluteUrl('/front/board/etc/jobView.do', source.url);
+  const display = new URL(endpoint);
+  display.searchParams.set('boardNo', id);
+
+  return {
+    link: display.href,
+    request: {
+      method: 'POST',
+      url: endpoint,
+      body: params.toString(),
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      referer: source.url
+    }
+  };
+}
+
 function sourceSpecificDetailUrls(block = '', source) {
   const urls = [];
   const push = value => {
@@ -281,9 +333,8 @@ function sourceSpecificDetailUrls(block = '', source) {
   if(source.org==='한국전력공사'){const d=kepcoPageBoard(block,source);if(d?.link) push(d.link);}
 
   if (source.org === '한국에너지공단') {
-    const ids = new Set();
-    for (const match of block.matchAll(/fn_Detail\s*\(\s*["']?(\d+)["']?\s*\)/gi)) ids.add(match[1]);
-    for (const id of ids) push(`/front/board/etc/jobView.do?seq=${id}`);
+    const decoded = energyAgencyDetailRequest(block, source);
+    if (decoded?.link) push(decoded.link);
   }
 
   if (source.org === '한국산업인력공단') {
@@ -669,6 +720,8 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       detailRequest = khnpDetailRequest(row.block, source);
     } else if (source.org === '한국전력공사') {
       detailRequest = kepcoPageBoard(row.block, source)?.request || null;
+    } else if (source.org === '한국에너지공단') {
+      detailRequest = energyAgencyDetailRequest(row.block, source)?.request || null;
     }
     jobs.push({ org: source.org, title, link: canonical, listText: cleanHtml(row.block).replace(/\s+/g, ' ').trim(), adapter: `${source.org}:board-row`, ...(detailRequest ? { detailRequest } : {}), ...(link ? {} : { listOnly: true, listIdentity: identity }) });
     diagnostics.accepted += 1;
@@ -736,6 +789,7 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     const listText = cleanHtml(html.slice(start, end)).replace(/\s+/g, ' ').trim();
     const detailRequest = source.org === '한국수력원자력' ? khnpDetailRequest(block, source)
       : source.org === '한국전력공사' ? kepcoPageBoard(block, source)?.request || null
+      : source.org === '한국에너지공단' ? energyAgencyDetailRequest(block, source)?.request || null
       : null;
     jobs.push({ org: source.org, title, link: canonical, listText, adapter: source.org, ...(detailRequest ? { detailRequest } : {}) });
     diagnostics.accepted += 1;
@@ -782,12 +836,16 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     if (seen.has(key)) continue;
     seen.add(key);
 
+    const detailRequest = source.org === '한국에너지공단'
+      ? energyAgencyDetailRequest(block, source)?.request || null
+      : null;
     jobs.push({
       org: source.org,
       title,
       link: canonical,
       listText: cleanHtml(block).replace(/\s+/g, ' ').trim(),
       adapter: `${source.org}:clickable-block`,
+      ...(detailRequest ? { detailRequest } : {}),
       ...(link ? {} : { listOnly: true, listIdentity: identity })
     });
     diagnostics.accepted += 1;

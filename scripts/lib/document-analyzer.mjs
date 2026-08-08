@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '2.4-unresolved-attachment-evidence';
+const ANALYZER_VERSION = '2.5-confirmed-attachment-contracts';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -275,7 +275,10 @@ async function resolveKoshaTboardFile(item, timeoutMs = 30000) {
     });
     if (!response.ok) throw new Error(`KOSHA fileDown API HTTP ${response.status}`);
     const result = await response.json();
-    const info = result?.data?.fileDownInfo || result?.response?.fileDownInfo || result?.fileDownInfo || findKoshaFileDownInfo(result);
+    const directInfo=result?.data?.fileDownInfo||result?.response?.fileDownInfo||result?.fileDownInfo||null;
+    const info=Array.isArray(directInfo)
+      ? (directInfo.find(item=>item?.data!=null&&item?.key!=null)||findKoshaFileDownInfo(directInfo))
+      : (directInfo?.data!=null&&directInfo?.key!=null?directInfo:findKoshaFileDownInfo(result));
     if (!info?.data || !info?.key) {
       await writeKoshaDownloadEvidence(item, result);
       const code = result?.common?.result?.code ?? result?.code ?? '';
@@ -296,6 +299,33 @@ async function resolveKoshaTboardFile(item, timeoutMs = 30000) {
   } finally {
     clearTimeout(timer);
   }
+}
+
+
+async function resolveUlsanEncryptedBoardFile(item, timeoutMs = 30000) {
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),timeoutMs);
+  try {
+    const response=await fetch(item.url,{signal:controller.signal,redirect:'follow',headers:{
+      'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
+      accept:'text/html,application/xhtml+xml,*/*;q=0.8',referer:item.referer||'https://www.ulsan.go.kr/'
+    }});
+    if (!response.ok) throw new Error(`Ulsan encrypted preview HTTP ${response.status}`);
+    const html=await response.text();
+    const nested=extractAttachments(html,response.url||item.url,{referer:response.url||item.url})
+      .filter(c=>c.url&&c.url!==item.url&&!/미리보기|미리듣기/.test(String(c.name||'')))
+      .sort((x,y)=>documentPriority(y)-documentPriority(x));
+    if (nested.length) return {...nested[0],resolver:'',name:item.name||nested[0].name};
+    const direct=[...html.matchAll(/["']((?:https?:\/\/|\/)[^"']*(?:getFile|FileDown|fileDown|download)[^"']*)["']/gi)].map(m=>m[1]).find(Boolean);
+    if (direct) return {...item,resolver:'',url:new URL(direct,response.url||item.url).href};
+    try {
+      const dir=path.resolve('data/diagnostics/울산복지가족진흥사회서비스원/attachment-resolution');
+      await fs.mkdir(dir,{recursive:true});
+      const id=(new URL(item.url).searchParams.get('atchFileId')||'unknown').replace(/[^\w.-]+/g,'_').slice(0,80);
+      await fs.writeFile(path.join(dir,`${id}-preview.html`),html,'utf8');
+    } catch {}
+    throw new Error('Ulsan encrypted preview did not expose source download URL');
+  } finally { clearTimeout(timer); }
 }
 
 function egovAlternateDownloadItem(item = {}) {
@@ -328,6 +358,8 @@ async function download(item, target, timeoutMs = 30000) {
   let resolvedItem = item;
   if (item?.resolver === 'KOSHA_TBOARD_FILE') {
     resolvedItem = await resolveKoshaTboardFile(item, timeoutMs);
+  } else if (item?.resolver === 'ULSAN_ENC_BOARD_FILE') {
+    resolvedItem = await resolveUlsanEncryptedBoardFile(item, timeoutMs);
   }
 
   const attempt = async candidate => {
@@ -388,9 +420,24 @@ async function extractPdf(file) {
 }
 
 async function extractHwp(file) {
-  if (!(await commandExists('hwp5txt'))) throw new Error('hwp5txt unavailable');
-  const text = normalizeText((await run('hwp5txt', [file], { timeoutMs: 45000 })).stdout);
-  return { text, method: 'hwp5txt' };
+  let text='';
+  if (await commandExists('hwp5txt')) {
+    try { text=normalizeText((await run('hwp5txt',[file],{timeoutMs:45000})).stdout); } catch {}
+    if (text.length>=20) return {text,method:'hwp5txt'};
+  }
+  if (await commandExists('libreoffice')) {
+    const outDir=`${file}-lo`; await fs.mkdir(outDir,{recursive:true});
+    try {
+      await run('libreoffice',['--headless','--convert-to','txt:Text','--outdir',outDir,file],{timeoutMs:75000});
+      const txtFiles=(await fs.readdir(outDir)).filter(name=>/\.txt$/i.test(name));
+      if (txtFiles.length) {
+        const converted=normalizeText(await fs.readFile(path.join(outDir,txtFiles[0]),'utf8'));
+        if (converted.length>=20) return {text:converted,method:'libreoffice-hwp-fallback'};
+        if (converted.length>text.length) text=converted;
+      }
+    } finally { await fs.rm(outDir,{recursive:true,force:true}); }
+  }
+  return {text,method:text?'hwp-low-text':'hwp-no-text'};
 }
 
 async function extractZipXml(file, entries) {

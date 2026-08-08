@@ -284,10 +284,66 @@ function normalizeInstitutionAttachmentDuplicates(items = [], baseUrl = '') {
   return items.filter(item => !/\/cms\/download\/downloadFile2\.hrd(?:[?#]|$)/i.test(String(item.url || '')));
 }
 
+
+function extractConfirmedInstitutionAttachments(source = '', baseUrl = '', request = {}) {
+  const attachments = [];
+  const seen = new Set();
+  let host = '';
+  try { host = new URL(baseUrl).hostname.replace(/^www\./,''); } catch {}
+
+  if (host === 'uic.or.kr') {
+    for (const match of source.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
+      const attrs=match[1]||'', label=cleanHtml(match[2]);
+      const token=attrs.match(/\bfn_egov_downFile\s*\(\s*["']([^"']+)["']\s*\)/i)?.[1]||'';
+      if (!token) continue;
+      const url=new URL('/cmm/fms/FileDownNotice.do',new URL(baseUrl).origin).href+`?atchFileId=${token}`;
+      addAttachment(attachments,seen,url,label,baseUrl,'',attachmentContext(source,match.index||0,match[0].length),request);
+    }
+  }
+
+  if (host === 'energy.or.kr') {
+    for (const match of source.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
+      const attrs=match[1]||'', label=cleanHtml(match[2]);
+      const call=attrs.match(/\bfileDownload\s*\(\s*["']([^"']+)["']\s*,\s*["']([^"']+)["']\s*,\s*["']([^"']+)["']\s*\)/i);
+      if (!call) continue;
+      const url=new URL('/commonFile/fileDownload.do',new URL(baseUrl).origin).href;
+      const body=new URLSearchParams({fileNo:call[1],fileSeq:call[2],boardMngNo:call[3]}).toString();
+      addAttachment(attachments,seen,url,label,baseUrl,'',attachmentContext(source,match.index||0,match[0].length),{
+        ...request,method:'POST',body,headers:{...(request.headers||{}),'content-type':'application/x-www-form-urlencoded; charset=UTF-8'}
+      });
+    }
+  }
+
+  if (host === 'ulsan.go.kr') {
+    const anchors=[...source.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)];
+    for (let i=0;i<anchors.length;i+=1) {
+      const attrs=anchors[i][1]||'', label=cleanHtml(anchors[i][2]);
+      const href=attrs.match(/\bhref\s*=\s*(["'])([\s\S]*?)\1/i)?.[2]||'';
+      if (!FILE_EXT.test(label)||!/^\/u\/?$/i.test(href.trim())) continue;
+      const preview=anchors.slice(i+1,i+4).map(item=>{
+        const aa=item[1]||'', ll=cleanHtml(item[2]);
+        const hh=aa.match(/\bhref\s*=\s*(["'])([\s\S]*?)\1/i)?.[2]||'';
+        return {label:ll,href:hh};
+      }).find(item=>/미리보기/.test(item.label)&&/\/enc\/convert\/encBoardFile\.ulsan/i.test(item.href)&&!/initTTS=true/i.test(item.href));
+      if (!preview) continue;
+      const url=absoluteUrl(preview.href,baseUrl);
+      if (!url||seen.has(url)) continue;
+      seen.add(url);
+      attachments.push({name:label,type:label.match(FILE_EXT)?.[1]?.toLowerCase()||'unknown',url,
+        referer:request.referer||baseUrl,cookie:request.cookie||'',method:'GET',body:'',headers:request.headers||{},resolver:'ULSAN_ENC_BOARD_FILE'});
+    }
+  }
+  return attachments;
+}
+
 export function extractAttachments(html, baseUrl, request = {}) {
   const source = String(html);
   const attachments = [];
   const seen = new Set();
+  for (const item of extractConfirmedInstitutionAttachments(source, baseUrl, request)) {
+    attachments.push(item);
+    seen.add(item.url.split('#')[0]);
+  }
 
   for (const match of source.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
     const attrs = match[1] || '';
@@ -334,7 +390,18 @@ export function extractAttachments(html, baseUrl, request = {}) {
   }
 
   extractFormAttachments(source, baseUrl, attachments, seen, request);
-  return normalizeInstitutionAttachmentDuplicates(purifyAttachmentCandidates(attachments), baseUrl).slice(0, 24);
+  let purified=normalizeInstitutionAttachmentDuplicates(purifyAttachmentCandidates(attachments),baseUrl);
+  if (purified.some(item=>item.resolver==='ULSAN_ENC_BOARD_FILE')) {
+    purified=purified.filter(item=>{
+      if (item.resolver==='ULSAN_ENC_BOARD_FILE') return true;
+      const url=String(item.url||''), name=String(item.name||'');
+      if (/미리보기|미리듣기/.test(name)) return false;
+      if (/\/enc\/convert\/encBoardFile\.ulsan/i.test(url)) return false;
+      try { const u=new URL(url); if (u.hostname.replace(/^www\./,'')==='ulsan.go.kr'&&/^\/u\/?$/.test(u.pathname)) return false; } catch {}
+      return true;
+    });
+  }
+  return purified.slice(0,24);
 }
 
 function titleTokens(value = '') {
@@ -433,7 +500,7 @@ function writeDetailDiagnostic({ org = 'unknown', expectedTitle = '', requestedU
 
 
 function writeAttachmentResolutionDiagnostic({ org = '', expectedTitle = '', finalUrl = '', html = '', scripts = [], attachments = [] }) {
-  if (!DETAIL_DIAG_DIR || !['울산시설공단','한국에너지공단'].includes(org) || attachments.length > 0) return;
+  if (!DETAIL_DIAG_DIR || !['울산시설공단','한국에너지공단','울산복지가족진흥사회서비스원'].includes(org) || attachments.length > 0) return;
   try {
     const dir = path.join(DETAIL_DIAG_DIR, safeDiagName(org), 'attachment-resolution');
     fs.mkdirSync(dir, { recursive: true });

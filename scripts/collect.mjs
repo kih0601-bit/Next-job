@@ -412,7 +412,9 @@ async function enrichCandidate(candidate, source) {
       detailConfidence: detail.confidence || null,
       detailError: detail.error || '',
       attachments: detail.attachments,
-      documentAnalysis: { discovered: documents.discovered, downloadAttempted: documents.attempted, downloaded: documents.downloaded, attempted: documents.attempted, successful: documents.successful, analyzerVersion: documents.analyzerVersion, results: documents.results.map(({ text, ...meta }) => meta) },
+      supportRequirements: result.supportRequirements,
+      supportEligibility: result.supportEligibility,
+      documentAnalysis: { discovered: documents.discovered, downloadAttempted: documents.attempted, downloaded: documents.downloaded, attempted: documents.attempted, successful: documents.successful, analyzerVersion: documents.analyzerVersion, requirements: documents.requirements, results: documents.results.map(({ text, ...meta }) => meta) },
       crossValidation: result.crossValidation,
       adapter: candidate.adapter || (source.alio ? 'ALIO' : source.org),
       raw: vacancy.evidenceText.slice(0, 5000)
@@ -842,8 +844,32 @@ if (pipelineReport.payload) {
   await fs.writeFile('data/pipeline-report.json', `${JSON.stringify(pipelineReport.payload, null, 2)}\n`, 'utf8');
 }
 
+
+const requirementReport = {
+  generatedAt: nowIso,
+  schemaVersion: '1.0.0',
+  policy: '지원조건을 required/preferred/unknown으로 분리. 문서>상세>목록>제목 근거 우선. 현재는 관측/검증용이며 신규 hard filter로 사용하지 않음.',
+  summary: {
+    acceptedJobs: jobs.length,
+    withStructuredRequirements: jobs.filter(job => Boolean(job.supportRequirements)).length,
+    needsReview: jobs.filter(job => job.supportEligibility?.status === 'needs-review').length,
+    ineligibleByKnownHardRequirement: jobs.filter(job => job.supportEligibility?.status === 'ineligible').length
+  },
+  jobs: jobs.map(job => ({org:job.org,title:job.title,link:job.link,supportRequirements:job.supportRequirements||null,supportEligibility:job.supportEligibility||null})),
+  vacancyDecisions: sources.flatMap(source => (source.vacancyDecisions || []).map(decision => ({
+    org:source.org,
+    vacancyId:decision.vacancyId,
+    vacancyName:decision.vacancyName,
+    status:decision.status,
+    reason:decision.reason||'',
+    supportRequirements:decision.analysis?.supportRequirements||null,
+    supportEligibility:decision.analysis?.supportEligibility||null
+  })))
+};
+
 await Promise.all([
   fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8'),
+  fs.writeFile('data/requirement-report.json', `${JSON.stringify(requirementReport, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, ...qa }, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/debug-report.json', `${JSON.stringify(debugPayload, null, 2)}\n`, 'utf8')
 ]);

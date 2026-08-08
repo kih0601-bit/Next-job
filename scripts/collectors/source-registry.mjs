@@ -32,18 +32,21 @@ const RAW_SOURCES = [
     'https://comwel.saramin.co.kr/',
     'https://www.comwel.or.kr/comwel/noti/recruit.jsp',
     'https://www.comwel.or.kr/', alioUrl('근로복지공단') ] },
-  { org: '한국산업안전보건공단', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL+JOB_ALIO_FALLBACK' }, urls: [
+  { org: '한국산업안전보건공단', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL_SPA+JOB_ALIO_FALLBACK', officialBoardPath: '/notification/jobncontract/job', officialDetailPattern: '/notification/jobncontract/job/jobdata?bbsId=B2025021400005&pstNo=' }, urls: [
+    'https://www.kosha.or.kr/notification/jobncontract/job',
     'https://www.kosha.or.kr/kosha/intro/recruitment.do',
     'https://www.kosha.or.kr/', alioUrl('한국산업안전보건공단') ] },
   { org: '울산항만공사', accessTemplate: 'REDIRECT_OR_ENTRY', accessConfig: { platform: 'OFFICIAL_ENTRY' }, urls: [
     'https://www.upa.or.kr/portal/contents.do?mid=0405000000',
     'https://www.upa.or.kr/', alioUrl('울산항만공사') ] },
   { org: '한국전력공사', accessTemplate: 'DEDICATED_RECRUIT_SITE', accessConfig: { platform: 'KEPCO_RECRUIT' }, urls: [
-    'https://www.kepco.co.kr/home/about/careers.do',
-    'https://recruit.kepco.co.kr/', alioUrl('한국전력공사') ] },
+    'https://recruit.kepco.co.kr:444/frt/main.do',
+    'https://recruit.kepco.co.kr/',
+    'https://www.kepco.co.kr/home/about/careers.do', alioUrl('한국전력공사') ] },
   { org: '한국수력원자력', accessTemplate: 'DEDICATED_RECRUIT_SITE', accessConfig: { platform: 'KHNP_RECRUIT' }, urls: [
-    'https://www.khnp.co.kr/recruit/',
-    'https://www.khnp.co.kr/recruit/main/index.do', alioUrl('한국수력원자력') ] },
+    'https://www.khnp.co.kr/recruit/rj00/RJ10100.do?mid=MI000000000000000484',
+    'https://www.khnp.co.kr/recruit/main/index.do',
+    'https://www.khnp.co.kr/recruit/', alioUrl('한국수력원자력') ] },
   { org: '울산도시공사', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL' }, urls: [
     'https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000',
     'https://www.umca.co.kr/' ] },
@@ -52,7 +55,8 @@ const RAW_SOURCES = [
     'https://uic.or.kr/notify/noti06.do',
     'https://uic.or.kr/recruit/main/mainPage.do',
     'https://uic.or.kr/' ] },
-  { org: '울산남구도시관리공단', accessTemplate: 'COMMON_PLATFORM', accessConfig: { platform: 'INCRUIT' }, urls: [
+  { org: '울산남구도시관리공단', accessTemplate: 'COMMON_PLATFORM', accessConfig: { platform: 'INCRUIT', verifiedEmptyText: '등록된 정보가 없습니다' }, urls: [
+    'https://recruit.incruit.com/uncmc/job/',
     'https://recruit.incruit.com/uncmc/',
     'https://uncmc.incruit.com/',
     'https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2',

@@ -373,6 +373,12 @@ export function countVisibleBoardPosts(html = '', source = null) {
   const org = source?.org || '';
   const url = source?.url || '';
 
+  if (org === '근로복지공단') {
+    const ids = new Set();
+    for (const m of raw.matchAll(/<a\b[^>]*\bclass\s*=\s*(["'])[^"']*\bmain-job\b[^"']*\1[^>]*\bhref\s*=\s*(["'])([^"']*[?&]projectid=(\d+)[^"']*)\2/gi)) ids.add(m[4]);
+    if (ids.size) return ids.size;
+  }
+
   // Institution-specific counters for boards that do not expose normal <tr>/<a> rows.
   if (/job\.alio\.go\.kr/i.test(url)) {
     const ids = new Set([...raw.matchAll(/recruitView\.do\?idx=(\d+)/gi)].map(m => m[1]));
@@ -438,6 +444,34 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       Object.defineProperty(jobs, 'diagnostics', { value: { visiblePostCount: jobs.length, rowMode: true, anchors: 0, titleMatches: jobs.length, noUrl: 0, unsafeUrl: 0, accepted: jobs.length, rowFallbackAccepted: 0, clickableBlocksScanned: 0, clickableBlocksAccepted: 0, listOnlyAccepted: 0, titleSamples: jobs.slice(0,8).map(x=>x.title), unsafeSamples: [], actionSamples: [], candidateUrlSamples: jobs.slice(0,8).map(x=>({title:x.title,url:x.link,allowed:true})) }, enumerable: false });
       return jobs;
     } catch { /* fall through to HTML parser */ }
+  }
+
+
+  if (source.org === '근로복지공단') {
+    const jobs = [];
+    const seen = new Set();
+    for (const match of String(html).matchAll(/<a\b([^>]*\bclass\s*=\s*(["'])[^"']*\bmain-job\b[^"']*\2[^>]*)>([\s\S]*?)<\/a>/gi)) {
+      const attrs = match[1] || '';
+      const title = cleanHtml(match[3]).replace(/\s+/g, ' ').trim();
+      if (!validTitle(title)) continue;
+      const href = attrs.match(/\bhref\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
+      const link = absoluteUrl(href, source.url);
+      if (!link || !/[?&]projectid=\d+/i.test(link)) continue;
+      const key = `${source.org}|${normalizeTitleForDedup(title)}|${canonicalJobUrl(link)}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      jobs.push({ org: source.org, title, link: canonicalJobUrl(link), listText: cleanHtml(match[0]).replace(/\s+/g, ' ').trim(), adapter: `${source.org}:main-job-card` });
+    }
+    if (jobs.length) {
+      Object.defineProperty(jobs, 'diagnostics', { value: {
+        visiblePostCount: jobs.length, rowMode: true, anchors: jobs.length, titleMatches: jobs.length,
+        noUrl: 0, unsafeUrl: 0, accepted: jobs.length, rowFallbackAccepted: 0,
+        clickableBlocksScanned: jobs.length, clickableBlocksAccepted: jobs.length, listOnlyAccepted: 0,
+        titleSamples: jobs.slice(0,8).map(x=>x.title), unsafeSamples: [], actionSamples: [],
+        candidateUrlSamples: jobs.slice(0,8).map(x=>({title:x.title,url:x.link,allowed:true}))
+      }, enumerable: false });
+      return jobs;
+    }
   }
 
   const jobs = [];

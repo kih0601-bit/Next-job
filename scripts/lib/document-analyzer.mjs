@@ -1,3 +1,4 @@
+import { extractSupportRequirements } from './requirement-extractor.mjs';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -5,7 +6,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '12.5-file-endpoint-and-transport-parser';
+const ANALYZER_VERSION = '2.1-requirement-foundation';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -462,6 +463,8 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
 
   const successful = results.filter(result => result.ok);
   const downloaded = results.filter(result => result.downloaded);
+  const combinedText = successful.map(result => result.text || '').filter(Boolean).join('\n');
+  const requirements = extractSupportRequirements({ documentText: combinedText });
   return {
     text: successful
       .filter(result => result.priority >= 40)
@@ -474,6 +477,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
     downloaded: downloaded.length,
     discovered: attachments.length,
     analyzerVersion: ANALYZER_VERSION,
-    diagnostics: summarizeResults(results)
+    diagnostics: summarizeResults(results),
+    requirements
   };
 }

@@ -1,3 +1,4 @@
+import { extractSupportRequirements, evaluateSupportEligibility } from './requirement-extractor.mjs';
 import {
   NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS,
   REQUIRED_LICENSE_PATTERNS, DEGREE_REQUIRED_PATTERNS, HIGH_SCHOOL_OK_PATTERNS,
@@ -158,9 +159,15 @@ export function analyzeJob({ title = '', listText = '', detailText = '', documen
     fitScore = Math.min(fitScore, 90);
   }
   const decisionEvidence = buildDecisionEvidence({ fullText, detailText, documentText, education, employmentType, location });
+  const supportRequirements = extractSupportRequirements({ title, listText, detailText, documentText });
+  const supportEligibility = evaluateSupportEligibility(supportRequirements, {
+    education:'고졸', educationKnown:true,
+    licensesKnown:false, experienceKnown:false, majorKnown:false
+  });
   return {
     status: recommended ? '지원 추천' : excluded ? '제외' : '확인 필요', recommended, excluded, reviewNeeded,
     eligibility: education, employmentType, location, fitScore, jobCategory: detectJobCategory(fullText), crossValidation,
+    supportRequirements, supportEligibility,
     fitReasons: [...new Set(reasons)], excludeReasons: [...new Set(excludeReasons)], decisionEvidence
   };
 }

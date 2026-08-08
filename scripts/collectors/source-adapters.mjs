@@ -1,3 +1,4 @@
+import { extractKepcoRecords } from '../lib/kepco-dynamic.mjs';
 import { cleanHtml, absoluteUrl, decodeHtmlEntities } from '../lib/detail-parser.mjs';
 import { extractAlioCandidates } from './alio-adapter.mjs';
 
@@ -444,6 +445,11 @@ function titleFromBoardRow(row) {
 }
 
 export function countVisibleBoardPosts(html = '', source = null) {
+  if (source?.org === '한국전력공사' && /recruit\.kepco\.co\.kr/i.test(source?.url || '')) {
+    const records = extractKepcoRecords(html, source.url);
+    if (records.length) return { count: records.length, template: 'KEPCO_STATE_LI' };
+  }
+
   const raw = String(html);
   const org = source?.org || '';
   const url = source?.url || '';
@@ -514,6 +520,20 @@ function normalizeBoardKey(value = '') {
 }
 
 export function extractCandidatesForSource(html, source, { validTitle, normalizeTitleForDedup }) {
+  if (source.org === '한국전력공사' && /recruit\.kepco\.co\.kr/i.test(source.url || '')) {
+    const records = extractKepcoRecords(html, source.url);
+    if (records.length) {
+      return records.map(r => ({
+        org: source.org,
+        title: r.title,
+        link: r.detailUrl,
+        listText: r.listText,
+        adapter: '한국전력공사:state-li',
+        detailRequest: r.detailRequest
+      }));
+    }
+  }
+
   try {
     const host = new URL(source.url).hostname;
     if (host === 'job.alio.go.kr' || host.endsWith('.alio.go.kr')) {

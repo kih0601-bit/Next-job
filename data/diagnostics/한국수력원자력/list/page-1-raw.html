@@ -1,10 +1,718 @@
 
+<!-- header -->
 
-<!-- 넷퍼넬 적용전 -->
 
 
-<!-- 넷퍼넬 적용 -->
-<script src="/recruit/common/js/netfunnel.js"></script>
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />-->
+<meta name="viewport" content="initial-scale=1, width=device-width">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="keywords" content="한국수력원자력 채용">
+<meta name="description" content="한국수력원자력 채용"> 
+<link rel="canonical" href="">
+<meta property="og:type" content="website"> 
+<meta property="og:title" content="한국수력원자력 채용">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
+<meta property="og:url" content="">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="한국수력원자력 채용">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="">
+<meta name="twitter:domain" content="">
+
+
+<link rel="stylesheet" href="/recruit/common/css/reset.css">
+<link rel="stylesheet" href="/recruit/common/css/fullpage.css">
+<link rel="stylesheet" href="/recruit/common/css/swiper.css">
+<link rel="stylesheet" href="/recruit/common/css/style.css">
+
+<script src="/recruit/common/js/jquery-1.11.0.min.js"></script>
+<script src="/recruit/common/js/jquery.bpopup.min.js"></script>
+<script src="/recruit/common/js/jquery-ui.js"></script>
+<script src="/recruit/common/js/fullpage.js"></script> 
+<script src="/recruit/common/js/swiper.js"></script> 
+
+<!-- <script src="/khnp/js/common.js"></script> -->
+<script src="/recruit/common/js/script.js"></script> 
+<script src="/recruit/common/js/cmmn.js"></script> 
+<script src="/recruit/common/js/ibSheetCmmn.js"></script> 
+<script src="/recruit/common/js/respond.src.js"></script> 
+
+<script type="text/javascript" src="/recruit/common/js/rsa/jsbn.js"></script>
+<script type="text/javascript" src="/recruit/common/js/rsa/rsa.js"></script>
+<script type="text/javascript" src="/recruit/common/js/rsa/prng4.js"></script>
+<script type="text/javascript" src="/recruit/common/js/rsa/rng.js"></script>
+
+<script src="/recruit/common/js/sheet/ibleaders.js"></script>
+<script src="/recruit/common/js/sheet/ibsheetinfo.js"></script>
+<script src="/recruit/common/js/sheet/ibsheet.js"></script>
+
+<!-- calendar  -->
+<link rel="stylesheet" href="/recruit/common/js/calendar/jquery-ui.css" />
+<link rel="stylesheet" href="/recruit/common/js/calendar/jquery.ui.all.css" />
+<script src="/recruit/common/js/calendar/jquery.ui.core.js"></script>
+<script src="/recruit/common/js/calendar/jquery.ui.datepicker-ko.js"></script>
+<script src="/recruit/common/js/calendar/calendar.js"></script>
+<!-- // calendar  -->
+
+
+<title>한국수력원자력 채용</title>
 <script>
-	NetFunnel_Action( {action_id:"recruit_main"}, src="/recruit/main/index.do" );
+$(document).ready(function(){
+	cf_Initialization();
+	
+	$("#pop_down_btn").click(function(){
+		$("#khnpPopDiv").html("");
+		$(".pop_layer").hide();
+
+	});
+	
+	// 팝업 레이어 드래그
+	$("#wrap .pop_layer").draggable();
+	//alert(cf_IsMobile());  
+	if(cf_IsMobile()){
+		$("#m_header").show();
+		$("#header").hide();
+	}else{
+		$("#header").show();
+		$("#m_header").hide();
+	}
+});
 </script>
+</head>
+
+<body>
+
+<div id="wrap">
+	<!-- ===================== popUp 레이어 =================== -->
+	<div class="pop_layer" id="dragPopLayer">
+		<div class="pop_warp">
+			<div class="p_title">
+				<h2></h2>
+				<p class="pop_down">
+					<a href="javascript:;" id="pop_down_btn" title="닫기"><img src="/recruit/common/img/btn_fullmenuClo_20201130.png" alt="닫기"></a>
+				</p>
+			</div>
+			<div class="pop_content">
+				<div class="popup_list" id="khnpPopDiv"></div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- ===================== popUp 레이어 =================== -->
+	<!-- ********************************************************* PC 메뉴 ********************************************************* -->
+
+	<div id="header" style="display:none;">
+		<h1 style="z-index:999;"><a href="/recruit/main/index.do"><img src="/recruit/common/img/img_logo.png" alt="한국수력원자력 채용"/></a></h1>
+		<div class="go_ch">
+			<ul>
+	            <li><a href="javascript:;" id="on1"  onClick="fn_btnOn('1')" style="color:#5789cb">일반 채용</a></li>
+	            <li><a href="https://www.khnp.co.kr/trecruit" id="on2"  onClick="fn_btnOn('2')">기간제 채용</a></li>
+	            <li><a href="javascript:;" id="on3"  onClick="fn_btnOn('3')">개인정보 처리방침</a></li>
+	        </ul>
+	    </div>
+		<div class="gnb">
+			<ul>			
+
+<li>
+    <a href='/recruit/ri00/RI10100.do?mid=MI000000000000000498' id='gnb01'>채용안내</a>
+    <ul>
+         <li><a href='/recruit/ri00/RI10100.do?mid=MI000000000000000498'>핵심가치와 인재상</a></li>
+         <li><a href='/recruit/ri00/RI30100.do?mid=MI000000000000000498'>근무조건 및 대우</a></li>
+         <li><a href='/recruit/ri00/RI50100.do?mid=MI000000000000000498'>직무소개</a></li>
+    </ul>
+</li>
+<li>
+    <a href='/recruit/rj00/RJ10100.do?mid=MI000000000000000484' id='gnb02'>채용공고</a>
+    <ul>
+         <li><a href='/recruit/rj00/RJ10100.do?mid=MI000000000000000484'>채용공고</a></li>
+         <li><a href='/recruit/rj00/RJ20100.do?mid=MI000000000000000484'>공지사항</a></li>
+    </ul>
+</li>
+<li>
+    <a href='/recruit/rk10/RK10000.do?mid=MI000000000000000487' id='gnb03'>나의채용</a>
+    <ul>
+         <li><a href='/recruit/rk10/RK10100.do?mid=MI000000000000000487'>입사지원</a></li>
+         <li><a href='/recruit/rk00/RK30100.do?mid=MI000000000000000487'>합격확인</a></li>
+         <li><a href='/recruit/rk00/RK10540.do?mid=MI000000000000000487'>수험표출력</a></li>
+         <li><a href='/recruit/rk60/RK10430.do?mid=MI000000000000000487'>지원서출력</a></li>
+    </ul>
+</li>
+<li>
+    <a href='/recruit/inquiry/list0010.do?mid=MI000000000000000489' id='gnb04'>채용문의</a>
+    <ul>
+         <li><a href='/recruit/inquiry/list0010.do?mid=MI000000000000000489'>FAQ</a></li>
+         <li><a href='/recruit/inquiry/RL20160.do?mid=MI000000000000000489'>Q&A</a></li>
+         <li><a href='/recruit/rl30/RL30200.do?mid=MI000000000000000489'>채용서류 반환청구</a></li>
+    </ul>
+</li>
+<li>
+    <a href='/recruit/rn00/RN10000.do?mid=MI000000000000000542' id='gnb05'>고졸합격자관리</a>
+    <ul>
+         <li><a href='/recruit/rn00/RN10130.do?mid=MI000000000000000542'>인적사항</a></li>
+         <li><a href='/recruit/highSchool/RN20100.do?mid=MI000000000000000542'>공지사항</a></li>
+         <li><a href='/recruit/highSchool/RN30100.do?mid=MI000000000000000542'>Q&A</a></li>
+    </ul>
+</li>
+<li>
+    <a href='/recruit/rk50/RK50100.do?mid=MI000000000000000492' id='gnb06'>사회형평인재</a>
+    <ul>
+         <li><a href='/recruit/rk50/RK50100.do?mid=MI000000000000000492'>사회형평인재 상시등록</a></li>
+    </ul>
+</li>
+
+			</ul>
+		</div>
+		<a href="#" class="btn_fullmenu"><img src="/recruit/common/img/btn_fullmenu.png" alt="전체메뉴"/></a>
+		<div class="bg_sub_gnb"></div>
+	</div>
+	
+
+	<!-- ********************************************************* 모바일 메뉴 ********************************************************* -->
+	<div id="m_header" style="display:none;">
+		<h1><a href="/recruit/main/index.do"><img src="/recruit/common/img/img_logo_m.png" alt="한국수력원자력 채용"/></a></h1>		
+		<a href="#" class="open_mobile_fullmenu"><img src="/recruit/common/img/btn_mobile_fullmenu.png" alt="모바일 전체메뉴"/></a>
+		<div class="mobile_fullmenu">
+			<div class="in">
+				<h1><a href="#"><img src="/recruit/common/img/img_logo_m02.png" alt="한국수력원자력 채용"/></a></h1>
+				<a href="#" class="close_mobile_fullmenu"><img src="/recruit/common/img/btn_close.png" alt="닫기"/></a>
+				<ul>
+					<li>
+						<a href="/recruit/ri00/RI10100.do?mid=MI000000000000000498">채용안내</a>
+						<ul>
+							<li><a href="/recruit/ri00/RI10100.do?mid=MI000000000000000498">핵심가치와 인재상</a></li>
+							
+							<li><a href="/recruit/ri00/RI30100.do?mid=MI000000000000000498">근무조건 및 대우</a></li>
+							
+							<li><a href="/recruit/ri00/RI50100.do?">직무소개</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/recruit/rj00/RJ10100.do?mid=MI000000000000000484">채용공고</a>
+						<ul>
+							<li><a href="/recruit/rj00/RJ10100.do?mid=MI000000000000000484">채용공고</a></li>
+							<li><a href="/recruit/rj00/RJ20100.do?mid=MI000000000000000484">공지사항</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/recruit/rk00/RK20110.do?mid=MI000000000000000487">나의채용</a>
+						<ul>
+							
+							<li><a href="/recruit/rk00/RK30100.do?mid=MI000000000000000487">합격확인</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/recruit/inquiry/list0010.do?mid=MI000000000000000489">채용문의</a>
+						<ul>
+							<li><a href="/recruit/inquiry/list0010.do?mid=MI000000000000000489">FAQ</a></li>
+							<li><a href="/recruit/inquiry/RL20100.do?mid=MI000000000000000489">Q&amp;A</a></li>
+						</ul>
+					</li>
+					<!-- 
+					<li>
+						<a href="/recruit/WEB-INF/html_user/people/REKQ0020_NEW.jsp">한수원사람들</a>
+						<ul>
+							<li><a href="/recruit/WEB-INF/html_user/people/REKQ0020_NEW.jsp">한수원JOB스케치</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/recruit/WEB-INF/html_user/sub/highSchool/RECMQ0190_NEW.jsp">고졸합격자관리</a>
+						<ul>
+							<li><a href="/recruit/WEB-INF/html_user/highSchool/RECMQ0190_NEW.jsp">인적사항</a></li>
+							<li><a href="/recruit/WEB-INF/html_user/highSchool/REHQ0020_NEW.jsp">공지사항</a></li>
+							<li><a href="/recruit/WEB-INF/html_user/highSchool/REHQ0030_NEW.jsp">Q&amp;A</a></li>
+						</ul>
+					</li>
+					 -->
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- //모바일 메뉴 -->
+
+<script type="text/javascript">
+//증빙서류 팝업
+function fnGuideApplicantPop(){	
+	fn_OpenPopup('/recruit/rk20/RK10330.do', 800, 700);
+}
+
+//가점 및 우대요건 입력방법 팝업
+function fnPrimeScorePop(){	
+	//ASIS 나의채용 > 입사지원 > 지원서작성 접근시 전문계약직일 경우에만
+	//TOBE 나의채용 > 입사지원 > 다음 > rk00.selectApplyerInfo > rk10301.jsp > $("#btn_Next").click(function(){
+	//전문진 계약직구분은 넘어옴 recrGubunId AND B.RECR_GUBUN_ID IN ( 'BB010001' /*전문계약직(정보보안)*/, 'OO010001' /*전문계약직(사업금융)*/ ) 이면 팝업호출함.
+	fn_OpenPopup('/recruit/rk20/RK10340.do', '720', '450'); 
+}
+	
+function fn_btnOn(param) { 
+	//20241119 최지현 수정
+	if(param == "3") {		//popup 개인정보처리방침
+		//fn_OpenPopup('/recruit/rk20/RK10350.do', 800, 700);
+		fn_OpenPopup('https://www.khnp.co.kr/main/contents.do?key=3567', 1200, 710);
+	}
+}
+
+</script>
+	
+						
+<form name="frm" id="frm" enctype="multipart/form-data">
+	<div id="wrap">
+		
+		<div id="container" class="sub02">
+			
+			<div class="path">
+				<div class="path_in">
+					<ul>
+						<li><a href="/recruit/main/index.do">
+								<img src="/recruit/common/img/ico_home.png" alt="HOME"/>
+							</a></li>
+						<li><a href="/recruit/rj00/RJ10100.do?mid=MI000000000000000484">채용공고</a></li>
+						<li><a href="/recruit/rj00/RJ20100.do?mid=MI000000000000000484">공지사항</a></li>
+					</ul>
+					<!-- <a href="javascript:window.print();" class="btn_print"><img src="/recruit/common/img/ico_print.png" alt="print"/>Print</a> -->
+				</div>
+			</div>
+			
+			<!-- 본문 -->
+			<div class="contents">
+				
+
+
+
+
+
+
+
+
+
+
+
+<div id='snb'>
+    <h2>채용공고</h2>
+    <div class='snb_list'>
+        <ul>
+            <li>
+                <a href='/recruit/rj00/RJ10100.do?mid=MI000000000000000484' id='snb_list03_01'>채용공고</a>
+            </li>
+            <li>
+                <a href='/recruit/rj00/RJ20100.do?mid=MI000000000000000484' id='snb_list03_02'>공지사항</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+				<!-- <div id="snb">
+					<h2>나의채용</h2>
+					<div class="snb_list">
+						<ul>
+							<li>
+								<a href="/khnp/sub/myRecruit/RECQ0010_NEW_OP.jsp" id="snb_list03_01">입사지원</a>
+								<ul>
+									<li><a href="/khnp/sub/myRecruit/RECQ0010_NEW_OP.jsp" id="snb_list03_01_01">응시분야선택</a></li>
+									<li><a href="#" id="snb_list03_01_02">지원서작성요령조회</a></li>
+									<li><a href="/khnp/sub/myRecruit/REGR0020_NEW.jsp" id="snb_list03_01_03">지역주민증명서작성</a></li>
+									<li><a href="/khnp/sub/myRecruit/REGQ0030_NEW.jsp" id="snb_list03_01_04">지역주민증명서확인및수정</a></li>
+									<li><a href="/khnp/sub/myRecruit/RECR0010_1_NEW.jsp" id="snb_list03_01_05">입사지원작성</a></li>
+									<li><a href="/khnp/sub/myRecruit/REER0020_NEW_1.jsp" id="snb_list03_01_06">지원서작성</a></li>
+									<li><a href="/khnp/sub/myRecruit/RECQ0020_NEW_S.jsp" id="snb_list03_01_07">지원서확인·수정</a></li>
+									<li><a href="/khnp/sub/myRecruit/RECMQ0150_NEW.jsp" id="snb_list03_01_08">지원서출력</a></li>
+									<li><a href="/khnp/sub/myRecruit/RECMQ0150_NEW.jsp" id="snb_list03_01_09">수험표출력</a></li>
+								</ul>
+							</li>
+							<li><a href="/khnp/sub/myRecruit/RECMQ0150_NEW.jsp" id="snb_list03_02">지원현황</a></li>
+							<li><a href="/khnp/sub/myRecruit/RECQ0300_NEW.jsp" id="snb_list03_03">합격확인</a></li>
+							<li>
+								<a href="#" id="snb_list03_04">외국어 성적 (사전/추가)제출</a>
+								<ul>
+									<li><a href="/recruit/myRecruit/RK40100.do" id="snb_list03_04_01">외국어 성적 사전제출</a></li>
+									<li><a href="/recruit/rk10/RK10200.do?cmd=sajun1" id="snb_list03_04_02">외국어 성적 사전제출 확인수정</a></li>
+									<li><a href="/recruit/rk10/RK10200.do?cmd=sajun2" id="snb_list03_04_02">외국어 성적 사전 승인여부 확인</a></li>
+									<li><a href="/recruit/myRecruit/RK40140.do" id="snb_list03_04_04">외국어 성적 추가제출</a></li>
+									<li><a href="/recruit/rk10/RK10200.do?cmd=sahoo1" id="snb_list03_04_05">외국어 성적 추가제출 확인수정</a></li>
+								</ul>
+							</li>
+							<li><a href="/khnp/sub/myRecruit/REDMR0010_NEW.jsp" id="snb_list03_05">장애인/취업지원 대상자 등록</a></li>
+						</ul>
+					</div>
+				</div> -->
+	<input type="hidden" id="mid" name="mid" value="MI000000000000000484">
+				<div id="contents">
+					<!-- 버튼 고정 -->
+					<div class="h3_tit">
+						<div class="in">
+							<h3>채용공고</h3>
+						</div>
+					</div>
+					<div class="in_path">
+						<ul>
+							<li>HOME</li>
+							<li>채용공고</li>
+							<li>공지사항</li>
+						</ul>
+					</div>
+					<!-- 본문내용 -->
+					<div class="substance">
+						<div class="boardListWrap">
+							<div class="infoWrap">
+								<span class="count">Total : 21개 (Page 1/3)</span>
+								<label class="blind" for="schRecrGubunId">채용구분</label>
+								<select class="select" id="schRecrGubunId" name="schRecrGubunId" />"></select>
+							</div>
+
+							<div class="tableBasic">
+								<table>
+									<caption>채용공고 목록</caption>
+									<colgroup>
+										<col style="width:5%"/>
+										<col style=""/>
+<!-- 										<col style="width:10%"/> -->
+										<col style="width:25%"/>
+									</colgroup>
+									<thead>
+										<tr>
+											<th scope="col">번호</th>
+											<th scope="col">제목</th>
+<!-- 											<th scope="col">첨부파일</th> -->
+											<th scope="col">전형기간</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+										
+											
+												
+													<tr>
+														<td scope="row">21</td>
+														<td class="alignL padL20">
+															<a href="javascript:fnMoveDtlPage('2025II01', '21');" class="ellipsis">2025년도 제5차 신입사원(고졸수준) 선발</a>
+														</td>
+<!-- 														<td> -->
+
+
+
+<!-- 														</td> -->
+														<!--<td>2025.11.05 ~ 2027.12.31</td>-->
+														<td>2025.11.05 ~</td>
+													</tr>
+												
+													<tr>
+														<td scope="row">20</td>
+														<td class="alignL padL20">
+															<a href="javascript:fnMoveDtlPage('2026UU04', '20');" class="ellipsis">2026년도 제4차 신입사원(고졸수준 일반전형)  선발</a>
+														</td>
+<!-- 														<td> -->
+
+
+
+<!-- 														</td> -->
+														<!--<td>2026.07.23 ~ 2027.03.30</td>-->
+														<td>2026.07.23 ~</td>
+													</tr>
+												
+													<tr>
+														<td scope="row">19</td>
+														<td class="alignL padL20">
+															<a href="javascript:fnMoveDtlPage('2026AA03', '19');" class="ellipsis">2026년도 제3차 신입사원(대졸수준) 선발</a>
+														</td>
+<!-- 														<td> -->
+
+
+
+<!-- 														</td> -->
+														<!--<td>2026.07.22 ~ 2027.03.29</td>-->
+														<td>2026.07.22 ~</td>
+													</tr>
+												
+													<tr>
+														<td scope="row">18</td>
+														<td class="alignL padL20">
+															<a href="javascript:fnMoveDtlPage('2026FF03', '18');" class="ellipsis">2026년도 제3차 신입사원(사회형평전형) 선발</a>
+														</td>
+<!-- 														<td> -->
+
+
+
+<!-- 														</td> -->
+														<!--<td>2026.07.22 ~ 2027.03.29</td>-->
+														<td>2026.07.22 ~</td>
+													</tr>
+												
+													<tr>
+														<td scope="row">17</td>
+														<td class="alignL padL20">
+															<a href="javascript:fnMoveDtlPage('2026GG03', '17');" class="ellipsis">2026년도 제3차 신입사원(보훈특별전형) 선발</a>
+														</td>
+<!-- 														<td> -->
+
+
+
+<!-- 														</td> -->
+														<!--<td>2026.07.22 ~ 2027.03.29</td>-->
+														<td>2026.07.22 ~</td>
+													</tr>
+												
+													<tr>
+														<td scope="row">16</td>
+														<td class="alignL padL20">
+															<a href="javascript:fnMoveDtlPage('2026RR04', '16');" class="ellipsis">2026년도 제4차 경력사원(전문계약직) 선발</a>
+														</td>
+<!-- 														<td> -->
+
+
+
+<!-- 														</td> -->
+														<!--<td>2026.06.23 ~ 2026.12.30</td>-->
+														<td>2026.06.23 ~</td>
+													</tr>
+												
+													<tr>
+														<td scope="row">15</td>
+														<td class="alignL padL20">
+															<a href="javascript:fnMoveDtlPage('2026RR07', '15');" class="ellipsis">2026년도 제7차 경력사원(전문계약직) 선발</a>
+														</td>
+<!-- 														<td> -->
+
+
+
+<!-- 														</td> -->
+														<!--<td>2026.07.22 ~ 2026.12.27</td>-->
+														<td>2026.07.22 ~</td>
+													</tr>
+												
+													<tr>
+														<td scope="row">14</td>
+														<td class="alignL padL20">
+															<a href="javascript:fnMoveDtlPage('2026RR06', '14');" class="ellipsis">2026년도 제6차 경력사원(전문원, 경력직원) 선발</a>
+														</td>
+<!-- 														<td> -->
+
+
+
+<!-- 														</td> -->
+														<!--<td>2026.07.22 ~ 2026.12.27</td>-->
+														<td>2026.07.22 ~</td>
+													</tr>
+												
+													<tr>
+														<td scope="row">13</td>
+														<td class="alignL padL20">
+															<a href="javascript:fnMoveDtlPage('2026HH01', '13');" class="ellipsis">2026년도 제2차 신입사원(청원경찰) 선발</a>
+														</td>
+<!-- 														<td> -->
+
+
+
+<!-- 														</td> -->
+														<!--<td>2026.06.30 ~ 2026.11.30</td>-->
+														<td>2026.06.30 ~</td>
+													</tr>
+												
+													<tr>
+														<td scope="row">12</td>
+														<td class="alignL padL20">
+															<a href="javascript:fnMoveDtlPage('2026HH02', '12');" class="ellipsis">2026년도 제2차 신입사원(청원경찰 보훈특별) 선발</a>
+														</td>
+<!-- 														<td> -->
+
+
+
+<!-- 														</td> -->
+														<!--<td>2026.06.30 ~ 2026.11.30</td>-->
+														<td>2026.06.30 ~</td>
+													</tr>
+												
+											
+											
+										
+									</tbody>
+									
+								</table>
+							</div>
+						</div>
+						
+						<!--jsp:directive.include file="/WEB-INF/jsp/recruit/include/incPage.jsp" /-->
+						<!-- div class="paging">
+							<a href="#" class="move first">첫 페이지로 이동</a>
+							<a href="#" class="move prev">이전페이지로 이동</a>
+							<a href="#" class="on">1</a> 
+							<a href="#">2</a>
+							<a href="#">3</a>
+							<a href="#">4</a>
+							<a href="#">5</a>
+							<a href="#">6</a>
+							<a href="#">7</a>
+							<a href="#">8</a>
+							<a href="#">9</a>
+							<a href="#">10</a>
+							<a href="#" class="move next">다음 페이지로 이동</a>
+							<a href="#" class="move last">마지막 페이지로 이동</a>
+						</div-->
+						
+						<!-- page -->
+						<div class="paging">
+							<a href="javascript:fnMoveFirst();" class="move first">첫 페이지로 이동</a>
+							<a href="javascript:fnMovePrev();" class="move prev">이전페이지로 이동</a>
+							 <a href="#" class="on">1</a>
+<a href="javascript:fncSearch('2');">2</a>
+<a href="javascript:fncSearch('3');">3</a>
+
+							<a href="javascript:fnMoveNext();" class="move next">다음 페이지로 이동</a>
+							<a href="javascript:fnMoveLast();" class="move last">마지막 페이지로 이동</a>
+						</div>
+						<!-- //page -->
+						
+					</div>
+					<!-- //본문내용 -->
+				</div>
+			</div>
+			<!-- //본문 -->
+			<a id="downFileHref" href="" ><img id="downFile" src="/recruit/common/img/img_attachfile.png" alt="첨부파일" /></a>		
+		</div>
+	
+	</div>
+	
+	<input type="hidden" id="pageIndex" 		name="pageIndex" 			value="" /> <!-- 페이징 처리 시 사용 -->
+	<input type="hidden" id="srchRecrOpeningId" name="srchRecrOpeningId" 	value="">
+	<input type="hidden" id="srchOpeningSeq" 	name="srchOpeningSeq" 		value="">
+	<input type="hidden" id="srchOpeningStep" 	name="srchOpeningStep" 		value="">
+	
+	<input type="hidden" id="rtnRecrGubunId" 	name="rtnRecrGubunId" 		value="">
+	<input type="hidden" id="rnum" 	name="rnum">
+	
+	<!-- 첨부파일 -->
+	<input type="hidden" id="viewFile" 		name="viewFile" 	value="">
+	<input type="hidden" id="newFile" 		name="newFile" 		value="">
+	<input type="hidden" id="fileId" 		name="fileId" 		value="">
+	<input type="hidden" id="fileSeq" 		name="fileSeq" 		value="">
+	<input type="hidden" id="aliasName" 	name="aliasName" 	value="">
+	<input type="hidden" id="statsIndex" 	name="statsIndex" 	value="">
+	<input type="file" id="file11" name="file11" style="display: none;" />
+</form>
+
+<script>
+$(document).ready(function() {
+	//채용구분
+	cf_SetSelectBox("schRecrGubunId", "/recruit/cmmn/RZ0010/json0010f.do", {codeClassId : "APPLY_GUBUN"},false, fnSetSelectBox);
+	
+	//채용구분
+	$("#schRecrGubunId").change(function(){
+ 		$("#frm").attr("action", "/recruit/rj00/RJ10100.do");
+ 		$("#frm").attr("method", "POST");
+ 		$("#frm").submit();
+	});
+});
+
+function fnSetSelectBox(){
+	$("#frm #schRecrGubunId").val('');
+};
+
+//페이지 번호 클릭시 조회 (함수명 변경금지)
+function fncSearch(pageIndex) {
+	$("#frm #pageIndex").val(pageIndex);
+	$("#frm").attr("action", "/recruit/rj00/RJ10100.do");
+	$("#frm").attr("method", "POST");
+	$("#frm").submit();
+};
+
+//첨부파일 (공통)
+function fnGetFileList(recrOpeningId, attachFileId) {
+	//2021.02.15
+	var newWindow = window.open("/recruit/fileDownPop.do?attach_file_id="+attachFileId, "_blank", 'width=500,height=300,top=100,left=100');
+	newWindow.focus();
+};
+
+//상세페이지
+function fnMoveDtlPage(recrOpeningId, rnum) {
+	$("#frm #srchRecrOpeningId").val(recrOpeningId);	
+	cf_SearchAjax("frm", "/recruit/rj00/jsonRn00RN10110.do", function(data){
+		if(data.success){
+			$("#frm #pageIndex").val('1');
+			$("#frm #srchRecrOpeningId").val(recrOpeningId);	
+			$("#frm #rnum").val(rnum);	
+			$("#frm").attr("action", "/recruit/rj00/RJ10110.do");
+			$("#frm").attr("method", "POST");
+			$("#frm").submit();
+ 		}else{
+ 			alert('상세내역이 존재하지 않습니다.');
+ 		}
+ 	});
+};
+
+//첫 페이지로 이동
+function fnMoveFirst() {
+	$("#frm #pageIndex").val("1");
+	$("#frm").attr("action", "/recruit/rj00/RJ10100.do");
+	$("#frm").attr("method", "POST");
+	$("#frm").submit();
+};
+
+//이전페이지로 이동
+function fnMovePrev() {
+	var pageIndex = parseInt("1") - 1;
+	if(pageIndex <= 0 ) {
+		pageIndex = 1;
+	}
+	$("#frm #pageIndex").val(pageIndex);
+	$("#frm").attr("action", "/recruit/rj00/RJ10100.do");
+	$("#frm").attr("method", "POST");
+	$("#frm").submit();
+};
+
+//이전페이지로 이동
+function fnMovePrevTEST() {
+	var pageIndex = parseInt("1") - 1;
+	if(pageIndex <= 0 ) {
+		pageIndex = 1;
+	}
+	$("#frm #pageIndex").val(pageIndex);
+
+	cf_SearchAjax("frm", "/recruit/rj00/jsonRj00RJ10100.do", function(data){
+		if(data.totalCount > 0){
+			//조회된 값을 바인딩
+			alert('조회된 값을 바인딩');
+			alert(data.result);
+		}else{
+			alert(data.message);
+		}		
+	});
+};
+
+//다음 페이지로 이동
+function fnMoveNext() {
+	var pageIndex = parseInt("1") + 1;
+	if(pageIndex > parseInt("3") ) {
+		pageIndex = parseInt("3");
+	}
+	$("#frm #pageIndex").val(pageIndex);
+	$("#frm").attr("action", "/recruit/rj00/RJ10100.do");
+	$("#frm").attr("method", "POST");
+	$("#frm").submit();
+};
+
+//마지막 페이지로 이동
+function fnMoveLast() {
+	$("#frm #pageIndex").val("3");
+	$("#frm").attr("action", "/recruit/rj00/RJ10100.do");
+	$("#frm").attr("method", "POST");
+	$("#frm").submit();
+};
+</script>
+
+
+</div>
+</body>
+</html>	

@@ -1,12 +1,92 @@
 {
-  "generatedAt": "2026-08-08T07:52:21.892Z",
+  "generatedAt": "2026-08-08T08:35:08.465Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 0,
-    "regressed": 4,
+    "improved": 3,
+    "regressed": 2,
     "unchanged": 16
   },
   "changes": [
+    {
+      "org": "울산복지가족진흥사회서비스원",
+      "health": "failed",
+      "primaryCause": {
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.wfps.or.kr/",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.wfps.or.kr/\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.uwfdi.re.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.uwfdi.re.kr/",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.uwfdi.re.kr/\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachment": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
     {
       "org": "한국산업안전보건공단",
       "health": "degraded",
@@ -16,6 +96,41 @@
         "code": "LIST_EMPTY_OR_WRONG_PAGE",
         "reason": "실제 0건인지 채용 게시판이 아닌 페이지인지 구분 필요",
         "evidence": [
+          {
+            "url": "https://www.kosha.or.kr/notification/jobncontract/job",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "recordVerification": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "verifiedEmpty": false,
+            "emptyMarker": "",
+            "countSource": "unavailable"
+          },
           {
             "url": "https://www.kosha.or.kr/kosha/intro/recruitment.do",
             "visiblePostCount": null,
@@ -47,6 +162,8 @@
               "recordSamples": [],
               "level": "TEMPLATE_RECORD_MISMATCH"
             },
+            "verifiedEmpty": false,
+            "emptyMarker": "",
             "countSource": "unavailable"
           },
           {
@@ -80,236 +197,13 @@
               "recordSamples": [],
               "level": "TEMPLATE_RECORD_MISMATCH"
             },
+            "verifiedEmpty": false,
+            "emptyMarker": "",
             "countSource": "unavailable"
           }
         ],
         "repairTarget": "scripts/collectors/source-registry.mjs",
         "recommendedAction": "현재 URL이 채용 게시판인지 확인하고 기관별 목록 URL 교체"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachment": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
-    {
-      "org": "근로복지공단",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "list",
-        "status": "failed",
-        "code": "LIST_COUNTER_FAILED",
-        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-        "evidence": [
-          {
-            "url": "https://comwel.incruit.com/index_main.asp",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 22,
-            "titleMatches": 13,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 1,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "공단 홈페이지",
-              "공단 소개자료",
-              "비전 및 전략",
-              "핵심가치",
-              "경영방침",
-              "중장기 경영전략",
-              "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
-              "산재보상"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [
-              {
-                "title": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
-                "url": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
-                "allowed": true
-              }
-            ],
-            "candidateCount": 1,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "recordVerification": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
-              "candidateCount": 1,
-              "matchedCount": 0,
-              "unmatchedTitles": [
-                "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기"
-              ],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
-            },
-            "countSource": "unavailable"
-          },
-          {
-            "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "recordVerification": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
-              "candidateCount": 0,
-              "matchedCount": 0,
-              "unmatchedTitles": [],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
-            },
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
-        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachment": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
-    {
-      "org": "울산남구도시관리공단",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "list",
-        "status": "failed",
-        "code": "LIST_COUNTER_FAILED",
-        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-        "evidence": [
-          {
-            "url": "https://recruit.incruit.com/uncmc/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 5,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "recordVerification": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
-              "candidateCount": 0,
-              "matchedCount": 0,
-              "unmatchedTitles": [],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
-            },
-            "countSource": "unavailable"
-          },
-          {
-            "url": "https://www.uncmc.or.kr/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "recordVerification": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
-              "candidateCount": 0,
-              "matchedCount": 0,
-              "unmatchedTitles": [],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
-            },
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
-        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
       },
       "stages": {
         "access": {
@@ -337,203 +231,6 @@
       "regressed": false
     },
     {
-      "org": "한국수력원자력",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "list",
-        "status": "failed",
-        "code": "LIST_COUNTER_FAILED",
-        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
-        "evidence": [
-          {
-            "url": "https://www.khnp.co.kr/recruit/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "recordVerification": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
-              "candidateCount": 0,
-              "matchedCount": 0,
-              "unmatchedTitles": [],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
-            },
-            "countSource": "unavailable"
-          },
-          {
-            "url": "https://www.khnp.co.kr/recruit/main/index.do",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 96,
-            "titleMatches": 71,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 13,
-            "rowFallbackAccepted": 3,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [
-              "일반 채용",
-              "기간제 채용",
-              "개인정보 처리방침",
-              "채용안내",
-              "핵심가치와 인재상",
-              "근무조건 및 대우",
-              "직무소개",
-              "채용공고"
-            ],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [
-              {
-                "title": "일반 채용",
-                "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
-                "allowed": true
-              },
-              {
-                "title": "기간제 채용",
-                "url": "https://www.khnp.co.kr/trecruit",
-                "allowed": false
-              },
-              {
-                "title": "기간제 채용",
-                "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
-                "allowed": true
-              },
-              {
-                "title": "개인정보 처리방침",
-                "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on3",
-                "allowed": true
-              },
-              {
-                "title": "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
-                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017253",
-                "allowed": true
-              },
-              {
-                "title": "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
-                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017152",
-                "allowed": true
-              },
-              {
-                "title": "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
-                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017134",
-                "allowed": true
-              },
-              {
-                "title": "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
-                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017078",
-                "allowed": true
-              },
-              {
-                "title": "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
-                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017092",
-                "allowed": true
-              },
-              {
-                "title": "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
-                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017016",
-                "allowed": true
-              },
-              {
-                "title": "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
-                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016805",
-                "allowed": true
-              },
-              {
-                "title": "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
-                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016272",
-                "allowed": true
-              },
-              {
-                "title": "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
-                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015762",
-                "allowed": true
-              },
-              {
-                "title": "2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04",
-                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015760",
-                "allowed": true
-              }
-            ],
-            "candidateCount": 13,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "recordVerification": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
-              "candidateCount": 13,
-              "matchedCount": 0,
-              "unmatchedTitles": [
-                "일반 채용",
-                "기간제 채용",
-                "개인정보 처리방침",
-                "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
-                "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
-                "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
-                "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
-                "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
-                "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
-                "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
-                "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
-                "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04"
-              ],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
-            },
-            "countSource": "unavailable"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
-        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
-    {
       "org": "한국전력공사",
       "health": "degraded",
       "primaryCause": {
@@ -542,6 +239,146 @@
         "code": "LIST_COUNTER_FAILED",
         "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
         "evidence": [
+          {
+            "url": "https://recruit.kepco.co.kr:444/frt/main.do",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 52,
+            "titleMatches": 43,
+            "noUrl": 1,
+            "unsafeUrl": 0,
+            "accepted": 7,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 5,
+            "clickableBlocksAccepted": 5,
+            "listOnlyAccepted": 1,
+            "titleSamples": [
+              "▶본문 바로가기",
+              "▶주메뉴 바로가기",
+              "수시채용",
+              "KEPCO 홈",
+              "채용공고",
+              "채용공고",
+              "채용절차",
+              "입사지원관리"
+            ],
+            "unsafeSamples": [
+              {
+                "title": "수료증 출력(체험형 인턴)",
+                "reason": "no-url-detail-pending",
+                "identity": "row-6862",
+                "row": "<li><a style=\"cursor:pointer\" onclick=\"javascript:fnc_Certi();\">수료증 출력(체험형 인턴)</a></li>"
+              }
+            ],
+            "actionSamples": [
+              {
+                "title": "수료증 출력(체험형 인턴)",
+                "action": "javascript:fnc_Certi();"
+              },
+              {
+                "title": "[2026년도 고졸채용] 예비합격자(합격자X)...",
+                "action": "fncPageBoard('view','/frt/frt0011/view.do','4240','sSeq');"
+              },
+              {
+                "title": "[2026년도 제2차 전문직원 채용] 예비합격...",
+                "action": "fncPageBoard('view','/frt/frt0011/view.do','4222','sSeq');"
+              },
+              {
+                "title": "[2026년도 제2차 전문직원 채용] 2차전형...",
+                "action": "fncPageBoard('view','/frt/frt0011/view.do','4221','sSeq');"
+              },
+              {
+                "title": "[2026년도 고졸 채용] 면접대상자 일정 공...",
+                "action": "fncPageBoard('view','/frt/frt0011/view.do','4220','sSeq');"
+              },
+              {
+                "title": "[2026년도 고졸 채용] 필기전형 합격자 발...",
+                "action": "fncPageBoard('view','/frt/frt0011/view.do','4202','sSeq');"
+              }
+            ],
+            "candidateUrlSamples": [
+              {
+                "title": "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 2026.07.30 ~ 2026.08.06 서류심사중",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+                "allowed": true
+              },
+              {
+                "title": "[2026년도 고졸채용] 예비합격자(합격자X)...",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0011/view.do",
+                "allowed": true
+              },
+              {
+                "title": "[2026년도 고졸채용] 예비합격자(합격자X)...",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0011/view.do",
+                "allowed": true
+              },
+              {
+                "title": "[2026년도 제2차 전문직원 채용] 예비합격...",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0011/view.do",
+                "allowed": true
+              },
+              {
+                "title": "[2026년도 제2차 전문직원 채용] 예비합격...",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0011/view.do",
+                "allowed": true
+              },
+              {
+                "title": "[2026년도 제2차 전문직원 채용] 2차전형...",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0011/view.do",
+                "allowed": true
+              },
+              {
+                "title": "[2026년도 제2차 전문직원 채용] 2차전형...",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0011/view.do",
+                "allowed": true
+              },
+              {
+                "title": "[2026년도 고졸 채용] 면접대상자 일정 공...",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0011/view.do",
+                "allowed": true
+              },
+              {
+                "title": "[2026년도 고졸 채용] 면접대상자 일정 공...",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0011/view.do",
+                "allowed": true
+              },
+              {
+                "title": "[2026년도 고졸 채용] 필기전형 합격자 발...",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0011/view.do",
+                "allowed": true
+              },
+              {
+                "title": "[2026년도 고졸 채용] 필기전형 합격자 발...",
+                "url": "https://recruit.kepco.co.kr:444/frt/frt0011/view.do",
+                "allowed": true
+              }
+            ],
+            "candidateCount": 7,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "recordVerification": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 7,
+              "matchedCount": 0,
+              "unmatchedTitles": [
+                "수료증 출력(체험형 인턴)",
+                "NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 2026.07.30 ~ 2026.08.06 서류심사중",
+                "[2026년도 고졸채용] 예비합격자(합격자X)...",
+                "[2026년도 제2차 전문직원 채용] 예비합격...",
+                "[2026년도 제2차 전문직원 채용] 2차전형...",
+                "[2026년도 고졸 채용] 면접대상자 일정 공...",
+                "[2026년도 고졸 채용] 필기전형 합격자 발..."
+              ],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "verifiedEmpty": false,
+            "emptyMarker": "",
+            "countSource": "unavailable"
+          },
           {
             "url": "https://www.kepco.co.kr/home/about/careers.do",
             "visiblePostCount": null,
@@ -774,6 +611,8 @@
               "recordSamples": [],
               "level": "TEMPLATE_RECORD_MISMATCH"
             },
+            "verifiedEmpty": false,
+            "emptyMarker": "",
             "countSource": "unavailable"
           }
         ],
@@ -787,14 +626,461 @@
           "change": "same"
         },
         "list": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "detail": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
+        },
+        "attachment": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": false,
+      "regressed": false
+    },
+    {
+      "org": "근로복지공단",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "detail",
+        "status": "failed",
+        "code": "DETAIL_BODY_PARTIAL",
+        "reason": "첫 페이지 1건 중 0건만 상세 본문 검증 성공",
+        "evidence": [
+          {
+            "title": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+            "requestedUrl": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+            "requestMethod": "GET",
+            "template": "COMMON_PLATFORM",
+            "ok": false,
+            "finalUrl": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "transport": "",
+            "error": "HTTP 400"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "detail": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        },
+        "attachment": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": true,
+      "regressed": false
+    },
+    {
+      "org": "울산남구도시관리공단",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "detail",
+        "status": "failed",
+        "code": "DETAIL_URL_NOT_READY",
+        "reason": "목록 0건 모두 상세 URL 미복구",
+        "evidence": [
+          {
+            "url": "https://recruit.incruit.com/uncmc/job/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 1,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "recordVerification": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "verifiedEmpty": true,
+            "emptyMarker": "등록된 정보가 없습니다",
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://recruit.incruit.com/uncmc/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 5,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "recordVerification": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "verifiedEmpty": false,
+            "emptyMarker": "",
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://uncmc.incruit.com/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "recordVerification": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "verifiedEmpty": false,
+            "emptyMarker": "",
+            "countSource": "unavailable"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
+        "recommendedAction": "기관 전용 상세 URL 생성 규칙 구현"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "detail": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachment": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": true,
+      "regressed": false
+    },
+    {
+      "org": "한국수력원자력",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "detail",
+        "status": "failed",
+        "code": "DETAIL_URL_NOT_READY",
+        "reason": "목록 10건 모두 상세 URL 미복구",
+        "evidence": [
+          {
+            "url": "https://www.khnp.co.kr/recruit/rj00/RJ10100.do?mid=MI000000000000000484",
+            "visiblePostCount": 10,
+            "rowMode": true,
+            "anchors": 107,
+            "titleMatches": 10,
+            "noUrl": 10,
+            "unsafeUrl": 0,
+            "accepted": 10,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 10,
+            "titleSamples": [
+              "2025년도 제5차 신입사원(고졸수준) 선발",
+              "2026년도 제4차 신입사원(고졸수준 일반전형) 선발",
+              "2026년도 제3차 신입사원(대졸수준) 선발",
+              "2026년도 제3차 신입사원(사회형평전형) 선발",
+              "2026년도 제3차 신입사원(보훈특별전형) 선발",
+              "2026년도 제4차 경력사원(전문계약직) 선발",
+              "2026년도 제7차 경력사원(전문계약직) 선발",
+              "2026년도 제6차 경력사원(전문원, 경력직원) 선발"
+            ],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 10,
+            "exactMatch": true,
+            "missingCount": 0,
+            "extraCount": 0,
+            "recordVerification": {
+              "verified": true,
+              "template": "TABLE_RECORD",
+              "recordCount": 10,
+              "candidateCount": 10,
+              "matchedCount": 10,
+              "unmatchedTitles": [],
+              "recordSamples": [
+                "21 2025년도 제5차 신입사원(고졸수준) 선발 2025.11.05 ~",
+                "20 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 2026.07.23 ~",
+                "19 2026년도 제3차 신입사원(대졸수준) 선발 2026.07.22 ~",
+                "18 2026년도 제3차 신입사원(사회형평전형) 선발 2026.07.22 ~",
+                "17 2026년도 제3차 신입사원(보훈특별전형) 선발 2026.07.22 ~",
+                "16 2026년도 제4차 경력사원(전문계약직) 선발 2026.06.23 ~",
+                "15 2026년도 제7차 경력사원(전문계약직) 선발 2026.07.22 ~",
+                "14 2026년도 제6차 경력사원(전문원, 경력직원) 선발 2026.07.22 ~"
+              ],
+              "level": "TEMPLATE_TABLE_RECORD_EXACT"
+            },
+            "verifiedEmpty": false,
+            "emptyMarker": "",
+            "countSource": "visible-board-rows"
+          },
+          {
+            "url": "https://www.khnp.co.kr/recruit/main/index.do",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 96,
+            "titleMatches": 71,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 13,
+            "rowFallbackAccepted": 3,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [
+              "일반 채용",
+              "기간제 채용",
+              "개인정보 처리방침",
+              "채용안내",
+              "핵심가치와 인재상",
+              "근무조건 및 대우",
+              "직무소개",
+              "채용공고"
+            ],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [
+              {
+                "title": "일반 채용",
+                "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on1",
+                "allowed": true
+              },
+              {
+                "title": "기간제 채용",
+                "url": "https://www.khnp.co.kr/trecruit",
+                "allowed": false
+              },
+              {
+                "title": "기간제 채용",
+                "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on2",
+                "allowed": true
+              },
+              {
+                "title": "개인정보 처리방침",
+                "url": "https://www.khnp.co.kr/recruit/main/index.do?id=on3",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017253",
+                "allowed": true
+              },
+              {
+                "title": "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017152",
+                "allowed": true
+              },
+              {
+                "title": "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017134",
+                "allowed": true
+              },
+              {
+                "title": "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017078",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017092",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2017016",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016805",
+                "allowed": true
+              },
+              {
+                "title": "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2016272",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015762",
+                "allowed": true
+              },
+              {
+                "title": "2026년도 경력사원(연구원, 전문원, 경력직원, 전문계약직) 선발 관련 사전안내 등록일 : 2026.03.04",
+                "url": "https://www.khnp.co.kr/recruit/rj00/RJ20110.do?board_seq=%2015760",
+                "allowed": true
+              }
+            ],
+            "candidateCount": 13,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "recordVerification": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 13,
+              "matchedCount": 0,
+              "unmatchedTitles": [
+                "일반 채용",
+                "기간제 채용",
+                "개인정보 처리방침",
+                "2026년도 제6,7차 경력사원 경력(재직)증명서, 전공 이수과목 및 학점표 양식 등록일 : 2026.07.28",
+                "[공통] 2026년도 하반기 신입사원(대졸, 고졸) 선발 관련 안내사항 등록일 : 2026.07.24",
+                "[필독] 2026년도 제4차 신입사원(고졸수준 일반전형) 선발 입사지원 가이드 등록일 : 2026.07.23",
+                "[필독] 2026년도 제3차 신입사원(대졸수준) 선발 입사지원 가이드 등록일 : 2026.07.22",
+                "2026년도 제3차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.07.22",
+                "2026년도 고졸수준 신입사원 선발(일반전형) 사전 안내 등록일 : 2026.07.08",
+                "2026년도 청원경찰 선발 관련 공지사항(수정) 등록일 : 2026.04.22",
+                "[공통] 인재상 및 조직적합도 검사 문항 샘플 및 작성 요령 공지 등록일 : 2026.03.26",
+                "2026년도 제1차 신입사원(대졸수준) 직무설명자료 및 자기소개서 양식 등록일 : 2026.03.04"
+              ],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "verifiedEmpty": false,
+            "emptyMarker": "",
+            "countSource": "unavailable"
+          },
+          {
+            "url": "https://www.khnp.co.kr/recruit/",
+            "visiblePostCount": null,
+            "rowMode": false,
+            "anchors": 0,
+            "titleMatches": 0,
+            "noUrl": 0,
+            "unsafeUrl": 0,
+            "accepted": 0,
+            "rowFallbackAccepted": 0,
+            "clickableBlocksScanned": 0,
+            "clickableBlocksAccepted": 0,
+            "listOnlyAccepted": 0,
+            "titleSamples": [],
+            "unsafeSamples": [],
+            "actionSamples": [],
+            "candidateUrlSamples": [],
+            "candidateCount": 0,
+            "exactMatch": false,
+            "missingCount": null,
+            "extraCount": null,
+            "recordVerification": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "verifiedEmpty": false,
+            "emptyMarker": "",
+            "countSource": "unavailable"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
+        "recommendedAction": "기관 전용 상세 URL 생성 규칙 구현"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "detail": {
+          "from": false,
+          "to": false,
+          "change": "same"
         },
         "attachment": {
           "from": true,
@@ -802,7 +1088,7 @@
           "change": "regressed"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": true
     },
     {
@@ -1061,43 +1347,6 @@
         "reason": "현재 진단 표본에서 실패 원인 없음",
         "evidence": [],
         "repairTarget": "scripts/collectors/institutions/울산문화관광재단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachment": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "울산복지가족진흥사회서비스원",
-      "health": "healthy",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {

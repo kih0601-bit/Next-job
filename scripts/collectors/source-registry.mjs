@@ -27,7 +27,7 @@ const RAW_SOURCES = [
   { org: '한국산업인력공단', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL+JOB_ALIO_FALLBACK' }, urls: [
     'https://www.hrdkorea.or.kr/3/1/2/2',
     'https://www.hrdkorea.or.kr/', alioUrl('한국산업인력공단') ] },
-  { org: '근로복지공단', accessTemplate: 'COMMON_PLATFORM', accessConfig: { platform: 'SARAMIN_CURRENT_CAMPAIGN' }, urls: [
+  { org: '근로복지공단', accessTemplate: 'COMMON_PLATFORM', accessConfig: { platform: 'SARAMIN_CURRENT_CAMPAIGN', discoverListings: true }, urls: [
     'https://comwel.saramin.co.kr/service/comwel/index.asp',
     'https://comwel.saramin.co.kr/',
     'https://comwel.incruit.com/index_main.asp',
@@ -121,9 +121,11 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls, accessTemplate, accessConfi
     alio: false,
     detail: true,
     requireValidDetail: true,
-    discoverListings: org === '울산문화관광재단' ? true : !directBoard,
+    discoverListings: typeof accessConfig.discoverListings === 'boolean'
+      ? accessConfig.discoverListings
+      : (org === '울산문화관광재단' ? true : !directBoard),
     maxListingPages: 4
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.10-20-sources-list-templates';
+export const SOURCE_REGISTRY_VERSION = '15.11-reusable-discovery-override';

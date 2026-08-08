@@ -39,7 +39,7 @@ export function absoluteUrl(href, baseUrl) {
 }
 
 const FILE_EXT = /\.(pdf|hwp|hwpx|doc|docx|xls|xlsx|png|jpe?g|tiff?|zip)(?:$|[?#\s])/i;
-const FILE_SIGNAL = /첨부(?:파일)?|다운로드|download|filedown|atchfile|file_id|fileid|fileSeq|atchFileId|nttFile|fileDown|fileDownload/i;
+const FILE_SIGNAL = /첨부(?:파일)?|다운로드|download|filedown|atchfile|file_id|fileid|fileSeq|atchFileId|nttFile|fileDown|fileDownload|downFile|ctitFile|fileLink/i;
 const ATTACHMENT_CONTEXT = /첨부(?:파일)?|파일\s*목록|download|filedown|atchfile|attach(?:ment)?|bbs[_-]?file|board[_-]?file|file[_-]?(?:list|area|box|wrap)/i;
 const STATIC_ASSET_URL = /\/(?:images?|img|assets?|static|common)\/(?:main|common|layout|icon|icons|btn|button|logo|menu|nav|quick|skin)\//i;
 const STATIC_ASSET_NAME = /(?:로고|logo|메뉴|menu|home|홈|버튼|button|아이콘|icon|닫기|열기|교육센터|마케팅홍보관|입주안내|시설현황|장비지원|RENET)/i;
@@ -270,7 +270,7 @@ export function extractAttachments(html, baseUrl, request = {}) {
         if (isLikelyDownloadUrl(candidate, label)) addAttachment(attachments, seen, candidate, label, baseUrl, '', context, request);
       }
     }
-    for (const attr of ['data-url', 'data-href', 'data-file', 'data-download', 'value']) {
+    for (const attr of ['data-url', 'data-href', 'data-file', 'data-download', 'data-file-url', 'data-download-url', 'data-attach-url', 'value']) {
       const valueMatch = attrs.match(new RegExp(`\\b${attr}\\s*=\\s*(["'])((?:(?!\\1).)+)\\1`, 'i'));
       const value = valueMatch?.[2];
       if (value && (anchorHasFileSignal || /file|download/i.test(attr) || FILE_EXT.test(value))) {
@@ -589,7 +589,8 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
       throw new Error('insufficient detail structure');
     }
     if (confidence.tokenCount >= 3 && confidence.titleRatio < 0.25 && attachments.length === 0 && !titleEvidence) throw new Error('detail title mismatch');
-    return { ok: true, finalUrl, text: text || fullText, confidence, httpStatus: response.status, contentType, attachments, contentImages, detailTransport: request?.method ? `FORM_${String(request.method).toUpperCase()}` : (contentImages.length ? 'IMAGE_CONTENT_PAGE' : 'GET') };
+    const attachmentSignalCount = (html.match(/첨부(?:파일)?|다운로드|download|filedown|atchfile|fileSeq|fileDown|fileDownload|downFile|ctitFile|data-file-url|data-download-url/gi) || []).length;
+    return { ok: true, finalUrl, text: text || fullText, confidence, httpStatus: response.status, contentType, attachments, contentImages, attachmentSignalCount, detailTransport: request?.method ? `FORM_${String(request.method).toUpperCase()}` : (contentImages.length ? 'IMAGE_CONTENT_PAGE' : 'GET') };
   } catch (error) {
     return { ok: false, finalUrl: request?.url || url, text: '', attachments: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
   } finally { clearTimeout(timer); }

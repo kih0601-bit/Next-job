@@ -14,7 +14,7 @@
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "3개 후보 URL HTTP 응답 성공",
+      "reason": "4개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://recruit.incruit.com/uncmc/job/",
@@ -168,8 +168,46 @@
         },
         {
           "url": "https://www.uncmc.or.kr/",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.uncmc.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_FAILED",
+            "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 227,
+            "requestedUrl": "https://www.uncmc.or.kr/",
+            "finalUrl": "https://www.uncmc.or.kr/",
+            "status": 200,
+            "contentType": "text/html"
+          },
           "accessTemplate": "COMMON_PLATFORM",
           "requestProfile": "browser-default"
         }
@@ -555,8 +593,46 @@
         },
         {
           "url": "https://www.uncmc.or.kr/",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.uncmc.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_FAILED",
+            "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+            "score": 3,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 227,
+            "requestedUrl": "https://www.uncmc.or.kr/",
+            "finalUrl": "https://www.uncmc.or.kr/",
+            "status": 200,
+            "contentType": "text/html"
+          },
           "accessTemplate": "COMMON_PLATFORM",
           "requestProfile": "browser-default"
         }
@@ -615,7 +691,7 @@
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "3개 후보 URL HTTP 응답 성공",
+          "reason": "4개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://recruit.incruit.com/uncmc/job/",
@@ -769,8 +845,46 @@
             },
             {
               "url": "https://www.uncmc.or.kr/",
-              "ok": false,
-              "error": "fetch failed",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.uncmc.or.kr/",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_FAILED",
+                "reason": "채용 게시판 검증 점수 3/5 · 필수 조건 미충족",
+                "score": 3,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": false,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": true
+                },
+                "title": "",
+                "orgMatched": false,
+                "positiveHits": 0,
+                "positiveMatches": [],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 227,
+                "requestedUrl": "https://www.uncmc.or.kr/",
+                "finalUrl": "https://www.uncmc.or.kr/",
+                "status": 200,
+                "contentType": "text/html"
+              },
               "accessTemplate": "COMMON_PLATFORM",
               "requestProfile": "browser-default"
             }

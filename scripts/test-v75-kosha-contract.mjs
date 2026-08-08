@@ -12,5 +12,5 @@ assert.match(analyzer,/serviceId:\s*'fileDown'/);
 assert.match(analyzer,/stdtboard\/fileDownload\.do/);
 assert.match(analyzer,/resolveHtmlAttachmentGateway/);
 assert.match(analyzer,/egovAlternateDownloadItem/);
-assert.match(analyzer,/2\.2-attachment-resolution/);
+assert.match(analyzer,/resolveKoshaTboardFile/);
 console.log('v75-kosha-contract-pass');

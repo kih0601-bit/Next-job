@@ -414,7 +414,7 @@ async function enrichCandidate(candidate, source) {
       attachments: detail.attachments,
       supportRequirements: result.supportRequirements,
       supportEligibility: result.supportEligibility,
-      documentAnalysis: { discovered: documents.discovered, downloadAttempted: documents.attempted, downloaded: documents.downloaded, attempted: documents.attempted, successful: documents.successful, analyzerVersion: documents.analyzerVersion, requirements: documents.requirements, results: documents.results.map(({ text, ...meta }) => meta) },
+      documentAnalysis: { discovered: documents.discovered, downloadAttempted: documents.attempted, downloaded: documents.downloaded, attempted: documents.attempted, successful: documents.successful, capabilityOk: documents.capabilityOk, coverage: documents.coverage, analyzerVersion: documents.analyzerVersion, requirements: documents.requirements, results: documents.results.map(({ text, ...meta }) => meta) },
       crossValidation: result.crossValidation,
       adapter: candidate.adapter || (source.alio ? 'ALIO' : source.org),
       raw: vacancy.evidenceText.slice(0, 5000)
@@ -806,18 +806,21 @@ if (pipelineReport.payload) {
           }
         : probeDownload || { ok:false, status:'not-attempted', attempted:0, downloaded:0, failed:0, verificationMode:'none' };
     stage.documentAnalysis = noAttachmentWorkRequired
-      ? { ok:true, status:'not-required', attempted:0, parsed:0, failed:0, verificationMode:'not-required', diagnostics:{} }
+      ? { ok:true, capabilityOk:null, status:'not-required', coverageStatus:'not-required', coverageRatio:null, attempted:0, parsed:0, failed:0, verificationMode:'not-required', diagnostics:{} }
       : documentAttempted > 0
         ? {
             ok: parsed === documentAttempted,
+            capabilityOk: parsed > 0,
             status: parsed === documentAttempted ? 'success' : parsed > 0 ? 'partial' : 'failed',
+            coverageStatus: parsed === documentAttempted ? 'complete' : parsed > 0 ? 'partial' : 'failed',
+            coverageRatio: documentAttempted > 0 ? parsed / documentAttempted : null,
             attempted: documentAttempted,
             parsed,
             failed: Math.max(0, documentAttempted - parsed),
             verificationMode:'collector',
             diagnostics: source?.documentDiagnostics || {}
           }
-        : probeAnalysis || { ok:false, status:'not-attempted', attempted:0, parsed:0, failed:0, verificationMode:'none', diagnostics:{} };
+        : probeAnalysis || { ok:false, capabilityOk:false, status:'not-attempted', coverageStatus:'not-attempted', coverageRatio:null, attempted:0, parsed:0, failed:0, verificationMode:'none', diagnostics:{} };
     // Legacy alias remains discovery-only so older consumers do not silently
     // reinterpret it as download or parsing success.
     stage.attachment = stage.attachmentDiscovery;
@@ -828,7 +831,9 @@ if (pipelineReport.payload) {
     } else if (stage.attachmentDiscovery.ok && !stage.attachmentDownload.ok) {
       stage.bottleneck = '첨부 다운로드';
     } else if (stage.attachmentDownload.ok && !stage.documentAnalysis.ok) {
-      stage.bottleneck = '문서 분석';
+      stage.bottleneck = stage.documentAnalysis.capabilityOk
+        ? `문서 분석 부분 성공 (${stage.documentAnalysis.parsed}/${stage.documentAnalysis.attempted})`
+        : '문서 분석';
     }
   }
   pipelineReport.payload.summary ||= {};
@@ -836,6 +841,9 @@ if (pipelineReport.payload) {
   pipelineReport.payload.summary.attachmentDiscoveryOk = stages.filter(s => s.attachmentDiscovery?.ok).length;
   pipelineReport.payload.summary.attachmentDownloadOk = stages.filter(s => s.attachmentDownload?.ok).length;
   pipelineReport.payload.summary.documentAnalysisOk = stages.filter(s => s.documentAnalysis?.ok).length;
+  pipelineReport.payload.summary.documentAnalysisCapabilityOk = stages.filter(s =>
+    s.documentAnalysis?.capabilityOk === true || s.documentAnalysis?.status === 'not-required'
+  ).length;
   pipelineReport.payload.summary.fullPipelineOk = stages.filter(s =>
     s.access?.recruitVerifyOk && s.list?.ok && s.detail?.ok && s.attachmentDiscovery?.ok && s.attachmentDownload?.ok && s.documentAnalysis?.ok
   ).length;

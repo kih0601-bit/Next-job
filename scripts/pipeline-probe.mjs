@@ -621,7 +621,7 @@ async function probeSource(source, artifacts) {
     const explicitlyNoAttachments = !noPosts && report.detail.samples.length > 0 && report.detail.samples.every(sample => sample.explicitNoAttachment);
     if (noPosts || explicitlyNoAttachments) {
       report.attachmentDownload = { ok:true, status:'not-required', attempted:0, downloaded:0, failed:0, verificationMode:'probe-sample' };
-      report.documentAnalysis = { ok:true, status:'not-required', attempted:0, parsed:0, failed:0, verificationMode:'probe-sample', diagnostics:{} };
+      report.documentAnalysis = { ok:true, capabilityOk:null, status:'not-required', coverageStatus:'not-required', coverageRatio:null, attempted:0, parsed:0, failed:0, verificationMode:'probe-sample', diagnostics:{} };
     } else if (attachmentVerifyCandidates.length > 0) {
       const verification = await analyzeAttachments(attachmentVerifyCandidates, { maxFiles: MAX_ATTACHMENT_VERIFY_FILES });
       report.attachmentDownload = {
@@ -635,7 +635,10 @@ async function probeSource(source, artifacts) {
       };
       report.documentAnalysis = {
         ok: verification.attempted > 0 && verification.successful === verification.attempted,
+        capabilityOk: verification.successful > 0,
         status: verification.attempted === 0 ? 'not-attempted' : verification.successful === verification.attempted ? 'sample-success' : verification.successful > 0 ? 'sample-partial' : 'sample-failed',
+        coverageStatus: verification.coverage?.status || (verification.successful === verification.attempted ? 'complete' : verification.successful > 0 ? 'partial' : 'failed'),
+        coverageRatio: verification.coverage?.ratio ?? (verification.attempted > 0 ? verification.successful / verification.attempted : null),
         attempted: verification.attempted,
         parsed: verification.successful,
         failed: Math.max(0, verification.attempted - verification.successful),
@@ -646,7 +649,7 @@ async function probeSource(source, artifacts) {
       };
     } else {
       report.attachmentDownload = { ok:false, status:'blocked-by-discovery', attempted:0, downloaded:0, failed:0, verificationMode:'probe-sample' };
-      report.documentAnalysis = { ok:false, status:'blocked-by-download', attempted:0, parsed:0, failed:0, verificationMode:'probe-sample', diagnostics:{} };
+      report.documentAnalysis = { ok:false, capabilityOk:false, status:'blocked-by-download', coverageStatus:'blocked', coverageRatio:null, attempted:0, parsed:0, failed:0, verificationMode:'probe-sample', diagnostics:{} };
     }
 
     if (!report.access.ok) report.bottleneck = '접속';
@@ -656,7 +659,9 @@ async function probeSource(source, artifacts) {
     else if (!report.detail.ok) report.bottleneck = '상세페이지 추출';
     else if (!report.attachmentDiscovery.ok) report.bottleneck = '첨부 발견/추출';
     else if (!report.attachmentDownload.ok) report.bottleneck = '첨부 다운로드';
-    else if (!report.documentAnalysis.ok) report.bottleneck = '문서 분석';
+    else if (!report.documentAnalysis.ok) report.bottleneck = report.documentAnalysis.capabilityOk
+      ? `문서 분석 부분 성공 (${report.documentAnalysis.parsed}/${report.documentAnalysis.attempted})`
+      : '문서 분석';
     else report.bottleneck = '전체 파이프라인 통과';
   } catch (error) {
     report.access.attempts = error.attempts || report.access.attempts;
@@ -692,6 +697,7 @@ const payload = {
     attachmentOk: results.filter(item => item.attachmentDiscovery.ok).length,
     attachmentDownloadOk: results.filter(item => item.attachmentDownload?.ok).length,
     documentAnalysisOk: results.filter(item => item.documentAnalysis?.ok).length,
+    documentAnalysisCapabilityOk: results.filter(item => item.documentAnalysis?.capabilityOk === true || item.documentAnalysis?.status === 'not-required').length,
     fullPipelineOk: results.filter(item => item.access.recruitVerifyOk && item.list.ok && item.detail.ok && item.attachmentDiscovery.ok && item.attachmentDownload?.ok && item.documentAnalysis?.ok).length,
     causeCounts: results.reduce((acc, item) => { const key = item.primaryCause?.code || 'UNKNOWN'; acc[key] = (acc[key] || 0) + 1; return acc; }, {})
   },

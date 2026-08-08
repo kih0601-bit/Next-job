@@ -10,7 +10,7 @@ import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } fro
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 
-const VERSION = '17.5-stage-rootcause-repair';
+const VERSION = '17.6-known-issues-and-evidence';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const ACCESS_TIMEOUT_MS = 18000;
@@ -223,6 +223,9 @@ function classifyList(report) {
 
 function classifyDetail(report) {
   if (!report.list?.ok) return { status: 'blocked', code: 'DETAIL_BLOCKED_BY_LIST', reason: '목록 단계 미통과로 상세 진단 보류', evidence: [] };
+  if (report.list.status === 'verified-empty' && (report.list.candidateCount || 0) === 0) {
+    return { status: 'success', code: 'DETAIL_NOT_APPLICABLE_EMPTY_BOARD', reason: '현재 실제 공고 0건 · 상세 대상 없음', evidence: [] };
+  }
   if ((report.list.detailUrlReady || 0) === 0) return { status: 'failed', code: 'DETAIL_URL_NOT_READY', reason: `목록 ${report.list.candidateCount}건 모두 상세 URL 미복구`, evidence: report.list.extractionDiagnostics || [] };
   if ((report.detail.attempted || 0) === 0) return { status: 'failed', code: 'DETAIL_NOT_ATTEMPTED', reason: '상세 URL은 있으나 상세 요청이 실행되지 않음', evidence: [] };
   if (report.detail.ok) return { status: 'success', code: 'DETAIL_FIRST_PAGE_VERIFIED_EXACT', reason: `첫 페이지 ${report.detail.targetCount}건 전체 상세 URL·본문 1:1 검증 완료`, evidence: report.detail.samples || [] };
@@ -237,6 +240,7 @@ function classifyDetail(report) {
 }
 
 function classifyAttachment(report) {
+  if (report.list?.status === 'verified-empty' && (report.list?.candidateCount || 0) === 0) return { status: 'success', code: 'ATTACHMENT_NOT_APPLICABLE_EMPTY_BOARD', reason: '현재 실제 공고 0건 · 첨부 대상 없음', evidence: [] };
   if (!report.detail?.ok) return { status: 'blocked', code: 'ATTACHMENT_BLOCKED_BY_DETAIL', reason: '상세 단계 미통과로 첨부 진단 보류', evidence: [] };
   if ((report.attachment.discovered || 0) > 0) return { status: 'success', code: 'ATTACHMENT_FOUND', reason: `검증 표본에서 첨부 링크 ${report.attachment.discovered}개 발견`, evidence: report.attachment.samples || [] };
   return { status: 'unknown', code: 'ATTACHMENT_ZERO_UNRESOLVED', reason: '첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함', evidence: report.detail.samples || [] };
@@ -289,25 +293,65 @@ function attachRootCauses(report) {
 function safeName(value = '') { return String(value).replace(/[\\/:*?"<>|]/g, '_').replace(/\s+/g, '_').slice(0, 100) || 'unknown'; }
 
 
+
+async function captureKepcoBoardScript(source,page){
+  if(source?.org!=='한국전력공사') return [];
+  const html=String(page?.html||'');
+  if(!/fncPageBoard\(\s*["']addList["']\s*,\s*["']addList\.do["']\s*,\s*["']1["']\s*\)/i.test(html)) return [];
+  const baseUrl=page.finalUrl||page.requestedUrl||source.url;
+  const src=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']*\/board\.js[^"']*)["']/gi)].map(m=>m[1])[0];
+  if(!src) return [];
+  const assetUrl=new URL(src,baseUrl).href;
+  const dir=`data/diagnostics/${safeName(source.org)}/dynamic-list`;
+  await fs.mkdir(dir,{recursive:true});
+  try{
+    const result=await fetchHtml(assetUrl,18000,baseUrl,{...source,transportChain:['fetch','curl']});
+    const text=String(result.html||'');
+    const file=`${dir}/board.js`;
+    await fs.writeFile(file,text,'utf8');
+    const fn=text.match(/function\s+fncPageBoard\s*\([^)]*\)\s*\{[\s\S]{0,12000}?\n\}/i)?.[0]||'';
+    const ajax=[...text.matchAll(/\$\.(?:ajax|get|post)\s*\([\s\S]{0,2500}?\)/gi)].map(m=>m[0]).slice(0,20);
+    const evidence={assetUrl,file,status:result.status,finalUrl:result.finalUrl,fncPageBoard:fn,ajaxCalls:ajax};
+    await fs.writeFile(`${dir}/board-script-evidence.json`,`${JSON.stringify(evidence,null,2)}\n`,'utf8');
+    return [evidence];
+  }catch(error){
+    const evidence={assetUrl,error:error.name==='AbortError'?'timeout':error.message};
+    await fs.writeFile(`${dir}/board-script-evidence.json`,`${JSON.stringify(evidence,null,2)}\n`,'utf8');
+    return [evidence];
+  }
+}
+
 async function captureKoshaSpaAssets(source,page){
   if(source?.org!=='한국산업안전보건공단') return [];
   const html=String(page?.html||''); if(!/<div\s+id=["']app["'][^>]*>\s*<\/div>/i.test(html)) return [];
   const baseUrl=page.finalUrl||page.requestedUrl||source.url;
-  const srcs=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)].map(m=>m[1]).filter(v=>/(?:kosha-tboard-config|kosha-tboard-common|\/static\/js\/index-)/i.test(v));
-  const dir=`data/diagnostics/${safeName(source.org)}/spa`; await fs.mkdir(dir,{recursive:true}); const assets=[];
-  for(const src of [...new Set(srcs)].slice(0,6)){
-    const assetUrl=new URL(src,baseUrl).href;
+  const initialSrcs=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)].map(m=>m[1])
+    .filter(v=>/(?:kosha-tboard-config|kosha-tboard-common|\/static\/js\/index-)/i.test(v));
+  const dir=`data/diagnostics/${safeName(source.org)}/spa`; await fs.mkdir(dir,{recursive:true});
+  const assets=[], queued=[...new Set(initialSrcs.map(src=>new URL(src,baseUrl).href))], seen=new Set();
+
+  while(queued.length && assets.length<12){
+    const assetUrl=queued.shift();
+    if(seen.has(assetUrl)) continue;
+    seen.add(assetUrl);
     try{
       const result=await fetchHtml(assetUrl,18000,baseUrl,{...source,transportChain:['fetch','curl']});
       const text=String(result.html||''),filename=safeName(new URL(assetUrl).pathname.split('/').pop()||'asset.js'),file=`${dir}/${filename}`;
       await fs.writeFile(file,text,'utf8');
-      const apiLike=[...text.matchAll(/["'`](\/[^"'`]{2,260}(?:api|board|bbs|job|recruit|notice|list|search|pst)[^"'`]{0,260})["'`]/gi)].map(m=>m[1]).filter(v=>!/\.(?:png|jpg|gif|svg|css|woff|ttf)(?:[?#]|$)/i.test(v));
-      assets.push({assetUrl,file,status:result.status,finalUrl:result.finalUrl,apiLike:[...new Set(apiLike)].slice(0,100)});
+      const apiLike=[...text.matchAll(/["'`](\/[^"'`]{2,260}(?:api|board|bbs|job|recruit|notice|list|search|pst|process)[^"'`]{0,260})["'`]/gi)]
+        .map(m=>m[1]).filter(v=>!/\.(?:png|jpg|gif|svg|css|woff|ttf)(?:[?#]|$)/i.test(v));
+      const jobChunks=[...text.matchAll(/["'](?:\.\/)?(VCPBC02001M01-[A-Za-z0-9_-]+\.js)["']/g)].map(m=>m[1]);
+      for(const chunk of [...new Set(jobChunks)]){
+        const chunkUrl=new URL(`/static/js/${chunk}`,baseUrl).href;
+        if(!seen.has(chunkUrl) && !queued.includes(chunkUrl)) queued.push(chunkUrl);
+      }
+      assets.push({assetUrl,file,status:result.status,finalUrl:result.finalUrl,apiLike:[...new Set(apiLike)].slice(0,160),jobChunks:[...new Set(jobChunks)]});
     }catch(error){assets.push({assetUrl,error:error.name==='AbortError'?'timeout':error.message});}
   }
   await fs.writeFile(`${dir}/asset-index.json`,`${JSON.stringify({generatedAt:new Date().toISOString(),baseUrl,assets},null,2)}\n`,'utf8');
   return assets;
 }
+
 async function writeListDiagnosticArtifacts(source, pageSource, page, rootCause, pageIndex) {
   const org = source?.org || pageSource?.org || rootCause?.org || 'unknown';
   const dir = `data/diagnostics/${safeName(org)}/list`;
@@ -335,6 +379,12 @@ async function probeSource(source, artifacts) {
     const access = await accessiblePages(source);
     const first = access.selected || access.pages[0];
     for (const page of access.pages) artifacts.push(pageArtifact(source, page, 'access'));
+    if(source.org==='한국전력공사'){
+      for(const page of access.pages){
+        try{const boardAssets=await captureKepcoBoardScript(source,page);if(boardAssets.length) artifacts.push({org:source.org,stage:'dynamic-list-script',baseUrl:page.finalUrl||page.requestedUrl,assets:boardAssets});}
+        catch(error){artifacts.push({org:source.org,stage:'dynamic-list-script',error:error.message});}
+      }
+    }
     if(source.org==='한국산업안전보건공단'){
       for(const page of access.pages){
         try{const spaAssets=await captureKoshaSpaAssets(source,page);if(spaAssets.length) artifacts.push({org:source.org,stage:'spa-assets',baseUrl:page.finalUrl||page.requestedUrl,assets:spaAssets});}
@@ -425,7 +475,7 @@ async function probeSource(source, artifacts) {
     report.attachment.ok = report.attachment.discovered > 0;
     if (!report.access.ok) report.bottleneck = '접속';
     else if (!report.list.ok) report.bottleneck = report.list.status === 'count-exact-unverified' ? '목록 개수 일치·제목 정확성 미검증' : report.list.status === 'partial' ? `목록 부분 추출 (${report.list.candidateCount}/${report.list.visiblePostCount})` : report.list.status === 'count-unavailable-or-empty' ? '목록 글 수 판정 불가 또는 실제 0건' : '목록 추출 실패';
-    else if (report.list.status === 'verified-empty') report.bottleneck = '현재 실제 공고 0건 · 상세 대상 없음';
+    else if (report.list.status === 'verified-empty') report.bottleneck = '현재 실제 공고 0건 · 상세·첨부 대상 없음';
     else if (report.list.detailUrlReady === 0) report.bottleneck = '상세 URL 복구';
     else if (!report.detail.ok) report.bottleneck = '상세페이지 추출';
     else if (!report.attachment.ok) report.bottleneck = '첨부파일 추출 또는 현재 표본에 첨부 없음';

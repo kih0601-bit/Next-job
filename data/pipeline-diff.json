@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-08T12:50:05.745Z",
+  "generatedAt": "2026-08-08T13:35:48.992Z",
   "baselineAvailable": true,
   "summary": {
     "improved": 2,
-    "regressed": 0,
-    "unchanged": 18
+    "regressed": 1,
+    "unchanged": 17
   },
   "changes": [
     {
@@ -12,9 +12,9 @@
       "health": "degraded",
       "primaryCause": {
         "stage": "list",
-        "status": "partial",
-        "code": "LIST_EXTRA_POSTS",
-        "reason": "화면 1건보다 6건 많이 추출 · 메뉴/첨부/중복 오탐 가능",
+        "status": "failed",
+        "code": "LIST_COUNTER_FAILED",
+        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
         "evidence": [
           {
             "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
@@ -246,49 +246,49 @@
               {
                 "title": "한국전력공사 로고",
                 "reason": "detail-url-pending",
-                "identity": "row-6969",
+                "identity": "row-6957",
                 "row": "<div class=\"logo-wrap\">\r\n\t\t\t\t\t<h1>\r\n\t\t\t\t\t\t<a href=\"/home/index.do\" class=\"logo\" title=\"한국전력공사 로고\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_main');\">\r\n\t\t\t\t\t\t\t<span class=\"sr-only\">한국전력공사 로고</span>\r\n\t\t\t\t\t\t\t<svg width=\"144\" height=\"29\" viewBox=\"0 0 144 29\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t<path d=\"M72.9113 3.25391C69.5838 3.25391 66.6784 5.05837 65.0458 7.76149V3.26104H57.4156C54.2265 3.26104 51.418 4.90859 49.7508 7.42628V3.26104H44.0645V22.2899H49.7508V18.1247C51.418 20.6424 54.2265 22.297 57.4156 22.297H57.9206H65.0527V17.7894C66.6853 20.4926 69.5908 22.297 72.9182 22.297H73.4232H82.9973V17.1475H73.3194H73.3263C71.922 17.1475 70.6768 16.4415 69.909 15.3573H82.9973V10.2079H69.9228C70.6907 9.13089 71.9289 8.42479 73.3263 8.42479H73.9697L82.9973 8.41766V3.26817H72.9182L72.9113 3.25391ZM57.8099 17.1404H57.8168C55.4787 17.1404 53.5832 15.1933 53.5832 12.7826C53.5832 10.3719 55.4787 8.41766 57.8168 8.41766H58.4602L64.6792 8.41053C64.022 9.71573 63.6415 11.1992 63.6415 12.7755C63.6415 14.3517 64.022 15.8352 64.6792 17.1475H57.803L57.8099 17.1404Z\" fill=\"#0045C9\"/>\r\n\t\t\t\t\t\t\t\t<path d=\"M136.976 3.57304L136.63 3.48745C135.239 3.1451 133.787 2.9668 132.292 2.9668"
               },
               {
                 "title": "CEO 인사말",
                 "reason": "detail-url-pending",
-                "identity": "row-21220",
+                "identity": "row-21208",
                 "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/introduce/ceo.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_ceo');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>CEO 인사말</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
               },
               {
                 "title": "경영방침",
                 "reason": "detail-url-pending",
-                "identity": "row-21618",
+                "identity": "row-21606",
                 "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/introduce/policy/ceo/conts.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_policy');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>경영방침</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
               },
               {
                 "title": "조직안내 메뉴 열기",
                 "reason": "detail-url-pending",
-                "identity": "row-22431",
+                "identity": "row-22419",
                 "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/orgaznization/orgchart/conts.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_org');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t조직안내\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<span class=\"sr-only\">메뉴 열기</span>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<i class=\"icon-mo\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M7 9L12 14L17 9\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"gnb-3depth\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
               },
               {
                 "title": "해외지사·법인",
                 "reason": "detail-url-pending",
-                "identity": "row-24085",
+                "identity": "row-24073",
                 "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/orgaznization/global/boardList.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_global');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>해외지사·법인</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
               },
               {
                 "title": "출자회사",
                 "reason": "detail-url-pending",
-                "identity": "row-24503",
+                "identity": "row-24491",
                 "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/home/about/orgaznization/subsidiaries/group-company/conts.do\"  onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_subsidiary');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>출자회사</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>"
               },
               {
                 "title": "전국 본부 · 사업소",
                 "reason": "detail-url-pending",
-                "identity": "row-24943",
+                "identity": "row-24931",
                 "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/locations.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_branches_1');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t전국 본부 · 사업소\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t            <i class=\"icon-pc\">\r\n\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M9 17L14 12L9 7\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t"
               },
               {
                 "title": "투자정보 메뉴 열기",
                 "reason": "detail-url-pending",
-                "identity": "row-26226",
+                "identity": "row-26214",
                 "row": "<li>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t<a class=\"gnb-2depth-anchor\" href=\"/home/about/invest/irinfo/irreport/boardList.do\" onclick=\"javascript:gaEvent('gnb', 'click', 'gnb_ir');\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t투자정보\r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t    \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<span class=\"sr-only\">메뉴 열기</span>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\t<i class=\"icon-mo\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                    <path d=\"M7 9L12 14L17 9\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t                </svg>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t            </i>\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\t\r\n\t\t\t\t\t\t\t\t\t\t\t        \t\r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t        \r\n\t\t\t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"gnb-3depth\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\t"
               }
             ],
@@ -457,7 +457,7 @@
           }
         ],
         "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
-        "recommendedAction": "오탐 행 원문을 기준으로 메뉴·첨부·중복 제외 규칙 추가"
+        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
       },
       "stages": {
         "access": {
@@ -477,16 +477,16 @@
         },
         "attachment": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         }
       },
       "improved": false,
-      "regressed": false
+      "regressed": true
     },
     {
       "org": "울주문화재단",
-      "health": "degraded",
+      "health": "healthy",
       "primaryCause": {
         "stage": "attachment",
         "status": "unknown",
@@ -503,6 +503,7 @@
             "textLength": 4862,
             "attachmentCount": 0,
             "attachmentSignalCount": 4,
+            "explicitNoAttachment": true,
             "transport": "FORM_POST",
             "error": ""
           }
@@ -528,16 +529,16 @@
         },
         "attachment": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
       "org": "한국에너지공단",
-      "health": "degraded",
+      "health": "healthy",
       "primaryCause": {
         "stage": "attachment",
         "status": "unknown",
@@ -554,6 +555,7 @@
             "textLength": 756,
             "attachmentCount": 0,
             "attachmentSignalCount": 2,
+            "explicitNoAttachment": true,
             "transport": "GET",
             "error": ""
           },
@@ -567,6 +569,7 @@
             "textLength": 756,
             "attachmentCount": 0,
             "attachmentSignalCount": 2,
+            "explicitNoAttachment": true,
             "transport": "GET",
             "error": ""
           },
@@ -580,6 +583,7 @@
             "textLength": 756,
             "attachmentCount": 0,
             "attachmentSignalCount": 2,
+            "explicitNoAttachment": true,
             "transport": "GET",
             "error": ""
           },
@@ -593,6 +597,7 @@
             "textLength": 756,
             "attachmentCount": 0,
             "attachmentSignalCount": 2,
+            "explicitNoAttachment": true,
             "transport": "GET",
             "error": ""
           },
@@ -606,6 +611,7 @@
             "textLength": 756,
             "attachmentCount": 0,
             "attachmentSignalCount": 2,
+            "explicitNoAttachment": true,
             "transport": "GET",
             "error": ""
           },
@@ -619,6 +625,7 @@
             "textLength": 756,
             "attachmentCount": 0,
             "attachmentSignalCount": 2,
+            "explicitNoAttachment": true,
             "transport": "GET",
             "error": ""
           },
@@ -632,6 +639,7 @@
             "textLength": 756,
             "attachmentCount": 0,
             "attachmentSignalCount": 2,
+            "explicitNoAttachment": true,
             "transport": "GET",
             "error": ""
           }
@@ -657,11 +665,11 @@
         },
         "attachment": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
@@ -683,14 +691,14 @@
           "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "detail": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "attachment": {
           "from": true,
@@ -698,7 +706,7 @@
           "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -767,12 +775,12 @@
           "change": "same"
         },
         "attachment": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {

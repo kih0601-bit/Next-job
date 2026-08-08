@@ -1,0 +1,2713 @@
+{
+  "org": "울산도시공사",
+  "health": "degraded",
+  "primaryCause": {
+    "stage": "complete",
+    "status": "success",
+    "code": "PIPELINE_SAMPLE_OK",
+    "reason": "현재 진단 표본에서 실패 원인 없음",
+    "evidence": [],
+    "repairTarget": "scripts/collectors/institutions/울산도시공사.mjs",
+    "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+  },
+  "diagnosis": {
+    "http": {
+      "status": "success",
+      "code": "HTTP_OK",
+      "reason": "2개 후보 URL HTTP 응답 성공",
+      "evidence": [
+        {
+          "url": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산도시공사 &gt; 공지/공고 &gt; 채용공고 | 목록",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 4541,
+            "requestedUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+            "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        },
+        {
+          "url": "https://www.umca.co.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.umca.co.kr/umca/main.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산도시공사",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 9826,
+            "requestedUrl": "https://www.umca.co.kr/",
+            "finalUrl": "https://www.umca.co.kr/umca/main.do",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        }
+      ]
+    },
+    "recruitVerify": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산도시공사 &gt; 공지/공고 &gt; 채용공고 | 목록",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 5,
+        "boardType": {
+          "type": "HTML_TABLE",
+          "confidence": "high",
+          "evidence": [
+            "table/tr 구조 발견"
+          ]
+        },
+        "institutionRule": false,
+        "institutionRuleEvidence": [],
+        "textLength": 4541,
+        "requestedUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+        "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+        "status": 200,
+        "contentType": "text/html;charset=UTF-8"
+      }
+    },
+    "list": {
+      "status": "success",
+      "code": "LIST_VERIFIED_EXACT",
+      "reason": "실제 게시글 목록 검증 완료 · 화면 10건 = 추출 10건 · DOM_TITLE_SET_EXACT",
+      "evidence": [
+        {
+          "url": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 414,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+            "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+            "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+            "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+            "2026년 울산도시공사 신입직원(보훈) 채용공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [
+            {
+              "title": "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+              "action": "fn_view('4477');return false;"
+            },
+            {
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+              "action": "fn_view('4468');return false;"
+            },
+            {
+              "title": "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+              "action": "fn_view('4467');return false;"
+            },
+            {
+              "title": "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+              "action": "fn_view('4450');return false;"
+            },
+            {
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+              "action": "fn_view('4443');return false;"
+            },
+            {
+              "title": "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+              "action": "fn_view('4434');return false;"
+            },
+            {
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+              "action": "fn_view('4433');return false;"
+            },
+            {
+              "title": "2026년 울산도시공사 신입직원(보훈) 채용공고",
+              "action": "fn_view('4431');return false;"
+            },
+            {
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용공고",
+              "action": "fn_view('4414');return false;"
+            },
+            {
+              "title": "기간제근로자(전기직) 채용 공고",
+              "action": "fn_view('4413');return false;"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "385 2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고 311 2026-07-29",
+              "384 2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고 383 2026-07-23",
+              "383 2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 280 2026-07-21",
+              "382 수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 231 2026-07-20",
+              "381 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 391 2026-07-14",
+              "380 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 391 2026-07-08",
+              "379 2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고 399 2026-07-08",
+              "378 2026년 울산도시공사 신입직원(보훈) 채용공고 782 2026-07-06"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://www.umca.co.kr/umca/main.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 460,
+          "titleMatches": 398,
+          "noUrl": 0,
+          "unsafeUrl": 2,
+          "accepted": 55,
+          "rowFallbackAccepted": 15,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 2,
+          "titleSamples": [
+            "브라우저에서 자바스크립트를 활성화하는 방법",
+            "본문으로가기",
+            "주요 메뉴로 건너뛰기",
+            "울산도시공사",
+            "메뉴보기",
+            "공지/공고",
+            "공지사항",
+            "채용공고"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "정보공개신청",
+              "reason": "detail-url-pending",
+              "identity": "row-21899",
+              "row": "<li><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새창\" class=\"tm_tit02 m_3dep open_win\"><span>정보공개신청</span></a>\r\n\t\t\t                          \t\t\t\t</li>"
+            },
+            {
+              "title": "정보공개신청",
+              "reason": "detail-url-pending",
+              "identity": "row-47652",
+              "row": "<li><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새창\" class=\"tm_tit02 open_win\"><span>정보공개신청</span></a>\r\n\t\t                          \t\t\t\t</li>"
+            }
+          ],
+          "actionSamples": [],
+          "candidateUrlSamples": [
+            {
+              "title": "울산도시공사",
+              "url": "https://www.umca.co.kr/",
+              "allowed": false
+            },
+            {
+              "title": "울산도시공사",
+              "url": "https://www.umca.co.kr/search/front/Search.jsp",
+              "allowed": true
+            },
+            {
+              "title": "울산도시공사",
+              "url": "https://www.umca.co.kr/umca/main.do?id=qt",
+              "allowed": true
+            },
+            {
+              "title": "정보공개신청",
+              "url": "https://www.open.go.kr/com/main/mainView.do",
+              "allowed": false
+            },
+            {
+              "title": "정보공개신청",
+              "url": "https://www.open.go.kr/com/main/mainView.do",
+              "allowed": false
+            },
+            {
+              "title": "공지사항",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4449",
+              "allowed": true
+            },
+            {
+              "title": "울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 사업수행능력 세부평가기준(안) 의견 수렴 울산광역시도시공사 공고 제2026-96호건설엔지니어링사업자 사업수행능력 세부평가기준 제4조 1항에 의거 “울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역” 사업수행능력평가와 관련하여 세부평가기준(안)을 공개하오니 평가자료의 오류 또는 이의사항 등에 관하여 의견을 제출하여 주시기 바랍니다.",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4449",
+              "allowed": true
+            },
+            {
+              "title": "지방공기업 경영평가 고객만족도 조사 관련 고객명부 제공사항 알림 2026.06.26",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4428",
+              "allowed": true
+            },
+            {
+              "title": "- 울산 자동차 일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 - 공사감독자 배치기준 공고 2026.06.16",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4407",
+              "allowed": true
+            },
+            {
+              "title": "2026년 주민참여예산제 시행 안내 2026.05.27",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4385",
+              "allowed": true
+            },
+            {
+              "title": "공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4384",
+              "allowed": true
+            },
+            {
+              "title": "울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4341",
+              "allowed": true
+            },
+            {
+              "title": "공지사항 더보기",
+              "url": "https://www.umca.co.kr/umca/contents.do?mId=001001001000000000",
+              "allowed": false
+            },
+            {
+              "title": "공지사항 더보기",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4341",
+              "allowed": true
+            },
+            {
+              "title": "보도자료",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000015&mId=001007004001000000&dataId=4245",
+              "allowed": true
+            },
+            {
+              "title": "[인터뷰] 윤두환 울산도시공사 사장 “울산도시 경쟁력 향상 위한 인프라·기반 조성에 앞장” 2026.01.23",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000015&mId=001007004001000000&dataId=4194",
+              "allowed": true
+            }
+          ],
+          "candidateCount": 55,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 55,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "울산도시공사",
+              "정보공개신청",
+              "정보공개신청",
+              "공지사항",
+              "울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 사업수행능력 세부평가기준(안) 의견 수렴 울산광역시도시공사 공고 제2026-96호건설엔지니어링사업자 사업수행능력 세부평가기준 제4조 1항에 의거 “울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역” 사업수행능력평가와 관련하여 세부평가기준(안)을 공개하오니 평가자료의 오류 또는 이의사항 등에 관하여 의견을 제출하여 주시기 바랍니다.",
+              "지방공기업 경영평가 고객만족도 조사 관련 고객명부 제공사항 알림 2026.06.26",
+              "- 울산 자동차 일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 - 공사감독자 배치기준 공고 2026.06.16",
+              "2026년 주민참여예산제 시행 안내 2026.05.27",
+              "공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21",
+              "울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16",
+              "공지사항 더보기",
+              "보도자료"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable"
+        }
+      ]
+    },
+    "detail": {
+      "status": "success",
+      "code": "DETAIL_FIRST_PAGE_VERIFIED_EXACT",
+      "reason": "첫 페이지 10건 전체 상세 URL·본문 1:1 검증 완료",
+      "evidence": [
+        {
+          "title": "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4477&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4477&mId=001001002000000000",
+          "textLength": 6939,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 6,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4468&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4468&mId=001001002000000000",
+          "textLength": 6931,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 6,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4467&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4467&mId=001001002000000000",
+          "textLength": 6534,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 7,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4450&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4450&mId=001001002000000000",
+          "textLength": 5579,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 6,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4443&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4443&mId=001001002000000000",
+          "textLength": 6440,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 7,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434&mId=001001002000000000",
+          "textLength": 5690,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 6,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4433&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4433&mId=001001002000000000",
+          "textLength": 7037,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 8,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(보훈) 채용공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4431&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4431&mId=001001002000000000",
+          "textLength": 8707,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 15,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4414&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4414&mId=001001002000000000",
+          "textLength": 5622,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 13,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "기간제근로자(전기직) 채용 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4413&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4413&mId=001001002000000000",
+          "textLength": 8232,
+          "attachmentCount": 4,
+          "attachmentSignalCount": 11,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        }
+      ]
+    },
+    "attachment": {
+      "status": "success",
+      "code": "ATTACHMENT_FOUND",
+      "reason": "검증 표본에서 첨부 링크 28개 발견",
+      "evidence": [
+        {
+          "name": "최종합격자공고.pdf (110.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "최종합격자공고.pdf (110.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000006019&bbsId=BBS_0000000000000002&fileSn=0"
+        },
+        {
+          "name": "최종합격자공고.pdf (109.5KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "최종합격자공고.pdf (109.5KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000006011&bbsId=BBS_0000000000000002&fileSn=0"
+        },
+        {
+          "name": "서류전형 합격자공고.pdf (121.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "서류전형 합격자공고.pdf (121.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000006010&bbsId=BBS_0000000000000002&fileSn=0"
+        },
+        {
+          "name": "채용 최종합격자 공고문.hwp (57.0KByte)",
+          "type": "hwp",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "채용 최종합격자 공고문.hwp (57.0KByte)",
+          "type": "hwp",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000005992&bbsId=BBS_0000000000000002&fileSn=1"
+        }
+      ]
+    },
+    "access": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산도시공사 &gt; 공지/공고 &gt; 채용공고 | 목록",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 5,
+        "boardType": {
+          "type": "HTML_TABLE",
+          "confidence": "high",
+          "evidence": [
+            "table/tr 구조 발견"
+          ]
+        },
+        "institutionRule": false,
+        "institutionRuleEvidence": [],
+        "textLength": 4541,
+        "requestedUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+        "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+        "status": 200,
+        "contentType": "text/html;charset=UTF-8"
+      }
+    }
+  },
+  "repairTarget": "scripts/collectors/institutions/울산도시공사.mjs",
+  "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인",
+  "stages": {
+    "access": {
+      "ok": true,
+      "httpOk": true,
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+      "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+      "activeRecruitUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+      "status": 200,
+      "contentType": "text/html;charset=UTF-8",
+      "attempts": [
+        {
+          "url": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산도시공사 &gt; 공지/공고 &gt; 채용공고 | 목록",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 4541,
+            "requestedUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+            "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        },
+        {
+          "url": "https://www.umca.co.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.umca.co.kr/umca/main.do",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산도시공사",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "UL_LIST",
+              "confidence": "medium",
+              "evidence": [
+                "ul/ol + li 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 9826,
+            "requestedUrl": "https://www.umca.co.kr/",
+            "finalUrl": "https://www.umca.co.kr/umca/main.do",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "울산도시공사 &gt; 공지/공고 &gt; 채용공고 | 목록",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 5,
+        "boardType": {
+          "type": "HTML_TABLE",
+          "confidence": "high",
+          "evidence": [
+            "table/tr 구조 발견"
+          ]
+        },
+        "institutionRule": false,
+        "institutionRuleEvidence": [],
+        "textLength": 4541,
+        "requestedUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+        "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+        "status": 200,
+        "contentType": "text/html;charset=UTF-8"
+      },
+      "boardType": {
+        "type": "HTML_TABLE",
+        "confidence": "high",
+        "evidence": [
+          "table/tr 구조 발견"
+        ]
+      },
+      "diagnosis": {
+        "ok": true,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+        "http": {
+          "ok": true,
+          "code": "HTTP_OK",
+          "reason": "2개 후보 URL HTTP 응답 성공",
+          "attempts": [
+            {
+              "url": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "울산도시공사 &gt; 공지/공고 &gt; 채용공고 | 목록",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "채용\\s*정보"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 5,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 4541,
+                "requestedUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+                "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            },
+            {
+              "url": "https://www.umca.co.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.umca.co.kr/umca/main.do",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "울산도시공사",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "채용\\s*정보"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 2,
+                "boardType": {
+                  "type": "UL_LIST",
+                  "confidence": "medium",
+                  "evidence": [
+                    "ul/ol + li 구조 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 9826,
+                "requestedUrl": "https://www.umca.co.kr/",
+                "finalUrl": "https://www.umca.co.kr/umca/main.do",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            }
+          ]
+        },
+        "recruitVerify": {
+          "ok": true,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "boardType": {
+            "type": "HTML_TABLE",
+            "confidence": "high",
+            "evidence": [
+              "table/tr 구조 발견"
+            ]
+          },
+          "evidence": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산도시공사 &gt; 공지/공고 &gt; 채용공고 | 목록",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 4541,
+            "requestedUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+            "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          }
+        },
+        "activeRecruitUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+        "selectedRequestedUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+        "verification": {
+          "ok": true,
+          "verified": true,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 5개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": true,
+            "meaningfulBody": true
+          },
+          "title": "울산도시공사 &gt; 공지/공고 &gt; 채용공고 | 목록",
+          "orgMatched": true,
+          "positiveHits": 2,
+          "positiveMatches": [
+            "채용\\s*공고",
+            "채용\\s*정보"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 5,
+          "boardType": {
+            "type": "HTML_TABLE",
+            "confidence": "high",
+            "evidence": [
+              "table/tr 구조 발견"
+            ]
+          },
+          "institutionRule": false,
+          "institutionRuleEvidence": [],
+          "textLength": 4541,
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+          "status": 200,
+          "contentType": "text/html;charset=UTF-8"
+        }
+      }
+    },
+    "list": {
+      "ok": true,
+      "status": "verified-exact",
+      "pagesChecked": 2,
+      "visiblePostCount": 10,
+      "candidateCount": 10,
+      "missingCount": 0,
+      "extraCount": 0,
+      "exactMatch": true,
+      "selectedUrl": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+      "detailUrlReady": 10,
+      "listOnlyCount": 0,
+      "extractionDiagnostics": [
+        {
+          "url": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 414,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+            "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+            "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+            "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+            "2026년 울산도시공사 신입직원(보훈) 채용공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [
+            {
+              "title": "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+              "action": "fn_view('4477');return false;"
+            },
+            {
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+              "action": "fn_view('4468');return false;"
+            },
+            {
+              "title": "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+              "action": "fn_view('4467');return false;"
+            },
+            {
+              "title": "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+              "action": "fn_view('4450');return false;"
+            },
+            {
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+              "action": "fn_view('4443');return false;"
+            },
+            {
+              "title": "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+              "action": "fn_view('4434');return false;"
+            },
+            {
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+              "action": "fn_view('4433');return false;"
+            },
+            {
+              "title": "2026년 울산도시공사 신입직원(보훈) 채용공고",
+              "action": "fn_view('4431');return false;"
+            },
+            {
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용공고",
+              "action": "fn_view('4414');return false;"
+            },
+            {
+              "title": "기간제근로자(전기직) 채용 공고",
+              "action": "fn_view('4413');return false;"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "385 2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고 311 2026-07-29",
+              "384 2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고 383 2026-07-23",
+              "383 2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 280 2026-07-21",
+              "382 수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 231 2026-07-20",
+              "381 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 391 2026-07-14",
+              "380 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 391 2026-07-08",
+              "379 2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고 399 2026-07-08",
+              "378 2026년 울산도시공사 신입직원(보훈) 채용공고 782 2026-07-06"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://www.umca.co.kr/umca/main.do",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 460,
+          "titleMatches": 398,
+          "noUrl": 0,
+          "unsafeUrl": 2,
+          "accepted": 55,
+          "rowFallbackAccepted": 15,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 2,
+          "titleSamples": [
+            "브라우저에서 자바스크립트를 활성화하는 방법",
+            "본문으로가기",
+            "주요 메뉴로 건너뛰기",
+            "울산도시공사",
+            "메뉴보기",
+            "공지/공고",
+            "공지사항",
+            "채용공고"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "정보공개신청",
+              "reason": "detail-url-pending",
+              "identity": "row-21899",
+              "row": "<li><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새창\" class=\"tm_tit02 m_3dep open_win\"><span>정보공개신청</span></a>\r\n\t\t\t                          \t\t\t\t</li>"
+            },
+            {
+              "title": "정보공개신청",
+              "reason": "detail-url-pending",
+              "identity": "row-47652",
+              "row": "<li><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새창\" class=\"tm_tit02 open_win\"><span>정보공개신청</span></a>\r\n\t\t                          \t\t\t\t</li>"
+            }
+          ],
+          "actionSamples": [],
+          "candidateUrlSamples": [
+            {
+              "title": "울산도시공사",
+              "url": "https://www.umca.co.kr/",
+              "allowed": false
+            },
+            {
+              "title": "울산도시공사",
+              "url": "https://www.umca.co.kr/search/front/Search.jsp",
+              "allowed": true
+            },
+            {
+              "title": "울산도시공사",
+              "url": "https://www.umca.co.kr/umca/main.do?id=qt",
+              "allowed": true
+            },
+            {
+              "title": "정보공개신청",
+              "url": "https://www.open.go.kr/com/main/mainView.do",
+              "allowed": false
+            },
+            {
+              "title": "정보공개신청",
+              "url": "https://www.open.go.kr/com/main/mainView.do",
+              "allowed": false
+            },
+            {
+              "title": "공지사항",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4449",
+              "allowed": true
+            },
+            {
+              "title": "울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 사업수행능력 세부평가기준(안) 의견 수렴 울산광역시도시공사 공고 제2026-96호건설엔지니어링사업자 사업수행능력 세부평가기준 제4조 1항에 의거 “울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역” 사업수행능력평가와 관련하여 세부평가기준(안)을 공개하오니 평가자료의 오류 또는 이의사항 등에 관하여 의견을 제출하여 주시기 바랍니다.",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4449",
+              "allowed": true
+            },
+            {
+              "title": "지방공기업 경영평가 고객만족도 조사 관련 고객명부 제공사항 알림 2026.06.26",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4428",
+              "allowed": true
+            },
+            {
+              "title": "- 울산 자동차 일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 - 공사감독자 배치기준 공고 2026.06.16",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4407",
+              "allowed": true
+            },
+            {
+              "title": "2026년 주민참여예산제 시행 안내 2026.05.27",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4385",
+              "allowed": true
+            },
+            {
+              "title": "공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4384",
+              "allowed": true
+            },
+            {
+              "title": "울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4341",
+              "allowed": true
+            },
+            {
+              "title": "공지사항 더보기",
+              "url": "https://www.umca.co.kr/umca/contents.do?mId=001001001000000000",
+              "allowed": false
+            },
+            {
+              "title": "공지사항 더보기",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4341",
+              "allowed": true
+            },
+            {
+              "title": "보도자료",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000015&mId=001007004001000000&dataId=4245",
+              "allowed": true
+            },
+            {
+              "title": "[인터뷰] 윤두환 울산도시공사 사장 “울산도시 경쟁력 향상 위한 인프라·기반 조성에 앞장” 2026.01.23",
+              "url": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000015&mId=001007004001000000&dataId=4194",
+              "allowed": true
+            }
+          ],
+          "candidateCount": 55,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 55,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "울산도시공사",
+              "정보공개신청",
+              "정보공개신청",
+              "공지사항",
+              "울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 사업수행능력 세부평가기준(안) 의견 수렴 울산광역시도시공사 공고 제2026-96호건설엔지니어링사업자 사업수행능력 세부평가기준 제4조 1항에 의거 “울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역” 사업수행능력평가와 관련하여 세부평가기준(안)을 공개하오니 평가자료의 오류 또는 이의사항 등에 관하여 의견을 제출하여 주시기 바랍니다.",
+              "지방공기업 경영평가 고객만족도 조사 관련 고객명부 제공사항 알림 2026.06.26",
+              "- 울산 자동차 일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 - 공사감독자 배치기준 공고 2026.06.16",
+              "2026년 주민참여예산제 시행 안내 2026.05.27",
+              "공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21",
+              "울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16",
+              "공지사항 더보기",
+              "보도자료"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable"
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "울산도시공사",
+          "url": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+          "listCounterFailureReason": "UNKNOWN",
+          "accuracyVerification": {
+            "verified": true,
+            "level": "DOM_TITLE_SET_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": true,
+              "template": "TABLE_RECORD",
+              "recordCount": 10,
+              "candidateCount": 10,
+              "matchedCount": 10,
+              "unmatchedTitles": [],
+              "recordSamples": [
+                "385 2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고 311 2026-07-29",
+                "384 2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고 383 2026-07-23",
+                "383 2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 280 2026-07-21",
+                "382 수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 231 2026-07-20",
+                "381 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 391 2026-07-14",
+                "380 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 391 2026-07-08",
+                "379 2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고 399 2026-07-08",
+                "378 2026년 울산도시공사 신입직원(보훈) 채용공고 782 2026-07-06"
+              ],
+              "level": "TEMPLATE_TABLE_RECORD_EXACT"
+            },
+            "independentDomEvidence": true,
+            "exactCount": true,
+            "exactTitleSet": true,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 10,
+            "extractedTitleCount": 10
+          },
+          "counterTrace": {
+            "source": "visible-board-rows",
+            "rawDomRows": 10,
+            "uniqueVisibleTitleCount": 10,
+            "reportedVisiblePostCount": 10,
+            "acceptedCandidateCount": 10,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 10
+          },
+          "counts": {
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "rawTableRows": 10,
+            "uniqueVisibleTitleCount": 10,
+            "sourceHtmlLength": 77353,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 11,
+            "li": 350,
+            "article": 0,
+            "[onclick]": 27,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 414
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [
+            "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+            "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+            "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+            "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+            "2026년 울산도시공사 신입직원(보훈) 채용공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용공고",
+            "기간제근로자(전기직) 채용 공고"
+          ],
+          "extractedTitles": [
+            "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+            "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+            "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+            "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+            "2026년 울산도시공사 신입직원(보훈) 채용공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용공고",
+            "기간제근로자(전기직) 채용 공고"
+          ],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+              "normalizedTitle": "2026년 울산도시공사 신입직원 보훈 채용 최종합격자 공고",
+              "text": "385 2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고 311 2026-07-29",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4477",
+              "onclick": "fn_view('4477');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">385</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4477\" onclick=\"fn_view('4477');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">311</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"최종합격자공고.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-29</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4477&mId=001001002000000000",
+              "adapter": "울산도시공사:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 1,
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+              "normalizedTitle": "2026년 울산도시공사 신입직원 기록물 채용 최종합격자 공고",
+              "text": "384 2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고 383 2026-07-23",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4468",
+              "onclick": "fn_view('4468');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">384</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4468\" onclick=\"fn_view('4468');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">383</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"최종합격자공고.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-23</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4468&mId=001001002000000000",
+              "adapter": "울산도시공사:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 2,
+              "title": "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+              "normalizedTitle": "2026년 신입직원 보훈 서류전형 합격자 및 면접시험 공고",
+              "text": "383 2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 280 2026-07-21",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4467",
+              "onclick": "fn_view('4467');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">383</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4467\" onclick=\"fn_view('4467');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">280</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"서류전형 합격자공고.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-21</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4467&mId=001001002000000000",
+              "adapter": "울산도시공사:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+              "normalizedTitle": "수소열병합발전소 기간제근로자 전기직 채용 최종합격자 공고",
+              "text": "382 수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 231 2026-07-20",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4450",
+              "onclick": "fn_view('4450');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">382</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4450\" onclick=\"fn_view('4450');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">231</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"채용 최종합격자 공고문.hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-20</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4450&mId=001001002000000000",
+              "adapter": "울산도시공사:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 4,
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+              "normalizedTitle": "2026년 울산도시공사 신입직원 기록물 채용 필기시험 합격자 및 면접시험 공고",
+              "text": "381 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 391 2026-07-14",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4443",
+              "onclick": "fn_view('4443');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">381</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4443\" onclick=\"fn_view('4443');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">391</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"필기시험 합격자공고.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-14</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4443&mId=001001002000000000",
+              "adapter": "울산도시공사:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 5,
+              "title": "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+              "normalizedTitle": "기간제근로자 전기직 채용 서류전형 합격자 및 면접시험 공고",
+              "text": "380 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 391 2026-07-08",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4434",
+              "onclick": "fn_view('4434');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">380</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4434\" onclick=\"fn_view('4434');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">391</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"기간제근로자(전기직) 채용 서류전형 합격자 및 면적시험 공고문.hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-08</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434&mId=001001002000000000",
+              "adapter": "울산도시공사:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 6,
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+              "normalizedTitle": "2026년 울산도시공사 신입직원 기록물 채용 서류전형 합격자 및 필기시험 공고",
+              "text": "379 2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고 399 2026-07-08",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4433",
+              "onclick": "fn_view('4433');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">379</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4433\" onclick=\"fn_view('4433');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">399</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"서류전형 합격자공고.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-08</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4433&mId=001001002000000000",
+              "adapter": "울산도시공사:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 7,
+              "title": "2026년 울산도시공사 신입직원(보훈) 채용공고",
+              "normalizedTitle": "2026년 울산도시공사 신입직원 보훈 채용공고",
+              "text": "378 2026년 울산도시공사 신입직원(보훈) 채용공고 782 2026-07-06",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4431",
+              "onclick": "fn_view('4431');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">378</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4431\" onclick=\"fn_view('4431');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(보훈) 채용공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">782</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"채용공고(보훈).pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"응시원서(양식).hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"직무기술서(2026 신입직원-행정).pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"응시자격 결격사유.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-06</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4431&mId=001001002000000000",
+              "adapter": "울산도시공사:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 8,
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용공고",
+              "normalizedTitle": "2026년 울산도시공사 신입직원 기록물 채용공고",
+              "text": "377 2026년 울산도시공사 신입직원(기록물) 채용공고 1,407 2026-06-22",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4414",
+              "onclick": "fn_view('4414');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">377</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4414\" onclick=\"fn_view('4414');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(기록물) 채용공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">1,407</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"채용공고(기록물).pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"응시원서(양식).hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"직무기술서(2026 신입직원-행정).pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"응시자격 결격사유.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-06-22</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4414&mId=001001002000000000",
+              "adapter": "울산도시공사:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 9,
+              "title": "기간제근로자(전기직) 채용 공고",
+              "normalizedTitle": "기간제근로자 전기직 채용 공고",
+              "text": "376 기간제근로자(전기직) 채용 공고 861 2026-06-22",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4413",
+              "onclick": "fn_view('4413');return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">376</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4413\" onclick=\"fn_view('4413');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t기간제근로자(전기직) 채용 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">861</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"(기간제 근로자)채용공고문 (1).pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"(전기직)입사지원서.hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"(전기직)자기소개서, 공정채용확인서, 개인정보수집동의서.hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-06-22</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4413&mId=001001002000000000",
+              "adapter": "울산도시공사:board-row",
+              "rejectionReason": ""
+            }
+          ]
+        },
+        {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "울산도시공사",
+          "url": "https://www.umca.co.kr/umca/main.do",
+          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+          "listCounterFailureReason": "DOM_COUNT_ZERO",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 55,
+              "matchedCount": 0,
+              "unmatchedTitles": [
+                "울산도시공사",
+                "정보공개신청",
+                "정보공개신청",
+                "공지사항",
+                "울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 사업수행능력 세부평가기준(안) 의견 수렴 울산광역시도시공사 공고 제2026-96호건설엔지니어링사업자 사업수행능력 세부평가기준 제4조 1항에 의거 “울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역” 사업수행능력평가와 관련하여 세부평가기준(안)을 공개하오니 평가자료의 오류 또는 이의사항 등에 관하여 의견을 제출하여 주시기 바랍니다.",
+                "지방공기업 경영평가 고객만족도 조사 관련 고객명부 제공사항 알림 2026.06.26",
+                "- 울산 자동차 일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 - 공사감독자 배치기준 공고 2026.06.16",
+                "2026년 주민참여예산제 시행 안내 2026.05.27",
+                "공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21",
+                "울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16",
+                "공지사항 더보기",
+                "보도자료"
+              ],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "independentDomEvidence": false,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 55,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 55
+          },
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 55,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {
+            "UNCLASSIFIED": 44,
+            "RECRUIT_POST": 11
+          },
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 55,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 92295,
+            "missingRows": 0,
+            "extraCandidates": 55
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 386,
+            "article": 0,
+            "[onclick]": 2,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 460
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [
+            "울산도시공사",
+            "정보공개신청",
+            "정보공개신청",
+            "공지사항",
+            "울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 사업수행능력 세부평가기준(안) 의견 수렴 울산광역시도시공사 공고 제2026-96호건설엔지니어링사업자 사업수행능력 세부평가기준 제4조 1항에 의거 “울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역” 사업수행능력평가와 관련하여 세부평가기준(안)을 공개하오니 평가자료의 오류 또는 이의사항 등에 관하여 의견을 제출하여 주시기 바랍니다.",
+            "지방공기업 경영평가 고객만족도 조사 관련 고객명부 제공사항 알림 2026.06.26",
+            "- 울산 자동차 일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 - 공사감독자 배치기준 공고 2026.06.16",
+            "2026년 주민참여예산제 시행 안내 2026.05.27",
+            "공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21",
+            "울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16",
+            "공지사항 더보기",
+            "보도자료",
+            "[인터뷰] 윤두환 울산도시공사 사장 “울산도시 경쟁력 향상 위한 인프라·기반 조성에 앞장” 2026.01.23",
+            "‘6년 표류’ 상안 행복주택, 민간 참여로 ‘돌파구’ 2026.01.16",
+            "울주군, 온산국가산단 배후도시 조성 본격화 2026.01.14",
+            "여천파크골프장, 울산도시공사 위탁 체결 완료…내달 착공 2026.01.14",
+            "KTX 역세권 등 울산 도심융합특구 설계 착수 2026.01.07",
+            "보도자료 더보기",
+            "채용공고",
+            "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고 2026.07.23",
+            "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 2026.07.21",
+            "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 2026.07.20",
+            "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 2026.07.14",
+            "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 2026.07.08",
+            "채용공고 더보기",
+            "분양공고",
+            "울산미포국가산업단지 부곡용연지구 지원시설용지 분양 공고 공고대상 : 1필지(지원시설용지)※ 기타 자세한 내용은 첨부파일 확인 바랍니다.",
+            "울산 테크노일반산업단지 지원·주차장·단독주택용지 수의계약 공급공고 2026.07.09",
+            "진장디플렉스 분양 공급공고(울산광역시도시공사 공고 제2026-83호) 2026.06.24",
+            "울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고(2차) 2026.05.18",
+            "KCC일반산업단지 산업시설용지 매도공고(활천리 810-17) 2026.05.07",
+            "울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고 2026.04.23",
+            "분양공고 더보기",
+            "보상공고",
+            "여천매립장을 활용한 정원형 파크골프장 조성사업 보상계획 및 열람 공고 &nbsp;&nbsp;",
+            "구영들공원 조성사업 보상계획열람공고 2026.06.04",
+            "자동차일반산업단지 감정평가업자등 선정 결과 공고 2025.12.19",
+            "자동차일반산업단지 보상계획 열람공고 2025.12.01",
+            "자동차일반산업단지 감정평가업자등 선정 공고 2025.11.21",
+            "제53보병사단 127여단본부 협의이전사업 보상계획 열람공고 2025.10.02",
+            "보상공고 더보기",
+            "임대공고",
+            "유홈 성안매입 입주자 선정 및 예비입주자 순번 추첨 결과 공고 상세내역은 붙임을 참고하여 주시기 바라며,현재 유홈 성안매입 건축물이 아직 공사중이므로, 입주일정은 추후 다시 안내드리도록 하겠습니다. 감사합니다.",
+            "율동위드유 예비입주자(26A) 순번추첨 결과 공고 2026.07.24",
+            "유홈 성안 예비입주자 모집 공고 2026.07.10",
+            "유홈 주거약자 세대 입주자 선정 결과 공고(삼산, 백합, 달동, 방어) 2026.07.10",
+            "유홈 방어 및 양정 입주자 및 예비입주자 순번 추첨결과 공고 2026.07.10",
+            "진장디플렉스 임대 공급공고(울산광역시도시공사 공고 제2026-84호) 2026.06.24",
+            "임대공고 더보기",
+            "일반산업 단지관리",
+            "부·울·경 3T(Together Towards Tomorrow) 협력 파트너십 및 웰컴 청년 인재 통합지원 패키지 참여자 모집 ○ 사업기간 : 2026. 5. 6. ~ 2026. 12. 31.(예산 소진까지)○ 신청자격 : 붙임 참고○ 신청대상 : 사업자등록증상 부산, 울산, 경남 소재 기계, 조선, 자동차 업종 기업(*자세한 사항은 붙임 참고)&nbsp;",
+            "2026년 청정제조기반구축사업 통합 공고 2026.07.14",
+            "태양광 무료 컨설팅 사업(정부지원사업) 2026.05.29",
+            "입주기업 투자혜택 안내문 2024.08.01",
+            "일반산업단지 관리 더보기"
+          ],
+          "missingRows": [],
+          "extraCandidates": [
+            {
+              "org": "울산도시공사",
+              "title": "울산도시공사",
+              "link": "https://www.umca.co.kr/search/front/Search.jsp",
+              "listText": "ul> 울산도시공사 통합검색 검색어 입력 검색 검색창닫기",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "정보공개신청",
+              "link": "https://www.umca.co.kr/umca/main.do#list-row-21899",
+              "listText": "정보공개신청",
+              "adapter": "울산도시공사",
+              "listOnly": true,
+              "listIdentity": "row-21899"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "정보공개신청",
+              "link": "https://www.umca.co.kr/umca/main.do#list-row-47652",
+              "listText": "정보공개신청",
+              "adapter": "울산도시공사",
+              "listOnly": true,
+              "listIdentity": "row-47652"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "공지사항",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&dataId=4449&mId=001001001000000000",
+              "listText": "iv> 공지사항 2026.07. 20 울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 사업수행능력 세부평가기준(안) 의견 수렴 울산광역시도시공사 공고 제2026-96호건설엔지니어링사업자 사업수행능력 세부평가기준 제4조 1항에 의거 “울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역” 사업수행능력평가와 관련하여 세부평가기준(안)을 공개하오니 평가자료의 오류 또는 이의사항 등에 관하여 의견을 제출하여 주시기 바랍니다. 지방공기업 경영평가 고객만족도 조사 관련 고객명부 제공사항 알림 2026.06.26",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 사업수행능력 세부평가기준(안) 의견 수렴 울산광역시도시공사 공고 제2026-96호건설엔지니어링사업자 사업수행능력 세부평가기준 제4조 1항에 의거 “울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역” 사업수행능력평가와 관련하여 세부평가기준(안)을 공개하오니 평가자료의 오류 또는 이의사항 등에 관하여 의견을 제출하여 주시기 바랍니다.",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&dataId=4449&mId=001001001000000000",
+              "listText": "href=\"#\" class=\"tit tit01 on\"> 공지사항 2026.07. 20 울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 사업수행능력 세부평가기준(안) 의견 수렴 울산광역시도시공사 공고 제2026-96호건설엔지니어링사업자 사업수행능력 세부평가기준 제4조 1항에 의거 “울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역” 사업수행능력평가와 관련하여 세부평가기준(안)을 공개하오니 평가자료의 오류 또는 이의사항 등에 관하여 의견을 제출하여 주시기 바랍니다. 지방공기업 경영평가 고객만족도 조사 관련 고객명부 제공사항 알림 2026.06.26 - 울산 자동차 일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 - 공사감독자 배치기준 공고 2026.06.16 2026년 주민참여예산제 시행 안내 2026.05.27 <a href=\"/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=0010010010000000",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "지방공기업 경영평가 고객만족도 조사 관련 고객명부 제공사항 알림 2026.06.26",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&dataId=4428&mId=001001001000000000",
+              "listText": "ir_content\">울산광역시도시공사 공고 제2026-96호건설엔지니어링사업자 사업수행능력 세부평가기준 제4조 1항에 의거 “울산 자동차일반산업단지 조성공사 감독권한대행 등 건설사업관리용역” 사업수행능력평가와 관련하여 세부평가기준(안)을 공개하오니 평가자료의 오류 또는 이의사항 등에 관하여 의견을 제출하여 주시기 바랍니다. 지방공기업 경영평가 고객만족도 조사 관련 고객명부 제공사항 알림 2026.06.26 - 울산 자동차 일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 - 공사감독자 배치기준 공고 2026.06.16 2026년 주민참여예산제 시행 안내 2026.05.27 공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21 <a href=\"/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=00100",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "- 울산 자동차 일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 - 공사감독자 배치기준 공고 2026.06.16",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&dataId=4407&mId=001001001000000000",
+              "listText": "지방공기업 경영평가 고객만족도 조사 관련 고객명부 제공사항 알림 2026.06.26 - 울산 자동차 일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 - 공사감독자 배치기준 공고 2026.06.16 2026년 주민참여예산제 시행 안내 2026.05.27 공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21 울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16 <s",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "2026년 주민참여예산제 시행 안내 2026.05.27",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&dataId=4385&mId=001001001000000000",
+              "listText": "bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4407\"> - 울산 자동차 일반산업단지 조성공사 감독권한대행 등 건설사업관리용역 - 공사감독자 배치기준 공고 2026.06.16 2026년 주민참여예산제 시행 안내 2026.05.27 공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21 울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16 공지사항 더보기 보도자료 <li class=\"fir",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&dataId=4384&mId=001001001000000000",
+              "listText": "> 2026년 주민참여예산제 시행 안내 2026.05.27 공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21 울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16 공지사항 더보기 보도자료 2026.02. 24 자동차산단 근로자·노인 공존 주거모델 구상",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&dataId=4341&mId=001001001000000000",
+              "listText": "=\"/umca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4384\"> 공사감독자 배치기준(안) 공개 및 의견수렴 공고문(울산 자동차일반산업단지 조성공사) 2026.05.21 울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16 공지사항 더보기 보도자료 2026.02. 24 자동차산단 근로자·노인 공존 주거모델 구상 📰 경상일보 | 2026.02.24 자동차산단 근로자·노인이 함께하는 복지 연계형 공공주택 주거모델 구상 울산도시공사가 자동차산단 내 공공주택 건설사업의 타당성 조사 및 기본계획 수립 용역을 추진합니다. 분양·임대 주택 규모와 고령자복지주택 도입 여부까지 종합 검토",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "공지사항 더보기",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000001&dataId=4341&mId=001001001000000000",
+              "listText": "ca/bbs/view.do?bbsId=BBS_0000000000000001&mId=001001001000000000&dataId=4341\"> 울산경제자유구역 비즈니스지구 개발사업(경부고속철도 울산역 역세권개발사업(2단계))환지처분공고 2026.04.16 공지사항 더보기 보도자료 2026.02. 24 자동차산단 근로자·노인 공존 주거모델 구상 📰 경상일보 | 2026.02.24 자동차산단 근로자·노인이 함께하는 복지 연계형 공공주택 주거모델 구상 울산도시공사가 자동차산단 내 공공주택 건설사업의 타당성 조사 및 기본계획 수립 용역을 추진합니다. 분양·임대 주택 규모와 고령자복지주택 도입 여부까지 종합 검토할 계획입니다. 울산도시공사는 동구 서부동 일원 자동차산업단지 부지 6만2,142㎡를 대상으로 공공주택 건설사업 타당성 조사 및 기본계획 수립 용역을 본격 추진합니다. 이번 용역을 통해 분양·임대주택의 규모와 함께 고령자복지주택 도입",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "보도자료",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000015&dataId=4245&mId=001007004001000000",
+              "listText": "e\">2026.04.16 공지사항 더보기 보도자료 2026.02. 24 자동차산단 근로자·노인 공존 주거모델 구상 📰 경상일보 | 2026.02.24 자동차산단 근로자·노인이 함께하는 복지 연계형 공공주택 주거모델 구상 울산도시공사가 자동차산단 내 공공주택 건설사업의 타당성 조사 및 기본계획 수립 용역을 추진합니다. 분양·임대 주택 규모와 고령자복지주택 도입 여부까지 종합 검토할 계획입니다. 울산도시공사는 동구 서부동 일원 자동차산업단지 부지 6만2,142㎡를 대상으로 공공주택 건설사업 타당성 조사 및 기본계획 수립 용역을 본격 추진합니다. 이번 용역을 통해 분양·임대주택의 규모와 함께 고령자복지주택 도입 여부까지 종합적으로 검토할 예정입니다. 이번 용역의 핵심은 분양주택 897가구와 임대주택 529가구 규모의 공공주택 건설 가능성을 다각도로 분석하는 것입니다",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "[인터뷰] 윤두환 울산도시공사 사장 “울산도시 경쟁력 향상 위한 인프라·기반 조성에 앞장” 2026.01.23",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000015&dataId=4194&mId=001007004001000000",
+              "listText": "✍️ 석현주 기자 🔗 원문 기사 ※ 본 게시글은 울산도시공사 및 관련 언론보도 내용을 요약·공유한 것입니다. [인터뷰] 윤두환 울산도시공사 사장 “울산도시 경쟁력 향상 위한 인프라·기반 조성에 앞장” 2026.01.23 ‘6년 표류’ 상안 행복주택, 민간 참여로 ‘돌파구’ 2026.01.16 울주군, 온산국가산단 배후도시 조성 본격화 2026.01.14 여천파크골프장, 울산도시공사 위탁 체결 완료…내달 착공 2026.01.14",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "‘6년 표류’ 상안 행복주택, 민간 참여로 ‘돌파구’ 2026.01.16",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000015&dataId=4186&mId=001007004001000000",
+              "listText": "mca/bbs/view.do?bbsId=BBS_0000000000000015&mId=001007004001000000&dataId=4194\"> [인터뷰] 윤두환 울산도시공사 사장 “울산도시 경쟁력 향상 위한 인프라·기반 조성에 앞장” 2026.01.23 ‘6년 표류’ 상안 행복주택, 민간 참여로 ‘돌파구’ 2026.01.16 울주군, 온산국가산단 배후도시 조성 본격화 2026.01.14 여천파크골프장, 울산도시공사 위탁 체결 완료…내달 착공 2026.01.14 KTX 역세권 등 울산 도심융합특구 설계 착수 2026.01.07 보도자료 더보기",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "울주군, 온산국가산단 배후도시 조성 본격화 2026.01.14",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000015&dataId=4183&mId=001007004001000000",
+              "listText": "‘6년 표류’ 상안 행복주택, 민간 참여로 ‘돌파구’ 2026.01.16 울주군, 온산국가산단 배후도시 조성 본격화 2026.01.14 여천파크골프장, 울산도시공사 위탁 체결 완료…내달 착공 2026.01.14 KTX 역세권 등 울산 도심융합특구 설계 착수 2026.01.07 보도자료 더보기 채용공고 <span class=\"fir_da",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "여천파크골프장, 울산도시공사 위탁 체결 완료…내달 착공 2026.01.14",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000015&dataId=4182&mId=001007004001000000",
+              "listText": "울주군, 온산국가산단 배후도시 조성 본격화 2026.01.14 여천파크골프장, 울산도시공사 위탁 체결 완료…내달 착공 2026.01.14 KTX 역세권 등 울산 도심융합특구 설계 착수 2026.01.07 보도자료 더보기 채용공고 2026.07. 29 2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고 <p",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "KTX 역세권 등 울산 도심융합특구 설계 착수 2026.01.07",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000015&dataId=4176&mId=001007004001000000",
+              "listText": "여천파크골프장, 울산도시공사 위탁 체결 완료…내달 착공 2026.01.14 KTX 역세권 등 울산 도심융합특구 설계 착수 2026.01.07 보도자료 더보기 채용공고 2026.07. 29 2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고 울산광역시도시공사 공고 제2026-102호 2026년 울산도시공사 신입직원(보훈) 채용최종합격자 공고 울산광역시도시공사 2026년 울산도시공사 신입직원(보훈) 채용에 관심을 가지고 지원해 주시어 감사드리며, 다음과 같이 최종",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "보도자료 더보기",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000015&dataId=4176&mId=001007004001000000",
+              "listText": "KTX 역세권 등 울산 도심융합특구 설계 착수 2026.01.07 보도자료 더보기 채용공고 2026.07. 29 2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고 울산광역시도시공사 공고 제2026-102호 2026년 울산도시공사 신입직원(보훈) 채용최종합격자 공고 울산광역시도시공사 2026년 울산도시공사 신입직원(보훈) 채용에 관심을 가지고 지원해 주시어 감사드리며, 다음과 같이 최종합격자 명단을 공고합니다. ① 최종합격자 채용홈페이지(http://umca.applyin.co.kr)에서 개별 확인 최종합격자: 수험번호 1",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "채용공고",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4477&mId=001001002000000000",
+              "listText": "e\">2026.01.07 보도자료 더보기 채용공고 2026.07. 29 2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고 울산광역시도시공사 공고 제2026-102호 2026년 울산도시공사 신입직원(보훈) 채용최종합격자 공고 울산광역시도시공사 2026년 울산도시공사 신입직원(보훈) 채용에 관심을 가지고 지원해 주시어 감사드리며, 다음과 같이 최종합격자 명단을 공고합니다. ① 최종합격자 채용홈페이지(http://umca.applyin.co.kr)에서 개별 확인 최종합격자: 수험번호 100005 ② 임용대상자 등록 일시 및 장소",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고 2026.07.23",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4468&mId=001001002000000000",
+              "listText": "은 최초 재산등록 신고를 해야 합니다. (임용 후 별도안내 예정) 기타 사항은 울산도시공사 채용담당자(052-219-8414)로 문의하시길 바랍니다. 2026. 7. 29. 울산광역시도시공사장 2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고 2026.07.23 2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 2026.07.21 수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 2026.07.20 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 2026.07.14 <a href=\"/umca/bbs/view.do?bbsId=BBS_0000000000000002&mId=001001002000000",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 2026.07.21",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4467&mId=001001002000000000",
+              "listText": "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고 2026.07.23 2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 2026.07.21 수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 2026.07.20 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 2026.07.14 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 2026.07.08 <span cla",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 2026.07.20",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4450&mId=001001002000000000",
+              "listText": "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 2026.07.21 수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 2026.07.20 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 2026.07.14 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 2026.07.08 채용공고 더보기 분양공고",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 2026.07.14",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4443&mId=001001002000000000",
+              "listText": "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 2026.07.20 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 2026.07.14 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 2026.07.08 채용공고 더보기 분양공고 2026.07. 28 울산미포국가산업단지 부곡용연지구 지원시설용지 분양 공고",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 2026.07.08",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434&mId=001001002000000000",
+              "listText": "ef=\"/umca/bbs/view.do?bbsId=BBS_0000000000000002&mId=001001002000000000&dataId=4443\"> 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 2026.07.14 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 2026.07.08 채용공고 더보기 분양공고 2026.07. 28 울산미포국가산업단지 부곡용연지구 지원시설용지 분양 공고 공고대상 : 1필지(지원시설용지)※ 기타 자세한 내용은 첨부파일 확인 바랍니다.",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "채용공고 더보기",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434&mId=001001002000000000",
+              "listText": "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 2026.07.08 채용공고 더보기 분양공고 2026.07. 28 울산미포국가산업단지 부곡용연지구 지원시설용지 분양 공고 공고대상 : 1필지(지원시설용지)※ 기타 자세한 내용은 첨부파일 확인 바랍니다. 울산 테크노일반산업단지 지원·주차장·단독주택용지 수의계약 공급공고 2026.07.09 <a href",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "분양공고",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000003&dataId=4473&mId=001001003000000000",
+              "listText": "e\">2026.07.08 채용공고 더보기 분양공고 2026.07. 28 울산미포국가산업단지 부곡용연지구 지원시설용지 분양 공고 공고대상 : 1필지(지원시설용지)※ 기타 자세한 내용은 첨부파일 확인 바랍니다. 울산 테크노일반산업단지 지원·주차장·단독주택용지 수의계약 공급공고 2026.07.09 진장디플렉스 분",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "울산미포국가산업단지 부곡용연지구 지원시설용지 분양 공고 공고대상 : 1필지(지원시설용지)※ 기타 자세한 내용은 첨부파일 확인 바랍니다.",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000003&dataId=4473&mId=001001003000000000",
+              "listText": "분양공고 2026.07. 28 울산미포국가산업단지 부곡용연지구 지원시설용지 분양 공고 공고대상 : 1필지(지원시설용지)※ 기타 자세한 내용은 첨부파일 확인 바랍니다. 울산 테크노일반산업단지 지원·주차장·단독주택용지 수의계약 공급공고 2026.07.09 진장디플렉스 분양 공급공고(울산광역시도시공사 공고 제2026-83호) 2026.06.24 울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고(2차) 2026.05.18 <a href=\"/umca/bbs/view.do?bbsId=BBS_0000000000000003&mId=001001003000000",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "울산 테크노일반산업단지 지원·주차장·단독주택용지 수의계약 공급공고 2026.07.09",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000003&dataId=4436&mId=001001003000000000",
+              "listText": "mp;dataId=4473\"> 울산미포국가산업단지 부곡용연지구 지원시설용지 분양 공고 공고대상 : 1필지(지원시설용지)※ 기타 자세한 내용은 첨부파일 확인 바랍니다. 울산 테크노일반산업단지 지원·주차장·단독주택용지 수의계약 공급공고 2026.07.09 진장디플렉스 분양 공급공고(울산광역시도시공사 공고 제2026-83호) 2026.06.24 울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고(2차) 2026.05.18 KCC일반산업단지 산업시설용지 매도공고(활천리 810-17) 2026.05.07 <a href=\"/umca/bbs/view.do?bbsId=BBS_0000000000000003&mId=001001003000000000",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "진장디플렉스 분양 공급공고(울산광역시도시공사 공고 제2026-83호) 2026.06.24",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000003&dataId=4426&mId=001001003000000000",
+              "listText": "울산 테크노일반산업단지 지원·주차장·단독주택용지 수의계약 공급공고 2026.07.09 진장디플렉스 분양 공급공고(울산광역시도시공사 공고 제2026-83호) 2026.06.24 울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고(2차) 2026.05.18 KCC일반산업단지 산업시설용지 매도공고(활천리 810-17) 2026.05.07 울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고 2026.04.23 <span class=\"blind\"",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고(2차) 2026.05.18",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000003&dataId=4380&mId=001001003000000000",
+              "listText": "진장디플렉스 분양 공급공고(울산광역시도시공사 공고 제2026-83호) 2026.06.24 울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고(2차) 2026.05.18 KCC일반산업단지 산업시설용지 매도공고(활천리 810-17) 2026.05.07 울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고 2026.04.23 분양공고 더보기 보상공고 <span clas",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "KCC일반산업단지 산업시설용지 매도공고(활천리 810-17) 2026.05.07",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000003&dataId=4361&mId=001001003000000000",
+              "listText": "울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고(2차) 2026.05.18 KCC일반산업단지 산업시설용지 매도공고(활천리 810-17) 2026.05.07 울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고 2026.04.23 분양공고 더보기 보상공고 2026.06. 08 여천매립장을 활용한 정원형 파크골프장 조성사업 보상계획 및 열람 공고",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고 2026.04.23",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000003&dataId=4354&mId=001001003000000000",
+              "listText": "KCC일반산업단지 산업시설용지 매도공고(활천리 810-17) 2026.05.07 울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고 2026.04.23 분양공고 더보기 보상공고 2026.06. 08 여천매립장을 활용한 정원형 파크골프장 조성사업 보상계획 및 열람 공고 &nbsp;&nbsp; 구영들공원 조성사업 보상계",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "분양공고 더보기",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000003&dataId=4354&mId=001001003000000000",
+              "listText": "울산 테크노일반산업단지 지원·주차장·단독주택용지 분양공고 2026.04.23 분양공고 더보기 보상공고 2026.06. 08 여천매립장을 활용한 정원형 파크골프장 조성사업 보상계획 및 열람 공고 &nbsp;&nbsp; 구영들공원 조성사업 보상계획열람공고 2026.06.04 <a href=\"/umca/bbs/view.do?bbsId=BBS_000",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "보상공고",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000005&dataId=4400&mId=001001005000000000",
+              "listText": "e\">2026.04.23 분양공고 더보기 보상공고 2026.06. 08 여천매립장을 활용한 정원형 파크골프장 조성사업 보상계획 및 열람 공고 &nbsp;&nbsp; 구영들공원 조성사업 보상계획열람공고 2026.06.04 자동차일반산업단지 감정평가업자등 선정 결과 공고<span class=\"n_",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "여천매립장을 활용한 정원형 파크골프장 조성사업 보상계획 및 열람 공고 &nbsp;&nbsp;",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000005&dataId=4400&mId=001001005000000000",
+              "listText": "보상공고 2026.06. 08 여천매립장을 활용한 정원형 파크골프장 조성사업 보상계획 및 열람 공고 &nbsp;&nbsp; 구영들공원 조성사업 보상계획열람공고 2026.06.04 자동차일반산업단지 감정평가업자등 선정 결과 공고 2025.12.19 자동차일반산업단지 보상계획 열람공고 2025.12.01 자동차일반산업단지 감정",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "구영들공원 조성사업 보상계획열람공고 2026.06.04",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000005&dataId=4393&mId=001001005000000000",
+              "listText": "001005000000000&dataId=4400\"> 여천매립장을 활용한 정원형 파크골프장 조성사업 보상계획 및 열람 공고 &nbsp;&nbsp; 구영들공원 조성사업 보상계획열람공고 2026.06.04 자동차일반산업단지 감정평가업자등 선정 결과 공고 2025.12.19 자동차일반산업단지 보상계획 열람공고 2025.12.01 자동차일반산업단지 감정평가업자등 선정 공고 2025.11.21 제53보병사단 1",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "자동차일반산업단지 감정평가업자등 선정 결과 공고 2025.12.19",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000005&dataId=4158&mId=001001005000000000",
+              "listText": "구영들공원 조성사업 보상계획열람공고 2026.06.04 자동차일반산업단지 감정평가업자등 선정 결과 공고 2025.12.19 자동차일반산업단지 보상계획 열람공고 2025.12.01 자동차일반산업단지 감정평가업자등 선정 공고 2025.11.21 제53보병사단 127여단본부 협의이전사업 보상계획 열람공고 2025.10.02 보상공고 더보기",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "자동차일반산업단지 보상계획 열람공고 2025.12.01",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000005&dataId=4136&mId=001001005000000000",
+              "listText": "자동차일반산업단지 감정평가업자등 선정 결과 공고 2025.12.19 자동차일반산업단지 보상계획 열람공고 2025.12.01 자동차일반산업단지 감정평가업자등 선정 공고 2025.11.21 제53보병사단 127여단본부 협의이전사업 보상계획 열람공고 2025.10.02 보상공고 더보기 임대공고 <span class=\"fir_da",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "자동차일반산업단지 감정평가업자등 선정 공고 2025.11.21",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000005&dataId=4121&mId=001001005000000000",
+              "listText": "> 자동차일반산업단지 보상계획 열람공고 2025.12.01 자동차일반산업단지 감정평가업자등 선정 공고 2025.11.21 제53보병사단 127여단본부 협의이전사업 보상계획 열람공고 2025.10.02 보상공고 더보기 임대공고 2026.07. 31 유홈 성안매입 입주자 선정 및 예비입주자 순번 추첨 결과 공고",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "제53보병사단 127여단본부 협의이전사업 보상계획 열람공고 2025.10.02",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000005&dataId=4064&mId=001001005000000000",
+              "listText": "자동차일반산업단지 감정평가업자등 선정 공고 2025.11.21 제53보병사단 127여단본부 협의이전사업 보상계획 열람공고 2025.10.02 보상공고 더보기 임대공고 2026.07. 31 유홈 성안매입 입주자 선정 및 예비입주자 순번 추첨 결과 공고 상세내역은 붙임을 참고하여 주시기 바라며,현재 유홈 성안매입 건축물이 아직 공사중이므로, 입주일정은 추후 다시 안내드리도록 하겠습니다. 감사합니다. <a href=\"/umca/bbs/view.do?bbsId=BBS_0000000000000004&mId=001",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "보상공고 더보기",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000005&dataId=4064&mId=001001005000000000",
+              "listText": "제53보병사단 127여단본부 협의이전사업 보상계획 열람공고 2025.10.02 보상공고 더보기 임대공고 2026.07. 31 유홈 성안매입 입주자 선정 및 예비입주자 순번 추첨 결과 공고 상세내역은 붙임을 참고하여 주시기 바라며,현재 유홈 성안매입 건축물이 아직 공사중이므로, 입주일정은 추후 다시 안내드리도록 하겠습니다. 감사합니다. 율동위드유 예비입주자(26A) 순번추첨 결과 공고 2026.07.24",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "임대공고",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000004&dataId=4483&mId=001001004000000000",
+              "listText": "e\">2025.10.02 보상공고 더보기 임대공고 2026.07. 31 유홈 성안매입 입주자 선정 및 예비입주자 순번 추첨 결과 공고 상세내역은 붙임을 참고하여 주시기 바라며,현재 유홈 성안매입 건축물이 아직 공사중이므로, 입주일정은 추후 다시 안내드리도록 하겠습니다. 감사합니다. 율동위드유 예비입주자(26A) 순번추첨 결과 공고 2026.07.24 <a href=\"/umca/bbs/view.do?bbsId=BBS_0000000000000004&mId=001001004000000000&",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "유홈 성안매입 입주자 선정 및 예비입주자 순번 추첨 결과 공고 상세내역은 붙임을 참고하여 주시기 바라며,현재 유홈 성안매입 건축물이 아직 공사중이므로, 입주일정은 추후 다시 안내드리도록 하겠습니다. 감사합니다.",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000004&dataId=4483&mId=001001004000000000",
+              "listText": "임대공고 2026.07. 31 유홈 성안매입 입주자 선정 및 예비입주자 순번 추첨 결과 공고 상세내역은 붙임을 참고하여 주시기 바라며,현재 유홈 성안매입 건축물이 아직 공사중이므로, 입주일정은 추후 다시 안내드리도록 하겠습니다. 감사합니다. 율동위드유 예비입주자(26A) 순번추첨 결과 공고 2026.07.24 유홈 성안 예비입주자 모집 공고 2026.07.10 유홈 주거약자 세대 입주자 선정 결과 공고(삼산, 백합, 달동, 방어) 2026.07.10",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "율동위드유 예비입주자(26A) 순번추첨 결과 공고 2026.07.24",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000004&dataId=4470&mId=001001004000000000",
+              "listText": "ir_tit\">유홈 성안매입 입주자 선정 및 예비입주자 순번 추첨 결과 공고 상세내역은 붙임을 참고하여 주시기 바라며,현재 유홈 성안매입 건축물이 아직 공사중이므로, 입주일정은 추후 다시 안내드리도록 하겠습니다. 감사합니다. 율동위드유 예비입주자(26A) 순번추첨 결과 공고 2026.07.24 유홈 성안 예비입주자 모집 공고 2026.07.10 유홈 주거약자 세대 입주자 선정 결과 공고(삼산, 백합, 달동, 방어) 2026.07.10 유홈 방어 및 양정 입주자 및 예비입주자 순번 추첨결과 공고 2026.07.10 <a href=\"/umca/bbs/view.do?bbsId=BBS_0000000000000004&mId=001001004000000000&dataId=4427\"",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "유홈 성안 예비입주자 모집 공고 2026.07.10",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000004&dataId=4439&mId=001001004000000000",
+              "listText": "율동위드유 예비입주자(26A) 순번추첨 결과 공고 2026.07.24 유홈 성안 예비입주자 모집 공고 2026.07.10 유홈 주거약자 세대 입주자 선정 결과 공고(삼산, 백합, 달동, 방어) 2026.07.10 유홈 방어 및 양정 입주자 및 예비입주자 순번 추첨결과 공고 2026.07.10 진장디플렉스 임대 공급공고(울산광역시도시공사 공고 제2026-84호) 2026.06.24 <span cl",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "유홈 주거약자 세대 입주자 선정 결과 공고(삼산, 백합, 달동, 방어) 2026.07.10",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000004&dataId=4438&mId=001001004000000000",
+              "listText": "li> 유홈 성안 예비입주자 모집 공고 2026.07.10 유홈 주거약자 세대 입주자 선정 결과 공고(삼산, 백합, 달동, 방어) 2026.07.10 유홈 방어 및 양정 입주자 및 예비입주자 순번 추첨결과 공고 2026.07.10 진장디플렉스 임대 공급공고(울산광역시도시공사 공고 제2026-84호) 2026.06.24 임대공고 더보기 일반산업 단지관리 <li class=\"fi",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "유홈 방어 및 양정 입주자 및 예비입주자 순번 추첨결과 공고 2026.07.10",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000004&dataId=4437&mId=001001004000000000",
+              "listText": "유홈 주거약자 세대 입주자 선정 결과 공고(삼산, 백합, 달동, 방어) 2026.07.10 유홈 방어 및 양정 입주자 및 예비입주자 순번 추첨결과 공고 2026.07.10 진장디플렉스 임대 공급공고(울산광역시도시공사 공고 제2026-84호) 2026.06.24 임대공고 더보기 일반산업 단지관리 2026.07. 29 부·울·경 3T(Together Towards Tomor",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "진장디플렉스 임대 공급공고(울산광역시도시공사 공고 제2026-84호) 2026.06.24",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000004&dataId=4427&mId=001001004000000000",
+              "listText": "유홈 방어 및 양정 입주자 및 예비입주자 순번 추첨결과 공고 2026.07.10 진장디플렉스 임대 공급공고(울산광역시도시공사 공고 제2026-84호) 2026.06.24 임대공고 더보기 일반산업 단지관리 2026.07. 29 부·울·경 3T(Together Towards Tomorrow) 협력 파트너십 및 웰컴 청년 인재 통합지원 패키지 참여자 모집 ○ 사업기간 : 2026. 5. 6. ~ 2026. 12. 31.(예산 소진까지)○ 신청자격 : 붙임 참고○ 신청대상 : 사업자등록증상 부산, 울산, 경남 소재 기계, 조선, 자동차 업종 기업(*자세한 사항은 붙임 참고)&nbsp; </",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "임대공고 더보기",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000004&dataId=4427&mId=001001004000000000",
+              "listText": "진장디플렉스 임대 공급공고(울산광역시도시공사 공고 제2026-84호) 2026.06.24 임대공고 더보기 일반산업 단지관리 2026.07. 29 부·울·경 3T(Together Towards Tomorrow) 협력 파트너십 및 웰컴 청년 인재 통합지원 패키지 참여자 모집 ○ 사업기간 : 2026. 5. 6. ~ 2026. 12. 31.(예산 소진까지)○ 신청자격 : 붙임 참고○ 신청대상 : 사업자등록증상 부산, 울산, 경남 소재 기계, 조선, 자동차 업종 기업(*자세한 사항은 붙임 참고)&nbsp;",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "일반산업 단지관리",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000110&dataId=4479&mId=001002006001001000",
+              "listText": "e\">2026.06.24 임대공고 더보기 일반산업 단지관리 2026.07. 29 부·울·경 3T(Together Towards Tomorrow) 협력 파트너십 및 웰컴 청년 인재 통합지원 패키지 참여자 모집 ○ 사업기간 : 2026. 5. 6. ~ 2026. 12. 31.(예산 소진까지)○ 신청자격 : 붙임 참고○ 신청대상 : 사업자등록증상 부산, 울산, 경남 소재 기계, 조선, 자동차 업종 기업(*자세한 사항은 붙임 참고)&nbsp; 2026년 청정제조기반구축사업 통합 공고 2026.07.14 <a",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "부·울·경 3T(Together Towards Tomorrow) 협력 파트너십 및 웰컴 청년 인재 통합지원 패키지 참여자 모집 ○ 사업기간 : 2026. 5. 6. ~ 2026. 12. 31.(예산 소진까지)○ 신청자격 : 붙임 참고○ 신청대상 : 사업자등록증상 부산, 울산, 경남 소재 기계, 조선, 자동차 업종 기업(*자세한 사항은 붙임 참고)&nbsp;",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000110&dataId=4479&mId=001002006001001000",
+              "listText": "href=\"#\" class=\"tit tit07\"> 일반산업 단지관리 2026.07. 29 부·울·경 3T(Together Towards Tomorrow) 협력 파트너십 및 웰컴 청년 인재 통합지원 패키지 참여자 모집 ○ 사업기간 : 2026. 5. 6. ~ 2026. 12. 31.(예산 소진까지)○ 신청자격 : 붙임 참고○ 신청대상 : 사업자등록증상 부산, 울산, 경남 소재 기계, 조선, 자동차 업종 기업(*자세한 사항은 붙임 참고)&nbsp; 2026년 청정제조기반구축사업 통합 공고 2026.07.14 태양광 무료 컨설팅 사업(정부지원사업) 2026.05.29 입주기업 투자혜택 안내문 2024.08.01 일반산업단지 관리 더보기 </",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "2026년 청정제조기반구축사업 통합 공고 2026.07.14",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000110&dataId=4444&mId=001002006001001000",
+              "listText": "○ 사업기간 : 2026. 5. 6. ~ 2026. 12. 31.(예산 소진까지)○ 신청자격 : 붙임 참고○ 신청대상 : 사업자등록증상 부산, 울산, 경남 소재 기계, 조선, 자동차 업종 기업(*자세한 사항은 붙임 참고)&nbsp; 2026년 청정제조기반구축사업 통합 공고 2026.07.14 태양광 무료 컨설팅 사업(정부지원사업) 2026.05.29 입주기업 투자혜택 안내문 2024.08.01 일반산업단지 관리 더보기 알림창",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "태양광 무료 컨설팅 사업(정부지원사업) 2026.05.29",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000110&dataId=4390&mId=001002006001001000",
+              "listText": "2026년 청정제조기반구축사업 통합 공고 2026.07.14 태양광 무료 컨설팅 사업(정부지원사업) 2026.05.29 입주기업 투자혜택 안내문 2024.08.01 일반산업단지 관리 더보기 알림창 <a href=\"https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000110&mId=00100200600",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "입주기업 투자혜택 안내문 2024.08.01",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000110&dataId=3540&mId=001002006001001000",
+              "listText": "태양광 무료 컨설팅 사업(정부지원사업) 2026.05.29 입주기업 투자혜택 안내문 2024.08.01 일반산업단지 관리 더보기 알림창 <img src=\"/umca/getImage.do;js",
+              "adapter": "울산도시공사"
+            },
+            {
+              "org": "울산도시공사",
+              "title": "일반산업단지 관리 더보기",
+              "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000110&dataId=3540&mId=001002006001001000",
+              "listText": "입주기업 투자혜택 안내문 2024.08.01 일반산업단지 관리 더보기 알림창",
+              "adapter": "울산도시공사"
+            }
+          ],
+          "rowTrace": []
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "울산도시공사",
+          "htmlPath": "data/diagnostics/울산도시공사/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/울산도시공사/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/울산도시공사/list/page-1-rows.txt",
+          "url": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000"
+        },
+        {
+          "org": "울산도시공사",
+          "htmlPath": "data/diagnostics/울산도시공사/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/울산도시공사/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/울산도시공사/list/page-2-rows.txt",
+          "url": "https://www.umca.co.kr/umca/main.do"
+        }
+      ],
+      "samples": [
+        {
+          "title": "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+          "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4477&mId=001001002000000000",
+          "adapter": "울산도시공사:board-row"
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+          "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4468&mId=001001002000000000",
+          "adapter": "울산도시공사:board-row"
+        },
+        {
+          "title": "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+          "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4467&mId=001001002000000000",
+          "adapter": "울산도시공사:board-row"
+        },
+        {
+          "title": "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+          "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4450&mId=001001002000000000",
+          "adapter": "울산도시공사:board-row"
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+          "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4443&mId=001001002000000000",
+          "adapter": "울산도시공사:board-row"
+        },
+        {
+          "title": "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+          "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434&mId=001001002000000000",
+          "adapter": "울산도시공사:board-row"
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+          "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4433&mId=001001002000000000",
+          "adapter": "울산도시공사:board-row"
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(보훈) 채용공고",
+          "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4431&mId=001001002000000000",
+          "adapter": "울산도시공사:board-row"
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용공고",
+          "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4414&mId=001001002000000000",
+          "adapter": "울산도시공사:board-row"
+        },
+        {
+          "title": "기간제근로자(전기직) 채용 공고",
+          "link": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4413&mId=001001002000000000",
+          "adapter": "울산도시공사:board-row"
+        }
+      ],
+      "errors": [],
+      "selectedRootCause": {
+        "version": "1.4-duplicate-title-safe-diagnostics",
+        "mode": "passive",
+        "org": "울산도시공사",
+        "url": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+        "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+        "listCounterFailureReason": "UNKNOWN",
+        "accuracyVerification": {
+          "verified": true,
+          "level": "DOM_TITLE_SET_EXACT",
+          "listVerificationTemplate": "TABLE_RECORD",
+          "templateRecordEvidence": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "385 2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고 311 2026-07-29",
+              "384 2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고 383 2026-07-23",
+              "383 2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 280 2026-07-21",
+              "382 수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 231 2026-07-20",
+              "381 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 391 2026-07-14",
+              "380 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 391 2026-07-08",
+              "379 2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고 399 2026-07-08",
+              "378 2026년 울산도시공사 신입직원(보훈) 채용공고 782 2026-07-06"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
+          "independentDomEvidence": true,
+          "exactCount": true,
+          "exactTitleSet": true,
+          "strongAdapterRecordEvidence": false,
+          "missingTitleCount": 0,
+          "extraCandidateCount": 0,
+          "visibleUniqueTitleCount": 10,
+          "extractedTitleCount": 10
+        },
+        "counterTrace": {
+          "source": "visible-board-rows",
+          "rawDomRows": 10,
+          "uniqueVisibleTitleCount": 10,
+          "reportedVisiblePostCount": 10,
+          "acceptedCandidateCount": 10,
+          "exactAgainstRaw": true,
+          "exactAgainstUniqueTitles": true
+        },
+        "candidateClassCounts": {
+          "RECRUIT_POST": 10
+        },
+        "counts": {
+          "visiblePostCount": 10,
+          "candidateCount": 10,
+          "rawTableRows": 10,
+          "uniqueVisibleTitleCount": 10,
+          "sourceHtmlLength": 77353,
+          "missingRows": 0,
+          "extraCandidates": 0
+        },
+        "selectorCounts": {
+          "table tbody tr": 1,
+          "tr": 11,
+          "li": 350,
+          "article": 0,
+          "[onclick]": 27,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 414
+        },
+        "rejectReasonCounts": {},
+        "visibleTitles": [
+          "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+          "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+          "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+          "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+          "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+          "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+          "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+          "2026년 울산도시공사 신입직원(보훈) 채용공고",
+          "2026년 울산도시공사 신입직원(기록물) 채용공고",
+          "기간제근로자(전기직) 채용 공고"
+        ],
+        "extractedTitles": [
+          "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+          "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+          "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+          "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+          "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+          "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+          "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+          "2026년 울산도시공사 신입직원(보훈) 채용공고",
+          "2026년 울산도시공사 신입직원(기록물) 채용공고",
+          "기간제근로자(전기직) 채용 공고"
+        ],
+        "missingRows": [],
+        "extraCandidates": [],
+        "rowTrace": [
+          {
+            "index": 0,
+            "title": "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+            "normalizedTitle": "2026년 울산도시공사 신입직원 보훈 채용 최종합격자 공고",
+            "text": "385 2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고 311 2026-07-29",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4477",
+            "onclick": "fn_view('4477');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">385</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4477\" onclick=\"fn_view('4477');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">311</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"최종합격자공고.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-29</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4477&mId=001001002000000000",
+            "adapter": "울산도시공사:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 1,
+            "title": "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+            "normalizedTitle": "2026년 울산도시공사 신입직원 기록물 채용 최종합격자 공고",
+            "text": "384 2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고 383 2026-07-23",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4468",
+            "onclick": "fn_view('4468');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">384</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4468\" onclick=\"fn_view('4468');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">383</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"최종합격자공고.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-23</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4468&mId=001001002000000000",
+            "adapter": "울산도시공사:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 2,
+            "title": "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+            "normalizedTitle": "2026년 신입직원 보훈 서류전형 합격자 및 면접시험 공고",
+            "text": "383 2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 280 2026-07-21",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4467",
+            "onclick": "fn_view('4467');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">383</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4467\" onclick=\"fn_view('4467');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">280</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"서류전형 합격자공고.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-21</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4467&mId=001001002000000000",
+            "adapter": "울산도시공사:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 3,
+            "title": "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+            "normalizedTitle": "수소열병합발전소 기간제근로자 전기직 채용 최종합격자 공고",
+            "text": "382 수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 231 2026-07-20",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4450",
+            "onclick": "fn_view('4450');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">382</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4450\" onclick=\"fn_view('4450');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">231</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"채용 최종합격자 공고문.hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-20</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4450&mId=001001002000000000",
+            "adapter": "울산도시공사:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 4,
+            "title": "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+            "normalizedTitle": "2026년 울산도시공사 신입직원 기록물 채용 필기시험 합격자 및 면접시험 공고",
+            "text": "381 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 391 2026-07-14",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4443",
+            "onclick": "fn_view('4443');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">381</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4443\" onclick=\"fn_view('4443');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">391</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"필기시험 합격자공고.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-14</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4443&mId=001001002000000000",
+            "adapter": "울산도시공사:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 5,
+            "title": "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+            "normalizedTitle": "기간제근로자 전기직 채용 서류전형 합격자 및 면접시험 공고",
+            "text": "380 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 391 2026-07-08",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4434",
+            "onclick": "fn_view('4434');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">380</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4434\" onclick=\"fn_view('4434');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">391</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"기간제근로자(전기직) 채용 서류전형 합격자 및 면적시험 공고문.hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-08</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434&mId=001001002000000000",
+            "adapter": "울산도시공사:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 6,
+            "title": "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+            "normalizedTitle": "2026년 울산도시공사 신입직원 기록물 채용 서류전형 합격자 및 필기시험 공고",
+            "text": "379 2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고 399 2026-07-08",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4433",
+            "onclick": "fn_view('4433');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">379</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4433\" onclick=\"fn_view('4433');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">399</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"서류전형 합격자공고.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-08</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4433&mId=001001002000000000",
+            "adapter": "울산도시공사:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 7,
+            "title": "2026년 울산도시공사 신입직원(보훈) 채용공고",
+            "normalizedTitle": "2026년 울산도시공사 신입직원 보훈 채용공고",
+            "text": "378 2026년 울산도시공사 신입직원(보훈) 채용공고 782 2026-07-06",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4431",
+            "onclick": "fn_view('4431');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">378</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4431\" onclick=\"fn_view('4431');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(보훈) 채용공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">782</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"채용공고(보훈).pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"응시원서(양식).hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"직무기술서(2026 신입직원-행정).pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"응시자격 결격사유.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-07-06</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4431&mId=001001002000000000",
+            "adapter": "울산도시공사:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 8,
+            "title": "2026년 울산도시공사 신입직원(기록물) 채용공고",
+            "normalizedTitle": "2026년 울산도시공사 신입직원 기록물 채용공고",
+            "text": "377 2026년 울산도시공사 신입직원(기록물) 채용공고 1,407 2026-06-22",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4414",
+            "onclick": "fn_view('4414');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">377</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4414\" onclick=\"fn_view('4414');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t2026년 울산도시공사 신입직원(기록물) 채용공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">1,407</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"채용공고(기록물).pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"응시원서(양식).hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"직무기술서(2026 신입직원-행정).pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"응시자격 결격사유.pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-06-22</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4414&mId=001001002000000000",
+            "adapter": "울산도시공사:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 9,
+            "title": "기간제근로자(전기직) 채용 공고",
+            "normalizedTitle": "기간제근로자 전기직 채용 공고",
+            "text": "376 기간제근로자(전기직) 채용 공고 861 2026-06-22",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4413",
+            "onclick": "fn_view('4413');return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t<td class=\"re_blind7\">376</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"ta_l\" style=\"padding-left:0px;\">\r\n\t\t\t\t\t\t\t\t    \t\t<a href=\"./view.do?mId=001001002000000000&amp;bbsId=BBS_0000000000000002&amp;dataId=4413\" onclick=\"fn_view('4413');return false;\">\r\n\t\t\t\t\t\t\t\t    \t\t\t기간제근로자(전기직) 채용 공고</a>\r\n\t\t\t\t\t\t\t\t    \t\t</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">861</td>\r\n\t\t\t\t\t\t\t\t    <td class=\"re_blind7\">\r\n\t\t\t\t\t\t\t\t       \t\t<img src=\"/storyCms/bbs/images/icon/icon_pdf.png\" alt=\"(기간제 근로자)채용공고문 (1).pdf\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"(전기직)입사지원서.hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t<img src=\"/storyCms/bbs/images/icon/icon_hwp.png\" alt=\"(전기직)자기소개서, 공정채용확인서, 개인정보수집동의서.hwp\" onerror='this.src=\"/storyCms/bbs/images/icon/icon_file.gif\"' />\r\n\t\t\t\t\t\t\t\t       \t\t\t</td>\r\n\t\t\t\t\t\t\t\t    <td>\r\n\t\t\t\t\t\t\t\t\t    \t2026-06-22</td>\r\n\t\t\t\t\t\t\t\t    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4413&mId=001001002000000000",
+            "adapter": "울산도시공사:board-row",
+            "rejectionReason": ""
+          }
+        ]
+      },
+      "accuracyVerification": {
+        "verified": true,
+        "level": "DOM_TITLE_SET_EXACT",
+        "listVerificationTemplate": "TABLE_RECORD",
+        "templateRecordEvidence": {
+          "verified": true,
+          "template": "TABLE_RECORD",
+          "recordCount": 10,
+          "candidateCount": 10,
+          "matchedCount": 10,
+          "unmatchedTitles": [],
+          "recordSamples": [
+            "385 2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고 311 2026-07-29",
+            "384 2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고 383 2026-07-23",
+            "383 2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고 280 2026-07-21",
+            "382 수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고 231 2026-07-20",
+            "381 2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고 391 2026-07-14",
+            "380 기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고 391 2026-07-08",
+            "379 2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고 399 2026-07-08",
+            "378 2026년 울산도시공사 신입직원(보훈) 채용공고 782 2026-07-06"
+          ],
+          "level": "TEMPLATE_TABLE_RECORD_EXACT"
+        },
+        "independentDomEvidence": true,
+        "exactCount": true,
+        "exactTitleSet": true,
+        "strongAdapterRecordEvidence": false,
+        "missingTitleCount": 0,
+        "extraCandidateCount": 0,
+        "visibleUniqueTitleCount": 10,
+        "extractedTitleCount": 10
+      }
+    },
+    "detail": {
+      "ok": true,
+      "targetCount": 10,
+      "attempted": 10,
+      "validated": 10,
+      "failed": 0,
+      "missingDetailUrl": 0,
+      "coverageRatio": 1,
+      "validationRatio": 1,
+      "samples": [
+        {
+          "title": "2026년 울산도시공사 신입직원(보훈) 채용 최종합격자 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4477&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4477&mId=001001002000000000",
+          "textLength": 6939,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 6,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용 최종합격자 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4468&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4468&mId=001001002000000000",
+          "textLength": 6931,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 6,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 신입직원(보훈) 서류전형 합격자 및 면접시험 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4467&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4467&mId=001001002000000000",
+          "textLength": 6534,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 7,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "수소열병합발전소 기간제근로자(전기직) 채용 최종합격자 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4450&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4450&mId=001001002000000000",
+          "textLength": 5579,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 6,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용 필기시험 합격자 및 면접시험 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4443&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4443&mId=001001002000000000",
+          "textLength": 6440,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 7,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "기간제근로자(전기직) 채용 서류전형 합격자 및 면접시험 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4434&mId=001001002000000000",
+          "textLength": 5690,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 6,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용 서류전형 합격자 및 필기시험 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4433&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4433&mId=001001002000000000",
+          "textLength": 7037,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 8,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(보훈) 채용공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4431&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4431&mId=001001002000000000",
+          "textLength": 8707,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 15,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산도시공사 신입직원(기록물) 채용공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4414&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4414&mId=001001002000000000",
+          "textLength": 5622,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 13,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "기간제근로자(전기직) 채용 공고",
+          "requestedUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4413&mId=001001002000000000",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.umca.co.kr/umca/bbs/view.do?bbsId=BBS_0000000000000002&dataId=4413&mId=001001002000000000",
+          "textLength": 8232,
+          "attachmentCount": 4,
+          "attachmentSignalCount": 11,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        }
+      ]
+    },
+    "attachmentDiscovery": {
+      "ok": true,
+      "discovered": 28,
+      "samples": [
+        {
+          "name": "최종합격자공고.pdf (110.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "최종합격자공고.pdf (110.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000006019&bbsId=BBS_0000000000000002&fileSn=0"
+        },
+        {
+          "name": "최종합격자공고.pdf (109.5KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "최종합격자공고.pdf (109.5KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000006011&bbsId=BBS_0000000000000002&fileSn=0"
+        },
+        {
+          "name": "서류전형 합격자공고.pdf (121.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "서류전형 합격자공고.pdf (121.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000006010&bbsId=BBS_0000000000000002&fileSn=0"
+        },
+        {
+          "name": "채용 최종합격자 공고문.hwp (57.0KByte)",
+          "type": "hwp",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "채용 최종합격자 공고문.hwp (57.0KByte)",
+          "type": "hwp",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000005992&bbsId=BBS_0000000000000002&fileSn=1"
+        }
+      ],
+      "status": "success"
+    },
+    "attachmentDownload": {
+      "ok": false,
+      "status": "not-attempted",
+      "attempted": 0,
+      "downloaded": 0,
+      "failed": 0
+    },
+    "documentAnalysis": {
+      "ok": false,
+      "status": "not-attempted",
+      "attempted": 0,
+      "parsed": 0,
+      "failed": 0,
+      "diagnostics": {
+        "byDetectedType": {},
+        "byContentType": {},
+        "byError": {}
+      }
+    },
+    "attachment": {
+      "ok": true,
+      "discovered": 28,
+      "samples": [
+        {
+          "name": "최종합격자공고.pdf (110.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "최종합격자공고.pdf (110.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000006019&bbsId=BBS_0000000000000002&fileSn=0"
+        },
+        {
+          "name": "최종합격자공고.pdf (109.5KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "최종합격자공고.pdf (109.5KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000006011&bbsId=BBS_0000000000000002&fileSn=0"
+        },
+        {
+          "name": "서류전형 합격자공고.pdf (121.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "서류전형 합격자공고.pdf (121.4KByte)",
+          "type": "pdf",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000006010&bbsId=BBS_0000000000000002&fileSn=0"
+        },
+        {
+          "name": "채용 최종합격자 공고문.hwp (57.0KByte)",
+          "type": "hwp",
+          "url": "https://www.umca.co.kr/umca"
+        },
+        {
+          "name": "채용 최종합격자 공고문.hwp (57.0KByte)",
+          "type": "hwp",
+          "url": "https://www.umca.co.kr/umca/bbs/FileDown.do?atchFileId=FILE_000000000005992&bbsId=BBS_0000000000000002&fileSn=1"
+        }
+      ],
+      "status": "success"
+    }
+  }
+}

@@ -1,0 +1,1928 @@
+{
+  "org": "울산경제일자리진흥원",
+  "health": "degraded",
+  "primaryCause": {
+    "stage": "complete",
+    "status": "success",
+    "code": "PIPELINE_SAMPLE_OK",
+    "reason": "현재 진단 표본에서 실패 원인 없음",
+    "evidence": [],
+    "repairTarget": "scripts/collectors/institutions/울산경제일자리진흥원.mjs",
+    "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+  },
+  "diagnosis": {
+    "http": {
+      "status": "success",
+      "code": "HTTP_OK",
+      "reason": "2개 후보 URL HTTP 응답 성공",
+      "evidence": [
+        {
+          "url": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "채용정보 &lt; 정보마당 &lt; 울산경제일자리진흥원",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 2061,
+            "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+            "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        },
+        {
+          "url": "https://www.ubpi.or.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ubpi.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": false,
+              "organizationMatch": true,
+              "meaningfulBody": false
+            },
+            "title": "울산경제일자리진흥원",
+            "orgMatched": true,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 0,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 10,
+            "requestedUrl": "https://www.ubpi.or.kr/",
+            "finalUrl": "https://www.ubpi.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        }
+      ]
+    },
+    "recruitVerify": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "채용정보 &lt; 정보마당 &lt; 울산경제일자리진흥원",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 4,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "institutionRule": false,
+        "institutionRuleEvidence": [],
+        "textLength": 2061,
+        "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+        "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      }
+    },
+    "list": {
+      "status": "success",
+      "code": "LIST_VERIFIED_EXACT",
+      "reason": "실제 게시글 목록 검증 완료 · 화면 10건 = 추출 10건 · DOM_TITLE_SET_EXACT",
+      "evidence": [
+        {
+          "url": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 161,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+            "2026년도 제7차 계약직 공개경쟁 채용 공고",
+            "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+            "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+            "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+            "2026년도 제6차 계약직 공개경쟁 채용 공고",
+            "제1차 직원 공개경쟁 채용 최종 합격자 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "46 2026년도 제7차 계약직 공개경쟁 채용 수정 공고 경영전략실 166 2026-08-05",
+              "45 2026년도 제7차 계약직 공개경쟁 채용 공고 경영전략실 587 2026-07-28",
+              "44 제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고 경영전략실 246 2026-07-22",
+              "43 제6차 계약직 공개경쟁 채용 최종 합격자 공고 경영전략실 275 2026-07-15",
+              "42 제6차 계약직 공개경쟁 채용 면접심사 합격자 공고 경영전략실 340 2026-07-09",
+              "41 제6차 계약직 공개경쟁 채용 서류심사 합격자 공고 경영전략실 344 2026-07-06",
+              "40 2026년도 제6차 계약직 공개경쟁 채용 공고 경영전략실 1331 2026-06-25",
+              "39 제1차 직원 공개경쟁 채용 최종 합격자 공고 경영전략실 688 2026-06-10"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://www.ubpi.or.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable"
+        }
+      ]
+    },
+    "detail": {
+      "status": "success",
+      "code": "DETAIL_FIRST_PAGE_VERIFIED_EXACT",
+      "reason": "첫 페이지 10건 전체 상세 URL·본문 1:1 검증 완료",
+      "evidence": [
+        {
+          "title": "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2327",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2327",
+          "textLength": 385,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 2,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "2026년도 제7차 계약직 공개경쟁 채용 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2322",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2322",
+          "textLength": 382,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 2,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2321",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2321",
+          "textLength": 308,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 1,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2319",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2319",
+          "textLength": 298,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 1,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2317",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2317",
+          "textLength": 300,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 1,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2315",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2315",
+          "textLength": 325,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 2,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "2026년도 제6차 계약직 공개경쟁 채용 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2313",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2313",
+          "textLength": 377,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 2,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제1차 직원 공개경쟁 채용 최종 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2308",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2308",
+          "textLength": 325,
+          "attachmentCount": 0,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제4차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2303",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2303",
+          "textLength": 290,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 1,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제5차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2302",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2302",
+          "textLength": 294,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 1,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        }
+      ]
+    },
+    "attachment": {
+      "status": "success",
+      "code": "ATTACHMENT_FOUND",
+      "reason": "검증 표본에서 첨부 링크 13개 발견",
+      "evidence": [
+        {
+          "name": "2026년도 제7차 계약직 공개경쟁 채용 수정 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=55376&bcode=B020"
+        },
+        {
+          "name": "제출서류.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=55377&bcode=B020"
+        },
+        {
+          "name": "2026년도 제7차 계약직 공개경쟁 채용 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54903&bcode=B020"
+        },
+        {
+          "name": "제출서류.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54904&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54320&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 최종 합격자 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54260&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54222&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54168&bcode=B020"
+        }
+      ]
+    },
+    "access": {
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "채용정보 &lt; 정보마당 &lt; 울산경제일자리진흥원",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 4,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "institutionRule": false,
+        "institutionRuleEvidence": [],
+        "textLength": 2061,
+        "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+        "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      }
+    }
+  },
+  "repairTarget": "scripts/collectors/institutions/울산경제일자리진흥원.mjs",
+  "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인",
+  "stages": {
+    "access": {
+      "ok": true,
+      "httpOk": true,
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+      "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+      "activeRecruitUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "attempts": [
+        {
+          "url": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "채용정보 &lt; 정보마당 &lt; 울산경제일자리진흥원",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 2061,
+            "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+            "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        },
+        {
+          "url": "https://www.ubpi.or.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ubpi.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": false,
+              "organizationMatch": true,
+              "meaningfulBody": false
+            },
+            "title": "울산경제일자리진흥원",
+            "orgMatched": true,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 0,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 10,
+            "requestedUrl": "https://www.ubpi.or.kr/",
+            "finalUrl": "https://www.ubpi.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+        "score": 5,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": true,
+          "meaningfulBody": true
+        },
+        "title": "채용정보 &lt; 정보마당 &lt; 울산경제일자리진흥원",
+        "orgMatched": true,
+        "positiveHits": 2,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "채용\\s*정보"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 4,
+        "boardType": {
+          "type": "IFRAME",
+          "confidence": "high",
+          "evidence": [
+            "iframe 태그 발견"
+          ]
+        },
+        "institutionRule": false,
+        "institutionRuleEvidence": [],
+        "textLength": 2061,
+        "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+        "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      },
+      "boardType": {
+        "type": "IFRAME",
+        "confidence": "high",
+        "evidence": [
+          "iframe 태그 발견"
+        ]
+      },
+      "diagnosis": {
+        "ok": true,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+        "http": {
+          "ok": true,
+          "code": "HTTP_OK",
+          "reason": "2개 후보 URL HTTP 응답 성공",
+          "attempts": [
+            {
+              "url": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "채용정보 &lt; 정보마당 &lt; 울산경제일자리진흥원",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "채용\\s*정보"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 4,
+                "boardType": {
+                  "type": "IFRAME",
+                  "confidence": "high",
+                  "evidence": [
+                    "iframe 태그 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 2061,
+                "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+                "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            },
+            {
+              "url": "https://www.ubpi.or.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.ubpi.or.kr/",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 1,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": false,
+                  "boardStructure": false,
+                  "organizationMatch": true,
+                  "meaningfulBody": false
+                },
+                "title": "울산경제일자리진흥원",
+                "orgMatched": true,
+                "positiveHits": 0,
+                "positiveMatches": [],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 0,
+                "boardType": {
+                  "type": "UNKNOWN",
+                  "confidence": "low",
+                  "evidence": [
+                    "명확한 게시판 구조 신호 없음"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 10,
+                "requestedUrl": "https://www.ubpi.or.kr/",
+                "finalUrl": "https://www.ubpi.or.kr/",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            }
+          ]
+        },
+        "recruitVerify": {
+          "ok": true,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
+          },
+          "evidence": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "채용정보 &lt; 정보마당 &lt; 울산경제일자리진흥원",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 2061,
+            "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+            "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          }
+        },
+        "activeRecruitUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+        "selectedRequestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+        "verification": {
+          "ok": true,
+          "verified": true,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 2개 · 게시판 신호 4개 확인",
+          "score": 5,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": true,
+            "meaningfulBody": true
+          },
+          "title": "채용정보 &lt; 정보마당 &lt; 울산경제일자리진흥원",
+          "orgMatched": true,
+          "positiveHits": 2,
+          "positiveMatches": [
+            "채용\\s*공고",
+            "채용\\s*정보"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 4,
+          "boardType": {
+            "type": "IFRAME",
+            "confidence": "high",
+            "evidence": [
+              "iframe 태그 발견"
+            ]
+          },
+          "institutionRule": false,
+          "institutionRuleEvidence": [],
+          "textLength": 2061,
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8"
+        }
+      }
+    },
+    "list": {
+      "ok": true,
+      "status": "verified-exact",
+      "pagesChecked": 2,
+      "visiblePostCount": 10,
+      "candidateCount": 10,
+      "missingCount": 0,
+      "extraCount": 0,
+      "exactMatch": true,
+      "selectedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+      "detailUrlReady": 10,
+      "listOnlyCount": 0,
+      "extractionDiagnostics": [
+        {
+          "url": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 161,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+            "2026년도 제7차 계약직 공개경쟁 채용 공고",
+            "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+            "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+            "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+            "2026년도 제6차 계약직 공개경쟁 채용 공고",
+            "제1차 직원 공개경쟁 채용 최종 합격자 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "46 2026년도 제7차 계약직 공개경쟁 채용 수정 공고 경영전략실 166 2026-08-05",
+              "45 2026년도 제7차 계약직 공개경쟁 채용 공고 경영전략실 587 2026-07-28",
+              "44 제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고 경영전략실 246 2026-07-22",
+              "43 제6차 계약직 공개경쟁 채용 최종 합격자 공고 경영전략실 275 2026-07-15",
+              "42 제6차 계약직 공개경쟁 채용 면접심사 합격자 공고 경영전략실 340 2026-07-09",
+              "41 제6차 계약직 공개경쟁 채용 서류심사 합격자 공고 경영전략실 344 2026-07-06",
+              "40 2026년도 제6차 계약직 공개경쟁 채용 공고 경영전략실 1331 2026-06-25",
+              "39 제1차 직원 공개경쟁 채용 최종 합격자 공고 경영전략실 688 2026-06-10"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows"
+        },
+        {
+          "url": "https://www.ubpi.or.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable"
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "울산경제일자리진흥원",
+          "url": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+          "listCounterFailureReason": "UNKNOWN",
+          "accuracyVerification": {
+            "verified": true,
+            "level": "DOM_TITLE_SET_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": true,
+              "template": "TABLE_RECORD",
+              "recordCount": 10,
+              "candidateCount": 10,
+              "matchedCount": 10,
+              "unmatchedTitles": [],
+              "recordSamples": [
+                "46 2026년도 제7차 계약직 공개경쟁 채용 수정 공고 경영전략실 166 2026-08-05",
+                "45 2026년도 제7차 계약직 공개경쟁 채용 공고 경영전략실 587 2026-07-28",
+                "44 제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고 경영전략실 246 2026-07-22",
+                "43 제6차 계약직 공개경쟁 채용 최종 합격자 공고 경영전략실 275 2026-07-15",
+                "42 제6차 계약직 공개경쟁 채용 면접심사 합격자 공고 경영전략실 340 2026-07-09",
+                "41 제6차 계약직 공개경쟁 채용 서류심사 합격자 공고 경영전략실 344 2026-07-06",
+                "40 2026년도 제6차 계약직 공개경쟁 채용 공고 경영전략실 1331 2026-06-25",
+                "39 제1차 직원 공개경쟁 채용 최종 합격자 공고 경영전략실 688 2026-06-10"
+              ],
+              "level": "TEMPLATE_TABLE_RECORD_EXACT"
+            },
+            "independentDomEvidence": true,
+            "exactCount": true,
+            "exactTitleSet": true,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 10,
+            "extractedTitleCount": 10
+          },
+          "counterTrace": {
+            "source": "visible-board-rows",
+            "rawDomRows": 10,
+            "uniqueVisibleTitleCount": 10,
+            "reportedVisiblePostCount": 10,
+            "acceptedCandidateCount": 10,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 10
+          },
+          "counts": {
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "rawTableRows": 10,
+            "uniqueVisibleTitleCount": 10,
+            "sourceHtmlLength": 26234,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 11,
+            "li": 112,
+            "article": 0,
+            "[onclick]": 1,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 160
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [
+            "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+            "2026년도 제7차 계약직 공개경쟁 채용 공고",
+            "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+            "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+            "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+            "2026년도 제6차 계약직 공개경쟁 채용 공고",
+            "제1차 직원 공개경쟁 채용 최종 합격자 공고",
+            "제4차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "제5차 계약직 공개경쟁 채용 최종 합격자 공고"
+          ],
+          "extractedTitles": [
+            "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+            "2026년도 제7차 계약직 공개경쟁 채용 공고",
+            "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+            "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+            "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+            "2026년도 제6차 계약직 공개경쟁 채용 공고",
+            "제1차 직원 공개경쟁 채용 최종 합격자 공고",
+            "제4차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "제5차 계약직 공개경쟁 채용 최종 합격자 공고"
+          ],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+              "normalizedTitle": "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+              "text": "46 2026년도 제7차 계약직 공개경쟁 채용 수정 공고 경영전략실 166 2026-08-05",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/sub/?mcode=0403080000&mode=2&no=2327&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">46</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2327&page=1\">2026년도 제7차 계약직 공개경쟁 채용 수정 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=55376&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">166</td>\r\n\t\t\t<td class=\"date\">2026-08-05</td>\r\n\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2327",
+              "adapter": "울산경제일자리진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 1,
+              "title": "2026년도 제7차 계약직 공개경쟁 채용 공고",
+              "normalizedTitle": "2026년도 제7차 계약직 공개경쟁 채용 공고",
+              "text": "45 2026년도 제7차 계약직 공개경쟁 채용 공고 경영전략실 587 2026-07-28",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/sub/?mcode=0403080000&mode=2&no=2322&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">45</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2322&page=1\">2026년도 제7차 계약직 공개경쟁 채용 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=54903&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">587</td>\r\n\t\t\t<td class=\"date\">2026-07-28</td>\r\n\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2322",
+              "adapter": "울산경제일자리진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 2,
+              "title": "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+              "normalizedTitle": "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+              "text": "44 제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고 경영전략실 246 2026-07-22",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/sub/?mcode=0403080000&mode=2&no=2321&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">44</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2321&page=1\">제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=54320&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">246</td>\r\n\t\t\t<td class=\"date\">2026-07-22</td>\r\n\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2321",
+              "adapter": "울산경제일자리진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+              "normalizedTitle": "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+              "text": "43 제6차 계약직 공개경쟁 채용 최종 합격자 공고 경영전략실 275 2026-07-15",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/sub/?mcode=0403080000&mode=2&no=2319&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">43</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2319&page=1\">제6차 계약직 공개경쟁 채용 최종 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=54260&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">275</td>\r\n\t\t\t<td class=\"date\">2026-07-15</td>\r\n\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2319",
+              "adapter": "울산경제일자리진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 4,
+              "title": "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+              "normalizedTitle": "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+              "text": "42 제6차 계약직 공개경쟁 채용 면접심사 합격자 공고 경영전략실 340 2026-07-09",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/sub/?mcode=0403080000&mode=2&no=2317&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">42</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2317&page=1\">제6차 계약직 공개경쟁 채용 면접심사 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=54222&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">340</td>\r\n\t\t\t<td class=\"date\">2026-07-09</td>\r\n\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2317",
+              "adapter": "울산경제일자리진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 5,
+              "title": "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+              "normalizedTitle": "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+              "text": "41 제6차 계약직 공개경쟁 채용 서류심사 합격자 공고 경영전략실 344 2026-07-06",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/sub/?mcode=0403080000&mode=2&no=2315&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">41</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2315&page=1\">제6차 계약직 공개경쟁 채용 서류심사 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=54168&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">344</td>\r\n\t\t\t<td class=\"date\">2026-07-06</td>\r\n\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2315",
+              "adapter": "울산경제일자리진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 6,
+              "title": "2026년도 제6차 계약직 공개경쟁 채용 공고",
+              "normalizedTitle": "2026년도 제6차 계약직 공개경쟁 채용 공고",
+              "text": "40 2026년도 제6차 계약직 공개경쟁 채용 공고 경영전략실 1331 2026-06-25",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/sub/?mcode=0403080000&mode=2&no=2313&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">40</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2313&page=1\">2026년도 제6차 계약직 공개경쟁 채용 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=53870&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">1331</td>\r\n\t\t\t<td class=\"date\">2026-06-25</td>\r\n\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2313",
+              "adapter": "울산경제일자리진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 7,
+              "title": "제1차 직원 공개경쟁 채용 최종 합격자 공고",
+              "normalizedTitle": "제1차 직원 공개경쟁 채용 최종 합격자 공고",
+              "text": "39 제1차 직원 공개경쟁 채용 최종 합격자 공고 경영전략실 688 2026-06-10",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/sub/?mcode=0403080000&mode=2&no=2308&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">39</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2308&page=1\">제1차 직원 공개경쟁 채용 최종 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n&nbsp;\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">688</td>\r\n\t\t\t<td class=\"date\">2026-06-10</td>\r\n\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2308",
+              "adapter": "울산경제일자리진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 8,
+              "title": "제4차 계약직 공개경쟁 채용 최종 합격자 공고",
+              "normalizedTitle": "제4차 계약직 공개경쟁 채용 최종 합격자 공고",
+              "text": "38 제4차 계약직 공개경쟁 채용 최종 합격자 공고 경영전략실 482 2026-05-28",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/sub/?mcode=0403080000&mode=2&no=2303&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">38</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2303&page=1\">제4차 계약직 공개경쟁 채용 최종 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=53488&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">482</td>\r\n\t\t\t<td class=\"date\">2026-05-28</td>\r\n\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2303",
+              "adapter": "울산경제일자리진흥원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 9,
+              "title": "제5차 계약직 공개경쟁 채용 최종 합격자 공고",
+              "normalizedTitle": "제5차 계약직 공개경쟁 채용 최종 합격자 공고",
+              "text": "37 제5차 계약직 공개경쟁 채용 최종 합격자 공고 경영전략실 402 2026-05-22",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "/sub/?mcode=0403080000&mode=2&no=2302&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">37</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2302&page=1\">제5차 계약직 공개경쟁 채용 최종 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=53420&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">402</td>\r\n\t\t\t<td class=\"date\">2026-05-22</td>\r\n\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2302",
+              "adapter": "울산경제일자리진흥원:board-row",
+              "rejectionReason": ""
+            }
+          ]
+        },
+        {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "울산경제일자리진흥원",
+          "url": "https://www.ubpi.or.kr/",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "listCounterFailureReason": "UNKNOWN",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "independentDomEvidence": false,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 0
+          },
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 0,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {},
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 1173,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "울산경제일자리진흥원",
+          "htmlPath": "data/diagnostics/울산경제일자리진흥원/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/울산경제일자리진흥원/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/울산경제일자리진흥원/list/page-1-rows.txt",
+          "url": "https://www.ubpi.or.kr/sub/?mcode=0403080000"
+        },
+        {
+          "org": "울산경제일자리진흥원",
+          "htmlPath": "data/diagnostics/울산경제일자리진흥원/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/울산경제일자리진흥원/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/울산경제일자리진흥원/list/page-2-rows.txt",
+          "url": "https://www.ubpi.or.kr/"
+        }
+      ],
+      "samples": [
+        {
+          "title": "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+          "link": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2327",
+          "adapter": "울산경제일자리진흥원:board-row"
+        },
+        {
+          "title": "2026년도 제7차 계약직 공개경쟁 채용 공고",
+          "link": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2322",
+          "adapter": "울산경제일자리진흥원:board-row"
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+          "link": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2321",
+          "adapter": "울산경제일자리진흥원:board-row"
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "link": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2319",
+          "adapter": "울산경제일자리진흥원:board-row"
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+          "link": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2317",
+          "adapter": "울산경제일자리진흥원:board-row"
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+          "link": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2315",
+          "adapter": "울산경제일자리진흥원:board-row"
+        },
+        {
+          "title": "2026년도 제6차 계약직 공개경쟁 채용 공고",
+          "link": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2313",
+          "adapter": "울산경제일자리진흥원:board-row"
+        },
+        {
+          "title": "제1차 직원 공개경쟁 채용 최종 합격자 공고",
+          "link": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2308",
+          "adapter": "울산경제일자리진흥원:board-row"
+        },
+        {
+          "title": "제4차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "link": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2303",
+          "adapter": "울산경제일자리진흥원:board-row"
+        },
+        {
+          "title": "제5차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "link": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2302",
+          "adapter": "울산경제일자리진흥원:board-row"
+        }
+      ],
+      "errors": [],
+      "selectedRootCause": {
+        "version": "1.4-duplicate-title-safe-diagnostics",
+        "mode": "passive",
+        "org": "울산경제일자리진흥원",
+        "url": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+        "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+        "listCounterFailureReason": "UNKNOWN",
+        "accuracyVerification": {
+          "verified": true,
+          "level": "DOM_TITLE_SET_EXACT",
+          "listVerificationTemplate": "TABLE_RECORD",
+          "templateRecordEvidence": {
+            "verified": true,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "46 2026년도 제7차 계약직 공개경쟁 채용 수정 공고 경영전략실 166 2026-08-05",
+              "45 2026년도 제7차 계약직 공개경쟁 채용 공고 경영전략실 587 2026-07-28",
+              "44 제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고 경영전략실 246 2026-07-22",
+              "43 제6차 계약직 공개경쟁 채용 최종 합격자 공고 경영전략실 275 2026-07-15",
+              "42 제6차 계약직 공개경쟁 채용 면접심사 합격자 공고 경영전략실 340 2026-07-09",
+              "41 제6차 계약직 공개경쟁 채용 서류심사 합격자 공고 경영전략실 344 2026-07-06",
+              "40 2026년도 제6차 계약직 공개경쟁 채용 공고 경영전략실 1331 2026-06-25",
+              "39 제1차 직원 공개경쟁 채용 최종 합격자 공고 경영전략실 688 2026-06-10"
+            ],
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          },
+          "independentDomEvidence": true,
+          "exactCount": true,
+          "exactTitleSet": true,
+          "strongAdapterRecordEvidence": false,
+          "missingTitleCount": 0,
+          "extraCandidateCount": 0,
+          "visibleUniqueTitleCount": 10,
+          "extractedTitleCount": 10
+        },
+        "counterTrace": {
+          "source": "visible-board-rows",
+          "rawDomRows": 10,
+          "uniqueVisibleTitleCount": 10,
+          "reportedVisiblePostCount": 10,
+          "acceptedCandidateCount": 10,
+          "exactAgainstRaw": true,
+          "exactAgainstUniqueTitles": true
+        },
+        "candidateClassCounts": {
+          "RECRUIT_POST": 10
+        },
+        "counts": {
+          "visiblePostCount": 10,
+          "candidateCount": 10,
+          "rawTableRows": 10,
+          "uniqueVisibleTitleCount": 10,
+          "sourceHtmlLength": 26234,
+          "missingRows": 0,
+          "extraCandidates": 0
+        },
+        "selectorCounts": {
+          "table tbody tr": 1,
+          "tr": 11,
+          "li": 112,
+          "article": 0,
+          "[onclick]": 1,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 160
+        },
+        "rejectReasonCounts": {},
+        "visibleTitles": [
+          "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+          "2026년도 제7차 계약직 공개경쟁 채용 공고",
+          "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+          "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+          "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+          "2026년도 제6차 계약직 공개경쟁 채용 공고",
+          "제1차 직원 공개경쟁 채용 최종 합격자 공고",
+          "제4차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "제5차 계약직 공개경쟁 채용 최종 합격자 공고"
+        ],
+        "extractedTitles": [
+          "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+          "2026년도 제7차 계약직 공개경쟁 채용 공고",
+          "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+          "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+          "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+          "2026년도 제6차 계약직 공개경쟁 채용 공고",
+          "제1차 직원 공개경쟁 채용 최종 합격자 공고",
+          "제4차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "제5차 계약직 공개경쟁 채용 최종 합격자 공고"
+        ],
+        "missingRows": [],
+        "extraCandidates": [],
+        "rowTrace": [
+          {
+            "index": 0,
+            "title": "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+            "normalizedTitle": "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+            "text": "46 2026년도 제7차 계약직 공개경쟁 채용 수정 공고 경영전략실 166 2026-08-05",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "/sub/?mcode=0403080000&mode=2&no=2327&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">46</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2327&page=1\">2026년도 제7차 계약직 공개경쟁 채용 수정 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=55376&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">166</td>\r\n\t\t\t<td class=\"date\">2026-08-05</td>\r\n\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2327",
+            "adapter": "울산경제일자리진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 1,
+            "title": "2026년도 제7차 계약직 공개경쟁 채용 공고",
+            "normalizedTitle": "2026년도 제7차 계약직 공개경쟁 채용 공고",
+            "text": "45 2026년도 제7차 계약직 공개경쟁 채용 공고 경영전략실 587 2026-07-28",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "/sub/?mcode=0403080000&mode=2&no=2322&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">45</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2322&page=1\">2026년도 제7차 계약직 공개경쟁 채용 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=54903&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">587</td>\r\n\t\t\t<td class=\"date\">2026-07-28</td>\r\n\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2322",
+            "adapter": "울산경제일자리진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 2,
+            "title": "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+            "normalizedTitle": "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+            "text": "44 제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고 경영전략실 246 2026-07-22",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "/sub/?mcode=0403080000&mode=2&no=2321&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">44</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2321&page=1\">제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=54320&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">246</td>\r\n\t\t\t<td class=\"date\">2026-07-22</td>\r\n\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2321",
+            "adapter": "울산경제일자리진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 3,
+            "title": "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "normalizedTitle": "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "text": "43 제6차 계약직 공개경쟁 채용 최종 합격자 공고 경영전략실 275 2026-07-15",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "/sub/?mcode=0403080000&mode=2&no=2319&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">43</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2319&page=1\">제6차 계약직 공개경쟁 채용 최종 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=54260&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">275</td>\r\n\t\t\t<td class=\"date\">2026-07-15</td>\r\n\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2319",
+            "adapter": "울산경제일자리진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 4,
+            "title": "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+            "normalizedTitle": "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+            "text": "42 제6차 계약직 공개경쟁 채용 면접심사 합격자 공고 경영전략실 340 2026-07-09",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "/sub/?mcode=0403080000&mode=2&no=2317&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">42</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2317&page=1\">제6차 계약직 공개경쟁 채용 면접심사 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=54222&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">340</td>\r\n\t\t\t<td class=\"date\">2026-07-09</td>\r\n\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2317",
+            "adapter": "울산경제일자리진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 5,
+            "title": "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+            "normalizedTitle": "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+            "text": "41 제6차 계약직 공개경쟁 채용 서류심사 합격자 공고 경영전략실 344 2026-07-06",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "/sub/?mcode=0403080000&mode=2&no=2315&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">41</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2315&page=1\">제6차 계약직 공개경쟁 채용 서류심사 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=54168&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">344</td>\r\n\t\t\t<td class=\"date\">2026-07-06</td>\r\n\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2315",
+            "adapter": "울산경제일자리진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 6,
+            "title": "2026년도 제6차 계약직 공개경쟁 채용 공고",
+            "normalizedTitle": "2026년도 제6차 계약직 공개경쟁 채용 공고",
+            "text": "40 2026년도 제6차 계약직 공개경쟁 채용 공고 경영전략실 1331 2026-06-25",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "/sub/?mcode=0403080000&mode=2&no=2313&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">40</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2313&page=1\">2026년도 제6차 계약직 공개경쟁 채용 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=53870&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">1331</td>\r\n\t\t\t<td class=\"date\">2026-06-25</td>\r\n\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2313",
+            "adapter": "울산경제일자리진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 7,
+            "title": "제1차 직원 공개경쟁 채용 최종 합격자 공고",
+            "normalizedTitle": "제1차 직원 공개경쟁 채용 최종 합격자 공고",
+            "text": "39 제1차 직원 공개경쟁 채용 최종 합격자 공고 경영전략실 688 2026-06-10",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "/sub/?mcode=0403080000&mode=2&no=2308&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">39</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2308&page=1\">제1차 직원 공개경쟁 채용 최종 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n&nbsp;\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">688</td>\r\n\t\t\t<td class=\"date\">2026-06-10</td>\r\n\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2308",
+            "adapter": "울산경제일자리진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 8,
+            "title": "제4차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "normalizedTitle": "제4차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "text": "38 제4차 계약직 공개경쟁 채용 최종 합격자 공고 경영전략실 482 2026-05-28",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "/sub/?mcode=0403080000&mode=2&no=2303&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">38</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2303&page=1\">제4차 계약직 공개경쟁 채용 최종 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=53488&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">482</td>\r\n\t\t\t<td class=\"date\">2026-05-28</td>\r\n\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2303",
+            "adapter": "울산경제일자리진흥원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 9,
+            "title": "제5차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "normalizedTitle": "제5차 계약직 공개경쟁 채용 최종 합격자 공고",
+            "text": "37 제5차 계약직 공개경쟁 채용 최종 합격자 공고 경영전략실 402 2026-05-22",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "/sub/?mcode=0403080000&mode=2&no=2302&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t<td class=\"num dpNo\">37</td>\r\n\t\t\t<td class=\"tit\"><a href=\"/sub/?mcode=0403080000&mode=2&no=2302&page=1\">제5차 계약직 공개경쟁 채용 최종 합격자 공고</a></td>\r\n\t\t\t<td class=\"file dpNo\">\r\n<a href=\"/_Inc/download.php?gb=brd&f_idx=53420&bcode=B020\"><img src=\"/images/board/ico_file.png \" alt=\"파일\" /></a>\t\t\t</td>\r\n\t\t\t<td class=\"author dpNo\">경영전략실</td>\r\n\t\t\t<td class=\"refer dpNo\">402</td>\r\n\t\t\t<td class=\"date\">2026-05-22</td>\r\n\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2302",
+            "adapter": "울산경제일자리진흥원:board-row",
+            "rejectionReason": ""
+          }
+        ]
+      },
+      "accuracyVerification": {
+        "verified": true,
+        "level": "DOM_TITLE_SET_EXACT",
+        "listVerificationTemplate": "TABLE_RECORD",
+        "templateRecordEvidence": {
+          "verified": true,
+          "template": "TABLE_RECORD",
+          "recordCount": 10,
+          "candidateCount": 10,
+          "matchedCount": 10,
+          "unmatchedTitles": [],
+          "recordSamples": [
+            "46 2026년도 제7차 계약직 공개경쟁 채용 수정 공고 경영전략실 166 2026-08-05",
+            "45 2026년도 제7차 계약직 공개경쟁 채용 공고 경영전략실 587 2026-07-28",
+            "44 제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고 경영전략실 246 2026-07-22",
+            "43 제6차 계약직 공개경쟁 채용 최종 합격자 공고 경영전략실 275 2026-07-15",
+            "42 제6차 계약직 공개경쟁 채용 면접심사 합격자 공고 경영전략실 340 2026-07-09",
+            "41 제6차 계약직 공개경쟁 채용 서류심사 합격자 공고 경영전략실 344 2026-07-06",
+            "40 2026년도 제6차 계약직 공개경쟁 채용 공고 경영전략실 1331 2026-06-25",
+            "39 제1차 직원 공개경쟁 채용 최종 합격자 공고 경영전략실 688 2026-06-10"
+          ],
+          "level": "TEMPLATE_TABLE_RECORD_EXACT"
+        },
+        "independentDomEvidence": true,
+        "exactCount": true,
+        "exactTitleSet": true,
+        "strongAdapterRecordEvidence": false,
+        "missingTitleCount": 0,
+        "extraCandidateCount": 0,
+        "visibleUniqueTitleCount": 10,
+        "extractedTitleCount": 10
+      }
+    },
+    "detail": {
+      "ok": true,
+      "targetCount": 10,
+      "attempted": 10,
+      "validated": 10,
+      "failed": 0,
+      "missingDetailUrl": 0,
+      "coverageRatio": 1,
+      "validationRatio": 1,
+      "samples": [
+        {
+          "title": "2026년도 제7차 계약직 공개경쟁 채용 수정 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2327",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2327",
+          "textLength": 385,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 2,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "2026년도 제7차 계약직 공개경쟁 채용 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2322",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2322",
+          "textLength": 382,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 2,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2321",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2321",
+          "textLength": 308,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 1,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2319",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2319",
+          "textLength": 298,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 1,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2317",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2317",
+          "textLength": 300,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 1,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2315",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2315",
+          "textLength": 325,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 2,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "2026년도 제6차 계약직 공개경쟁 채용 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2313",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2313",
+          "textLength": 377,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 2,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제1차 직원 공개경쟁 채용 최종 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2308",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2308",
+          "textLength": 325,
+          "attachmentCount": 0,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제4차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2303",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2303",
+          "textLength": 290,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 1,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "제5차 계약직 공개경쟁 채용 최종 합격자 공고",
+          "requestedUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2302",
+          "requestMethod": "GET",
+          "template": "QUERY_ID",
+          "ok": true,
+          "finalUrl": "https://www.ubpi.or.kr/sub/?mcode=0403080000&mode=2&no=2302",
+          "textLength": 294,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 1,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        }
+      ]
+    },
+    "attachmentDiscovery": {
+      "ok": true,
+      "discovered": 13,
+      "samples": [
+        {
+          "name": "2026년도 제7차 계약직 공개경쟁 채용 수정 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=55376&bcode=B020"
+        },
+        {
+          "name": "제출서류.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=55377&bcode=B020"
+        },
+        {
+          "name": "2026년도 제7차 계약직 공개경쟁 채용 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54903&bcode=B020"
+        },
+        {
+          "name": "제출서류.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54904&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54320&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 최종 합격자 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54260&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54222&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54168&bcode=B020"
+        }
+      ],
+      "status": "success"
+    },
+    "attachmentDownload": {
+      "ok": false,
+      "status": "not-attempted",
+      "attempted": 0,
+      "downloaded": 0,
+      "failed": 0
+    },
+    "documentAnalysis": {
+      "ok": false,
+      "status": "not-attempted",
+      "attempted": 0,
+      "parsed": 0,
+      "failed": 0,
+      "diagnostics": {
+        "byDetectedType": {},
+        "byContentType": {},
+        "byError": {}
+      }
+    },
+    "attachment": {
+      "ok": true,
+      "discovered": 13,
+      "samples": [
+        {
+          "name": "2026년도 제7차 계약직 공개경쟁 채용 수정 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=55376&bcode=B020"
+        },
+        {
+          "name": "제출서류.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=55377&bcode=B020"
+        },
+        {
+          "name": "2026년도 제7차 계약직 공개경쟁 채용 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54903&bcode=B020"
+        },
+        {
+          "name": "제출서류.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54904&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 합격예정자 최종결과 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54320&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 최종 합격자 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54260&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 면접심사 합격자 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54222&bcode=B020"
+        },
+        {
+          "name": "제6차 계약직 공개경쟁 채용 서류심사 합격자 공고.hwp",
+          "type": "hwp",
+          "url": "https://www.ubpi.or.kr/_Inc/download.php?gb=brd&f_idx=54168&bcode=B020"
+        }
+      ],
+      "status": "success"
+    }
+  }
+}

@@ -2,132 +2,11 @@
   "org": "울산문화관광재단",
   "health": "degraded",
   "primaryCause": {
-    "stage": "detail",
-    "status": "failed",
-    "code": "DETAIL_BODY_PARTIAL",
-    "reason": "첫 페이지 10건 중 0건만 상세 본문 검증 성공",
-    "evidence": [
-      {
-        "title": "제6차 기간제 근로자 채용 최종합격자 공고",
-        "requestedUrl": "https://uctf.or.kr/board/employment/view/202411202683",
-        "requestMethod": "GET",
-        "template": "PATH_VIEW",
-        "ok": false,
-        "finalUrl": "https://uctf.or.kr/board/employment/view/202411202683",
-        "textLength": 0,
-        "attachmentCount": 0,
-        "transport": "",
-        "error": "insufficient detail structure"
-      },
-      {
-        "title": "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
-        "requestedUrl": "https://uctf.or.kr/board/employment/view/202411196196",
-        "requestMethod": "GET",
-        "template": "PATH_VIEW",
-        "ok": false,
-        "finalUrl": "https://uctf.or.kr/board/employment/view/202411196196",
-        "textLength": 0,
-        "attachmentCount": 0,
-        "transport": "",
-        "error": "insufficient detail structure"
-      },
-      {
-        "title": "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
-        "requestedUrl": "https://uctf.or.kr/board/employment/view/202411196033",
-        "requestMethod": "GET",
-        "template": "PATH_VIEW",
-        "ok": false,
-        "finalUrl": "https://uctf.or.kr/board/employment/view/202411196033",
-        "textLength": 0,
-        "attachmentCount": 0,
-        "transport": "",
-        "error": "insufficient detail structure"
-      },
-      {
-        "title": "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
-        "requestedUrl": "https://uctf.or.kr/board/employment/view/202411182873",
-        "requestMethod": "GET",
-        "template": "PATH_VIEW",
-        "ok": false,
-        "finalUrl": "https://uctf.or.kr/board/employment/view/202411182873",
-        "textLength": 0,
-        "attachmentCount": 0,
-        "transport": "",
-        "error": "insufficient detail structure"
-      },
-      {
-        "title": "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
-        "requestedUrl": "https://uctf.or.kr/board/employment/view/202411175388",
-        "requestMethod": "GET",
-        "template": "PATH_VIEW",
-        "ok": false,
-        "finalUrl": "https://uctf.or.kr/board/employment/view/202411175388",
-        "textLength": 0,
-        "attachmentCount": 0,
-        "transport": "",
-        "error": "insufficient detail structure"
-      },
-      {
-        "title": "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
-        "requestedUrl": "https://uctf.or.kr/board/employment/view/202411159341",
-        "requestMethod": "GET",
-        "template": "PATH_VIEW",
-        "ok": false,
-        "finalUrl": "https://uctf.or.kr/board/employment/view/202411159341",
-        "textLength": 0,
-        "attachmentCount": 0,
-        "transport": "",
-        "error": "insufficient detail structure"
-      },
-      {
-        "title": "2026년 공무직 공개 채용 최종합격자 공고",
-        "requestedUrl": "https://uctf.or.kr/board/employment/view/202411136877",
-        "requestMethod": "GET",
-        "template": "PATH_VIEW",
-        "ok": false,
-        "finalUrl": "https://uctf.or.kr/board/employment/view/202411136877",
-        "textLength": 0,
-        "attachmentCount": 0,
-        "transport": "",
-        "error": "insufficient detail structure"
-      },
-      {
-        "title": "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고",
-        "requestedUrl": "https://uctf.or.kr/board/employment/view/202411119401",
-        "requestMethod": "GET",
-        "template": "PATH_VIEW",
-        "ok": false,
-        "finalUrl": "https://uctf.or.kr/board/employment/view/202411119401",
-        "textLength": 0,
-        "attachmentCount": 0,
-        "transport": "",
-        "error": "insufficient detail structure"
-      },
-      {
-        "title": "제5차 기간제 근로자 채용 최종합격자 공고",
-        "requestedUrl": "https://uctf.or.kr/board/employment/view/202411114056",
-        "requestMethod": "GET",
-        "template": "PATH_VIEW",
-        "ok": false,
-        "finalUrl": "https://uctf.or.kr/board/employment/view/202411114056",
-        "textLength": 0,
-        "attachmentCount": 0,
-        "transport": "",
-        "error": "insufficient detail structure"
-      },
-      {
-        "title": "제5차 기간제 근로자 채용 면접심사 대상자 공고",
-        "requestedUrl": "https://uctf.or.kr/board/employment/view/202411098205",
-        "requestMethod": "GET",
-        "template": "PATH_VIEW",
-        "ok": false,
-        "finalUrl": "https://uctf.or.kr/board/employment/view/202411098205",
-        "textLength": 0,
-        "attachmentCount": 0,
-        "transport": "",
-        "error": "insufficient detail structure"
-      }
-    ],
+    "stage": "complete",
+    "status": "success",
+    "code": "PIPELINE_SAMPLE_OK",
+    "reason": "현재 진단 표본에서 실패 원인 없음",
+    "evidence": [],
     "repairTarget": "scripts/collectors/institutions/울산문화관광재단.mjs",
     "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
   },
@@ -455,6 +334,8 @@
             "recordSamples": [],
             "level": "TEMPLATE_RECORD_MISMATCH"
           },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
           "countSource": "unavailable"
         },
         {
@@ -547,6 +428,8 @@
             ],
             "level": "TEMPLATE_API_CONTENT_EXACT"
           },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
           "countSource": "visible-board-rows"
         },
         {
@@ -677,142 +560,205 @@
             "recordSamples": [],
             "level": "TEMPLATE_RECORD_MISMATCH"
           },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
           "countSource": "unavailable"
         }
       ]
     },
     "detail": {
-      "status": "failed",
-      "code": "DETAIL_BODY_PARTIAL",
-      "reason": "첫 페이지 10건 중 0건만 상세 본문 검증 성공",
+      "status": "success",
+      "code": "DETAIL_FIRST_PAGE_VERIFIED_EXACT",
+      "reason": "첫 페이지 10건 전체 상세 URL·본문 1:1 검증 완료",
       "evidence": [
         {
           "title": "제6차 기간제 근로자 채용 최종합격자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411202683",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411202683",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 23,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411196196",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411196196",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 29,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411196033",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411196033",
-          "textLength": 0,
+          "textLength": 32,
           "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411182873",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411182873",
-          "textLength": 0,
+          "textLength": 32,
           "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411175388",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411175388",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 29,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411159341",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411159341",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 32,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 공무직 공개 채용 최종합격자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411136877",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411136877",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 24,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411119401",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411119401",
-          "textLength": 0,
+          "textLength": 46,
           "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "제5차 기간제 근로자 채용 최종합격자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411114056",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411114056",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 23,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "제5차 기간제 근로자 채용 면접심사 대상자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411098205",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411098205",
-          "textLength": 0,
+          "textLength": 26,
           "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         }
       ]
     },
     "attachment": {
-      "status": "blocked",
-      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
-      "reason": "상세 단계 미통과로 첨부 진단 보류",
-      "evidence": []
+      "status": "success",
+      "code": "ATTACHMENT_FOUND",
+      "reason": "검증 표본에서 첨부 링크 9개 발견",
+      "evidence": [
+        {
+          "name": "[붙임]제출서류_임용후보자 등록원서 등.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260807143105.hwp"
+        },
+        {
+          "name": "[붙임]최종 합격자 제출서류.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260804145614.hwp"
+        },
+        {
+          "name": "[붙임](서식)응시원서_이름.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260720144944.hwp"
+        },
+        {
+          "name": "[참고]직무기술서.pdf",
+          "type": "pdf",
+          "url": "https://uctf.or.kr/api/files/20260720144948.pdf"
+        },
+        {
+          "name": "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고문(안).pdf",
+          "type": "pdf",
+          "url": "https://uctf.or.kr/api/files/20260720145351.pdf"
+        },
+        {
+          "name": "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용 공고문(안).pdf",
+          "type": "pdf",
+          "url": "https://uctf.or.kr/api/files/20260710090855.pdf"
+        },
+        {
+          "name": "[붙임](서식)응시원서_이름.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260710090903.hwp"
+        },
+        {
+          "name": "[붙임]최종 합격자 제출서류.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260629150835.hwp"
+        }
+      ]
     },
     "access": {
       "status": "success",
@@ -1445,6 +1391,8 @@
             "recordSamples": [],
             "level": "TEMPLATE_RECORD_MISMATCH"
           },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
           "countSource": "unavailable"
         },
         {
@@ -1537,6 +1485,8 @@
             ],
             "level": "TEMPLATE_API_CONTENT_EXACT"
           },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
           "countSource": "visible-board-rows"
         },
         {
@@ -1667,12 +1617,14 @@
             "recordSamples": [],
             "level": "TEMPLATE_RECORD_MISMATCH"
           },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
           "countSource": "unavailable"
         }
       ],
       "rootCauseDiagnostics": [
         {
-          "version": "1.3-list-template-verification",
+          "version": "1.4-duplicate-title-safe-diagnostics",
           "mode": "passive",
           "org": "울산문화관광재단",
           "url": "https://uctf.or.kr/board/employment",
@@ -1870,7 +1822,7 @@
           ]
         },
         {
-          "version": "1.3-list-template-verification",
+          "version": "1.4-duplicate-title-safe-diagnostics",
           "mode": "passive",
           "org": "울산문화관광재단",
           "url": "https://uctf.or.kr/api/notices?page=0&category=%EC%B1%84%EC%9A%A9",
@@ -1925,7 +1877,7 @@
             "candidateCount": 10,
             "rawTableRows": 0,
             "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 9635,
+            "sourceHtmlLength": 9636,
             "missingRows": 0,
             "extraCandidates": 10
           },
@@ -2029,7 +1981,7 @@
           "rowTrace": []
         },
         {
-          "version": "1.3-list-template-verification",
+          "version": "1.4-duplicate-title-safe-diagnostics",
           "mode": "passive",
           "org": "울산문화관광재단",
           "url": "https://www.uctf.or.kr/board/employment",
@@ -2304,7 +2256,7 @@
       ],
       "errors": [],
       "selectedRootCause": {
-        "version": "1.3-list-template-verification",
+        "version": "1.4-duplicate-title-safe-diagnostics",
         "mode": "passive",
         "org": "울산문화관광재단",
         "url": "https://uctf.or.kr/api/notices?page=0&category=%EC%B1%84%EC%9A%A9",
@@ -2359,7 +2311,7 @@
           "candidateCount": 10,
           "rawTableRows": 0,
           "uniqueVisibleTitleCount": 0,
-          "sourceHtmlLength": 9635,
+          "sourceHtmlLength": 9636,
           "missingRows": 0,
           "extraCandidates": 10
         },
@@ -2496,141 +2448,269 @@
       }
     },
     "detail": {
-      "ok": false,
+      "ok": true,
       "targetCount": 10,
       "attempted": 10,
-      "validated": 0,
-      "failed": 10,
+      "validated": 10,
+      "failed": 0,
       "missingDetailUrl": 0,
       "coverageRatio": 1,
-      "validationRatio": 0,
+      "validationRatio": 1,
       "samples": [
         {
           "title": "제6차 기간제 근로자 채용 최종합격자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411202683",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411202683",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 23,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411196196",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411196196",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 29,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411196033",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411196033",
-          "textLength": 0,
+          "textLength": 32,
           "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411182873",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411182873",
-          "textLength": 0,
+          "textLength": 32,
           "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411175388",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411175388",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 29,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411159341",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411159341",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 32,
+          "attachmentCount": 2,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 공무직 공개 채용 최종합격자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411136877",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411136877",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 24,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411119401",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411119401",
-          "textLength": 0,
+          "textLength": 46,
           "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "제5차 기간제 근로자 채용 최종합격자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411114056",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411114056",
-          "textLength": 0,
-          "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "textLength": 23,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         },
         {
           "title": "제5차 기간제 근로자 채용 면접심사 대상자 공고",
           "requestedUrl": "https://uctf.or.kr/board/employment/view/202411098205",
           "requestMethod": "GET",
           "template": "PATH_VIEW",
-          "ok": false,
+          "ok": true,
           "finalUrl": "https://uctf.or.kr/board/employment/view/202411098205",
-          "textLength": 0,
+          "textLength": 26,
           "attachmentCount": 0,
-          "transport": "",
-          "error": "insufficient detail structure"
+          "attachmentSignalCount": 0,
+          "explicitNoAttachment": false,
+          "transport": "UCTF_API_LIST_DETAIL",
+          "error": ""
         }
       ]
     },
-    "attachment": {
+    "attachmentDiscovery": {
+      "ok": true,
+      "discovered": 9,
+      "samples": [
+        {
+          "name": "[붙임]제출서류_임용후보자 등록원서 등.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260807143105.hwp"
+        },
+        {
+          "name": "[붙임]최종 합격자 제출서류.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260804145614.hwp"
+        },
+        {
+          "name": "[붙임](서식)응시원서_이름.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260720144944.hwp"
+        },
+        {
+          "name": "[참고]직무기술서.pdf",
+          "type": "pdf",
+          "url": "https://uctf.or.kr/api/files/20260720144948.pdf"
+        },
+        {
+          "name": "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고문(안).pdf",
+          "type": "pdf",
+          "url": "https://uctf.or.kr/api/files/20260720145351.pdf"
+        },
+        {
+          "name": "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용 공고문(안).pdf",
+          "type": "pdf",
+          "url": "https://uctf.or.kr/api/files/20260710090855.pdf"
+        },
+        {
+          "name": "[붙임](서식)응시원서_이름.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260710090903.hwp"
+        },
+        {
+          "name": "[붙임]최종 합격자 제출서류.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260629150835.hwp"
+        }
+      ],
+      "status": "success"
+    },
+    "attachmentDownload": {
       "ok": false,
-      "discovered": 0,
-      "samples": []
+      "status": "not-attempted",
+      "attempted": 0,
+      "downloaded": 0,
+      "failed": 0
+    },
+    "documentAnalysis": {
+      "ok": false,
+      "status": "not-attempted",
+      "attempted": 0,
+      "parsed": 0,
+      "failed": 0,
+      "diagnostics": {
+        "byDetectedType": {},
+        "byContentType": {},
+        "byError": {}
+      }
+    },
+    "attachment": {
+      "ok": true,
+      "discovered": 9,
+      "samples": [
+        {
+          "name": "[붙임]제출서류_임용후보자 등록원서 등.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260807143105.hwp"
+        },
+        {
+          "name": "[붙임]최종 합격자 제출서류.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260804145614.hwp"
+        },
+        {
+          "name": "[붙임](서식)응시원서_이름.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260720144944.hwp"
+        },
+        {
+          "name": "[참고]직무기술서.pdf",
+          "type": "pdf",
+          "url": "https://uctf.or.kr/api/files/20260720144948.pdf"
+        },
+        {
+          "name": "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고문(안).pdf",
+          "type": "pdf",
+          "url": "https://uctf.or.kr/api/files/20260720145351.pdf"
+        },
+        {
+          "name": "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용 공고문(안).pdf",
+          "type": "pdf",
+          "url": "https://uctf.or.kr/api/files/20260710090855.pdf"
+        },
+        {
+          "name": "[붙임](서식)응시원서_이름.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260710090903.hwp"
+        },
+        {
+          "name": "[붙임]최종 합격자 제출서류.hwp",
+          "type": "hwp",
+          "url": "https://uctf.or.kr/api/files/20260629150835.hwp"
+        }
+      ],
+      "status": "success"
     }
   }
 }

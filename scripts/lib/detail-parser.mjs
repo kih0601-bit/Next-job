@@ -414,6 +414,63 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
   }
 
   try {
+    // KOSHA official recruitment board is a Vue SPA backed by the captured
+    // standard TBoard API. The public jobdata URL is a shell, so resolve the
+    // notice through boardDetail using the pstNo embedded in the official URL.
+    if (sourceOrg === '한국산업안전보건공단') {
+      const pstNo = new URL(url).searchParams.get('pstNo');
+      if (pstNo) {
+        const apiUrl = 'https://kosha.or.kr/api/compn24/auth/stdtboard/api.do';
+        const payload = {
+          common: { siteCode:'50', channelType:'web', boardId:'B2025021400005', serviceId:'boardDetail' },
+          data: { pstNo }
+        };
+        const apiResponse = await fetch(apiUrl, {
+          signal: controller.signal,
+          redirect: 'follow',
+          method: 'POST',
+          headers: {
+            ...baseHeaders,
+            accept: 'application/json,text/plain,*/*',
+            'content-type': 'application/json;charset=UTF-8',
+            chnlId: 'kosha24',
+            referer: 'https://www.kosha.or.kr/notification/jobncontract/job'
+          },
+          body: JSON.stringify(payload)
+        });
+        if (!apiResponse.ok) throw new Error(`KOSHA detail API HTTP ${apiResponse.status}`);
+        const result = await apiResponse.json();
+        const code = String(result?.common?.result?.code || '');
+        if (code && code !== '200') throw new Error(`KOSHA detail API result ${code}`);
+        const item = result?.data?.boardDetail || {};
+        const files = Array.isArray(result?.data?.fileList) ? result.data.fileList : [];
+        const titleKeys = ['pstTtl','pstSj','pstTitle','title','subject','sj','ttl','bbsTtl','artclSj','pstNm'];
+        const title = cleanHtml(String(titleKeys.map(k=>item?.[k]).find(Boolean) || expectedTitle || ''));
+        const textParts = [];
+        for (const [key,value] of Object.entries(item)) {
+          if (value == null || typeof value === 'object') continue;
+          const clean = cleanHtml(String(value));
+          if (clean && clean.length > 1 && !/^(?:Y|N|\d{1,4})$/.test(clean)) textParts.push(clean);
+        }
+        const text = [...new Set([title, ...textParts])].join('\n').slice(0,70000);
+        const tokens = titleTokens(expectedTitle);
+        const matched = tokens.filter(word => `${title} ${text}`.includes(word)).length;
+        const titleEvidence = tokens.length < 2 || matched / tokens.length >= 0.35;
+        if (!titleEvidence || text.length < 30) throw new Error('KOSHA detail API body validation failed');
+        const attachments = files.map((file,i)=>({
+          name: String(file?.orgnlAtcflNm || file?.atcflNm || file?.fileNm || `첨부파일 ${i+1}`),
+          type: String(file?.orgnlAtcflNm || file?.atcflNm || file?.fileNm || '').split('.').pop()?.toLowerCase() || '',
+          url: ''
+        }));
+        return {
+          ok: true, finalUrl: url, text,
+          confidence: detailConfidence(text, expectedTitle),
+          httpStatus: apiResponse.status, contentType: 'application/json',
+          attachments, detailTransport: 'KOSHA_TBOARD_API_DETAIL'
+        };
+      }
+    }
+
     // UCTF list is REST-backed. Prefer the matching REST detail object when the
     // public /view/{id} shell does not server-render the notice body.
     if (sourceOrg === '울산문화관광재단') {

@@ -10,7 +10,7 @@ import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } fro
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 
-const VERSION = '17.9-first-page-finalize-and-attachment-diagnostics';
+const VERSION = '18.0-first-page-pipeline-finalize';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const ACCESS_TIMEOUT_MS = 18000;
@@ -156,8 +156,8 @@ async function fetchPostHtml(url,body,timeoutMs=22000,referer=''){
  const c=new AbortController(),timer=setTimeout(()=>c.abort(),timeoutMs);try{const r=await fetch(url,{signal:c.signal,redirect:'follow',method:'POST',headers:{...headers(referer),'content-type':'application/x-www-form-urlencoded'},body});if(!r.ok)throw new Error(`HTTP ${r.status}`);const ct=r.headers.get('content-type')||'',b=new Uint8Array(await r.arrayBuffer()),q=new TextDecoder('utf-8').decode(b.slice(0,Math.min(b.length,8192)));return{html:decodeResponseBytes(b,ct,q),status:r.status,finalUrl:r.url||url,contentType:ct};}finally{clearTimeout(timer);}
 }
 async function kepcoDynamicListing(page,source){
- if(source.org!=='한국전력공사')return null;const html=String(page?.html||'');if(!/fncPageBoard\(\s*["']addList["']\s*,\s*["']addList\.do["']\s*,\s*["']1["']\s*\)/i.test(html))return null;
- const base=page.finalUrl||page.requestedUrl||source.url,url=new URL('addList.do',base).href,body=htmlFormBody(html,'defaultFrm',{pageIndex:'1'});return{...await fetchPostHtml(url,body,LIST_TIMEOUT_MS,base),requestedUrl:url,requestMethod:'POST'};
+ if(source.org!=='한국전력공사')return null;const html=String(page?.html||'');if(!/recruit\.kepco\.co\.kr/i.test(page?.finalUrl||page?.requestedUrl||source.url||''))return null;
+ const base=page.finalUrl||page.requestedUrl||source.url; if(!/\/frt\/(?:frt0001\/(?:list\.do)?|main\.do)/i.test(new URL(base).pathname)) return null; const url=new URL('/frt/frt0001/addList.do',base).href,body=htmlFormBody(html,'defaultFrm',{pageIndex:'1'});return{...await fetchPostHtml(url,body,LIST_TIMEOUT_MS,base),requestedUrl:url,requestMethod:'POST'};
 }
 
 
@@ -511,7 +511,7 @@ async function probeSource(source, artifacts) {
     }
     // Select the real board page, not the homepage/navigation page. Exact matches
     // win first; otherwise prefer the page with the largest visible board-row count.
-    const selected = pageResults.sort((a, b) => Number(b.exactMatch) - Number(a.exactMatch) || (b.visiblePostCount ?? -1) - (a.visiblePostCount ?? -1) || b.candidateCount - a.candidateCount)[0];
+    const selected = source.org === '한국전력공사' ? (pageResults.find(item => /\/frt\/frt0001\/addList\.do/i.test(item.url)) || pageResults[0]) : pageResults.sort((a, b) => Number(b.exactMatch) - Number(a.exactMatch) || (b.visiblePostCount ?? -1) - (a.visiblePostCount ?? -1) || b.candidateCount - a.candidateCount)[0];
     const all = selected?.found || [];
     report.list.selectedUrl = selected?.url || '';
     report.list.visiblePostCount = selected ? selected.visiblePostCount : null;
@@ -541,7 +541,7 @@ async function probeSource(source, artifacts) {
       if (detail.ok) report.detail.validated += 1;
       else report.detail.failed += 1;
       report.attachment.discovered += detail.attachments?.length || 0;
-      report.detail.samples.push({ title: candidate.title, requestedUrl: candidate.link, requestMethod: candidate.detailRequest?.method || 'GET', template: classifyDetailTemplate(candidate.link, candidate), ok: detail.ok, finalUrl: detail.finalUrl || '', textLength: detail.text?.length || 0, attachmentCount: detail.attachments?.length || 0, attachmentSignalCount: detail.attachmentSignalCount || 0, transport: detail.detailTransport || '', error: detail.error || '' });
+      report.detail.samples.push({ title: candidate.title, requestedUrl: candidate.link, requestMethod: candidate.detailRequest?.method || 'GET', template: classifyDetailTemplate(candidate.link, candidate), ok: detail.ok, finalUrl: detail.finalUrl || '', textLength: detail.text?.length || 0, attachmentCount: detail.attachments?.length || 0, attachmentSignalCount: detail.attachmentSignalCount || 0, explicitNoAttachment: Boolean(detail.explicitNoAttachment), transport: detail.detailTransport || '', error: detail.error || '' });
       for (const file of detail.attachments || []) {
         if (report.attachment.samples.length < 8) report.attachment.samples.push({ name: file.name, type: file.type, url: file.url });
       }
@@ -552,7 +552,7 @@ async function probeSource(source, artifacts) {
       (report.list.status === 'verified-empty' && report.detail.targetCount === 0)
       || (report.detail.targetCount === report.list.candidateCount && report.detail.missingDetailUrl === 0 && report.detail.attempted === report.detail.targetCount && report.detail.validated === report.detail.targetCount)
     );
-    report.attachment.ok = (report.list.status === 'verified-empty' && report.list.candidateCount === 0) || report.attachment.discovered > 0;
+    report.attachment.ok = (report.list.status === 'verified-empty' && report.list.candidateCount === 0) || report.attachment.discovered > 0 || (report.detail.samples.length > 0 && report.detail.samples.every(sample => sample.explicitNoAttachment));
     if (!report.access.ok) report.bottleneck = '접속';
     else if (!report.list.ok) report.bottleneck = report.list.status === 'count-exact-unverified' ? '목록 개수 일치·제목 정확성 미검증' : report.list.status === 'partial' ? `목록 부분 추출 (${report.list.candidateCount}/${report.list.visiblePostCount})` : report.list.status === 'count-unavailable-or-empty' ? '목록 글 수 판정 불가 또는 실제 0건' : '목록 추출 실패';
     else if (report.list.status === 'verified-empty') report.bottleneck = '현재 실제 공고 0건 · 상세·첨부 대상 없음';

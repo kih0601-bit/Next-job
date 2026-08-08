@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '2.5-confirmed-attachment-contracts';
+const ANALYZER_VERSION = '2.6-evidence-scoped-document-coverage';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -559,12 +559,24 @@ function coverageSummary({ attempted = 0, successful = 0 } = {}) {
   return { capabilityOk, complete, status: complete ? 'complete' : capabilityOk ? 'partial' : 'failed', ratio: successful / attempted };
 }
 
+function isAdministrativeFormAttachment(item = {}) {
+  const name = String(item.name || '').replace(/\s+/g, ' ');
+  return /(?:이의\s*신청서|신원\s*진술서|결격\s*사유.*서약서|개인정보.*동의서|채용서류.*반환.*청구서|서약서(?:\.|\s|$))/i.test(name);
+}
+
+function isSubstantiveRecruitmentAttachment(item = {}) {
+  const name = String(item.name || '').replace(/\s+/g, ' ');
+  return /(?:채용\s*공고|모집\s*공고|직무\s*기술서|직무설명서|채용계획|응시자격|자격요건|채용분야|모집분야)/i.test(name);
+}
+
 export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {}) {
   const results = [];
   const prepared = attachments.map(a => ({ ...a, hintedType: attachmentType(a) }));
   const hasDocumentCandidate = prepared.some(item => /^(?:pdf|hwp|hwpx|doc|docx|xls|xlsx)$/i.test(item.hintedType));
+  const hasSubstantiveDocument = prepared.some(item => /^(?:pdf|hwp|hwpx|doc|docx|xls|xlsx)$/i.test(item.hintedType) && isSubstantiveRecruitmentAttachment(item));
   const selected = prepared
     .filter(item => !hasDocumentCandidate || !/^(?:png|jpg|jpeg|tif|tiff)$/i.test(item.hintedType))
+    .filter(item => !(hasSubstantiveDocument && isAdministrativeFormAttachment(item)))
     .sort((a, b) => documentPriority(b) - documentPriority(a))
     .slice(0, maxFiles);
 

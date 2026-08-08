@@ -79,8 +79,17 @@ function isKnownUiAttachmentCandidate(item = {}) {
     || /(?:파일\s*다운로드|다운로드\s*아이콘|공공누리|출처표시)/i.test(String(item.name || ''))
     || /\/(?:img|images|assets|static)\/[^?#]*(?:ico|icon|btn|button|logo|menu|nav|quick|home|kogl)[^?#]*/i.test(String(item.url || ''));
 }
+function isKnownGlobalCertificationDocument(item = {}) {
+  const name = String(item.name || '');
+  const url = String(item.url || '');
+  // Site-wide footer certifications are real PDFs, but never recruitment attachments.
+  // EWP's detail HTML repeats these links on every post and v78 counted them as files.
+  return /(?:웹접근성|웹개방성|ISO\s*27001|ISO\s*27701|ISMS-?P)\s*(?:인증)?(?:마크)?/i.test(name)
+    || /\/kor\/download\/(?:wa\/wa\.pdf|web_open\/web_open_2022\.pdf|IC\.pdf|PI\.pdf)(?:[?#]|$)/i.test(url);
+}
+
 function purifyAttachmentCandidates(items = []) {
-  const cleaned = items.filter(item => !isKnownUiAttachmentCandidate(item));
+  const cleaned = items.filter(item => !isKnownUiAttachmentCandidate(item) && !isKnownGlobalCertificationDocument(item));
   const hasDocument = cleaned.some(isDocumentAttachmentCandidate);
   return hasDocument ? cleaned.filter(item => !isImageAttachmentCandidate(item)) : cleaned;
 }

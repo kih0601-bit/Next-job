@@ -1,6 +1,6 @@
 {
   "version": "15.0-phase5-list-selection",
-  "updatedAt": "2026-08-08T12:15:26.810Z",
+  "updatedAt": "2026-08-08T13:05:05.425Z",
   "reportPath": "data/debug-report.json",
   "documentAnalyzerVersion": "12.5-file-endpoint-and-transport-parser",
   "documentToolDiagnostics": {
@@ -276,7 +276,7 @@
       "org": "근로복지공단",
       "status": "healthy",
       "listingPagesChecked": 1,
-      "candidates": 1,
+      "candidates": 10,
       "extractionDiagnostics": {
         "anchors": 1,
         "titleMatches": 1,
@@ -337,14 +337,14 @@
         "accepted": 10,
         "rowFallbackAccepted": 0,
         "titleSamples": [
-          "2012년도 안전보건공단 인턴직원 채용공고",
-          "비정규직(시간제근로자) 채용공고",
-          "비정규직(시간제근로자) 채용 공고",
-          "비정규직(일용직) 채용 공고",
-          "비정규직(일용직) 채용 공고",
-          "계약직(의사) 채용 공고",
-          "계약직(의사) 채용 재공고",
-          "비정규직(일용직) 채용 공고"
+          "2026년도 안전보건공단 하반기 채용 공고",
+          "2026년도 안전보건공단 제3차 업무직 채용 공고",
+          "2026년도 체험형 인턴 채용공고",
+          "2026년 제2차 산업안전보건연구원(대전) 업무직(시설관리원) 합격자 임용 안내",
+          "2026년 교육원 업무직(시설관리원) 채용공고 알림",
+          "2026년 제2차 산업안전보건연구원(대전) 업무직(시설관리원) 채용 공고",
+          "2026년도 안전보건공단 제2차 업무직 및 기간제 채용 공고",
+          "2026년 제2차 산업안전보건연구원(대전) 업무직(시설관리원) 채용 공고"
         ],
         "unsafeSamples": [],
         "pages": [
@@ -361,26 +361,514 @@
         ]
       },
       "pipeline": {
-        "detailAttempted": 0,
-        "detailValidated": 0,
-        "attachmentsDiscovered": 0,
-        "documentsAttempted": 0,
+        "detailAttempted": 4,
+        "detailValidated": 4,
+        "attachmentsDiscovered": 4,
+        "documentsAttempted": 4,
         "documentsParsed": 0
       },
       "documentDiagnostics": {
-        "byDetectedType": {},
-        "byContentType": {},
-        "byError": {}
+        "byDetectedType": {
+          "unknown": 4
+        },
+        "byContentType": {
+          "none": 4
+        },
+        "byError": {
+          "Failed to parse URL from  / curl: curl exited 3": 4
+        }
       },
-      "documentSamples": [],
+      "documentSamples": [
+        {
+          "name": "첨부파일 1",
+          "url": "",
+          "finalUrl": "",
+          "hintedType": "unknown",
+          "detectedType": "",
+          "contentType": "",
+          "contentDisposition": "",
+          "signature": "",
+          "transport": "",
+          "size": 0,
+          "ok": false,
+          "error": "Failed to parse URL from  / curl: curl exited 3",
+          "commandError": {
+            "message": "Failed to parse URL from  / curl: curl exited 3",
+            "code": "COMMAND_FAILED",
+            "exitCode": null,
+            "command": "curl",
+            "args": [
+              "-L",
+              "--fail-with-body",
+              "--silent",
+              "--show-error",
+              "--max-time",
+              "45",
+              "-D",
+              "/tmp/nextjob-doc-cAn52V/attachment-0.bin.headers",
+              "-o",
+              "/tmp/nextjob-doc-cAn52V/attachment-0.bin",
+              "-H",
+              "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36",
+              "-H",
+              "accept-language: ko-KR,ko;q=0.9",
+              "-H",
+              "accept: application/pdf,application/octet-stream,application/zip,image/*,*/*;q=0.8",
+              ""
+            ],
+            "stdout": "",
+            "stderr": "curl: (3) URL rejected: Malformed input to a URL function\n"
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "첨부파일 1",
+          "url": "",
+          "finalUrl": "",
+          "hintedType": "unknown",
+          "detectedType": "",
+          "contentType": "",
+          "contentDisposition": "",
+          "signature": "",
+          "transport": "",
+          "size": 0,
+          "ok": false,
+          "error": "Failed to parse URL from  / curl: curl exited 3",
+          "commandError": {
+            "message": "Failed to parse URL from  / curl: curl exited 3",
+            "code": "COMMAND_FAILED",
+            "exitCode": null,
+            "command": "curl",
+            "args": [
+              "-L",
+              "--fail-with-body",
+              "--silent",
+              "--show-error",
+              "--max-time",
+              "45",
+              "-D",
+              "/tmp/nextjob-doc-43rGlK/attachment-0.bin.headers",
+              "-o",
+              "/tmp/nextjob-doc-43rGlK/attachment-0.bin",
+              "-H",
+              "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36",
+              "-H",
+              "accept-language: ko-KR,ko;q=0.9",
+              "-H",
+              "accept: application/pdf,application/octet-stream,application/zip,image/*,*/*;q=0.8",
+              ""
+            ],
+            "stdout": "",
+            "stderr": "curl: (3) URL rejected: Malformed input to a URL function\n"
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "첨부파일 1",
+          "url": "",
+          "finalUrl": "",
+          "hintedType": "unknown",
+          "detectedType": "",
+          "contentType": "",
+          "contentDisposition": "",
+          "signature": "",
+          "transport": "",
+          "size": 0,
+          "ok": false,
+          "error": "Failed to parse URL from  / curl: curl exited 3",
+          "commandError": {
+            "message": "Failed to parse URL from  / curl: curl exited 3",
+            "code": "COMMAND_FAILED",
+            "exitCode": null,
+            "command": "curl",
+            "args": [
+              "-L",
+              "--fail-with-body",
+              "--silent",
+              "--show-error",
+              "--max-time",
+              "45",
+              "-D",
+              "/tmp/nextjob-doc-LQtQmk/attachment-0.bin.headers",
+              "-o",
+              "/tmp/nextjob-doc-LQtQmk/attachment-0.bin",
+              "-H",
+              "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36",
+              "-H",
+              "accept-language: ko-KR,ko;q=0.9",
+              "-H",
+              "accept: application/pdf,application/octet-stream,application/zip,image/*,*/*;q=0.8",
+              ""
+            ],
+            "stdout": "",
+            "stderr": "curl: (3) URL rejected: Malformed input to a URL function\n"
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        },
+        {
+          "name": "첨부파일 1",
+          "url": "",
+          "finalUrl": "",
+          "hintedType": "unknown",
+          "detectedType": "",
+          "contentType": "",
+          "contentDisposition": "",
+          "signature": "",
+          "transport": "",
+          "size": 0,
+          "ok": false,
+          "error": "Failed to parse URL from  / curl: curl exited 3",
+          "commandError": {
+            "message": "Failed to parse URL from  / curl: curl exited 3",
+            "code": "COMMAND_FAILED",
+            "exitCode": null,
+            "command": "curl",
+            "args": [
+              "-L",
+              "--fail-with-body",
+              "--silent",
+              "--show-error",
+              "--max-time",
+              "45",
+              "-D",
+              "/tmp/nextjob-doc-D3ytho/attachment-0.bin.headers",
+              "-o",
+              "/tmp/nextjob-doc-D3ytho/attachment-0.bin",
+              "-H",
+              "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36",
+              "-H",
+              "accept-language: ko-KR,ko;q=0.9",
+              "-H",
+              "accept: application/pdf,application/octet-stream,application/zip,image/*,*/*;q=0.8",
+              ""
+            ],
+            "stdout": "",
+            "stderr": "curl: (3) URL rejected: Malformed input to a URL function\n"
+          },
+          "priority": 40,
+          "requestMethod": "GET"
+        }
+      ],
       "vacancyStats": {
-        "detected": 0,
+        "detected": 4,
         "accepted": 0,
-        "rejected": 0
+        "rejected": 4
       },
-      "vacancyDecisions": [],
+      "vacancyDecisions": [
+        {
+          "candidateTitle": "2026년 제2차 산업안전보건연구원(대전) 업무직(시설관리원) 채용 공고",
+          "candidateLink": "https://www.kosha.or.kr/notification/jobncontract/job/jobdata?bbsId=B2025021400005&pstNo=202606220920375KQABZ",
+          "vacancyId": "list-selection",
+          "vacancyName": "2026년 제2차 산업안전보건연구원(대전) 업무직(시설관리원) 채용 공고",
+          "status": "list-rejected",
+          "reason": "목록에 마감 문구가 명시됨",
+          "listSelection": {
+            "accepted": false,
+            "reasons": [
+              "목록에 마감 문구가 명시됨"
+            ],
+            "signals": [
+              "대상 고용형태 신호",
+              "채용 제목 신호"
+            ],
+            "selectorVersion": "2026-08-06.1-phase5-list-selection"
+          }
+        },
+        {
+          "candidateTitle": "2026년 제2차 산업안전보건연구원(대전) 업무직(시설관리원) 채용 공고",
+          "candidateLink": "https://www.kosha.or.kr/notification/jobncontract/job/jobdata?bbsId=B2025021400005&pstNo=20260518095533OADG0V",
+          "vacancyId": "list-selection",
+          "vacancyName": "2026년 제2차 산업안전보건연구원(대전) 업무직(시설관리원) 채용 공고",
+          "status": "list-rejected",
+          "reason": "목록에 마감 문구가 명시됨",
+          "listSelection": {
+            "accepted": false,
+            "reasons": [
+              "목록에 마감 문구가 명시됨"
+            ],
+            "signals": [
+              "대상 고용형태 신호",
+              "채용 제목 신호"
+            ],
+            "selectorVersion": "2026-08-06.1-phase5-list-selection"
+          }
+        },
+        {
+          "candidateTitle": "2026년도 안전보건공단 하반기 채용 공고",
+          "candidateLink": "https://www.kosha.or.kr/notification/jobncontract/job/jobdata?bbsId=B2025021400005&pstNo=202608060856579OQYZ6",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2026년도 안전보건공단 하반기 채용 공고",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요",
+            "근무지=근무지 확인 필요"
+          ],
+          "quality": {
+            "score": 38,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "울산 단일 근무 미확인",
+              "허용 고용형태 미확인",
+              "마감일 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "근무지 확인 필요",
+            "fitScore": 35,
+            "jobCategory": "기타",
+            "crossValidation": {
+              "checked": false,
+              "conflict": false,
+              "reasons": []
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "근무지 원문 확인 필요"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": []
+              },
+              "sources": {
+                "detailChars": 242,
+                "documentChars": 0,
+                "documentUsed": false
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "2026년도 안전보건공단 제3차 업무직 채용 공고",
+          "candidateLink": "https://www.kosha.or.kr/notification/jobncontract/job/jobdata?bbsId=B2025021400005&pstNo=20260804091617M1M9L9",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2026년도 안전보건공단 제3차 업무직 채용 공고",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요",
+            "근무지=근무지 확인 필요"
+          ],
+          "quality": {
+            "score": 38,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "울산 단일 근무 미확인",
+              "허용 고용형태 미확인",
+              "마감일 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "근무지 확인 필요",
+            "fitScore": 35,
+            "jobCategory": "기타",
+            "crossValidation": {
+              "checked": false,
+              "conflict": false,
+              "reasons": []
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "근무지 원문 확인 필요"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": []
+              },
+              "sources": {
+                "detailChars": 258,
+                "documentChars": 0,
+                "documentUsed": false
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "2026년도 안전보건공단 제2차 업무직 및 기간제 채용 공고",
+          "candidateLink": "https://www.kosha.or.kr/notification/jobncontract/job/jobdata?bbsId=B2025021400005&pstNo=20260605112655G0K9S3",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2026년도 안전보건공단 제2차 업무직 및 기간제 채용 공고",
+          "status": "excluded",
+          "reason": "인턴·기간제·계약직 등 제외 고용형태",
+          "analysis": {
+            "status": "제외",
+            "recommended": false,
+            "excluded": true,
+            "reviewNeeded": false,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "제외 고용형태",
+            "location": "근무지 확인 필요",
+            "fitScore": 0,
+            "jobCategory": "기타",
+            "crossValidation": {
+              "checked": false,
+              "conflict": false,
+              "reasons": []
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "근무지 원문 확인 필요"
+            ],
+            "excludeReasons": [
+              "인턴·기간제·계약직 등 제외 고용형태"
+            ],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "제외 고용형태",
+                "lines": [
+                  "2026년도 안전보건공단 제2차 업무직 및 기간제 채용 공고",
+                  "1200001 N 2260002 20260605112655 2026년도 안전보건공단 제2차 업무직 및 기간제 채용 공고 20260605112655 20260605112655G0K9S3 20260605112655G0K9S3 20260605 Y 4560 20*** Y 20260605 7 N 0 4560 관리자 <p class=\"0\" style=\"text-align:center;word-break:keep-all;mso-pagina",
+                  "2026 년도 안전보건공단 제 2 차 업무직 및 기간제 채용 공고"
+                ]
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": []
+              },
+              "sources": {
+                "detailChars": 270,
+                "documentChars": 0,
+                "documentUsed": false
+              }
+            }
+          }
+        },
+        {
+          "candidateTitle": "2026년도 안전보건공단 제1차 기간제 근로자 채용 공고",
+          "candidateLink": "https://www.kosha.or.kr/notification/jobncontract/job/jobdata?bbsId=B2025021400005&pstNo=20260324090439EKIS33",
+          "vacancyId": "vacancy-1",
+          "vacancyName": "2026년도 안전보건공단 제1차 기간제 근로자 채용 공고",
+          "status": "review-needed",
+          "reason": "학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인",
+          "missingTarget": [
+            "학력=학력 확인 필요",
+            "고용형태=고용형태 확인 필요",
+            "근무지=근무지 확인 필요"
+          ],
+          "quality": {
+            "score": 38,
+            "threshold": 90,
+            "reasons": [
+              "상세 원문 검증 완료",
+              "제목-원문 일치도 높음",
+              "상세주소 식별자 확인"
+            ],
+            "penalties": [
+              "채용 구조 부족",
+              "학력 조건 미확인",
+              "울산 단일 근무 미확인",
+              "허용 고용형태 미확인",
+              "마감일 미확인"
+            ]
+          },
+          "analysis": {
+            "status": "확인 필요",
+            "recommended": false,
+            "excluded": false,
+            "reviewNeeded": true,
+            "eligibility": "학력 확인 필요",
+            "employmentType": "고용형태 확인 필요",
+            "location": "근무지 확인 필요",
+            "fitScore": 35,
+            "jobCategory": "기타",
+            "crossValidation": {
+              "checked": false,
+              "conflict": false,
+              "reasons": []
+            },
+            "fitReasons": [
+              "학력 조건 원문 확인 필요",
+              "고용형태 원문 확인 필요",
+              "근무지 원문 확인 필요"
+            ],
+            "excludeReasons": [],
+            "decisionEvidence": {
+              "education": {
+                "result": "학력 확인 필요",
+                "lines": []
+              },
+              "employment": {
+                "result": "고용형태 확인 필요",
+                "lines": []
+              },
+              "location": {
+                "result": "근무지 확인 필요",
+                "lines": []
+              },
+              "sources": {
+                "detailChars": 259,
+                "documentChars": 0,
+                "documentUsed": false
+              }
+            }
+          }
+        }
+      ],
       "rejected": 10,
-      "rejectionReasons": {},
+      "rejectionReasons": {
+        "2026년도 안전보건공단 하반기 채용 공고: 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인": 1,
+        "2026년도 안전보건공단 제3차 업무직 채용 공고: 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인": 1,
+        "expired deadline": 2,
+        "2026년도 안전보건공단 제2차 업무직 및 기간제 채용 공고: 인턴·기간제·계약직 등 제외 고용형태": 1,
+        "2026년도 안전보건공단 제1차 기간제 근로자 채용 공고: 학력=학력 확인 필요, 고용형태=고용형태 확인 필요, 근무지=근무지 확인 필요, 채용 구조 부족, 학력 조건 미확인, 울산 단일 근무 미확인, 허용 고용형태 미확인, 마감일 미확인": 1
+      },
       "error": ""
     },
     {
@@ -408,7 +896,7 @@
         "unsafeSamples": [],
         "pages": [
           {
-            "url": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1786190813409",
+            "url": "https://www.upa.or.kr/portal/board/post/list.do?bcIdx=668&mid=0405000000&token=1786193812594",
             "visiblePostCount": 11,
             "candidateCount": 11,
             "exactMatch": true,
@@ -559,7 +1047,7 @@
                 "result": "울산",
                 "lines": [
                   "2026년 울산항만공사 연간 채용 계획 사전 안내",
-                  "공지 2026년 울산항만공사 연간 채용 계획 사전 안내 인사노무부 2026-04-10 4,605",
+                  "공지 2026년 울산항만공사 연간 채용 계획 사전 안내 인사노무부 2026-04-10 4,607",
                   "1. 업 체 명: 울산항만공사"
                 ]
               },
@@ -910,7 +1398,7 @@
       },
       "documentSamples": [
         {
-          "name": "name=\"frm\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentList.do\" \n 2026년도 제2회 울산시설공단 신규직원 채용 공고\n 작성자 관리자\n 작성일 2026-05-19\n 조회수 4920\n 접수기간 ~ \n 공고구분 서",
+          "name": "name=\"frm\" method=\"post\" action=\"/uimc/notify/noti06/selectEmploymentList.do\" \n 2026년도 제2회 울산시설공단 신규직원 채용 공고\n 작성자 관리자\n 작성일 2026-05-19\n 조회수 4923\n 접수기간 ~ \n 공고구분 서",
           "url": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentList.do",
           "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentList.do",
           "hintedType": "unknown",
@@ -1003,7 +1491,7 @@
                 "result": "울산",
                 "lines": [
                   "2026년도 제2회 울산시설공단 신규직원 채용 공고 2026년도 제2회 울산시설공단 신규직원 채용 공고",
-                  "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4919",
+                  "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4922",
                   "2026년도 제2회 울산시설공단 신규직원 채용 공고"
                 ]
               },
@@ -1077,7 +1565,7 @@
                 "result": "울산",
                 "lines": [
                   "2026년도 제2회 울산시설공단 신규직원 채용 공고 (2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.hwpx [122446 byte]",
-                  "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4919",
+                  "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4922",
                   "1. (2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.hwpx [122446 byte]"
                 ]
               },
@@ -1151,7 +1639,7 @@
                 "result": "울산",
                 "lines": [
                   "2026년도 제2회 울산시설공단 신규직원 채용 공고 (2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.pdf [1231749 byte]",
-                  "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4919",
+                  "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4922",
                   "2. (2026-252) 2026년도 제2회 울산시설공단 신규직원 채용공고.pdf [1231749 byte]"
                 ]
               },
@@ -1225,7 +1713,7 @@
                 "result": "울산",
                 "lines": [
                   "2026년도 제2회 울산시설공단 신규직원 채용 공고 (첨부)채용시험 이의신청서(울산시설공단).hwpx [36312 byte]",
-                  "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4919",
+                  "182 2026년도 제2회 울산시설공단 신규직원 채용 공고 관리자 2026-05-19 4922",
                   "5. (첨부)채용시험 이의신청서(울산시설공단).hwpx [36312 byte]"
                 ]
               },
@@ -1375,9 +1863,9 @@
               "--max-time",
               "45",
               "-D",
-              "/tmp/nextjob-doc-teoX2f/attachment-0.bin.headers",
+              "/tmp/nextjob-doc-pjrMct/attachment-0.bin.headers",
               "-o",
-              "/tmp/nextjob-doc-teoX2f/attachment-0.bin",
+              "/tmp/nextjob-doc-pjrMct/attachment-0.bin",
               "-H",
               "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36",
               "-H",
@@ -1385,7 +1873,7 @@
               "-H",
               "accept: application/pdf,application/octet-stream,application/zip,image/*,*/*;q=0.8",
               "-H",
-              "referer: https://www.ubimc.or.kr/cop/bbs/selectBoardArticle.do;jsessionid=8EBE54AA3FDE2CA1AA8AD3DD87CE765F",
+              "referer: https://www.ubimc.or.kr/cop/bbs/selectBoardArticle.do;jsessionid=404EBE656DB9360133B753BDEB9EFE0A",
               "https://www.ubimc.or.kr/cop/cmm/fms/FileDown.do?atchFileId=FILE_000000000002484&fileSn=1"
             ],
             "stdout": "",
@@ -1420,9 +1908,9 @@
               "--max-time",
               "45",
               "-D",
-              "/tmp/nextjob-doc-NGzC2e/attachment-0.bin.headers",
+              "/tmp/nextjob-doc-O8QMml/attachment-0.bin.headers",
               "-o",
-              "/tmp/nextjob-doc-NGzC2e/attachment-0.bin",
+              "/tmp/nextjob-doc-O8QMml/attachment-0.bin",
               "-H",
               "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36",
               "-H",
@@ -1430,7 +1918,7 @@
               "-H",
               "accept: application/pdf,application/octet-stream,application/zip,image/*,*/*;q=0.8",
               "-H",
-              "referer: https://www.ubimc.or.kr/cop/bbs/selectBoardArticle.do;jsessionid=8EBE54AA3FDE2CA1AA8AD3DD87CE765F",
+              "referer: https://www.ubimc.or.kr/cop/bbs/selectBoardArticle.do;jsessionid=404EBE656DB9360133B753BDEB9EFE0A",
               "https://www.ubimc.or.kr/cop/cmm/fms/FileDown.do?atchFileId=FILE_000000000002436&fileSn=0"
             ],
             "stdout": "",
@@ -1485,7 +1973,7 @@
                 "result": "제외 고용형태",
                 "lines": [
                   "2026년 제3회 기간제근로자 채용 공고 울산광역시 북구시설관리공단에 종사할 기간제근로자 채용계획을 붙임과 같이 공고합니다.",
-                  "2026년 제3회 기간제근로자 채용 공고 첨부파일 관리자 2026-08-03 408",
+                  "2026년 제3회 기간제근로자 채용 공고 첨부파일 관리자 2026-08-03 415",
                   "울산광역시 북구시설관리공단에 종사할 기간제근로자 채용계획을 붙임과 같이 공고합니다."
                 ]
               },
@@ -1543,7 +2031,7 @@
                 "result": "제외 고용형태",
                 "lines": [
                   "2026년 제3회 기간제근로자 채용 공고 2026년 제3회 북구시설관리공단 기간제근로자 채용 공고문.hwpx",
-                  "2026년 제3회 기간제근로자 채용 공고 첨부파일 관리자 2026-08-03 408",
+                  "2026년 제3회 기간제근로자 채용 공고 첨부파일 관리자 2026-08-03 415",
                   "2026년 제3회 북구시설관리공단 기간제근로자 채용 공고문.hwpx"
                 ]
               },
@@ -1597,7 +2085,7 @@
                 "result": "제외 고용형태",
                 "lines": [
                   "2026년 제2회 기간제근로자 채용 공고",
-                  "288 2026년 제2회 기간제근로자 채용 공고 첨부파일 관리자 2026-04-30 2548",
+                  "288 2026년 제2회 기간제근로자 채용 공고 첨부파일 관리자 2026-04-30 2551",
                   "울산광역시 북구시설관리공단에 종사할 기간제근로자 채용계획을 붙임과 같이 공고합니다."
                 ]
               },
@@ -1803,7 +2291,7 @@
                 "result": "울산",
                 "lines": [
                   "울산정보산업진흥원 2026년 4차 직원 채용 공고",
-                  "257 울산정보산업진흥원 2026년 4차 직원 채용 공고 2026.06.04 1,493 종료",
+                  "257 울산정보산업진흥원 2026년 4차 직원 채용 공고 2026.06.04 1,495 종료",
                   "울산정보산업진흥원 2026년 4차 직원 채용 공고 2026.06.04"
                 ]
               },
@@ -1877,7 +2365,7 @@
                 "result": "울산",
                 "lines": [
                   "울산정보산업진흥원 2026년 3차 직원 채용 공고",
-                  "256 울산정보산업진흥원 2026년 3차 직원 채용 공고 2026.05.22 1,627 종료",
+                  "256 울산정보산업진흥원 2026년 3차 직원 채용 공고 2026.05.22 1,629 종료",
                   "울산정보산업진흥원 2026년 3차 직원 채용 공고 2026.05.22"
                 ]
               },

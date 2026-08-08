@@ -862,6 +862,23 @@ function recordTextsForVerification(html = '', source = {}) {
 }
 
 export function verifyExtractedListAgainstVisibleRecords(html = '', source = {}, candidates = []) {
+  if (source.org === '근로복지공단'
+      && /comwel\.saramin\.co\.kr\/service\/comwel\/\d+\/applicant\/apply\/recruit_default\.asp/i.test(source.url || '')
+      && candidates.length === 1) {
+    const title = normalizeBoardKey(candidates[0].title || '');
+    const body = normalizeBoardKey(cleanHtml(String(html)));
+    const verified = Boolean(title) && body.includes(title);
+    return {
+      verified,
+      template: 'SARAMIN_SELF_DETAIL',
+      recordCount: 1,
+      candidateCount: 1,
+      matchedCount: verified ? 1 : 0,
+      unmatchedTitles: verified ? [] : [candidates[0].title],
+      recordSamples: [candidates[0].title],
+      level: verified ? 'TEMPLATE_SARAMIN_SELF_DETAIL_EXACT' : 'TEMPLATE_RECORD_MISMATCH'
+    };
+  }
   const { template, records } = recordTextsForVerification(html, source);
   const normalizedRecords = records.map(normalizeBoardKey);
   const used = new Set();

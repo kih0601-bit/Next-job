@@ -1,59 +1,12 @@
 {
-  "generatedAt": "2026-08-08T15:10:24.162Z",
+  "generatedAt": "2026-08-08T15:33:47.194Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 4,
+    "improved": 11,
     "regressed": 0,
-    "unchanged": 16
+    "unchanged": 9
   },
   "changes": [
-    {
-      "org": "한국전력공사",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "list",
-        "status": "unknown",
-        "code": "LIST_EMPTY_OR_WRONG_PAGE",
-        "reason": "실제 0건인지 채용 게시판이 아닌 페이지인지 구분 필요",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/source-registry.mjs",
-        "recommendedAction": "현재 URL이 채용 게시판인지 확인하고 기관별 목록 URL 교체"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "detail": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "documentAnalysis": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
     {
       "org": "울주문화재단",
       "health": "healthy",
@@ -103,17 +56,17 @@
           "change": "same"
         },
         "attachmentDownload": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -264,100 +217,6 @@
     },
     {
       "org": "근로복지공단",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "documentAnalysis": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "울산경제일자리진흥원",
-      "health": "degraded",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산경제일자리진흥원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "documentAnalysis": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "울산남구도시관리공단",
       "health": "healthy",
       "primaryCause": {
         "stage": "complete",
@@ -365,7 +224,7 @@
         "code": "PIPELINE_SAMPLE_OK",
         "reason": "현재 진단 표본에서 실패 원인 없음",
         "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
+        "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
@@ -404,8 +263,102 @@
       "regressed": false
     },
     {
+      "org": "울산경제일자리진흥원",
+      "health": "healthy",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산경제일자리진흥원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "documentAnalysis": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        }
+      },
+      "improved": true,
+      "regressed": false
+    },
+    {
+      "org": "울산남구도시관리공단",
+      "health": "healthy",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        }
+      },
+      "improved": false,
+      "regressed": false
+    },
+    {
       "org": "울산도시공사",
-      "health": "degraded",
+      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -438,16 +391,16 @@
         },
         "attachmentDownload": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         },
         "documentAnalysis": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
@@ -532,8 +485,8 @@
         },
         "attachmentDownload": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         },
         "documentAnalysis": {
           "from": false,
@@ -541,7 +494,7 @@
           "change": "same"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
@@ -625,9 +578,9 @@
           "change": "same"
         },
         "attachmentDownload": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "documentAnalysis": {
           "from": false,
@@ -635,12 +588,12 @@
           "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
       "org": "울산정보산업진흥원",
-      "health": "degraded",
+      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -673,21 +626,21 @@
         },
         "attachmentDownload": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         },
         "documentAnalysis": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
       "org": "울산테크노파크",
-      "health": "degraded",
+      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -720,16 +673,16 @@
         },
         "attachmentDownload": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         },
         "documentAnalysis": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
@@ -766,9 +719,9 @@
           "change": "same"
         },
         "attachmentDownload": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "documentAnalysis": {
           "from": false,
@@ -776,12 +729,12 @@
           "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
       "org": "울주군시설관리공단",
-      "health": "degraded",
+      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -814,16 +767,16 @@
         },
         "attachmentDownload": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         },
         "documentAnalysis": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
@@ -861,8 +814,8 @@
         },
         "attachmentDownload": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         },
         "documentAnalysis": {
           "from": false,
@@ -870,7 +823,7 @@
           "change": "same"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
@@ -969,7 +922,7 @@
     },
     {
       "org": "한국석유공사",
-      "health": "degraded",
+      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -1002,21 +955,21 @@
         },
         "attachmentDownload": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         },
         "documentAnalysis": {
           "from": false,
-          "to": false,
-          "change": "same"
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
       "org": "한국수력원자력",
-      "health": "degraded",
+      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -1049,8 +1002,55 @@
         },
         "attachmentDownload": {
           "from": false,
-          "to": false,
+          "to": true,
+          "change": "improved"
+        },
+        "documentAnalysis": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        }
+      },
+      "improved": true,
+      "regressed": false
+    },
+    {
+      "org": "한국전력공사",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
           "change": "same"
+        },
+        "list": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "detail": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": false,
+          "to": true,
+          "change": "improved"
         },
         "documentAnalysis": {
           "from": false,
@@ -1058,7 +1058,7 @@
           "change": "same"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     }
   ]

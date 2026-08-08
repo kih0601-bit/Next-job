@@ -2,19 +2,19 @@
   "org": "한국전력공사",
   "health": "degraded",
   "primaryCause": {
-    "stage": "list",
-    "status": "unknown",
-    "code": "LIST_EMPTY_OR_WRONG_PAGE",
-    "reason": "실제 0건인지 채용 게시판이 아닌 페이지인지 구분 필요",
+    "stage": "complete",
+    "status": "success",
+    "code": "PIPELINE_SAMPLE_OK",
+    "reason": "현재 진단 표본에서 실패 원인 없음",
     "evidence": [],
-    "repairTarget": "scripts/collectors/source-registry.mjs",
-    "recommendedAction": "현재 URL이 채용 게시판인지 확인하고 기관별 목록 URL 교체"
+    "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
+    "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
   },
   "diagnosis": {
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "4개 후보 URL HTTP 응답 성공",
+      "reason": "3개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
@@ -171,50 +171,8 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "verification": {
-            "ok": true,
-            "verified": true,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-            "score": 5,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": true,
-              "recruitKeyword": true,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": true
-            },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 3,
-            "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
-              "recruit(?:ment)?"
-            ],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 3,
-            "boardType": {
-              "type": "JOB_ALIO",
-              "confidence": "high",
-              "evidence": [
-                "JOB-ALIO URL/본문 신호"
-              ]
-            },
-            "institutionRule": false,
-            "institutionRuleEvidence": [],
-            "textLength": 1846,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-            "status": 200,
-            "contentType": "text/html;charset=UTF-8"
-          },
+          "ok": false,
+          "error": "fetch failed",
           "accessTemplate": "DEDICATED_RECRUIT_SITE",
           "requestProfile": "browser-default"
         }
@@ -267,22 +225,230 @@
       }
     },
     "list": {
-      "status": "unknown",
-      "code": "LIST_EMPTY_OR_WRONG_PAGE",
-      "reason": "실제 0건인지 채용 게시판이 아닌 페이지인지 구분 필요",
-      "evidence": []
+      "status": "success",
+      "code": "LIST_VERIFIED_EXACT",
+      "reason": "실제 게시글 목록 검증 완료 · 화면 9건 = 추출 9건 · TEMPLATE_KEPCO_STATE_LI_EXACT",
+      "evidence": [
+        {
+          "url": "https://recruit.kepco.co.kr:444/frt/frt0001/addList.do",
+          "visiblePostCount": 9,
+          "candidateCount": 9,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "KEPCO_STATE_LI",
+            "recordCount": 9,
+            "candidateCount": 9,
+            "matchedCount": 9,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "2026년도 NDIS데이터관리원 채용",
+              "2026년도 제2차 전문직원 채용",
+              "2026년도 4직급 고졸 신입사원 채용 공고",
+              "2026년도 제1차 체험형 청년인턴 모집공고",
+              "2026년 상반기 보훈채용 모집 공고",
+              "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
+              "2026년 상반기 전기원 채용 공고",
+              "2026년도 상반기 4직급 대졸수준 채용 공고"
+            ],
+            "level": "TEMPLATE_KEPCO_STATE_LI_EXACT"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "KEPCO_STATE_LI",
+          "countTemplate": "KEPCO_STATE_LI"
+        }
+      ]
     },
     "detail": {
-      "status": "blocked",
-      "code": "DETAIL_BLOCKED_BY_LIST",
-      "reason": "목록 단계 미통과로 상세 진단 보류",
-      "evidence": []
+      "status": "success",
+      "code": "DETAIL_FIRST_PAGE_VERIFIED_EXACT",
+      "reason": "첫 페이지 9건 전체 상세 URL·본문 1:1 검증 완료",
+      "evidence": [
+        {
+          "title": "2026년도 NDIS데이터관리원 채용",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "textLength": 987,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 9,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "2026년도 제2차 전문직원 채용",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "textLength": 943,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 9,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "2026년도 4직급 고졸 신입사원 채용 공고",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "textLength": 927,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 9,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "2026년도 제1차 체험형 청년인턴 모집공고",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "textLength": 1020,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 11,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "2026년 상반기 보훈채용 모집 공고",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "textLength": 842,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 9,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "textLength": 1093,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 9,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "2026년 상반기 전기원 채용 공고",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "textLength": 1103,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 11,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "2026년도 상반기 4직급 대졸수준 채용 공고",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "textLength": 1228,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 9,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "2026년도 제1차 전문직원 채용",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "textLength": 943,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 9,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        }
+      ]
     },
     "attachment": {
-      "status": "blocked",
-      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
-      "reason": "상세 단계 미통과로 첨부 진단 보류",
-      "evidence": []
+      "status": "success",
+      "code": "ATTACHMENT_FOUND",
+      "reason": "검증 표본에서 첨부 링크 9개 발견",
+      "evidence": [
+        {
+          "name": "파일업로드폼",
+          "type": "unknown",
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000084297&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
+        },
+        {
+          "name": "파일업로드폼",
+          "type": "unknown",
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000082326&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
+        },
+        {
+          "name": "파일업로드폼",
+          "type": "unknown",
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000082328&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
+        },
+        {
+          "name": "파일업로드폼",
+          "type": "unknown",
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000079835&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
+        },
+        {
+          "name": "파일업로드폼",
+          "type": "unknown",
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000079833&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
+        },
+        {
+          "name": "파일업로드폼",
+          "type": "unknown",
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068519&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
+        },
+        {
+          "name": "파일업로드폼",
+          "type": "unknown",
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068486&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
+        },
+        {
+          "name": "파일업로드폼",
+          "type": "unknown",
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068484&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
+        }
+      ]
     },
     "access": {
       "status": "success",
@@ -331,8 +497,8 @@
       }
     }
   },
-  "repairTarget": "scripts/collectors/source-registry.mjs",
-  "recommendedAction": "현재 URL이 채용 게시판인지 확인하고 기관별 목록 URL 교체",
+  "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
+  "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인",
   "stages": {
     "access": {
       "ok": true,
@@ -499,50 +665,8 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "ok": true,
-          "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "verification": {
-            "ok": true,
-            "verified": true,
-            "fallback": false,
-            "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-            "score": 5,
-            "maxScore": 5,
-            "checks": {
-              "httpDocument": true,
-              "recruitKeyword": true,
-              "boardStructure": true,
-              "organizationMatch": true,
-              "meaningfulBody": true
-            },
-            "title": "잡알리오",
-            "orgMatched": true,
-            "positiveHits": 3,
-            "positiveMatches": [
-              "채용\\s*공고",
-              "채용\\s*정보",
-              "recruit(?:ment)?"
-            ],
-            "negativeHits": 0,
-            "negativeMatches": [],
-            "boardSignals": 3,
-            "boardType": {
-              "type": "JOB_ALIO",
-              "confidence": "high",
-              "evidence": [
-                "JOB-ALIO URL/본문 신호"
-              ]
-            },
-            "institutionRule": false,
-            "institutionRuleEvidence": [],
-            "textLength": 1846,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-            "status": 200,
-            "contentType": "text/html;charset=UTF-8"
-          },
+          "ok": false,
+          "error": "fetch failed",
           "accessTemplate": "DEDICATED_RECRUIT_SITE",
           "requestProfile": "browser-default"
         }
@@ -602,7 +726,7 @@
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "4개 후보 URL HTTP 응답 성공",
+          "reason": "3개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
@@ -759,50 +883,8 @@
             },
             {
               "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-              "ok": true,
-              "status": 200,
-              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-              "verification": {
-                "ok": true,
-                "verified": true,
-                "fallback": false,
-                "code": "RECRUIT_VERIFY_OK",
-                "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
-                "score": 5,
-                "maxScore": 5,
-                "checks": {
-                  "httpDocument": true,
-                  "recruitKeyword": true,
-                  "boardStructure": true,
-                  "organizationMatch": true,
-                  "meaningfulBody": true
-                },
-                "title": "잡알리오",
-                "orgMatched": true,
-                "positiveHits": 3,
-                "positiveMatches": [
-                  "채용\\s*공고",
-                  "채용\\s*정보",
-                  "recruit(?:ment)?"
-                ],
-                "negativeHits": 0,
-                "negativeMatches": [],
-                "boardSignals": 3,
-                "boardType": {
-                  "type": "JOB_ALIO",
-                  "confidence": "high",
-                  "evidence": [
-                    "JOB-ALIO URL/본문 신호"
-                  ]
-                },
-                "institutionRule": false,
-                "institutionRuleEvidence": [],
-                "textLength": 1846,
-                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-                "status": 200,
-                "contentType": "text/html;charset=UTF-8"
-              },
+              "ok": false,
+              "error": "fetch failed",
               "accessTemplate": "DEDICATED_RECRUIT_SITE",
               "requestProfile": "browser-default"
             }
@@ -909,32 +991,33 @@
       }
     },
     "list": {
-      "ok": false,
-      "status": "count-unavailable-or-empty",
+      "ok": true,
+      "status": "verified-exact",
       "pagesChecked": 1,
-      "visiblePostCount": null,
+      "visiblePostCount": 9,
       "candidateCount": 9,
-      "missingCount": null,
-      "extraCount": null,
-      "exactMatch": false,
+      "missingCount": 0,
+      "extraCount": 0,
+      "exactMatch": true,
       "selectedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/addList.do",
       "detailUrlReady": 9,
       "listOnlyCount": 0,
       "extractionDiagnostics": [
         {
           "url": "https://recruit.kepco.co.kr:444/frt/frt0001/addList.do",
-          "visiblePostCount": null,
+          "visiblePostCount": 9,
           "candidateCount": 9,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
           "recordVerification": {
-            "verified": false,
-            "template": "TABLE_RECORD",
-            "recordCount": 0,
+            "verified": true,
+            "template": "KEPCO_STATE_LI",
+            "recordCount": 9,
             "candidateCount": 9,
-            "matchedCount": 0,
-            "unmatchedTitles": [
+            "matchedCount": 9,
+            "unmatchedTitles": [],
+            "recordSamples": [
               "2026년도 NDIS데이터관리원 채용",
               "2026년도 제2차 전문직원 채용",
               "2026년도 4직급 고졸 신입사원 채용 공고",
@@ -942,15 +1025,14 @@
               "2026년 상반기 보훈채용 모집 공고",
               "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
               "2026년 상반기 전기원 채용 공고",
-              "2026년도 상반기 4직급 대졸수준 채용 공고",
-              "2026년도 제1차 전문직원 채용"
+              "2026년도 상반기 4직급 대졸수준 채용 공고"
             ],
-            "recordSamples": [],
-            "level": "TEMPLATE_RECORD_MISMATCH"
+            "level": "TEMPLATE_KEPCO_STATE_LI_EXACT"
           },
           "verifiedEmpty": false,
           "emptyMarker": "",
-          "countSource": "unavailable"
+          "countSource": "KEPCO_STATE_LI",
+          "countTemplate": "KEPCO_STATE_LI"
         }
       ],
       "rootCauseDiagnostics": [
@@ -960,18 +1042,19 @@
           "org": "한국전력공사",
           "url": "https://recruit.kepco.co.kr:444/frt/frt0001/addList.do",
           "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-          "listCounterFailureReason": "DOM_COUNT_ZERO",
+          "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
           "accuracyVerification": {
-            "verified": false,
-            "level": "NOT_EXACT",
-            "listVerificationTemplate": "TABLE_RECORD",
+            "verified": true,
+            "level": "TEMPLATE_KEPCO_STATE_LI_EXACT",
+            "listVerificationTemplate": "KEPCO_STATE_LI",
             "templateRecordEvidence": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
+              "verified": true,
+              "template": "KEPCO_STATE_LI",
+              "recordCount": 9,
               "candidateCount": 9,
-              "matchedCount": 0,
-              "unmatchedTitles": [
+              "matchedCount": 9,
+              "unmatchedTitles": [],
+              "recordSamples": [
                 "2026년도 NDIS데이터관리원 채용",
                 "2026년도 제2차 전문직원 채용",
                 "2026년도 4직급 고졸 신입사원 채용 공고",
@@ -979,14 +1062,12 @@
                 "2026년 상반기 보훈채용 모집 공고",
                 "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
                 "2026년 상반기 전기원 채용 공고",
-                "2026년도 상반기 4직급 대졸수준 채용 공고",
-                "2026년도 제1차 전문직원 채용"
+                "2026년도 상반기 4직급 대졸수준 채용 공고"
               ],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
+              "level": "TEMPLATE_KEPCO_STATE_LI_EXACT"
             },
             "independentDomEvidence": false,
-            "exactCount": false,
+            "exactCount": true,
             "exactTitleSet": false,
             "strongAdapterRecordEvidence": false,
             "missingTitleCount": 0,
@@ -995,10 +1076,10 @@
             "extractedTitleCount": 9
           },
           "counterTrace": {
-            "source": "unavailable",
+            "source": "KEPCO_STATE_LI",
             "rawDomRows": 0,
             "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": null,
+            "reportedVisiblePostCount": 9,
             "acceptedCandidateCount": 9,
             "exactAgainstRaw": false,
             "exactAgainstUniqueTitles": false
@@ -1007,7 +1088,7 @@
             "RECRUIT_POST": 9
           },
           "counts": {
-            "visiblePostCount": null,
+            "visiblePostCount": 9,
             "candidateCount": 9,
             "rawTableRows": 0,
             "uniqueVisibleTitleCount": 0,
@@ -1251,18 +1332,19 @@
         "org": "한국전력공사",
         "url": "https://recruit.kepco.co.kr:444/frt/frt0001/addList.do",
         "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-        "listCounterFailureReason": "DOM_COUNT_ZERO",
+        "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
         "accuracyVerification": {
-          "verified": false,
-          "level": "NOT_EXACT",
-          "listVerificationTemplate": "TABLE_RECORD",
+          "verified": true,
+          "level": "TEMPLATE_KEPCO_STATE_LI_EXACT",
+          "listVerificationTemplate": "KEPCO_STATE_LI",
           "templateRecordEvidence": {
-            "verified": false,
-            "template": "TABLE_RECORD",
-            "recordCount": 0,
+            "verified": true,
+            "template": "KEPCO_STATE_LI",
+            "recordCount": 9,
             "candidateCount": 9,
-            "matchedCount": 0,
-            "unmatchedTitles": [
+            "matchedCount": 9,
+            "unmatchedTitles": [],
+            "recordSamples": [
               "2026년도 NDIS데이터관리원 채용",
               "2026년도 제2차 전문직원 채용",
               "2026년도 4직급 고졸 신입사원 채용 공고",
@@ -1270,14 +1352,12 @@
               "2026년 상반기 보훈채용 모집 공고",
               "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
               "2026년 상반기 전기원 채용 공고",
-              "2026년도 상반기 4직급 대졸수준 채용 공고",
-              "2026년도 제1차 전문직원 채용"
+              "2026년도 상반기 4직급 대졸수준 채용 공고"
             ],
-            "recordSamples": [],
-            "level": "TEMPLATE_RECORD_MISMATCH"
+            "level": "TEMPLATE_KEPCO_STATE_LI_EXACT"
           },
           "independentDomEvidence": false,
-          "exactCount": false,
+          "exactCount": true,
           "exactTitleSet": false,
           "strongAdapterRecordEvidence": false,
           "missingTitleCount": 0,
@@ -1286,10 +1366,10 @@
           "extractedTitleCount": 9
         },
         "counterTrace": {
-          "source": "unavailable",
+          "source": "KEPCO_STATE_LI",
           "rawDomRows": 0,
           "uniqueVisibleTitleCount": 0,
-          "reportedVisiblePostCount": null,
+          "reportedVisiblePostCount": 9,
           "acceptedCandidateCount": 9,
           "exactAgainstRaw": false,
           "exactAgainstUniqueTitles": false
@@ -1298,7 +1378,7 @@
           "RECRUIT_POST": 9
         },
         "counts": {
-          "visiblePostCount": null,
+          "visiblePostCount": 9,
           "candidateCount": 9,
           "rawTableRows": 0,
           "uniqueVisibleTitleCount": 0,
@@ -1479,16 +1559,17 @@
         "rowTrace": []
       },
       "accuracyVerification": {
-        "verified": false,
-        "level": "NOT_EXACT",
-        "listVerificationTemplate": "TABLE_RECORD",
+        "verified": true,
+        "level": "TEMPLATE_KEPCO_STATE_LI_EXACT",
+        "listVerificationTemplate": "KEPCO_STATE_LI",
         "templateRecordEvidence": {
-          "verified": false,
-          "template": "TABLE_RECORD",
-          "recordCount": 0,
+          "verified": true,
+          "template": "KEPCO_STATE_LI",
+          "recordCount": 9,
           "candidateCount": 9,
-          "matchedCount": 0,
-          "unmatchedTitles": [
+          "matchedCount": 9,
+          "unmatchedTitles": [],
+          "recordSamples": [
             "2026년도 NDIS데이터관리원 채용",
             "2026년도 제2차 전문직원 채용",
             "2026년도 4직급 고졸 신입사원 채용 공고",
@@ -1496,14 +1577,12 @@
             "2026년 상반기 보훈채용 모집 공고",
             "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
             "2026년 상반기 전기원 채용 공고",
-            "2026년도 상반기 4직급 대졸수준 채용 공고",
-            "2026년도 제1차 전문직원 채용"
+            "2026년도 상반기 4직급 대졸수준 채용 공고"
           ],
-          "recordSamples": [],
-          "level": "TEMPLATE_RECORD_MISMATCH"
+          "level": "TEMPLATE_KEPCO_STATE_LI_EXACT"
         },
         "independentDomEvidence": false,
-        "exactCount": false,
+        "exactCount": true,
         "exactTitleSet": false,
         "strongAdapterRecordEvidence": false,
         "missingTitleCount": 0,
@@ -1513,7 +1592,7 @@
       }
     },
     "detail": {
-      "ok": false,
+      "ok": true,
       "targetCount": 9,
       "attempted": 9,
       "validated": 9,
@@ -1657,64 +1736,117 @@
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000084297&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000084297&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000082326&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000082326&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000082328&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000082328&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000079835&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000079835&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000079833&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000079833&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068519&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068519&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068486&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068486&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068484&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068484&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         }
       ],
       "status": "success"
     },
     "attachmentDownload": {
-      "ok": false,
-      "status": "not-attempted",
-      "attempted": 0,
-      "downloaded": 0,
-      "failed": 0
+      "ok": true,
+      "status": "sample-success",
+      "attempted": 2,
+      "downloaded": 2,
+      "failed": 0,
+      "verificationMode": "probe-sample",
+      "samples": [
+        {
+          "name": "파일업로드폼",
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000084297&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "ok": true,
+          "transport": "node-fetch",
+          "contentType": "text/html; charset=UTF-8",
+          "error": ""
+        },
+        {
+          "name": "파일업로드폼",
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000082326&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "ok": true,
+          "transport": "node-fetch",
+          "contentType": "text/html; charset=UTF-8",
+          "error": ""
+        }
+      ]
     },
     "documentAnalysis": {
       "ok": false,
-      "status": "not-attempted",
-      "attempted": 0,
+      "status": "sample-failed",
+      "attempted": 2,
       "parsed": 0,
-      "failed": 0,
+      "failed": 2,
+      "verificationMode": "probe-sample",
+      "analyzerVersion": "12.5-file-endpoint-and-transport-parser",
       "diagnostics": {
-        "byDetectedType": {},
-        "byContentType": {},
-        "byError": {}
-      }
+        "byDetectedType": {
+          "unknown": 2
+        },
+        "byContentType": {
+          "text/html; charset=UTF-8": 2
+        },
+        "byError": {
+          "download returned HTML page": 2
+        }
+      },
+      "samples": [
+        {
+          "name": "파일업로드폼",
+          "detectedType": "",
+          "ok": false,
+          "method": "",
+          "textLength": 0,
+          "error": "download returned HTML page"
+        },
+        {
+          "name": "파일업로드폼",
+          "detectedType": "",
+          "ok": false,
+          "method": "",
+          "textLength": 0,
+          "error": "download returned HTML page"
+        }
+      ]
     },
     "attachment": {
       "ok": true,
@@ -1723,42 +1855,50 @@
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000084297&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000084297&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000082326&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000082326&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000082328&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000082328&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000079835&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000079835&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000079833&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000079833&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068519&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068519&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068486&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068486&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         },
         {
           "name": "파일업로드폼",
           "type": "unknown",
-          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068484&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView"
+          "url": "https://recruit.kepco.co.kr:444/atch/fileUpload.do?atchFileId=FILE0000000000068484&fileCnt=5&atchFileIdNm=atchFileId&updateType=boardView",
+          "method": "GET"
         }
       ],
       "status": "success"

@@ -27,9 +27,10 @@ const RAW_SOURCES = [
   { org: '한국산업인력공단', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL+JOB_ALIO_FALLBACK' }, urls: [
     'https://www.hrdkorea.or.kr/3/1/2/2',
     'https://www.hrdkorea.or.kr/', alioUrl('한국산업인력공단') ] },
-  { org: '근로복지공단', accessTemplate: 'COMMON_PLATFORM', accessConfig: { platform: 'INCRUIT' }, urls: [
-    'https://comwel.incruit.com/index_main.asp',
+  { org: '근로복지공단', accessTemplate: 'COMMON_PLATFORM', accessConfig: { platform: 'SARAMIN_CURRENT_CAMPAIGN' }, urls: [
+    'https://comwel.saramin.co.kr/service/comwel/index.asp',
     'https://comwel.saramin.co.kr/',
+    'https://comwel.incruit.com/index_main.asp',
     'https://www.comwel.or.kr/comwel/noti/recruit.jsp',
     'https://www.comwel.or.kr/', alioUrl('근로복지공단') ] },
   { org: '한국산업안전보건공단', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL_SPA+JOB_ALIO_FALLBACK', officialBoardPath: '/notification/jobncontract/job', officialDetailPattern: '/notification/jobncontract/job/jobdata?bbsId=B2025021400005&pstNo=' }, urls: [
@@ -40,6 +41,7 @@ const RAW_SOURCES = [
     'https://www.upa.or.kr/portal/contents.do?mid=0405000000',
     'https://www.upa.or.kr/', alioUrl('울산항만공사') ] },
   { org: '한국전력공사', accessTemplate: 'DEDICATED_RECRUIT_SITE', accessConfig: { platform: 'KEPCO_RECRUIT' }, urls: [
+    'https://recruit.kepco.co.kr:444/frt/frt0001/list.do',
     'https://recruit.kepco.co.kr:444/frt/main.do',
     'https://recruit.kepco.co.kr/',
     'https://www.kepco.co.kr/home/about/careers.do', alioUrl('한국전력공사') ] },

@@ -249,12 +249,36 @@ function ubimcPostRequest(block = '', source) {
   return { method:'POST', url:absoluteUrl(action, source.url), body:params.toString(), headers:{'content-type':'application/x-www-form-urlencoded'}, referer:source.url };
 }
 
+
+function khnpDetailRequest(block='',source){
+  const call=block.match(/fnMoveDtlPage\(\s*["']([^"']+)["']\s*,\s*["']?(\d+)["']?\s*\)/i);
+  if(!call) return null;
+  return {method:'POST',url:absoluteUrl('/recruit/rj00/RJ10110.do',source.url),
+    body:new URLSearchParams({pageIndex:'1',srchRecrOpeningId:call[1],rnum:call[2]}).toString(),
+    headers:{'content-type':'application/x-www-form-urlencoded'},referer:source.url};
+}
+function kepcoPageBoard(block='',source){
+  const call=block.match(/fncPageBoard\(\s*["']view["']\s*,\s*["']([^"']*\/frt\/frt0001\/view\.do)["']\s*,\s*["']([^"']+)["']\s*,\s*["']([^"']+)["']\s*\)/i);
+  if(!call) return null;
+  const values=call[2].split(',').map(v=>v.trim()),names=call[3].split(',').map(v=>v.trim());
+  if(!values.length||values.length!==names.length) return null;
+  const params=new URLSearchParams(); for(let i=0;i<names.length;i++) if(names[i]) params.set(names[i],values[i]||'');
+  const endpoint=absoluteUrl(call[1],source.url),display=new URL(endpoint);
+  for(const [k,v] of params) display.searchParams.set(k,v);
+  return {link:display.href,request:{method:'POST',url:endpoint,body:params.toString(),headers:{'content-type':'application/x-www-form-urlencoded'},referer:source.url}};
+}
 function sourceSpecificDetailUrls(block = '', source) {
   const urls = [];
   const push = value => {
     const link = absoluteUrl(value, source.url);
     if (link && !urls.includes(link)) urls.push(link);
   };
+
+  if(source.org==='한국수력원자력'){
+    const c=block.match(/fnMoveDtlPage\(\s*["']([^"']+)["']\s*,\s*["']?(\d+)["']?\s*\)/i);
+    if(c) push(`/recruit/rj00/RJ10110.do?srchRecrOpeningId=${encodeURIComponent(c[1])}&rnum=${encodeURIComponent(c[2])}`);
+  }
+  if(source.org==='한국전력공사'){const d=kepcoPageBoard(block,source);if(d?.link) push(d.link);}
 
   if (source.org === '한국에너지공단') {
     const ids = new Set();
@@ -548,6 +572,10 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     } else if (source.org === '한국동서발전') {
       const idx = row.block.match(/(?:onclick=["'][^"']*|href=["']javascript:)?view\(\s*(\d+)\s*\)/i)?.[1] || '';
       detailRequest = ewpPostRequest(source, idx);
+    } else if (source.org === '한국수력원자력') {
+      detailRequest = khnpDetailRequest(row.block, source);
+    } else if (source.org === '한국전력공사') {
+      detailRequest = kepcoPageBoard(row.block, source)?.request || null;
     }
     jobs.push({ org: source.org, title, link: canonical, listText: cleanHtml(row.block).replace(/\s+/g, ' ').trim(), adapter: `${source.org}:board-row`, ...(detailRequest ? { detailRequest } : {}), ...(link ? {} : { listOnly: true, listIdentity: identity }) });
     diagnostics.accepted += 1;
@@ -566,9 +594,9 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     diagnostics.titleMatches += 1;
     if (diagnostics.titleSamples.length < 8) diagnostics.titleSamples.push(title);
 
-    let urls = candidateUrls(attrs, source);
-    let usedRowFallback = false;
     let block = enclosingBlock(html, match.index);
+    let urls = [...sourceSpecificDetailUrls(block, source), ...candidateUrls(attrs, source)];
+    let usedRowFallback = false;
     if (!looksLikeBoardRecord(block, urls[0] || '', source)) continue;
     if (!urls.length || !urls.some(url => sourceAllows(url, source))) {
       block = block || enclosingBlock(html, match.index);
@@ -613,7 +641,10 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     const start = Math.max(0, match.index - 260);
     const end = Math.min(html.length, match.index + match[0].length + 900);
     const listText = cleanHtml(html.slice(start, end)).replace(/\s+/g, ' ').trim();
-    jobs.push({ org: source.org, title, link: canonical, listText, adapter: source.org });
+    const detailRequest = source.org === '한국수력원자력' ? khnpDetailRequest(block, source)
+      : source.org === '한국전력공사' ? kepcoPageBoard(block, source)?.request || null
+      : null;
+    jobs.push({ org: source.org, title, link: canonical, listText, adapter: source.org, ...(detailRequest ? { detailRequest } : {}) });
     diagnostics.accepted += 1;
     if (usedRowFallback) diagnostics.rowFallbackAccepted += 1;
     if (jobs.length >= 100) break;
@@ -768,6 +799,17 @@ export function verifyExtractedListAgainstVisibleRecords(html = '', source = {},
 }
 
 export function discoverListingUrls(html, source) {
+  if (source.org === '근로복지공단' && /comwel\.saramin\.co\.kr/i.test(source.url)) {
+    const urls=[source.url], seen=new Set(urls.map(canonicalJobUrl));
+    for (const m of String(html).matchAll(/\bhref\s*=\s*(["'])([^"']*\/service\/comwel\/\d+\/applicant\/apply\/recruit_default\.asp[^"']*)\1/gi)) {
+      const link=absoluteUrl(m[2],source.url); if(!link) continue;
+      const key=canonicalJobUrl(link); if(!seen.has(key)){seen.add(key);urls.push(link);}
+    }
+    return urls;
+  }
+  if (source.org === '한국전력공사' && /recruit\.kepco\.co\.kr/i.test(source.url)) {
+    return [...new Set([source.url,absoluteUrl('/frt/frt0001/list.do',source.url)].filter(Boolean))];
+  }
   if (source.org === '울산문화관광재단') {
     return [source.url, 'https://uctf.or.kr/api/notices?page=0&category=%EC%B1%84%EC%9A%A9'];
   }

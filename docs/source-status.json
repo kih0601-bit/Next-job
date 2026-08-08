@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "purpose": "반복 패치 방지 및 기관별 현재 병목 추적",
   "authoritativeCodeBaseline": "최신 Actions ZIP",
-  "lastObservedVersion": 75,
-  "pendingValidationVersion": "76-revised",
+  "lastObservedVersion": 76,
+  "pendingValidationVersion": 77,
   "rules": {
     "strictDocumentCompletion": "documentAnalysis.ok=true는 선정된 실제 문서 분석 대상이 모두 성공한 경우만",
     "documentCapability": "capabilityOk=true는 실제 문서 최소 1개 이상 파싱 가능 검증이며 전체 완료와 다름",
@@ -221,7 +221,8 @@
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "lastObservedVersion": 75,
-      "pendingAction": "접속 timeout 재현 여부 확인"
+      "pendingAction": "v77 encrypted preview 원본 복원 검증",
+      "pendingValidationVersion": 77
     },
     {
       "org": "울산북구시설관리공단",
@@ -419,7 +420,8 @@
         "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
       },
       "lastObservedVersion": 75,
-      "pendingAction": "attachment-resolution raw detail/snippet으로 실제 다운로드 호출 확정"
+      "pendingAction": "v77 FileDownNotice 검증",
+      "pendingValidationVersion": 77
     },
     {
       "org": "울산정보산업진흥원",
@@ -447,7 +449,9 @@
         "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pendingAction": "v77 HWP fallback 검증",
+      "pendingValidationVersion": 77
     },
     {
       "org": "울산테크노파크",
@@ -654,7 +658,8 @@
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "lastObservedVersion": 75,
-      "pendingAction": "fileDown metadata 재귀 탐색; 미해결 시 raw JSON evidence 확인"
+      "pendingAction": "v77 배열 처리 후 실파일 검증",
+      "pendingValidationVersion": 77
     },
     {
       "org": "한국산업인력공단",
@@ -867,7 +872,8 @@
         "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
       },
       "lastObservedVersion": 75,
-      "pendingAction": "CtitFile JS 원문/함수/endpoint evidence로 실제 첨부 호출 확정"
+      "pendingAction": "v77 POST fileDownload 검증",
+      "pendingValidationVersion": 77
     },
     {
       "org": "한국전력공사",
@@ -898,5 +904,5 @@
       "lastObservedVersion": 75
     }
   ],
-  "batchPolicy": "파악된 문제는 다음 수정본 한 회차에 묶어 반영. 미확정 원인은 같은 수정본에서 evidence 산출을 강화."
+  "batchPolicy": "브리핑에서 파악된 문제는 가능한 한 다음 한 수정본에 함께 반영한다."
 }

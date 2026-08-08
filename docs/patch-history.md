@@ -38,3 +38,11 @@
 - 한국에너지공단: CtitFile 외부 JS 원문을 파일로 보존하고 관련 함수명/endpoint 문자열 + 상세 HTML을 함께 저장.
 - 한국동서발전 / 울산복지가족진흥사회서비스원: 502/timeout은 외부 서버성으로 보고 구조 패치하지 않음.
 - 앞으로 Actions에서 원인이 파악된 문제는 원칙적으로 다음 수정본 한 회차에 함께 반영한다. 원인 미확정이면 같은 회차에 evidence 수집 기능까지 포함한다.
+
+## v77 — v76 잔여 5기관 일괄 개선
+- 울산시설공단: FileDownNotice 실계약 반영.
+- 한국에너지공단: CtitFile POST fileDownload 실계약 반영.
+- 한국산업안전보건공단: fileDownInfo 배열 처리.
+- 울산정보산업진흥원: HWP 저텍스트 시 LibreOffice fallback.
+- 울산복지가족진흥사회서비스원: /u 가짜 href와 encrypted preview identity 결합, preview/TTS 중복 제거, preview 내부 원본 download 복원 시도.
+- strict document completion 기준 유지.

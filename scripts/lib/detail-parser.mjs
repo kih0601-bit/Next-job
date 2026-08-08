@@ -42,7 +42,7 @@ const FILE_EXT = /\.(pdf|hwp|hwpx|doc|docx|xls|xlsx|png|jpe?g|tiff?|zip)(?:$|[?#
 const FILE_SIGNAL = /첨부(?:파일)?|다운로드|download|filedown|atchfile|file_id|fileid|fileSeq|atchFileId|nttFile|fileDown|fileDownload|downFile|ctitFile|fileLink/i;
 const ATTACHMENT_CONTEXT = /첨부(?:파일)?|파일\s*목록|download|filedown|atchfile|attach(?:ment)?|bbs[_-]?file|board[_-]?file|file[_-]?(?:list|area|box|wrap)/i;
 const STATIC_ASSET_URL = /\/(?:images?|img|assets?|static|common)\/(?:main|common|layout|icon|icons|btn|button|logo|menu|nav|quick|skin)\//i;
-const STATIC_ASSET_NAME = /(?:로고|logo|메뉴|menu|home|홈|버튼|button|아이콘|icon|닫기|열기|교육센터|마케팅홍보관|입주안내|시설현황|장비지원|RENET)/i;
+const STATIC_ASSET_NAME = /(?:로고|logo|메뉴|menu|home|홈|버튼|button|아이콘|icon|닫기|열기|교육센터|마케팅홍보관|입주안내|시설현황|장비지원|RENET|공공누리|KOGL|출처표시)/i;
 
 function attachmentContext(html = '', index = 0, length = 0) {
   const start = Math.max(0, index - 450);
@@ -55,6 +55,7 @@ function looksLikeStaticAsset(rawUrl = '', name = '') {
   if (STATIC_ASSET_URL.test(rawUrl)) return true;
   if (STATIC_ASSET_NAME.test(name) && !FILE_SIGNAL.test(name)) return true;
   if (/\/(?:logo|icon|btn|button|menu|home|q_menu|allmenu|quick)[^/]*\.(?:png|jpe?g|gif|svg)(?:$|[?#])/i.test(rawUrl)) return true;
+  if (/\/common\/img\//i.test(rawUrl) && /\.(?:png|jpe?g|gif|svg)(?:$|[?#])/i.test(rawUrl)) return true;
   return false;
 }
 
@@ -219,7 +220,10 @@ function extractFormAttachments(source, baseUrl, attachments, seen, request = {}
     const actionLooksDownload = isLikelyDownloadUrl(action, context);
     const fieldsLookDownload = /atchFileId|fileSn|fileSeq|fileId|fileNo|download/i.test(hiddenNames);
     if (!action || (!actionLooksDownload && !fieldsLookDownload)) continue;
-    if (/\/(?:list|view|main|contents)\.(?:do|ulsan)(?:[?#]|$)/i.test(action) && !actionLooksDownload) continue;
+    // A board navigation form may contain hidden fields whose names include "file"
+    // while still posting back to the list/detail controller. Never classify those
+    // forms as attachments unless the ACTION itself is a download endpoint.
+    if (/\/(?:[^/?#]*(?:list|List|view|View|detail|Detail|article|Article)[^/?#]*)\.(?:do|ulsan)(?:[?#]|$)/i.test(action) && !actionLooksDownload) continue;
     const method = (attrs.match(/\bmethod\s*=\s*["']([^"']+)["']/i)?.[1] || 'GET').toUpperCase();
     const params = new URLSearchParams();
     for (const input of bodyHtml.matchAll(/<input\b([^>]*)>/gi)) {
@@ -489,11 +493,20 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
         const matched = tokens.filter(word => `${title} ${text}`.includes(word)).length;
         const titleEvidence = tokens.length < 2 || matched / tokens.length >= 0.35;
         if (!titleEvidence || text.length < 30) throw new Error('KOSHA detail API body validation failed');
-        const attachments = files.map((file,i)=>({
-          name: String(file?.orgnlAtcflNm || file?.atcflNm || file?.fileNm || `첨부파일 ${i+1}`),
-          type: String(file?.orgnlAtcflNm || file?.atcflNm || file?.fileNm || '').split('.').pop()?.toLowerCase() || '',
-          url: ''
-        }));
+        const attachments = files.map((file,i)=>{
+          const name = String(file?.bbsOrgnlAtcflNm || file?.orgnlAtcflNm || file?.atcflNm || file?.fileNm || `첨부파일 ${i+1}`);
+          return {
+            name,
+            type: String(file?.bbsAtcflExtnNm || name.split('.').pop() || '').toLowerCase(),
+            url: 'https://www.kosha.or.kr/api/compn24/auth/stdtboard/api.do',
+            resolver: 'KOSHA_TBOARD_FILE',
+            pstNo: String(file?.pstNo || pstNo),
+            bbsAtcflNo: String(file?.bbsAtcflNo || ''),
+            bbsId: String(file?.bbsId || 'B2025021400005'),
+            artclNo: 'D080100001',
+            referer: url
+          };
+        }).filter(file => file.bbsAtcflNo);
         return {
           ok: true, finalUrl: url, text,
           confidence: detailConfidence(text, expectedTitle),
@@ -539,7 +552,18 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
               const imageUrls = [...bodyRaw.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["']/gi)].map(m => absoluteUrl(m[1], url)).filter(Boolean);
               const fileUrls = String(item.filePath || '').split('&').map(v => v.trim()).filter(Boolean);
               const fileNames = String(item.fileName || '').split('&').map(v => v.trim());
-              const attachments = fileUrls.map((fileUrl, i) => ({ name: fileNames[i] || `첨부파일 ${i + 1}`, type: fileUrl.split('.').pop()?.split(/[?#]/)[0]?.toLowerCase() || '', url: fileUrl }));
+              const attachments = fileUrls.map((fileUrl, i) => {
+                const name = fileNames[i] || `첨부파일 ${i + 1}`;
+                let url = fileUrl;
+                try {
+                  const parsed = new URL(fileUrl);
+                  if (/\/api\/files\//i.test(parsed.pathname) && !parsed.searchParams.has('name')) {
+                    parsed.searchParams.set('name', name);
+                    url = parsed.href;
+                  }
+                } catch { /* keep raw file URL */ }
+                return { name, type: fileUrl.split('.').pop()?.split(/[?#]/)[0]?.toLowerCase() || '', url };
+              });
               const titleProbe = `${title} ${bodyText}`;
               const tokens = titleTokens(expectedTitle);
               const matched = tokens.filter(word => titleProbe.includes(word)).length;

@@ -1,4 +1,5 @@
 import { extractSupportRequirements } from './requirement-extractor.mjs';
+import { extractAttachments } from './detail-parser.mjs';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -6,7 +7,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '2.1-requirement-foundation';
+const ANALYZER_VERSION = '2.2-attachment-resolution';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -211,21 +212,126 @@ async function downloadWithCurl(item, target, timeoutMs = 45000) {
   };
 }
 
-async function download(item, target, timeoutMs = 30000) {
+
+async function resolveKoshaTboardFile(item, timeoutMs = 30000) {
+  const endpoint = 'https://www.kosha.or.kr/api/compn24/auth/stdtboard/api.do';
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const result = await downloadWithFetch(item, target, timeoutMs);
-    return { ...result, transport: 'node-fetch' };
-  } catch (fetchError) {
+    const payload = {
+      common: {
+        siteCode: '50',
+        channelType: 'web',
+        boardId: item.bbsId || 'B2025021400005',
+        serviceId: 'fileDown'
+      },
+      data: {
+        pstNo: item.pstNo || '',
+        bbsAtcflNo: item.bbsAtcflNo || '',
+        artclNo: item.artclNo || 'D080100001'
+      }
+    };
+    const response = await fetch(endpoint, {
+      signal: controller.signal,
+      redirect: 'follow',
+      method: 'POST',
+      headers: {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
+        accept: 'application/json,text/plain,*/*',
+        'content-type': 'application/json;charset=UTF-8',
+        chnlId: 'kosha24',
+        referer: item.referer || 'https://www.kosha.or.kr/notification/jobncontract/job'
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error(`KOSHA fileDown API HTTP ${response.status}`);
+    const result = await response.json();
+    const info = result?.data?.fileDownInfo || result?.response?.fileDownInfo || result?.fileDownInfo || null;
+    if (!info?.data || !info?.key) {
+      const code = result?.common?.result?.code ?? result?.code ?? '';
+      throw new Error(`KOSHA fileDown metadata missing${code !== '' ? ` (code ${code})` : ''}`);
+    }
+    const url = new URL('https://www.kosha.or.kr/api/compn24/auth/stdtboard/fileDownload.do');
+    url.searchParams.set('data', String(info.data));
+    url.searchParams.set('key', String(info.key));
+    return {
+      ...item,
+      resolver: '',
+      url: url.href,
+      method: 'GET',
+      body: '',
+      headers: {},
+      referer: item.referer || 'https://www.kosha.or.kr/notification/jobncontract/job'
+    };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function egovAlternateDownloadItem(item = {}) {
+  try {
+    const url = new URL(item.url || '');
+    if (!/ubimc\.or\.kr$/i.test(url.hostname)) return null;
+    if (!/\/cop\/cmm\/fms\/FileDown\.do$/i.test(url.pathname)) return null;
+    url.pathname = url.pathname.replace(/\/cop\/cmm\/fms\/FileDown\.do$/i, '/cmm/fms/FileDown.do');
+    return { ...item, url: url.href };
+  } catch { return null; }
+}
+
+async function resolveHtmlAttachmentGateway(item, meta, timeoutMs = 30000) {
+  if (!looksLikeHtml(meta?.bytes || [], meta?.contentType || '')) return null;
+  const sourceUrl = meta?.finalUrl || item?.url || '';
+  // Known attachment-management/intermediate pages. Do not recursively parse
+  // arbitrary HTML responses such as a board list form.
+  if (!/(?:fileUpload|fileList|attach|atchFile)/i.test(sourceUrl)) return null;
+  const html = Buffer.from(meta.bytes).toString('utf8');
+  const nested = extractAttachments(html, sourceUrl, {
+    referer: sourceUrl,
+    cookie: item?.cookie || ''
+  }).filter(candidate => candidate.url && candidate.url !== sourceUrl);
+  if (!nested.length) return null;
+  nested.sort((a,b) => documentPriority(b) - documentPriority(a));
+  return nested[0];
+}
+
+async function download(item, target, timeoutMs = 30000) {
+  let resolvedItem = item;
+  if (item?.resolver === 'KOSHA_TBOARD_FILE') {
+    resolvedItem = await resolveKoshaTboardFile(item, timeoutMs);
+  }
+
+  const attempt = async candidate => {
     try {
-      return await downloadWithCurl(item, target, Math.max(timeoutMs, 45000));
-    } catch (curlError) {
-      const error = new Error(`${fetchError.message} / curl: ${curlError.message}`);
-      error.code = curlError.code || fetchError.code || '';
-      error.command = curlError.command || '';
-      error.args = curlError.args || [];
-      error.stdout = curlError.stdout || '';
-      error.stderr = curlError.stderr || '';
-      throw error;
+      const result = await downloadWithFetch(candidate, target, timeoutMs);
+      return { ...result, transport: 'node-fetch', resolvedItem: candidate };
+    } catch (fetchError) {
+      try {
+        const result = await downloadWithCurl(candidate, target, Math.max(timeoutMs, 45000));
+        return { ...result, resolvedItem: candidate };
+      } catch (curlError) {
+        const error = new Error(`${fetchError.message} / curl: ${curlError.message}`);
+        error.code = curlError.code || fetchError.code || '';
+        error.command = curlError.command || '';
+        error.args = curlError.args || [];
+        error.stdout = curlError.stdout || '';
+        error.stderr = curlError.stderr || '';
+        error.fetchError = fetchError;
+        error.curlError = curlError;
+        throw error;
+      }
+    }
+  };
+
+  try {
+    return await attempt(resolvedItem);
+  } catch (primaryError) {
+    const alternate = egovAlternateDownloadItem(resolvedItem);
+    if (!alternate) throw primaryError;
+    try {
+      const result = await attempt(alternate);
+      return { ...result, resolutionTrace: [`egov-alt:${resolvedItem.url}`, `egov-alt:${alternate.url}`] };
+    } catch {
+      throw primaryError;
     }
   }
 }
@@ -371,8 +477,10 @@ function serializeCommandError(error) {
 
 export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {}) {
   const results = [];
-  const selected = attachments
-    .map(a => ({ ...a, hintedType: attachmentType(a) }))
+  const prepared = attachments.map(a => ({ ...a, hintedType: attachmentType(a) }));
+  const hasDocumentCandidate = prepared.some(item => /^(?:pdf|hwp|hwpx|doc|docx|xls|xlsx)$/i.test(item.hintedType));
+  const selected = prepared
+    .filter(item => !hasDocumentCandidate || !/^(?:png|jpg|jpeg|tif|tiff)$/i.test(item.hintedType))
     .sort((a, b) => documentPriority(b) - documentPriority(a))
     .slice(0, maxFiles);
 
@@ -391,7 +499,9 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
       let meta = null;
       try {
         meta = await download(item, tempFile);
-        const detected = await detectActualType({
+        let effectiveItem = item;
+        let gatewayTrace = [];
+        let detected = await detectActualType({
           bytes: meta.bytes,
           contentType: meta.contentType,
           contentDisposition: meta.contentDisposition,
@@ -399,6 +509,22 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
           hintedType: item.hintedType,
           tempFile
         });
+        if (detected.type === 'html') {
+          const nested = await resolveHtmlAttachmentGateway(item, meta);
+          if (nested) {
+            gatewayTrace = [meta.finalUrl || item.url, nested.url];
+            effectiveItem = { ...nested, hintedType: attachmentType(nested) };
+            meta = await download(effectiveItem, tempFile);
+            detected = await detectActualType({
+              bytes: meta.bytes,
+              contentType: meta.contentType,
+              contentDisposition: meta.contentDisposition,
+              finalUrl: meta.finalUrl,
+              hintedType: effectiveItem.hintedType,
+              tempFile
+            });
+          }
+        }
         if (detected.type === 'html') throw new Error('download returned HTML page');
         if (detected.type === 'unsupported' || detected.type === 'unknown') throw new Error('unsupported or unknown attachment format');
 
@@ -433,7 +559,10 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
           textLength: extracted.text.length,
           method: extracted.method,
           priority: documentPriority(item),
-          requestMethod: item.method || 'GET',
+          requestMethod: effectiveItem.method || item.method || 'GET',
+          resolver: item.resolver || '',
+          resolutionTrace: [...(meta.resolutionTrace || []), ...gatewayTrace],
+          resolvedUrl: effectiveItem.url || item.url,
           text: extracted.text
         });
       } catch (error) {
@@ -453,7 +582,9 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
           error: error.message,
           commandError: serializeCommandError(error),
           priority: documentPriority(item),
-          requestMethod: item.method || 'GET'
+          requestMethod: item.method || 'GET',
+          resolver: item.resolver || '',
+          resolutionTrace: meta?.resolutionTrace || []
         });
       }
     }

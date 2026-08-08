@@ -59,6 +59,32 @@ function looksLikeStaticAsset(rawUrl = '', name = '') {
   return false;
 }
 
+
+function candidateType(item = {}) {
+  const explicit = String(item.type || '').toLowerCase();
+  if (explicit) return explicit;
+  const probe = `${item.name || ''} ${item.url || ''}`;
+  return probe.match(/\.(pdf|hwp|hwpx|doc|docx|xls|xlsx|png|jpe?g|tiff?|zip)(?:$|[?#\s)])/i)?.[1]?.toLowerCase() || '';
+}
+function isDocumentAttachmentCandidate(item = {}) {
+  return /^(?:pdf|hwp|hwpx|doc|docx|xls|xlsx|zip)$/i.test(candidateType(item));
+}
+function isImageAttachmentCandidate(item = {}) {
+  return /^(?:png|jpg|jpeg|tif|tiff)$/i.test(candidateType(item));
+}
+function isKnownUiAttachmentCandidate(item = {}) {
+  if (!isImageAttachmentCandidate(item)) return false;
+  const probe = `${item.name || ''} ${item.url || ''}`;
+  return /(?:^|[\/_.-])(?:ico|icon|btn|button|logo|menu|nav|quick|home|kogl)(?:[\/_.-]|$)/i.test(probe)
+    || /(?:파일\s*다운로드|다운로드\s*아이콘|공공누리|출처표시)/i.test(String(item.name || ''))
+    || /\/(?:img|images|assets|static)\/[^?#]*(?:ico|icon|btn|button|logo|menu|nav|quick|home|kogl)[^?#]*/i.test(String(item.url || ''));
+}
+function purifyAttachmentCandidates(items = []) {
+  const cleaned = items.filter(item => !isKnownUiAttachmentCandidate(item));
+  const hasDocument = cleaned.some(isDocumentAttachmentCandidate);
+  return hasDocument ? cleaned.filter(item => !isImageAttachmentCandidate(item)) : cleaned;
+}
+
 function addAttachment(attachments, seen, rawUrl, name, baseUrl, explicitType = '', context = '', request = {}) {
   const decodedRaw = decodeHtmlEntities(rawUrl || '').trim();
   if (!decodedRaw || decodedRaw === '#' || /^#/.test(decodedRaw) || /^javascript:/i.test(decodedRaw)) return;
@@ -248,6 +274,16 @@ function extractFormAttachments(source, baseUrl, attachments, seen, request = {}
   }
 }
 
+
+function normalizeInstitutionAttachmentDuplicates(items = [], baseUrl = '') {
+  let host = '';
+  try { host = new URL(baseUrl).hostname.replace(/^www\./,''); } catch {}
+  if (host !== 'hrdkorea.or.kr') return items;
+  const direct = items.some(item => /\/cms\/download\/downloadFile\.hrd\?[^#]*\battachSeq=\d+/i.test(String(item.url || '')));
+  if (!direct) return items;
+  return items.filter(item => !/\/cms\/download\/downloadFile2\.hrd(?:[?#]|$)/i.test(String(item.url || '')));
+}
+
 export function extractAttachments(html, baseUrl, request = {}) {
   const source = String(html);
   const attachments = [];
@@ -298,7 +334,7 @@ export function extractAttachments(html, baseUrl, request = {}) {
   }
 
   extractFormAttachments(source, baseUrl, attachments, seen, request);
-  return attachments.slice(0, 24);
+  return normalizeInstitutionAttachmentDuplicates(purifyAttachmentCandidates(attachments), baseUrl).slice(0, 24);
 }
 
 function titleTokens(value = '') {
@@ -394,6 +430,51 @@ function writeDetailDiagnostic({ org = 'unknown', expectedTitle = '', requestedU
   }
 }
 
+
+
+function writeAttachmentResolutionDiagnostic({ org = '', expectedTitle = '', finalUrl = '', html = '', scripts = [], attachments = [] }) {
+  if (!DETAIL_DIAG_DIR || !['울산시설공단','한국에너지공단'].includes(org) || attachments.length > 0) return;
+  try {
+    const dir = path.join(DETAIL_DIAG_DIR, safeDiagName(org), 'attachment-resolution');
+    fs.mkdirSync(dir, { recursive: true });
+    let id = '';
+    try {
+      const parsed = new URL(finalUrl);
+      id = parsed.searchParams.get('employmentId') || parsed.searchParams.get('boardNo') || '';
+    } catch {}
+    const base = safeDiagName(id || expectedTitle);
+    fs.writeFileSync(path.join(dir, `${base}-detail.html`), String(html || ''));
+    const snippets = [];
+    for (const pattern of [
+      /(?:onclick|href|src|action)\s*=\s*["'][^"']*(?:file|attach|atch|down)[^"']*["']/gi,
+      /\b(?:atchFileId|fileSn|fileSeq|fileId|fileNo|boardNo|employmentId)\b[^<>"'\n]{0,220}/gi,
+      /\b(?:CtitFile|fn_[A-Za-z0-9_]*(?:file|down)[A-Za-z0-9_]*)\s*\([^)]{0,900}\)/gi
+    ]) {
+      for (const match of String(html || '').matchAll(pattern)) snippets.push(match[0]);
+    }
+    const scriptEvidence = scripts.map((item, index) => {
+      const body = String(item.body || '');
+      const filename = `${base}-external-${index + 1}.js`;
+      fs.writeFileSync(path.join(dir, filename), body);
+      return {
+        url: item.url,
+        file: filename,
+        functions: [...body.matchAll(/(?:function\s+([A-Za-z_$][\w$]*)\s*\([^)]*\)|([A-Za-z_$][\w$]*)\s*[:=]\s*function\s*\([^)]*\))/g)]
+          .map(m => m[1] || m[2]).filter(name => /file|down|attach|ctit/i.test(name)).slice(0,80),
+        endpoints: [...body.matchAll(/["'`]([^"'`]{1,260}(?:file|download|attach|atch)[^"'`]{0,260})["'`]/gi)]
+          .map(m => m[1]).filter(v => !/\.(?:png|jpg|gif|svg|css|woff)(?:[?#]|$)/i.test(v)).slice(0,160)
+      };
+    });
+    fs.writeFileSync(path.join(dir, `${base}-evidence.json`), JSON.stringify({
+      org, expectedTitle, finalUrl, attachmentCount: attachments.length,
+      htmlLength: String(html || '').length,
+      snippets: [...new Set(snippets)].slice(0,240),
+      scripts: scriptEvidence
+    }, null, 2));
+  } catch (error) {
+    console.error(`[attachment-resolution-diagnostic] ${org}: ${error?.message || error}`);
+  }
+}
 
 async function externalAttachmentScriptSource(html = '', baseUrl = '', sourceOrg = '', signal = undefined) {
   if (sourceOrg !== '한국에너지공단') return { source: String(html), scripts: [] };
@@ -590,6 +671,7 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
       : (response.headers.get('set-cookie') || '').split(/,(?=[^;,]+=)/).map(value => value.split(';')[0]).join('; ');
     const externalAttachmentScripts = await externalAttachmentScriptSource(html, finalUrl, sourceOrg, controller.signal);
     const attachments = extractAttachments(externalAttachmentScripts.source, finalUrl, { referer: finalUrl, cookie });
+    writeAttachmentResolutionDiagnostic({ org: sourceOrg, expectedTitle, finalUrl, html, scripts: externalAttachmentScripts.scripts, attachments });
     const imageScope = sourceOrg === '울산정보산업진흥원'
       ? (html.match(/<dd\b[^>]*class=["'][^"']*\bcont\b[^"']*["'][^>]*>[\s\S]*?<\/dd>/i)?.[0] || html)
       : html;

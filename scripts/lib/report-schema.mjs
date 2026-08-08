@@ -1,4 +1,4 @@
-export const REPORT_SCHEMA_VERSION = '1.2.0';
+export const REPORT_SCHEMA_VERSION = '1.3.0';
 
 export function sourceHealth(source = {}) {
   const access = Boolean(source.access?.recruitVerifyOk ?? source.access?.ok);

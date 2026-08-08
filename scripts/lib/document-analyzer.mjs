@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '2.2-attachment-resolution';
+const ANALYZER_VERSION = '2.4-unresolved-attachment-evidence';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -213,6 +213,35 @@ async function downloadWithCurl(item, target, timeoutMs = 45000) {
 }
 
 
+
+function findKoshaFileDownInfo(value, depth = 0) {
+  if (!value || depth > 8) return null;
+  if (typeof value === 'object') {
+    if (!Array.isArray(value) && value.data != null && value.key != null
+        && ['string','number'].includes(typeof value.data)
+        && ['string','number'].includes(typeof value.key)) {
+      return { data: String(value.data), key: String(value.key) };
+    }
+    for (const child of Object.values(value)) {
+      const found = findKoshaFileDownInfo(child, depth + 1);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+async function writeKoshaDownloadEvidence(item, result) {
+  try {
+    const dir = path.resolve('data/diagnostics/한국산업안전보건공단/download');
+    await fs.mkdir(dir, { recursive: true });
+    const id = String(item?.bbsAtcflNo || item?.pstNo || Date.now()).replace(/[^\w.-]+/g,'_');
+    const safe = JSON.parse(JSON.stringify(result, (k,v) => /token|password|passwd|secret|authorization|cookie/i.test(k) ? '[redacted]' : v));
+    await fs.writeFile(path.join(dir, `${id}-fileDown-response.json`), `${JSON.stringify({
+      pstNo:item?.pstNo || '', bbsAtcflNo:item?.bbsAtcflNo || '', bbsId:item?.bbsId || '', response:safe
+    }, null, 2)}\n`, 'utf8');
+  } catch {}
+}
+
 async function resolveKoshaTboardFile(item, timeoutMs = 30000) {
   const endpoint = 'https://www.kosha.or.kr/api/compn24/auth/stdtboard/api.do';
   const controller = new AbortController();
@@ -246,8 +275,9 @@ async function resolveKoshaTboardFile(item, timeoutMs = 30000) {
     });
     if (!response.ok) throw new Error(`KOSHA fileDown API HTTP ${response.status}`);
     const result = await response.json();
-    const info = result?.data?.fileDownInfo || result?.response?.fileDownInfo || result?.fileDownInfo || null;
+    const info = result?.data?.fileDownInfo || result?.response?.fileDownInfo || result?.fileDownInfo || findKoshaFileDownInfo(result);
     if (!info?.data || !info?.key) {
+      await writeKoshaDownloadEvidence(item, result);
       const code = result?.common?.result?.code ?? result?.code ?? '';
       throw new Error(`KOSHA fileDown metadata missing${code !== '' ? ` (code ${code})` : ''}`);
     }
@@ -475,6 +505,13 @@ function serializeCommandError(error) {
   };
 }
 
+function coverageSummary({ attempted = 0, successful = 0 } = {}) {
+  if (attempted <= 0) return { capabilityOk: false, complete: false, status: 'not-attempted', ratio: null };
+  const capabilityOk = successful > 0;
+  const complete = successful === attempted;
+  return { capabilityOk, complete, status: complete ? 'complete' : capabilityOk ? 'partial' : 'failed', ratio: successful / attempted };
+}
+
 export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {}) {
   const results = [];
   const prepared = attachments.map(a => ({ ...a, hintedType: attachmentType(a) }));
@@ -487,7 +524,8 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
   if (!selected.length) {
     return {
       text: '', results, successful: 0, attempted: 0, downloaded: 0, discovered: attachments.length,
-      analyzerVersion: ANALYZER_VERSION, diagnostics: summarizeResults(results)
+      analyzerVersion: ANALYZER_VERSION, diagnostics: summarizeResults(results),
+      capabilityOk: false, coverage: coverageSummary({ attempted: 0, successful: 0 })
     };
   }
 
@@ -609,6 +647,8 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
     discovered: attachments.length,
     analyzerVersion: ANALYZER_VERSION,
     diagnostics: summarizeResults(results),
-    requirements
+    requirements,
+    capabilityOk: successful.length > 0,
+    coverage: coverageSummary({ attempted: results.length, successful: successful.length })
   };
 }

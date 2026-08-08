@@ -223,3 +223,21 @@ console.log('v12.6 document-backed classification tests passed');
 }
 console.log('v12.8 KPI endpoint/detail recovery tests passed');
 console.log('v13.1 Phase 1 welfare-service access fallback tests passed');
+// v79: evidence-scoped remaining-three fixes.
+{
+  const welfare = SOURCES.find(item => item.org === '울산복지가족진흥사회서비스원');
+  assert.ok(welfare.accessUrls.includes('https://wfps.or.kr/webuser/employment/list.html'), 'WFPS bare-domain official board must be tried');
+
+  const ewpFiles = extractAttachments(`
+    <div class="file"><a href="/kor/include/new_download.html">2026년 신입직원 채용 공고.pdf</a></div>
+    <footer><a href="/kor/download/wa/wa.pdf?var=1">웹접근성 인증마크</a><a href="/kor/download/IC.pdf">ISO27001(보안)</a></footer>
+  `, 'https://www.ewp.co.kr/kor/subpage/content.html');
+  assert.equal(ewpFiles.some(item => /웹접근성|ISO27001/i.test(item.name)), false, 'site-wide certification PDFs must not become recruitment attachments');
+  assert.equal(ewpFiles.some(item => /신입직원 채용 공고/.test(item.name)), true, 'real recruitment document must remain');
+
+  const analyzerSource = await (await import('node:fs/promises')).readFile(new URL('./lib/document-analyzer.mjs', import.meta.url), 'utf8');
+  assert.match(analyzerSource, /isAdministrativeFormAttachment/);
+  assert.match(analyzerSource, /2\.6-evidence-scoped-document-coverage/);
+}
+console.log('v79 remaining-three evidence fixes passed');
+

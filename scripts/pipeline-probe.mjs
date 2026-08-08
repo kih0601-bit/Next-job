@@ -10,7 +10,7 @@ import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } fro
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 
-const VERSION = '17.7-dynamic-list-and-current-campaign';
+const VERSION = '17.8-kepco-kosha-complete-target';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const ACCESS_TIMEOUT_MS = 18000;
@@ -158,6 +158,48 @@ async function fetchPostHtml(url,body,timeoutMs=22000,referer=''){
 async function kepcoDynamicListing(page,source){
  if(source.org!=='한국전력공사')return null;const html=String(page?.html||'');if(!/fncPageBoard\(\s*["']addList["']\s*,\s*["']addList\.do["']\s*,\s*["']1["']\s*\)/i.test(html))return null;
  const base=page.finalUrl||page.requestedUrl||source.url,url=new URL('addList.do',base).href,body=htmlFormBody(html,'defaultFrm',{pageIndex:'1'});return{...await fetchPostHtml(url,body,LIST_TIMEOUT_MS,base),requestedUrl:url,requestMethod:'POST'};
+}
+
+
+function koshaTboardPayload(serviceId, data = {}, page = 1) {
+  return {
+    common: {
+      siteCode: '50',
+      channelType: 'web',
+      boardId: 'B2025021400005',
+      serviceId,
+      ...(serviceId === 'boardList' ? { pagingInfo: { curPageCo: String(page), rowsPerPage: '10' } } : {})
+    },
+    data: serviceId === 'boardList'
+      ? { sortType: '01', sortOrder: '0', ...data }
+      : { ...data }
+  };
+}
+
+async function fetchKoshaTboard(serviceId = 'boardList', data = {}, page = 1) {
+  const url = 'https://kosha.or.kr/api/compn24/auth/stdtboard/api.do';
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 22000);
+  try {
+    const response = await fetch(url, {
+      signal: controller.signal,
+      redirect: 'follow',
+      method: 'POST',
+      headers: {
+        ...headers('https://www.kosha.or.kr/notification/jobncontract/job'),
+        accept: 'application/json,text/plain,*/*',
+        'content-type': 'application/json;charset=UTF-8',
+        chnlId: 'kosha24'
+      },
+      body: JSON.stringify(koshaTboardPayload(serviceId, data, page))
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const text = await response.text();
+    const payload = JSON.parse(text);
+    const code = String(payload?.common?.result?.code || '');
+    if (code && code !== '200') throw new Error(`KOSHA API result ${code}: ${payload?.common?.result?.subMsg || ''}`);
+    return { html: text, status: response.status, finalUrl: url, requestedUrl: url, contentType: 'application/json', requestMethod: 'POST' };
+  } finally { clearTimeout(timer); }
 }
 
 async function accessiblePages(source) {
@@ -419,7 +461,24 @@ async function probeSource(source, artifacts) {
         }
       }
     }
-    if(source.org==='한국전력공사'){for(const item of [...listingPages]){if(!item.page)continue;try{const d=await kepcoDynamicListing(item.page,source);if(d)listingPages.unshift({page:d,source:{...source,url:d.finalUrl||d.requestedUrl}});}catch(error){report.list.errors.push(`KEPCO dynamic-list: ${error.name==='AbortError'?'timeout':error.message}`);}}}
+    if(source.org==='한국전력공사'){
+      for(const item of [...listingPages]){
+        if(!item.page) continue;
+        try{
+          const d=await kepcoDynamicListing(item.page,source);
+          if(d) listingPages.unshift({page:d,source:{...source,url:d.finalUrl||d.requestedUrl}});
+        }catch(error){report.list.errors.push(`KEPCO dynamic-list: ${error.name==='AbortError'?'timeout':error.message}`);}
+      }
+    }
+    if(source.org==='한국산업안전보건공단'){
+      try{
+        const d=await fetchKoshaTboard('boardList',{},1);
+        listingPages.unshift({page:d,source:{...source,url:d.finalUrl}});
+        artifacts.push({org:source.org,stage:'tboard-api-list',url:d.finalUrl,status:d.status});
+      }catch(error){
+        report.list.errors.push(`KOSHA tboard-list: ${error.name==='AbortError'?'timeout':error.message}`);
+      }
+    }
     const pageResults = [];
     for (const [pageIndex, item] of listingPages.slice(0, MAX_LISTING_PAGES).entries()) {
       const url = item.source.url;

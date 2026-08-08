@@ -463,19 +463,58 @@ async function fetchKepcoDynamicList(html,baseUrl,source){
  try{const r=await fetch(url,{signal:c.signal,redirect:'follow',method:'POST',headers:{'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36','accept-language':'ko-KR,ko;q=0.9',accept:'text/html,*/*','content-type':'application/x-www-form-urlencoded',referer:baseUrl},body});if(!r.ok)throw new Error(`HTTP ${r.status}`);return{html:await r.text(),finalUrl:r.url||url,status:r.status};}finally{clearTimeout(timer);}
 }
 
+
+function koshaTboardPayload(serviceId, data = {}, page = 1) {
+  return {
+    common: {
+      siteCode: '50', channelType: 'web', boardId: 'B2025021400005', serviceId,
+      ...(serviceId === 'boardList' ? { pagingInfo: { curPageCo: String(page), rowsPerPage: '10' } } : {})
+    },
+    data: serviceId === 'boardList' ? { sortType: '01', sortOrder: '0', ...data } : { ...data }
+  };
+}
+async function fetchKoshaTboardList(page=1){
+  const url='https://kosha.or.kr/api/compn24/auth/stdtboard/api.do',c=new AbortController(),timer=setTimeout(()=>c.abort(),22000);
+  try{
+    const r=await fetch(url,{signal:c.signal,redirect:'follow',method:'POST',headers:{
+      'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
+      'accept-language':'ko-KR,ko;q=0.9',accept:'application/json,text/plain,*/*',
+      'content-type':'application/json;charset=UTF-8',chnlId:'kosha24',
+      referer:'https://www.kosha.or.kr/notification/jobncontract/job'
+    },body:JSON.stringify(koshaTboardPayload('boardList',{},page))});
+    if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    const text=await r.text(),payload=JSON.parse(text),code=String(payload?.common?.result?.code||'');
+    if(code&&code!=='200')throw new Error(`KOSHA API result ${code}`);
+    return {html:text,finalUrl:url,status:r.status};
+  }finally{clearTimeout(timer);}
+}
+
 async function fetchSource(source) {
   try {
     const access = await fetchFirstAccessible(source);
     const html = access.html;
     const activeSource = { ...source, url: access.finalUrl || access.requestedUrl };
-    const listingUrls = discoverListingUrls(html, activeSource);
+    let listingUrls = discoverListingUrls(html, activeSource);
     let kepcoDynamic = null;
-    if(source.org==='한국전력공사'){try{kepcoDynamic=await fetchKepcoDynamicList(html,activeSource.url,source);}catch(error){console.error(`[dynamic-list] ${source.org}: ${error.message}`);}}
+    let koshaDynamic = null;
+    if(source.org==='한국전력공사'){
+      try{
+        kepcoDynamic=await fetchKepcoDynamicList(html,activeSource.url,source);
+        if(kepcoDynamic?.html) listingUrls=[activeSource.url];
+      }catch(error){console.error(`[dynamic-list] ${source.org}: ${error.message}`);}
+    }
+    if(source.org==='한국산업안전보건공단'){
+      try{
+        koshaDynamic=await fetchKoshaTboardList(1);
+        if(koshaDynamic?.html) listingUrls=[koshaDynamic.finalUrl];
+      }catch(error){console.error(`[tboard-list] ${source.org}: ${error.message}`);}
+    }
     const candidateMap = new Map();
     const extractionDiagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, titleSamples: [], unsafeSamples: [] };
     for (const listingUrl of listingUrls) {
       let listingHtml = listingUrl === activeSource.url ? html : '';
-      if(kepcoDynamic&&listingUrl===activeSource.url) listingHtml=kepcoDynamic.html;
+      if(kepcoDynamic&&source.org==='한국전력공사') listingHtml=kepcoDynamic.html;
+      if(koshaDynamic&&source.org==='한국산업안전보건공단') listingHtml=koshaDynamic.html;
       if (!listingHtml) {
         try { listingHtml = (await fetchHtml(listingUrl, 22000, { referer: activeSource.url }, source)).html; }
         catch { continue; }

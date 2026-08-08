@@ -590,7 +590,8 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
     }
     if (confidence.tokenCount >= 3 && confidence.titleRatio < 0.25 && attachments.length === 0 && !titleEvidence) throw new Error('detail title mismatch');
     const attachmentSignalCount = (html.match(/첨부(?:파일)?|다운로드|download|filedown|atchfile|fileSeq|fileDown|fileDownload|downFile|ctitFile|data-file-url|data-download-url/gi) || []).length;
-    return { ok: true, finalUrl, text: text || fullText, confidence, httpStatus: response.status, contentType, attachments, contentImages, attachmentSignalCount, detailTransport: request?.method ? `FORM_${String(request.method).toUpperCase()}` : (contentImages.length ? 'IMAGE_CONTENT_PAGE' : 'GET') };
+    const explicitNoAttachment = /(?:첨부파일[^<\n]{0,80})?(?:등록된\s*파일이\s*없습니다|첨부(?:된)?\s*파일이\s*없습니다|첨부파일\s*없음|등록된\s*첨부파일이\s*없습니다)/i.test(fullText) || (sourceOrg === '울주문화재단' && /hubst\.co\.kr/i.test(finalUrl) && attachments.length === 0 && !FILE_EXT.test(fullText));
+    return { ok: true, finalUrl, text: text || fullText, confidence, httpStatus: response.status, contentType, attachments, contentImages, attachmentSignalCount, explicitNoAttachment, detailTransport: request?.method ? `FORM_${String(request.method).toUpperCase()}` : (contentImages.length ? 'IMAGE_CONTENT_PAGE' : 'GET') };
   } catch (error) {
     return { ok: false, finalUrl: request?.url || url, text: '', attachments: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
   } finally { clearTimeout(timer); }

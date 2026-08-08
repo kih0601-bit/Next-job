@@ -10,7 +10,7 @@ import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } fro
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 
-const VERSION = '17.2-detail-regression-repair';
+const VERSION = '17.5-stage-rootcause-repair';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const ACCESS_TIMEOUT_MS = 18000;
@@ -288,6 +288,26 @@ function attachRootCauses(report) {
 
 function safeName(value = '') { return String(value).replace(/[\\/:*?"<>|]/g, '_').replace(/\s+/g, '_').slice(0, 100) || 'unknown'; }
 
+
+async function captureKoshaSpaAssets(source,page){
+  if(source?.org!=='한국산업안전보건공단') return [];
+  const html=String(page?.html||''); if(!/<div\s+id=["']app["'][^>]*>\s*<\/div>/i.test(html)) return [];
+  const baseUrl=page.finalUrl||page.requestedUrl||source.url;
+  const srcs=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)].map(m=>m[1]).filter(v=>/(?:kosha-tboard-config|kosha-tboard-common|\/static\/js\/index-)/i.test(v));
+  const dir=`data/diagnostics/${safeName(source.org)}/spa`; await fs.mkdir(dir,{recursive:true}); const assets=[];
+  for(const src of [...new Set(srcs)].slice(0,6)){
+    const assetUrl=new URL(src,baseUrl).href;
+    try{
+      const result=await fetchHtml(assetUrl,18000,baseUrl,{...source,transportChain:['fetch','curl']});
+      const text=String(result.html||''),filename=safeName(new URL(assetUrl).pathname.split('/').pop()||'asset.js'),file=`${dir}/${filename}`;
+      await fs.writeFile(file,text,'utf8');
+      const apiLike=[...text.matchAll(/["'`](\/[^"'`]{2,260}(?:api|board|bbs|job|recruit|notice|list|search|pst)[^"'`]{0,260})["'`]/gi)].map(m=>m[1]).filter(v=>!/\.(?:png|jpg|gif|svg|css|woff|ttf)(?:[?#]|$)/i.test(v));
+      assets.push({assetUrl,file,status:result.status,finalUrl:result.finalUrl,apiLike:[...new Set(apiLike)].slice(0,100)});
+    }catch(error){assets.push({assetUrl,error:error.name==='AbortError'?'timeout':error.message});}
+  }
+  await fs.writeFile(`${dir}/asset-index.json`,`${JSON.stringify({generatedAt:new Date().toISOString(),baseUrl,assets},null,2)}\n`,'utf8');
+  return assets;
+}
 async function writeListDiagnosticArtifacts(source, pageSource, page, rootCause, pageIndex) {
   const org = source?.org || pageSource?.org || rootCause?.org || 'unknown';
   const dir = `data/diagnostics/${safeName(org)}/list`;
@@ -315,6 +335,12 @@ async function probeSource(source, artifacts) {
     const access = await accessiblePages(source);
     const first = access.selected || access.pages[0];
     for (const page of access.pages) artifacts.push(pageArtifact(source, page, 'access'));
+    if(source.org==='한국산업안전보건공단'){
+      for(const page of access.pages){
+        try{const spaAssets=await captureKoshaSpaAssets(source,page);if(spaAssets.length) artifacts.push({org:source.org,stage:'spa-assets',baseUrl:page.finalUrl||page.requestedUrl,assets:spaAssets});}
+        catch(error){artifacts.push({org:source.org,stage:'spa-assets',error:error.message});}
+      }
+    }
     report.access = { ok: Boolean(access.diagnosis?.ok), httpOk: Boolean(access.diagnosis?.http?.ok), recruitVerifyOk: Boolean(access.diagnosis?.recruitVerify?.ok), requestedUrl: first.requestedUrl, finalUrl: first.finalUrl, activeRecruitUrl: access.diagnosis?.activeRecruitUrl || '', status: first.status, contentType: first.contentType, attempts: access.attempts, verification: first.verification, boardType: first.verification?.boardType || { type: 'UNKNOWN', confidence: 'low', evidence: [] }, diagnosis: access.diagnosis };
     if (!report.access.httpOk) throw Object.assign(new Error(access.diagnosis?.reason || 'HTTP 접속 실패'), { attempts: access.attempts });
     if (!report.access.recruitVerifyOk) throw Object.assign(new Error(access.diagnosis?.reason || '채용 게시판 검증 실패'), { attempts: access.attempts, recruitVerifyFailed: true });

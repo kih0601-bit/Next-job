@@ -789,21 +789,33 @@ if (pipelineReport.payload) {
     const parsed = Number(p.documentsParsed || 0);
     const documentAttempted = Number(p.documentsAttempted || 0);
     const noAttachmentWorkRequired = noPosts || explicitlyNoAttachments;
-    stage.attachmentDownload = {
-      ok: noAttachmentWorkRequired || (downloadAttempted > 0 && downloaded === downloadAttempted),
-      status: noAttachmentWorkRequired ? 'not-required' : downloadAttempted === 0 ? 'not-attempted' : downloaded === downloadAttempted ? 'success' : downloaded > 0 ? 'partial' : 'failed',
-      attempted: downloadAttempted,
-      downloaded,
-      failed: Math.max(0, downloadAttempted - downloaded)
-    };
-    stage.documentAnalysis = {
-      ok: noAttachmentWorkRequired || (documentAttempted > 0 && parsed === documentAttempted),
-      status: noAttachmentWorkRequired ? 'not-required' : documentAttempted === 0 ? 'not-attempted' : parsed === documentAttempted ? 'success' : parsed > 0 ? 'partial' : 'failed',
-      attempted: documentAttempted,
-      parsed,
-      failed: Math.max(0, documentAttempted - parsed),
-      diagnostics: source?.documentDiagnostics || {}
-    };
+    const probeDownload = stage.attachmentDownload || null;
+    const probeAnalysis = stage.documentAnalysis || null;
+    stage.attachmentDownload = noAttachmentWorkRequired
+      ? { ok:true, status:'not-required', attempted:0, downloaded:0, failed:0, verificationMode:'not-required' }
+      : downloadAttempted > 0
+        ? {
+            ok: downloaded === downloadAttempted,
+            status: downloaded === downloadAttempted ? 'success' : downloaded > 0 ? 'partial' : 'failed',
+            attempted: downloadAttempted,
+            downloaded,
+            failed: Math.max(0, downloadAttempted - downloaded),
+            verificationMode:'collector'
+          }
+        : probeDownload || { ok:false, status:'not-attempted', attempted:0, downloaded:0, failed:0, verificationMode:'none' };
+    stage.documentAnalysis = noAttachmentWorkRequired
+      ? { ok:true, status:'not-required', attempted:0, parsed:0, failed:0, verificationMode:'not-required', diagnostics:{} }
+      : documentAttempted > 0
+        ? {
+            ok: parsed === documentAttempted,
+            status: parsed === documentAttempted ? 'success' : parsed > 0 ? 'partial' : 'failed',
+            attempted: documentAttempted,
+            parsed,
+            failed: Math.max(0, documentAttempted - parsed),
+            verificationMode:'collector',
+            diagnostics: source?.documentDiagnostics || {}
+          }
+        : probeAnalysis || { ok:false, status:'not-attempted', attempted:0, parsed:0, failed:0, verificationMode:'none', diagnostics:{} };
     // Legacy alias remains discovery-only so older consumers do not silently
     // reinterpret it as download or parsing success.
     stage.attachment = stage.attachmentDiscovery;

@@ -10,10 +10,12 @@ import { fetchKepcoDynamicList } from './lib/kepco-dynamic.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { classifyDetailTemplate } from './lib/detail-templates.mjs';
+import { analyzeAttachments } from './lib/document-analyzer.mjs';
 
-const VERSION = '18.2-shared-dynamic-post-and-detail-evidence';
+const VERSION = '18.3-kepco-counter-and-document-probe';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
+const MAX_ATTACHMENT_VERIFY_FILES = 2; // representative files per institution; keeps Actions bounded
 const ACCESS_TIMEOUT_MS = 18000;
 const LIST_TIMEOUT_MS = 10000;
 const MAX_ACCESS_URLS = 6;
@@ -563,6 +565,8 @@ async function probeSource(source, artifacts) {
 
     report.detail.targetCount = all.length;
     report.detail.missingDetailUrl = all.filter(item => item.listOnly).length;
+    const attachmentVerifyCandidates = [];
+    const attachmentVerifySeen = new Set();
     const allowedHosts = [...new Set((source.accessUrls || [source.url]).map(url => { try { return new URL(url).hostname; } catch { return ''; } }).filter(Boolean))];
     for (const candidate of all.filter(item => !item.listOnly).slice(0, MAX_DETAIL_SAMPLES)) {
       report.detail.attempted += 1;
@@ -579,8 +583,24 @@ async function probeSource(source, artifacts) {
           }
         } catch {}
         report.detail.samples.push({ title: candidate.title, requestedUrl: candidate.link, requestMethod: candidate.detailRequest?.method || 'GET', template: classifyDetailTemplate(candidate.link, candidate), ok: detail.ok, finalUrl: detail.finalUrl || '', textLength: detail.text?.length || 0, attachmentCount: detail.attachments?.length || 0, attachmentSignalCount: detail.attachmentSignalCount || 0, explicitNoAttachment: Boolean(detail.explicitNoAttachment), transport: detail.detailTransport || '', error: detail.error || '' });
+      if (Array.isArray(detail.externalAttachmentScripts) && detail.externalAttachmentScripts.length) {
+        try {
+          const scriptDir = path.join(orgDir,'attachment-scripts');
+          await fs.mkdir(scriptDir,{recursive:true});
+          for (let index = 0; index < detail.externalAttachmentScripts.length; index += 1) {
+            const script = detail.externalAttachmentScripts[index];
+            const fileName = `external-${index + 1}-${String(new URL(script.url).pathname.split('/').pop() || 'file.js').replace(/[^a-zA-Z0-9._-]+/g,'_')}`;
+            await fs.writeFile(path.join(scriptDir,fileName), script.body || '', 'utf8');
+          }
+        } catch {}
+      }
       for (const file of detail.attachments || []) {
-        if (report.attachmentDiscovery.samples.length < 8) report.attachmentDiscovery.samples.push({ name: file.name, type: file.type, url: file.url });
+        if (report.attachmentDiscovery.samples.length < 8) report.attachmentDiscovery.samples.push({ name: file.name, type: file.type, url: file.url, method: file.method || 'GET' });
+        const key = `${file.method || 'GET'}|${file.url || ''}|${file.body || ''}`;
+        if (!attachmentVerifySeen.has(key)) {
+          attachmentVerifySeen.add(key);
+          attachmentVerifyCandidates.push(file);
+        }
       }
     }
     report.detail.coverageRatio = report.detail.targetCount ? report.detail.attempted / report.detail.targetCount : 1;
@@ -596,13 +616,48 @@ async function probeSource(source, artifacts) {
         ? 'not-required-no-attachments'
         : report.attachmentDiscovery.ok ? 'success' : 'failed';
     report.attachment = report.attachmentDiscovery;
+
+    const noPosts = report.list.status === 'verified-empty' && report.list.candidateCount === 0;
+    const explicitlyNoAttachments = !noPosts && report.detail.samples.length > 0 && report.detail.samples.every(sample => sample.explicitNoAttachment);
+    if (noPosts || explicitlyNoAttachments) {
+      report.attachmentDownload = { ok:true, status:'not-required', attempted:0, downloaded:0, failed:0, verificationMode:'probe-sample' };
+      report.documentAnalysis = { ok:true, status:'not-required', attempted:0, parsed:0, failed:0, verificationMode:'probe-sample', diagnostics:{} };
+    } else if (attachmentVerifyCandidates.length > 0) {
+      const verification = await analyzeAttachments(attachmentVerifyCandidates, { maxFiles: MAX_ATTACHMENT_VERIFY_FILES });
+      report.attachmentDownload = {
+        ok: verification.attempted > 0 && verification.downloaded === verification.attempted,
+        status: verification.attempted === 0 ? 'not-attempted' : verification.downloaded === verification.attempted ? 'sample-success' : verification.downloaded > 0 ? 'sample-partial' : 'sample-failed',
+        attempted: verification.attempted,
+        downloaded: verification.downloaded,
+        failed: Math.max(0, verification.attempted - verification.downloaded),
+        verificationMode: 'probe-sample',
+        samples: verification.results.slice(0, MAX_ATTACHMENT_VERIFY_FILES).map(item => ({name:item.name,url:item.url,ok:Boolean(item.downloaded),transport:item.transport || '',contentType:item.contentType || '',error:item.downloaded ? '' : item.error || ''}))
+      };
+      report.documentAnalysis = {
+        ok: verification.attempted > 0 && verification.successful === verification.attempted,
+        status: verification.attempted === 0 ? 'not-attempted' : verification.successful === verification.attempted ? 'sample-success' : verification.successful > 0 ? 'sample-partial' : 'sample-failed',
+        attempted: verification.attempted,
+        parsed: verification.successful,
+        failed: Math.max(0, verification.attempted - verification.successful),
+        verificationMode: 'probe-sample',
+        analyzerVersion: verification.analyzerVersion || '',
+        diagnostics: verification.diagnostics || {},
+        samples: verification.results.slice(0, MAX_ATTACHMENT_VERIFY_FILES).map(item => ({name:item.name,detectedType:item.detectedType || '',ok:Boolean(item.ok),method:item.method || '',textLength:item.textLength || 0,error:item.ok ? '' : item.error || ''}))
+      };
+    } else {
+      report.attachmentDownload = { ok:false, status:'blocked-by-discovery', attempted:0, downloaded:0, failed:0, verificationMode:'probe-sample' };
+      report.documentAnalysis = { ok:false, status:'blocked-by-download', attempted:0, parsed:0, failed:0, verificationMode:'probe-sample', diagnostics:{} };
+    }
+
     if (!report.access.ok) report.bottleneck = '접속';
     else if (!report.list.ok) report.bottleneck = report.list.status === 'count-exact-unverified' ? '목록 개수 일치·제목 정확성 미검증' : report.list.status === 'partial' ? `목록 부분 추출 (${report.list.candidateCount}/${report.list.visiblePostCount})` : report.list.status === 'count-unavailable-or-empty' ? '목록 글 수 판정 불가 또는 실제 0건' : '목록 추출 실패';
     else if (report.list.status === 'verified-empty') report.bottleneck = '현재 실제 공고 0건 · 상세·첨부 대상 없음';
     else if (report.list.detailUrlReady === 0) report.bottleneck = '상세 URL 복구';
     else if (!report.detail.ok) report.bottleneck = '상세페이지 추출';
     else if (!report.attachmentDiscovery.ok) report.bottleneck = '첨부 발견/추출';
-    else report.bottleneck = '기본 파이프라인 통과 · 다운로드/문서분석은 수집 단계에서 별도 검증';
+    else if (!report.attachmentDownload.ok) report.bottleneck = '첨부 다운로드';
+    else if (!report.documentAnalysis.ok) report.bottleneck = '문서 분석';
+    else report.bottleneck = '전체 파이프라인 통과';
   } catch (error) {
     report.access.attempts = error.attempts || report.access.attempts;
     report.access.error = error.name === 'AbortError' ? 'timeout' : error.message;
@@ -625,7 +680,7 @@ const payload = {
   version: VERSION,
   sourceRegistryVersion: SOURCE_REGISTRY_VERSION,
   generatedAt: new Date().toISOString(),
-  policy: 'HTTP·채용게시판 검증·목록·상세·첨부 발견을 먼저 검증하고, 첨부 다운로드·문서 분석은 수집 단계에서 별도 확정',
+  policy: 'HTTP·채용게시판 검증·목록·상세·첨부 발견·대표 첨부 다운로드·문서 분석을 기관별로 독립 검증하고, 실제 수집 결과와 병합',
   summary: {
     sourceCount: results.length,
     httpOk: results.filter(item => item.access.httpOk).length,
@@ -635,9 +690,9 @@ const payload = {
     detailOk: results.filter(item => item.detail.ok).length,
     attachmentDiscoveryOk: results.filter(item => item.attachmentDiscovery.ok).length,
     attachmentOk: results.filter(item => item.attachmentDiscovery.ok).length,
-    attachmentDownloadOk: 0,
-    documentAnalysisOk: 0,
-    fullPipelineOk: 0,
+    attachmentDownloadOk: results.filter(item => item.attachmentDownload?.ok).length,
+    documentAnalysisOk: results.filter(item => item.documentAnalysis?.ok).length,
+    fullPipelineOk: results.filter(item => item.access.recruitVerifyOk && item.list.ok && item.detail.ok && item.attachmentDiscovery.ok && item.attachmentDownload?.ok && item.documentAnalysis?.ok).length,
     causeCounts: results.reduce((acc, item) => { const key = item.primaryCause?.code || 'UNKNOWN'; acc[key] = (acc[key] || 0) + 1; return acc; }, {})
   },
   sources: results

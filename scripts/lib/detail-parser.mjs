@@ -113,6 +113,20 @@ function isLikelyDownloadUrl(value = '', label = '') {
   } catch { return false; }
 }
 
+function egovFileDownCandidates(js = '', baseUrl = '') {
+  const decoded = decodeHtmlEntities(js);
+  const call = decoded.match(/\bfn_egov_downFile\s*\(\s*["'](FILE_[0-9A-Za-z_-]+)["']\s*,\s*["']?(\d+)["']?\s*\)/i);
+  if (!call) return [];
+  try {
+    const base = new URL(baseUrl);
+    const prefix = base.pathname.match(/^(.+?)\/(?:bbs|cop)\//i)?.[1] || '';
+    const out = new URL(`${prefix}/cmm/fms/FileDown.do`, base.origin);
+    out.searchParams.set('atchFileId', call[1]);
+    out.searchParams.set('fileSn', call[2]);
+    return [out.href];
+  } catch { return []; }
+}
+
 function commonFileDownloadCandidates(js = '', baseUrl = '') {
   const decoded = decodeHtmlEntities(js).replace(/\\(["'])/g, '$1');
   const call = decoded.match(/\b[A-Za-z_$][\w$]*\s*\(([^)]*)\)/);
@@ -239,7 +253,7 @@ export function extractAttachments(html, baseUrl, request = {}) {
     const attrs = match[1] || '';
     const label = cleanHtml(match[2]);
     const context = attachmentContext(source, match.index || 0, match[0].length);
-    const href = attrs.match(/\bhref\s*=\s*["']([^"']+)["']/i)?.[1] || '';
+    const href = attrs.match(/\bhref\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
     const anchorProbe = `${attrs} ${label} ${href}`;
     const anchorHasDirectFile = FILE_EXT.test(anchorProbe);
     const anchorHasFileSignal = anchorHasDirectFile || FILE_SIGNAL.test(anchorProbe) || ATTACHMENT_CONTEXT.test(context);
@@ -251,7 +265,7 @@ export function extractAttachments(html, baseUrl, request = {}) {
     const js = onclickMatch?.[2] || (/^javascript:/i.test(href) ? href : '');
     const jsCandidates = urlsFromJavascript(js);
     if (anchorHasFileSignal || FILE_SIGNAL.test(js) || jsCandidates.some(candidate => FILE_EXT.test(candidate))) {
-      const recovered = [...jsCandidates, ...javascriptDownloadCandidates(source, js), ...commonFileDownloadCandidates(js, baseUrl)];
+      const recovered = /\bfn_egov_downFile\s*\(/i.test(js) ? egovFileDownCandidates(js, baseUrl) : [...jsCandidates, ...javascriptDownloadCandidates(source, js), ...commonFileDownloadCandidates(js, baseUrl)];
       for (const candidate of recovered) {
         if (isLikelyDownloadUrl(candidate, label)) addAttachment(attachments, seen, candidate, label, baseUrl, '', context, request);
       }
@@ -301,9 +315,27 @@ const DETAIL_BODY_SELECTORS = [
   /<article\b[^>]*>([\s\S]*?)<\/article>/gi
 ];
 
-export function extractDetailBody(html = '', expectedTitle = '') {
+export function extractDetailBody(html = '', expectedTitle = '', sourceOrg = '') {
   const source = String(html);
   const candidates = [];
+
+  if (sourceOrg === '울주군시설관리공단') {
+    const marker = source.search(/<div\b[^>]*class=["'][^"']*\bb_con\b[^"']*["'][^>]*>/i);
+    if (marker >= 0) {
+      const tail = source.slice(marker);
+      const end = tail.search(/<div\b[^>]*class=["'][^"']*(?:btn_area|board_btn|list_btn)[^"']*["']/i);
+      const block = end > 0 ? tail.slice(0, end) : tail.slice(0, 50000);
+      const text = cleanHtml(block);
+      if (text.length >= 80) candidates.push(text);
+    }
+  }
+
+  if (sourceOrg === '울산정보산업진흥원') {
+    const board = source.match(/<div\b[^>]*class=["'][^"']*\bboard_view\b[^"']*["'][^>]*>[\s\S]*?(?=<div\b[^>]*class=["'][^"']*(?:board_btn|btn_area|list_btn)|<\/section>|<\/main>|$)/i)?.[0] || '';
+    const cont = board.match(/<dd\b[^>]*class=["'][^"']*\bcont\b[^"']*["'][^>]*>[\s\S]*?<\/dd>/i)?.[0] || board;
+    const text = cleanHtml(cont);
+    if (text.length >= 30) candidates.push(text);
+  }
   for (const pattern of DETAIL_BODY_SELECTORS) {
     for (const match of source.matchAll(pattern)) {
       const text = cleanHtml(match[1] || match[0]);
@@ -435,18 +467,22 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
     const response = await requestOne(url, request);
     const contentType = response.headers.get('content-type') || '';
     if (!/html|text\//i.test(contentType)) throw new Error(`unsupported content-type: ${contentType}`);
-    const html = await response.text();
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    const html = decodeHtmlBytes(bytes, contentType);
     const fullText = cleanHtml(html).slice(0, 70000);
-    const text = extractDetailBody(html, expectedTitle).slice(0, 70000);
+    const text = extractDetailBody(html, expectedTitle, sourceOrg).slice(0, 70000);
     const finalUrl = response.url || request?.url || url;
     const cookie = typeof response.headers.getSetCookie === 'function'
       ? response.headers.getSetCookie().map(value => value.split(';')[0]).join('; ')
       : (response.headers.get('set-cookie') || '').split(/,(?=[^;,]+=)/).map(value => value.split(';')[0]).join('; ');
     const attachments = extractAttachments(html, finalUrl, { referer: finalUrl, cookie });
-    const contentImages = [...html.matchAll(/<img\b([^>]*)>/gi)].map(match => {
+    const imageScope = sourceOrg === '울산정보산업진흥원'
+      ? (html.match(/<dd\b[^>]*class=["'][^"']*\bcont\b[^"']*["'][^>]*>[\s\S]*?<\/dd>/i)?.[0] || html)
+      : html;
+    const contentImages = [...imageScope.matchAll(/<img\b([^>]*)>/gi)].map(match => {
       const attrs = match[1] || '';
-      const src = attrs.match(/\bsrc\s*=\s*["']([^"']+)["']/i)?.[1] || '';
-      const alt = decodeHtmlEntities(attrs.match(/\b(?:alt|title)\s*=\s*["']([^"']+)["']/i)?.[1] || '');
+      const src = attrs.match(/\bsrc\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '';
+      const alt = decodeHtmlEntities(attrs.match(/\b(?:alt|title)\s*=\s*(["'])([\s\S]*?)\1/i)?.[2] || '');
       return { url: absoluteUrl(src, finalUrl), alt };
     }).filter(item => item.url && !/(logo|icon|btn|banner|common|header|footer|sns|loading)/i.test(`${item.url} ${item.alt}`));
     const metadataTitleText = [
@@ -483,19 +519,20 @@ export async function fetchDetail(url, { timeoutMs = 18000, expectedTitle = '', 
 
     const finalParams = [...final.searchParams.keys()];
     const hasDetailPath = /(?:view|detail|read|select|article|boardView|recruitview|noticeView|content\.html)/i.test(final.pathname);
-    const hasDetailParam = finalParams.some(key => /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|dataId|bbsId|bcIdx|boardSeq|contsId|employmentId|recruitNo|recruit_no)$/i.test(key));
+    const hasDetailParam = finalParams.some(key => /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|dataId|bbsId|bcIdx|boardSeq|contsId|employmentId|recruitNo|recruit_no)$/i.test(key))
+      || (sourceOrg === '한국석유공사' && final.searchParams.get('mode') === 'view' && /^\d+$/.test(final.searchParams.get('num') || ''));
     const hasStrongBody = /(모집분야|응시자격|접수기간|근무조건|채용인원|공고번호)/.test(text);
     if ((!hasDetailPath && !hasDetailParam && !hasStrongBody && !titleEvidence) || (/(?:list|recruit\.do|contents\.ulsan|noti06\.do)$/i.test(final.pathname) && !hasDetailParam && !hasStrongBody && !titleEvidence && !request)) {
       throw new Error('final url is not a detail page');
     }
 
     const confidence = detailConfidence(text, expectedTitle);
-    if (confidence.structureSignals < 1 && attachments.length === 0 && !(titleEvidence && text.length >= 140)) {
+    if (confidence.structureSignals < 1 && attachments.length === 0 && contentImages.length === 0 && !(titleEvidence && text.length >= 140)) {
       writeDetailDiagnostic({ org: sourceOrg, expectedTitle, requestedUrl: url, finalUrl, status: response.status, contentType, html, error: 'insufficient detail structure', stage: 'structure-verdict', request, verdict: { textLength: text.length, fullTextLength: fullText.length, attachmentCount: attachments.length, contentImageCount: contentImages.length, titleEvidence } });
       throw new Error('insufficient detail structure');
     }
     if (confidence.tokenCount >= 3 && confidence.titleRatio < 0.25 && attachments.length === 0 && !titleEvidence) throw new Error('detail title mismatch');
-    return { ok: true, finalUrl, text: text || fullText, confidence, httpStatus: response.status, contentType, attachments, detailTransport: request?.method ? `FORM_${String(request.method).toUpperCase()}` : 'GET' };
+    return { ok: true, finalUrl, text: text || fullText, confidence, httpStatus: response.status, contentType, attachments, contentImages, detailTransport: request?.method ? `FORM_${String(request.method).toUpperCase()}` : (contentImages.length ? 'IMAGE_CONTENT_PAGE' : 'GET') };
   } catch (error) {
     return { ok: false, finalUrl: request?.url || url, text: '', attachments: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
   } finally { clearTimeout(timer); }

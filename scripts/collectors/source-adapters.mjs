@@ -501,6 +501,12 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
   const jobs = [];
   const seen = new Set();
 
+  if(source.org==='근로복지공단'&&/comwel\.saramin\.co\.kr\/service\/comwel\/\d+\/applicant\/apply\/recruit_default\.asp/i.test(source.url)){
+    const body=String(html),heading=decodeHtmlEntities(body.match(/<td\b[^>]*font-size:\s*34px[^>]*>\s*<b>([\s\S]*?)<\/b>/i)?.[1]||'');
+    const title=cleanHtml(heading).replace(/\s+/g,' ').trim()||'근로복지공단 현재 채용공고',listText=cleanHtml(body).replace(/\s+/g,' ').trim();
+    if(validTitle(title)&&/채용공고|신규직원|모집/.test(listText)){const link=canonicalJobUrl(source.url);jobs.push({org:source.org,title,link,listText,adapter:`${source.org}:saramin-current-campaign`});Object.defineProperty(jobs,'diagnostics',{value:{visiblePostCount:1,rowMode:true,anchors:0,titleMatches:1,noUrl:0,unsafeUrl:0,accepted:1,rowFallbackAccepted:0,clickableBlocksScanned:0,clickableBlocksAccepted:0,listOnlyAccepted:0,titleSamples:[title],unsafeSamples:[],actionSamples:[],candidateUrlSamples:[{title,url:link,allowed:true}]},enumerable:false});return jobs;}
+  }
+
   // 울주군시설관리공단: 제목이 <a>가 아니라 submit input에 있고 nttId는 hidden input에 있다.
   if (source.org === '울주군시설관리공단') {
     const board = String(html).match(/<table\b[^>]*class\s*=\s*(["'])[^"']*board_list[^"']*\1[^>]*>[\s\S]*?<\/table>/i)?.[0] || '';

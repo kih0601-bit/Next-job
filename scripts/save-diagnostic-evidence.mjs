@@ -24,7 +24,7 @@ for (const source of report.sources || []) {
     diagnosis: source.diagnosis,
     repairTarget: source.primaryCause?.repairTarget || '',
     recommendedAction: source.primaryCause?.recommendedAction || '',
-    stages: { access: source.access, list: source.list, detail: source.detail, attachment: source.attachment }
+    stages: { access: source.access, list: source.list, detail: source.detail, attachmentDiscovery: source.attachmentDiscovery || source.attachment, attachmentDownload: source.attachmentDownload, documentAnalysis: source.documentAnalysis, attachment: source.attachment }
   }, null, 2)}\n`);
   await fs.writeFile(path.join(dir,'evidence.json'), `${JSON.stringify(sourceArtifacts, null, 2)}\n`);
 }

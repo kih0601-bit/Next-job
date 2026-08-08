@@ -316,7 +316,7 @@ function attachmentEvidenceFromHtml(html=''){
 function classifyAttachment(report) {
   if (report.list?.status === 'verified-empty' && (report.list?.candidateCount || 0) === 0) return { status: 'success', code: 'ATTACHMENT_NOT_APPLICABLE_EMPTY_BOARD', reason: '현재 실제 공고 0건 · 첨부 대상 없음', evidence: [] };
   if (!report.detail?.ok) return { status: 'blocked', code: 'ATTACHMENT_BLOCKED_BY_DETAIL', reason: '상세 단계 미통과로 첨부 진단 보류', evidence: [] };
-  if ((report.attachment.discovered || 0) > 0) return { status: 'success', code: 'ATTACHMENT_FOUND', reason: `검증 표본에서 첨부 링크 ${report.attachment.discovered}개 발견`, evidence: report.attachment.samples || [] };
+  if ((report.attachmentDiscovery.discovered || 0) > 0) return { status: 'success', code: 'ATTACHMENT_FOUND', reason: `검증 표본에서 첨부 링크 ${report.attachmentDiscovery.discovered}개 발견`, evidence: report.attachmentDiscovery.samples || [] };
   return { status: 'unknown', code: 'ATTACHMENT_ZERO_UNRESOLVED', reason: '첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함', evidence: report.detail.samples || [] };
 }
 
@@ -447,7 +447,10 @@ async function probeSource(source, artifacts) {
     access: { ok: false, httpOk: false, recruitVerifyOk: false, attempts: [], boardType: { type: 'UNKNOWN', confidence: 'low', evidence: [] } },
     list: { ok: false, status: 'unknown', pagesChecked: 0, visiblePostCount: null, candidateCount: 0, missingCount: null, extraCount: null, exactMatch: false, selectedUrl: '', detailUrlReady: 0, listOnlyCount: 0, extractionDiagnostics: [], rootCauseDiagnostics: [], diagnosticFiles: [], samples: [], errors: [] },
     detail: { ok: false, targetCount: 0, attempted: 0, validated: 0, failed: 0, missingDetailUrl: 0, coverageRatio: 0, validationRatio: 0, samples: [] },
+    attachmentDiscovery: { ok: false, discovered: 0, samples: [] },
     attachment: { ok: false, discovered: 0, samples: [] },
+    attachmentDownload: { ok: false, status: 'not-evaluated', attempted: 0, downloaded: 0, failed: 0 },
+    documentAnalysis: { ok: false, status: 'not-evaluated', attempted: 0, parsed: 0, failed: 0 },
     bottleneck: '',
     elapsedMs: 0
   };
@@ -566,7 +569,7 @@ async function probeSource(source, artifacts) {
       const detail = await fetchDetail(candidate.link, { expectedTitle: candidate.title, sourceOrg: source.org, allowedHosts, request: candidate.detailRequest || null }, source.org);
       if (detail.ok) report.detail.validated += 1;
       else report.detail.failed += 1;
-      report.attachment.discovered += detail.attachments?.length || 0;
+      report.attachmentDiscovery.discovered += detail.attachments?.length || 0;
       try {
           if (detail.rawHtml) {
             const detailDir = path.join(orgDir,'detail');
@@ -577,7 +580,7 @@ async function probeSource(source, artifacts) {
         } catch {}
         report.detail.samples.push({ title: candidate.title, requestedUrl: candidate.link, requestMethod: candidate.detailRequest?.method || 'GET', template: classifyDetailTemplate(candidate.link, candidate), ok: detail.ok, finalUrl: detail.finalUrl || '', textLength: detail.text?.length || 0, attachmentCount: detail.attachments?.length || 0, attachmentSignalCount: detail.attachmentSignalCount || 0, explicitNoAttachment: Boolean(detail.explicitNoAttachment), transport: detail.detailTransport || '', error: detail.error || '' });
       for (const file of detail.attachments || []) {
-        if (report.attachment.samples.length < 8) report.attachment.samples.push({ name: file.name, type: file.type, url: file.url });
+        if (report.attachmentDiscovery.samples.length < 8) report.attachmentDiscovery.samples.push({ name: file.name, type: file.type, url: file.url });
       }
     }
     report.detail.coverageRatio = report.detail.targetCount ? report.detail.attempted / report.detail.targetCount : 1;
@@ -586,14 +589,20 @@ async function probeSource(source, artifacts) {
       (report.list.status === 'verified-empty' && report.detail.targetCount === 0)
       || (report.detail.targetCount === report.list.candidateCount && report.detail.missingDetailUrl === 0 && report.detail.attempted === report.detail.targetCount && report.detail.validated === report.detail.targetCount)
     );
-    report.attachment.ok = (report.list.status === 'verified-empty' && report.list.candidateCount === 0) || report.attachment.discovered > 0 || (report.detail.samples.length > 0 && report.detail.samples.every(sample => sample.explicitNoAttachment));
+    report.attachmentDiscovery.ok = (report.list.status === 'verified-empty' && report.list.candidateCount === 0) || report.attachmentDiscovery.discovered > 0 || (report.detail.samples.length > 0 && report.detail.samples.every(sample => sample.explicitNoAttachment));
+    report.attachmentDiscovery.status = (report.list.status === 'verified-empty' && report.list.candidateCount === 0)
+      ? 'not-required-no-posts'
+      : (report.detail.samples.length > 0 && report.detail.samples.every(sample => sample.explicitNoAttachment))
+        ? 'not-required-no-attachments'
+        : report.attachmentDiscovery.ok ? 'success' : 'failed';
+    report.attachment = report.attachmentDiscovery;
     if (!report.access.ok) report.bottleneck = '접속';
     else if (!report.list.ok) report.bottleneck = report.list.status === 'count-exact-unverified' ? '목록 개수 일치·제목 정확성 미검증' : report.list.status === 'partial' ? `목록 부분 추출 (${report.list.candidateCount}/${report.list.visiblePostCount})` : report.list.status === 'count-unavailable-or-empty' ? '목록 글 수 판정 불가 또는 실제 0건' : '목록 추출 실패';
     else if (report.list.status === 'verified-empty') report.bottleneck = '현재 실제 공고 0건 · 상세·첨부 대상 없음';
     else if (report.list.detailUrlReady === 0) report.bottleneck = '상세 URL 복구';
     else if (!report.detail.ok) report.bottleneck = '상세페이지 추출';
-    else if (!report.attachment.ok) report.bottleneck = '첨부파일 추출 또는 현재 표본에 첨부 없음';
-    else report.bottleneck = '기본 파이프라인 통과';
+    else if (!report.attachmentDiscovery.ok) report.bottleneck = '첨부 발견/추출';
+    else report.bottleneck = '기본 파이프라인 통과 · 다운로드/문서분석은 수집 단계에서 별도 검증';
   } catch (error) {
     report.access.attempts = error.attempts || report.access.attempts;
     report.access.error = error.name === 'AbortError' ? 'timeout' : error.message;
@@ -616,7 +625,7 @@ const payload = {
   version: VERSION,
   sourceRegistryVersion: SOURCE_REGISTRY_VERSION,
   generatedAt: new Date().toISOString(),
-  policy: 'HTTP·채용게시판 검증·목록·상세·첨부를 분리하고 기관 유형과 수정 우선순위를 기록',
+  policy: 'HTTP·채용게시판 검증·목록·상세·첨부 발견을 먼저 검증하고, 첨부 다운로드·문서 분석은 수집 단계에서 별도 확정',
   summary: {
     sourceCount: results.length,
     httpOk: results.filter(item => item.access.httpOk).length,
@@ -624,8 +633,11 @@ const payload = {
     accessOk: results.filter(item => item.access.recruitVerifyOk).length,
     listOk: results.filter(item => item.list.ok).length,
     detailOk: results.filter(item => item.detail.ok).length,
-    attachmentOk: results.filter(item => item.attachment.ok).length,
-    fullPipelineOk: results.filter(item => item.access.recruitVerifyOk && item.list.ok && item.detail.ok && item.attachment.ok).length,
+    attachmentDiscoveryOk: results.filter(item => item.attachmentDiscovery.ok).length,
+    attachmentOk: results.filter(item => item.attachmentDiscovery.ok).length,
+    attachmentDownloadOk: 0,
+    documentAnalysisOk: 0,
+    fullPipelineOk: 0,
     causeCounts: results.reduce((acc, item) => { const key = item.primaryCause?.code || 'UNKNOWN'; acc[key] = (acc[key] || 0) + 1; return acc; }, {})
   },
   sources: results

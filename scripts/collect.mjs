@@ -322,7 +322,7 @@ async function enrichCandidate(candidate, source) {
     return {
       jobs: [],
       rejection: detail.error || 'detail validation failed',
-      pipeline: { detailAttempted: Number(Boolean(source.detail)), detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 },
+      pipeline: { detailAttempted: Number(Boolean(source.detail)), detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 },
       documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }
     };
   }
@@ -412,7 +412,7 @@ async function enrichCandidate(candidate, source) {
       detailConfidence: detail.confidence || null,
       detailError: detail.error || '',
       attachments: detail.attachments,
-      documentAnalysis: { discovered: documents.discovered, attempted: documents.attempted, successful: documents.successful, analyzerVersion: documents.analyzerVersion, results: documents.results.map(({ text, ...meta }) => meta) },
+      documentAnalysis: { discovered: documents.discovered, downloadAttempted: documents.attempted, downloaded: documents.downloaded, attempted: documents.attempted, successful: documents.successful, analyzerVersion: documents.analyzerVersion, results: documents.results.map(({ text, ...meta }) => meta) },
       crossValidation: result.crossValidation,
       adapter: candidate.adapter || (source.alio ? 'ALIO' : source.org),
       raw: vacancy.evidenceText.slice(0, 5000)
@@ -434,6 +434,8 @@ async function enrichCandidate(candidate, source) {
       detailAttempted: Number(Boolean(source.detail)),
       detailValidated: Number(Boolean(detail.ok)),
       attachmentsDiscovered: Number(documents.discovered || 0),
+      attachmentDownloadsAttempted: Number(documents.attempted || 0),
+      attachmentsDownloaded: Number(documents.downloaded || 0),
       documentsAttempted: Number(documents.attempted || 0),
       documentsParsed: Number(documents.successful || 0)
     },
@@ -542,7 +544,7 @@ async function fetchSource(source) {
     const jobs = [];
     const rejectionReasons = {};
     const vacancyStats = { detected: 0, accepted: 0, rejected: 0 };
-    const pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 };
+    const pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 };
     const documentDiagnostics = { byDetectedType: {}, byContentType: {}, byError: {} };
     const documentSamples = [];
     const vacancyDecisions = listSelection.rejected.map(candidate => ({
@@ -608,7 +610,7 @@ async function fetchSource(source) {
       rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPipelineReport() {
@@ -656,7 +658,7 @@ for (const result of results) {
     activeRecruitUrl: diagnostic?.access?.activeRecruitUrl || result.activeRecruitUrl || '',
     diagnosis: diagnostic?.diagnosis || null,
     primaryCause: diagnostic?.primaryCause || null,
-    diagnosticStages: diagnostic ? { http: diagnostic.diagnosis?.http || null, recruitVerify: diagnostic.diagnosis?.recruitVerify || null, access: diagnostic.access, list: diagnostic.list, detail: diagnostic.detail, attachment: diagnostic.attachment } : null,
+    diagnosticStages: diagnostic ? { http: diagnostic.diagnosis?.http || null, recruitVerify: diagnostic.diagnosis?.recruitVerify || null, access: diagnostic.access, list: diagnostic.list, detail: diagnostic.detail, attachmentDiscovery: diagnostic.attachmentDiscovery || diagnostic.attachment, attachmentDownload: diagnostic.attachmentDownload || null, documentAnalysis: diagnostic.documentAnalysis || null, attachment: diagnostic.attachment } : null,
     listingPagesChecked: result.listingPagesChecked || 0,
     count: result.jobs.length,
     retained: retained.length,
@@ -666,7 +668,7 @@ for (const result of results) {
     accessAttempts: result.accessAttempts || [],
     rejectionReasons: result.rejectionReasons || {},
     extractionDiagnostics: result.extractionDiagnostics || {},
-    pipeline: result.pipeline || { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, documentsAttempted: 0, documentsParsed: 0 },
+    pipeline: result.pipeline || { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 },
     vacancyStats: result.vacancyStats || { detected: 0, accepted: 0, rejected: 0 },
     documentDiagnostics: result.documentDiagnostics || { byDetectedType: {}, byContentType: {}, byError: {} },
     documentSamples: result.documentSamples || [],
@@ -722,6 +724,8 @@ const payload = {
     detailAttempts: sources.reduce((sum, source) => sum + Number(source.pipeline?.detailAttempted || 0), 0),
     detailValidatedCandidates: sources.reduce((sum, source) => sum + Number(source.pipeline?.detailValidated || 0), 0),
     publicAttachmentsDiscovered: sources.reduce((sum, source) => sum + Number(source.pipeline?.attachmentsDiscovered || 0), 0),
+    attachmentDownloadsAttempted: sources.reduce((sum, source) => sum + Number(source.pipeline?.attachmentDownloadsAttempted || 0), 0),
+    attachmentsDownloaded: sources.reduce((sum, source) => sum + Number(source.pipeline?.attachmentsDownloaded || 0), 0),
     documentsAttempted: sources.reduce((sum, source) => sum + Number(source.pipeline?.documentsAttempted || 0), 0),
     documentsParsed: sources.reduce((sum, source) => sum + Number(source.pipeline?.documentsParsed || 0), 0),
     vacanciesDetected: sources.reduce((sum, source) => sum + Number(source.vacancyStats?.detected || 0), 0),
@@ -757,6 +761,75 @@ const debugPayload = {
     error: source.error
   }))
 };
+
+// Finalize the institution pipeline report with the real attachment download and
+// document-analysis results from this collector run. The probe owns
+// access/list/detail/attachment-discovery; the collector owns file download and
+// document parsing.
+if (pipelineReport.payload) {
+  const resultByOrg = new Map(sources.map(source => [source.org, source]));
+  for (const stage of pipelineReport.payload.sources || []) {
+    const source = resultByOrg.get(stage.org);
+    const p = source?.pipeline || {};
+    const noPosts = stage.list?.status === 'verified-empty' && Number(stage.list?.candidateCount || 0) === 0;
+    const explicitlyNoAttachments = !noPosts
+      && Array.isArray(stage.detail?.samples)
+      && stage.detail.samples.length > 0
+      && stage.detail.samples.every(sample => Boolean(sample.explicitNoAttachment));
+    const discoveryOk = Boolean(stage.attachmentDiscovery?.ok ?? stage.attachment?.ok);
+    stage.attachmentDiscovery = {
+      ...(stage.attachment || {}),
+      ...(stage.attachmentDiscovery || {}),
+      ok: discoveryOk,
+      status: noPosts ? 'not-required-no-posts' : explicitlyNoAttachments ? 'not-required-no-attachments' : discoveryOk ? 'success' : 'failed',
+      discovered: Number(stage.attachmentDiscovery?.discovered ?? stage.attachment?.discovered ?? p.attachmentsDiscovered ?? 0)
+    };
+    const downloadAttempted = Number(p.attachmentDownloadsAttempted || 0);
+    const downloaded = Number(p.attachmentsDownloaded || 0);
+    const parsed = Number(p.documentsParsed || 0);
+    const documentAttempted = Number(p.documentsAttempted || 0);
+    const noAttachmentWorkRequired = noPosts || explicitlyNoAttachments;
+    stage.attachmentDownload = {
+      ok: noAttachmentWorkRequired || (downloadAttempted > 0 && downloaded === downloadAttempted),
+      status: noAttachmentWorkRequired ? 'not-required' : downloadAttempted === 0 ? 'not-attempted' : downloaded === downloadAttempted ? 'success' : downloaded > 0 ? 'partial' : 'failed',
+      attempted: downloadAttempted,
+      downloaded,
+      failed: Math.max(0, downloadAttempted - downloaded)
+    };
+    stage.documentAnalysis = {
+      ok: noAttachmentWorkRequired || (documentAttempted > 0 && parsed === documentAttempted),
+      status: noAttachmentWorkRequired ? 'not-required' : documentAttempted === 0 ? 'not-attempted' : parsed === documentAttempted ? 'success' : parsed > 0 ? 'partial' : 'failed',
+      attempted: documentAttempted,
+      parsed,
+      failed: Math.max(0, documentAttempted - parsed),
+      diagnostics: source?.documentDiagnostics || {}
+    };
+    // Legacy alias remains discovery-only so older consumers do not silently
+    // reinterpret it as download or parsing success.
+    stage.attachment = stage.attachmentDiscovery;
+    if (stage.access?.recruitVerifyOk && stage.list?.ok && stage.detail?.ok && stage.attachmentDiscovery.ok && stage.attachmentDownload.ok && stage.documentAnalysis.ok) {
+      stage.bottleneck = noAttachmentWorkRequired ? '전체 파이프라인 통과 · 첨부/문서분석 대상 없음' : '전체 파이프라인 통과';
+    } else if (stage.detail?.ok && !stage.attachmentDiscovery.ok) {
+      stage.bottleneck = '첨부 발견/추출';
+    } else if (stage.attachmentDiscovery.ok && !stage.attachmentDownload.ok) {
+      stage.bottleneck = '첨부 다운로드';
+    } else if (stage.attachmentDownload.ok && !stage.documentAnalysis.ok) {
+      stage.bottleneck = '문서 분석';
+    }
+  }
+  pipelineReport.payload.summary ||= {};
+  const stages = pipelineReport.payload.sources || [];
+  pipelineReport.payload.summary.attachmentDiscoveryOk = stages.filter(s => s.attachmentDiscovery?.ok).length;
+  pipelineReport.payload.summary.attachmentDownloadOk = stages.filter(s => s.attachmentDownload?.ok).length;
+  pipelineReport.payload.summary.documentAnalysisOk = stages.filter(s => s.documentAnalysis?.ok).length;
+  pipelineReport.payload.summary.fullPipelineOk = stages.filter(s =>
+    s.access?.recruitVerifyOk && s.list?.ok && s.detail?.ok && s.attachmentDiscovery?.ok && s.attachmentDownload?.ok && s.documentAnalysis?.ok
+  ).length;
+  pipelineReport.payload.policy = 'HTTP·채용게시판 검증·목록·상세·첨부 발견·첨부 다운로드·문서 분석을 각각 독립 단계로 검증';
+  pipelineReport.payload.generatedAt = nowIso;
+  await fs.writeFile('data/pipeline-report.json', `${JSON.stringify(pipelineReport.payload, null, 2)}\n`, 'utf8');
+}
+
 await Promise.all([
   fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, ...qa }, null, 2)}\n`, 'utf8'),

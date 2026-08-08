@@ -940,6 +940,25 @@ function recordTextsForVerification(html = '', source = {}) {
 }
 
 export function verifyExtractedListAgainstVisibleRecords(html = '', source = {}, candidates = []) {
+  if (source.org === '한국전력공사' && /recruit\.kepco\.co\.kr/i.test(source.url || '')) {
+    const records = extractKepcoRecords(html, source.url);
+    const recordTitles = records.map(record => normalizeBoardKey(record.title || ''));
+    const candidateTitles = candidates.map(candidate => normalizeBoardKey(candidate.title || ''));
+    const verified = records.length > 0
+      && records.length === candidates.length
+      && recordTitles.every((title, index) => title && title === candidateTitles[index]);
+    return {
+      verified,
+      template: 'KEPCO_STATE_LI',
+      recordCount: records.length,
+      candidateCount: candidates.length,
+      matchedCount: verified ? records.length : recordTitles.filter((title,index) => title && title === candidateTitles[index]).length,
+      unmatchedTitles: verified ? [] : candidates.filter((candidate,index) => normalizeBoardKey(candidate.title || '') !== recordTitles[index]).map(candidate => candidate.title).slice(0,12),
+      recordSamples: records.slice(0,8).map(record => record.title),
+      level: verified ? 'TEMPLATE_KEPCO_STATE_LI_EXACT' : 'TEMPLATE_RECORD_MISMATCH'
+    };
+  }
+
   if (source.org === '근로복지공단'
       && /comwel\.saramin\.co\.kr\/service\/comwel\/\d+\/applicant\/apply\/recruit_default\.asp/i.test(source.url || '')
       && candidates.length === 1) {

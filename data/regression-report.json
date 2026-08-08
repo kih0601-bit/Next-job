@@ -1,51 +1,94 @@
 {
-  "generatedAt": "2026-08-08T22:10:02.275Z",
+  "generatedAt": "2026-08-08T23:45:51.311Z",
   "mode": "warning",
   "passed": false,
   "regressionCount": 1,
   "regressions": [
     {
-      "org": "한국동서발전",
-      "health": "degraded",
+      "org": "울산복지가족진흥사회서비스원",
+      "health": "failed",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국동서발전.mjs",
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.wfps.or.kr/",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.wfps.or.kr/\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.uwfdi.re.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.uwfdi.re.kr/",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.uwfdi.re.kr/\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6001 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
+            "ok": false,
+            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\n",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
         "access": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "list": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "detail": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "attachmentDiscovery": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "attachmentDownload": {
           "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "documentAnalysis": {
-          "from": true,
           "to": false,
           "change": "regressed"
+        },
+        "documentAnalysis": {
+          "from": false,
+          "to": false,
+          "change": "same"
         }
       },
       "improved": false,

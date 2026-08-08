@@ -6,11 +6,12 @@ import { discoverListingUrls } from './collectors/source-adapters.mjs';
 import { inspectListingPage } from './lib/list-pipeline.mjs';
 import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics.mjs';
 import { cleanHtml, fetchDetail, decodeHtmlEntities } from './lib/detail-parser.mjs';
+import { fetchKepcoDynamicList } from './lib/kepco-dynamic.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 
-const VERSION = '18.1-first-page-pipeline-20of20-target';
+const VERSION = '18.2-shared-dynamic-post-and-detail-evidence';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const ACCESS_TIMEOUT_MS = 18000;
@@ -155,9 +156,10 @@ function htmlFormBody(html='',formId='defaultFrm',overrides={}){
 async function fetchPostHtml(url,body,timeoutMs=22000,referer=''){
  const c=new AbortController(),timer=setTimeout(()=>c.abort(),timeoutMs);try{const r=await fetch(url,{signal:c.signal,redirect:'follow',method:'POST',headers:{...headers(referer),'content-type':'application/x-www-form-urlencoded'},body});if(!r.ok)throw new Error(`HTTP ${r.status}`);const ct=r.headers.get('content-type')||'',b=new Uint8Array(await r.arrayBuffer()),q=new TextDecoder('utf-8').decode(b.slice(0,Math.min(b.length,8192)));return{html:decodeResponseBytes(b,ct,q),status:r.status,finalUrl:r.url||url,contentType:ct};}finally{clearTimeout(timer);}
 }
-async function kepcoDynamicListing(page,source){
- if(source.org!=='한국전력공사')return null;const html=String(page?.html||'');if(!/recruit\.kepco\.co\.kr/i.test(page?.finalUrl||page?.requestedUrl||source.url||''))return null;
- const base=page.finalUrl||page.requestedUrl||source.url; if(!/\/frt\/(?:frt0001\/(?:list\.do)?|main\.do)/i.test(new URL(base).pathname)) return null; const url=new URL('/frt/frt0001/addList.do',base).href,body=htmlFormBody(html,'defaultFrm',{pageIndex:'1'});return{...await fetchPostHtml(url,body,LIST_TIMEOUT_MS,base),requestedUrl:url,requestMethod:'POST'};
+async function kepcoDynamicListing(basePage, source) {
+  const baseHtml = basePage?.html || basePage?.raw || basePage?.body || '';
+  const d = await fetchKepcoDynamicList(baseHtml, source.url, { timeoutMs: 25000, retries: 2 });
+  return { ...d, html: d.html };
 }
 
 
@@ -292,6 +294,23 @@ function classifyDetail(report) {
   if (errors.some(value => /403|forbidden/i.test(value))) return { status: 'failed', code: 'DETAIL_FORBIDDEN', reason: '상세페이지 요청이 차단됨', evidence: report.detail.samples || [] };
   if ((report.detail.samples || []).some(item => item.textLength === 0)) return { status: 'failed', code: 'DETAIL_EMPTY_BODY', reason: '상세 응답은 받았지만 본문 텍스트를 찾지 못함', evidence: report.detail.samples || [] };
   return { status: 'failed', code: 'DETAIL_VALIDATION_FAILED', reason: '상세페이지 응답이 제목·본문 검증을 통과하지 못함', evidence: report.detail.samples || [] };
+}
+
+
+function attachmentEvidenceFromHtml(html=''){
+  const out={scripts:[],onclick:[],dataAttrs:[],hiddenInputs:[]};
+  for(const m of String(html).matchAll(/<script\b[^>]*src\s*=\s*["']([^"']+)["']/gi)){
+    if(/file|ctit/i.test(m[1])) out.scripts.push(m[1]);
+  }
+  for(const m of String(html).matchAll(/\bonclick\s*=\s*["']([^"']*(?:file|down|attach)[^"']*)["']/gi)) out.onclick.push(m[1]);
+  for(const m of String(html).matchAll(/\b(data-[\w-]*(?:file|down|attach)[\w-]*)\s*=\s*["']([^"']*)["']/gi)) out.dataAttrs.push([m[1],m[2]]);
+  for(const m of String(html).matchAll(/<input\b[^>]*type\s*=\s*["']hidden["'][^>]*>/gi)){
+    const tag=m[0]; if(!/(file|attach|atch|ctit)/i.test(tag)) continue;
+    const name=tag.match(/\bname\s*=\s*["']([^"']+)["']/i)?.[1]||'';
+    const value=tag.match(/\bvalue\s*=\s*["']([^"']*)["']/i)?.[1]||'';
+    out.hiddenInputs.push([name,value]);
+  }
+  return out;
 }
 
 function classifyAttachment(report) {
@@ -473,6 +492,9 @@ async function probeSource(source, artifacts) {
       if(authoritativeDynamic){
         listingPages.splice(0, listingPages.length, authoritativeDynamic);
         artifacts.push({org:source.org,stage:'authoritative-dynamic-list',url:authoritativeDynamic.source.url,reason:'frt0001/addList.do only'});
+        try {
+          await fs.writeFile(path.join(orgDir,'list','kepco-addList-raw.html'), authoritativeDynamic.page.html || authoritativeDynamic.page.raw || authoritativeDynamic.page || '', 'utf8');
+        } catch {}
       } else {
         listingPages.splice(0, listingPages.length);
         report.list.errors.push('KEPCO authoritative dynamic-list unavailable; shell fallback blocked');
@@ -545,7 +567,15 @@ async function probeSource(source, artifacts) {
       if (detail.ok) report.detail.validated += 1;
       else report.detail.failed += 1;
       report.attachment.discovered += detail.attachments?.length || 0;
-      report.detail.samples.push({ title: candidate.title, requestedUrl: candidate.link, requestMethod: candidate.detailRequest?.method || 'GET', template: classifyDetailTemplate(candidate.link, candidate), ok: detail.ok, finalUrl: detail.finalUrl || '', textLength: detail.text?.length || 0, attachmentCount: detail.attachments?.length || 0, attachmentSignalCount: detail.attachmentSignalCount || 0, explicitNoAttachment: Boolean(detail.explicitNoAttachment), transport: detail.detailTransport || '', error: detail.error || '' });
+      try {
+          if (detail.rawHtml) {
+            const detailDir = path.join(orgDir,'detail');
+            await fs.mkdir(detailDir,{recursive:true});
+            const safeId = String(candidate.link || candidate.title || report.detail.samples.length).replace(/[^a-zA-Z0-9가-힣_-]+/g,'_').slice(-80);
+            await fs.writeFile(path.join(detailDir,`detail-raw-${safeId}.html`), detail.rawHtml,'utf8');
+          }
+        } catch {}
+        report.detail.samples.push({ title: candidate.title, requestedUrl: candidate.link, requestMethod: candidate.detailRequest?.method || 'GET', template: classifyDetailTemplate(candidate.link, candidate), ok: detail.ok, finalUrl: detail.finalUrl || '', textLength: detail.text?.length || 0, attachmentCount: detail.attachments?.length || 0, attachmentSignalCount: detail.attachmentSignalCount || 0, explicitNoAttachment: Boolean(detail.explicitNoAttachment), transport: detail.detailTransport || '', error: detail.error || '' });
       for (const file of detail.attachments || []) {
         if (report.attachment.samples.length < 8) report.attachment.samples.push({ name: file.name, type: file.type, url: file.url });
       }

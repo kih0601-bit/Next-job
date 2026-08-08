@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maxium-scale=3.0, minimum-scale=0.5, width=device-width">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="author" content="" />
+<meta name="copyright" content="" />
+<meta name="language" content="ko" />
+<meta name="description" content="울산ICT융합 컨트롤타워, 벤처기업지원, ICT산업육성, 사업공고, 입주지원안내" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="울산정보산업진흥원" />
+<meta property="og:description" content="울산ICT융합 컨트롤타워, 벤처기업지원, ICT산업육성, 사업공고, 입주지원안내" />
+<meta property="og:image" content="https://www.uipa.or.kr/webuser/img/img_meta.png" />
+
+<meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; script-src 'self'
+'unsafe-inline' 'unsafe-eval' https://*.kakao.com https://t1.daumcdn.net">
+<title>울산정보산업진흥원</title>
+
+
+<link rel="shortcut icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css?ver=1786171512">
+<link rel="stylesheet" href="https://www.uipa.or.kr/webuser/page/main.css?ver=1786171512" />
+<link rel="stylesheet" href="https://www.uipa.or.kr/webuser/page/module.css?ver=1786171512" />
+<link rel="stylesheet" href="https://www.uipa.or.kr/webuser/page/module_renew.css?ver=1786171512" />
+<link rel="stylesheet" type="text/css" href="https://www.uipa.or.kr/webuser/layout.css?ver=1786171512" />
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://www.uipa.or.kr/common/js/jquery-ui-1.11.4/jquery-ui.min.css?ver=1786171512" />
+<link rel="stylesheet" type="text/css" href="https://www.uipa.or.kr/common/js/uniform-2.1.2/inplus.css?ver=1786171512" />
+<!--
+<link rel="stylesheet" type="text/css" href="https://www.uipa.or.kr/common/js/slick/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="https://www.uipa.or.kr/common/js/slick/slick.css"/>
+ -->
+<!-- 200427  swiper 추가 -->
+<link rel="stylesheet" type="text/css" href="https://www.uipa.or.kr/common/js/animate.css?ver=1786171512" />
+<link rel="stylesheet" type="text/css" href="https://www.uipa.or.kr/common/js/swiper.css?ver=1786171512 "/>
+<link rel="stylesheet" type="text/css" href="https://www.uipa.or.kr/common/js/motion.css?ver=1786171512" />
+<!-- 200427  swiper 추가 -->
+
+<link rel="stylesheet" type="text/css" href="https://www.uipa.or.kr/webuser/notice/expansion.css" />
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/jquery-3.6.4.min.js" ></script>
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/jquery-ui-1.13.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/jquery.smenu-0.2.1_renew.min.js" ></script>
+
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/uniform-2.1.2/jquery.uniform.min.js" ></script>
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/jquery.fadeVisual-0.2.min.js"></script>
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/jquery.scarousel-0.3.2.min.js" ></script>
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/inplus.util.js" ></script>
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/inplus.ajax.js"  ></script>
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/inplus.validate.js"  ></script>
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/inplus.common.js" ></script>
+<script type="text/javascript" src="https://www.uipa.or.kr/webuser/layout.js" ></script>
+
+	<script type="text/javascript">
+		$(window).resize(function(){resizeYoutube();});
+		$(function(){resizeYoutube();});
+			function resizeYoutube(){ $("iframe").each(function(){ if( /^https?:\/\/www.youtube.com\/embed\//g.test($(this).attr("src")) ){ $(this).css("width","100%").css("max-width","1400px");  $(this).css("height",Math.ceil( parseInt($(this).css("width")) * 480 / 854 ) + "px");} }); }
+	</script>
+
+<!-- 200427 탭박스 -->
+<script>
+	$(function() {
+		$( "#recent_tabs" ).tabs();
+		$( "#recent2_tabs" ).tabs();
+	});
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+    initContent(document);
+
+    // 토글 탭
+    $("a.tab_title").on("click", function(e) {
+        $(this).parent("li").addClass("on").siblings().removeClass("on");
+        e.preventDefault();
+    });
+});
+
+var layout = "user";
+var base_uri = "https://www.uipa.or.kr";
+var layout_uri = "https://www.uipa.or.kr/webuser";
+//]]>
+</script>
+<script type="text/javascript" src="https://www.uipa.or.kr/webuser/notice/expansion.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function() {
+// GNB
+    // 모바일 메뉴
+	$(".btn_open_gnb").on("click",function(){
+		$("#gnb").addClass('on')
+	})
+	$(".btn_close_gnb").on("click",function(){
+		$("#gnb").removeClass('on')
+	});
+
+
+     // GNB
+    $("#gnb").sMenu({
+        on_menu1: "4",
+        on_menu2: "5",
+        hover_class: "hover"
+    });
+    // SNB
+    $("#snb").sMenu({
+        on_menu1: "5",
+        on_menu2: "",
+        hover_class: "hover",
+        is_snb: true
+    });
+    $("ul.tabs li").click(function () {
+        $("ul.tabs li").removeClass("on");
+        $(this).addClass("on");
+        $(".tab_content").hide();
+        $(".tab_content").removeClass("on");
+        var onTab = $(this).attr("rel");
+        $("#" + onTab).fadeIn();
+    });
+// 모바일 GNB 큰 메뉴 터치, 세부 메뉴 출력 yllee 190109
+    $(".depth-1 > a").click(function(e) {
+        var body_width = document.body.clientWidth;
+        if (body_width <= 740) {
+            $("#gnb").find("li").removeClass("on");
+            $(this).parent("li").toggleClass("on");
+            // depth2 메뉴 존재 유무 체크, 없을 경우 depth1 링크 작동 yllee 190516
+            var depth2 = $(this).parent("li").find("ul");
+            if (!$(this).hasClass("link") && depth2.length > 0) {
+                e.preventDefault();
+            }
+        }
+    });
+});
+//]]>
+
+</script>
+</head>
+<body>
+
+<script>
+$(function(){
+  $("a").each(function (index, element){
+   var href = $(this).attr("href");
+   $(this).attr("data-href", href);
+   $(this).removeAttr("href");
+   $(this).css({ cursor: 'pointer' });
+
+ });
+ $("a:not(.btn_ajax)").click(function(){
+    let url = $(this).data("href");
+    const patt = /^(http(s)?:)?\/\/(www\.)?uipa.or.kr/;
+    url = url.replace(patt, '');
+	if ( $(this).attr('target') == '_blank' ) {
+		window.open(url);
+	} else {
+		location.href = url;
+	};
+ });
+ $(".board_view .cont a").attr("target","_blank");
+
+
+});
+
+$(document).ready(function(){
+	$(".top-sch-btn").on("click",function(){
+		$(".total_sch_pop").fadeIn();
+	});
+	$(".total_sch_bg, .total_sch_close").on("click", function(){
+		$(".total_sch_pop").fadeOut();
+	});
+});
+</script>
+
+
+
+
+
+<div id="wrap">
+
+
+<div class="top-wrap"><!-- TOP -->
+	<div class="top-core">
+		<h1 class="top-logo-wrap">
+			<a href="https://www.uipa.or.kr/webuser/page/main.html" class="top-logo-btn"><img src="https://www.uipa.or.kr/webuser/img/top-logo.png" alt=""/></a>
+		</h1>
+		<div class="top-menu-wrap" id="gnb">
+			<ul class="gnbM">
+ 				  <li class="nav1">
+<!-- depth1 -->
+<a href="/webuser/page/greeting.html" title="진흥원소개">진흥원소개</a>
+<div class="depth_wrap">
+<ul class='depth-2-wrap'>
+<li class="nav1">
+<!-- depth2 -->
+<a href="/webuser/page/greeting.html" title="인사말"target="">인사말</a>
+<!-- //depth2 -->
+</li>
+<li class="nav2">
+<!-- depth2 -->
+<a href="/webuser/page/purpose.html" title="경영전략"target="">경영전략</a>
+<!-- //depth2 -->
+</li>
+<li class="nav3">
+<!-- depth2 -->
+<a href="/webuser/history/list.html" title="연혁"target="">연혁</a>
+<!-- //depth2 -->
+</li>
+<li class="nav4">
+<!-- depth2 -->
+<a href="/webuser/organization/list.html" title="조직도"target="">조직도</a>
+<!-- //depth2 -->
+</li>
+<li class="nav5">
+<!-- depth2 -->
+<a href="/webuser/page/ci.html" title="CI소개"target="">CI소개</a>
+<!-- //depth2 -->
+</li>
+<li class="nav6">
+<!-- depth2 -->
+<a href="/webuser/page/location.html" title="찾아오시는 길"target="">찾아오시는 길</a>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+<li class="nav2">
+<!-- depth1 -->
+<a href="/webuser/page/ethics_manage.html" title="열린경영">열린경영</a>
+<div class="depth_wrap">
+<ul class='depth-2-wrap'>
+<li class="nav1">
+<!-- depth2 -->
+<a href="/webuser/page/ethics_manage.html" title="윤리·인권·ESG·안전보건경영"target="">윤리·인권·ESG·안전보건경영</a>
+<!-- //depth2 -->
+</li>
+<li class="nav2">
+<!-- depth2 -->
+<a href="/webuser/page/equity.html" title="공평성 선언문"target="">공평성 선언문</a>
+<!-- //depth2 -->
+</li>
+<li class="nav3">
+<!-- depth2 -->
+<a href="/webuser/finance/list.html" title="경영공시"target="">경영공시</a>
+<!-- //depth2 -->
+</li>
+<li class="nav4">
+<!-- depth2 -->
+<a href="/webuser/clean/list.html" title="통합신고건의센터"target="">통합신고건의센터</a>
+<!-- //depth2 -->
+</li>
+<li class="nav5">
+<!-- depth2 -->
+<a href="/webuser/sexualreport/list.html" title="성희롱&middot;성폭력 온라인상담"target="">성희롱&middot;성폭력 온라인상담</a>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+<li class="nav3">
+<!-- depth1 -->
+<a href="/webuser/news/list.html" title="홍보마당">홍보마당</a>
+<div class="depth_wrap">
+<ul class='depth-2-wrap'>
+<li class="nav1">
+<!-- depth2 -->
+<a href="/webuser/news/list.html" title="보도자료"target="">보도자료</a>
+<!-- //depth2 -->
+</li>
+<li class="nav2">
+<!-- depth2 -->
+<a href="/webuser/photo/list.html" title="행사앨범"target="">행사앨범</a>
+<!-- //depth2 -->
+</li>
+<li class="nav3">
+<!-- depth2 -->
+<a href="/webuser/provideo/list.html" title="홍보자료"target="">홍보자료</a>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+<li class="nav4">
+<!-- depth1 -->
+<a href="/webuser/notice/list.html" title="알림마당">알림마당</a>
+<div class="depth_wrap">
+<ul class='depth-2-wrap'>
+<li class="nav1">
+<!-- depth2 -->
+<a href="/webuser/notice/list.html" title="공지사항"target="">공지사항</a>
+<!-- //depth2 -->
+</li>
+<li class="nav2">
+<!-- depth2 -->
+<a href="/webuser/policy/list.html" title="사업안내"target="">사업안내</a>
+<!-- //depth2 -->
+</li>
+<li class="nav3">
+<!-- depth2 -->
+<a href="/webuser/business/list.html" title="사업공고"target="">사업공고</a>
+<!-- //depth2 -->
+</li>
+<li class="nav4">
+<!-- depth2 -->
+<a href="/webuser/bidding/list.html" title="입찰공고"target="">입찰공고</a>
+<!-- //depth2 -->
+</li>
+<li class="nav5">
+<!-- depth2 -->
+<a href="/webuser/recruit/list.html" title="채용공고"target="">채용공고</a>
+<!-- //depth2 -->
+</li>
+<li class="nav6">
+<!-- depth2 -->
+<a href="/webuser/application/intro.html" title="온라인 신청·접수"target="">온라인 신청·접수</a>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+<li class="nav5">
+<!-- depth1 -->
+<a href="/webuser/company/list.html" title="정보마당">정보마당</a>
+<div class="depth_wrap">
+<ul class='depth-2-wrap'>
+<li class="nav1">
+<!-- depth2 -->
+<a href="/webuser/company/list.html" title="IT/CT기업현황"target="">IT/CT기업현황</a>
+<!-- //depth2 -->
+</li>
+<li class="nav2">
+<!-- depth2 -->
+<a href="/webuser/education/list.html" title="교육·세미나"target="">교육·세미나</a>
+<!-- //depth2 -->
+</li>
+<li class="nav3">
+<!-- depth2 -->
+<a href="/webuser/statistics/list.html" title="통계·정책"target="">통계·정책</a>
+<!-- //depth2 -->
+</li>
+<li class="nav4">
+<!-- depth2 -->
+<a href="/webuser/event/list.html" title="주요행사"target="">주요행사</a>
+<!-- //depth2 -->
+</li>
+<li class="nav5">
+<!-- depth2 -->
+<a href="/webuser/faq/list.html" title="자주하는 질문"target="">자주하는 질문</a>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+<li class="nav6">
+<!-- depth1 -->
+<a href="/webuser/page/facility_main.html" title="시설안내/신청">시설안내/신청</a>
+<div class="depth_wrap">
+<ul class='depth-2-wrap'>
+<li><span class="dep_sec">시설안내</span></li><li>
+<!-- depth2 -->
+<a href="/webuser/page/facility_main.html" title="시설안내">시설안내</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/venture_introduction.html" title="조선해양 하이테크타운">조선해양 하이테크타운</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/3d.html" title="3D프린팅 벤처집적 지식산업센터">3D프린팅 벤처집적 지식산업센터</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/meta_center.html" title="울산 메타버스 지원센터">울산 메타버스 지원센터</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/content_support.html" title="울산콘텐츠기업지원센터">울산콘텐츠기업지원센터</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/ulsan_game.html" title="울산 글로벌 게임센터">울산 글로벌 게임센터</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/uckl.html" title="울산 콘텐츠 코리아랩">울산 콘텐츠 코리아랩</a>
+<!-- //depth2 -->
+</li>
+</ul>
+<ul class='depth-2-wrap'>
+<li><span class="dep_sec">운영시설</span></li><li>
+<!-- depth2 -->
+<a href="/webuser/page/usc_intro.html" title="울산 정보보호 지원센터">울산 정보보호 지원센터</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/taehwaship.html" title="울산태화호">울산태화호</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/ship_main.html" title="선박통합데이터센터">선박통합데이터센터</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/uforum.html" title="4차산업혁명 U포럼">4차산업혁명 U포럼</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/swindex.html" title="조선해양 SW융합클러스터">조선해양 SW융합클러스터</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/drone.html" title="초경량 비행장치(드론) 공역지">초경량 비행장치(드론) 공역지</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/kolas.html" title="KOLAS SW시험실">KOLAS SW시험실</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/uisedu/list.html" title="디지털인재양성">디지털인재양성</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/ulsan_ax.html" title="울산 제조 AX랩">울산 제조 AX랩</a>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+  			</ul>
+		</div>
+
+		<div class="top-util-wrap">
+			<a href="javascript:void(0)" class="top-util-btn top-sch-btn">
+				<img src="https://www.uipa.or.kr/webuser/page/img/tsch-btn-icon.png" alt=""/>
+			</a>
+			<a href="javascript:void(0)" class="top-util-btn top-menu-btn">
+				<img src="https://www.uipa.or.kr/webuser/page/img/tmenu-btn-icon.png" alt=""/>
+			</a>
+		</div>
+	</div>
+
+		<div class="nav_bg">
+			<div  class="nav_inner">
+			</div>
+		</div>
+</div>
+
+
+<div class="total_gnb_pop"><!-- TOTAL -->
+	<div class="total_gnb_wrap">
+		<div class="total_gnb_core">
+			<div class="total_top_wrap">
+				<div class="total_top_core">
+					<div class="total_logo">
+						<img src="https://www.uipa.or.kr/webuser/img/top-logo.png" alt=""/>
+					</div>
+					<a class="total_close_btn">
+						<span></span>
+						<span></span>
+					</a>
+				</div>
+			</div>
+			<div class="total_cont_wrap">
+				<ul class="gnbM">
+					  <li class="nav1">
+<!-- depth1 -->
+<a href="/webuser/page/greeting.html" title="진흥원소개">진흥원소개</a>
+<div class="depth_wrap">
+<ul>
+<li class="nav1">
+<!-- depth2 -->
+<a href="/webuser/page/greeting.html" title="인사말"target="">인사말</a>
+<!-- //depth2 -->
+</li>
+<li class="nav2">
+<!-- depth2 -->
+<a href="/webuser/page/purpose.html" title="경영전략"target="">경영전략</a>
+<!-- //depth2 -->
+</li>
+<li class="nav3">
+<!-- depth2 -->
+<a href="/webuser/history/list.html" title="연혁"target="">연혁</a>
+<!-- //depth2 -->
+</li>
+<li class="nav4">
+<!-- depth2 -->
+<a href="/webuser/organization/list.html" title="조직도"target="">조직도</a>
+<!-- //depth2 -->
+</li>
+<li class="nav5">
+<!-- depth2 -->
+<a href="/webuser/page/ci.html" title="CI소개"target="">CI소개</a>
+<!-- //depth2 -->
+</li>
+<li class="nav6">
+<!-- depth2 -->
+<a href="/webuser/page/location.html" title="찾아오시는 길"target="">찾아오시는 길</a>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+<li class="nav2">
+<!-- depth1 -->
+<a href="/webuser/page/ethics_manage.html" title="열린경영">열린경영</a>
+<div class="depth_wrap">
+<ul>
+<li class="nav1">
+<!-- depth2 -->
+<a href="/webuser/page/ethics_manage.html" title="윤리·인권·ESG·안전보건경영"target="">윤리·인권·ESG·안전보건경영</a>
+<ul>
+<li class="nav1">
+<!-- depth3 -->
+<a href="/webuser/page/ethics_manage.html" title="윤리​경영">윤리​경영</a>
+<!-- //depth3 -->
+</li>
+<li class="nav2">
+<!-- depth3 -->
+<a href="/webuser/page/human_right.html" title="인권경영">인권경영</a>
+<!-- //depth3 -->
+</li>
+<li class="nav3">
+<!-- depth3 -->
+<a href="/webuser/page/esg.html" title="ESG경영">ESG경영</a>
+<!-- //depth3 -->
+</li>
+<li class="nav4">
+<!-- depth3 -->
+<a href="/webuser/page/safe_vision.html" title="안전보건경영">안전보건경영</a>
+<!-- //depth3 -->
+</li>
+</ul>
+<!-- //depth2 -->
+</li>
+<li class="nav2">
+<!-- depth2 -->
+<a href="/webuser/page/equity.html" title="공평성 선언문"target="">공평성 선언문</a>
+<!-- //depth2 -->
+</li>
+<li class="nav3">
+<!-- depth2 -->
+<a href="/webuser/finance/list.html" title="경영공시"target="">경영공시</a>
+<ul>
+<li class="nav1">
+<!-- depth3 -->
+<a href="/webuser/finance/list.html" title="경영목표와 예산 및 운영계획">경영목표와 예산 및 운영계획</a>
+<!-- //depth3 -->
+</li>
+<li class="nav2">
+<!-- depth3 -->
+<a href="/webuser/settlement/list.html" title="결산서">결산서</a>
+<!-- //depth3 -->
+</li>
+<li class="nav3">
+<!-- depth3 -->
+<a href="/webuser/manpower/list.html" title="임원 및 운영인력">임원 및 운영인력</a>
+<!-- //depth3 -->
+</li>
+<li class="nav4">
+<!-- depth3 -->
+<a href="/webuser/laborcosts/list.html" title="인건비예산과 집행현황">인건비예산과 집행현황</a>
+<!-- //depth3 -->
+</li>
+<li class="nav5">
+<!-- depth3 -->
+<a href="/webuser/achieve/list.html" title="성과계약서상 계약달성정도">성과계약서상 계약달성정도</a>
+<!-- //depth3 -->
+</li>
+<li class="nav6">
+<!-- depth3 -->
+<a href="/webuser/evaluation/list.html" title="경영실적 평가결과">경영실적 평가결과</a>
+<!-- //depth3 -->
+</li>
+<li class="nav7">
+<!-- depth3 -->
+<a href="/webuser/audit/list.html" title="외부감사 결과조치">외부감사 결과조치</a>
+<!-- //depth3 -->
+</li>
+<li class="nav8">
+<!-- depth3 -->
+<a href="/webuser/contract/list.html" title="수의계약내역">수의계약내역</a>
+<!-- //depth3 -->
+</li>
+<li class="nav9">
+<!-- depth3 -->
+<a href="/webuser/contract_bid/list.html" title="입찰계약내역">입찰계약내역</a>
+<!-- //depth3 -->
+</li>
+<li class="nav10">
+<!-- depth3 -->
+<a href="/webuser/expense/list.html" title="업무추진비">업무추진비</a>
+<!-- //depth3 -->
+</li>
+<li class="nav11">
+<!-- depth3 -->
+<a href="/webuser/benefit/list.html" title="복리후생비">복리후생비</a>
+<!-- //depth3 -->
+</li>
+<li class="nav12">
+<!-- depth3 -->
+<a href="/webuser/manual/list.html" title="규정집">규정집</a>
+<!-- //depth3 -->
+</li>
+<li class="nav13">
+<!-- depth3 -->
+<a href="/webuser/humanright_report/list.html" title="인권경영 보고">인권경영 보고</a>
+<!-- //depth3 -->
+</li>
+</ul>
+<!-- //depth2 -->
+</li>
+<li class="nav4">
+<!-- depth2 -->
+<a href="/webuser/clean/list.html" title="통합신고건의센터"target="">통합신고건의센터</a>
+<!-- //depth2 -->
+</li>
+<li class="nav5">
+<!-- depth2 -->
+<a href="/webuser/sexualreport/list.html" title="성희롱&middot;성폭력 온라인상담"target="">성희롱&middot;성폭력 온라인상담</a>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+<li class="nav3">
+<!-- depth1 -->
+<a href="/webuser/news/list.html" title="홍보마당">홍보마당</a>
+<div class="depth_wrap">
+<ul>
+<li class="nav1">
+<!-- depth2 -->
+<a href="/webuser/news/list.html" title="보도자료"target="">보도자료</a>
+<!-- //depth2 -->
+</li>
+<li class="nav2">
+<!-- depth2 -->
+<a href="/webuser/photo/list.html" title="행사앨범"target="">행사앨범</a>
+<!-- //depth2 -->
+</li>
+<li class="nav3">
+<!-- depth2 -->
+<a href="/webuser/provideo/list.html" title="홍보자료"target="">홍보자료</a>
+<ul>
+<li class="nav1">
+<!-- depth3 -->
+<a href="/webuser/provideo/list.html" title="홍보영상">홍보영상</a>
+<!-- //depth3 -->
+</li>
+<li class="nav2">
+<!-- depth3 -->
+<a href="/webuser/brochure/list.html" title="브로슈어">브로슈어</a>
+<!-- //depth3 -->
+</li>
+</ul>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+<li class="nav4">
+<!-- depth1 -->
+<a href="/webuser/notice/list.html" title="알림마당">알림마당</a>
+<div class="depth_wrap">
+<ul>
+<li class="nav1">
+<!-- depth2 -->
+<a href="/webuser/notice/list.html" title="공지사항"target="">공지사항</a>
+<!-- //depth2 -->
+</li>
+<li class="nav2">
+<!-- depth2 -->
+<a href="/webuser/policy/list.html" title="사업안내"target="">사업안내</a>
+<!-- //depth2 -->
+</li>
+<li class="nav3">
+<!-- depth2 -->
+<a href="/webuser/business/list.html" title="사업공고"target="">사업공고</a>
+<!-- //depth2 -->
+</li>
+<li class="nav4">
+<!-- depth2 -->
+<a href="/webuser/bidding/list.html" title="입찰공고"target="">입찰공고</a>
+<!-- //depth2 -->
+</li>
+<li class="nav5">
+<!-- depth2 -->
+<a href="/webuser/recruit/list.html" title="채용공고"target="">채용공고</a>
+<!-- //depth2 -->
+</li>
+<li class="nav6">
+<!-- depth2 -->
+<a href="/webuser/application/intro.html" title="온라인 신청·접수"target="">온라인 신청·접수</a>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+<li class="nav5">
+<!-- depth1 -->
+<a href="/webuser/company/list.html" title="정보마당">정보마당</a>
+<div class="depth_wrap">
+<ul>
+<li class="nav1">
+<!-- depth2 -->
+<a href="/webuser/company/list.html" title="IT/CT기업현황"target="">IT/CT기업현황</a>
+<!-- //depth2 -->
+</li>
+<li class="nav2">
+<!-- depth2 -->
+<a href="/webuser/education/list.html" title="교육·세미나"target="">교육·세미나</a>
+<!-- //depth2 -->
+</li>
+<li class="nav3">
+<!-- depth2 -->
+<a href="/webuser/statistics/list.html" title="통계·정책"target="">통계·정책</a>
+<!-- //depth2 -->
+</li>
+<li class="nav4">
+<!-- depth2 -->
+<a href="/webuser/event/list.html" title="주요행사"target="">주요행사</a>
+<!-- //depth2 -->
+</li>
+<li class="nav5">
+<!-- depth2 -->
+<a href="/webuser/faq/list.html" title="자주하는 질문"target="">자주하는 질문</a>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+<li class="nav6">
+<!-- depth1 -->
+<a href="/webuser/page/facility_main.html" title="시설안내/신청">시설안내/신청</a>
+<div class="depth_wrap">
+<ul>
+<li><span class="dep_sec">시설안내</span></li><li>
+<!-- depth2 -->
+<a href="/webuser/page/facility_main.html" title="시설안내">시설안내</a>
+<ul>
+<li class="nav1">
+<!-- depth3 -->
+<a href="/webuser/page/facility_main.html" title="시설안내/신청">시설안내/신청</a>
+<!-- //depth3 -->
+</li>
+</ul>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/venture_introduction.html" title="조선해양 하이테크타운">조선해양 하이테크타운</a>
+<ul>
+<li class="nav1">
+<!-- depth3 -->
+<a href="/webuser/page/venture_introduction.html" title="조선해양 하이테크타운 소개">조선해양 하이테크타운 소개</a>
+<!-- //depth3 -->
+</li>
+<li class="nav2">
+<!-- depth3 -->
+<a href="/webuser/page/hightech_occupancy.html" title="입주안내">입주안내</a>
+<!-- //depth3 -->
+</li>
+<li class="nav3">
+<!-- depth3 -->
+<a href="/webuser/venture_occupancy/write.html" title="입주신청">입주신청</a>
+<!-- //depth3 -->
+</li>
+<li class="nav4">
+<!-- depth3 -->
+<a href="/webuser/page/venture_reservation.html" title="공공시설 이용안내">공공시설 이용안내</a>
+<!-- //depth3 -->
+</li>
+<li class="nav5">
+<!-- depth3 -->
+<a href="/webuser/hightech_public/list.html" title="공공시설 이용신청">공공시설 이용신청</a>
+<!-- //depth3 -->
+</li>
+</ul>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/3d.html" title="3D프린팅 벤처집적 지식산업센터">3D프린팅 벤처집적 지식산업센터</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/meta_center.html" title="울산 메타버스 지원센터">울산 메타버스 지원센터</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/content_support.html" title="울산콘텐츠기업지원센터">울산콘텐츠기업지원센터</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/ulsan_game.html" title="울산 글로벌 게임센터">울산 글로벌 게임센터</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/uckl.html" title="울산 콘텐츠 코리아랩">울산 콘텐츠 코리아랩</a>
+<!-- //depth2 -->
+</li>
+</ul>
+<ul>
+<li><span class="dep_sec">운영시설</span></li><li>
+<!-- depth2 -->
+<a href="/webuser/page/usc_intro.html" title="울산 정보보호 지원센터">울산 정보보호 지원센터</a>
+<ul>
+<li class="nav1">
+<!-- depth3 -->
+<a href="/webuser/page/usc_intro.html" title="센터소개">센터소개</a>
+<!-- //depth3 -->
+</li>
+<li class="nav2">
+<!-- depth3 -->
+<a href="/webuser/page/usccenter.html" title="캐릭터/CI소개">캐릭터/CI소개</a>
+<!-- //depth3 -->
+</li>
+<li class="nav3">
+<!-- depth3 -->
+<a href="/webuser/usc_notice/list.html" title="공지사항">공지사항</a>
+<!-- //depth3 -->
+</li>
+<li class="nav4">
+<!-- depth3 -->
+<a href="/webuser/usc_schedule/list.html" title="교육/세미나 일정">교육/세미나 일정</a>
+<!-- //depth3 -->
+</li>
+<li class="nav5">
+<!-- depth3 -->
+<a href="/webuser/usc_security/list.html" title="사이버보안 동향">사이버보안 동향</a>
+<!-- //depth3 -->
+</li>
+<li class="nav6">
+<!-- depth3 -->
+<a href="/webuser/usc_law/list.html" title="법령자료실">법령자료실</a>
+<!-- //depth3 -->
+</li>
+<li class="nav7">
+<!-- depth3 -->
+<a href="/webuser/usc_refer/list.html" title="참고자료실">참고자료실</a>
+<!-- //depth3 -->
+</li>
+<li class="nav8">
+<!-- depth3 -->
+<a href="/webuser/usc_form/list.html" title="서식자료실">서식자료실</a>
+<!-- //depth3 -->
+</li>
+<li class="nav9">
+<!-- depth3 -->
+<a href="/webuser/usc_educate/list.html" title="교육자료실">교육자료실</a>
+<!-- //depth3 -->
+</li>
+<li class="nav10">
+<!-- depth3 -->
+<a href="/webuser/usc_protect/list.html" title="정보보호 서비스">정보보호 서비스</a>
+<!-- //depth3 -->
+</li>
+</ul>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/taehwaship.html" title="울산태화호">울산태화호</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/ship_main.html" title="선박통합데이터센터">선박통합데이터센터</a>
+<ul>
+<li class="nav1">
+<!-- depth3 -->
+<a href="/webuser/page/ship_main.html" title="선박통합데이터센터 소개">선박통합데이터센터 소개</a>
+<!-- //depth3 -->
+</li>
+<li class="nav2">
+<!-- depth3 -->
+<a href="/webuser/page/ship_move.html" title="입주안내">입주안내</a>
+<!-- //depth3 -->
+</li>
+<li class="nav3">
+<!-- depth3 -->
+<a href="/webuser/page/ship_info.html" title="공공시설 이용안내">공공시설 이용안내</a>
+<!-- //depth3 -->
+</li>
+<li class="nav4">
+<!-- depth3 -->
+<a href="/webuser/page/ship_order.html" title="공공시설 이용신청">공공시설 이용신청</a>
+<!-- //depth3 -->
+</li>
+</ul>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/uforum.html" title="4차산업혁명 U포럼">4차산업혁명 U포럼</a>
+<ul>
+<li class="nav1">
+<!-- depth3 -->
+<a href="/webuser/page/uforum.html" title="포럼소개">포럼소개</a>
+<!-- //depth3 -->
+</li>
+<li class="nav2">
+<!-- depth3 -->
+<a href="/webuser/sub_division/list.html" title="분과활동">분과활동</a>
+<!-- //depth3 -->
+</li>
+<li class="nav3">
+<!-- depth3 -->
+<a href="/webuser/uforum_notice/list.html" title="공지사항">공지사항</a>
+<!-- //depth3 -->
+</li>
+<li class="nav4">
+<!-- depth3 -->
+<a href="/webuser/uforum_news/list.html" title="뉴스/자료실">뉴스/자료실</a>
+<!-- //depth3 -->
+</li>
+</ul>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/swindex.html" title="조선해양 SW융합클러스터">조선해양 SW융합클러스터</a>
+<ul>
+<li class="nav1">
+<!-- depth3 -->
+<a href="/webuser/page/swindex.html" title="조선해양  SW융합클러스터">조선해양  SW융합클러스터</a>
+<!-- //depth3 -->
+</li>
+<li class="nav2">
+<!-- depth3 -->
+<a href="/webuser/page/swcluster.html" title="사업소개">사업소개</a>
+<!-- //depth3 -->
+</li>
+<li class="nav3">
+<!-- depth3 -->
+<a href="/webuser/page/cluster_story.html" title="사업내용">사업내용</a>
+<!-- //depth3 -->
+</li>
+<li class="nav4">
+<!-- depth3 -->
+<a href="/webuser/business/list.html?sch_bd_category=13" title="사업공고">사업공고</a>
+<!-- //depth3 -->
+</li>
+<li class="nav5">
+<!-- depth3 -->
+<a href="/webuser/sweducation/list.html" title="행사일정">행사일정</a>
+<!-- //depth3 -->
+</li>
+<li class="nav6">
+<!-- depth3 -->
+<a href="/webuser/swindustry/list.html" title="산업동향">산업동향</a>
+<!-- //depth3 -->
+</li>
+<li class="nav7">
+<!-- depth3 -->
+<a href="/webuser/swvideo/list.html" title="사업정보">사업정보</a>
+<!-- //depth3 -->
+</li>
+<li class="nav8">
+<!-- depth3 -->
+<a href="/webuser/swnewsletter/list.html" title="뉴스레터/웹진">뉴스레터/웹진</a>
+<!-- //depth3 -->
+</li>
+<li class="nav9">
+<!-- depth3 -->
+<a href="/webuser/free/list.html" title="자유게시판">자유게시판</a>
+<!-- //depth3 -->
+</li>
+</ul>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/drone.html" title="초경량 비행장치(드론) 공역지">초경량 비행장치(드론) 공역지</a>
+<ul>
+<li class="nav1">
+<!-- depth3 -->
+<a href="/webuser/page/drone.html" title="공역지 소개">공역지 소개</a>
+<!-- //depth3 -->
+</li>
+<li class="nav2">
+<!-- depth3 -->
+<a href="/webuser/page/drone_02.html " title="이용안내">이용안내</a>
+<!-- //depth3 -->
+</li>
+<li class="nav3">
+<!-- depth3 -->
+<a href="/webuser/drone/list.html" title="신청하기">신청하기</a>
+<!-- //depth3 -->
+</li>
+<li class="nav4">
+<!-- depth3 -->
+<a href="/webuser/page/drone_map.html" title="오시는 길">오시는 길</a>
+<!-- //depth3 -->
+</li>
+</ul>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/kolas.html" title="KOLAS SW시험실">KOLAS SW시험실</a>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/uisedu/list.html" title="디지털인재양성">디지털인재양성</a>
+<ul>
+<li class="nav1">
+<!-- depth3 -->
+<a href="/webuser/uisedu/list.html" title="교육일정">교육일정</a>
+<!-- //depth3 -->
+</li>
+<li class="nav2">
+<!-- depth3 -->
+<a href="/webuser/eduad/list.html" title="교육홍보">교육홍보</a>
+<!-- //depth3 -->
+</li>
+<li class="nav3">
+<!-- depth3 -->
+<a href="/webuser/eduinfo/list.html " title="교육안내">교육안내</a>
+<!-- //depth3 -->
+</li>
+<li class="nav4">
+<!-- depth3 -->
+<a href="/webuser/edunotice/list.html" title="교육공고">교육공고</a>
+<!-- //depth3 -->
+</li>
+</ul>
+<!-- //depth2 -->
+</li>
+<li>
+<!-- depth2 -->
+<a href="/webuser/page/ulsan_ax.html" title="울산 제조 AX랩">울산 제조 AX랩</a>
+<!-- //depth2 -->
+</li>
+</ul>
+</div>
+<!-- //depth1 -->
+</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="total_gnb_bg"></div>
+</div>
+<div class="total_sch_pop"><!-- 상단검색 -->
+	<div class="total_sch_wrap">
+		<div class="total_sch_core">
+			<div class="total_sch_tit">
+				SEARCH
+			</div>
+			<div class="total_sch_cont">
+				<div class="form-sch-wrap">
+					<form name="frm_top_search" id="frm_top_search" action="/webuser/page/search.html" method="get">
+					<div class="form-sch-write">
+						<div class="form-sch-txt">
+							<input type="text" name="t_sch_text" value="" placeholder="검색어를 입력해주세요."/>
+						</div>
+						<input type="submit" class="form-sch-btn" value=""/>
+					</div>
+					</form>
+					<div class="form-sch-recomend">
+						<dl>
+							<dt>
+								<span>추천</span>
+							</dt>
+							<dd>
+								<a href="/webuser/page/search.html?t_sch_text=%EC%B0%BD%EC%97%85+%ED%88%AC%EC%9E%90">#창업 투자</a>
+								<a href="/webuser/page/search.html?t_sch_text=AI">#AI</a>
+								<a href="/webuser/page/search.html?t_sch_text=%EB%B2%A4%EC%B2%98">#벤처</a>
+								<a href="/webuser/page/search.html?t_sch_text=%EC%8A%A4%EB%A7%88%ED%8A%B8'">#스마트</a>
+								<a href="/webuser/page/search.html?t_sch_text=%EB%94%94%EC%A7%80%ED%84%B8">#디지털</a>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a href="javascript:void(0)" class="total_sch_close"><span></span><span></span></a>
+	<div class="total_sch_bg"></div>
+</div>
+
+
+         <div id="container">
+        <h2 class="hidden">본문영역</h2>
+        <div class="containerWrap ">
+
+            <div id="aside">
+                <h3 class="hidden">주변영역</h3>
+                <a href="#content" class="accessibility">주변영역 건너뛰기</a>
+                <!-- snb -->
+                <div id="snb">
+					<h4 class="snb_click m_hidden"><span>알림마당</span></h4>
+					<button onclick="toggleSubHeader()" id="btn-toggle-lnb" class="pc_hidden snb_click">
+						알림마당<span class="h4_btn"><i class="xi-angle-down"></i></span>
+					</button>
+                     <ul>
+                        	                        <!--<li>
+ 							<span class="dep_sec_snb">시설안내</span>
+							 </li>-->
+ 							<!--<li>
+ 								<a href="/webuser/page/3dprint.html" title="3D프린팅인력사업단">3D프린팅인력사업단</a>
+ 							</li>
+ 							<li>
+ 								<a href="/webuser/page/vr.html" title="울산 VR·AR 제작거점센터">울산 VR·AR 제작거점센터</a>
+ 							</li>
+ 							<li>
+ 								<a href="/webuser/page/uckl.html" title="울산콘텐츠코리아랩">울산콘텐츠코리아랩</a>
+ 							</li>
+ 							<li>
+ 								<a href="/webuser/page/ursc.html" title="울산유틸리티성자원공유센터">울산유틸리티성자원공유센터</a>
+ 							</li>
+ 							<li>
+ 								<a href="/webuser/page/3d.html" title="벤처집적지식산업센터">벤처집적지식산업센터</a>
+ 							</li>-->
+ 							<!--<li>
+ 								<span  class="dep_sec_snb">운영시설</span>
+ 							</li>-->
+ 							<!--<li>
+ 								<a href="/webuser/page/venture_introduction.html" title="하이테크타운">하이테크타운</a>
+ 							</li>
+ 							<li>
+ 								<a href="/webuser/page/uscc.html" title="울산정보보호지원센터">울산정보보호지원센터</a>
+ 							</li>
+ 							<li>
+ 								<a href="/webuser/page/swpr.html" title="조선해양SW융합클러스터">조선해양SW융합클러스터</a>
+ 							</li>
+ 							<li>
+ 								<a href="/webuser/page/uforum.html" title="4차산업혁명U포럼">4차산업혁명U포럼</a>
+ 							</li>
+ 							<li>
+ 								<a href="/webuser/page/drone.html" title="초경량비행장치(드론)공역지">초경량비행장치(드론)공역지</a>
+ 							</li>
+ 							<li>
+ 								<a href="/webuser/venture_reservation/list.html" title="벤처빌딩">벤처빌딩</a>
+ 							</li>-->
+                                                <li class="nav1" >
+<!-- depth1 -->
+<a href="/webuser/notice/list.html" title="공지사항">공지사항</a>
+<!-- //depth1 -->
+</li>
+<li class="nav2" >
+<!-- depth1 -->
+<a href="/webuser/policy/list.html" title="사업안내">사업안내</a>
+<!-- //depth1 -->
+</li>
+<li class="nav3" >
+<!-- depth1 -->
+<a href="/webuser/business/list.html" title="사업공고">사업공고</a>
+<!-- //depth1 -->
+</li>
+<li class="nav4" >
+<!-- depth1 -->
+<a href="/webuser/bidding/list.html" title="입찰공고">입찰공고</a>
+<!-- //depth1 -->
+</li>
+<li class="nav5" >
+<!-- depth1 -->
+<a href="/webuser/recruit/list.html" title="채용공고">채용공고</a>
+<!-- //depth1 -->
+</li>
+<li class="nav6" >
+<!-- depth1 -->
+<a href="/webuser/application/intro.html" title="온라인 신청·접수">온라인 신청·접수</a>
+<!-- //depth1 -->
+</li>
+                                                                                              </ul>
+                </div>
+                <!-- //snb -->
+            </div>
+
+
+			<script>
+				$(".ssnb_more_btn").on("click", function(){
+					$(this).next(".ssnb_list_wrap").slideToggle();
+				});
+			</script>
+			
+
+
+
+
+            <!-- //aside -->
+            <!-- content -->
+            <div id="content">
+                <h3>채용공고</h3>
+                <div id="title_path">
+                    <a href="https://www.uipa.or.kr/webuser/page/main.html">Home</a><span class="arrow">&gt;</span><a href="/webuser/notice/list.html" title="알림마당">알림마당</a><span class="arrow">&gt;</span><a href="/webuser/recruit/list.html" title="채용공고">채용공고</a>                </div>
+                <div id="article">
+             <!-- board --><!-- board_view -->
+<div class="board_view">
+    <dl>
+    <dt>
+                울산정보산업진흥원 2026년 4차 직원 채용 서류전형 합격자 공고        <span>2026.06.30</span>
+    </dt>
+            <dd class="etc">
+            기간 : 2026.06.30 09:00             ~ 2026.07.11 09:00            <strong class="bd_state_E">종료</strong>        </dd>
+            <dd class="cont">
+                <div>
+            <p><img src="https://www.uipa.or.kr/data/upload/board/2/24381/a10bb33259687be89945473f61909fc0.jpg" title="a10bb33259687be89945473f61909fc0.jpg" alt="a10bb33259687be89945473f61909fc0.jpg" /><br style="clear:both;" /><img src="https://www.uipa.or.kr/data/upload/board/2/24381/efd891b4aa8ed11d0d95a6024a4a889a.jpg" title="efd891b4aa8ed11d0d95a6024a4a889a.jpg" alt="efd891b4aa8ed11d0d95a6024a4a889a.jpg" /><br style="clear:both;" /><img src="https://www.uipa.or.kr/data/upload/board/2/24381/2763184b5117f9c71aa6fe3a9e42c910.jpg" title="2763184b5117f9c71aa6fe3a9e42c910.jpg" alt="2763184b5117f9c71aa6fe3a9e42c910.jpg" /><br style="clear:both;" /><img src="https://www.uipa.or.kr/data/upload/board/2/24381/a165734c08ebfb5b81d73eba3360152b.jpg" title="a165734c08ebfb5b81d73eba3360152b.jpg" alt="a165734c08ebfb5b81d73eba3360152b.jpg" /><br style="clear:both;" /> </p>        </div>
+            </dd>
+    </dl>
+    <!-- view_paging -->
+    <div class="view_paging">
+        <dl class="prev">
+        <dt>이전글</dt>
+        <dd>
+                            <a href="./view.html?bd_id=24388&page=">울산정보산업진흥원 2026년 3차 직원 채용 최종합격자 공고</a>
+                    </dd>
+        </dl>
+        <dl class="next">
+        <dt>다음글</dt>
+        <dd>
+                            <a href="./view.html?bd_id=24321&page=">울산정보산업진흥원 2026년 3차 직원 채용 면접전형 합격자 공고</a>
+                    </dd>
+        </dl>
+    </div>
+    <!-- //view_paging -->
+
+    <!-- button -->
+    <div class="button">
+        <div class="left">
+            <span class="btn_set"><a href="./list.html?page=">목록</a></span>
+        </div>
+    </div>
+    <!-- //button -->
+
+</div>
+<!-- //board_view -->
+<!-- //board -->
+            					</div>
+				<!-- //article -->
+				</div>
+				<!-- //content -->
+
+				</div>
+			<!-- containerWrap -->
+			</div>
+			<!-- //container -->
+              
+
+<div class="footer-wrap"><!-- FOOTER -->
+	<div class="footer-related-wrap">
+		<div class="footer-related-core">
+			<div class="footer-related-top">
+				<div class="footer-related-tit">
+					관련사이트
+				</div>
+				<div class="footer-related-etc">
+					<a href="javascript:void(0)" class="footer-related-move footer-related-prev"></a>
+					<a href="javascript:void(0)" class="footer-related-move footer-related-stop"></a>
+					<a href="javascript:void(0)" class="footer-related-move footer-related-play"></a>
+					<a href="javascript:void(0)" class="footer-related-move footer-related-next"></a>
+				</div>
+			</div>
+			<div class="footer-related-cont">
+				<div class="footer-related-slider swiper">
+					<div class="swiper-wrapper">
+						<a target="_blank" title="새창" href="http://www.nipa.kr" class="swiper-slide">	
+							<img src="https://uipa.or.kr/data/upload/carousel/2/26/089fefc81490a5b2a7bcb2b7afdff68b_thumb_150x43.gif" alt="nipa">
+						</a>
+						<a target="_blank" title="새창" href="http://www.uwfdi.re.kr" class="swiper-slide">
+							<img src="https://uipa.or.kr/data/upload/carousel/3/34/794b38e1ff3a8ffff0af01c6f302ace6_thumb_150x43.jpg" alt="울산여성가족개발원의 이미지">
+						</a>
+						<a target="_blank" title="새창" href="http://www.udi.re.kr" class="swiper-slide">
+							<img src="https://uipa.or.kr/data/upload/carousel/3/35/9dd3f124c3cc8deb92b31cb20d419185_thumb_150x43.jpg" alt="울산발전연구원의 이미지">
+						</a>
+						<a target="_blank" title="새창" href="http://www.umca.co.kr" class="swiper-slide">
+							<img src="https://uipa.or.kr/data/upload/carousel/3/36/085db15d57eb113cf69594ce45bf9977_thumb_150x43.png" alt="울산도시공사의 이미지">
+						</a>
+						<a target="_blank" title="새창" href="http://uic.or.kr/" class="swiper-slide">
+							<img src="https://uipa.or.kr/data/upload/carousel/3/37/9395efd6de4bb47ab2fa38ae9bd5a968_thumb_150x43.png" alt="울산시설공단의 이미지">
+						</a>
+						<a target="_blank" title="새창" href="http://utp.or.kr" class="swiper-slide">
+							<img src="https://uipa.or.kr/data/upload/carousel/3/38/0cb90cc058391dbdde6dbd9ebdfe4c13_thumb_150x43.png" alt="울산테크노파크의 이미지">
+						</a>
+						<a target="_blank" title="새창" href="http://1398.acrc.go.kr/case/ISGAcase" class="swiper-slide">
+							<img src="https://uipa.or.kr/data/upload/carousel/4/41/bec277d99157a06c7080fcc569e2dee4_thumb_150x43.png" alt="청탁금지법 통합검색의 이미지">
+						</a>
+						<a target="_blank" title="새창" href="http://www.ulsan.go.kr/" class="swiper-slide">
+							<img src="https://uipa.or.kr/data/upload/carousel/6/61/920ad3b101b193bac806193dda438229_thumb_150x43.png" alt="울산광역시">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-info-wrap">
+		<div class="footer-info-core">
+			<div class="footer-logo">
+				<img src="https://www.uipa.or.kr/webuser/img/f-logo.png" alt="울산정보산업진흥원"/>
+			</div>
+			<div class="footer-etc-wrap">
+				<div class="footer-etc-core">
+					<a href="https://www.uipa.or.kr/webuser/page/privacy.html" class="footer-etc-btn">
+						개인정보처리방침
+					</a>
+					<a href="https://www.uipa.or.kr/webuser/page/prevent.html" class="footer-etc-btn">
+						이메일무단수집거부
+					</a>
+					<a href="https://www.uipa.or.kr/webuser/organization/list.html" class="footer-etc-btn">
+						조직도
+					</a>
+					<a href="https://www.uipa.or.kr/webuser/page/location.html" class="footer-etc-btn">
+						찾아오시는길
+					</a>
+				</div>
+			</div>
+			<div class="footer-company-wrap">
+				<div class="footer-company-core">
+					<div class="footer-company-info">
+						<div class="footer-company-item">
+							<div class="footer-company-txt">(우.44776) 울산광역시 남구 테크노산업로55번길 16(하이테크타운 4층)</div>
+							<div class="footer-company-txt">사업자번호 : 588-82-00092</div>
+							<div class="footer-company-txt">대표전화 : <a href="tel:052-210-0200">052)210-0200</a></div>
+							<div class="footer-company-txt">FAX : 0507)514-4620</div>
+						</div>
+						<div class="footer-company-item">
+							<div class="footer-company-txt">KOLAS 시험관련 고객불만접수 및 시험성적서 진위여부 확인 : swtest@uipa.or.kr / 052)210-0283</div>
+						</div>
+					</div>
+					<div class="footer-copy-wrap">
+						Copyright © ULSAN ICT PROMOTION AGENCY All Rights Reserved.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+         		<!-- //fullpage -->
+
+
+</div>
+<!-- //wrap -->
+
+
+
+
+
+<!-- 200427 fullpage, swiper 추가 -->
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/scrolloverflow.min.js"></script>
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/jquery.fullpage.js"></script>
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/jquery.fullpage.extensions.min.js"></script>
+
+<script>
+//Initialize fullPage
+$(document).ready(function(){
+
+ $('#fullpage').fullpage({
+   anchors: ['firstPage', 'secondPage', 'footerPage'],
+   menu: '#fullMenu',
+   sectionSelector: '.page',
+   //scrollOverflow: true,
+   scrollingSpeed: 500,
+   licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+   css3 :true,
+   scrollBar: false,
+   verticalCentered:true,
+ });
+ $('.pageNext').click(function(){
+   $.fn.fullpage.moveSectionDown();
+ });
+
+});
+</script>
+
+<script type="text/javascript" src="https://www.uipa.or.kr/common/js/swiper.js"></script>
+<script>
+$(document).ready(function(){
+	//공통
+		var relatedSlider = new Swiper('.footer-related-slider', {
+			slidesPerView: 6,
+			spaceBetween: 5,
+			loop: false,
+			navigation: {
+				nextEl: '.footer-related-next',
+				prevEl: '.footer-related-prev',
+			},
+			autoplay: {
+				delay: 4000,
+				disableOnInteraction: false,
+			},
+			breakpoints: {
+				500: {
+					slidesPerView: 2,
+				},
+				768: {
+					slidesPerView: 3,
+				},
+				1024: {
+					slidesPerView: 4,
+				},
+				1400: {
+					slidesPerView: 4,
+				},
+				1500: {
+					slidesPerView: 5,
+				},
+			},
+		});
+		$('.footer-related-stop').on('click', function() {
+			relatedSlider.autoplay.stop();
+			$(".footer-related-stop").hide();
+			$(".footer-related-play").css('display','block');
+		});
+		$('.footer-related-play').on('click', function() {
+			  relatedSlider.autoplay.start();
+			  $(".footer-related-play").hide();
+			  $(".footer-related-stop").css('display','block');
+		});
+
+		var quickSlider = new Swiper('.quick-banner-slider', {	
+			direction: "vertical",
+			slidesPerView: 7,
+			spaceBetween: 0,
+			loop: true,
+			autoplay: {
+				delay: 4000,
+				disableOnInteraction: false,
+			},
+			navigation: {
+				nextEl: '.quick-up-btn',
+				prevEl: '.quick-down-btn',
+			},
+			  pagination: {
+				el: ".quick-banner-util",
+		        clickable: true,
+			  },
+			breakpoints: {
+				768: {
+					direction: "horizontal",
+					slidesPerView: 4,
+				},
+				1024: {
+					direction: "horizontal",
+					slidesPerView: 5,
+				},
+				1400: {
+					direction: "horizontal",
+					slidesPerView: 6,
+				},
+			},
+		});
+
+
+});
+</script>
+
+ <!-- // 200427 fullpage, swiper 추가 -->
+
+<!-- layer popup -->
+<div id="layer_back"></div>
+<div id="layer_popup">
+    <div id="layer_header">
+        <h1>레이어팝업</h1>
+        <button type="button" onclick="closeLayerPopup()" title="닫기"><img src="/webuser/img/btn_close.png" alt="닫기" height="18" width="18" /></button>
+    </div>
+    <div id="layer_content">
+        레이어팝업 내용
+    </div>
+</div>
+<div id="layer_loading">
+    <p>
+        <i class="xi-spinner-4 xi-spin"></i>
+        <br/>
+        <strong id="loading_state">잠시만 기다려주세요.</strong>
+    </p>
+</div>
+<!-- //layer popup -->
+
+
+
+
+
+
+<script type="text/javascript">
+// 모바일, pc 체크
+window.mobilecheck = function() {
+    var check = false;
+    (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
+    return check;
+};
+
+$(function(){
+  if(mobilecheck()) {
+    $("#popup_cs").css("width", "90%");
+    $("#popup_cs img").css("width", "100%");
+  }
+});
+</script>
+</body>
+</html>

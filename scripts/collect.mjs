@@ -23,7 +23,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '15.1-v95-adaptive-incremental-cache';
+const DATA_VERSION = '15.2-v100-stable-source-cache-identity';
 const execFileAsync = promisify(execFile);
 
 const COLLECTION_CACHE_PATH = 'data/collection-cache.json';
@@ -34,10 +34,50 @@ const CACHE_TERMINAL_MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000;
 const CACHE_RETENTION_MS = 120 * 24 * 60 * 60 * 1000;
 const CACHE_MAX_ENTRIES = 4000;
 
-function candidateCacheKey(candidate = {}) {
+function sourceStableIdentity(candidate = {}) {
+  const org = String(candidate.org || '');
   const url = canonicalJobUrl(candidate.link || '');
+  try {
+    const parsed = new URL(url);
+    if (org === '울산테크노파크') {
+      const wrId = parsed.searchParams.get('wr_id');
+      if (wrId) return `wr_id:${wrId}`;
+    }
+  } catch {}
+  // WFPS em_id is observed to rotate between runs, so never treat that token as a durable identity.
+  // Use stable row material when available; unlike the URL token it survives a new server session.
+  if (org === '울산복지가족진흥사회서비스원') {
+    const stableRow = String(candidate.listText || candidate.title || '')
+      .replace(/em_id=[A-Za-z0-9_-]+/gi, 'em_id=<volatile>')
+      .replace(/\s+/g, ' ').trim().toLowerCase();
+    if (stableRow) return `row:${crypto.createHash('sha256').update(stableRow).digest('hex').slice(0,20)}`;
+  }
+  return `url:${url}`;
+}
+
+function candidateCacheKey(candidate = {}) {
   const title = normalizeTitleForDedup(candidate.title || '');
-  return `${candidate.org || ''}|${url}|${title}`;
+  return `${candidate.org || ''}|${sourceStableIdentity(candidate)}|${title}`;
+}
+
+function findCompatibleCacheEntry(candidate, entries = {}) {
+  const directKey = candidateCacheKey(candidate);
+  if (entries[directKey]) return { key: directKey, entry: entries[directKey], migrated: false };
+  const org = String(candidate.org || '');
+  // v99 UTP keys contained the full URL and title. wr_id is the board's durable primary key,
+  // so migrate only an exact wr_id match. This cannot merge two distinct UTP notices.
+  if (org === '울산테크노파크') {
+    let wrId = '';
+    try { wrId = new URL(canonicalJobUrl(candidate.link || '')).searchParams.get('wr_id') || ''; } catch {}
+    if (wrId) {
+      const matches = Object.entries(entries).filter(([,v]) => v?.org === org && (() => { try { return new URL(v.link || '').searchParams.get('wr_id') === wrId; } catch { return false; } })());
+      if (matches.length) {
+        matches.sort((a,b) => String(b[1]?.processedAt || '').localeCompare(String(a[1]?.processedAt || '')));
+        return { key: matches[0][0], entry: matches[0][1], migrated: true };
+      }
+    }
+  }
+  return { key: directKey, entry: null, migrated: false };
 }
 
 function stableRequestMaterial(candidate = {}) {
@@ -660,6 +700,7 @@ async function fetchSource(source) {
   let heavyProcessed = 0;
   const cacheHitReasons = { 'full-fingerprint': 0, 'bootstrap-identity': 0, 'identity-grace': 0, 'terminal-identity': 0 };
   const cacheMissReasons = { 'missing-key': 0, 'identity-mismatch': 0, 'fingerprint-changed': 0, 'stale': 0, 'other': 0 };
+  let cacheKeyMigrations = 0;
   try {
     const access = await fetchFirstAccessible(source);
     const html = access.html;
@@ -787,7 +828,9 @@ async function fetchSource(source) {
         continue;
       }
       const cacheKey = candidateCacheKey(candidate);
-      const cacheReuse = reusableCachedOutcome(candidate, collectionCache.entries[cacheKey]);
+      const cacheLookup = findCompatibleCacheEntry(candidate, collectionCache.entries);
+      if (cacheLookup.migrated && cacheLookup.entry) { nextCacheEntries[cacheKey] = cacheLookup.entry; cacheKeyMigrations += 1; }
+      const cacheReuse = reusableCachedOutcome(candidate, cacheLookup.entry);
       let outcome;
       if (cacheReuse) {
         cacheHits += 1;
@@ -795,7 +838,7 @@ async function fetchSource(source) {
         outcome = cacheReuse.outcome;
       } else {
         cacheMisses += 1;
-        const existingEntry = collectionCache.entries[cacheKey];
+        const existingEntry = cacheLookup.entry;
         if (!existingEntry) cacheMissReasons['missing-key'] += 1;
         else {
           const identityMatch = existingEntry.identityFingerprint === candidateIdentityFingerprint(candidate);
@@ -850,14 +893,14 @@ async function fetchSource(source) {
     return {
       ok: true, source: activeSource, jobs, candidates: candidates.length, rawCandidates: rawCandidates.length, collectionCandidates: collectionCandidates.length, listSelection, listingPagesChecked: Math.max(listingUrls.length, Number(paginationDiag?.pagesChecked || 0)), accessAttempts: access.attempts, accessDiagnosis: access.accessDiagnosis || {}, activeRecruitUrl: access.accessDiagnosis?.activeRecruitUrl || activeSource.url,
       rejected: Math.max(0, rawCandidates.length - jobs.length),
-      incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() },
+      incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, cacheKeyMigrations, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() },
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
       rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, cacheKeyMigrations, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPipelineReport() {

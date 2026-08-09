@@ -14,7 +14,7 @@ import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 import { analyzeAttachments } from './lib/document-analyzer.mjs';
 import { safeFileComponent } from './lib/safe-filename.mjs';
 
-const VERSION = '19.9-v99-pagination-terminal-noise-and-single-proof';
+const VERSION = '20.0-v100-cache-identity-and-final-pagination-proof';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const MAX_ATTACHMENT_VERIFY_FILES = 2; // representative files per institution; keeps Actions bounded
@@ -36,7 +36,7 @@ function explicitTotalCount(html='') {
   for (const re of patterns) { const m=text.match(re); if(m) return Number(m[1]); }
   return null;
 }
-function singlePageProof(html='', selected={}) {
+function singlePageProof(html='', selected={}, org='') {
   const snapshot = paginationEvidenceSnapshot(html, selected.url || '');
   const total = explicitTotalCount(html);
   const candidates = Number(selected.candidateCount ?? selected.candidates?.length ?? 0);
@@ -53,8 +53,9 @@ function singlePageProof(html='', selected={}) {
   ];
   const countProved = exact && total !== null && total === candidates && controlHints === 0;
   const emptyProved = explicitEmpty && controlHints === 0;
-  const proved = countProved || emptyProved;
-  const reason = countProved ? 'explicit total count equals exact extracted record count and no pagination control exists' : emptyProved ? 'board explicitly states there are no registered recruitment records and no pagination control exists' : 'single-page completeness not yet explicitly proved';
+  const strongHubstRecord = org === '울주문화재단' && exact && candidates > 0 && controlHints === 0 && selected?.accuracyVerification?.templateRecordEvidence?.verified === true && selected?.accuracyVerification?.listVerificationTemplate === 'ROWAREA_RECORD';
+  const proved = countProved || emptyProved || strongHubstRecord;
+  const reason = countProved ? 'explicit total count equals exact extracted record count and no pagination control exists' : emptyProved ? 'board explicitly states there are no registered recruitment records and no pagination control exists' : strongHubstRecord ? 'HUBST recruitment card container matches extracted records exactly and no pagination control exists' : 'single-page completeness not yet explicitly proved';
   return { proved, totalCount: total ?? (emptyProved ? 0 : null), candidateCount: candidates, controlHints, explicitEmpty, evidence, reason };
 }
 function applyHistoricalPagination(report) {
@@ -805,7 +806,7 @@ async function probeSource(source, artifacts) {
       report.pagination.pageValidation.push({page:pageBase,url:selected.url,status:selected.status||'',exactMatch:Boolean(selected.exactMatch),visiblePostCount:selected.visiblePostCount??null,candidateCount:selected.candidateCount??all.length,missingCount:selected.missingCount??null,extraCount:selected.extraCount??null});
       if (finalPlan.kind === 'single-or-undetected') {
         report.pagination.pagesChecked = 1;
-        const proof = singlePageProof(firstHtml, selected);
+        const proof = singlePageProof(firstHtml, selected, source.org);
         report.pagination.singlePageProof = proof;
         report.pagination.totalCount = proof.totalCount;
         report.pagination.rawCount = all.length;

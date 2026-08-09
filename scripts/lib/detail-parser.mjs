@@ -100,6 +100,10 @@ function addAttachment(attachments, seen, rawUrl, name, baseUrl, explicitType = 
   const url = absoluteUrl(decodedRaw, baseUrl);
   if (!url || /^javascript:/i.test(url)) return;
   const probe = `${url} ${name} ${explicitType} ${context}`;
+  // Page chrome can sit inside an attachment-area DOM and therefore inherit an
+  // attachment signal. Reject known static assets before extension inference so
+  // SVG icons (not part of FILE_EXT) cannot become unknown-type attachments.
+  if (looksLikeStaticAsset(url, name)) return;
   const ext = probe.match(FILE_EXT)?.[1]?.toLowerCase() || String(explicitType || '').toLowerCase();
   const isDocument = /^(?:pdf|hwp|hwpx|doc|docx|xls|xlsx|zip)$/i.test(ext);
   const isImage = /^(?:png|jpe?g|tiff?)$/i.test(ext);

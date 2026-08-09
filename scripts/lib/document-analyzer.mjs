@@ -338,6 +338,25 @@ function egovAlternateDownloadItem(item = {}) {
   } catch { return null; }
 }
 
+
+async function writeEwpHtmlDownloadEvidence(item = {}, meta = {}) {
+  try {
+    const host = new URL(item.url || '').hostname.replace(/^www\./, '');
+    if (host !== 'ewp.co.kr' || !/\/kor\/include\/new_download\.html/i.test(new URL(item.url || '').pathname)) return;
+    const dir = path.resolve('data/diagnostics/한국동서발전/attachment-resolution');
+    await fs.mkdir(dir, { recursive: true });
+    const stamp = Date.now();
+    await fs.writeFile(path.join(dir, `new-download-${stamp}.html`), Buffer.from(meta.bytes || []));
+    await fs.writeFile(path.join(dir, `new-download-${stamp}.json`), JSON.stringify({
+      name: item.name || '', url: item.url || '', referer: item.referer || '',
+      method: item.method || 'GET', body: item.body || '', headers: item.headers || {},
+      finalUrl: meta.finalUrl || '', contentType: meta.contentType || '',
+      contentDisposition: meta.contentDisposition || '', size: meta.size || 0,
+      note: 'EWP new_download returned HTML; preserve exact response/request evidence before changing the download contract.'
+    }, null, 2), 'utf8');
+  } catch {}
+}
+
 async function resolveHtmlAttachmentGateway(item, meta, timeoutMs = 30000) {
   if (!looksLikeHtml(meta?.bytes || [], meta?.contentType || '')) return null;
   const sourceUrl = meta?.finalUrl || item?.url || '';
@@ -622,7 +641,10 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
             });
           }
         }
-        if (detected.type === 'html') throw new Error('download returned HTML page');
+        if (detected.type === 'html') {
+          await writeEwpHtmlDownloadEvidence(effectiveItem, meta);
+          throw new Error('download returned HTML page');
+        }
         if (detected.type === 'unsupported' || detected.type === 'unknown') throw new Error('unsupported or unknown attachment format');
 
         const ext = detected.type === 'jpeg' ? 'jpg' : detected.type;

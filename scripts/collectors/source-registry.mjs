@@ -85,7 +85,7 @@ const RAW_SOURCES = [
     'https://uctf.or.kr/board/employment',
     'https://www.uctf.or.kr/board/employment',
     'https://uctf.or.kr/' ] },
-  { org: '울산복지가족진흥사회서비스원', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL_WITH_GOV_FALLBACK', transportChain: ['fetch', 'curl'] }, urls: [
+  { org: '울산복지가족진흥사회서비스원', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL_WITH_GOV_FALLBACK', transportChain: ['fetch', 'curl', 'curl-resolved'], collectorTransportChain: ['node-browser', 'node-simple', 'curl', 'curl-resolved'] }, urls: [
     // Primary and legacy official recruitment boards. The 78 Actions evidence timed out
     // only on www.* hosts while the same official boards are published on bare hosts too.
     // Try bare domains first so a broken www route does not fail the whole institution.
@@ -134,4 +134,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls, accessTemplate, accessConfi
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.11-reusable-discovery-override';
+export const SOURCE_REGISTRY_VERSION = '15.12-wfps-doh-resolved-fallback';

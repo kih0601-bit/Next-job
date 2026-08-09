@@ -230,3 +230,11 @@
 - Unknown-total legacy boards: a non-record/count-unavailable page is held as a pending terminal-noise candidate; only an identical next response confirms it as terminal, and the noise page is excluded from collected content. This targets the evidenced UTP/EWP post-terminal fragments.
 - Single-page proof: explicit empty-board text plus zero candidates and no pagination controls is accepted as `verified-single`; absence of controls alone remains insufficient.
 - No broad fallback or guessed URL contract added.
+
+## v100 — Stage 7 final-proof and stable source cache identity
+- Evidence basis: v99 run reached 19/20 pagination implementation coverage but Collect returned near the workflow limit because UTP (304) and WFPS (217) were all `missing-key` cache misses.
+- UTP root cause: the same durable `wr_id` existed under two generations of URL/title-based cache keys. Cache identity now uses `wr_id`, with exact-id migration from legacy entries.
+- WFPS evidence: `em_id` changes between runs for the same visible recruitment row. New cache identity deliberately excludes the volatile token and hashes stable row material. No unsafe title-only migration is performed, so distinct notices with identical titles are not merged.
+- Ulju Culture Foundation: existing evidence showed exact 1:1 `ROWAREA_RECORD` verification, one recruitment record, and zero pagination controls. This strong source-specific DOM proof can now establish verified-single without inventing an explicit total.
+- COMWEL: legacy detail links emitted as HTTP are normalized to HTTPS before detail collection; this directly addresses the observed HTTP endpoint failure without changing the official recruitment source.
+- Guardrail: no historical/current mismatch is hidden by prior success; current partial mismatch remains failure.

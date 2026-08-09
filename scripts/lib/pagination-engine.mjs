@@ -166,6 +166,15 @@ export function paginationEvidenceSnapshot(html='', baseUrl='') {
 export function discoverPaginationPlan({html='', source={}, selectedUrl=''}) {
   const url = selectedUrl || source.url || '';
   const api = apiMeta(html,source);
+  // KEPCO dynamic list exposes its pagination contract directly in fncPageBoard('addList', 'addList.do', N).
+  // Treat those explicit calls as stronger evidence than generic href detection.
+  if (source.org === '한국전력공사') {
+    const pages = [...String(html).matchAll(/fncPageBoard\(\s*['\"]addList['\"]\s*,\s*['\"]addList\.do['\"]\s*,\s*(?:['\"])?(\d+)(?:['\"])?/gi)].map(m=>Number(m[1])).filter(Number.isFinite);
+    if (pages.length) {
+      const totalPages = Math.max(...pages);
+      return { kind:'form-post', key:'pageIndex', pageBase:1, totalPages, totalCount:null, form:{ action:url, method:'POST', formName:'KEPCO_DYNAMIC', pageKey:'pageIndex', fields:{} }, evidence:[`KEPCO fncPageBoard addList explicit pages 1..${totalPages}`, 'POST addList.do pageIndex=N'] };
+    }
+  }
   if (source.org==='한국산업안전보건공단' && api?.api==='kosha') return {kind:'kosha-api', pageBase:1, totalPages:api.totalPages, totalCount:api.totalCount, evidence:['pagingInfo.totalCnt/rowsPerPage']};
   if (source.org==='울산문화관광재단' && /\/api\/notices/i.test(url)) {
     return {kind:'query-get', key:'page', pageBase:0, totalPages:api?.totalPages || null, totalCount:api?.totalCount ?? null, evidence:['UCTF notices API page parameter']};

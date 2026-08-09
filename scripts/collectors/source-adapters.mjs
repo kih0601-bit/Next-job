@@ -717,7 +717,8 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     const identity = action.match(/(?:view|fn_Detail|goView|fnView|detail)\s*\(\s*["']?([^"')\s,]+)/i)?.[1]
       || row.block.match(/(?:data-)?(?:idx|seq|no|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo)\s*=\s*(["'])([^"']+)\1/i)?.[2]
       || `row-${row.start}`;
-    const canonical = link ? canonicalJobUrl(link) : `${canonicalJobUrl(source.url)}#list-${encodeURIComponent(identity)}`;
+    let canonical = link ? canonicalJobUrl(link) : `${canonicalJobUrl(source.url)}#list-${encodeURIComponent(identity)}`;
+    if (source.org === '근로복지공단' && /^http:\/\/comwel\.incruit\.com\//i.test(canonical)) canonical = canonical.replace(/^http:/i, 'https:');
     const key = source.org === '울산복지가족진흥사회서비스원'
       ? `${source.org}|${normalizeTitleForDedup(title)}`
       : `${source.org}|${normalizeTitleForDedup(title)}|${canonical}`;
@@ -851,7 +852,8 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     const identity = attrs.match(/\b(?:data-)?(?:idx|seq|no|nttId|bbsSeq|articleNo|postNo|dataSid|boardSeq|recruitNo|boardNo|noticeNo|sn|id)\s*=\s*(["'])([^"']+)\1/i)?.[2]
       || attrs.match(/(?:view|fn_Detail|goView|fnView|detail)\s*\(\s*["']?([^"')\s,]+)/i)?.[1]
       || `block-${match.index}`;
-    const canonical = link ? canonicalJobUrl(link) : `${canonicalJobUrl(source.url)}#list-${encodeURIComponent(identity)}`;
+    let canonical = link ? canonicalJobUrl(link) : `${canonicalJobUrl(source.url)}#list-${encodeURIComponent(identity)}`;
+    if (source.org === '근로복지공단' && /^http:\/\/comwel\.incruit\.com\//i.test(canonical)) canonical = canonical.replace(/^http:/i, 'https:');
     const key = `${source.org}|${normalizeTitleForDedup(title)}|${canonical}`;
     if (seen.has(key)) continue;
     seen.add(key);

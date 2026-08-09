@@ -3,7 +3,7 @@ import { cleanHtml, absoluteUrl, decodeHtmlEntities } from '../lib/detail-parser
 import { extractAlioCandidates } from './alio-adapter.mjs';
 
 const LIST_QUERY_KEYS = new Set(['pageIndex', 'page', 'searchCondition', 'searchKeyword', 'menuNo', 'mId', 'order', 'search_yn', 'org_name']);
-const DETAIL_PARAM = /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no|boardNo|board_no|noticeNo|notice_no|sn|id)$/i;
+const DETAIL_PARAM = /^(?:idx|seq|no|nttId|bbsSeq|boardId|articleNo|postNo|dataSid|bbsId|boardSeq|contsId|recruitNo|recruit_no|boardNo|board_no|noticeNo|notice_no|sn|id|employYear|employId|employSeq)$/i;
 const FILE_OR_DOWNLOAD = /\.(?:pdf|hwp|hwpx|docx?|xlsx?|zip)(?:$|[?#])|filedown|download|attach|atchfile|file_id|fileid/i;
 const GENERIC_NAVIGATION_TITLE = /^(?:홈|메인|목록|이전|다음|처음|마지막|더보기|바로가기|로그인|회원가입|사이트맵|검색|전체메뉴)$/i;
 
@@ -605,13 +605,18 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
       ).replace(/\s+/g, ' ').trim();
       title = title.replace(/^(?:채용|모집|공고)\s*/,'').trim();
       if (!validTitle(title)) continue;
-      const key = `${source.org}|${canonicalJobUrl(decoded.link)}`;
+      // KEPCO's detail endpoint path is shared by every notice; the durable
+      // identity lives in employYear/employId/employSeq query parameters.
+      // These parameters are now registered as durable detail identity in
+      // canonicalJobUrl(), so downstream Collect/cache/final-link code preserves them.
+      const detailLink = decoded.link;
+      const key = `${source.org}|${detailLink}`;
       if (seen.has(key)) continue;
       seen.add(key);
       jobs.push({
         org: source.org,
         title,
-        link: canonicalJobUrl(decoded.link),
+        link: detailLink,
         listText: cleanHtml(block).replace(/\s+/g,' ').trim(),
         adapter: `${source.org}:dynamic-addList`,
         detailRequest: decoded.request

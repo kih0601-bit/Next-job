@@ -513,7 +513,11 @@ function writeDetailDiagnostic({ org = 'unknown', expectedTitle = '', requestedU
 
 
 function writeAttachmentResolutionDiagnostic({ org = '', expectedTitle = '', finalUrl = '', html = '', scripts = [], attachments = [] }) {
-  if (!DETAIL_DIAG_DIR || !['울산시설공단','한국에너지공단','울산복지가족진흥사회서비스원'].includes(org) || attachments.length > 0) return;
+  if (!DETAIL_DIAG_DIR || !['울산시설공단','한국에너지공단','울산복지가족진흥사회서비스원','한국동서발전'].includes(org)) return;
+  // EWP can expose a filename while still losing the request contract. Keep the
+  // detail evidence even when an attachment candidate exists; for the other
+  // institutions this diagnostic remains failure-only.
+  if (org !== '한국동서발전' && attachments.length > 0) return;
   try {
     const dir = path.join(DETAIL_DIAG_DIR, safeDiagName(org), 'attachment-resolution');
     fs.mkdirSync(dir, { recursive: true });
@@ -527,7 +531,9 @@ function writeAttachmentResolutionDiagnostic({ org = '', expectedTitle = '', fin
     const snippets = [];
     for (const pattern of [
       /(?:onclick|href|src|action)\s*=\s*["'][^"']*(?:file|attach|atch|down)[^"']*["']/gi,
-      /\b(?:atchFileId|fileSn|fileSeq|fileId|fileNo|boardNo|employmentId)\b[^<>"'\n]{0,220}/gi,
+      /\b(?:atchFileId|fileSn|fileSeq|fileId|fileNo|boardNo|employmentId|new_download)\b[^<>"'\n]{0,320}/gi,
+      /<a\b[^>]*(?:new_download|download|attach|file)[^>]*>[\s\S]{0,800}?<\/a>/gi,
+      /<form\b[^>]*>[\s\S]{0,2400}?(?:new_download|download|attach|file)[\s\S]{0,2400}?<\/form>/gi,
       /\b(?:CtitFile|fn_[A-Za-z0-9_]*(?:file|down)[A-Za-z0-9_]*)\s*\([^)]{0,900}\)/gi
     ]) {
       for (const match of String(html || '').matchAll(pattern)) snippets.push(match[0]);

@@ -5,6 +5,7 @@ const POSITIVE = [
   /recruit(?:ment)?/i, /careers?/i, /employment/i, /job\s*opening/i
 ];
 const ORG_RULES = {
+  '울산복지가족진흥사회서비스원': { hosts: [/(?:^|\.)wfps\.or\.kr$/i, /(?:^|\.)uwfdi\.re\.kr$/i], url: [/\/webuser\/employment\/list\.html(?:[?#]|$)/i], html: [/복지가족진흥사회서비스원|복지진흥사회서비스원/i, /채용공고/i], strict: true },
   '근로복지공단': { hosts: [/comwel\.incruit\.com$/i], url: [/index_main\.asp/i], html: [/viewhire\.asp\?projectid=/i, /incruit/i] },
   '한국산업안전보건공단': { hosts: [/kosha\.or\.kr$/i], url: [/recruitment\.do|notification\/jobncontract\/job/i], html: [/kosha-tboard-config|jobncontract|recruitment/i] },
   '한국산업인력공단': { hosts: [/hrdkorea\.or\.kr$/i], url: [/\/3\/1\/2\/2(?:[?#/]|$)/i], html: [/채용공고|인재채용|\/3\/1\/2\/2/i] },
@@ -71,8 +72,14 @@ export function verifyRecruitPage({ html = '', requestedUrl = '', finalUrl = '',
   };
   const score = Object.values(checks).filter(Boolean).length;
   const maxScore = Object.keys(checks).length;
-  const verified = checks.httpDocument && ((checks.recruitKeyword && checks.boardStructure) || institutionRule);
-  const fallback = !verified && checks.httpDocument && checks.recruitKeyword;
+  // Institution-scoped strict rules prevent a generic public board from being accepted
+  // merely because it contains recruitment keywords and a table. This is enabled only
+  // for sources whose evidence proved that a cross-institution fallback can silently pass.
+  const strictInstitutionRule = Boolean(rule?.strict);
+  const verified = strictInstitutionRule
+    ? checks.httpDocument && institutionRule
+    : checks.httpDocument && ((checks.recruitKeyword && checks.boardStructure) || institutionRule);
+  const fallback = strictInstitutionRule ? false : (!verified && checks.httpDocument && checks.recruitKeyword);
 
   let code = 'RECRUIT_VERIFY_FAILED';
   let reason = `채용 게시판 검증 점수 ${score}/${maxScore} · 필수 조건 미충족`;
@@ -105,6 +112,7 @@ export function verifyRecruitPage({ html = '', requestedUrl = '', finalUrl = '',
     boardSignals,
     boardType,
     institutionRule,
+    strictInstitutionRule,
     institutionRuleEvidence,
     textLength: text.length,
     requestedUrl,

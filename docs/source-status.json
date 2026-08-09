@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "purpose": "반복 패치 방지 및 기관별 현재 병목 추적",
   "authoritativeCodeBaseline": "최신 Actions ZIP",
-  "lastObservedVersion": 79,
-  "pendingValidationVersion": 80,
+  "lastObservedVersion": 84,
+  "pendingValidationVersion": 85,
   "rules": {
     "strictDocumentCompletion": "documentAnalysis.ok=true는 선정된 실제 문서 분석 대상이 모두 성공한 경우만",
     "documentCapability": "capabilityOk=true는 실제 문서 최소 1개 이상 파싱 가능 검증이며 전체 완료와 다름",
@@ -153,13 +153,13 @@
     },
     {
       "org": "울산복지가족진흥사회서비스원",
-      "access": "failed",
-      "list": "unknown",
-      "detail": "failed",
-      "attachmentDiscovery": "failed",
-      "attachmentDownload": "not-evaluated",
+      "access": "degraded-silent-source-detected",
+      "list": "invalid-source-detected",
+      "detail": "not-authoritative",
+      "attachmentDiscovery": "not-authoritative",
+      "attachmentDownload": "not-authoritative",
       "documentAnalysis": {
-        "status": "not-evaluated",
+        "status": "not-authoritative",
         "strictOk": false,
         "attempted": 0,
         "parsed": 0,
@@ -167,63 +167,29 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "모든 후보 URL HTTP 접속 실패",
+      "bottleneck": "기관 공식 채용게시판 timeout 후 타기관 소식 fallback이 잘못 정상 판정됨",
       "primaryCause": {
-        "stage": "http",
+        "stage": "access/list",
         "status": "failed",
-        "code": "HTTP_FAILED",
-        "reason": "모든 후보 URL HTTP 접속 실패",
+        "code": "SILENT_SOURCE_MISMATCH",
+        "reason": "v84 원본 evidence에서 울산광역시 타기관 소식의 타 기관 게시물을 WFPS 목록으로 파싱한 것을 확인",
         "evidence": [
           {
-            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
+            "source": "data/pipeline-report.json",
+            "fact": "WFPS 공식 도메인 timeout 뒤 울산광역시 타기관 소식이 activeRecruitUrl로 선택됨"
           },
           {
-            "url": "https://www.wfps.or.kr/",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.wfps.or.kr/\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.uwfdi.re.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.uwfdi.re.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.uwfdi.re.kr/",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.uwfdi.re.kr/\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://www.wfps.or.kr/ https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.ulsan.go.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
+            "source": "data/jobs.json",
+            "fact": "울산시설공단·울산테크노파크 등 타 기관 제목이 WFPS adapter 결과로 유입됨"
           }
         ],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "repairTarget": "scripts/collectors/source-registry.mjs + scripts/lib/recruit-verify.mjs",
+        "recommendedAction": "기관 소유 채용게시판만 허용하고 WFPS strict institution verification 적용"
       },
-      "lastObservedVersion": 79,
-      "pendingAction": "v80 DoH A-record 분리 조회 + curl --resolve로 GitHub runner DNS/경로 문제 분리 검증",
-      "pendingValidationVersion": 80,
-      "pendingPatch": "v80: normal fetch/curl 실패 후 기관 전용 curl-resolved fallback; 공식 원문만 사용"
+      "lastObservedVersion": 84,
+      "pendingAction": "v85 official-source-only + strict institution verification",
+      "pendingValidationVersion": 85,
+      "pendingPatch": "v85: 울산시/남구 범용 fallback 제거; WFPS/UWFDI 공식 employment board만 허용"
     },
     {
       "org": "울산북구시설관리공단",

@@ -95,3 +95,15 @@
 - Change: preserve the EWP detail-page attachment anchor/form/parameter evidence even when a filename candidate was already discovered, so the next real run captures the missing request contract instead of discarding it.
 - Safety: no guessed parameter names or synthetic download URL were introduced; the other 19 institutions keep their existing extraction/download path.
 - Next verification: inspect the EWP `attachment-resolution/*-detail.html` and evidence JSON, implement the exact GET/POST contract only after it is observed, and re-check all 20 pipeline stages/regressions.
+
+## v85 — WFPS official-source-only + silent-source guard
+- v84 전체 evidence 대조에서 울산복지가족진흥사회서비스원의 기관 소유 도메인(`wfps.or.kr`/`uwfdi.re.kr`)이 GitHub Runner에서 timeout 난 뒤, 과거 fallback인 울산광역시 `타기관 소식`이 선택되어 다른 기관 게시물을 WFPS 목록으로 파싱하는 Silent Failure를 확정.
+- 기존 fallback은 프로젝트에서 이미 퇴역시킨 `울산광역시 타기관소식` 원칙과도 충돌하므로 WFPS access source에서 울산시/남구 범용 게시판을 제거. 기관 소유 채용게시판 3개 경로만 유지.
+- WFPS에만 strict institution verification을 활성화. 공식 host(`wfps.or.kr`, `uwfdi.re.kr`) + `/webuser/employment/list.html` + 기관/채용 HTML 신호가 함께 맞아야 채용게시판 성공으로 판정한다. 일반적인 채용 키워드+table만으로는 통과 불가.
+- 정확성 우선: 공식 source가 Runner에서 접근 불가하면 access 실패를 명시하고, 타기관 게시판으로 가짜 20/20을 만들지 않는다.
+- 한국동서발전 및 기존 정상 19기관 수집 경로는 변경하지 않음.
+
+### v85 다음 Actions 검증
+- WFPS가 공식 도메인으로 접속되면 기관 일치 검증 후 목록→상세→첨부→문서분석으로 진행하는지 확인.
+- 공식 도메인이 다시 timeout이면 `access failed`로 명확히 남고 울산시 타기관 게시물은 jobs/list evidence에 절대 유입되지 않는지 확인.
+- 나머지 19기관 Regression 0건, 실행시간 비정상 증가 없음 확인.

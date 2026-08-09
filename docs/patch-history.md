@@ -59,3 +59,18 @@
 - 동서발전: attachmentDiscovery 표본에서 웹접근성/ISO 문서 제거 여부. `new_download.html` 실채용 첨부가 HTML로 남으면 해당 요청의 onclick/form/body evidence를 저장한 뒤 실계약만 수정.
 - UIPA: 이의신청서 때문에 partial이 되지 않고 substantive 문서 분석 결과로 strict 완료 판정되는지 확인.
 - 기존 17 healthy 기관 회귀 0건 확인.
+
+
+## v80 — 복지가족진흥사회서비스원 DNS 경로 분리 진단/접속 패치
+- v79 재실행에서도 `wfps.or.kr`, `uwfdi.re.kr`, `www.*`가 GitHub Actions에서 TCP 443 connect timeout으로 반복 실패. 반면 동일 공식 채용게시판은 외부 검색 크롤러에서 2026-08-09 현재 정상 열리고 최신 452번(2026-08-06)까지 확인되어 기관 서버 전체 다운으로 단정할 수 없음.
+- 이미 collector에 존재하던 `curl-resolved` transport를 이 기관에만 마지막 fallback으로 활성화. Google/Cloudflare DoH로 A record를 별도 조회한 뒤 `curl --resolve host:443:IP`로 SNI/Host를 유지한 직접 접속을 시도한다.
+- pipeline-probe에도 동일 `curl-resolved` 경로를 구현해 진단과 실제 collector의 접속 방식이 어긋나지 않도록 맞춤.
+- 기존 `fetch -> curl` 경로와 공식 URL 순서는 그대로 유지하며, resolved-IP 방식은 정상 접속이 모두 실패한 뒤에만 실행. 다른 19기관에는 적용하지 않음.
+- 외부 미러/검색 캐시를 수집 소스로 사용하지 않음. 공식 게시판 원문만 수집한다.
+
+### v80 다음 Actions 검증
+- 복지가족진흥사회서비스원 access attempt에 `curl-doh-resolve` 성공 또는 resolved IP별 실패 evidence가 남는지 확인.
+- 성공 시 채용게시판 검증 → 목록 → 상세 → 첨부 단계까지 기존 기관 전용 Parser가 그대로 이어지는지 확인.
+- 실패 시 DNS 문제가 아니라 해당 서버가 GitHub runner 대역 자체를 차단/드롭하는 쪽으로 원인을 확정하고, 추가 URL 추측 패치는 중단.
+- 기존 19 healthy 기관 회귀 0건 확인.
+

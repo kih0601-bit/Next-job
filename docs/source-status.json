@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "purpose": "반복 패치 방지 및 기관별 현재 병목 추적",
   "authoritativeCodeBaseline": "최신 Actions ZIP",
-  "lastObservedVersion": 78,
-  "pendingValidationVersion": 79,
+  "lastObservedVersion": 79,
+  "pendingValidationVersion": 80,
   "rules": {
     "strictDocumentCompletion": "documentAnalysis.ok=true는 선정된 실제 문서 분석 대상이 모두 성공한 경우만",
     "documentCapability": "capabilityOk=true는 실제 문서 최소 1개 이상 파싱 가능 검증이며 전체 완료와 다름",
@@ -220,10 +220,10 @@
         "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 78,
-      "pendingAction": "v77 encrypted preview 원본 복원 검증",
-      "pendingValidationVersion": 77,
-      "pendingPatch": "v79: bare-domain official board routes first; www + government fallbacks preserved"
+      "lastObservedVersion": 79,
+      "pendingAction": "v80 DoH A-record 분리 조회 + curl --resolve로 GitHub runner DNS/경로 문제 분리 검증",
+      "pendingValidationVersion": 80,
+      "pendingPatch": "v80: normal fetch/curl 실패 후 기관 전용 curl-resolved fallback; 공식 원문만 사용"
     },
     {
       "org": "울산북구시설관리공단",

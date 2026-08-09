@@ -249,3 +249,28 @@
 - 다음 Actions 검증: WFPS에서 동일 공고의 `em_id`가 바뀌어도 `identity-mismatch`/`fingerprint-changed`가 발생하지 않는지, cacheHits가 회복되는지, UTP `wr_id` migration이 유지되는지, Pagination implementation/current-run 20기관 결과와 Regression 0건을 확인한다.
 - 추가 자체진단: 새 stable identity 규칙으로 키를 찾더라도 v99/v100 cache entry 내부의 old `identityFingerprint`/`fingerprint`가 남아 있으면 `reusableCachedOutcome`에서 즉시 탈락할 수 있음을 확인.
 - 추가 수정: UTP/WFPS의 기존 cache는 `기관 + 정규화 제목 + durable identity`가 모두 정확히 일치할 때만 현재 candidate fingerprint로 rehydrate한다. direct key에 이미 있는 old-schema entry와 과거 key entry 모두 처리한다. 단순 제목 일치만으로 migration하지 않는다.
+
+
+## v102 — KEPCO durable notice identity + development manual Actions
+- Actions evidence from the v101-based run showed KEPCO Pagination reported 141 raw records across 16 pages but only 1 unique record and 140 duplicates. All duplicate keys collapsed to the shared `/frt/frt0001/view.do` path even though raw HTML proves each notice carries distinct `employYear/employId/employSeq` values in `fncPageBoard('view',...)`.
+- Root cause: the KEPCO adapter built the correct query-bearing display URL and POST detail request, but immediately passed the display URL through `canonicalJobUrl()`, which strips query parameters. Pagination reconciliation and page fingerprints also canonicalized the URL again. This erased the durable KEPCO notice identity while still allowing per-page row counts to look exact.
+- Fix: preserve the KEPCO extracted query-bearing detail link (`employYear/employId/employSeq`) and use query-bearing extracted links as pagination reconciliation/fingerprint identity. Query-less boards retain the existing canonical URL/title fallback.
+- Guardrail: added `test-v102-kepco-identity-and-manual-workflow.mjs` proving two KEPCO notices remain two unique records and generate distinct page fingerprints.
+- Development workflow change previously agreed with the user: disable the 3-hour `schedule` trigger and retain `workflow_dispatch` only. Automatic scheduling should be restored after collection/pipeline stabilization for real use.
+- No speculative changes were made to institutions whose remaining cache misses require a second-run evidence comparison. WFPS and UTP v101 migration results are already successful in this run (217/217 and 304/304 cache hits respectively).
+
+
+## v103 — KEPCO identity preservation through the full Collect path
+- Recheck after v102 found a downstream regression path: the KEPCO adapter and Pagination engine preserved `employYear/employId/employSeq`, but `collect.mjs` repeatedly calls `canonicalJobUrl()` for candidateMap dedup, cache storage/bootstrap matching, and final job links.
+- Root cause: `canonicalJobUrl()` did not classify the three KEPCO fields as durable detail identity, so it stripped them. Therefore v102 could make Pipeline diagnostics show distinct records while actual Collect/cache/output collapsed them again.
+- Fix: add `employYear`, `employId`, and `employSeq` to the global durable detail-parameter allowlist. This makes all existing downstream canonicalization calls preserve the KEPCO notice identity without adding KEPCO-specific branches throughout Collect.
+- Regression guard expanded: two KEPCO notices must remain distinct after `canonicalJobUrl()` and under the exact Collect-style dedup key shape.
+- Existing v102 Pagination identity fix and manual-only Actions workflow are retained.
+
+
+## v104 — Actions diagnostic leverage + generic pagination identity guard
+- Goal: reduce repeated Actions cycles by making each run explain structural failures, not merely count them.
+- Generic Pagination guard: if 20+ raw records collapse to less than 50% unique identities, the run cannot be `verified-full`. `identityCollapseDetected` and `identityUniqueRatio` are recorded in reconciliation. This would have automatically rejected the evidenced KEPCO 141 raw → 1 unique result while leaving normal overlap examples (UIPA 291→265, UPA 138→126, Ulju 42→38) unaffected.
+- Cache diagnostics: institution metrics now retain up to five samples per miss reason. Each sample records current/cached stable identity, current/cached identity fingerprint, current/cached full fingerprint, links, title, and cache age. A future `identity-mismatch` run should therefore expose the changing component in the same Actions artifact.
+- This is diagnostic hardening, not a broad cache-policy change. No institution-specific identity rule was guessed for UIPA/UUC/KOSHA/etc. based on a single run.
+- v103 KEPCO end-to-end identity preservation and manual-only workflow remain intact.

@@ -1,102 +1,12 @@
 {
-  "generatedAt": "2026-08-09T01:20:30.732Z",
+  "generatedAt": "2026-08-09T01:47:01.577Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 0,
-    "regressed": 1,
+    "improved": 1,
+    "regressed": 0,
     "unchanged": 19
   },
   "changes": [
-    {
-      "org": "울산복지가족진흥사회서비스원",
-      "health": "failed",
-      "primaryCause": {
-        "stage": "http",
-        "status": "failed",
-        "code": "HTTP_FAILED",
-        "reason": "모든 후보 URL HTTP 접속 실패",
-        "evidence": [
-          {
-            "url": "https://wfps.or.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 9002 ms: Timeout was reached\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 9002 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://wfps.or.kr/",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 9002 ms: Timeout was reached\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 9001 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://uwfdi.re.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to uwfdi.re.kr port 443 after 9002 ms: Timeout was reached\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 9002 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://uwfdi.re.kr/",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to uwfdi.re.kr port 443 after 9002 ms: Timeout was reached\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 9002 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 9002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 9002 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.wfps.or.kr/",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 9002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 9002 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "documentAnalysis": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
     {
       "org": "울주문화재단",
       "health": "healthy",
@@ -392,6 +302,53 @@
         }
       },
       "improved": false,
+      "regressed": false
+    },
+    {
+      "org": "울산복지가족진흥사회서비스원",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "list": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "detail": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachmentDiscovery": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachmentDownload": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "documentAnalysis": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": true,
       "regressed": false
     },
     {

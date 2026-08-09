@@ -222,3 +222,11 @@
 - Single-page boards are no longer verified merely because no pager is visible. `verified-single` requires exact record extraction, an explicit total-count equal to extracted candidates, and no pagination control/page field evidence. Otherwise the board stays unknown and records `singlePageProof` diagnostics.
 - Pipeline summary records implementation-verified vs current-run-verified counts and verification class counts. Pipeline history now persists pagination implementation/current-run/status/class for future evidence.
 - This patch does not relax pagination completeness rules and does not activate stage 8.
+
+
+## v99 — Stage 7 evidence closure
+- Purpose: raise Stage 7 completion without relaxing proof standards.
+- KEPCO: recognize explicit `fncPageBoard(\'addList\', \'addList.do\', N)` pagination evidence and replay `pageIndex=N`.
+- Unknown-total legacy boards: a non-record/count-unavailable page is held as a pending terminal-noise candidate; only an identical next response confirms it as terminal, and the noise page is excluded from collected content. This targets the evidenced UTP/EWP post-terminal fragments.
+- Single-page proof: explicit empty-board text plus zero candidates and no pagination controls is accepted as `verified-single`; absence of controls alone remains insufficient.
+- No broad fallback or guessed URL contract added.

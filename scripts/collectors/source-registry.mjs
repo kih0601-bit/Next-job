@@ -86,30 +86,21 @@ const RAW_SOURCES = [
     'https://www.uctf.or.kr/board/employment',
     'https://uctf.or.kr/' ] },
   { org: '울산복지가족진흥사회서비스원', accessTemplate: 'DIRECT_BOARD', accessConfig: {
-    platform: 'OFFICIAL_WITH_GOV_FALLBACK',
+    platform: 'OFFICIAL',
     transportChain: ['fetch', 'curl-resolved'],
     collectorTransportChain: ['node-browser', 'curl-resolved'],
     accessTimeoutMs: 9000,
     accessAttemptsPerUrl: 1,
     skipHostAfterConnectTimeout: true,
-    maxProbeAccessUrls: 6
+    maxProbeAccessUrls: 3
   }, urls: [
-    // Primary and legacy official recruitment boards. The 78 Actions evidence timed out
-    // only on www.* hosts while the same official boards are published on bare hosts too.
-    // Try bare domains first so a broken www route does not fail the whole institution.
+    // Institution-owned recruitment boards only. v84 proved that the former Ulsan-city
+    // "타기관 소식" fallback could be parsed as this institution and create a silent success.
+    // Accuracy takes precedence over availability: if these official boards are unreachable,
+    // the source must report access failure instead of substituting another institution feed.
     'https://wfps.or.kr/webuser/employment/list.html',
     'https://uwfdi.re.kr/webuser/employment/list.html',
-    // Keep one www alias as a distinct official route, but do not retry root-page
-    // variants that resolve to the same service and only multiply timeout cost.
-    'https://www.wfps.or.kr/webuser/employment/list.html',
-    // Official Ulsan Metropolitan City mirrors used when GitHub-hosted runners
-    // cannot establish a TCP connection to the institution domains.
-    'https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001003000000',
-    'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000',
-    'https://www.ulsan.go.kr/u/rep/contents.do?mId=001004001001000000',
-    // Official local-government availability fallback. Phase 2 must verify
-    // that institution-specific listing coverage is sufficient before parsing.
-    'https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=hireNotice2' ] },
+    'https://www.wfps.or.kr/webuser/employment/list.html' ] },
   { org: '울주문화재단', accessTemplate: 'COMMON_PLATFORM', accessConfig: { platform: 'HUBST' }, urls: [
     'https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningPage.do',
     'https://uljuculture.hubst.co.kr/',
@@ -139,4 +130,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls, accessTemplate, accessConfi
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.13-wfps-bounded-access';
+export const SOURCE_REGISTRY_VERSION = '15.14-wfps-official-source-only';

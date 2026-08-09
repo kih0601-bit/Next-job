@@ -107,3 +107,10 @@
 - WFPS가 공식 도메인으로 접속되면 기관 일치 검증 후 목록→상세→첨부→문서분석으로 진행하는지 확인.
 - 공식 도메인이 다시 timeout이면 `access failed`로 명확히 남고 울산시 타기관 게시물은 jobs/list evidence에 절대 유입되지 않는지 확인.
 - 나머지 19기관 Regression 0건, 실행시간 비정상 증가 없음 확인.
+
+## v86 — strict success semantics + EWP POST download contract
+- 성공 정의를 좁혀 `파이프라인 완성/성공`은 정확한 공식 Source부터 jobs.json/필터/Regression/Silent Failure까지 End-to-End 조건을 모두 만족할 때만 사용하도록 PROJECT-GUIDE에 고정.
+- pipeline-probe root-cause 체인에 `attachmentDownload`와 `documentAnalysis`를 추가. 문서 다운로드/분석이 실패했는데 `PIPELINE_SAMPLE_OK`로 보고되던 진단 모순을 제거.
+- v85 EWP 원본 detail evidence에서 `new_down(idx_to, order_num)` 함수와 `reform` POST contract를 확정: `idx_to`, `order_num` 및 기존 hidden form fields를 `/kor/include/new_download.html`로 POST하도록 기관 전용 첨부 resolver 추가. parameter 없는 GET 추측 경로를 사용하지 않음.
+- Pagination 전에 20기관 Source provenance audit을 완료하도록 명문화. 불명확 Source는 목록 파싱 성공만으로 기관 성공 처리하지 않음.
+- 공통 수집 규칙과 다른 19기관 adapter는 변경하지 않음.

@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-09T07:33:55.006Z",
+  "generatedAt": "2026-08-09T09:34:12.342Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 0,
-    "regressed": 0,
-    "unchanged": 20
+    "improved": 1,
+    "regressed": 2,
+    "unchanged": 17
   },
   "changes": [
     {
@@ -18,7 +18,7 @@
           {
             "url": "https://wfps.or.kr/webuser/employment/list.html",
             "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 5001 ms: Timeout was reached)",
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
             "accessTemplate": "DIRECT_BOARD",
             "requestProfile": "browser-default"
           },
@@ -42,38 +42,38 @@
       },
       "stages": {
         "access": {
-          "from": false,
+          "from": true,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         },
         "detail": {
-          "from": false,
+          "from": true,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         },
         "attachmentDiscovery": {
-          "from": false,
+          "from": true,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         },
         "attachmentDownload": {
-          "from": false,
+          "from": true,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": false,
-          "change": "same"
+          "change": "regressed"
         }
       },
       "improved": false,
-      "regressed": false
+      "regressed": true
     },
     {
       "org": "근로복지공단",
@@ -251,8 +251,8 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
-          "to": false,
+          "from": true,
+          "to": true,
           "change": "same"
         }
       },
@@ -435,8 +435,8 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
-          "to": false,
+          "from": true,
+          "to": true,
           "change": "same"
         }
       },
@@ -477,17 +477,17 @@
         },
         "attachmentDownload": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         },
         "documentAnalysis": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
         }
       },
       "improved": false,
-      "regressed": false
+      "regressed": true
     },
     {
       "org": "울산항만공사",
@@ -640,37 +640,37 @@
       },
       "stages": {
         "access": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         },
         "list": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         },
         "detail": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         },
         "attachmentDiscovery": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         },
         "attachmentDownload": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         },
         "documentAnalysis": {
-          "from": true,
+          "from": false,
           "to": true,
-          "change": "same"
+          "change": "improved"
         }
       },
-      "improved": false,
+      "improved": true,
       "regressed": false
     },
     {
@@ -711,8 +711,8 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
-          "to": false,
+          "from": true,
+          "to": true,
           "change": "same"
         }
       },

@@ -207,3 +207,10 @@
 - Fix: exclude volatile `listText` from the full cache fingerprint while retaining org, canonical detail URL, raw title, stable list identity, and detail request contract. This still invalidates cache when the notice title/request identity changes.
 - Diagnostics: add per-institution and summary `cacheMissReasons` (`missing-key`, `identity-mismatch`, `fingerprint-changed`, `stale`, `other`) so future cache misses are evidence-classified instead of inferred from timing.
 - Kept from v95: adaptive terminal cache, identity grace, pagination pageValidation/session evidence, and ASCII safe diagnostic filenames.
+
+## v97 — Pagination proof + terminal discovery
+- Evidence: v96 pipeline report showed UIC/UIPA/UTP traversed all declared pages with reconciliation pass but failed only because heuristic visible-row counts undercounted real record rows; independent record-template verification can prove 1:1 candidate-to-record mapping.
+- Fix: pagination exactness accepts independent record-template 1:1 proof and records exactMatchBasis; heuristic count remains diagnostic evidence.
+- Evidence: EWP and other legacy forms expose real page/pageNum fields even when total page count is not printed.
+- Fix: evidence-backed GET/POST page fields can enter bounded terminal discovery. Probe walks sequential pages to an empty/repeated terminal response, caps at 100, and records terminalEvidence. No guessed page parameter is introduced.
+- Governance: pipeline report version updated to v97 source-of-truth string. Existing collector behavior and incremental cache remain unchanged.

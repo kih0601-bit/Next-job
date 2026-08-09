@@ -14,7 +14,7 @@ import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 import { analyzeAttachments } from './lib/document-analyzer.mjs';
 import { safeFileComponent } from './lib/safe-filename.mjs';
 
-const VERSION = '18.3-kepco-counter-and-document-probe';
+const VERSION = '19.5-v95-pagination-session-and-page-quality';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const MAX_ATTACHMENT_VERIFY_FILES = 2; // representative files per institution; keeps Actions bounded
@@ -225,6 +225,23 @@ async function fetchHtmlWithFetch(url, timeoutMs = 22000, referer = '') {
   } finally {
     clearTimeout(timer);
   }
+}
+
+async function fetchFormSession(url, timeoutMs = 22000, referer = '') {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, { signal: controller.signal, redirect: 'follow', headers: headers(referer) });
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    const contentType = response.headers.get('content-type') || '';
+    const probe = new TextDecoder('utf-8').decode(bytes.slice(0, Math.min(bytes.length, 8192)));
+    const html = decodeResponseBytes(bytes, contentType, probe);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    if (html.trim().length < 80) throw new Error('response body too short');
+    const setCookies = typeof response.headers.getSetCookie === 'function' ? response.headers.getSetCookie() : [response.headers.get('set-cookie') || ''];
+    const cookie = setCookies.filter(Boolean).map(value => String(value).split(';',1)[0]).filter(Boolean).join('; ');
+    return { html, status: response.status, finalUrl: response.url || url, contentType, cookie };
+  } finally { clearTimeout(timer); }
 }
 
 async function fetchHtml(url, timeoutMs = 22000, referer = '', source = {}) {
@@ -586,7 +603,7 @@ async function probeSource(source, artifacts) {
     attachment: { ok: false, discovered: 0, samples: [] },
     attachmentDownload: { ok: false, status: 'not-evaluated', attempted: 0, downloaded: 0, failed: 0 },
     documentAnalysis: { ok: false, status: 'not-evaluated', attempted: 0, parsed: 0, failed: 0 },
-    pagination: { ok: false, status: 'not-evaluated', strategy: '', totalPages: null, pagesChecked: 0, rawCount: 0, uniqueCount: 0, duplicateCount: 0, pageFingerprints: [], errors: [], reconciliation: { status: 'not-evaluated' }, goldenDataset: { status: 'baseline-capture' } },
+    pagination: { ok: false, status: 'not-evaluated', strategy: '', totalPages: null, pagesChecked: 0, rawCount: 0, uniqueCount: 0, duplicateCount: 0, pageFingerprints: [], pageValidation: [], mismatchPages: [], errors: [], reconciliation: { status: 'not-evaluated' }, goldenDataset: { status: 'baseline-capture' } },
     bottleneck: '',
     elapsedMs: 0
   };
@@ -709,7 +726,23 @@ async function probeSource(source, artifacts) {
       if (!firstHtml && selectedPageResult?.url) {
         try { firstHtml = (await fetchHtml(selectedPageResult.url, LIST_TIMEOUT_MS, selectedPageResult.url, source)).html || ''; } catch {}
       }
-      const finalPlan = discoverPaginationPlan({ html:firstHtml, source, selectedUrl:selected.url });
+      let finalPlan = discoverPaginationPlan({ html:firstHtml, source, selectedUrl:selected.url });
+      let paginationSessionCookie = '';
+      const hasCsrfField = Object.keys(finalPlan.form?.fields || {}).some(key => /csrf/i.test(key));
+      if (finalPlan.kind === 'form-post' && hasCsrfField) {
+        try {
+          const sessionSeed = await fetchFormSession(selected.url, LIST_TIMEOUT_MS, selected.url);
+          const sessionPlan = discoverPaginationPlan({ html:sessionSeed.html, source, selectedUrl:sessionSeed.finalUrl || selected.url });
+          if (sessionPlan.kind === 'form-post' && sessionPlan.form?.action && sessionPlan.key) {
+            finalPlan = sessionPlan;
+            firstHtml = sessionSeed.html;
+            paginationSessionCookie = sessionSeed.cookie || '';
+            report.pagination.sessionEvidence = { freshCsrf: true, cookieCaptured: Boolean(paginationSessionCookie), reason:'POST pagination form contains CSRF field; replay uses a fresh GET session and matching form token' };
+          }
+        } catch (error) {
+          report.pagination.sessionEvidence = { freshCsrf: false, cookieCaptured: false, error:error.name==='AbortError'?'timeout':error.message };
+        }
+      }
       report.pagination.strategy = finalPlan.kind;
       report.pagination.totalPages = finalPlan.totalPages;
       report.pagination.totalCount = finalPlan.totalCount ?? null;
@@ -719,6 +752,7 @@ async function probeSource(source, artifacts) {
       const totalPages = Number.isInteger(finalPlan.totalPages) && finalPlan.totalPages > 0 ? finalPlan.totalPages : null;
       const results = [{ page: pageBase, candidates: all, fingerprint: pageFingerprint(all), url:selected.url, exactMatch:Boolean(selected.exactMatch) }];
       report.pagination.pageFingerprints.push({page:pageBase,fingerprint:results[0].fingerprint,count:all.length,url:selected.url});
+      report.pagination.pageValidation.push({page:pageBase,url:selected.url,status:selected.status||'',exactMatch:Boolean(selected.exactMatch),visiblePostCount:selected.visiblePostCount??null,candidateCount:selected.candidateCount??all.length,missingCount:selected.missingCount??null,extraCount:selected.extraCount??null});
       if (finalPlan.kind === 'single-or-undetected') {
         report.pagination.pagesChecked = 1;
         report.pagination.status = 'unknown-single-or-no-control';
@@ -738,12 +772,14 @@ async function probeSource(source, artifacts) {
           if (pg === pageBase) continue;
           const req = paginationRequest(finalPlan, selected.url, pg);
           if (!req?.url) break;
+          if (paginationSessionCookie) req.headers = { ...(req.headers || {}), cookie: paginationSessionCookie };
           try {
             const pp = await fetchPaginationPage(req, LIST_TIMEOUT_MS, selected.url, source);
             const inspect = inspectListingPage(pp.html, {...source,url:pp.finalUrl||req.url});
             const fp = pageFingerprint(inspect.candidates);
             results.push({page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl||req.url,exactMatch:Boolean(inspect.exactMatch)});
             report.pagination.pageFingerprints.push({page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl||req.url,method:req.method});
+            report.pagination.pageValidation.push({page:pg,url:pp.finalUrl||req.url,status:inspect.status||'',exactMatch:Boolean(inspect.exactMatch),visiblePostCount:inspect.visiblePostCount??null,candidateCount:inspect.candidateCount??inspect.candidates.length,missingCount:inspect.missingCount??null,extraCount:inspect.extraCount??null,method:req.method});
           } catch(error) { report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`); }
         }
         report.pagination.pagesChecked = results.length;
@@ -754,6 +790,7 @@ async function probeSource(source, artifacts) {
         report.pagination.reconciliation = {...rec,status: allPages && !repeated ? 'pass' : 'failed', repeatedPageFingerprint:repeated};
         report.pagination.rawCount=rec.rawCount; report.pagination.uniqueCount=rec.uniqueCount; report.pagination.duplicateCount=rec.duplicateCount;
         report.pagination.goldenDataset = {status:'active-structural-baseline', firstPageFingerprint:results[0].fingerprint, firstPageCount:all.length, note:'첫 도입 실행은 검증된 1페이지를 구조 기준선으로 저장; 이후 실행부터 regression 대조'};
+        report.pagination.mismatchPages = report.pagination.pageValidation.filter(page => !page.exactMatch && Number(page.candidateCount || 0) > 0).slice(0,30);
         report.pagination.ok = allPages && !repeated && allExact && report.pagination.errors.length===0;
         report.pagination.status = report.pagination.ok ? 'verified-full' : 'partial-or-mismatch';
       } else if (finalPlan.kind === 'kosha-api' && totalPages && totalPages <= 100) {

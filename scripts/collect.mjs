@@ -23,13 +23,15 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '15.0-phase5-list-selection';
+const DATA_VERSION = '15.1-v95-adaptive-incremental-cache';
 const execFileAsync = promisify(execFile);
 
 const COLLECTION_CACHE_PATH = 'data/collection-cache.json';
 const COLLECT_METRICS_PATH = 'data/collect-metrics.json';
 const CACHE_MAX_AGE_MS = 20 * 60 * 60 * 1000;
-const CACHE_RETENTION_MS = 30 * 24 * 60 * 60 * 1000;
+const CACHE_IDENTITY_GRACE_MS = 3 * 60 * 60 * 1000;
+const CACHE_TERMINAL_MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000;
+const CACHE_RETENTION_MS = 120 * 24 * 60 * 60 * 1000;
 const CACHE_MAX_ENTRIES = 4000;
 
 function candidateCacheKey(candidate = {}) {
@@ -38,8 +40,15 @@ function candidateCacheKey(candidate = {}) {
   return `${candidate.org || ''}|${url}|${title}`;
 }
 
+function stableRequestMaterial(candidate = {}) {
+  const request = candidate.detailRequest || {};
+  return [String(request.method || '').toUpperCase(), canonicalJobUrl(request.url || ''), String(request.body || '')].join('\n');
+}
+
 function candidateFingerprint(candidate = {}) {
-  const material = [candidate.org || '', canonicalJobUrl(candidate.link || ''), candidate.title || '', candidate.listText || '', candidate.listIdentity || ''].join('\n');
+  // listText is deliberately excluded: many public boards include volatile view counts / timestamps in the row text.
+  // Those values change between runs without the recruitment notice changing and previously invalidated the cache.
+  const material = [candidate.org || '', canonicalJobUrl(candidate.link || ''), candidate.title || '', candidate.listIdentity || '', stableRequestMaterial(candidate)].join('\n');
   return crypto.createHash('sha256').update(material).digest('hex').slice(0, 20);
 }
 
@@ -100,20 +109,35 @@ async function readCollectionCache() {
   }
 }
 
+function terminalCacheOutcome(outcome = {}) {
+  const rejection = String(outcome.rejection || '');
+  if (/expired deadline|closed notice text/i.test(rejection)) return true;
+  const decisions = Array.isArray(outcome.vacancyDecisions) ? outcome.vacancyDecisions : [];
+  return decisions.length > 0 && decisions.every(item => /expired deadline|closed notice text/i.test(String(item?.reason || '')));
+}
+
 function reusableCachedOutcome(candidate, cacheEntry, nowMs = Date.now()) {
   if (!cacheEntry?.processedAt || !cacheEntry?.outcome) return null;
-  const fullMatch = cacheEntry.fingerprint && cacheEntry.fingerprint === candidateFingerprint(candidate);
-  const bootstrapMatch = cacheEntry.bootstrap && cacheEntry.identityFingerprint === candidateIdentityFingerprint(candidate);
-  if (!fullMatch && !bootstrapMatch) return null;
+  const identityMatch = cacheEntry.identityFingerprint === candidateIdentityFingerprint(candidate);
+  const fullMatch = Boolean(cacheEntry.fingerprint) && cacheEntry.fingerprint === candidateFingerprint(candidate);
+  const bootstrapMatch = Boolean(cacheEntry.bootstrap) && identityMatch;
   const age = nowMs - new Date(cacheEntry.processedAt).getTime();
-  if (!Number.isFinite(age) || age < 0 || age > CACHE_MAX_AGE_MS) return null;
+  if (!Number.isFinite(age) || age < 0 || !identityMatch) return null;
+
+  let reuseReason = '';
+  if (terminalCacheOutcome(cacheEntry.outcome) && age <= CACHE_TERMINAL_MAX_AGE_MS) reuseReason = 'terminal-identity';
+  else if ((fullMatch || bootstrapMatch) && age <= CACHE_MAX_AGE_MS) reuseReason = fullMatch ? 'full-fingerprint' : 'bootstrap-identity';
+  else if (age <= CACHE_IDENTITY_GRACE_MS) reuseReason = 'identity-grace';
+  if (!reuseReason) return null;
+
   const outcome = structuredClone(cacheEntry.outcome);
   if (Array.isArray(outcome.jobs)) outcome.jobs = outcome.jobs.filter(job => !isExpired(job.deadline));
   outcome.pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 };
   outcome.documentDiagnostics = { byDetectedType: {}, byContentType: {}, byError: {} };
   outcome.documentResults = [];
   outcome.incrementalReuse = true;
-  return outcome;
+  outcome.incrementalReuseReason = reuseReason;
+  return { outcome, reuseReason };
 }
 
 function cacheableOutcome(outcome = {}) {
@@ -634,6 +658,8 @@ async function fetchSource(source) {
   let cacheHits = 0;
   let cacheMisses = 0;
   let heavyProcessed = 0;
+  const cacheHitReasons = { 'full-fingerprint': 0, 'bootstrap-identity': 0, 'identity-grace': 0, 'terminal-identity': 0 };
+  const cacheMissReasons = { 'missing-key': 0, 'identity-mismatch': 0, 'fingerprint-changed': 0, 'stale': 0, 'other': 0 };
   try {
     const access = await fetchFirstAccessible(source);
     const html = access.html;
@@ -761,13 +787,24 @@ async function fetchSource(source) {
         continue;
       }
       const cacheKey = candidateCacheKey(candidate);
-      const cachedOutcome = reusableCachedOutcome(candidate, collectionCache.entries[cacheKey]);
+      const cacheReuse = reusableCachedOutcome(candidate, collectionCache.entries[cacheKey]);
       let outcome;
-      if (cachedOutcome) {
+      if (cacheReuse) {
         cacheHits += 1;
-        outcome = cachedOutcome;
+        cacheHitReasons[cacheReuse.reuseReason] = Number(cacheHitReasons[cacheReuse.reuseReason] || 0) + 1;
+        outcome = cacheReuse.outcome;
       } else {
         cacheMisses += 1;
+        const existingEntry = collectionCache.entries[cacheKey];
+        if (!existingEntry) cacheMissReasons['missing-key'] += 1;
+        else {
+          const identityMatch = existingEntry.identityFingerprint === candidateIdentityFingerprint(candidate);
+          const age = Date.now() - new Date(existingEntry.processedAt || 0).getTime();
+          if (!identityMatch) cacheMissReasons['identity-mismatch'] += 1;
+          else if (Number.isFinite(age) && age > CACHE_MAX_AGE_MS && !terminalCacheOutcome(existingEntry.outcome)) cacheMissReasons.stale += 1;
+          else if (existingEntry.fingerprint && existingEntry.fingerprint !== candidateFingerprint(candidate)) cacheMissReasons['fingerprint-changed'] += 1;
+          else cacheMissReasons.other += 1;
+        }
         heavyProcessed += 1;
         outcome = await enrichCandidate(candidate, source);
         nextCacheEntries[cacheKey] = {
@@ -813,14 +850,14 @@ async function fetchSource(source) {
     return {
       ok: true, source: activeSource, jobs, candidates: candidates.length, rawCandidates: rawCandidates.length, collectionCandidates: collectionCandidates.length, listSelection, listingPagesChecked: Math.max(listingUrls.length, Number(paginationDiag?.pagesChecked || 0)), accessAttempts: access.attempts, accessDiagnosis: access.accessDiagnosis || {}, activeRecruitUrl: access.accessDiagnosis?.activeRecruitUrl || activeSource.url,
       rejected: Math.max(0, rawCandidates.length - jobs.length),
-      incremental: { cacheHits, cacheMisses, heavyProcessed, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() },
+      incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() },
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
       rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], incremental: { cacheHits, cacheMisses, heavyProcessed, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPipelineReport() {
@@ -845,7 +882,7 @@ const pipelineReport = await readPipelineReport();
 const previousJobs = Array.isArray(previousPayload.jobs) ? previousPayload.jobs : [];
 const collectionCache = await readCollectionCache();
 const nextCacheEntries = { ...collectionCache.entries };
-const collectMetrics = { schemaVersion: '1.0.0', startedAt: new Date().toISOString(), finishedAt: '', durationMs: null, cacheMaxAgeHours: CACHE_MAX_AGE_MS / 3600000, cacheBootstrappedFromPreviousOutputs: Boolean(collectionCache.bootstrap), bootstrapEntryCount: Object.keys(collectionCache.entries || {}).length, institutions: [] };
+const collectMetrics = { schemaVersion: '1.1.0', startedAt: new Date().toISOString(), finishedAt: '', durationMs: null, cacheMaxAgeHours: CACHE_MAX_AGE_MS / 3600000, identityGraceHours: CACHE_IDENTITY_GRACE_MS / 3600000, terminalCacheMaxAgeDays: CACHE_TERMINAL_MAX_AGE_MS / 86400000, cacheBootstrappedFromPreviousOutputs: Boolean(collectionCache.bootstrap), bootstrapEntryCount: Object.keys(collectionCache.entries || {}).length, institutions: [] };
 const results = [];
 const ACCESS_CONCURRENCY = 2;
 for (let index = 0; index < SOURCES.length; index += ACCESS_CONCURRENCY) {
@@ -859,7 +896,9 @@ collectMetrics.institutions = results.map(result => ({ org: result.source?.org |
 collectMetrics.summary = {
   cacheHits: collectMetrics.institutions.reduce((n, x) => n + Number(x.cacheHits || 0), 0),
   cacheMisses: collectMetrics.institutions.reduce((n, x) => n + Number(x.cacheMisses || 0), 0),
-  heavyProcessed: collectMetrics.institutions.reduce((n, x) => n + Number(x.heavyProcessed || 0), 0)
+  heavyProcessed: collectMetrics.institutions.reduce((n, x) => n + Number(x.heavyProcessed || 0), 0),
+  cacheHitReasons: collectMetrics.institutions.reduce((acc, x) => { for (const [k,v] of Object.entries(x.cacheHitReasons || {})) acc[k] = Number(acc[k] || 0) + Number(v || 0); return acc; }, {}),
+  cacheMissReasons: collectMetrics.institutions.reduce((acc, x) => { for (const [k,v] of Object.entries(x.cacheMissReasons || {})) acc[k] = Number(acc[k] || 0) + Number(v || 0); return acc; }, {})
 };
 const dedupedJobs = new Map(), sources = [];
 const nowIso = new Date().toISOString();
@@ -1167,7 +1206,7 @@ const prunedCacheEntries = Object.fromEntries(
     .sort((a, b) => new Date(b[1]?.processedAt || 0) - new Date(a[1]?.processedAt || 0))
     .slice(0, CACHE_MAX_ENTRIES)
 );
-const cachePayload = { schemaVersion: '1.0.0', generatedAt: nowIso, maxAgeHours: CACHE_MAX_AGE_MS / 3600000, retentionDays: CACHE_RETENTION_MS / 86400000, entries: prunedCacheEntries };
+const cachePayload = { schemaVersion: '1.1.0', generatedAt: nowIso, maxAgeHours: CACHE_MAX_AGE_MS / 3600000, identityGraceHours: CACHE_IDENTITY_GRACE_MS / 3600000, terminalCacheMaxAgeDays: CACHE_TERMINAL_MAX_AGE_MS / 86400000, retentionDays: CACHE_RETENTION_MS / 86400000, entries: prunedCacheEntries };
 
 await Promise.all([
   fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8'),

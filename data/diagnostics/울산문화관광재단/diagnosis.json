@@ -13,12 +13,53 @@
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "2개 후보 URL HTTP 응답 성공",
+      "reason": "3개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://uctf.or.kr/board/employment",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uctf.or.kr/board/employment",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 1개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산문화관광재단",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "employment"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "strictInstitutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 3922,
+            "requestedUrl": "https://uctf.or.kr/board/employment",
+            "finalUrl": "https://uctf.or.kr/board/employment",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
           "accessTemplate": "API_BOARD",
           "requestProfile": "browser-default"
         },
@@ -120,7 +161,7 @@
     },
     "recruitVerify": {
       "status": "success",
-      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "code": "RECRUIT_VERIFY_OK",
       "reason": "채용 키워드 1개 · 게시판 신호 5개 확인",
       "evidence": {
         "ok": true,
@@ -157,8 +198,8 @@
         "strictInstitutionRule": false,
         "institutionRuleEvidence": [],
         "textLength": 3922,
-        "requestedUrl": "https://www.uctf.or.kr/board/employment",
-        "finalUrl": "https://www.uctf.or.kr/board/employment",
+        "requestedUrl": "https://uctf.or.kr/board/employment",
+        "finalUrl": "https://uctf.or.kr/board/employment",
         "status": 200,
         "contentType": "text/html;charset=UTF-8"
       }
@@ -169,7 +210,7 @@
       "reason": "실제 게시글 목록 검증 완료 · 화면 10건 = 추출 10건 · SOURCE_RECORD_EXACT",
       "evidence": [
         {
-          "url": "https://www.uctf.or.kr/board/employment",
+          "url": "https://uctf.or.kr/board/employment",
           "visiblePostCount": null,
           "rowMode": false,
           "anchors": 340,
@@ -228,47 +269,47 @@
           "candidateUrlSamples": [
             {
               "title": "사업안내",
-              "url": "https://www.uctf.or.kr/business/culture-art/view/id",
+              "url": "https://uctf.or.kr/business/culture-art/view/id",
               "allowed": true
             },
             {
               "title": "문화예술사업",
-              "url": "https://www.uctf.or.kr/business/culture-art/view/id",
+              "url": "https://uctf.or.kr/business/culture-art/view/id",
               "allowed": true
             },
             {
               "title": "지속 가능한 예술생태계 조성",
-              "url": "https://www.uctf.or.kr/business/culture-art/view/id",
+              "url": "https://uctf.or.kr/business/culture-art/view/id",
               "allowed": true
             },
             {
               "title": "일상 속 시민 문화감수성 향상",
-              "url": "https://www.uctf.or.kr/business/culture-art/view/id2",
+              "url": "https://uctf.or.kr/business/culture-art/view/id2",
               "allowed": true
             },
             {
               "title": "문화도시 위상 강화",
-              "url": "https://www.uctf.or.kr/business/culture-art/view/id3",
+              "url": "https://uctf.or.kr/business/culture-art/view/id3",
               "allowed": true
             },
             {
               "title": "지속 가능한 예술생태계 조성",
-              "url": "https://www.uctf.or.kr/business/culture-art/view/id1",
+              "url": "https://uctf.or.kr/business/culture-art/view/id1",
               "allowed": true
             },
             {
               "title": "일상 속 시민 문화감수성 향상",
-              "url": "https://www.uctf.or.kr/business/culture-art/view/id2",
+              "url": "https://uctf.or.kr/business/culture-art/view/id2",
               "allowed": true
             },
             {
               "title": "문화도시 위상 강화",
-              "url": "https://www.uctf.or.kr/business/culture-art/view/id3",
+              "url": "https://uctf.or.kr/business/culture-art/view/id3",
               "allowed": true
             },
             {
               "title": "개인정보처리방침",
-              "url": "https://www.uctf.or.kr/privacy",
+              "url": "https://uctf.or.kr/privacy",
               "allowed": false
             }
           ],
@@ -397,18 +438,18 @@
           "countTemplate": ""
         },
         {
-          "url": "https://uctf.or.kr/",
+          "url": "https://www.uctf.or.kr/board/employment",
           "visiblePostCount": null,
           "rowMode": false,
-          "anchors": 427,
-          "titleMatches": 365,
-          "noUrl": 6,
-          "unsafeUrl": 0,
-          "accepted": 19,
+          "anchors": 340,
+          "titleMatches": 274,
+          "noUrl": 2,
+          "unsafeUrl": 1,
+          "accepted": 9,
           "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 23,
-          "clickableBlocksAccepted": 8,
-          "listOnlyAccepted": 6,
+          "clickableBlocksScanned": 5,
+          "clickableBlocksAccepted": 2,
+          "listOnlyAccepted": 3,
           "titleSamples": [
             "정보공개",
             "재단소개",
@@ -421,10 +462,10 @@
           ],
           "unsafeSamples": [
             {
-              "title": "홈페이지 개선의견",
-              "reason": "no-url-detail-pending",
-              "identity": "row-88196",
-              "row": "<li>\n                            <a onclick=\"document.querySelector('#opinionPop').style.setProperty('display', 'block', 'important')\">홈페이지 개선의견</a>\n                        </li>"
+              "title": "개인정보처리방침",
+              "reason": "detail-url-pending",
+              "identity": "row-93567",
+              "row": "<li>\n                        <a onclick=\"window.open('/privacy', '_blank')\">개인정보처리방침</a>\n                    </li>"
             },
             {
               "title": "통합검색",
@@ -433,62 +474,20 @@
               "row": "<li class=\"lst search pointer\" onclick=\"searchModalShow();\">\n                                <span style=\"font-size: 1.3rem; color: #ffffff;\">\n                                    통합검색\n                                    <img src=\"/img/common/ic_head_search.svg\" alt=\"\" style=\"margin-left: 12px;\">\n                                </span>\n                            </li>"
             },
             {
-              "title": "유에코 (UECO)",
-              "reason": "clickable-block-detail-url-pending",
-              "identity": "block-82150",
-              "row": "<li class=\"on\" onclick=\"m5Change(1)\">\n\t\t\t\t\t\t유에코 <br class=\"mo_view\">(UECO)\n\t\t\t\t\t</li>"
-            },
-            {
-              "title": "관광기업 지원센터",
-              "reason": "clickable-block-detail-url-pending",
-              "identity": "block-82241",
-              "row": "<li onclick=\"m5Change(2)\">\n\t\t\t\t\t\t관광기업<br class=\"mo_view\">지원센터\n\t\t\t\t\t</li>"
-            },
-            {
-              "title": "아르코공연 연습센터@울산",
-              "reason": "clickable-block-detail-url-pending",
-              "identity": "block-82319",
-              "row": "<li onclick=\"m5Change(3)\">\n\t\t\t\t\t\t아르코공연<br class=\"mo_view\">연습센터@울산\n\t\t\t\t\t</li>"
-            },
-            {
               "title": "패밀리 사이트",
               "reason": "clickable-block-detail-url-pending",
-              "identity": "block-102500",
+              "identity": "block-82986",
               "row": "<li class=\"site rel pointer\" onclick=\"familyPopShow();\">\n                <img src=\"/img/common/ic_side_site.svg\" alt=\"\" class=\"y_center\">\n                <div class=\"txt fs16 fc0 abs y_center\">패밀리 사이트</div>\n            </li>"
             }
           ],
           "actionSamples": [
             {
-              "title": "홈페이지 개선의견",
-              "action": "document.querySelector('#opinionPop').style.setProperty('display', 'block', 'important')"
+              "title": "개인정보처리방침",
+              "action": "window.open('/privacy', '_blank')"
             },
             {
               "title": "통합검색",
               "action": "searchModalShow();"
-            },
-            {
-              "title": "관광 생태계 조성",
-              "action": "location.href='/business/tour-mice/smart01'"
-            },
-            {
-              "title": "관광 콘텐츠 육성",
-              "action": "location.href='/business/tour-mice/infra01'"
-            },
-            {
-              "title": "전시·컨벤션 육성",
-              "action": "location.href='/business/tour-mice/display01'"
-            },
-            {
-              "title": "유에코 (UECO)",
-              "action": "m5Change(1)"
-            },
-            {
-              "title": "관광기업 지원센터",
-              "action": "m5Change(2)"
-            },
-            {
-              "title": "아르코공연 연습센터@울산",
-              "action": "m5Change(3)"
             },
             {
               "title": "패밀리 사이트",
@@ -498,86 +497,51 @@
           "candidateUrlSamples": [
             {
               "title": "사업안내",
-              "url": "https://uctf.or.kr/business/culture-art/view/id",
+              "url": "https://www.uctf.or.kr/business/culture-art/view/id",
               "allowed": true
             },
             {
               "title": "문화예술사업",
-              "url": "https://uctf.or.kr/business/culture-art/view/id",
+              "url": "https://www.uctf.or.kr/business/culture-art/view/id",
               "allowed": true
             },
             {
               "title": "지속 가능한 예술생태계 조성",
-              "url": "https://uctf.or.kr/business/culture-art/view/id",
+              "url": "https://www.uctf.or.kr/business/culture-art/view/id",
               "allowed": true
             },
             {
               "title": "일상 속 시민 문화감수성 향상",
-              "url": "https://uctf.or.kr/business/culture-art/view/id2",
+              "url": "https://www.uctf.or.kr/business/culture-art/view/id2",
               "allowed": true
             },
             {
               "title": "문화도시 위상 강화",
-              "url": "https://uctf.or.kr/business/culture-art/view/id3",
+              "url": "https://www.uctf.or.kr/business/culture-art/view/id3",
               "allowed": true
             },
             {
               "title": "지속 가능한 예술생태계 조성",
-              "url": "https://uctf.or.kr/business/culture-art/view/id1",
+              "url": "https://www.uctf.or.kr/business/culture-art/view/id1",
               "allowed": true
             },
             {
               "title": "일상 속 시민 문화감수성 향상",
-              "url": "https://uctf.or.kr/business/culture-art/view/id2",
+              "url": "https://www.uctf.or.kr/business/culture-art/view/id2",
               "allowed": true
             },
             {
               "title": "문화도시 위상 강화",
-              "url": "https://uctf.or.kr/business/culture-art/view/id3",
-              "allowed": true
-            },
-            {
-              "title": "자세히 보기 &nbsp+",
-              "url": "https://uctf.or.kr/facility/ueco/intro",
-              "allowed": true
-            },
-            {
-              "title": "자세히 보기 &nbsp+",
-              "url": "https://uctf.or.kr/facility/tour-center/intro",
-              "allowed": true
-            },
-            {
-              "title": "자세히 보기 &nbsp+",
-              "url": "https://uctf.or.kr/facility/encore-center/intro",
+              "url": "https://www.uctf.or.kr/business/culture-art/view/id3",
               "allowed": true
             },
             {
               "title": "개인정보처리방침",
-              "url": "https://uctf.or.kr/privacy",
-              "allowed": true
-            },
-            {
-              "title": "개인정보처리방침",
-              "url": "https://uctf.or.kr/privacy",
-              "allowed": true
-            },
-            {
-              "title": "관광 생태계 조성",
-              "url": "https://uctf.or.kr/business/tour-mice/smart01",
-              "allowed": true
-            },
-            {
-              "title": "관광 생태계 조성",
-              "url": "https://uctf.or.kr/business/tour-mice/smart01",
-              "allowed": true
-            },
-            {
-              "title": "관광 콘텐츠 육성",
-              "url": "https://uctf.or.kr/business/tour-mice/infra01",
-              "allowed": true
+              "url": "https://www.uctf.or.kr/privacy",
+              "allowed": false
             }
           ],
-          "candidateCount": 19,
+          "candidateCount": 9,
           "exactMatch": false,
           "missingCount": null,
           "extraCount": null,
@@ -585,7 +549,7 @@
             "verified": false,
             "template": "TABLE_RECORD",
             "recordCount": 0,
-            "candidateCount": 19,
+            "candidateCount": 9,
             "matchedCount": 0,
             "unmatchedTitles": [
               "사업안내",
@@ -594,12 +558,9 @@
               "일상 속 시민 문화감수성 향상",
               "문화도시 위상 강화",
               "지속 가능한 예술생태계 조성",
-              "자세히 보기 &nbsp+",
-              "자세히 보기 &nbsp+",
-              "자세히 보기 &nbsp+",
               "개인정보처리방침",
-              "홈페이지 개선의견",
-              "통합검색"
+              "통합검색",
+              "패밀리 사이트"
             ],
             "recordSamples": [],
             "level": "TEMPLATE_RECORD_MISMATCH"
@@ -861,7 +822,7 @@
     },
     "access": {
       "status": "success",
-      "code": "RECRUIT_VERIFY_FALLBACK_OK",
+      "code": "RECRUIT_VERIFY_OK",
       "reason": "채용 키워드 1개 · 게시판 신호 5개 확인",
       "evidence": {
         "ok": true,
@@ -898,8 +859,8 @@
         "strictInstitutionRule": false,
         "institutionRuleEvidence": [],
         "textLength": 3922,
-        "requestedUrl": "https://www.uctf.or.kr/board/employment",
-        "finalUrl": "https://www.uctf.or.kr/board/employment",
+        "requestedUrl": "https://uctf.or.kr/board/employment",
+        "finalUrl": "https://uctf.or.kr/board/employment",
         "status": 200,
         "contentType": "text/html;charset=UTF-8"
       }
@@ -912,16 +873,57 @@
       "ok": true,
       "httpOk": true,
       "recruitVerifyOk": true,
-      "requestedUrl": "https://www.uctf.or.kr/board/employment",
-      "finalUrl": "https://www.uctf.or.kr/board/employment",
-      "activeRecruitUrl": "https://www.uctf.or.kr/board/employment",
+      "requestedUrl": "https://uctf.or.kr/board/employment",
+      "finalUrl": "https://uctf.or.kr/board/employment",
+      "activeRecruitUrl": "https://uctf.or.kr/board/employment",
       "status": 200,
       "contentType": "text/html;charset=UTF-8",
       "attempts": [
         {
           "url": "https://uctf.or.kr/board/employment",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uctf.or.kr/board/employment",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 1개 · 게시판 신호 5개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "울산문화관광재단",
+            "orgMatched": true,
+            "positiveHits": 1,
+            "positiveMatches": [
+              "employment"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 5,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "strictInstitutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 3922,
+            "requestedUrl": "https://uctf.or.kr/board/employment",
+            "finalUrl": "https://uctf.or.kr/board/employment",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
           "accessTemplate": "API_BOARD",
           "requestProfile": "browser-default"
         },
@@ -1055,8 +1057,8 @@
         "strictInstitutionRule": false,
         "institutionRuleEvidence": [],
         "textLength": 3922,
-        "requestedUrl": "https://www.uctf.or.kr/board/employment",
-        "finalUrl": "https://www.uctf.or.kr/board/employment",
+        "requestedUrl": "https://uctf.or.kr/board/employment",
+        "finalUrl": "https://uctf.or.kr/board/employment",
         "status": 200,
         "contentType": "text/html;charset=UTF-8"
       },
@@ -1069,17 +1071,58 @@
       },
       "diagnosis": {
         "ok": true,
-        "code": "RECRUIT_VERIFY_FALLBACK_OK",
+        "code": "RECRUIT_VERIFY_OK",
         "reason": "채용 키워드 1개 · 게시판 신호 5개 확인",
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "2개 후보 URL HTTP 응답 성공",
+          "reason": "3개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://uctf.or.kr/board/employment",
-              "ok": false,
-              "error": "fetch failed",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uctf.or.kr/board/employment",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 1개 · 게시판 신호 5개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "울산문화관광재단",
+                "orgMatched": true,
+                "positiveHits": 1,
+                "positiveMatches": [
+                  "employment"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 5,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "strictInstitutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 3922,
+                "requestedUrl": "https://uctf.or.kr/board/employment",
+                "finalUrl": "https://uctf.or.kr/board/employment",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              },
               "accessTemplate": "API_BOARD",
               "requestProfile": "browser-default"
             },
@@ -1181,7 +1224,7 @@
         },
         "recruitVerify": {
           "ok": true,
-          "code": "RECRUIT_VERIFY_FALLBACK_OK",
+          "code": "RECRUIT_VERIFY_OK",
           "reason": "채용 키워드 1개 · 게시판 신호 5개 확인",
           "score": 5,
           "maxScore": 5,
@@ -1227,14 +1270,14 @@
             "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
             "textLength": 3922,
-            "requestedUrl": "https://www.uctf.or.kr/board/employment",
-            "finalUrl": "https://www.uctf.or.kr/board/employment",
+            "requestedUrl": "https://uctf.or.kr/board/employment",
+            "finalUrl": "https://uctf.or.kr/board/employment",
             "status": 200,
             "contentType": "text/html;charset=UTF-8"
           }
         },
-        "activeRecruitUrl": "https://www.uctf.or.kr/board/employment",
-        "selectedRequestedUrl": "https://www.uctf.or.kr/board/employment",
+        "activeRecruitUrl": "https://uctf.or.kr/board/employment",
+        "selectedRequestedUrl": "https://uctf.or.kr/board/employment",
         "verification": {
           "ok": true,
           "verified": true,
@@ -1270,8 +1313,8 @@
           "strictInstitutionRule": false,
           "institutionRuleEvidence": [],
           "textLength": 3922,
-          "requestedUrl": "https://www.uctf.or.kr/board/employment",
-          "finalUrl": "https://www.uctf.or.kr/board/employment",
+          "requestedUrl": "https://uctf.or.kr/board/employment",
+          "finalUrl": "https://uctf.or.kr/board/employment",
           "status": 200,
           "contentType": "text/html;charset=UTF-8"
         }
@@ -1290,6 +1333,234 @@
       "detailUrlReady": 10,
       "listOnlyCount": 0,
       "extractionDiagnostics": [
+        {
+          "url": "https://uctf.or.kr/board/employment",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 340,
+          "titleMatches": 274,
+          "noUrl": 2,
+          "unsafeUrl": 1,
+          "accepted": 9,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 5,
+          "clickableBlocksAccepted": 2,
+          "listOnlyAccepted": 3,
+          "titleSamples": [
+            "정보공개",
+            "재단소개",
+            "사업안내",
+            "운영시설",
+            "재단소식",
+            "고객의 소리",
+            "정보공개",
+            "비전 - 전략체계"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "개인정보처리방침",
+              "reason": "detail-url-pending",
+              "identity": "row-93567",
+              "row": "<li>\n                        <a onclick=\"window.open('/privacy', '_blank')\">개인정보처리방침</a>\n                    </li>"
+            },
+            {
+              "title": "통합검색",
+              "reason": "clickable-block-detail-url-pending",
+              "identity": "block-4022",
+              "row": "<li class=\"lst search pointer\" onclick=\"searchModalShow();\">\n                                <span style=\"font-size: 1.3rem; color: #ffffff;\">\n                                    통합검색\n                                    <img src=\"/img/common/ic_head_search.svg\" alt=\"\" style=\"margin-left: 12px;\">\n                                </span>\n                            </li>"
+            },
+            {
+              "title": "패밀리 사이트",
+              "reason": "clickable-block-detail-url-pending",
+              "identity": "block-82986",
+              "row": "<li class=\"site rel pointer\" onclick=\"familyPopShow();\">\n                <img src=\"/img/common/ic_side_site.svg\" alt=\"\" class=\"y_center\">\n                <div class=\"txt fs16 fc0 abs y_center\">패밀리 사이트</div>\n            </li>"
+            }
+          ],
+          "actionSamples": [
+            {
+              "title": "개인정보처리방침",
+              "action": "window.open('/privacy', '_blank')"
+            },
+            {
+              "title": "통합검색",
+              "action": "searchModalShow();"
+            },
+            {
+              "title": "패밀리 사이트",
+              "action": "familyPopShow();"
+            }
+          ],
+          "candidateUrlSamples": [
+            {
+              "title": "사업안내",
+              "url": "https://uctf.or.kr/business/culture-art/view/id",
+              "allowed": true
+            },
+            {
+              "title": "문화예술사업",
+              "url": "https://uctf.or.kr/business/culture-art/view/id",
+              "allowed": true
+            },
+            {
+              "title": "지속 가능한 예술생태계 조성",
+              "url": "https://uctf.or.kr/business/culture-art/view/id",
+              "allowed": true
+            },
+            {
+              "title": "일상 속 시민 문화감수성 향상",
+              "url": "https://uctf.or.kr/business/culture-art/view/id2",
+              "allowed": true
+            },
+            {
+              "title": "문화도시 위상 강화",
+              "url": "https://uctf.or.kr/business/culture-art/view/id3",
+              "allowed": true
+            },
+            {
+              "title": "지속 가능한 예술생태계 조성",
+              "url": "https://uctf.or.kr/business/culture-art/view/id1",
+              "allowed": true
+            },
+            {
+              "title": "일상 속 시민 문화감수성 향상",
+              "url": "https://uctf.or.kr/business/culture-art/view/id2",
+              "allowed": true
+            },
+            {
+              "title": "문화도시 위상 강화",
+              "url": "https://uctf.or.kr/business/culture-art/view/id3",
+              "allowed": true
+            },
+            {
+              "title": "개인정보처리방침",
+              "url": "https://uctf.or.kr/privacy",
+              "allowed": false
+            }
+          ],
+          "candidateCount": 9,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 9,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "사업안내",
+              "문화예술사업",
+              "지속 가능한 예술생태계 조성",
+              "일상 속 시민 문화감수성 향상",
+              "문화도시 위상 강화",
+              "지속 가능한 예술생태계 조성",
+              "개인정보처리방침",
+              "통합검색",
+              "패밀리 사이트"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable",
+          "countTemplate": ""
+        },
+        {
+          "url": "https://uctf.or.kr/api/notices?page=0&category=%EC%B1%84%EC%9A%A9",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 0,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "제6차 기간제 근로자 채용 최종합격자 공고",
+            "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
+            "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
+            "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
+            "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
+            "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
+            "2026년 공무직 공개 채용 최종합격자 공고",
+            "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [
+            {
+              "title": "제6차 기간제 근로자 채용 최종합격자 공고",
+              "url": "https://uctf.or.kr/board/employment/view/202411202683",
+              "allowed": true
+            },
+            {
+              "title": "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
+              "url": "https://uctf.or.kr/board/employment/view/202411196196",
+              "allowed": true
+            },
+            {
+              "title": "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
+              "url": "https://uctf.or.kr/board/employment/view/202411196033",
+              "allowed": true
+            },
+            {
+              "title": "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
+              "url": "https://uctf.or.kr/board/employment/view/202411182873",
+              "allowed": true
+            },
+            {
+              "title": "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
+              "url": "https://uctf.or.kr/board/employment/view/202411175388",
+              "allowed": true
+            },
+            {
+              "title": "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
+              "url": "https://uctf.or.kr/board/employment/view/202411159341",
+              "allowed": true
+            },
+            {
+              "title": "2026년 공무직 공개 채용 최종합격자 공고",
+              "url": "https://uctf.or.kr/board/employment/view/202411136877",
+              "allowed": true
+            },
+            {
+              "title": "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고",
+              "url": "https://uctf.or.kr/board/employment/view/202411119401",
+              "allowed": true
+            }
+          ],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "API_CONTENT",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "제6차 기간제 근로자 채용 최종합격자 공고",
+              "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
+              "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
+              "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
+              "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
+              "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
+              "2026년 공무직 공개 채용 최종합격자 공고",
+              "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고"
+            ],
+            "level": "TEMPLATE_API_CONTENT_EXACT"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows",
+          "countTemplate": ""
+        },
         {
           "url": "https://www.uctf.or.kr/board/employment",
           "visiblePostCount": null,
@@ -1422,21 +1693,280 @@
           "emptyMarker": "",
           "countSource": "unavailable",
           "countTemplate": ""
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "울산문화관광재단",
+          "url": "https://uctf.or.kr/board/employment",
+          "probableCause": "PARTIAL_ROW_REJECTION",
+          "listCounterFailureReason": "COUNTER_SELECTOR_MISMATCH",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 9,
+              "matchedCount": 0,
+              "unmatchedTitles": [
+                "사업안내",
+                "문화예술사업",
+                "지속 가능한 예술생태계 조성",
+                "일상 속 시민 문화감수성 향상",
+                "문화도시 위상 강화",
+                "지속 가능한 예술생태계 조성",
+                "개인정보처리방침",
+                "통합검색",
+                "패밀리 사이트"
+              ],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "independentDomEvidence": true,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 1,
+            "extraCandidateCount": 9,
+            "visibleUniqueTitleCount": 1,
+            "extractedTitleCount": 9
+          },
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 1,
+            "uniqueVisibleTitleCount": 1,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 9,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {
+            "UNCLASSIFIED": 9
+          },
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 9,
+            "rawTableRows": 1,
+            "uniqueVisibleTitleCount": 1,
+            "sourceHtmlLength": 121408,
+            "missingRows": 1,
+            "extraCandidates": 9
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 2,
+            "li": 348,
+            "article": 0,
+            "[onclick]": 20,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 330
+          },
+          "rejectReasonCounts": {
+            "DETAIL_SIGNAL_MISSING": 1
+          },
+          "visibleTitles": [
+            "{{item.registrationDatetime}}"
+          ],
+          "extractedTitles": [
+            "사업안내",
+            "문화예술사업",
+            "지속 가능한 예술생태계 조성",
+            "일상 속 시민 문화감수성 향상",
+            "문화도시 위상 강화",
+            "지속 가능한 예술생태계 조성",
+            "개인정보처리방침",
+            "통합검색",
+            "패밀리 사이트"
+          ],
+          "missingRows": [
+            {
+              "index": 0,
+              "title": "{{item.registrationDatetime}}",
+              "normalizedTitle": "item registrationdatetime",
+              "text": "{{item.number}} {{item.state}} {{item.title}} {{item.registrationDatetime}} {{item.hit}}",
+              "hasDate": false,
+              "hasSequence": false,
+              "hasAction": false,
+              "href": "",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr :class=\"{'site_notice_fix': item.notice}\" v-for=\"(item, i) in itemList\">\n                                    <td class=\"site_num\" v-if=\"!item.notice\" v-cloak>{{item.number}}</td>\n                                    <td class=\"site_num\" v-if=\"item.notice\">\n                                        <span class=\"nt_fix\">\n                                            <img src=\"/img/site/ic_notice.png\" alt=\"공지글\">\n                                        </span>\n                                    </td>\n                                    <td class=\"site_status pc_ver\" v-cloak>{{item.state}}</td>\n                                    <td class=\"site_tit\" v-on:click=\"requestGoingEmploymentDetail(i)\" style=\"cursor: pointer;\" v-cloak>{{item.title}}</td>\n                                    <td class=\"site_file\">\n                                    <img src=\"/img/site/ic_file.png\" alt=\"첨부파일\" v-if=\"item.file\">\n                                    </td>\n                                    <td class=\"site_date\" v-cloak>{{item.registrationDatetime}}</td>\n                                    <td class=\"site_view\" v-cloak>{{item.hit}}</td>\n                                </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "DETAIL_SIGNAL_MISSING"
+            }
+          ],
+          "extraCandidates": [
+            {
+              "org": "울산문화관광재단",
+              "title": "사업안내",
+              "link": "https://uctf.or.kr/business/culture-art/view/id",
+              "listText": "재단소개 사업안내 운영시설 재단소식 고객의 소리 <a href=\"/info/정보공개제도\" class=\"bloc",
+              "adapter": "울산문화관광재단"
+            },
+            {
+              "org": "울산문화관광재단",
+              "title": "문화예술사업",
+              "link": "https://uctf.or.kr/business/culture-art/view/id",
+              "listText": "문화예술사업 관광마이스사업 문화관광사업안내 울산문화관광재단의 문화관광사업안내. 유에코(UECO)",
+              "adapter": "울산문화관광재단"
+            },
+            {
+              "org": "울산문화관광재단",
+              "title": "지속 가능한 예술생태계 조성",
+              "link": "https://uctf.or.kr/business/culture-art/view/id",
+              "listText": "지속 가능한 예술생태계 조성 일상 속 시민 문화감수성 향상 문화도시 위상 강화 관광마이스사업",
+              "adapter": "울산문화관광재단"
+            },
+            {
+              "org": "울산문화관광재단",
+              "title": "일상 속 시민 문화감수성 향상",
+              "link": "https://uctf.or.kr/business/culture-art/view/id2",
+              "listText": "지속 가능한 예술생태계 조성 일상 속 시민 문화감수성 향상 문화도시 위상 강화 관광마이스사업 <span class",
+              "adapter": "울산문화관광재단"
+            },
+            {
+              "org": "울산문화관광재단",
+              "title": "문화도시 위상 강화",
+              "link": "https://uctf.or.kr/business/culture-art/view/id3",
+              "listText": "일상 속 시민 문화감수성 향상 문화도시 위상 강화 관광마이스사업 울산 체류형 관광 활성화",
+              "adapter": "울산문화관광재단"
+            },
+            {
+              "org": "울산문화관광재단",
+              "title": "지속 가능한 예술생태계 조성",
+              "link": "https://uctf.or.kr/business/culture-art/view/id1",
+              "listText": "문화예술사업 지속 가능한 예술생태계 조성 일상 속 시민 문화감수성 향상 문화도시 위상 강화 관광마이스사업 <span",
+              "adapter": "울산문화관광재단"
+            },
+            {
+              "org": "울산문화관광재단",
+              "title": "개인정보처리방침",
+              "link": "https://uctf.or.kr/board/employment#list-row-93567",
+              "listText": "개인정보처리방침",
+              "adapter": "울산문화관광재단",
+              "listOnly": true,
+              "listIdentity": "row-93567"
+            },
+            {
+              "org": "울산문화관광재단",
+              "title": "통합검색",
+              "link": "https://uctf.or.kr/board/employment#list-block-4022",
+              "listText": "통합검색",
+              "adapter": "울산문화관광재단:clickable-block",
+              "listOnly": true,
+              "listIdentity": "block-4022"
+            },
+            {
+              "org": "울산문화관광재단",
+              "title": "패밀리 사이트",
+              "link": "https://uctf.or.kr/board/employment#list-block-82986",
+              "listText": "패밀리 사이트",
+              "adapter": "울산문화관광재단:clickable-block",
+              "listOnly": true,
+              "listIdentity": "block-82986"
+            }
+          ],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "{{item.registrationDatetime}}",
+              "normalizedTitle": "item registrationdatetime",
+              "text": "{{item.number}} {{item.state}} {{item.title}} {{item.registrationDatetime}} {{item.hit}}",
+              "hasDate": false,
+              "hasSequence": false,
+              "hasAction": false,
+              "href": "",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr :class=\"{'site_notice_fix': item.notice}\" v-for=\"(item, i) in itemList\">\n                                    <td class=\"site_num\" v-if=\"!item.notice\" v-cloak>{{item.number}}</td>\n                                    <td class=\"site_num\" v-if=\"item.notice\">\n                                        <span class=\"nt_fix\">\n                                            <img src=\"/img/site/ic_notice.png\" alt=\"공지글\">\n                                        </span>\n                                    </td>\n                                    <td class=\"site_status pc_ver\" v-cloak>{{item.state}}</td>\n                                    <td class=\"site_tit\" v-on:click=\"requestGoingEmploymentDetail(i)\" style=\"cursor: pointer;\" v-cloak>{{item.title}}</td>\n                                    <td class=\"site_file\">\n                                    <img src=\"/img/site/ic_file.png\" alt=\"첨부파일\" v-if=\"item.file\">\n                                    </td>\n                                    <td class=\"site_date\" v-cloak>{{item.registrationDatetime}}</td>\n                                    <td class=\"site_view\" v-cloak>{{item.hit}}</td>\n                                </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "DETAIL_SIGNAL_MISSING"
+            }
+          ]
         },
         {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "울산문화관광재단",
           "url": "https://uctf.or.kr/api/notices?page=0&category=%EC%B1%84%EC%9A%A9",
-          "visiblePostCount": 10,
-          "rowMode": true,
-          "anchors": 0,
-          "titleMatches": 10,
-          "noUrl": 0,
-          "unsafeUrl": 0,
-          "accepted": 10,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 0,
-          "clickableBlocksAccepted": 0,
-          "listOnlyAccepted": 0,
-          "titleSamples": [
+          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+          "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+          "accuracyVerification": {
+            "verified": true,
+            "level": "SOURCE_RECORD_EXACT",
+            "listVerificationTemplate": "API_CONTENT",
+            "templateRecordEvidence": {
+              "verified": true,
+              "template": "API_CONTENT",
+              "recordCount": 10,
+              "candidateCount": 10,
+              "matchedCount": 10,
+              "unmatchedTitles": [],
+              "recordSamples": [
+                "제6차 기간제 근로자 채용 최종합격자 공고",
+                "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
+                "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
+                "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
+                "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
+                "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
+                "2026년 공무직 공개 채용 최종합격자 공고",
+                "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고"
+              ],
+              "level": "TEMPLATE_API_CONTENT_EXACT"
+            },
+            "independentDomEvidence": false,
+            "exactCount": true,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": true,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 10,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 10
+          },
+          "counterTrace": {
+            "source": "visible-board-rows",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": 10,
+            "acceptedCandidateCount": 10,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 10
+          },
+          "counts": {
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 9636,
+            "missingRows": 0,
+            "extraCandidates": 10
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [
             "제6차 기간제 근로자 채용 최종합격자 공고",
             "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
             "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
@@ -1444,295 +1974,85 @@
             "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
             "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
             "2026년 공무직 공개 채용 최종합격자 공고",
-            "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고"
+            "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고",
+            "제5차 기간제 근로자 채용 최종합격자 공고",
+            "제5차 기간제 근로자 채용 면접심사 대상자 공고"
           ],
-          "unsafeSamples": [],
-          "actionSamples": [],
-          "candidateUrlSamples": [
+          "missingRows": [],
+          "extraCandidates": [
             {
+              "org": "울산문화관광재단",
               "title": "제6차 기간제 근로자 채용 최종합격자 공고",
-              "url": "https://uctf.or.kr/board/employment/view/202411202683",
-              "allowed": true
+              "link": "https://uctf.or.kr/board/employment/view/202411202683",
+              "listText": "제6차 기간제 근로자 채용 최종합격자 공고 채용 진행중",
+              "adapter": "울산문화관광재단:api-notices"
             },
             {
+              "org": "울산문화관광재단",
               "title": "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
-              "url": "https://uctf.or.kr/board/employment/view/202411196196",
-              "allowed": true
+              "link": "https://uctf.or.kr/board/employment/view/202411196196",
+              "listText": "2026년 개방형 직위(본부장) 채용 최종합격자 공고 채용 종료",
+              "adapter": "울산문화관광재단:api-notices"
             },
             {
+              "org": "울산문화관광재단",
               "title": "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
-              "url": "https://uctf.or.kr/board/employment/view/202411196033",
-              "allowed": true
+              "link": "https://uctf.or.kr/board/employment/view/202411196033",
+              "listText": "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고 채용 종료",
+              "adapter": "울산문화관광재단:api-notices"
             },
             {
+              "org": "울산문화관광재단",
               "title": "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
-              "url": "https://uctf.or.kr/board/employment/view/202411182873",
-              "allowed": true
+              "link": "https://uctf.or.kr/board/employment/view/202411182873",
+              "listText": "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고 채용 종료",
+              "adapter": "울산문화관광재단:api-notices"
             },
             {
+              "org": "울산문화관광재단",
               "title": "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
-              "url": "https://uctf.or.kr/board/employment/view/202411175388",
-              "allowed": true
+              "link": "https://uctf.or.kr/board/employment/view/202411175388",
+              "listText": "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고 채용 종료",
+              "adapter": "울산문화관광재단:api-notices"
             },
             {
+              "org": "울산문화관광재단",
               "title": "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
-              "url": "https://uctf.or.kr/board/employment/view/202411159341",
-              "allowed": true
+              "link": "https://uctf.or.kr/board/employment/view/202411159341",
+              "listText": "2026년 (재)울산문화관광재단  개방형 직위(본부장) 채용 채용 종료",
+              "adapter": "울산문화관광재단:api-notices"
             },
             {
+              "org": "울산문화관광재단",
               "title": "2026년 공무직 공개 채용 최종합격자 공고",
-              "url": "https://uctf.or.kr/board/employment/view/202411136877",
-              "allowed": true
+              "link": "https://uctf.or.kr/board/employment/view/202411136877",
+              "listText": "2026년 공무직 공개 채용 최종합격자 공고 채용 종료",
+              "adapter": "울산문화관광재단:api-notices"
             },
             {
+              "org": "울산문화관광재단",
               "title": "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고",
-              "url": "https://uctf.or.kr/board/employment/view/202411119401",
-              "allowed": true
+              "link": "https://uctf.or.kr/board/employment/view/202411119401",
+              "listText": "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고 채용 종료",
+              "adapter": "울산문화관광재단:api-notices"
+            },
+            {
+              "org": "울산문화관광재단",
+              "title": "제5차 기간제 근로자 채용 최종합격자 공고",
+              "link": "https://uctf.or.kr/board/employment/view/202411114056",
+              "listText": "제5차 기간제 근로자 채용 최종합격자 공고 채용 종료",
+              "adapter": "울산문화관광재단:api-notices"
+            },
+            {
+              "org": "울산문화관광재단",
+              "title": "제5차 기간제 근로자 채용 면접심사 대상자 공고",
+              "link": "https://uctf.or.kr/board/employment/view/202411098205",
+              "listText": "제5차 기간제 근로자 채용 면접심사 대상자 공고 채용 종료",
+              "adapter": "울산문화관광재단:api-notices"
             }
           ],
-          "candidateCount": 10,
-          "exactMatch": true,
-          "missingCount": 0,
-          "extraCount": 0,
-          "recordVerification": {
-            "verified": true,
-            "template": "API_CONTENT",
-            "recordCount": 10,
-            "candidateCount": 10,
-            "matchedCount": 10,
-            "unmatchedTitles": [],
-            "recordSamples": [
-              "제6차 기간제 근로자 채용 최종합격자 공고",
-              "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
-              "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
-              "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
-              "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
-              "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
-              "2026년 공무직 공개 채용 최종합격자 공고",
-              "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고"
-            ],
-            "level": "TEMPLATE_API_CONTENT_EXACT"
-          },
-          "verifiedEmpty": false,
-          "emptyMarker": "",
-          "countSource": "visible-board-rows",
-          "countTemplate": ""
+          "rowTrace": []
         },
-        {
-          "url": "https://uctf.or.kr/",
-          "visiblePostCount": null,
-          "rowMode": false,
-          "anchors": 427,
-          "titleMatches": 365,
-          "noUrl": 6,
-          "unsafeUrl": 0,
-          "accepted": 19,
-          "rowFallbackAccepted": 0,
-          "clickableBlocksScanned": 23,
-          "clickableBlocksAccepted": 8,
-          "listOnlyAccepted": 6,
-          "titleSamples": [
-            "정보공개",
-            "재단소개",
-            "사업안내",
-            "운영시설",
-            "재단소식",
-            "고객의 소리",
-            "정보공개",
-            "비전 - 전략체계"
-          ],
-          "unsafeSamples": [
-            {
-              "title": "홈페이지 개선의견",
-              "reason": "no-url-detail-pending",
-              "identity": "row-88196",
-              "row": "<li>\n                            <a onclick=\"document.querySelector('#opinionPop').style.setProperty('display', 'block', 'important')\">홈페이지 개선의견</a>\n                        </li>"
-            },
-            {
-              "title": "통합검색",
-              "reason": "clickable-block-detail-url-pending",
-              "identity": "block-4022",
-              "row": "<li class=\"lst search pointer\" onclick=\"searchModalShow();\">\n                                <span style=\"font-size: 1.3rem; color: #ffffff;\">\n                                    통합검색\n                                    <img src=\"/img/common/ic_head_search.svg\" alt=\"\" style=\"margin-left: 12px;\">\n                                </span>\n                            </li>"
-            },
-            {
-              "title": "유에코 (UECO)",
-              "reason": "clickable-block-detail-url-pending",
-              "identity": "block-82150",
-              "row": "<li class=\"on\" onclick=\"m5Change(1)\">\n\t\t\t\t\t\t유에코 <br class=\"mo_view\">(UECO)\n\t\t\t\t\t</li>"
-            },
-            {
-              "title": "관광기업 지원센터",
-              "reason": "clickable-block-detail-url-pending",
-              "identity": "block-82241",
-              "row": "<li onclick=\"m5Change(2)\">\n\t\t\t\t\t\t관광기업<br class=\"mo_view\">지원센터\n\t\t\t\t\t</li>"
-            },
-            {
-              "title": "아르코공연 연습센터@울산",
-              "reason": "clickable-block-detail-url-pending",
-              "identity": "block-82319",
-              "row": "<li onclick=\"m5Change(3)\">\n\t\t\t\t\t\t아르코공연<br class=\"mo_view\">연습센터@울산\n\t\t\t\t\t</li>"
-            },
-            {
-              "title": "패밀리 사이트",
-              "reason": "clickable-block-detail-url-pending",
-              "identity": "block-102500",
-              "row": "<li class=\"site rel pointer\" onclick=\"familyPopShow();\">\n                <img src=\"/img/common/ic_side_site.svg\" alt=\"\" class=\"y_center\">\n                <div class=\"txt fs16 fc0 abs y_center\">패밀리 사이트</div>\n            </li>"
-            }
-          ],
-          "actionSamples": [
-            {
-              "title": "홈페이지 개선의견",
-              "action": "document.querySelector('#opinionPop').style.setProperty('display', 'block', 'important')"
-            },
-            {
-              "title": "통합검색",
-              "action": "searchModalShow();"
-            },
-            {
-              "title": "관광 생태계 조성",
-              "action": "location.href='/business/tour-mice/smart01'"
-            },
-            {
-              "title": "관광 콘텐츠 육성",
-              "action": "location.href='/business/tour-mice/infra01'"
-            },
-            {
-              "title": "전시·컨벤션 육성",
-              "action": "location.href='/business/tour-mice/display01'"
-            },
-            {
-              "title": "유에코 (UECO)",
-              "action": "m5Change(1)"
-            },
-            {
-              "title": "관광기업 지원센터",
-              "action": "m5Change(2)"
-            },
-            {
-              "title": "아르코공연 연습센터@울산",
-              "action": "m5Change(3)"
-            },
-            {
-              "title": "패밀리 사이트",
-              "action": "familyPopShow();"
-            }
-          ],
-          "candidateUrlSamples": [
-            {
-              "title": "사업안내",
-              "url": "https://uctf.or.kr/business/culture-art/view/id",
-              "allowed": true
-            },
-            {
-              "title": "문화예술사업",
-              "url": "https://uctf.or.kr/business/culture-art/view/id",
-              "allowed": true
-            },
-            {
-              "title": "지속 가능한 예술생태계 조성",
-              "url": "https://uctf.or.kr/business/culture-art/view/id",
-              "allowed": true
-            },
-            {
-              "title": "일상 속 시민 문화감수성 향상",
-              "url": "https://uctf.or.kr/business/culture-art/view/id2",
-              "allowed": true
-            },
-            {
-              "title": "문화도시 위상 강화",
-              "url": "https://uctf.or.kr/business/culture-art/view/id3",
-              "allowed": true
-            },
-            {
-              "title": "지속 가능한 예술생태계 조성",
-              "url": "https://uctf.or.kr/business/culture-art/view/id1",
-              "allowed": true
-            },
-            {
-              "title": "일상 속 시민 문화감수성 향상",
-              "url": "https://uctf.or.kr/business/culture-art/view/id2",
-              "allowed": true
-            },
-            {
-              "title": "문화도시 위상 강화",
-              "url": "https://uctf.or.kr/business/culture-art/view/id3",
-              "allowed": true
-            },
-            {
-              "title": "자세히 보기 &nbsp+",
-              "url": "https://uctf.or.kr/facility/ueco/intro",
-              "allowed": true
-            },
-            {
-              "title": "자세히 보기 &nbsp+",
-              "url": "https://uctf.or.kr/facility/tour-center/intro",
-              "allowed": true
-            },
-            {
-              "title": "자세히 보기 &nbsp+",
-              "url": "https://uctf.or.kr/facility/encore-center/intro",
-              "allowed": true
-            },
-            {
-              "title": "개인정보처리방침",
-              "url": "https://uctf.or.kr/privacy",
-              "allowed": true
-            },
-            {
-              "title": "개인정보처리방침",
-              "url": "https://uctf.or.kr/privacy",
-              "allowed": true
-            },
-            {
-              "title": "관광 생태계 조성",
-              "url": "https://uctf.or.kr/business/tour-mice/smart01",
-              "allowed": true
-            },
-            {
-              "title": "관광 생태계 조성",
-              "url": "https://uctf.or.kr/business/tour-mice/smart01",
-              "allowed": true
-            },
-            {
-              "title": "관광 콘텐츠 육성",
-              "url": "https://uctf.or.kr/business/tour-mice/infra01",
-              "allowed": true
-            }
-          ],
-          "candidateCount": 19,
-          "exactMatch": false,
-          "missingCount": null,
-          "extraCount": null,
-          "recordVerification": {
-            "verified": false,
-            "template": "TABLE_RECORD",
-            "recordCount": 0,
-            "candidateCount": 19,
-            "matchedCount": 0,
-            "unmatchedTitles": [
-              "사업안내",
-              "문화예술사업",
-              "지속 가능한 예술생태계 조성",
-              "일상 속 시민 문화감수성 향상",
-              "문화도시 위상 강화",
-              "지속 가능한 예술생태계 조성",
-              "자세히 보기 &nbsp+",
-              "자세히 보기 &nbsp+",
-              "자세히 보기 &nbsp+",
-              "개인정보처리방침",
-              "홈페이지 개선의견",
-              "통합검색"
-            ],
-            "recordSamples": [],
-            "level": "TEMPLATE_RECORD_MISMATCH"
-          },
-          "verifiedEmpty": false,
-          "emptyMarker": "",
-          "countSource": "unavailable",
-          "countTemplate": ""
-        }
-      ],
-      "rootCauseDiagnostics": [
         {
           "version": "1.4-duplicate-title-safe-diagnostics",
           "mode": "passive",
@@ -1930,412 +2250,6 @@
               "rejectionReason": "DETAIL_SIGNAL_MISSING"
             }
           ]
-        },
-        {
-          "version": "1.4-duplicate-title-safe-diagnostics",
-          "mode": "passive",
-          "org": "울산문화관광재단",
-          "url": "https://uctf.or.kr/api/notices?page=0&category=%EC%B1%84%EC%9A%A9",
-          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-          "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
-          "accuracyVerification": {
-            "verified": true,
-            "level": "SOURCE_RECORD_EXACT",
-            "listVerificationTemplate": "API_CONTENT",
-            "templateRecordEvidence": {
-              "verified": true,
-              "template": "API_CONTENT",
-              "recordCount": 10,
-              "candidateCount": 10,
-              "matchedCount": 10,
-              "unmatchedTitles": [],
-              "recordSamples": [
-                "제6차 기간제 근로자 채용 최종합격자 공고",
-                "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
-                "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
-                "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
-                "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
-                "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
-                "2026년 공무직 공개 채용 최종합격자 공고",
-                "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고"
-              ],
-              "level": "TEMPLATE_API_CONTENT_EXACT"
-            },
-            "independentDomEvidence": false,
-            "exactCount": true,
-            "exactTitleSet": false,
-            "strongAdapterRecordEvidence": true,
-            "missingTitleCount": 0,
-            "extraCandidateCount": 10,
-            "visibleUniqueTitleCount": 0,
-            "extractedTitleCount": 10
-          },
-          "counterTrace": {
-            "source": "visible-board-rows",
-            "rawDomRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": 10,
-            "acceptedCandidateCount": 10,
-            "exactAgainstRaw": false,
-            "exactAgainstUniqueTitles": false
-          },
-          "candidateClassCounts": {
-            "RECRUIT_POST": 10
-          },
-          "counts": {
-            "visiblePostCount": 10,
-            "candidateCount": 10,
-            "rawTableRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 9636,
-            "missingRows": 0,
-            "extraCandidates": 10
-          },
-          "selectorCounts": {
-            "table tbody tr": 0,
-            "tr": 0,
-            "li": 0,
-            "article": 0,
-            "[onclick]": 0,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 0
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [],
-          "extractedTitles": [
-            "제6차 기간제 근로자 채용 최종합격자 공고",
-            "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
-            "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
-            "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
-            "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
-            "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
-            "2026년 공무직 공개 채용 최종합격자 공고",
-            "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고",
-            "제5차 기간제 근로자 채용 최종합격자 공고",
-            "제5차 기간제 근로자 채용 면접심사 대상자 공고"
-          ],
-          "missingRows": [],
-          "extraCandidates": [
-            {
-              "org": "울산문화관광재단",
-              "title": "제6차 기간제 근로자 채용 최종합격자 공고",
-              "link": "https://uctf.or.kr/board/employment/view/202411202683",
-              "listText": "제6차 기간제 근로자 채용 최종합격자 공고 채용 진행중",
-              "adapter": "울산문화관광재단:api-notices"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "2026년 개방형 직위(본부장) 채용 최종합격자 공고",
-              "link": "https://uctf.or.kr/board/employment/view/202411196196",
-              "listText": "2026년 개방형 직위(본부장) 채용 최종합격자 공고 채용 종료",
-              "adapter": "울산문화관광재단:api-notices"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고",
-              "link": "https://uctf.or.kr/board/employment/view/202411196033",
-              "listText": "2026년 제6차 기간제 근로자 채용 면접시험 대상자 공고 채용 종료",
-              "adapter": "울산문화관광재단:api-notices"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고",
-              "link": "https://uctf.or.kr/board/employment/view/202411182873",
-              "listText": "2026년 개방형 직위(본부장) 채용 면접시험 대상자 공고 채용 종료",
-              "adapter": "울산문화관광재단:api-notices"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고",
-              "link": "https://uctf.or.kr/board/employment/view/202411175388",
-              "listText": "(재)울산문화관광재단 제6차 기간제 근로자 채용 공고 채용 종료",
-              "adapter": "울산문화관광재단:api-notices"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "2026년 (재)울산문화관광재단 개방형 직위(본부장) 채용",
-              "link": "https://uctf.or.kr/board/employment/view/202411159341",
-              "listText": "2026년 (재)울산문화관광재단  개방형 직위(본부장) 채용 채용 종료",
-              "adapter": "울산문화관광재단:api-notices"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "2026년 공무직 공개 채용 최종합격자 공고",
-              "link": "https://uctf.or.kr/board/employment/view/202411136877",
-              "listText": "2026년 공무직 공개 채용 최종합격자 공고 채용 종료",
-              "adapter": "울산문화관광재단:api-notices"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고",
-              "link": "https://uctf.or.kr/board/employment/view/202411119401",
-              "listText": "2026년 (재)울산문화관광재단 공무직 공개 채용 필기시험 합격자 및 면접시험 공고 채용 종료",
-              "adapter": "울산문화관광재단:api-notices"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "제5차 기간제 근로자 채용 최종합격자 공고",
-              "link": "https://uctf.or.kr/board/employment/view/202411114056",
-              "listText": "제5차 기간제 근로자 채용 최종합격자 공고 채용 종료",
-              "adapter": "울산문화관광재단:api-notices"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "제5차 기간제 근로자 채용 면접심사 대상자 공고",
-              "link": "https://uctf.or.kr/board/employment/view/202411098205",
-              "listText": "제5차 기간제 근로자 채용 면접심사 대상자 공고 채용 종료",
-              "adapter": "울산문화관광재단:api-notices"
-            }
-          ],
-          "rowTrace": []
-        },
-        {
-          "version": "1.4-duplicate-title-safe-diagnostics",
-          "mode": "passive",
-          "org": "울산문화관광재단",
-          "url": "https://uctf.or.kr/",
-          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-          "listCounterFailureReason": "DOM_COUNT_ZERO",
-          "accuracyVerification": {
-            "verified": false,
-            "level": "NOT_EXACT",
-            "listVerificationTemplate": "TABLE_RECORD",
-            "templateRecordEvidence": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
-              "candidateCount": 19,
-              "matchedCount": 0,
-              "unmatchedTitles": [
-                "사업안내",
-                "문화예술사업",
-                "지속 가능한 예술생태계 조성",
-                "일상 속 시민 문화감수성 향상",
-                "문화도시 위상 강화",
-                "지속 가능한 예술생태계 조성",
-                "자세히 보기 &nbsp+",
-                "자세히 보기 &nbsp+",
-                "자세히 보기 &nbsp+",
-                "개인정보처리방침",
-                "홈페이지 개선의견",
-                "통합검색"
-              ],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
-            },
-            "independentDomEvidence": false,
-            "exactCount": false,
-            "exactTitleSet": false,
-            "strongAdapterRecordEvidence": false,
-            "missingTitleCount": 0,
-            "extraCandidateCount": 19,
-            "visibleUniqueTitleCount": 0,
-            "extractedTitleCount": 19
-          },
-          "counterTrace": {
-            "source": "unavailable",
-            "rawDomRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": null,
-            "acceptedCandidateCount": 19,
-            "exactAgainstRaw": false,
-            "exactAgainstUniqueTitles": false
-          },
-          "candidateClassCounts": {
-            "UNCLASSIFIED": 19
-          },
-          "counts": {
-            "visiblePostCount": null,
-            "candidateCount": 19,
-            "rawTableRows": 0,
-            "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 160441,
-            "missingRows": 0,
-            "extraCandidates": 19
-          },
-          "selectorCounts": {
-            "table tbody tr": 0,
-            "tr": 0,
-            "li": 450,
-            "article": 0,
-            "[onclick]": 50,
-            "[data-url]": 0,
-            "[data-href]": 0,
-            "a[href]": 416
-          },
-          "rejectReasonCounts": {},
-          "visibleTitles": [],
-          "extractedTitles": [
-            "사업안내",
-            "문화예술사업",
-            "지속 가능한 예술생태계 조성",
-            "일상 속 시민 문화감수성 향상",
-            "문화도시 위상 강화",
-            "지속 가능한 예술생태계 조성",
-            "자세히 보기 &nbsp+",
-            "자세히 보기 &nbsp+",
-            "자세히 보기 &nbsp+",
-            "개인정보처리방침",
-            "홈페이지 개선의견",
-            "통합검색",
-            "관광 생태계 조성",
-            "관광 콘텐츠 육성",
-            "전시·컨벤션 육성",
-            "유에코 (UECO)",
-            "관광기업 지원센터",
-            "아르코공연 연습센터@울산",
-            "패밀리 사이트"
-          ],
-          "missingRows": [],
-          "extraCandidates": [
-            {
-              "org": "울산문화관광재단",
-              "title": "사업안내",
-              "link": "https://uctf.or.kr/business/culture-art/view/id",
-              "listText": "재단소개 사업안내 운영시설 재단소식 고객의 소리 <a href=\"/info/정보공개제도\" class=\"bloc",
-              "adapter": "울산문화관광재단"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "문화예술사업",
-              "link": "https://uctf.or.kr/business/culture-art/view/id",
-              "listText": "문화예술사업 관광마이스사업 문화관광사업안내 울산문화관광재단의 문화관광사업안내. 유에코(UECO)",
-              "adapter": "울산문화관광재단"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "지속 가능한 예술생태계 조성",
-              "link": "https://uctf.or.kr/business/culture-art/view/id",
-              "listText": "지속 가능한 예술생태계 조성 일상 속 시민 문화감수성 향상 문화도시 위상 강화 관광마이스사업",
-              "adapter": "울산문화관광재단"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "일상 속 시민 문화감수성 향상",
-              "link": "https://uctf.or.kr/business/culture-art/view/id2",
-              "listText": "지속 가능한 예술생태계 조성 일상 속 시민 문화감수성 향상 문화도시 위상 강화 관광마이스사업 <span class",
-              "adapter": "울산문화관광재단"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "문화도시 위상 강화",
-              "link": "https://uctf.or.kr/business/culture-art/view/id3",
-              "listText": "일상 속 시민 문화감수성 향상 문화도시 위상 강화 관광마이스사업 울산 체류형 관광 활성화",
-              "adapter": "울산문화관광재단"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "지속 가능한 예술생태계 조성",
-              "link": "https://uctf.or.kr/business/culture-art/view/id1",
-              "listText": "문화예술사업 지속 가능한 예술생태계 조성 일상 속 시민 문화감수성 향상 문화도시 위상 강화 관광마이스사업 <span",
-              "adapter": "울산문화관광재단"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "자세히 보기 &nbsp+",
-              "link": "https://uctf.or.kr/facility/ueco/intro",
-              "listText": "유에코 (UECO) 전시회, 국제회의, 세미나, 문화공연 등 휴식과 여가를 즐길 수 있는 복합 비즈니스 공간 자세히 보기 &nbsp+ 관광기업지원센터 관광분야 중소기업 또는 예비창업자를 대상으로 업무 공간 제공 및 울산 관광산업 활성화",
-              "adapter": "울산문화관광재단"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "자세히 보기 &nbsp+",
-              "link": "https://uctf.or.kr/facility/tour-center/intro",
-              "listText": "ab2 flex alend\"> 관광기업지원센터 관광분야 중소기업 또는 예비창업자를 대상으로 업무 공간 제공 및 울산 관광산업 활성화를 위한 다양한 맞춤형 프로그램을 지원 자세히 보기 &nbsp+ 아르코공연연습센터@울산 지역 내 무대공연 예술 활성화를 위하여 울산의 공연예술 단체 및 개인 연습 공",
-              "adapter": "울산문화관광재단"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "자세히 보기 &nbsp+",
-              "link": "https://uctf.or.kr/facility/encore-center/intro",
-              "listText": "아르코공연연습센터@울산 지역 내 무대공연 예술 활성화를 위하여 울산의 공연예술 단체 및 개인 연습 공간 제공 자세히 보기 &nbsp+ <div class=\"roll",
-              "adapter": "울산문화관광재단"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "개인정보처리방침",
-              "link": "https://uctf.or.kr/privacy",
-              "listText": "개인정보처리방침 홈페이지 개선의견 뉴스레터 사이트맵",
-              "adapter": "울산문화관광재단"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "홈페이지 개선의견",
-              "link": "https://uctf.or.kr#list-row-88196",
-              "listText": "홈페이지 개선의견",
-              "adapter": "울산문화관광재단",
-              "listOnly": true,
-              "listIdentity": "row-88196"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "통합검색",
-              "link": "https://uctf.or.kr#list-block-4022",
-              "listText": "통합검색",
-              "adapter": "울산문화관광재단:clickable-block",
-              "listOnly": true,
-              "listIdentity": "block-4022"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "관광 생태계 조성",
-              "link": "https://uctf.or.kr/business/tour-mice/smart01",
-              "listText": "관광 생태계 조성",
-              "adapter": "울산문화관광재단:clickable-block"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "관광 콘텐츠 육성",
-              "link": "https://uctf.or.kr/business/tour-mice/infra01",
-              "listText": "관광 콘텐츠 육성",
-              "adapter": "울산문화관광재단:clickable-block"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "전시·컨벤션 육성",
-              "link": "https://uctf.or.kr/business/tour-mice/display01",
-              "listText": "전시·컨벤션 육성",
-              "adapter": "울산문화관광재단:clickable-block"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "유에코 (UECO)",
-              "link": "https://uctf.or.kr#list-block-82150",
-              "listText": "유에코 (UECO)",
-              "adapter": "울산문화관광재단:clickable-block",
-              "listOnly": true,
-              "listIdentity": "block-82150"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "관광기업 지원센터",
-              "link": "https://uctf.or.kr#list-block-82241",
-              "listText": "관광기업 지원센터",
-              "adapter": "울산문화관광재단:clickable-block",
-              "listOnly": true,
-              "listIdentity": "block-82241"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "아르코공연 연습센터@울산",
-              "link": "https://uctf.or.kr#list-block-82319",
-              "listText": "아르코공연 연습센터@울산",
-              "adapter": "울산문화관광재단:clickable-block",
-              "listOnly": true,
-              "listIdentity": "block-82319"
-            },
-            {
-              "org": "울산문화관광재단",
-              "title": "패밀리 사이트",
-              "link": "https://uctf.or.kr#list-block-102500",
-              "listText": "패밀리 사이트",
-              "adapter": "울산문화관광재단:clickable-block",
-              "listOnly": true,
-              "listIdentity": "block-102500"
-            }
-          ],
-          "rowTrace": []
         }
       ],
       "diagnosticFiles": [
@@ -2344,7 +2258,7 @@
           "htmlPath": "data/diagnostics/울산문화관광재단/list/page-1-raw.html",
           "diagnosisPath": "data/diagnostics/울산문화관광재단/list/page-1-root-cause.json",
           "rowsPath": "data/diagnostics/울산문화관광재단/list/page-1-rows.txt",
-          "url": "https://www.uctf.or.kr/board/employment"
+          "url": "https://uctf.or.kr/board/employment"
         },
         {
           "org": "울산문화관광재단",
@@ -2358,7 +2272,7 @@
           "htmlPath": "data/diagnostics/울산문화관광재단/list/page-3-raw.html",
           "diagnosisPath": "data/diagnostics/울산문화관광재단/list/page-3-root-cause.json",
           "rowsPath": "data/diagnostics/울산문화관광재단/list/page-3-rows.txt",
-          "url": "https://uctf.or.kr/"
+          "url": "https://www.uctf.or.kr/board/employment"
         }
       ],
       "samples": [

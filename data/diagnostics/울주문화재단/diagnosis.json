@@ -1,28 +1,13 @@
 {
   "org": "울주문화재단",
   "primaryCause": {
-    "stage": "attachment",
-    "status": "unknown",
-    "code": "ATTACHMENT_ZERO_UNRESOLVED",
-    "reason": "첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함",
-    "evidence": [
-      {
-        "title": "일반 (재)울주문화재단 2026년도 제2차 직원 채용 재공고 접수기간 2026-07-10(금) 11:00 ~ 2026-07-20(월) 18:00 공지사항 0 건 접수마감 개인정보처리방침 이메일주소 무단수집거부 ⓒ KPDI HR Co.,Ltd. HUBST",
-        "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningDetailPage.do",
-        "requestMethod": "POST",
-        "template": "FORM_POST",
-        "ok": true,
-        "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningDetailPage.do",
-        "textLength": 4862,
-        "attachmentCount": 0,
-        "attachmentSignalCount": 4,
-        "explicitNoAttachment": true,
-        "transport": "FORM_POST",
-        "error": ""
-      }
-    ],
+    "stage": "complete",
+    "status": "success",
+    "code": "PIPELINE_SAMPLE_OK",
+    "reason": "현재 진단 표본에서 실패 원인 없음",
+    "evidence": [],
     "repairTarget": "scripts/collectors/institutions/울주문화재단.mjs",
-    "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
+    "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
   },
   "diagnosis": {
     "http": {
@@ -390,9 +375,9 @@
       ]
     },
     "attachment": {
-      "status": "unknown",
-      "code": "ATTACHMENT_ZERO_UNRESOLVED",
-      "reason": "첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함",
+      "status": "success",
+      "code": "ATTACHMENT_EXPLICITLY_NONE",
+      "reason": "상세 Evidence에서 실제 첨부 없음이 명시적으로 확인됨",
       "evidence": [
         {
           "title": "일반 (재)울주문화재단 2026년도 제2차 직원 채용 재공고 접수기간 2026-07-10(금) 11:00 ~ 2026-07-20(월) 18:00 공지사항 0 건 접수마감 개인정보처리방침 이메일주소 무단수집거부 ⓒ KPDI HR Co.,Ltd. HUBST",
@@ -471,7 +456,7 @@
     }
   },
   "repairTarget": "scripts/collectors/institutions/울주문화재단.mjs",
-  "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가",
+  "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인",
   "stages": {
     "access": {
       "ok": true,

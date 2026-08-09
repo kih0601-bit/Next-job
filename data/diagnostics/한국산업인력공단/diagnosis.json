@@ -13,7 +13,7 @@
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "2개 후보 URL HTTP 응답 성공",
+      "reason": "3개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://www.hrdkorea.or.kr/3/1/2/2",
@@ -123,8 +123,54 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "잡알리오",
+            "orgMatched": true,
+            "positiveHits": 4,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보",
+              "직원\\s*채용",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "institutionRule": false,
+            "strictInstitutionRule": false,
+            "institutionRuleEvidence": [
+              "html:채용공고|인재채용|\\/3\\/1\\/2\\/2"
+            ],
+            "textLength": 1857,
+            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         }
@@ -184,7 +230,7 @@
     "list": {
       "status": "success",
       "code": "LIST_VERIFIED_EXACT",
-      "reason": "실제 게시글 목록 검증 완료 · 화면 1건 = 추출 1건 · DOM_TITLE_SET_EXACT",
+      "reason": "실제 게시글 목록 검증 완료 · 화면 10건 = 추출 10건 · TEMPLATE_ALIO_CARD_EXACT",
       "evidence": [
         {
           "url": "https://www.hrdkorea.or.kr/3/1/2/2",
@@ -314,24 +360,190 @@
           "emptyMarker": "",
           "countSource": "unavailable",
           "countTemplate": ""
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+          "anchors": 57,
+          "titleMatches": 30,
+          "noUrl": 6,
+          "unsafeUrl": 14,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "visiblePostCount": 10,
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "ALIO_CARD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+              "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+              "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+              "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+              "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+              "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+              "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+              "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감"
+            ],
+            "level": "TEMPLATE_ALIO_CARD_EXACT"
+          },
+          "countExactMatch": true,
+          "templateExactMatch": true,
+          "exactMatchBasis": "record-template-1to1",
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows",
+          "countTemplate": ""
         }
       ]
     },
     "detail": {
       "status": "success",
       "code": "DETAIL_FIRST_PAGE_VERIFIED_EXACT",
-      "reason": "첫 페이지 1건 전체 상세 URL·본문 1:1 검증 완료",
+      "reason": "첫 페이지 10건 전체 상세 URL·본문 1:1 검증 완료",
       "evidence": [
         {
-          "title": "2026년 하반기 일반직 신규직원 채용공고",
-          "requestedUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
+          "title": "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303146",
           "requestMethod": "GET",
-          "template": "CUSTOM",
+          "template": "COMMON_PLATFORM",
           "ok": true,
-          "finalUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-          "textLength": 458,
-          "attachmentCount": 1,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303146",
+          "textLength": 7164,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 17,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301269",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301269",
+          "textLength": 2565,
+          "attachmentCount": 6,
+          "attachmentSignalCount": 19,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300001",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300001",
+          "textLength": 4002,
+          "attachmentCount": 4,
+          "attachmentSignalCount": 16,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299857",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299857",
+          "textLength": 2200,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 17,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299695",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299695",
+          "textLength": 2265,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 17,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299638",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299638",
+          "textLength": 2208,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 17,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298581",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298581",
+          "textLength": 2183,
+          "attachmentCount": 4,
           "attachmentSignalCount": 15,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298430",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298430",
+          "textLength": 2181,
+          "attachmentCount": 4,
+          "attachmentSignalCount": 15,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298234",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298234",
+          "textLength": 2180,
+          "attachmentCount": 4,
+          "attachmentSignalCount": 16,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298236",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298236",
+          "textLength": 2568,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
           "transport": "GET",
           "error": ""
@@ -341,12 +553,54 @@
     "attachment": {
       "status": "success",
       "code": "ATTACHMENT_FOUND",
-      "reason": "검증 표본에서 첨부 링크 1개 발견",
+      "reason": "검증 표본에서 첨부 링크 47개 발견",
       "evidence": [
         {
-          "name": "PDF파일 다운",
-          "type": "unknown",
-          "url": "https://www.hrdkorea.or.kr/cms/download/downloadFile.hrd?attachSeq=2053319",
+          "name": "채용공고문(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064640",
+          "method": "GET"
+        },
+        {
+          "name": "직무수행계획서(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064297",
+          "method": "GET"
+        },
+        {
+          "name": "직무기술서(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064298",
+          "method": "GET"
+        },
+        {
+          "name": "채용 이의신청서 및 채용서류 반환청구서(일반직).hwp",
+          "type": "hwp",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064299",
+          "method": "GET"
+        },
+        {
+          "name": "직무수행계획서 작성 유의사항(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064300",
+          "method": "GET"
+        },
+        {
+          "name": "채용공고문(건축전문직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3053599",
+          "method": "GET"
+        },
+        {
+          "name": "입사지원서 및 직무수행계획서(건축전문직).hwp",
+          "type": "hwp",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3053600",
+          "method": "GET"
+        },
+        {
+          "name": "직무기술서(건축전문직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3053601",
           "method": "GET"
         }
       ]
@@ -354,14 +608,22 @@
     "attachmentDownload": {
       "status": "success",
       "code": "ATTACHMENT_DOWNLOAD_VERIFIED",
-      "reason": "검증 표본 다운로드 1/1 성공",
+      "reason": "검증 표본 다운로드 2/2 성공",
       "evidence": [
         {
-          "name": "PDF파일 다운",
-          "url": "https://www.hrdkorea.or.kr/cms/download/downloadFile.hrd?attachSeq=2053319",
+          "name": "채용공고문(일반직).pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064640",
           "ok": true,
           "transport": "node-fetch",
-          "contentType": "application/octet-stream;",
+          "contentType": "application/pdf;charset=utf-8",
+          "error": ""
+        },
+        {
+          "name": "직무기술서(일반직).pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064298",
+          "ok": true,
+          "transport": "node-fetch",
+          "contentType": "application/pdf;charset=utf-8",
           "error": ""
         }
       ]
@@ -369,14 +631,22 @@
     "documentAnalysis": {
       "status": "success",
       "code": "DOCUMENT_ANALYSIS_VERIFIED",
-      "reason": "검증 표본 문서분석 1/1 성공",
+      "reason": "검증 표본 문서분석 2/2 성공",
       "evidence": [
         {
-          "name": "PDF파일 다운",
+          "name": "채용공고문(일반직).pdf",
           "detectedType": "pdf",
           "ok": true,
           "method": "pdftotext",
-          "textLength": 25754,
+          "textLength": 11743,
+          "error": ""
+        },
+        {
+          "name": "직무기술서(일반직).pdf",
+          "detectedType": "pdf",
+          "ok": true,
+          "method": "pdftotext",
+          "textLength": 97,
           "error": ""
         }
       ]
@@ -554,8 +824,54 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "잡알리오",
+            "orgMatched": true,
+            "positiveHits": 4,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보",
+              "직원\\s*채용",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "institutionRule": false,
+            "strictInstitutionRule": false,
+            "institutionRuleEvidence": [
+              "html:채용공고|인재채용|\\/3\\/1\\/2\\/2"
+            ],
+            "textLength": 1857,
+            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         }
@@ -620,7 +936,7 @@
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "2개 후보 URL HTTP 응답 성공",
+          "reason": "3개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://www.hrdkorea.or.kr/3/1/2/2",
@@ -730,8 +1046,54 @@
             },
             {
               "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
-              "ok": false,
-              "error": "fetch failed",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 4개 · 게시판 신호 3개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "잡알리오",
+                "orgMatched": true,
+                "positiveHits": 4,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "채용\\s*정보",
+                  "직원\\s*채용",
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 3,
+                "boardType": {
+                  "type": "JOB_ALIO",
+                  "confidence": "high",
+                  "evidence": [
+                    "JOB-ALIO URL/본문 신호"
+                  ]
+                },
+                "institutionRule": false,
+                "strictInstitutionRule": false,
+                "institutionRuleEvidence": [
+                  "html:채용공고|인재채용|\\/3\\/1\\/2\\/2"
+                ],
+                "textLength": 1857,
+                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              },
               "accessTemplate": "DIRECT_BOARD",
               "requestProfile": "browser-default"
             }
@@ -850,14 +1212,14 @@
     "list": {
       "ok": true,
       "status": "verified-exact",
-      "pagesChecked": 2,
-      "visiblePostCount": 1,
-      "candidateCount": 1,
+      "pagesChecked": 3,
+      "visiblePostCount": 10,
+      "candidateCount": 10,
       "missingCount": 0,
       "extraCount": 0,
       "exactMatch": true,
-      "selectedUrl": "https://www.hrdkorea.or.kr/3/1/2/2",
-      "detailUrlReady": 1,
+      "selectedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+      "detailUrlReady": 10,
       "listOnlyCount": 0,
       "extractionDiagnostics": [
         {
@@ -987,6 +1349,46 @@
           "verifiedEmpty": false,
           "emptyMarker": "",
           "countSource": "unavailable",
+          "countTemplate": ""
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+          "anchors": 57,
+          "titleMatches": 30,
+          "noUrl": 6,
+          "unsafeUrl": 14,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "visiblePostCount": 10,
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "ALIO_CARD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+              "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+              "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+              "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+              "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+              "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+              "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+              "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감"
+            ],
+            "level": "TEMPLATE_ALIO_CARD_EXACT"
+          },
+          "countExactMatch": true,
+          "templateExactMatch": true,
+          "exactMatchBasis": "record-template-1to1",
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows",
           "countTemplate": ""
         }
       ],
@@ -1191,6 +1593,165 @@
             }
           ],
           "rowTrace": []
+        },
+        {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "한국산업인력공단",
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+          "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+          "accuracyVerification": {
+            "verified": true,
+            "level": "TEMPLATE_ALIO_CARD_EXACT",
+            "listVerificationTemplate": "ALIO_CARD",
+            "templateRecordEvidence": {
+              "verified": true,
+              "template": "ALIO_CARD",
+              "recordCount": 10,
+              "candidateCount": 10,
+              "matchedCount": 10,
+              "unmatchedTitles": [],
+              "recordSamples": [
+                "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+                "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+                "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+                "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+                "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+                "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+                "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+                "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감"
+              ],
+              "level": "TEMPLATE_ALIO_CARD_EXACT"
+            },
+            "independentDomEvidence": false,
+            "exactCount": true,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 10,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 10
+          },
+          "counterTrace": {
+            "source": "visible-board-rows",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": 10,
+            "acceptedCandidateCount": 10,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 10
+          },
+          "counts": {
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 56143,
+            "missingRows": 0,
+            "extraCandidates": 10
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 125,
+            "article": 0,
+            "[onclick]": 8,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 57
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [
+            "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+            "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+            "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+            "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+            "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+            "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+            "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+            "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+            "한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+            "한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감"
+          ],
+          "missingRows": [],
+          "extraCandidates": [
+            {
+              "org": "한국산업인력공단",
+              "title": "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303146",
+              "listText": "h();\"> 진행상태 진행중 마감 한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중 한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감 한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국산업인력공단",
+              "title": "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301269",
+              "listText": "정규직 / 2026.07.29 ~ 26.08.13 / 진행중 한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감 한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감 <div cl",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국산업인력공단",
+              "title": "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300001",
+              "listText": "비정규직 / 2026.06.04 ~ 26.06.19 / 마감 한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감 한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감 한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국산업인력공단",
+              "title": "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299857",
+              "listText": "정규직 / 2026.04.30 ~ 26.05.15 / 마감 한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감 한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감 한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국산업인력공단",
+              "title": "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299695",
+              "listText": "비정규직 / 2026.04.29 ~ 26.05.14 / 마감 한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감 한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감 한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국산업인력공단",
+              "title": "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299638",
+              "listText": "비정규직 / 2026.04.24 ~ 26.05.12 / 마감 한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감 한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감 한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국산업인력공단",
+              "title": "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298581",
+              "listText": "비정규직 / 2026.04.23 ~ 26.05.08 / 마감 한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감 한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국산업인력공단",
+              "title": "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298430",
+              "listText": "비정규직 / 2026.04.02 ~ 26.04.17 / 마감 한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국산업인력공단",
+              "title": "한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298234",
+              "listText": "비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 /",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국산업인력공단",
+              "title": "한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298236",
+              "listText": "비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감 1 2 저작권정책 &emsp; 이메일무단수집거부 &emsp; <a href=\"/mobile2021/privacy.d",
+              "sourceType": "ALIO"
+            }
+          ],
+          "rowTrace": []
         }
       ],
       "diagnosticFiles": [
@@ -1207,13 +1768,65 @@
           "diagnosisPath": "data/diagnostics/한국산업인력공단/list/page-2-root-cause.json",
           "rowsPath": "data/diagnostics/한국산업인력공단/list/page-2-rows.txt",
           "url": "https://www.hrdkorea.or.kr/"
+        },
+        {
+          "org": "한국산업인력공단",
+          "htmlPath": "data/diagnostics/한국산업인력공단/list/page-3-raw.html",
+          "diagnosisPath": "data/diagnostics/한국산업인력공단/list/page-3-root-cause.json",
+          "rowsPath": "data/diagnostics/한국산업인력공단/list/page-3-rows.txt",
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y"
         }
       ],
       "samples": [
         {
-          "title": "2026년 하반기 일반직 신규직원 채용공고",
-          "link": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-          "adapter": "한국산업인력공단:board-row"
+          "title": "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303146",
+          "adapter": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301269",
+          "adapter": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300001",
+          "adapter": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299857",
+          "adapter": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299695",
+          "adapter": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299638",
+          "adapter": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298581",
+          "adapter": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298430",
+          "adapter": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298234",
+          "adapter": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감",
+          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298236",
+          "adapter": ""
         }
       ],
       "errors": [],
@@ -1221,140 +1834,340 @@
         "version": "1.4-duplicate-title-safe-diagnostics",
         "mode": "passive",
         "org": "한국산업인력공단",
-        "url": "https://www.hrdkorea.or.kr/3/1/2/2",
-        "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
-        "listCounterFailureReason": "UNKNOWN",
+        "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%82%B0%EC%97%85%EC%9D%B8%EB%A0%A5%EA%B3%B5%EB%8B%A8&search_yn=Y",
+        "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+        "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
         "accuracyVerification": {
           "verified": true,
-          "level": "DOM_TITLE_SET_EXACT",
-          "listVerificationTemplate": "TABLE_RECORD",
+          "level": "TEMPLATE_ALIO_CARD_EXACT",
+          "listVerificationTemplate": "ALIO_CARD",
           "templateRecordEvidence": {
             "verified": true,
-            "template": "TABLE_RECORD",
-            "recordCount": 1,
-            "candidateCount": 1,
-            "matchedCount": 1,
+            "template": "ALIO_CARD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
             "unmatchedTitles": [],
             "recordSamples": [
-              "1 2026년 하반기 일반직 신규직원 채용공고 2026-07-28"
+              "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+              "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+              "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+              "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+              "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+              "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+              "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+              "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감"
             ],
-            "level": "TEMPLATE_TABLE_RECORD_EXACT"
+            "level": "TEMPLATE_ALIO_CARD_EXACT"
           },
-          "independentDomEvidence": true,
+          "independentDomEvidence": false,
           "exactCount": true,
-          "exactTitleSet": true,
+          "exactTitleSet": false,
           "strongAdapterRecordEvidence": false,
           "missingTitleCount": 0,
-          "extraCandidateCount": 0,
-          "visibleUniqueTitleCount": 1,
-          "extractedTitleCount": 1
+          "extraCandidateCount": 10,
+          "visibleUniqueTitleCount": 0,
+          "extractedTitleCount": 10
         },
         "counterTrace": {
           "source": "visible-board-rows",
-          "rawDomRows": 1,
-          "uniqueVisibleTitleCount": 1,
-          "reportedVisiblePostCount": 1,
-          "acceptedCandidateCount": 1,
-          "exactAgainstRaw": true,
-          "exactAgainstUniqueTitles": true
+          "rawDomRows": 0,
+          "uniqueVisibleTitleCount": 0,
+          "reportedVisiblePostCount": 10,
+          "acceptedCandidateCount": 10,
+          "exactAgainstRaw": false,
+          "exactAgainstUniqueTitles": false
         },
         "candidateClassCounts": {
-          "RECRUIT_POST": 1
+          "RECRUIT_POST": 10
         },
         "counts": {
-          "visiblePostCount": 1,
-          "candidateCount": 1,
-          "rawTableRows": 1,
-          "uniqueVisibleTitleCount": 1,
-          "sourceHtmlLength": 111188,
+          "visiblePostCount": 10,
+          "candidateCount": 10,
+          "rawTableRows": 0,
+          "uniqueVisibleTitleCount": 0,
+          "sourceHtmlLength": 56143,
           "missingRows": 0,
-          "extraCandidates": 0
+          "extraCandidates": 10
         },
         "selectorCounts": {
-          "table tbody tr": 1,
-          "tr": 2,
-          "li": 350,
+          "table tbody tr": 0,
+          "tr": 0,
+          "li": 125,
           "article": 0,
-          "[onclick]": 4,
+          "[onclick]": 8,
           "[data-url]": 0,
           "[data-href]": 0,
-          "a[href]": 497
+          "a[href]": 57
         },
         "rejectReasonCounts": {},
-        "visibleTitles": [
-          "2026년 하반기 일반직 신규직원 채용공고"
-        ],
+        "visibleTitles": [],
         "extractedTitles": [
-          "2026년 하반기 일반직 신규직원 채용공고"
+          "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+          "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+          "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+          "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+          "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+          "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+          "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+          "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+          "한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+          "한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감"
         ],
         "missingRows": [],
-        "extraCandidates": [],
-        "rowTrace": [
+        "extraCandidates": [
           {
-            "index": 0,
-            "title": "2026년 하반기 일반직 신규직원 채용공고",
-            "normalizedTitle": "2026년 하반기 일반직 신규직원 채용공고",
-            "text": "1 2026년 하반기 일반직 신규직원 채용공고 2026-07-28",
-            "hasDate": true,
-            "hasSequence": true,
-            "hasAction": true,
-            "href": "/3/1/2/2?k=56000&amp;pageNo=&amp;searchType=&amp;searchText=",
-            "onclick": "",
-            "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t<td>1</td>\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t<td>\r\n\t\t\t\t\t\t<a href=\"/3/1/2/2?k=56000&amp;pageNo=&amp;searchType=&amp;searchText=\">2026년 하반기 일반직 신규직원 채용공고\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t<td>2026-07-28</td>\r\n\t\t\t\t</tr>",
-            "accepted": true,
-            "acceptedLink": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-            "adapter": "한국산업인력공단:board-row",
-            "rejectionReason": ""
+            "org": "한국산업인력공단",
+            "title": "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303146",
+            "listText": "h();\"> 진행상태 진행중 마감 한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중 한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감 한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국산업인력공단",
+            "title": "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301269",
+            "listText": "정규직 / 2026.07.29 ~ 26.08.13 / 진행중 한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감 한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감 <div cl",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국산업인력공단",
+            "title": "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300001",
+            "listText": "비정규직 / 2026.06.04 ~ 26.06.19 / 마감 한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감 한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감 한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국산업인력공단",
+            "title": "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299857",
+            "listText": "정규직 / 2026.04.30 ~ 26.05.15 / 마감 한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감 한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감 한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국산업인력공단",
+            "title": "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299695",
+            "listText": "비정규직 / 2026.04.29 ~ 26.05.14 / 마감 한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감 한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감 한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국산업인력공단",
+            "title": "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299638",
+            "listText": "비정규직 / 2026.04.24 ~ 26.05.12 / 마감 한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감 한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감 한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국산업인력공단",
+            "title": "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298581",
+            "listText": "비정규직 / 2026.04.23 ~ 26.05.08 / 마감 한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감 한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국산업인력공단",
+            "title": "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298430",
+            "listText": "비정규직 / 2026.04.02 ~ 26.04.17 / 마감 한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국산업인력공단",
+            "title": "한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298234",
+            "listText": "비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 /",
+            "sourceType": "ALIO"
+          },
+          {
+            "org": "한국산업인력공단",
+            "title": "한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감",
+            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298236",
+            "listText": "비정규직 / 2026.03.26 ~ 26.04.10 / 마감 한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감 1 2 저작권정책 &emsp; 이메일무단수집거부 &emsp; <a href=\"/mobile2021/privacy.d",
+            "sourceType": "ALIO"
           }
-        ]
+        ],
+        "rowTrace": []
       },
       "accuracyVerification": {
         "verified": true,
-        "level": "DOM_TITLE_SET_EXACT",
-        "listVerificationTemplate": "TABLE_RECORD",
+        "level": "TEMPLATE_ALIO_CARD_EXACT",
+        "listVerificationTemplate": "ALIO_CARD",
         "templateRecordEvidence": {
           "verified": true,
-          "template": "TABLE_RECORD",
-          "recordCount": 1,
-          "candidateCount": 1,
-          "matchedCount": 1,
+          "template": "ALIO_CARD",
+          "recordCount": 10,
+          "candidateCount": 10,
+          "matchedCount": 10,
           "unmatchedTitles": [],
           "recordSamples": [
-            "1 2026년 하반기 일반직 신규직원 채용공고 2026-07-28"
+            "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+            "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+            "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+            "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+            "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+            "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+            "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+            "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감"
           ],
-          "level": "TEMPLATE_TABLE_RECORD_EXACT"
+          "level": "TEMPLATE_ALIO_CARD_EXACT"
         },
-        "independentDomEvidence": true,
+        "independentDomEvidence": false,
         "exactCount": true,
-        "exactTitleSet": true,
+        "exactTitleSet": false,
         "strongAdapterRecordEvidence": false,
         "missingTitleCount": 0,
-        "extraCandidateCount": 0,
-        "visibleUniqueTitleCount": 1,
-        "extractedTitleCount": 1
+        "extraCandidateCount": 10,
+        "visibleUniqueTitleCount": 0,
+        "extractedTitleCount": 10
       }
     },
     "detail": {
       "ok": true,
-      "targetCount": 1,
-      "attempted": 1,
-      "validated": 1,
+      "targetCount": 10,
+      "attempted": 10,
+      "validated": 10,
       "failed": 0,
       "missingDetailUrl": 0,
       "coverageRatio": 1,
       "validationRatio": 1,
       "samples": [
         {
-          "title": "2026년 하반기 일반직 신규직원 채용공고",
-          "requestedUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
+          "title": "한국산업인력공단 한국산업인력공단 2026년 하반기 일반직 신규직원 채용공고 인천 외 14 / 정규직 / 2026.07.29 ~ 26.08.13 / 진행중",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303146",
           "requestMethod": "GET",
-          "template": "CUSTOM",
+          "template": "COMMON_PLATFORM",
           "ok": true,
-          "finalUrl": "https://www.hrdkorea.or.kr/3/1/2/2?k=56000",
-          "textLength": 458,
-          "attachmentCount": 1,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303146",
+          "textLength": 7164,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 17,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 기간제 건축전문직 채용공고 울산 / 비정규직 / 2026.06.04 ~ 26.06.19 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301269",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=301269",
+          "textLength": 2565,
+          "attachmentCount": 6,
+          "attachmentSignalCount": 19,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 2026년 상반기 사업지원직 직원 채용공고 서울 외 2 / 정규직 / 2026.04.30 ~ 26.05.15 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300001",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300001",
+          "textLength": 4002,
+          "attachmentCount": 4,
+          "attachmentSignalCount": 16,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 서울지역본부 2차 휴직대체 기간제근로자 채용공고 서울 / 비정규직 / 2026.04.29 ~ 26.05.14 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299857",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299857",
+          "textLength": 2200,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 17,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 글로벌숙련기술진흥원 2차 휴직대체 기간제근로자 채용공고 인천 / 비정규직 / 2026.04.24 ~ 26.05.12 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299695",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299695",
+          "textLength": 2265,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 17,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 전북지사 휴직대체 2차 기간제근로자 채용공고 전북 / 비정규직 / 2026.04.23 ~ 26.05.08 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299638",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299638",
+          "textLength": 2208,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 17,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 대전지역본부 2차 휴직대체 기간제근로자 채용공고 대전 / 비정규직 / 2026.04.02 ~ 26.04.17 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298581",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298581",
+          "textLength": 2183,
+          "attachmentCount": 4,
           "attachmentSignalCount": 15,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 경북동부지사 휴직대체 기간제근로자 채용공고 경북 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298430",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298430",
+          "textLength": 2181,
+          "attachmentCount": 4,
+          "attachmentSignalCount": 15,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 울산 본부 기간제 근로자 채용공고 울산 / 비정규직 / 2026.03.26 ~ 26.04.10 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298234",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298234",
+          "textLength": 2180,
+          "attachmentCount": 4,
+          "attachmentSignalCount": 16,
+          "explicitNoAttachment": false,
+          "transport": "GET",
+          "error": ""
+        },
+        {
+          "title": "한국산업인력공단 한국산업인력공단 2026년 체험형 청년인턴 채용공고 서울 외 16 / 청년인턴(체험형) / 2026.03.23 ~ 26.04.07 / 마감",
+          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298236",
+          "requestMethod": "GET",
+          "template": "COMMON_PLATFORM",
+          "ok": true,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298236",
+          "textLength": 2568,
+          "attachmentCount": 5,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
           "transport": "GET",
           "error": ""
@@ -1363,12 +2176,54 @@
     },
     "attachmentDiscovery": {
       "ok": true,
-      "discovered": 1,
+      "discovered": 47,
       "samples": [
         {
-          "name": "PDF파일 다운",
-          "type": "unknown",
-          "url": "https://www.hrdkorea.or.kr/cms/download/downloadFile.hrd?attachSeq=2053319",
+          "name": "채용공고문(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064640",
+          "method": "GET"
+        },
+        {
+          "name": "직무수행계획서(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064297",
+          "method": "GET"
+        },
+        {
+          "name": "직무기술서(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064298",
+          "method": "GET"
+        },
+        {
+          "name": "채용 이의신청서 및 채용서류 반환청구서(일반직).hwp",
+          "type": "hwp",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064299",
+          "method": "GET"
+        },
+        {
+          "name": "직무수행계획서 작성 유의사항(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064300",
+          "method": "GET"
+        },
+        {
+          "name": "채용공고문(건축전문직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3053599",
+          "method": "GET"
+        },
+        {
+          "name": "입사지원서 및 직무수행계획서(건축전문직).hwp",
+          "type": "hwp",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3053600",
+          "method": "GET"
+        },
+        {
+          "name": "직무기술서(건축전문직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3053601",
           "method": "GET"
         }
       ],
@@ -1377,17 +2232,25 @@
     "attachmentDownload": {
       "ok": true,
       "status": "sample-success",
-      "attempted": 1,
-      "downloaded": 1,
+      "attempted": 2,
+      "downloaded": 2,
       "failed": 0,
       "verificationMode": "probe-sample",
       "samples": [
         {
-          "name": "PDF파일 다운",
-          "url": "https://www.hrdkorea.or.kr/cms/download/downloadFile.hrd?attachSeq=2053319",
+          "name": "채용공고문(일반직).pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064640",
           "ok": true,
           "transport": "node-fetch",
-          "contentType": "application/octet-stream;",
+          "contentType": "application/pdf;charset=utf-8",
+          "error": ""
+        },
+        {
+          "name": "직무기술서(일반직).pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064298",
+          "ok": true,
+          "transport": "node-fetch",
+          "contentType": "application/pdf;charset=utf-8",
           "error": ""
         }
       ]
@@ -1398,39 +2261,89 @@
       "status": "sample-success",
       "coverageStatus": "complete",
       "coverageRatio": 1,
-      "attempted": 1,
-      "parsed": 1,
+      "attempted": 2,
+      "parsed": 2,
       "failed": 0,
       "verificationMode": "probe-sample",
       "analyzerVersion": "2.7-hwp-render-and-archive-scope",
       "diagnostics": {
         "byDetectedType": {
-          "pdf": 1
+          "pdf": 2
         },
         "byContentType": {
-          "application/octet-stream;": 1
+          "application/pdf;charset=utf-8": 2
         },
         "byError": {}
       },
       "samples": [
         {
-          "name": "PDF파일 다운",
+          "name": "채용공고문(일반직).pdf",
           "detectedType": "pdf",
           "ok": true,
           "method": "pdftotext",
-          "textLength": 25754,
+          "textLength": 11743,
+          "error": ""
+        },
+        {
+          "name": "직무기술서(일반직).pdf",
+          "detectedType": "pdf",
+          "ok": true,
+          "method": "pdftotext",
+          "textLength": 97,
           "error": ""
         }
       ]
     },
     "attachment": {
       "ok": true,
-      "discovered": 1,
+      "discovered": 47,
       "samples": [
         {
-          "name": "PDF파일 다운",
-          "type": "unknown",
-          "url": "https://www.hrdkorea.or.kr/cms/download/downloadFile.hrd?attachSeq=2053319",
+          "name": "채용공고문(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064640",
+          "method": "GET"
+        },
+        {
+          "name": "직무수행계획서(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064297",
+          "method": "GET"
+        },
+        {
+          "name": "직무기술서(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064298",
+          "method": "GET"
+        },
+        {
+          "name": "채용 이의신청서 및 채용서류 반환청구서(일반직).hwp",
+          "type": "hwp",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064299",
+          "method": "GET"
+        },
+        {
+          "name": "직무수행계획서 작성 유의사항(일반직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064300",
+          "method": "GET"
+        },
+        {
+          "name": "채용공고문(건축전문직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3053599",
+          "method": "GET"
+        },
+        {
+          "name": "입사지원서 및 직무수행계획서(건축전문직).hwp",
+          "type": "hwp",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3053600",
+          "method": "GET"
+        },
+        {
+          "name": "직무기술서(건축전문직).pdf",
+          "type": "pdf",
+          "url": "https://www.alio.go.kr/download/download.json?fileNo=3053601",
           "method": "GET"
         }
       ],

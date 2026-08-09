@@ -27,7 +27,7 @@ export function stageStatuses(source={}) {
     detail: stage(source.detail?.ok ? STATUS.VERIFIED : source.list?.ok ? STATUS.FAILED : STATUS.UNKNOWN, source.detail?.ok?'현재 검증 범위 상세 수집 통과':'상세 수집 미통과'),
     attachment: stage(attachmentStatus, explicitNoAttachment ? '상세 Evidence에서 실제 첨부 없음이 명시적으로 확인됨' : (attachmentCause?.reason || '첨부 수집 검증 결과')),
     documentAnalysis: stage(docStatus, source.documentAnalysis?.status ? `문서분석 ${source.documentAnalysis.status}: ${Number(source.documentAnalysis.parsed||0)}/${Number(source.documentAnalysis.attempted||0)} 성공` : (source.diagnosis?.documentAnalysis?.reason || '첨부파일 분석 검증 결과')),
-    pagination: stage(source.pagination?.ok ? STATUS.VERIFIED : source.pagination?.status && source.pagination.status !== 'not-evaluated' ? (source.pagination.status.startsWith('unknown') ? STATUS.UNKNOWN : STATUS.FAILED) : STATUS.NOT_IMPLEMENTED, source.pagination?.status || '전체 페이지 확장 미구현', source.pagination?.evidence || []),
+    pagination: stage((source.pagination?.implementationOk ?? source.pagination?.ok) ? STATUS.VERIFIED : source.pagination?.status && source.pagination.status !== 'not-evaluated' ? (source.pagination.status.startsWith('unknown') ? STATUS.UNKNOWN : STATUS.FAILED) : STATUS.NOT_IMPLEMENTED, source.pagination?.status || '전체 페이지 확장 미구현', source.pagination?.evidence || []),
     requirements: stage(STATUS.NOT_IMPLEMENTED, '지원조건 수집의 최종 정확성 검증 미구현'),
     filter: stage(STATUS.NOT_IMPLEMENTED, '최종 필터 판정 검증 미구현'),
     output: stage(STATUS.NOT_IMPLEMENTED, '최종 데이터 생성 End-to-End 검증 미구현')

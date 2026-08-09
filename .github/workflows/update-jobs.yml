@@ -3,9 +3,9 @@ env:
   NEXTJOB_DETAIL_DIAG_DIR: data/diagnostics
 
 on:
+  # Development mode: manual runs only so each patch maps to one evidence run.
+  # Restore the schedule after the collection pipeline is stabilized for real use.
   workflow_dispatch:
-  schedule:
-    - cron: "17 */3 * * *"
 
 permissions:
   contents: write

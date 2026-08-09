@@ -74,3 +74,11 @@
 - 실패 시 DNS 문제가 아니라 해당 서버가 GitHub runner 대역 자체를 차단/드롭하는 쪽으로 원인을 확정하고, 추가 URL 추측 패치는 중단.
 - 기존 19 healthy 기관 회귀 0건 확인.
 
+
+## v82 — WFPS bounded access + project continuity guard
+- v81 evidence: 울산복지가족진흥사회서비스원에서 동일/유사 공식 경로에 긴 Node/curl/resolved-IP retry가 누적되며 `collect` 33m42s, 전체 Actions 41m20s까지 증가했고, 결국 HTTP 실패로 회귀함.
+- 확정 원인: 성공 가능성을 높이지 못하는 중복 root URL·동일 host 재시도·다중 transport retry가 실패 시 실행시간만 증폭함. 19개 정상 기관의 공통 수집 구조 문제로 보지 않음.
+- 적용: 해당 기관에만 9초 access budget, URL당 1회 시도, connect timeout 발생 host circuit-breaker, probe URL 상한을 설정. probe/collector transport를 normal 1개 + `curl-resolved` 1개로 축소하고 resolved curl 자체 retry를 제거. 같은 서비스의 root URL 중복을 제거하되 공식 채용게시판/legacy 공식 board/www alias/울산시·남구 공식 fallback은 유지.
+- 정확성 보호: 정상 응답을 빨리 포기하는 blanket timeout 변경이 아니라 WFPS access 단계에만 bounded 정책을 적용. 다른 19기관 source config는 변경하지 않음.
+- 프로젝트 안전장치: 저장소 루트에 `PROJECT-GUIDE.md`를 추가해 최우선 목표, 파이프라인 정의, 정확성/Silent Failure 원칙, 수정 금지사항, Pagination→Refactoring→Template→Filter 로드맵을 ZIP 자체에 보존.
+- 다음 검증: WFPS 성공/실패 여부와 무관하게 probe/collect 시간이 비정상적으로 수십 분 누적되지 않는지, 19개 정상기관 Regression이 없는지 확인. 성공 시 목록→상세→첨부→문서분석까지 다시 확인.

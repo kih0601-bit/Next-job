@@ -241,3 +241,14 @@ console.log('v13.1 Phase 1 welfare-service access fallback tests passed');
 }
 console.log('v79 remaining-three evidence fixes passed');
 
+// v80: WFPS source-scoped DoH + curl --resolve fallback.
+{
+  const welfare = SOURCES.find(item => item.org === '울산복지가족진흥사회서비스원');
+  assert.deepEqual(welfare.accessConfig.transportChain, ['fetch', 'curl', 'curl-resolved'], 'probe must attempt resolved-IP transport only after normal transports fail');
+  assert.deepEqual(welfare.accessConfig.collectorTransportChain, ['node-browser', 'node-simple', 'curl', 'curl-resolved'], 'collector must preserve normal transports and add resolved-IP fallback last');
+  const probeSource = await (await import('node:fs/promises')).readFile(new URL('./pipeline-probe.mjs', import.meta.url), 'utf8');
+  assert.match(probeSource, /resolveHostWithDoh/);
+  assert.match(probeSource, /--resolve/);
+  assert.match(probeSource, /transport === 'curl-resolved'/);
+}
+console.log('v80 WFPS resolved-IP transport fallback tests passed');

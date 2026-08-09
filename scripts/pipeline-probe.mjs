@@ -119,6 +119,73 @@ async function fetchHtmlWithCurl(url, timeoutMs = 22000, referer = '') {
   return { html, status, finalUrl: finalUrl || url, contentType };
 }
 
+async function resolveHostWithDoh(hostname, timeoutMs = 8000) {
+  const endpoints = [
+    `https://dns.google/resolve?name=${encodeURIComponent(hostname)}&type=A`,
+    `https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(hostname)}&type=A`
+  ];
+  const errors = [];
+  for (const endpoint of endpoints) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(endpoint, {
+        signal: controller.signal,
+        headers: { accept: 'application/dns-json, application/json' }
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const payload = await response.json();
+      const ips = (payload.Answer || [])
+        .filter(item => item.type === 1 && /^\d{1,3}(?:\.\d{1,3}){3}$/.test(item.data || ''))
+        .map(item => item.data);
+      if (ips.length) return [...new Set(ips)];
+      throw new Error('no A records');
+    } catch (error) {
+      errors.push(`${new URL(endpoint).hostname}: ${error.name === 'AbortError' ? 'timeout' : error.message}`);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+  throw new Error(`DoH resolution failed (${errors.join(' / ')})`);
+}
+
+async function fetchHtmlWithCurlResolved(url, timeoutMs = 22000, referer = '') {
+  const parsed = new URL(url);
+  const port = parsed.protocol === 'http:' ? 80 : 443;
+  const ips = await resolveHostWithDoh(parsed.hostname);
+  const errors = [];
+  for (const ip of ips.slice(0, 3)) {
+    const args = [
+      '--silent', '--show-error', '--location', '--compressed', '--ipv4',
+      '--connect-timeout', String(Math.max(8, Math.floor(timeoutMs / 2000))),
+      '--max-time', String(Math.max(20, Math.ceil(timeoutMs / 1000))),
+      '--retry', '1', '--retry-delay', '2', '--retry-all-errors',
+      '--resolve', `${parsed.hostname}:${port}:${ip}`,
+      '--user-agent', headers(referer)['user-agent'],
+      '--header', 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      '--header', 'Accept-Language: ko-KR,ko;q=0.9',
+      '--write-out', '\n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type}'
+    ];
+    if (referer) args.push('--referer', referer);
+    args.push(url);
+    try {
+      const { stdout } = await execFileAsync('curl', args, { maxBuffer: 12 * 1024 * 1024, timeout: timeoutMs + 10000 });
+      const marker = '\n__NEXTJOB_META__';
+      const pos = stdout.lastIndexOf(marker);
+      if (pos < 0) throw new Error('curl metadata missing');
+      const html = stdout.slice(0, pos);
+      const [statusText, finalUrl, contentType = ''] = stdout.slice(pos + marker.length).trim().split('|');
+      const status = Number(statusText);
+      if (!Number.isFinite(status) || status < 200 || status >= 400) throw new Error(`HTTP ${statusText || 'unknown'}`);
+      if (html.trim().length < 80) throw new Error('response body too short');
+      return { html, status, finalUrl: finalUrl || url, contentType, transport: 'curl-doh-resolve', resolvedIp: ip };
+    } catch (error) {
+      errors.push(`${ip}: ${error?.stderr?.trim() || error.message}`);
+    }
+  }
+  throw new Error(`resolved curl failed (${errors.join(' / ')})`);
+}
+
 async function fetchHtmlWithFetch(url, timeoutMs = 22000, referer = '') {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -142,6 +209,7 @@ async function fetchHtml(url, timeoutMs = 22000, referer = '', source = {}) {
     try {
       if (transport === 'fetch') return await fetchHtmlWithFetch(url, timeoutMs, referer);
       if (transport === 'curl') return await fetchHtmlWithCurl(url, timeoutMs, referer);
+      if (transport === 'curl-resolved') return await fetchHtmlWithCurlResolved(url, timeoutMs, referer);
       throw new Error(`unsupported transport: ${transport}`);
     } catch (error) {
       lastError = error;

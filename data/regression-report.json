@@ -1,7 +1,55 @@
 {
-  "generatedAt": "2026-08-09T02:06:47.806Z",
+  "generatedAt": "2026-08-09T02:35:30.554Z",
   "mode": "warning",
-  "passed": true,
-  "regressionCount": 0,
-  "regressions": []
+  "passed": false,
+  "regressionCount": 1,
+  "regressions": [
+    {
+      "org": "울산복지가족진흥사회서비스원",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    }
+  ]
 }

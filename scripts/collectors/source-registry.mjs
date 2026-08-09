@@ -112,8 +112,13 @@ const RAW_SOURCES = [
 export const SOURCES = RAW_SOURCES.map(({ org, urls, accessTemplate, accessConfig = {} }) => {
   const url = urls[0];
   const directBoard = !/^(?:https:\/\/)?(?:www\.)?[^/]+\/?$/i.test(url);
+  const delegated = /(?:INCRUIT|SARAMIN|HUBST)/i.test(String(accessConfig.platform || ''));
+  const sourceProvenance = delegated
+    ? { category: 'official-delegated-platform', verificationStatus: 'unknown', reason: '공식 위탁 채용플랫폼으로 구성됨 · 기관→위탁플랫폼 연결 근거를 별도 evidence로 확정 필요' }
+    : { category: 'institution-owned-official-source', verificationStatus: 'verified', reason: '기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증' };
   return {
     org,
+    sourceProvenance,
     accessTemplate,
     accessConfig: { ...accessConfig, primaryUrl: urls[0] },
     homepage: urls.find(item => /^https:\/\/[^/]+\/?$/.test(item)) || url,
@@ -130,4 +135,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls, accessTemplate, accessConfi
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.14-wfps-official-source-only';
+export const SOURCE_REGISTRY_VERSION = '15.15-pipeline-governance';

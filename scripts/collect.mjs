@@ -1,6 +1,7 @@
 import { fetchKepcoDynamicList } from './lib/kepco-dynamic.mjs';
 import fs from 'node:fs/promises';
 import { execFile } from 'node:child_process';
+import crypto from 'node:crypto';
 import { promisify } from 'node:util';
 import { cleanHtml, fetchDetail } from './lib/detail-parser.mjs';
 import { canonicalJobUrl, discoverListingUrls } from './collectors/source-adapters.mjs';
@@ -24,6 +25,105 @@ const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
 const DATA_VERSION = '15.0-phase5-list-selection';
 const execFileAsync = promisify(execFile);
+
+const COLLECTION_CACHE_PATH = 'data/collection-cache.json';
+const COLLECT_METRICS_PATH = 'data/collect-metrics.json';
+const CACHE_MAX_AGE_MS = 20 * 60 * 60 * 1000;
+const CACHE_RETENTION_MS = 30 * 24 * 60 * 60 * 1000;
+const CACHE_MAX_ENTRIES = 4000;
+
+function candidateCacheKey(candidate = {}) {
+  const url = canonicalJobUrl(candidate.link || '');
+  const title = normalizeTitleForDedup(candidate.title || '');
+  return `${candidate.org || ''}|${url}|${title}`;
+}
+
+function candidateFingerprint(candidate = {}) {
+  const material = [candidate.org || '', canonicalJobUrl(candidate.link || ''), candidate.title || '', candidate.listText || '', candidate.listIdentity || ''].join('\n');
+  return crypto.createHash('sha256').update(material).digest('hex').slice(0, 20);
+}
+
+function candidateIdentityFingerprint(candidate = {}) {
+  const material = [candidate.org || '', canonicalJobUrl(candidate.link || ''), normalizeTitleForDedup(candidate.title || '')].join('\n');
+  return crypto.createHash('sha256').update(material).digest('hex').slice(0, 20);
+}
+
+async function bootstrapCacheFromPreviousOutputs() {
+  try {
+    const [debug, jobsPayload] = await Promise.all([
+      fs.readFile('data/debug-report.json', 'utf8').then(JSON.parse),
+      fs.readFile('data/jobs.json', 'utf8').then(JSON.parse)
+    ]);
+    const jobs = Array.isArray(jobsPayload?.jobs) ? jobsPayload.jobs : [];
+    const processedAt = debug?.updatedAt || jobsPayload?.updatedAt || new Date(0).toISOString();
+    const entries = {};
+    for (const source of debug?.sources || []) {
+      const grouped = new Map();
+      for (const decision of source?.vacancyDecisions || []) {
+        const title = decision.candidateTitle || decision.vacancyName || '';
+        const link = canonicalJobUrl(decision.candidateLink || decision.link || decision.detailUrl || '');
+        if (!title || !link) continue;
+        const groupKey = `${source.org}|${link}|${normalizeTitleForDedup(title)}`;
+        if (!grouped.has(groupKey)) grouped.set(groupKey, { title, link, decisions: [] });
+        grouped.get(groupKey).decisions.push(decision);
+      }
+      for (const group of grouped.values()) {
+        const matchingJobs = jobs.filter(job => job.org === source.org && canonicalJobUrl(job.link || '') === group.link && normalizeTitleForDedup(job.originalTitle || job.title || '') === normalizeTitleForDedup(group.title));
+        const hasAcceptedDecision = group.decisions.some(d => d.status === 'accepted');
+        if (hasAcceptedDecision && matchingJobs.length === 0) continue; // jobs.json is capped; do not bootstrap an accepted vacancy without its reusable job payload.
+        const rejection = group.decisions.filter(d => d.status !== 'accepted').map(d => d.reason).filter(Boolean).join(' | ');
+        const detected = group.decisions.length;
+        const accepted = matchingJobs.length;
+        const candidate = { org: source.org, title: group.title, link: group.link };
+        entries[candidateCacheKey(candidate)] = {
+          org: source.org, link: group.link, title: group.title,
+          identityFingerprint: candidateIdentityFingerprint(candidate),
+          fingerprint: '', bootstrap: true, processedAt,
+          outcome: { jobs: matchingJobs, rejection, vacancyDecisions: group.decisions, vacancyStats: { detected, accepted, rejected: Math.max(0, detected - accepted) } }
+        };
+      }
+    }
+    return entries;
+  } catch {
+    return {};
+  }
+}
+
+async function readCollectionCache() {
+  try {
+    const payload = JSON.parse(await fs.readFile(COLLECTION_CACHE_PATH, 'utf8'));
+    const entries = payload && typeof payload.entries === 'object' ? payload.entries : {};
+    return { schemaVersion: '1.0.0', generatedAt: payload.generatedAt || '', entries, bootstrap: false };
+  } catch {
+    const entries = await bootstrapCacheFromPreviousOutputs();
+    return { schemaVersion: '1.0.0', generatedAt: '', entries, bootstrap: true };
+  }
+}
+
+function reusableCachedOutcome(candidate, cacheEntry, nowMs = Date.now()) {
+  if (!cacheEntry?.processedAt || !cacheEntry?.outcome) return null;
+  const fullMatch = cacheEntry.fingerprint && cacheEntry.fingerprint === candidateFingerprint(candidate);
+  const bootstrapMatch = cacheEntry.bootstrap && cacheEntry.identityFingerprint === candidateIdentityFingerprint(candidate);
+  if (!fullMatch && !bootstrapMatch) return null;
+  const age = nowMs - new Date(cacheEntry.processedAt).getTime();
+  if (!Number.isFinite(age) || age < 0 || age > CACHE_MAX_AGE_MS) return null;
+  const outcome = structuredClone(cacheEntry.outcome);
+  if (Array.isArray(outcome.jobs)) outcome.jobs = outcome.jobs.filter(job => !isExpired(job.deadline));
+  outcome.pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 };
+  outcome.documentDiagnostics = { byDetectedType: {}, byContentType: {}, byError: {} };
+  outcome.documentResults = [];
+  outcome.incrementalReuse = true;
+  return outcome;
+}
+
+function cacheableOutcome(outcome = {}) {
+  return {
+    jobs: Array.isArray(outcome.jobs) ? outcome.jobs : [],
+    rejection: outcome.rejection || '',
+    vacancyDecisions: Array.isArray(outcome.vacancyDecisions) ? outcome.vacancyDecisions : [],
+    vacancyStats: outcome.vacancyStats || { detected: 0, accepted: 0, rejected: 0 }
+  };
+}
 
 function validTitle(title) {
   if (!title || title.length < 6 || title.length > 220) return false;
@@ -530,6 +630,10 @@ async function fetchKoshaTboardList(page=1){
 }
 
 async function fetchSource(source) {
+  const sourceStartedAt = new Date();
+  let cacheHits = 0;
+  let cacheMisses = 0;
+  let heavyProcessed = 0;
   try {
     const access = await fetchFirstAccessible(source);
     const html = access.html;
@@ -656,7 +760,27 @@ async function fetchSource(source) {
         });
         continue;
       }
-      const outcome = await enrichCandidate(candidate, source);
+      const cacheKey = candidateCacheKey(candidate);
+      const cachedOutcome = reusableCachedOutcome(candidate, collectionCache.entries[cacheKey]);
+      let outcome;
+      if (cachedOutcome) {
+        cacheHits += 1;
+        outcome = cachedOutcome;
+      } else {
+        cacheMisses += 1;
+        heavyProcessed += 1;
+        outcome = await enrichCandidate(candidate, source);
+        nextCacheEntries[cacheKey] = {
+          org: source.org,
+          link: canonicalJobUrl(candidate.link || ''),
+          title: candidate.title || '',
+          fingerprint: candidateFingerprint(candidate),
+          identityFingerprint: candidateIdentityFingerprint(candidate),
+          bootstrap: false,
+          processedAt: new Date().toISOString(),
+          outcome: cacheableOutcome(outcome)
+        };
+      }
       if (outcome.pipeline) {
         for (const key of Object.keys(pipeline)) pipeline[key] += Number(outcome.pipeline[key] || 0);
       }
@@ -689,13 +813,14 @@ async function fetchSource(source) {
     return {
       ok: true, source: activeSource, jobs, candidates: candidates.length, rawCandidates: rawCandidates.length, collectionCandidates: collectionCandidates.length, listSelection, listingPagesChecked: Math.max(listingUrls.length, Number(paginationDiag?.pagesChecked || 0)), accessAttempts: access.attempts, accessDiagnosis: access.accessDiagnosis || {}, activeRecruitUrl: access.accessDiagnosis?.activeRecruitUrl || activeSource.url,
       rejected: Math.max(0, rawCandidates.length - jobs.length),
+      incremental: { cacheHits, cacheMisses, heavyProcessed, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() },
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
       rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], incremental: { cacheHits, cacheMisses, heavyProcessed, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPipelineReport() {
@@ -718,6 +843,9 @@ async function readPreviousPayload() {
 const previousPayload = await readPreviousPayload();
 const pipelineReport = await readPipelineReport();
 const previousJobs = Array.isArray(previousPayload.jobs) ? previousPayload.jobs : [];
+const collectionCache = await readCollectionCache();
+const nextCacheEntries = { ...collectionCache.entries };
+const collectMetrics = { schemaVersion: '1.0.0', startedAt: new Date().toISOString(), finishedAt: '', durationMs: null, cacheMaxAgeHours: CACHE_MAX_AGE_MS / 3600000, cacheBootstrappedFromPreviousOutputs: Boolean(collectionCache.bootstrap), bootstrapEntryCount: Object.keys(collectionCache.entries || {}).length, institutions: [] };
 const results = [];
 const ACCESS_CONCURRENCY = 2;
 for (let index = 0; index < SOURCES.length; index += ACCESS_CONCURRENCY) {
@@ -725,6 +853,14 @@ for (let index = 0; index < SOURCES.length; index += ACCESS_CONCURRENCY) {
   results.push(...await Promise.all(batch.map(fetchSource)));
   if (index + ACCESS_CONCURRENCY < SOURCES.length) await new Promise(resolve => setTimeout(resolve, 1200));
 }
+collectMetrics.finishedAt = new Date().toISOString();
+collectMetrics.durationMs = new Date(collectMetrics.finishedAt) - new Date(collectMetrics.startedAt);
+collectMetrics.institutions = results.map(result => ({ org: result.source?.org || '', ok: Boolean(result.ok), ...(result.incremental || {}) }));
+collectMetrics.summary = {
+  cacheHits: collectMetrics.institutions.reduce((n, x) => n + Number(x.cacheHits || 0), 0),
+  cacheMisses: collectMetrics.institutions.reduce((n, x) => n + Number(x.cacheMisses || 0), 0),
+  heavyProcessed: collectMetrics.institutions.reduce((n, x) => n + Number(x.heavyProcessed || 0), 0)
+};
 const dedupedJobs = new Map(), sources = [];
 const nowIso = new Date().toISOString();
 for (const result of results) {
@@ -757,7 +893,8 @@ for (const result of results) {
     vacancyStats: result.vacancyStats || { detected: 0, accepted: 0, rejected: 0 },
     documentDiagnostics: result.documentDiagnostics || { byDetectedType: {}, byContentType: {}, byError: {} },
     documentSamples: result.documentSamples || [],
-    vacancyDecisions: result.vacancyDecisions || []
+    vacancyDecisions: result.vacancyDecisions || [],
+    incremental: result.incremental || { cacheHits: 0, cacheMisses: 0, heavyProcessed: 0, durationMs: 0 }
   });
   for (const job of sourceJobs) {
     const normalizedTitle = normalizeTitleForDedup(job.title) || job.title.toLowerCase().replace(/\s+/g, ' ').trim();
@@ -841,6 +978,7 @@ const debugPayload = {
     documentSamples: source.documentSamples,
     vacancyStats: source.vacancyStats,
     vacancyDecisions: source.vacancyDecisions,
+    incremental: source.incremental,
     rejected: source.rejected,
     rejectionReasons: source.rejectionReasons,
     error: source.error
@@ -1022,8 +1160,19 @@ const requirementReport = {
   samples: requirementSamples
 };
 
+const cacheCutoff = Date.now() - CACHE_RETENTION_MS;
+const prunedCacheEntries = Object.fromEntries(
+  Object.entries(nextCacheEntries)
+    .filter(([, entry]) => new Date(entry?.processedAt || 0).getTime() >= cacheCutoff)
+    .sort((a, b) => new Date(b[1]?.processedAt || 0) - new Date(a[1]?.processedAt || 0))
+    .slice(0, CACHE_MAX_ENTRIES)
+);
+const cachePayload = { schemaVersion: '1.0.0', generatedAt: nowIso, maxAgeHours: CACHE_MAX_AGE_MS / 3600000, retentionDays: CACHE_RETENTION_MS / 86400000, entries: prunedCacheEntries };
+
 await Promise.all([
   fs.writeFile('data/jobs.json', `${JSON.stringify(payload, null, 2)}\n`, 'utf8'),
+  fs.writeFile(COLLECTION_CACHE_PATH, `${JSON.stringify(cachePayload, null, 2)}\n`, 'utf8'),
+  fs.writeFile(COLLECT_METRICS_PATH, `${JSON.stringify(collectMetrics, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/requirement-report.json', `${JSON.stringify(requirementReport, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, ...qa }, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/debug-report.json', `${JSON.stringify(debugPayload, null, 2)}\n`, 'utf8')

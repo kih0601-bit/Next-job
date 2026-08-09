@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 
 const METRICS_PATH = 'data/run-metrics.json';
 const REPORT_PATH = 'data/pipeline-report.json';
+const COLLECT_METRICS_PATH = 'data/collect-metrics.json';
 const command = process.argv[2] || 'finalize';
 const label = process.argv[3] || '';
 const nowIso = () => new Date().toISOString();
@@ -80,6 +81,11 @@ if (command === 'start') {
   metrics.githubConclusionAtFinalize = meta?.conclusion || '';
   metrics.finalizedAt = nowIso();
   metrics.durations = computeDurations(metrics.marks || {});
+  try {
+    const collectMetrics = JSON.parse(await fs.readFile(COLLECT_METRICS_PATH, 'utf8'));
+    metrics.collect = collectMetrics;
+    metrics.collectByOrg = Array.isArray(collectMetrics.institutions) ? collectMetrics.institutions : [];
+  } catch {}
   const start = metrics.githubRunStartedAt || metrics.metricsInitializedAt;
   metrics.observedDurationMs = start ? Math.max(0, new Date(metrics.finalizedAt) - new Date(start)) : null;
   await writeMetrics(metrics);

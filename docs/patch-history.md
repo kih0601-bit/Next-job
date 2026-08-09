@@ -82,3 +82,9 @@
 - 정확성 보호: 정상 응답을 빨리 포기하는 blanket timeout 변경이 아니라 WFPS access 단계에만 bounded 정책을 적용. 다른 19기관 source config는 변경하지 않음.
 - 프로젝트 안전장치: 저장소 루트에 `PROJECT-GUIDE.md`를 추가해 최우선 목표, 파이프라인 정의, 정확성/Silent Failure 원칙, 수정 금지사항, Pagination→Refactoring→Template→Filter 로드맵을 ZIP 자체에 보존.
 - 다음 검증: WFPS 성공/실패 여부와 무관하게 probe/collect 시간이 비정상적으로 수십 분 누적되지 않는지, 19개 정상기관 Regression이 없는지 확인. 성공 시 목록→상세→첨부→문서분석까지 다시 확인.
+
+## v83 — WFPS SVG 오탐 제거 + EWP 다운로드 계약 evidence 강화
+- v82 evidence에서 울산복지가족진흥사회서비스원 문서분석 1/2 실패 원인은 실제 채용 첨부가 아니라 `/webuser/img/sub/board/icon-3.svg` 게시판 UI 아이콘이 첨부영역 문맥 때문에 `unknown` 첨부로 들어온 것임을 확정.
+- `addAttachment`에서 확장자 판정 전에 known static asset을 제거하도록 수정. SVG처럼 FILE_EXT 밖의 UI asset도 attachment context 때문에 우회 유입되지 않게 함. 실제 문서 첨부 규칙은 변경하지 않음.
+- 한국동서발전 `new_download.html`은 v82에서도 실제 파일 대신 `text/html`을 반환. 요청 파라미터를 추측해 성공 처리하지 않고, 다음 Actions에서 반환 HTML과 당시 URL/referer/method/body/headers를 `data/diagnostics/한국동서발전/attachment-resolution`에 보존하도록 추가. 이 evidence로 실제 다운로드 계약을 확정한 뒤 기관 전용 수정한다.
+- 전체 기능 검증 원칙 강화: 패치 직접 목적과 별개로 매 브리핑/심화진단에서 20기관 접속→목록→상세→첨부→문서분석→필터→최종저장, 실행시간, Regression, 건수 급변/불일치와 Silent Failure를 함께 확인한다.

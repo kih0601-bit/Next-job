@@ -14,7 +14,7 @@ import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 import { analyzeAttachments } from './lib/document-analyzer.mjs';
 import { safeFileComponent } from './lib/safe-filename.mjs';
 
-const VERSION = '19.5-v95-pagination-session-and-page-quality';
+const VERSION = '19.7-v97-pagination-proof-and-terminal-discovery';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const MAX_ATTACHMENT_VERIFY_FILES = 2; // representative files per institution; keeps Actions bounded
@@ -779,7 +779,7 @@ async function probeSource(source, artifacts) {
             const fp = pageFingerprint(inspect.candidates);
             results.push({page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl||req.url,exactMatch:Boolean(inspect.exactMatch)});
             report.pagination.pageFingerprints.push({page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl||req.url,method:req.method});
-            report.pagination.pageValidation.push({page:pg,url:pp.finalUrl||req.url,status:inspect.status||'',exactMatch:Boolean(inspect.exactMatch),visiblePostCount:inspect.visiblePostCount??null,candidateCount:inspect.candidateCount??inspect.candidates.length,missingCount:inspect.missingCount??null,extraCount:inspect.extraCount??null,method:req.method});
+            report.pagination.pageValidation.push({page:pg,url:pp.finalUrl||req.url,status:inspect.status||'',exactMatch:Boolean(inspect.exactMatch),visiblePostCount:inspect.visiblePostCount??null,candidateCount:inspect.candidateCount??inspect.candidates.length,missingCount:inspect.missingCount??null,extraCount:inspect.extraCount??null,method:req.method,exactMatchBasis:inspect.diagnostics?.exactMatchBasis||''});
           } catch(error) { report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`); }
         }
         report.pagination.pagesChecked = results.length;
@@ -793,6 +793,41 @@ async function probeSource(source, artifacts) {
         report.pagination.mismatchPages = report.pagination.pageValidation.filter(page => !page.exactMatch && Number(page.candidateCount || 0) > 0).slice(0,30);
         report.pagination.ok = allPages && !repeated && allExact && report.pagination.errors.length===0;
         report.pagination.status = report.pagination.ok ? 'verified-full' : 'partial-or-mismatch';
+      } else if (['query-get','form-post'].includes(finalPlan.kind) && !totalPages) {
+        // Evidence-backed transport exists, but the board does not publish total pages.
+        // Discover the terminal page conservatively: walk sequentially until the first
+        // empty page or a repeated non-empty page fingerprint. The terminal response is
+        // evidence, not counted as a content page. Cap at 100 to prevent runaway loops.
+        let terminal = null;
+        const seenFingerprints = new Set([results[0].fingerprint]);
+        for (let pg = pageBase + 1; pg <= 100; pg++) {
+          const req = paginationRequest(finalPlan, selected.url, pg);
+          if (!req?.url) break;
+          if (paginationSessionCookie) req.headers = { ...(req.headers || {}), cookie: paginationSessionCookie };
+          try {
+            const pp = await fetchPaginationPage(req, LIST_TIMEOUT_MS, selected.url, source);
+            const inspect = inspectListingPage(pp.html, {...source,url:pp.finalUrl||req.url});
+            const fp = pageFingerprint(inspect.candidates);
+            if (inspect.candidates.length === 0) { terminal = {type:'empty-page', page:pg, url:pp.finalUrl||req.url}; break; }
+            if (seenFingerprints.has(fp)) { terminal = {type:'repeated-page', page:pg, fingerprint:fp, url:pp.finalUrl||req.url}; break; }
+            seenFingerprints.add(fp);
+            results.push({page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl||req.url,exactMatch:Boolean(inspect.exactMatch)});
+            report.pagination.pageFingerprints.push({page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl||req.url,method:req.method});
+            report.pagination.pageValidation.push({page:pg,url:pp.finalUrl||req.url,status:inspect.status||'',exactMatch:Boolean(inspect.exactMatch),visiblePostCount:inspect.visiblePostCount??null,candidateCount:inspect.candidateCount??inspect.candidates.length,missingCount:inspect.missingCount??null,extraCount:inspect.extraCount??null,method:req.method,exactMatchBasis:inspect.diagnostics?.exactMatchBasis||''});
+          } catch(error) { report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`); break; }
+        }
+        report.pagination.pagesChecked = results.length;
+        report.pagination.totalPages = terminal ? results.length : null;
+        report.pagination.terminalEvidence = terminal;
+        const rec = reconcilePages(results);
+        const allExact = results.every(x=>x.exactMatch);
+        const terminalProved = Boolean(terminal && ['empty-page','repeated-page'].includes(terminal.type));
+        report.pagination.reconciliation = {...rec,status:terminalProved?'pass':'blocked',repeatedPageFingerprint:false,reason:terminalProved?`terminal discovered by ${terminal.type}`:'100-page cap reached without terminal evidence'};
+        report.pagination.rawCount=rec.rawCount; report.pagination.uniqueCount=rec.uniqueCount; report.pagination.duplicateCount=rec.duplicateCount;
+        report.pagination.mismatchPages = report.pagination.pageValidation.filter(page => !page.exactMatch && Number(page.candidateCount || 0) > 0).slice(0,30);
+        report.pagination.ok = terminalProved && allExact && report.pagination.errors.length===0;
+        report.pagination.status = report.pagination.ok ? 'verified-full' : (terminalProved ? 'partial-or-mismatch' : 'unknown-total-pages');
+        report.pagination.goldenDataset={status:'active-structural-baseline',firstPageFingerprint:results[0].fingerprint,firstPageCount:all.length};
       } else if (finalPlan.kind === 'kosha-api' && totalPages && totalPages <= 100) {
         for (let pg=2; pg<=totalPages; pg++) {
           try { const pp=await fetchKoshaTboard('boardList',{},pg); const inspect=inspectListingPage(pp.html,{...source,url:pp.finalUrl}); const fp=pageFingerprint(inspect.candidates); results.push({page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl,exactMatch:Boolean(inspect.exactMatch)}); report.pagination.pageFingerprints.push({page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl}); }

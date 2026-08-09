@@ -39,7 +39,13 @@ export function inspectListingPage(html, source) {
   const explicitEmptyMarker = String(source?.accessConfig?.verifiedEmptyText || '').trim();
   const verifiedEmpty = candidateCount === 0 && Boolean(explicitEmptyMarker) && cleanHtml(String(html)).includes(explicitEmptyMarker);
   const recordVerification = verifyExtractedListAgainstVisibleRecords(html, sourceWithRaw, candidates);
-  const exactMatch = visiblePostCount !== null && candidateCount === visiblePostCount;
+  // Prefer the independent record-template verifier when it can prove a 1:1 mapping.
+  // Some legacy boards contain notice/legacy rows that the heuristic visible counter
+  // intentionally omits even though they are real board records. Treating only the
+  // heuristic count as truth caused false pagination failures on UIC/UTP/UIPA.
+  const countExactMatch = visiblePostCount !== null && candidateCount === visiblePostCount;
+  const templateExactMatch = Boolean(recordVerification?.verified);
+  const exactMatch = countExactMatch || templateExactMatch;
   const missingCount = visiblePostCount === null ? null : Math.max(0, visiblePostCount - candidateCount);
   const extraCount = visiblePostCount === null ? null : Math.max(0, candidateCount - visiblePostCount);
   let status = 'count-unavailable';
@@ -66,6 +72,9 @@ export function inspectListingPage(html, source) {
       missingCount,
       extraCount,
       recordVerification,
+      countExactMatch,
+      templateExactMatch,
+      exactMatchBasis: templateExactMatch ? 'record-template-1to1' : (countExactMatch ? 'visible-count' : 'none'),
       verifiedEmpty,
       emptyMarker: verifiedEmpty ? explicitEmptyMarker : '',
       countSource: visiblePostCount !== null

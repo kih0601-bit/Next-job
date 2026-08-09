@@ -126,8 +126,11 @@ function formFieldPaginationContract(html='', baseUrl='') {
     const rawAction=attr(tag,'action') || baseUrl;
     let action=''; try { action=new URL(rawAction,baseUrl).href; } catch {}
     if (!action) continue;
-    if (method==='POST' && (js.length || total)) return {kind:'form-post',key,pageBase:1,totalPages:total || (js.length?Math.max(...js):null),totalCount:null,form:{action,method:'POST',formName:attr(tag,'name')||attr(tag,'id')||'',pageKey:key,fields},evidence:[`evidence-backed POST form ${key}=N`,...(js.length?[`javascript page calls ${js.slice(0,12).join(',')}`]:[]),...(total?[`page text total=${total}`]:[])]};
-    if (method==='GET' && (js.length || total)) return {kind:'query-get',key,pageBase:1,totalPages:total || (js.length?Math.max(...js):null),totalCount:null,evidence:[`evidence-backed GET form ${key}=N`,...(js.length?[`javascript page calls ${js.slice(0,12).join(',')}`]:[]),...(total?[`page text total=${total}`]:[])]};
+    // A real page field inside the verified board form is itself transport evidence.
+    // totalPages may be unknown; the probe can then discover the terminal page by
+    // bounded sequential requests instead of guessing a URL contract.
+    if (method==='POST') return {kind:'form-post',key,pageBase:1,totalPages:total || (js.length?Math.max(...js):null),totalCount:null,form:{action,method:'POST',formName:attr(tag,'name')||attr(tag,'id')||'',pageKey:key,fields},evidence:[`evidence-backed POST form ${key}=N`,...(js.length?[`javascript page calls ${js.slice(0,12).join(',')}`]:[]),...(total?[`page text total=${total}`]:[]),...(!total&&!js.length?['total pages unknown; bounded terminal discovery required']:[])]};
+    if (method==='GET') return {kind:'query-get',key,pageBase:1,totalPages:total || (js.length?Math.max(...js):null),totalCount:null,form:{action,method:'GET',formName:attr(tag,'name')||attr(tag,'id')||'',pageKey:key,fields},evidence:[`evidence-backed GET form ${key}=N`,...(js.length?[`javascript page calls ${js.slice(0,12).join(',')}`]:[]),...(total?[`page text total=${total}`]:[]),...(!total&&!js.length?['total pages unknown; bounded terminal discovery required']:[])]};
   }
   return null;
 }

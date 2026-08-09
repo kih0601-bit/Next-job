@@ -36,6 +36,16 @@ function explicitTotalCount(html='') {
   for (const re of patterns) { const m=text.match(re); if(m) return Number(m[1]); }
   return null;
 }
+function severePaginationIdentityCollapse(rec = {}) {
+  const raw = Number(rec.rawCount || 0);
+  const unique = Number(rec.uniqueCount || 0);
+  if (raw < 20) return false;
+  // Pinned notices and normal overlap can create a few duplicates. A board
+  // collapsing more than half of 20+ extracted rows indicates that the
+  // extracted identity is structurally wrong (e.g. a shared detail endpoint).
+  return unique > 0 && (unique / raw) < 0.5;
+}
+
 function singlePageProof(html='', selected={}, org='') {
   const snapshot = paginationEvidenceSnapshot(html, selected.url || '');
   const total = explicitTotalCount(html);
@@ -846,11 +856,12 @@ async function probeSource(source, artifacts) {
         const repeated = report.pagination.pageFingerprints.some((x,i,a)=>a.findIndex(y=>y.fingerprint===x.fingerprint)<i && x.count>0);
         const allExact = results.every(x=>x.exactMatch || x.candidates.length===0);
         const allPages = results.length === totalPages;
-        report.pagination.reconciliation = {...rec,status: allPages && !repeated ? 'pass' : 'failed', repeatedPageFingerprint:repeated};
+        const identityCollapse = severePaginationIdentityCollapse(rec);
+        report.pagination.reconciliation = {...rec,status: allPages && !repeated && !identityCollapse ? 'pass' : 'failed', repeatedPageFingerprint:repeated, identityCollapseDetected:identityCollapse, identityUniqueRatio:rec.rawCount ? rec.uniqueCount / rec.rawCount : 1};
         report.pagination.rawCount=rec.rawCount; report.pagination.uniqueCount=rec.uniqueCount; report.pagination.duplicateCount=rec.duplicateCount;
         report.pagination.goldenDataset = {status:'active-structural-baseline', firstPageFingerprint:results[0].fingerprint, firstPageCount:all.length, note:'첫 도입 실행은 검증된 1페이지를 구조 기준선으로 저장; 이후 실행부터 regression 대조'};
         report.pagination.mismatchPages = report.pagination.pageValidation.filter(page => !page.exactMatch && Number(page.candidateCount || 0) > 0).slice(0,30);
-        report.pagination.ok = allPages && !repeated && allExact && report.pagination.errors.length===0;
+        report.pagination.ok = allPages && !repeated && !identityCollapse && allExact && report.pagination.errors.length===0;
         report.pagination.status = report.pagination.ok ? 'verified-full' : 'partial-or-mismatch';
       } else if (['query-get','form-post'].includes(finalPlan.kind) && !totalPages) {
         // Evidence-backed transport exists, but the board does not publish total pages.
@@ -901,10 +912,11 @@ async function probeSource(source, artifacts) {
         const rec = reconcilePages(results);
         const allExact = results.every(x=>x.exactMatch);
         const terminalProved = Boolean(terminal && ['empty-page','repeated-page','repeated-terminal-noise'].includes(terminal.type));
-        report.pagination.reconciliation = {...rec,status:terminalProved?'pass':'blocked',repeatedPageFingerprint:false,reason:terminalProved?`terminal discovered by ${terminal.type}`:'100-page cap reached without terminal evidence'};
+        const identityCollapse = severePaginationIdentityCollapse(rec);
+        report.pagination.reconciliation = {...rec,status:terminalProved&&!identityCollapse?'pass':terminalProved?'failed':'blocked',repeatedPageFingerprint:false,identityCollapseDetected:identityCollapse,identityUniqueRatio:rec.rawCount ? rec.uniqueCount / rec.rawCount : 1,reason:identityCollapse?'severe extracted-identity collapse across pagination':terminalProved?`terminal discovered by ${terminal.type}`:'100-page cap reached without terminal evidence'};
         report.pagination.rawCount=rec.rawCount; report.pagination.uniqueCount=rec.uniqueCount; report.pagination.duplicateCount=rec.duplicateCount;
         report.pagination.mismatchPages = report.pagination.pageValidation.filter(page => !page.exactMatch && Number(page.candidateCount || 0) > 0).slice(0,30);
-        report.pagination.ok = terminalProved && allExact && report.pagination.errors.length===0;
+        report.pagination.ok = terminalProved && !identityCollapse && allExact && report.pagination.errors.length===0;
         report.pagination.status = report.pagination.ok ? 'verified-full' : (terminalProved ? 'partial-or-mismatch' : 'unknown-total-pages');
         report.pagination.goldenDataset={status:'active-structural-baseline',firstPageFingerprint:results[0].fingerprint,firstPageCount:all.length};
       } else if (finalPlan.kind === 'kosha-api' && totalPages && totalPages <= 100) {
@@ -913,8 +925,9 @@ async function probeSource(source, artifacts) {
           catch(error){report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`);}
         }
         report.pagination.pagesChecked=results.length; const rec=reconcilePages(results); const repeated=report.pagination.pageFingerprints.some((x,i,a)=>a.findIndex(y=>y.fingerprint===x.fingerprint)<i && x.count>0);
-        report.pagination.reconciliation={...rec,status:results.length===totalPages&&!repeated?'pass':'failed',repeatedPageFingerprint:repeated}; report.pagination.rawCount=rec.rawCount;report.pagination.uniqueCount=rec.uniqueCount;report.pagination.duplicateCount=rec.duplicateCount;
-        report.pagination.goldenDataset={status:'active-structural-baseline',firstPageFingerprint:results[0].fingerprint,firstPageCount:all.length}; report.pagination.ok=results.length===totalPages&&!repeated&&report.pagination.errors.length===0; report.pagination.status=report.pagination.ok?'verified-full':'partial-or-mismatch';
+        const identityCollapse=severePaginationIdentityCollapse(rec);
+        report.pagination.reconciliation={...rec,status:results.length===totalPages&&!repeated&&!identityCollapse?'pass':'failed',repeatedPageFingerprint:repeated,identityCollapseDetected:identityCollapse,identityUniqueRatio:rec.rawCount ? rec.uniqueCount / rec.rawCount : 1}; report.pagination.rawCount=rec.rawCount;report.pagination.uniqueCount=rec.uniqueCount;report.pagination.duplicateCount=rec.duplicateCount;
+        report.pagination.goldenDataset={status:'active-structural-baseline',firstPageFingerprint:results[0].fingerprint,firstPageCount:all.length}; report.pagination.ok=results.length===totalPages&&!repeated&&!identityCollapse&&report.pagination.errors.length===0; report.pagination.status=report.pagination.ok?'verified-full':'partial-or-mismatch';
       } else {
         report.pagination.pagesChecked = 1;
         report.pagination.status = finalPlan.kind === 'javascript-form' ? 'unknown-transport-contract' : 'unknown-total-pages';

@@ -748,6 +748,32 @@ async function fetchSource(source) {
   let heavyProcessed = 0;
   const cacheHitReasons = { 'full-fingerprint': 0, 'bootstrap-identity': 0, 'identity-grace': 0, 'terminal-identity': 0 };
   const cacheMissReasons = { 'missing-key': 0, 'identity-mismatch': 0, 'fingerprint-changed': 0, 'stale': 0, 'other': 0 };
+  // Keep small, evidence-rich samples so one Actions run explains *why*
+  // identity/fingerprint reuse failed instead of only counting failures.
+  const cacheMissSamples = { 'missing-key': [], 'identity-mismatch': [], 'fingerprint-changed': [], 'stale': [], 'other': [] };
+  const pushCacheMissSample = (reason, candidate, existingEntry = null) => {
+    const bucket = cacheMissSamples[reason] || cacheMissSamples.other;
+    if (bucket.length >= 5) return;
+    const currentIdentity = sourceStableIdentity(candidate);
+    const cachedIdentity = existingEntry ? sourceStableIdentity({
+      org: existingEntry.org || candidate.org || '',
+      link: existingEntry.link || '',
+      title: existingEntry.title || ''
+    }) : '';
+    const ageMs = existingEntry?.processedAt ? Date.now() - new Date(existingEntry.processedAt).getTime() : null;
+    bucket.push({
+      title: candidate.title || '',
+      currentLink: canonicalJobUrl(candidate.link || ''),
+      cachedLink: existingEntry?.link || '',
+      currentStableIdentity: currentIdentity,
+      cachedStableIdentity: cachedIdentity,
+      currentIdentityFingerprint: candidateIdentityFingerprint(candidate),
+      cachedIdentityFingerprint: existingEntry?.identityFingerprint || '',
+      currentFingerprint: candidateFingerprint(candidate),
+      cachedFingerprint: existingEntry?.fingerprint || '',
+      ageHours: Number.isFinite(ageMs) ? Math.round((ageMs / 3600000) * 100) / 100 : null
+    });
+  };
   let cacheKeyMigrations = 0;
   try {
     const access = await fetchFirstAccessible(source);
@@ -887,14 +913,25 @@ async function fetchSource(source) {
       } else {
         cacheMisses += 1;
         const existingEntry = cacheLookup.entry;
-        if (!existingEntry) cacheMissReasons['missing-key'] += 1;
-        else {
+        if (!existingEntry) {
+          cacheMissReasons['missing-key'] += 1;
+          pushCacheMissSample('missing-key', candidate, null);
+        } else {
           const identityMatch = existingEntry.identityFingerprint === candidateIdentityFingerprint(candidate);
           const age = Date.now() - new Date(existingEntry.processedAt || 0).getTime();
-          if (!identityMatch) cacheMissReasons['identity-mismatch'] += 1;
-          else if (Number.isFinite(age) && age > CACHE_MAX_AGE_MS && !terminalCacheOutcome(existingEntry.outcome)) cacheMissReasons.stale += 1;
-          else if (existingEntry.fingerprint && existingEntry.fingerprint !== candidateFingerprint(candidate)) cacheMissReasons['fingerprint-changed'] += 1;
-          else cacheMissReasons.other += 1;
+          if (!identityMatch) {
+            cacheMissReasons['identity-mismatch'] += 1;
+            pushCacheMissSample('identity-mismatch', candidate, existingEntry);
+          } else if (Number.isFinite(age) && age > CACHE_MAX_AGE_MS && !terminalCacheOutcome(existingEntry.outcome)) {
+            cacheMissReasons.stale += 1;
+            pushCacheMissSample('stale', candidate, existingEntry);
+          } else if (existingEntry.fingerprint && existingEntry.fingerprint !== candidateFingerprint(candidate)) {
+            cacheMissReasons['fingerprint-changed'] += 1;
+            pushCacheMissSample('fingerprint-changed', candidate, existingEntry);
+          } else {
+            cacheMissReasons.other += 1;
+            pushCacheMissSample('other', candidate, existingEntry);
+          }
         }
         heavyProcessed += 1;
         outcome = await enrichCandidate(candidate, source);
@@ -941,14 +978,14 @@ async function fetchSource(source) {
     return {
       ok: true, source: activeSource, jobs, candidates: candidates.length, rawCandidates: rawCandidates.length, collectionCandidates: collectionCandidates.length, listSelection, listingPagesChecked: Math.max(listingUrls.length, Number(paginationDiag?.pagesChecked || 0)), accessAttempts: access.attempts, accessDiagnosis: access.accessDiagnosis || {}, activeRecruitUrl: access.accessDiagnosis?.activeRecruitUrl || activeSource.url,
       rejected: Math.max(0, rawCandidates.length - jobs.length),
-      incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, cacheKeyMigrations, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() },
+      incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, cacheMissSamples, cacheKeyMigrations, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() },
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
       rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, cacheKeyMigrations, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, cacheMissSamples, cacheKeyMigrations, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPipelineReport() {

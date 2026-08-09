@@ -190,3 +190,20 @@
 - `data/collect-metrics.json`을 추가해 기관별 시작/종료·소요시간·cache hit/miss·heavyProcessed 건수를 기록한다. `run-metrics.json` finalize 시 이 값을 `collectByOrg`로 병합하여 다음 브리핑에서 기관별 Collect 병목을 직접 확인할 수 있게 한다.
 - workflow Artifact에 collection-cache/collect-metrics를 포함한다. 전체 페이지 정확성 검증 자체는 유지하며 Pagination을 축소해 속도를 얻지 않는다.
 - 8단계 Requirement Extraction은 아직 활성화하지 않는다. v94 목적은 7단계 전체페이지 정확도를 유지하면서 45분 Collect timeout 구조를 제거하는 것이다.
+
+
+## v95 — Adaptive Incremental Cache + Pagination Evidence Hardening
+- v94 첫 운영 Run Metrics 근거: Collect 33분 28초 중 울산테크노파크 21분 4초, heavyProcessed 507건. 단순 동시성 확대 대신 캐시 재사용 정확도를 먼저 강화한다.
+- 종료가 확정된 `expired deadline`/`closed notice text` 공고는 동일 기관+URL+제목 identity가 유지되면 최대 90일 재사용한다. 활성/변경 가능 공고는 기존 20시간 full fingerprint 정책을 유지하고, 동적 목록 텍스트(조회수 등) 흔들림에 대비한 3시간 identity grace만 허용한다.
+- cache hit를 full-fingerprint/bootstrap-identity/identity-grace/terminal-identity로 분해 기록해 다음 Actions에서 캐시가 왜 재사용됐는지 근거를 남긴다.
+- Pagination 미완료 기관은 각 페이지의 visible/candidate/exact/missing/extra를 pageValidation/mismatchPages로 저장하여 `partial-or-mismatch`의 실제 원인을 다음 한 번의 Actions에서 확정한다.
+- CSRF hidden field가 있는 POST Pagination은 fresh GET session의 cookie + 같은 세션 CSRF를 함께 replay한다. 울산시설공단의 기존 page 2~19 HTTP 403 근거에 대한 직접 교정이며, CSRF가 없는 기관에는 적용하지 않는다.
+- v94 결과 ZIP을 데스크탑에서 재검사하니 runner에서는 안전했던 한글 diagnostic filename이 GitHub ZIP에서 `#Uxxxx` 형태로 확장되어 Windows/클라이언트 경로가 다시 길어지는 현상을 확인했다. 공고 제목 기반 diagnostic stem은 ASCII `item-<stable hash>`로 저장해 ZIP 인코딩 이후에도 길이가 늘지 않게 한다. 원문 제목은 evidence JSON 내부에 그대로 보존한다.
+- 8단계는 여전히 활성화하지 않는다. 현재 목적은 7단계 정확성·외부요인 내성·운영시간의 증거 기반 안정화다.
+
+## v96 — UTP cache fingerprint root-cause fix
+- Evidence: v94 run #1 and #2 had all 340 울산테크노파크 cache keys overlapping and all 340 identity fingerprints identical, while all full fingerprints changed between runs.
+- Root cause: `candidateFingerprint()` included `listText`; UTP board rows contain volatile metadata such as view counts, so unchanged notices produced a different full fingerprint on every run.
+- Fix: exclude volatile `listText` from the full cache fingerprint while retaining org, canonical detail URL, raw title, stable list identity, and detail request contract. This still invalidates cache when the notice title/request identity changes.
+- Diagnostics: add per-institution and summary `cacheMissReasons` (`missing-key`, `identity-mismatch`, `fingerprint-changed`, `stale`, `other`) so future cache misses are evidence-classified instead of inferred from timing.
+- Kept from v95: adaptive terminal cache, identity grace, pagination pageValidation/session evidence, and ASCII safe diagnostic filenames.

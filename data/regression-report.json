@@ -1,11 +1,148 @@
 {
-  "generatedAt": "2026-08-09T10:12:01.676Z",
+  "generatedAt": "2026-08-09T11:40:13.783Z",
   "mode": "warning",
   "passed": false,
-  "regressionCount": 1,
-  "actionableRegressionCount": 1,
-  "transientWatchCount": 0,
+  "regressionCount": 3,
+  "actionableRegressionCount": 2,
+  "transientWatchCount": 1,
   "regressions": [
+    {
+      "org": "한국동서발전",
+      "primaryCause": {
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+            "ok": false,
+            "error": "HTTP 502",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.ewp.co.kr/",
+            "ok": false,
+            "error": "HTTP 502",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+            "ok": false,
+            "error": "fetch failed",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/한국동서발전.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true,
+      "regressionClass": "transient-watch",
+      "transientWatch": true,
+      "consecutiveFailureCount": 1,
+      "watchPolicy": "최근 정상 Evidence가 있는 동일 네트워크성 실패는 3회 연속까지 관찰; 4회차 또는 실패 양상 변경 시 원인분석 대상으로 승격"
+    },
+    {
+      "org": "근로복지공단",
+      "primaryCause": {
+        "stage": "detail",
+        "status": "failed",
+        "code": "DETAIL_BODY_PARTIAL",
+        "reason": "첫 페이지 1건 중 0건만 상세 본문 검증 성공",
+        "evidence": [
+          {
+            "title": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+            "requestedUrl": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+            "requestMethod": "GET",
+            "template": "COMMON_PLATFORM",
+            "ok": false,
+            "finalUrl": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+            "textLength": 0,
+            "attachmentCount": 0,
+            "attachmentSignalCount": 0,
+            "explicitNoAttachment": false,
+            "transport": "",
+            "error": "HTTP 400"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true,
+      "regressionClass": "actionable",
+      "transientWatch": false,
+      "consecutiveFailureCount": 0,
+      "watchPolicy": ""
+    },
     {
       "org": "울산복지가족진흥사회서비스원",
       "regressed": false,
@@ -42,7 +179,7 @@
       },
       "regressionClass": "actionable",
       "transientWatch": false,
-      "consecutiveFailureCount": 5,
+      "consecutiveFailureCount": 6,
       "watchPolicy": ""
     }
   ]

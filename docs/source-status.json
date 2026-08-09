@@ -18,15 +18,15 @@
       "org": "근로복지공단",
       "access": "success",
       "list": "verified-exact",
-      "detail": "success",
-      "attachmentDiscovery": "success",
-      "attachmentDownload": "sample-success",
+      "detail": "failed",
+      "attachmentDiscovery": "failed",
+      "attachmentDownload": "blocked-by-discovery",
       "documentAnalysis": {
-        "status": "sample-success",
-        "strictOk": true,
-        "attempted": 2,
-        "parsed": 2,
-        "observedCapability": true
+        "status": "blocked-by-download",
+        "strictOk": false,
+        "attempted": 0,
+        "parsed": 0,
+        "observedCapability": false
       },
       "filter": "not-finalized",
       "save": "not-finalized",
@@ -66,18 +66,18 @@
           "evidence": []
         },
         "detail": {
-          "status": "verified",
-          "reason": "현재 검증 범위 상세 수집 통과",
+          "status": "failed",
+          "reason": "상세 수집 미통과",
           "evidence": []
         },
         "attachment": {
-          "status": "verified",
-          "reason": "검증 표본에서 첨부 링크 12개 발견",
+          "status": "unknown",
+          "reason": "상세 단계 미통과로 첨부 진단 보류",
           "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified",
-          "reason": "문서분석 sample-success: 2/2 성공",
+          "status": "unknown",
+          "reason": "문서분석 blocked-by-download: 0/0 성공",
           "evidence": []
         },
         "pagination": {
@@ -104,15 +104,15 @@
         }
       },
       "pipelineSummary": {
-        "verified": 6,
-        "unknown": 1,
-        "failed": 0,
+        "verified": 3,
+        "unknown": 3,
+        "failed": 1,
         "notImplemented": 3,
-        "contiguousVerifiedThrough": 6,
+        "contiguousVerifiedThrough": 3,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울산경제일자리진흥원",
@@ -208,7 +208,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울산남구도시관리공단",
@@ -308,7 +308,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울산도시공사",
@@ -404,7 +404,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울산문화관광재단",
@@ -499,7 +499,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울산복지가족진흥사회서비스원",
@@ -592,7 +592,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울산북구시설관리공단",
@@ -660,7 +660,7 @@
           "reason": "verified-full",
           "evidence": [
             "verified form POST frm.pageIndex=N",
-            "action=https://www.ubimc.or.kr/cop/bbs/selectBoardList.do;jsessionid=367AB30EA3284C8292A8EDDF8CB655E4"
+            "action=https://www.ubimc.or.kr/cop/bbs/selectBoardList.do;jsessionid=AB8DFEB867AA8BF38E271BC6FEE6ACAD"
           ]
         },
         "requirements": {
@@ -688,7 +688,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울산시설공단",
@@ -784,7 +784,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울산정보산업진흥원",
@@ -880,7 +880,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울산테크노파크",
@@ -976,7 +976,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울산항만공사",
@@ -1072,7 +1072,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울주군시설관리공단",
@@ -1140,7 +1140,7 @@
           "reason": "unknown-total-pages",
           "evidence": [
             "verified form POST articleForm.pageIndex=N",
-            "action=https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=F204353A6B876983816A59A1968CA191"
+            "action=https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do;jsessionid=8E7C24DDB8BE7D3CE051549536185236"
           ]
         },
         "requirements": {
@@ -1168,7 +1168,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "울주문화재단",
@@ -1268,30 +1268,30 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "한국동서발전",
-      "access": "success",
-      "list": "verified-exact",
-      "detail": "success",
-      "attachmentDiscovery": "success",
-      "attachmentDownload": "sample-success",
+      "access": "failed",
+      "list": "unknown",
+      "detail": "failed",
+      "attachmentDiscovery": "failed",
+      "attachmentDownload": "not-evaluated",
       "documentAnalysis": {
-        "status": "sample-success",
-        "strictOk": true,
-        "attempted": 2,
-        "parsed": 2,
-        "observedCapability": true
+        "status": "not-evaluated",
+        "strictOk": false,
+        "attempted": 0,
+        "parsed": 0,
+        "observedCapability": false
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "7단계 전체 페이지 확장: unknown-single-or-no-control",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "unknown-single-or-no-control",
-        "reason": "페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음"
+        "code": "not-evaluated",
+        "reason": "not-evaluated"
       },
       "lastObservedVersion": "18.3-kepco-counter-and-document-probe",
       "pipelineStages": {
@@ -1307,36 +1307,34 @@
           ]
         },
         "access": {
-          "status": "verified",
-          "reason": "공식 채용처 도달 검증 통과",
+          "status": "failed",
+          "reason": "채용처 도달 검증 미통과",
           "evidence": []
         },
         "list": {
-          "status": "verified",
-          "reason": "verified-exact",
+          "status": "unknown",
+          "reason": "unknown",
           "evidence": []
         },
         "detail": {
-          "status": "verified",
-          "reason": "현재 검증 범위 상세 수집 통과",
+          "status": "unknown",
+          "reason": "상세 수집 미통과",
           "evidence": []
         },
         "attachment": {
-          "status": "verified",
-          "reason": "검증 표본에서 첨부 링크 22개 발견",
+          "status": "unknown",
+          "reason": "상세 단계 미통과로 첨부 진단 보류",
           "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified",
-          "reason": "문서분석 sample-success: 2/2 성공",
+          "status": "unknown",
+          "reason": "문서분석 not-evaluated: 0/0 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "unknown",
-          "reason": "unknown-single-or-no-control",
-          "evidence": [
-            "no pagination control detected on verified list page"
-          ]
+          "status": "not-implemented",
+          "reason": "not-evaluated",
+          "evidence": []
         },
         "requirements": {
           "status": "not-implemented",
@@ -1355,15 +1353,15 @@
         }
       },
       "pipelineSummary": {
-        "verified": 6,
-        "unknown": 1,
-        "failed": 0,
-        "notImplemented": 3,
-        "contiguousVerifiedThrough": 6,
+        "verified": 1,
+        "unknown": 4,
+        "failed": 1,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 1,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "한국산업안전보건공단",
@@ -1458,7 +1456,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "한국산업인력공단",
@@ -1470,18 +1468,18 @@
       "documentAnalysis": {
         "status": "sample-success",
         "strictOk": true,
-        "attempted": 2,
-        "parsed": 2,
+        "attempted": 1,
+        "parsed": 1,
         "observedCapability": true
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~7단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-single-or-no-control",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "verified-full",
-        "reason": "verified-full"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "unknown-single-or-no-control",
+        "reason": "페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음"
       },
       "lastObservedVersion": "18.3-kepco-counter-and-document-probe",
       "pipelineStages": {
@@ -1513,20 +1511,19 @@
         },
         "attachment": {
           "status": "verified",
-          "reason": "검증 표본에서 첨부 링크 47개 발견",
+          "reason": "검증 표본에서 첨부 링크 1개 발견",
           "evidence": []
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "문서분석 sample-success: 2/2 성공",
+          "reason": "문서분석 sample-success: 1/1 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "verified",
-          "reason": "verified-full",
+          "status": "unknown",
+          "reason": "unknown-single-or-no-control",
           "evidence": [
-            "evidence-backed GET form pageNo=N",
-            "javascript page calls 2"
+            "no pagination control detected on verified list page"
           ]
         },
         "requirements": {
@@ -1546,15 +1543,15 @@
         }
       },
       "pipelineSummary": {
-        "verified": 7,
-        "unknown": 0,
+        "verified": 6,
+        "unknown": 1,
         "failed": 0,
         "notImplemented": 3,
-        "contiguousVerifiedThrough": 7,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "한국석유공사",
@@ -1650,7 +1647,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "한국수력원자력",
@@ -1747,7 +1744,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "한국에너지공단",
@@ -1842,7 +1839,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     },
     {
       "org": "한국전력공사",
@@ -1937,7 +1934,7 @@
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true,
-      "lastObservedAt": "2026-08-09T10:11:59.702Z"
+      "lastObservedAt": "2026-08-09T11:40:11.773Z"
     }
   ],
   "batchPolicy": "브리핑에서 파악된 문제는 가능한 한 다음 한 수정본에 함께 반영한다.",
@@ -1973,5 +1970,5 @@
     "Reconciliation Check(단계 간 개수 대조 검증)",
     "Golden Dataset Check(기준 정답 검증)"
   ],
-  "lastObservedAt": "2026-08-09T10:11:59.702Z"
+  "lastObservedAt": "2026-08-09T11:40:11.773Z"
 }

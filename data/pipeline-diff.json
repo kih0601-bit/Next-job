@@ -1,102 +1,12 @@
 {
-  "generatedAt": "2026-08-09T00:17:43.746Z",
+  "generatedAt": "2026-08-09T00:33:19.543Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 2,
-    "regressed": 0,
+    "improved": 1,
+    "regressed": 1,
     "unchanged": 18
   },
   "changes": [
-    {
-      "org": "울산복지가족진흥사회서비스원",
-      "health": "failed",
-      "primaryCause": {
-        "stage": "http",
-        "status": "failed",
-        "code": "HTTP_FAILED",
-        "reason": "모든 후보 URL HTTP 접속 실패",
-        "evidence": [
-          {
-            "url": "https://wfps.or.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://wfps.or.kr/",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://wfps.or.kr/\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://uwfdi.re.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://uwfdi.re.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://uwfdi.re.kr/",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://uwfdi.re.kr/\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://www.wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.wfps.or.kr/",
-            "ok": false,
-            "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://www.wfps.or.kr/\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "list": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "detail": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        },
-        "documentAnalysis": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
     {
       "org": "울주문화재단",
       "health": "healthy",
@@ -395,6 +305,53 @@
       "regressed": false
     },
     {
+      "org": "울산복지가족진흥사회서비스원",
+      "health": "degraded",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "list": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "detail": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachmentDiscovery": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachmentDownload": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "documentAnalysis": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": true,
+      "regressed": false
+    },
+    {
       "org": "울산북구시설관리공단",
       "health": "healthy",
       "primaryCause": {
@@ -527,12 +484,12 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -678,7 +635,7 @@
     },
     {
       "org": "한국동서발전",
-      "health": "healthy",
+      "health": "degraded",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -715,13 +672,13 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
-          "to": true,
-          "change": "improved"
+          "from": true,
+          "to": false,
+          "change": "regressed"
         }
       },
-      "improved": true,
-      "regressed": false
+      "improved": false,
+      "regressed": true
     },
     {
       "org": "한국산업안전보건공단",

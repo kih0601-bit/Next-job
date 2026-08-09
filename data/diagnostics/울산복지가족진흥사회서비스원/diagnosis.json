@@ -1,251 +1,3131 @@
 {
   "org": "울산복지가족진흥사회서비스원",
-  "health": "failed",
+  "health": "degraded",
   "primaryCause": {
-    "stage": "http",
-    "status": "failed",
-    "code": "HTTP_FAILED",
-    "reason": "모든 후보 URL HTTP 접속 실패",
-    "evidence": [
-      {
-        "url": "https://wfps.or.kr/webuser/employment/list.html",
-        "ok": false,
-        "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
-        "accessTemplate": "DIRECT_BOARD",
-        "requestProfile": "browser-default"
-      },
-      {
-        "url": "https://wfps.or.kr/",
-        "ok": false,
-        "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://wfps.or.kr/\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
-        "accessTemplate": "DIRECT_BOARD",
-        "requestProfile": "browser-default"
-      },
-      {
-        "url": "https://uwfdi.re.kr/webuser/employment/list.html",
-        "ok": false,
-        "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://uwfdi.re.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
-        "accessTemplate": "DIRECT_BOARD",
-        "requestProfile": "browser-default"
-      },
-      {
-        "url": "https://uwfdi.re.kr/",
-        "ok": false,
-        "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://uwfdi.re.kr/\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
-        "accessTemplate": "DIRECT_BOARD",
-        "requestProfile": "browser-default"
-      },
-      {
-        "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-        "ok": false,
-        "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://www.wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
-        "accessTemplate": "DIRECT_BOARD",
-        "requestProfile": "browser-default"
-      },
-      {
-        "url": "https://www.wfps.or.kr/",
-        "ok": false,
-        "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://www.wfps.or.kr/\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
-        "accessTemplate": "DIRECT_BOARD",
-        "requestProfile": "browser-default"
-      }
-    ],
+    "stage": "complete",
+    "status": "success",
+    "code": "PIPELINE_SAMPLE_OK",
+    "reason": "현재 진단 표본에서 실패 원인 없음",
+    "evidence": [],
     "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
     "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
   },
   "diagnosis": {
     "http": {
-      "status": "failed",
-      "code": "HTTP_FAILED",
-      "reason": "모든 후보 URL HTTP 접속 실패",
+      "status": "success",
+      "code": "HTTP_OK",
+      "reason": "6개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://wfps.or.kr/webuser/employment/list.html",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "(재)울산광역시복지가족진흥사회서비스원",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "employment"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 3714,
+            "requestedUrl": "https://wfps.or.kr/webuser/employment/list.html",
+            "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         },
         {
           "url": "https://wfps.or.kr/",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://wfps.or.kr/\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://wfps.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "홈페이지명",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 5,
+            "requestedUrl": "https://wfps.or.kr/",
+            "finalUrl": "https://wfps.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         },
         {
           "url": "https://uwfdi.re.kr/webuser/employment/list.html",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://uwfdi.re.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uwfdi.re.kr/webuser/employment/list.html",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "(재)울산광역시복지가족진흥사회서비스원",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "employment"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 3714,
+            "requestedUrl": "https://uwfdi.re.kr/webuser/employment/list.html",
+            "finalUrl": "https://uwfdi.re.kr/webuser/employment/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         },
         {
           "url": "https://uwfdi.re.kr/",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://uwfdi.re.kr/\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uwfdi.re.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "홈페이지명",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 5,
+            "requestedUrl": "https://uwfdi.re.kr/",
+            "finalUrl": "https://uwfdi.re.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         },
         {
           "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://www.wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "(재)울산광역시복지가족진흥사회서비스원",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "employment"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 3714,
+            "requestedUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "finalUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         },
         {
           "url": "https://www.wfps.or.kr/",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://www.wfps.or.kr/\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.wfps.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "홈페이지명",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 5,
+            "requestedUrl": "https://www.wfps.or.kr/",
+            "finalUrl": "https://www.wfps.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         }
       ]
     },
     "recruitVerify": {
-      "status": "blocked",
-      "code": "RECRUIT_VERIFY_BLOCKED_BY_HTTP",
-      "reason": "HTTP 실패로 채용 게시판 검증 불가",
-      "evidence": []
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+        "score": 4,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": false,
+          "meaningfulBody": true
+        },
+        "title": "(재)울산광역시복지가족진흥사회서비스원",
+        "orgMatched": false,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용",
+          "employment"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 4,
+        "boardType": {
+          "type": "HTML_TABLE",
+          "confidence": "high",
+          "evidence": [
+            "table/tr 구조 발견"
+          ]
+        },
+        "institutionRule": false,
+        "institutionRuleEvidence": [],
+        "textLength": 3714,
+        "requestedUrl": "https://wfps.or.kr/webuser/employment/list.html",
+        "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      }
     },
     "list": {
-      "status": "blocked",
-      "code": "LIST_BLOCKED_BY_HTTP",
-      "reason": "HTTP 실패로 목록 진단 불가",
-      "evidence": []
+      "status": "success",
+      "code": "LIST_VERIFIED_EXACT",
+      "reason": "실제 게시글 목록 검증 완료 · 화면 10건 = 추출 10건 · DOM_TITLE_SET_EXACT",
+      "evidence": [
+        {
+          "url": "https://wfps.or.kr/webuser/employment/list.html",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 293,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+            "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+            "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 13,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "공지 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "공지 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "공지 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+              "452 울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공 2026.08.06 1119",
+              "451 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "450 울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고 2026.07.28 5370",
+              "449 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "448 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295"
+            ],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows",
+          "countTemplate": ""
+        },
+        {
+          "url": "https://wfps.or.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable",
+          "countTemplate": ""
+        },
+        {
+          "url": "https://uwfdi.re.kr/webuser/employment/list.html",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 293,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+            "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+            "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 13,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "공지 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "공지 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "공지 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+              "452 울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공 2026.08.06 1119",
+              "451 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "450 울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고 2026.07.28 5370",
+              "449 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "448 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295"
+            ],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows",
+          "countTemplate": ""
+        }
+      ]
     },
     "detail": {
-      "status": "blocked",
-      "code": "DETAIL_BLOCKED_BY_LIST",
-      "reason": "목록 단계 미통과로 상세 진단 보류",
-      "evidence": []
+      "status": "success",
+      "code": "DETAIL_FIRST_PAGE_VERIFIED_EXACT",
+      "reason": "첫 페이지 10건 전체 상세 URL·본문 1:1 검증 완료",
+      "evidence": [
+        {
+          "title": "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=Lss-nG9oSpT05TTrpy5N4oYMOU6MYThAZymHQYnsnzM",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=Lss-nG9oSpT05TTrpy5N4oYMOU6MYThAZymHQYnsnzM",
+          "textLength": 3299,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=0B_C1FcmwwE3tZdFDwAO7F3WK28FtQj7bXtyk1njNDI",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=0B_C1FcmwwE3tZdFDwAO7F3WK28FtQj7bXtyk1njNDI",
+          "textLength": 3330,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=2GfMyZh_bByyacE8r3mK0t6ZrNaQQaW-muZ4laxCnTI",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=2GfMyZh_bByyacE8r3mK0t6ZrNaQQaW-muZ4laxCnTI",
+          "textLength": 3326,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=TFoZT6MEjQdWNcZSQfXirR33YYrnp8nwCUFRKusDhhU",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=TFoZT6MEjQdWNcZSQfXirR33YYrnp8nwCUFRKusDhhU",
+          "textLength": 3315,
+          "attachmentCount": 4,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=uugJwNu4UeRPEh7GEGwJqb-ZdZN6Wx3nRuCuQ4RQYBg",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=uugJwNu4UeRPEh7GEGwJqb-ZdZN6Wx3nRuCuQ4RQYBg",
+          "textLength": 3333,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=TUEJottnJZTTBzl-QTGO1X6pPxm4erf7Uh_jAbf8QDQ",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=TUEJottnJZTTBzl-QTGO1X6pPxm4erf7Uh_jAbf8QDQ",
+          "textLength": 3325,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=o0xp0f4f_n8VKXcaCWZ0zHhUo2xVhlCruZX1J6K0Mlk",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=o0xp0f4f_n8VKXcaCWZ0zHhUo2xVhlCruZX1J6K0Mlk",
+          "textLength": 3353,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=YZ8TPCCOjlghKWvzSBckjWfwEu_l1ncpJbCWUQKb6d4",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=YZ8TPCCOjlghKWvzSBckjWfwEu_l1ncpJbCWUQKb6d4",
+          "textLength": 3347,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "울산광역시 제2시립노인복지관 2026년 직원 채용",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=1r4hD0PKiddtx6IGA9X7RMbVU7zZeJQczd5Nazng1f4",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=1r4hD0PKiddtx6IGA9X7RMbVU7zZeJQczd5Nazng1f4",
+          "textLength": 3284,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=mKNVFi42OXHRg1qXUPoVm0Kd83xnx6sNxbYIt7vjie8",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=mKNVFi42OXHRg1qXUPoVm0Kd83xnx6sNxbYIt7vjie8",
+          "textLength": 3276,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        }
+      ]
     },
     "attachment": {
-      "status": "blocked",
-      "code": "ATTACHMENT_BLOCKED_BY_DETAIL",
-      "reason": "상세 단계 미통과로 첨부 진단 보류",
-      "evidence": []
+      "status": "success",
+      "code": "ATTACHMENT_FOUND",
+      "reason": "검증 표본에서 첨부 링크 31개 발견",
+      "evidence": [
+        {
+          "name": "첨부파일 1 다운로드",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/employment/download.html?fi_id=27982",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-3.svg",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-4.svg",
+          "method": "GET"
+        },
+        {
+          "name": "첨부파일 1 다운로드",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/employment/download.html?fi_id=27975",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-3.svg",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-4.svg",
+          "method": "GET"
+        },
+        {
+          "name": "첨부파일 1 다운로드",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/employment/download.html?fi_id=27973",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-3.svg",
+          "method": "GET"
+        }
+      ]
     },
     "access": {
-      "status": "blocked",
-      "code": "RECRUIT_VERIFY_BLOCKED_BY_HTTP",
-      "reason": "HTTP 실패로 채용 게시판 검증 불가",
-      "evidence": []
+      "status": "success",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+      "evidence": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+        "score": 4,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": false,
+          "meaningfulBody": true
+        },
+        "title": "(재)울산광역시복지가족진흥사회서비스원",
+        "orgMatched": false,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용",
+          "employment"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 4,
+        "boardType": {
+          "type": "HTML_TABLE",
+          "confidence": "high",
+          "evidence": [
+            "table/tr 구조 발견"
+          ]
+        },
+        "institutionRule": false,
+        "institutionRuleEvidence": [],
+        "textLength": 3714,
+        "requestedUrl": "https://wfps.or.kr/webuser/employment/list.html",
+        "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
+      }
     }
   },
   "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
   "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인",
   "stages": {
     "access": {
-      "ok": false,
-      "httpOk": false,
-      "recruitVerifyOk": false,
+      "ok": true,
+      "httpOk": true,
+      "recruitVerifyOk": true,
+      "requestedUrl": "https://wfps.or.kr/webuser/employment/list.html",
+      "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+      "activeRecruitUrl": "https://wfps.or.kr/webuser/employment/list.html",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
       "attempts": [
         {
           "url": "https://wfps.or.kr/webuser/employment/list.html",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "(재)울산광역시복지가족진흥사회서비스원",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "employment"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 3714,
+            "requestedUrl": "https://wfps.or.kr/webuser/employment/list.html",
+            "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         },
         {
           "url": "https://wfps.or.kr/",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://wfps.or.kr/\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://wfps.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "홈페이지명",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 5,
+            "requestedUrl": "https://wfps.or.kr/",
+            "finalUrl": "https://wfps.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         },
         {
           "url": "https://uwfdi.re.kr/webuser/employment/list.html",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://uwfdi.re.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uwfdi.re.kr/webuser/employment/list.html",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "(재)울산광역시복지가족진흥사회서비스원",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "employment"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 3714,
+            "requestedUrl": "https://uwfdi.re.kr/webuser/employment/list.html",
+            "finalUrl": "https://uwfdi.re.kr/webuser/employment/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         },
         {
           "url": "https://uwfdi.re.kr/",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://uwfdi.re.kr/\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to uwfdi.re.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://uwfdi.re.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "홈페이지명",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 5,
+            "requestedUrl": "https://uwfdi.re.kr/",
+            "finalUrl": "https://uwfdi.re.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         },
         {
           "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://www.wfps.or.kr/webuser/employment/list.html\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "(재)울산광역시복지가족진흥사회서비스원",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "employment"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 3714,
+            "requestedUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "finalUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         },
         {
           "url": "https://www.wfps.or.kr/",
-          "ok": false,
-          "error": "Command failed: curl --silent --show-error --location --compressed --ipv4 --connect-timeout 6 --max-time 18 --retry 1 --retry-all-errors --user-agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36 --header Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 --header Accept-Language: ko-KR,ko;q=0.9 --write-out \n__NEXTJOB_META__%{http_code}|%{url_effective}|%{content_type} --referer https://wfps.or.kr/ https://www.wfps.or.kr/\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6003 ms: Timeout was reached\ncurl: (28) Failed to connect to www.wfps.or.kr port 443 after 6002 ms: Timeout was reached\n",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.wfps.or.kr/",
+          "verification": {
+            "ok": false,
+            "verified": false,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_ERROR_PAGE",
+            "reason": "오류·차단·비HTML 신호 0개",
+            "score": 1,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": false,
+              "recruitKeyword": false,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": false
+            },
+            "title": "홈페이지명",
+            "orgMatched": false,
+            "positiveHits": 0,
+            "positiveMatches": [],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 1,
+            "boardType": {
+              "type": "UNKNOWN",
+              "confidence": "low",
+              "evidence": [
+                "명확한 게시판 구조 신호 없음"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 5,
+            "requestedUrl": "https://www.wfps.or.kr/",
+            "finalUrl": "https://www.wfps.or.kr/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         }
       ],
-      "boardType": {
-        "type": "UNKNOWN",
-        "confidence": "low",
-        "evidence": []
+      "verification": {
+        "ok": true,
+        "verified": true,
+        "fallback": false,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+        "score": 4,
+        "maxScore": 5,
+        "checks": {
+          "httpDocument": true,
+          "recruitKeyword": true,
+          "boardStructure": true,
+          "organizationMatch": false,
+          "meaningfulBody": true
+        },
+        "title": "(재)울산광역시복지가족진흥사회서비스원",
+        "orgMatched": false,
+        "positiveHits": 3,
+        "positiveMatches": [
+          "채용\\s*공고",
+          "직원\\s*채용",
+          "employment"
+        ],
+        "negativeHits": 0,
+        "negativeMatches": [],
+        "boardSignals": 4,
+        "boardType": {
+          "type": "HTML_TABLE",
+          "confidence": "high",
+          "evidence": [
+            "table/tr 구조 발견"
+          ]
+        },
+        "institutionRule": false,
+        "institutionRuleEvidence": [],
+        "textLength": 3714,
+        "requestedUrl": "https://wfps.or.kr/webuser/employment/list.html",
+        "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8"
       },
-      "error": "all access URLs failed"
+      "boardType": {
+        "type": "HTML_TABLE",
+        "confidence": "high",
+        "evidence": [
+          "table/tr 구조 발견"
+        ]
+      },
+      "diagnosis": {
+        "ok": true,
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+        "http": {
+          "ok": true,
+          "code": "HTTP_OK",
+          "reason": "6개 후보 URL HTTP 응답 성공",
+          "attempts": [
+            {
+              "url": "https://wfps.or.kr/webuser/employment/list.html",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+                "score": 4,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": true
+                },
+                "title": "(재)울산광역시복지가족진흥사회서비스원",
+                "orgMatched": false,
+                "positiveHits": 3,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용",
+                  "employment"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 4,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 3714,
+                "requestedUrl": "https://wfps.or.kr/webuser/employment/list.html",
+                "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+                "status": 200,
+                "contentType": "text/html; charset=utf-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            },
+            {
+              "url": "https://wfps.or.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://wfps.or.kr/",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 1,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": false,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": false
+                },
+                "title": "홈페이지명",
+                "orgMatched": false,
+                "positiveHits": 0,
+                "positiveMatches": [],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "UNKNOWN",
+                  "confidence": "low",
+                  "evidence": [
+                    "명확한 게시판 구조 신호 없음"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 5,
+                "requestedUrl": "https://wfps.or.kr/",
+                "finalUrl": "https://wfps.or.kr/",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            },
+            {
+              "url": "https://uwfdi.re.kr/webuser/employment/list.html",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uwfdi.re.kr/webuser/employment/list.html",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+                "score": 4,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": true
+                },
+                "title": "(재)울산광역시복지가족진흥사회서비스원",
+                "orgMatched": false,
+                "positiveHits": 3,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용",
+                  "employment"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 4,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 3714,
+                "requestedUrl": "https://uwfdi.re.kr/webuser/employment/list.html",
+                "finalUrl": "https://uwfdi.re.kr/webuser/employment/list.html",
+                "status": 200,
+                "contentType": "text/html; charset=utf-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            },
+            {
+              "url": "https://uwfdi.re.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://uwfdi.re.kr/",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 1,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": false,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": false
+                },
+                "title": "홈페이지명",
+                "orgMatched": false,
+                "positiveHits": 0,
+                "positiveMatches": [],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "UNKNOWN",
+                  "confidence": "low",
+                  "evidence": [
+                    "명확한 게시판 구조 신호 없음"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 5,
+                "requestedUrl": "https://uwfdi.re.kr/",
+                "finalUrl": "https://uwfdi.re.kr/",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            },
+            {
+              "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+                "score": 4,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": true
+                },
+                "title": "(재)울산광역시복지가족진흥사회서비스원",
+                "orgMatched": false,
+                "positiveHits": 3,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "직원\\s*채용",
+                  "employment"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 4,
+                "boardType": {
+                  "type": "HTML_TABLE",
+                  "confidence": "high",
+                  "evidence": [
+                    "table/tr 구조 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 3714,
+                "requestedUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
+                "finalUrl": "https://www.wfps.or.kr/webuser/employment/list.html",
+                "status": 200,
+                "contentType": "text/html; charset=utf-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            },
+            {
+              "url": "https://www.wfps.or.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.wfps.or.kr/",
+              "verification": {
+                "ok": false,
+                "verified": false,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_ERROR_PAGE",
+                "reason": "오류·차단·비HTML 신호 0개",
+                "score": 1,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": false,
+                  "recruitKeyword": false,
+                  "boardStructure": true,
+                  "organizationMatch": false,
+                  "meaningfulBody": false
+                },
+                "title": "홈페이지명",
+                "orgMatched": false,
+                "positiveHits": 0,
+                "positiveMatches": [],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 1,
+                "boardType": {
+                  "type": "UNKNOWN",
+                  "confidence": "low",
+                  "evidence": [
+                    "명확한 게시판 구조 신호 없음"
+                  ]
+                },
+                "institutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 5,
+                "requestedUrl": "https://www.wfps.or.kr/",
+                "finalUrl": "https://www.wfps.or.kr/",
+                "status": 200,
+                "contentType": "text/html; charset=UTF-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            }
+          ]
+        },
+        "recruitVerify": {
+          "ok": true,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+          "score": 4,
+          "maxScore": 5,
+          "boardType": {
+            "type": "HTML_TABLE",
+            "confidence": "high",
+            "evidence": [
+              "table/tr 구조 발견"
+            ]
+          },
+          "evidence": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+            "score": 4,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": false,
+              "meaningfulBody": true
+            },
+            "title": "(재)울산광역시복지가족진흥사회서비스원",
+            "orgMatched": false,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "직원\\s*채용",
+              "employment"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 4,
+            "boardType": {
+              "type": "HTML_TABLE",
+              "confidence": "high",
+              "evidence": [
+                "table/tr 구조 발견"
+              ]
+            },
+            "institutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 3714,
+            "requestedUrl": "https://wfps.or.kr/webuser/employment/list.html",
+            "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8"
+          }
+        },
+        "activeRecruitUrl": "https://wfps.or.kr/webuser/employment/list.html",
+        "selectedRequestedUrl": "https://wfps.or.kr/webuser/employment/list.html",
+        "verification": {
+          "ok": true,
+          "verified": true,
+          "fallback": false,
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
+          "score": 4,
+          "maxScore": 5,
+          "checks": {
+            "httpDocument": true,
+            "recruitKeyword": true,
+            "boardStructure": true,
+            "organizationMatch": false,
+            "meaningfulBody": true
+          },
+          "title": "(재)울산광역시복지가족진흥사회서비스원",
+          "orgMatched": false,
+          "positiveHits": 3,
+          "positiveMatches": [
+            "채용\\s*공고",
+            "직원\\s*채용",
+            "employment"
+          ],
+          "negativeHits": 0,
+          "negativeMatches": [],
+          "boardSignals": 4,
+          "boardType": {
+            "type": "HTML_TABLE",
+            "confidence": "high",
+            "evidence": [
+              "table/tr 구조 발견"
+            ]
+          },
+          "institutionRule": false,
+          "institutionRuleEvidence": [],
+          "textLength": 3714,
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/list.html",
+          "finalUrl": "https://wfps.or.kr/webuser/employment/list.html",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8"
+        }
+      }
     },
     "list": {
-      "ok": false,
-      "status": "unknown",
-      "pagesChecked": 0,
-      "visiblePostCount": null,
-      "candidateCount": 0,
-      "missingCount": null,
-      "extraCount": null,
-      "exactMatch": false,
-      "selectedUrl": "",
-      "detailUrlReady": 0,
+      "ok": true,
+      "status": "verified-exact",
+      "pagesChecked": 3,
+      "visiblePostCount": 10,
+      "candidateCount": 10,
+      "missingCount": 0,
+      "extraCount": 0,
+      "exactMatch": true,
+      "selectedUrl": "https://wfps.or.kr/webuser/employment/list.html",
+      "detailUrlReady": 10,
       "listOnlyCount": 0,
-      "extractionDiagnostics": [],
-      "rootCauseDiagnostics": [],
-      "diagnosticFiles": [],
-      "samples": [],
-      "errors": []
+      "extractionDiagnostics": [
+        {
+          "url": "https://wfps.or.kr/webuser/employment/list.html",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 293,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+            "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+            "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 13,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "공지 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "공지 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "공지 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+              "452 울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공 2026.08.06 1119",
+              "451 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "450 울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고 2026.07.28 5370",
+              "449 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "448 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295"
+            ],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows",
+          "countTemplate": ""
+        },
+        {
+          "url": "https://wfps.or.kr/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 0,
+          "titleMatches": 0,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 0,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 0,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 0,
+            "matchedCount": 0,
+            "unmatchedTitles": [],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable",
+          "countTemplate": ""
+        },
+        {
+          "url": "https://uwfdi.re.kr/webuser/employment/list.html",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 293,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
+          "rowFallbackAccepted": 0,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+            "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+            "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고"
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 13,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "공지 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "공지 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "공지 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+              "452 울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공 2026.08.06 1119",
+              "451 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "450 울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고 2026.07.28 5370",
+              "449 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "448 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295"
+            ],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows",
+          "countTemplate": ""
+        }
+      ],
+      "rootCauseDiagnostics": [
+        {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "울산복지가족진흥사회서비스원",
+          "url": "https://wfps.or.kr/webuser/employment/list.html",
+          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+          "listCounterFailureReason": "UNKNOWN",
+          "accuracyVerification": {
+            "verified": true,
+            "level": "DOM_TITLE_SET_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 13,
+              "candidateCount": 10,
+              "matchedCount": 10,
+              "unmatchedTitles": [],
+              "recordSamples": [
+                "공지 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+                "공지 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+                "공지 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+                "452 울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공 2026.08.06 1119",
+                "451 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+                "450 울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고 2026.07.28 5370",
+                "449 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+                "448 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295"
+              ],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "independentDomEvidence": true,
+            "exactCount": true,
+            "exactTitleSet": true,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 10,
+            "extractedTitleCount": 10
+          },
+          "counterTrace": {
+            "source": "visible-board-rows",
+            "rawDomRows": 13,
+            "uniqueVisibleTitleCount": 10,
+            "reportedVisiblePostCount": 10,
+            "acceptedCandidateCount": 10,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 10
+          },
+          "counts": {
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "rawTableRows": 13,
+            "uniqueVisibleTitleCount": 10,
+            "sourceHtmlLength": 160641,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 13,
+            "tr": 14,
+            "li": 58,
+            "article": 1,
+            "[onclick]": 2,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 293
+          },
+          "rejectReasonCounts": {
+            "UNMATCHED_BY_EXTRACTOR": 3
+          },
+          "visibleTitles": [
+            "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+            "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+            "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+            "울산광역시 제2시립노인복지관 2026년 직원 채용",
+            "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고"
+          ],
+          "extractedTitles": [
+            "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+            "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+            "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+            "울산광역시 제2시립노인복지관 2026년 직원 채용",
+            "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고"
+          ],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+              "normalizedTitle": "울산형 촘촘안전망지원사업 전담인력 기간제 채용 최종 합격자 공고",
+              "text": "공지 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=Lss-nG9oSpT05TTrpy5N4oYMOU6MYThAZymHQYnsnzM&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\"><span class=\"notice\">공지</span></td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=Lss-nG9oSpT05TTrpy5N4oYMOU6MYThAZymHQYnsnzM&page=1\">\n                                <strong class=\"ellipsis\">울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">\n                            2026.07.30                        </td>\n                        <td class=\"hit-td m_hidden\">\n                            6802                        </td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=Lss-nG9oSpT05TTrpy5N4oYMOU6MYThAZymHQYnsnzM",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 1,
+              "title": "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+              "normalizedTitle": "2026년 울산광역시 공익활동지원센터 기간제 직원 팀원 채용 공고",
+              "text": "공지 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=0B_C1FcmwwE3tZdFDwAO7F3WK28FtQj7bXtyk1njNDI&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\"><span class=\"notice\">공지</span></td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=0B_C1FcmwwE3tZdFDwAO7F3WK28FtQj7bXtyk1njNDI&page=1\">\n                                <strong class=\"ellipsis\">2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">\n                            2026.07.24                        </td>\n                        <td class=\"hit-td m_hidden\">\n                            11039                        </td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=0B_C1FcmwwE3tZdFDwAO7F3WK28FtQj7bXtyk1njNDI",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 2,
+              "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+              "normalizedTitle": "울산광역시 사회서비스지원단 시설장 기간제 채용 공고",
+              "text": "공지 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=2GfMyZh_bByyacE8r3mK0t6ZrNaQQaW-muZ4laxCnTI&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\"><span class=\"notice\">공지</span></td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=2GfMyZh_bByyacE8r3mK0t6ZrNaQQaW-muZ4laxCnTI&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 사회서비스지원단 시설장(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">\n                            2026.07.22                        </td>\n                        <td class=\"hit-td m_hidden\">\n                            12295                        </td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=2GfMyZh_bByyacE8r3mK0t6ZrNaQQaW-muZ4laxCnTI",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+              "normalizedTitle": "울산광역시 사회서비스지원단 시설장 기간제 채용 서류전형 합격자 및 면접시험 공",
+              "text": "452 울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공 2026.08.06 1119",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=TFoZT6MEjQdWNcZSQfXirR33YYrnp8nwCUFRKusDhhU&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">452</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=TFoZT6MEjQdWNcZSQfXirR33YYrnp8nwCUFRKusDhhU&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.08.06</td>\n                        <td class=\"hit-td m_hidden\">1119</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=TFoZT6MEjQdWNcZSQfXirR33YYrnp8nwCUFRKusDhhU",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 4,
+              "title": "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+              "normalizedTitle": "울산형 촘촘안전망지원사업 전담인력 기간제 채용 최종 합격자 공고",
+              "text": "451 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=tz9oqutUV9ERI3d3PtsGts7ohe9GVeIHUfhWWwNPn9M&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">451</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=tz9oqutUV9ERI3d3PtsGts7ohe9GVeIHUfhWWwNPn9M&page=1\">\n                                <strong class=\"ellipsis\">울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.30</td>\n                        <td class=\"hit-td m_hidden\">6802</td>\n                    </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "UNMATCHED_BY_EXTRACTOR"
+            },
+            {
+              "index": 5,
+              "title": "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+              "normalizedTitle": "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+              "text": "450 울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고 2026.07.28 5370",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=uugJwNu4UeRPEh7GEGwJqb-ZdZN6Wx3nRuCuQ4RQYBg&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">450</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=uugJwNu4UeRPEh7GEGwJqb-ZdZN6Wx3nRuCuQ4RQYBg&page=1\">\n                                <strong class=\"ellipsis\">울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.28</td>\n                        <td class=\"hit-td m_hidden\">5370</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=uugJwNu4UeRPEh7GEGwJqb-ZdZN6Wx3nRuCuQ4RQYBg",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 6,
+              "title": "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+              "normalizedTitle": "2026년 울산광역시 공익활동지원센터 기간제 직원 팀원 채용 공고",
+              "text": "449 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=hjL7FAxmRx_UkoIMKI2oRayti_0csc9muvE3pPR2bCI&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">449</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=hjL7FAxmRx_UkoIMKI2oRayti_0csc9muvE3pPR2bCI&page=1\">\n                                <strong class=\"ellipsis\">2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.24</td>\n                        <td class=\"hit-td m_hidden\">11039</td>\n                    </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "UNMATCHED_BY_EXTRACTOR"
+            },
+            {
+              "index": 7,
+              "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+              "normalizedTitle": "울산광역시 사회서비스지원단 시설장 기간제 채용 공고",
+              "text": "448 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=kQhv5n0vPxk2rjRRxsaoH1QscL1msNIBKKjrR0lOZqk&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">448</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=kQhv5n0vPxk2rjRRxsaoH1QscL1msNIBKKjrR0lOZqk&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 사회서비스지원단 시설장(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.22</td>\n                        <td class=\"hit-td m_hidden\">12295</td>\n                    </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "UNMATCHED_BY_EXTRACTOR"
+            },
+            {
+              "index": 8,
+              "title": "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+              "normalizedTitle": "울산형 촘촘안전망 지원사업 전담인력 기간제 채용 공고",
+              "text": "447 「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고 2026.07.15 9933",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=TUEJottnJZTTBzl-QTGO1X6pPxm4erf7Uh_jAbf8QDQ&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">447</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=TUEJottnJZTTBzl-QTGO1X6pPxm4erf7Uh_jAbf8QDQ&page=1\">\n                                <strong class=\"ellipsis\">「울산형 촘촘안전망 지원사업」  전담인력(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.15</td>\n                        <td class=\"hit-td m_hidden\">9933</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=TUEJottnJZTTBzl-QTGO1X6pPxm4erf7Uh_jAbf8QDQ",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 9,
+              "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+              "normalizedTitle": "2026년 울산형 촘촘안전망 지원사업 수행 전담인력 기간제 채용 재공고",
+              "text": "446 2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고 2026.06.25 19715",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=o0xp0f4f_n8VKXcaCWZ0zHhUo2xVhlCruZX1J6K0Mlk&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">446</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=o0xp0f4f_n8VKXcaCWZ0zHhUo2xVhlCruZX1J6K0Mlk&page=1\">\n                                <strong class=\"ellipsis\">2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.06.25</td>\n                        <td class=\"hit-td m_hidden\">19715</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=o0xp0f4f_n8VKXcaCWZ0zHhUo2xVhlCruZX1J6K0Mlk",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 10,
+              "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+              "normalizedTitle": "2026년 울산형 촘촘안전망 지원사업 수행 전담인력 기간제 채용 공고",
+              "text": "445 2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고 2026.06.12 25109",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=YZ8TPCCOjlghKWvzSBckjWfwEu_l1ncpJbCWUQKb6d4&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">445</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=YZ8TPCCOjlghKWvzSBckjWfwEu_l1ncpJbCWUQKb6d4&page=1\">\n                                <strong class=\"ellipsis\">2026년  「울산형 촘촘안전망 지원사업」  수행 전담인력(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.06.12</td>\n                        <td class=\"hit-td m_hidden\">25109</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=YZ8TPCCOjlghKWvzSBckjWfwEu_l1ncpJbCWUQKb6d4",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 11,
+              "title": "울산광역시 제2시립노인복지관 2026년 직원 채용",
+              "normalizedTitle": "울산광역시 제2시립노인복지관 2026년 직원 채용",
+              "text": "444 울산광역시 제2시립노인복지관 2026년 직원 채용 2026.06.11 27551",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=1r4hD0PKiddtx6IGA9X7RMbVU7zZeJQczd5Nazng1f4&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">444</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=1r4hD0PKiddtx6IGA9X7RMbVU7zZeJQczd5Nazng1f4&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 제2시립노인복지관 2026년 직원 채용</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.06.11</td>\n                        <td class=\"hit-td m_hidden\">27551</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=1r4hD0PKiddtx6IGA9X7RMbVU7zZeJQczd5Nazng1f4",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 12,
+              "title": "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고",
+              "normalizedTitle": "울산광역시립노인요양원 시설장 기간제 채용 최종 합격자 공고",
+              "text": "443 울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고 2026.05.12 28370",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=mKNVFi42OXHRg1qXUPoVm0Kd83xnx6sNxbYIt7vjie8&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">443</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=mKNVFi42OXHRg1qXUPoVm0Kd83xnx6sNxbYIt7vjie8&page=1\">\n                                <strong class=\"ellipsis\">울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.05.12</td>\n                        <td class=\"hit-td m_hidden\">28370</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=mKNVFi42OXHRg1qXUPoVm0Kd83xnx6sNxbYIt7vjie8",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            }
+          ]
+        },
+        {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "울산복지가족진흥사회서비스원",
+          "url": "https://wfps.or.kr/",
+          "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
+          "listCounterFailureReason": "UNKNOWN",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 0,
+              "matchedCount": 0,
+              "unmatchedTitles": [],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "independentDomEvidence": false,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 0
+          },
+          "counterTrace": {
+            "source": "unavailable",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 0,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {},
+          "counts": {
+            "visiblePostCount": null,
+            "candidateCount": 0,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 1610,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 0,
+            "article": 0,
+            "[onclick]": 0,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 0
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": []
+        },
+        {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "울산복지가족진흥사회서비스원",
+          "url": "https://uwfdi.re.kr/webuser/employment/list.html",
+          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+          "listCounterFailureReason": "UNKNOWN",
+          "accuracyVerification": {
+            "verified": true,
+            "level": "DOM_TITLE_SET_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 13,
+              "candidateCount": 10,
+              "matchedCount": 10,
+              "unmatchedTitles": [],
+              "recordSamples": [
+                "공지 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+                "공지 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+                "공지 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+                "452 울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공 2026.08.06 1119",
+                "451 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+                "450 울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고 2026.07.28 5370",
+                "449 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+                "448 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295"
+              ],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "independentDomEvidence": true,
+            "exactCount": true,
+            "exactTitleSet": true,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 10,
+            "extractedTitleCount": 10
+          },
+          "counterTrace": {
+            "source": "visible-board-rows",
+            "rawDomRows": 13,
+            "uniqueVisibleTitleCount": 10,
+            "reportedVisiblePostCount": 10,
+            "acceptedCandidateCount": 10,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 10
+          },
+          "counts": {
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "rawTableRows": 13,
+            "uniqueVisibleTitleCount": 10,
+            "sourceHtmlLength": 160735,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 13,
+            "tr": 14,
+            "li": 58,
+            "article": 1,
+            "[onclick]": 2,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 293
+          },
+          "rejectReasonCounts": {
+            "UNMATCHED_BY_EXTRACTOR": 3
+          },
+          "visibleTitles": [
+            "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+            "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+            "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+            "울산광역시 제2시립노인복지관 2026년 직원 채용",
+            "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고"
+          ],
+          "extractedTitles": [
+            "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+            "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+            "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+            "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+            "울산광역시 제2시립노인복지관 2026년 직원 채용",
+            "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고"
+          ],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+              "normalizedTitle": "울산형 촘촘안전망지원사업 전담인력 기간제 채용 최종 합격자 공고",
+              "text": "공지 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=5zBNN-Ey0Q9SjZ-V4Q7yTeohRRJoNn8Vx0L6u5hhKQ4&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\"><span class=\"notice\">공지</span></td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=5zBNN-Ey0Q9SjZ-V4Q7yTeohRRJoNn8Vx0L6u5hhKQ4&page=1\">\n                                <strong class=\"ellipsis\">울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">\n                            2026.07.30                        </td>\n                        <td class=\"hit-td m_hidden\">\n                            6802                        </td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uwfdi.re.kr/webuser/employment/view.html?em_id=5zBNN-Ey0Q9SjZ-V4Q7yTeohRRJoNn8Vx0L6u5hhKQ4",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 1,
+              "title": "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+              "normalizedTitle": "2026년 울산광역시 공익활동지원센터 기간제 직원 팀원 채용 공고",
+              "text": "공지 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=cV5cEtR3PZ6diSwjlFB1LSssQ1rZUGm_JVxJathxKos&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\"><span class=\"notice\">공지</span></td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=cV5cEtR3PZ6diSwjlFB1LSssQ1rZUGm_JVxJathxKos&page=1\">\n                                <strong class=\"ellipsis\">2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">\n                            2026.07.24                        </td>\n                        <td class=\"hit-td m_hidden\">\n                            11039                        </td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uwfdi.re.kr/webuser/employment/view.html?em_id=cV5cEtR3PZ6diSwjlFB1LSssQ1rZUGm_JVxJathxKos",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 2,
+              "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+              "normalizedTitle": "울산광역시 사회서비스지원단 시설장 기간제 채용 공고",
+              "text": "공지 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=GyxHLtynngqogI92Jnz_t8M1r7xLf3e5gKHXP-blzTU&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\"><span class=\"notice\">공지</span></td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=GyxHLtynngqogI92Jnz_t8M1r7xLf3e5gKHXP-blzTU&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 사회서비스지원단 시설장(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">\n                            2026.07.22                        </td>\n                        <td class=\"hit-td m_hidden\">\n                            12295                        </td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uwfdi.re.kr/webuser/employment/view.html?em_id=GyxHLtynngqogI92Jnz_t8M1r7xLf3e5gKHXP-blzTU",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+              "normalizedTitle": "울산광역시 사회서비스지원단 시설장 기간제 채용 서류전형 합격자 및 면접시험 공",
+              "text": "452 울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공 2026.08.06 1119",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=hEusQnKqfC8WHktIkmeqFHf0buVJZF0_zrO4aDrpjmY&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">452</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=hEusQnKqfC8WHktIkmeqFHf0buVJZF0_zrO4aDrpjmY&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.08.06</td>\n                        <td class=\"hit-td m_hidden\">1119</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uwfdi.re.kr/webuser/employment/view.html?em_id=hEusQnKqfC8WHktIkmeqFHf0buVJZF0_zrO4aDrpjmY",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 4,
+              "title": "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+              "normalizedTitle": "울산형 촘촘안전망지원사업 전담인력 기간제 채용 최종 합격자 공고",
+              "text": "451 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=LMk17rPyP4JEjrvtyv2BRC70Hnq2ITXmIrxPbV4l_e8&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">451</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=LMk17rPyP4JEjrvtyv2BRC70Hnq2ITXmIrxPbV4l_e8&page=1\">\n                                <strong class=\"ellipsis\">울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.30</td>\n                        <td class=\"hit-td m_hidden\">6802</td>\n                    </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "UNMATCHED_BY_EXTRACTOR"
+            },
+            {
+              "index": 5,
+              "title": "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+              "normalizedTitle": "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+              "text": "450 울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고 2026.07.28 5370",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=5Ljgdc4nTRSYcQAsgjsXQf0S07I0UPVgXrUu2ALX3SU&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">450</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=5Ljgdc4nTRSYcQAsgjsXQf0S07I0UPVgXrUu2ALX3SU&page=1\">\n                                <strong class=\"ellipsis\">울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.28</td>\n                        <td class=\"hit-td m_hidden\">5370</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uwfdi.re.kr/webuser/employment/view.html?em_id=5Ljgdc4nTRSYcQAsgjsXQf0S07I0UPVgXrUu2ALX3SU",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 6,
+              "title": "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+              "normalizedTitle": "2026년 울산광역시 공익활동지원센터 기간제 직원 팀원 채용 공고",
+              "text": "449 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=CjyUv5tYDz8MRPG0tA7HltCjut0_VBZArA17rspWl_o&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">449</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=CjyUv5tYDz8MRPG0tA7HltCjut0_VBZArA17rspWl_o&page=1\">\n                                <strong class=\"ellipsis\">2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.24</td>\n                        <td class=\"hit-td m_hidden\">11039</td>\n                    </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "UNMATCHED_BY_EXTRACTOR"
+            },
+            {
+              "index": 7,
+              "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+              "normalizedTitle": "울산광역시 사회서비스지원단 시설장 기간제 채용 공고",
+              "text": "448 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=bABQ6kgpaCiM4RDCMeIZivp4q2RIkkv74QgzKkKSsn0&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">448</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=bABQ6kgpaCiM4RDCMeIZivp4q2RIkkv74QgzKkKSsn0&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 사회서비스지원단 시설장(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.22</td>\n                        <td class=\"hit-td m_hidden\">12295</td>\n                    </tr>",
+              "accepted": false,
+              "acceptedLink": "",
+              "adapter": "",
+              "rejectionReason": "UNMATCHED_BY_EXTRACTOR"
+            },
+            {
+              "index": 8,
+              "title": "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+              "normalizedTitle": "울산형 촘촘안전망 지원사업 전담인력 기간제 채용 공고",
+              "text": "447 「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고 2026.07.15 9933",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=vVPGTkfUJSSwyY7LRzPn55nSTEEmh8vZ2fJS5JvWA2Q&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">447</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=vVPGTkfUJSSwyY7LRzPn55nSTEEmh8vZ2fJS5JvWA2Q&page=1\">\n                                <strong class=\"ellipsis\">「울산형 촘촘안전망 지원사업」  전담인력(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.15</td>\n                        <td class=\"hit-td m_hidden\">9933</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uwfdi.re.kr/webuser/employment/view.html?em_id=vVPGTkfUJSSwyY7LRzPn55nSTEEmh8vZ2fJS5JvWA2Q",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 9,
+              "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+              "normalizedTitle": "2026년 울산형 촘촘안전망 지원사업 수행 전담인력 기간제 채용 재공고",
+              "text": "446 2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고 2026.06.25 19715",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=vSFOt_CrdBgH0jIJdw0Mw3Ue5Oc1eM7LKaOtH3PJ1bc&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">446</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=vSFOt_CrdBgH0jIJdw0Mw3Ue5Oc1eM7LKaOtH3PJ1bc&page=1\">\n                                <strong class=\"ellipsis\">2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.06.25</td>\n                        <td class=\"hit-td m_hidden\">19715</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uwfdi.re.kr/webuser/employment/view.html?em_id=vSFOt_CrdBgH0jIJdw0Mw3Ue5Oc1eM7LKaOtH3PJ1bc",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 10,
+              "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+              "normalizedTitle": "2026년 울산형 촘촘안전망 지원사업 수행 전담인력 기간제 채용 공고",
+              "text": "445 2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고 2026.06.12 25109",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=8XTdaQ4pxGCokpDn0XYs1cqku7PcU10gb_jmvluAfAs&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">445</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=8XTdaQ4pxGCokpDn0XYs1cqku7PcU10gb_jmvluAfAs&page=1\">\n                                <strong class=\"ellipsis\">2026년  「울산형 촘촘안전망 지원사업」  수행 전담인력(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.06.12</td>\n                        <td class=\"hit-td m_hidden\">25109</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uwfdi.re.kr/webuser/employment/view.html?em_id=8XTdaQ4pxGCokpDn0XYs1cqku7PcU10gb_jmvluAfAs",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 11,
+              "title": "울산광역시 제2시립노인복지관 2026년 직원 채용",
+              "normalizedTitle": "울산광역시 제2시립노인복지관 2026년 직원 채용",
+              "text": "444 울산광역시 제2시립노인복지관 2026년 직원 채용 2026.06.11 27551",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=7nT6cA_3w5bNEyN6Fj52kazRbOWLWmEWxC0JEiyBN8k&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">444</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=7nT6cA_3w5bNEyN6Fj52kazRbOWLWmEWxC0JEiyBN8k&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 제2시립노인복지관 2026년 직원 채용</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.06.11</td>\n                        <td class=\"hit-td m_hidden\">27551</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uwfdi.re.kr/webuser/employment/view.html?em_id=7nT6cA_3w5bNEyN6Fj52kazRbOWLWmEWxC0JEiyBN8k",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 12,
+              "title": "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고",
+              "normalizedTitle": "울산광역시립노인요양원 시설장 기간제 채용 최종 합격자 공고",
+              "text": "443 울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고 2026.05.12 28370",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "./view.html?em_id=38dWnWoX9dhxxPu-1gkUbifQN0pmO-M0-kc90gRd9BQ&page=1",
+              "onclick": "",
+              "dataUrl": "",
+              "html": "<tr>\n                        <td class=\"num-td m_hidden\">443</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=38dWnWoX9dhxxPu-1gkUbifQN0pmO-M0-kc90gRd9BQ&page=1\">\n                                <strong class=\"ellipsis\">울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://uwfdi.re.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.05.12</td>\n                        <td class=\"hit-td m_hidden\">28370</td>\n                    </tr>",
+              "accepted": true,
+              "acceptedLink": "https://uwfdi.re.kr/webuser/employment/view.html?em_id=38dWnWoX9dhxxPu-1gkUbifQN0pmO-M0-kc90gRd9BQ",
+              "adapter": "울산복지가족진흥사회서비스원:board-row",
+              "rejectionReason": ""
+            }
+          ]
+        }
+      ],
+      "diagnosticFiles": [
+        {
+          "org": "울산복지가족진흥사회서비스원",
+          "htmlPath": "data/diagnostics/울산복지가족진흥사회서비스원/list/page-1-raw.html",
+          "diagnosisPath": "data/diagnostics/울산복지가족진흥사회서비스원/list/page-1-root-cause.json",
+          "rowsPath": "data/diagnostics/울산복지가족진흥사회서비스원/list/page-1-rows.txt",
+          "url": "https://wfps.or.kr/webuser/employment/list.html"
+        },
+        {
+          "org": "울산복지가족진흥사회서비스원",
+          "htmlPath": "data/diagnostics/울산복지가족진흥사회서비스원/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/울산복지가족진흥사회서비스원/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/울산복지가족진흥사회서비스원/list/page-2-rows.txt",
+          "url": "https://wfps.or.kr/"
+        },
+        {
+          "org": "울산복지가족진흥사회서비스원",
+          "htmlPath": "data/diagnostics/울산복지가족진흥사회서비스원/list/page-3-raw.html",
+          "diagnosisPath": "data/diagnostics/울산복지가족진흥사회서비스원/list/page-3-root-cause.json",
+          "rowsPath": "data/diagnostics/울산복지가족진흥사회서비스원/list/page-3-rows.txt",
+          "url": "https://uwfdi.re.kr/webuser/employment/list.html"
+        }
+      ],
+      "samples": [
+        {
+          "title": "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+          "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=Lss-nG9oSpT05TTrpy5N4oYMOU6MYThAZymHQYnsnzM",
+          "adapter": "울산복지가족진흥사회서비스원:board-row"
+        },
+        {
+          "title": "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+          "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=0B_C1FcmwwE3tZdFDwAO7F3WK28FtQj7bXtyk1njNDI",
+          "adapter": "울산복지가족진흥사회서비스원:board-row"
+        },
+        {
+          "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=2GfMyZh_bByyacE8r3mK0t6ZrNaQQaW-muZ4laxCnTI",
+          "adapter": "울산복지가족진흥사회서비스원:board-row"
+        },
+        {
+          "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+          "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=TFoZT6MEjQdWNcZSQfXirR33YYrnp8nwCUFRKusDhhU",
+          "adapter": "울산복지가족진흥사회서비스원:board-row"
+        },
+        {
+          "title": "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+          "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=uugJwNu4UeRPEh7GEGwJqb-ZdZN6Wx3nRuCuQ4RQYBg",
+          "adapter": "울산복지가족진흥사회서비스원:board-row"
+        },
+        {
+          "title": "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+          "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=TUEJottnJZTTBzl-QTGO1X6pPxm4erf7Uh_jAbf8QDQ",
+          "adapter": "울산복지가족진흥사회서비스원:board-row"
+        },
+        {
+          "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+          "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=o0xp0f4f_n8VKXcaCWZ0zHhUo2xVhlCruZX1J6K0Mlk",
+          "adapter": "울산복지가족진흥사회서비스원:board-row"
+        },
+        {
+          "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+          "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=YZ8TPCCOjlghKWvzSBckjWfwEu_l1ncpJbCWUQKb6d4",
+          "adapter": "울산복지가족진흥사회서비스원:board-row"
+        },
+        {
+          "title": "울산광역시 제2시립노인복지관 2026년 직원 채용",
+          "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=1r4hD0PKiddtx6IGA9X7RMbVU7zZeJQczd5Nazng1f4",
+          "adapter": "울산복지가족진흥사회서비스원:board-row"
+        },
+        {
+          "title": "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고",
+          "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=mKNVFi42OXHRg1qXUPoVm0Kd83xnx6sNxbYIt7vjie8",
+          "adapter": "울산복지가족진흥사회서비스원:board-row"
+        }
+      ],
+      "errors": [],
+      "selectedRootCause": {
+        "version": "1.4-duplicate-title-safe-diagnostics",
+        "mode": "passive",
+        "org": "울산복지가족진흥사회서비스원",
+        "url": "https://wfps.or.kr/webuser/employment/list.html",
+        "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+        "listCounterFailureReason": "UNKNOWN",
+        "accuracyVerification": {
+          "verified": true,
+          "level": "DOM_TITLE_SET_EXACT",
+          "listVerificationTemplate": "TABLE_RECORD",
+          "templateRecordEvidence": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 13,
+            "candidateCount": 10,
+            "matchedCount": 10,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "공지 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "공지 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "공지 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+              "452 울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공 2026.08.06 1119",
+              "451 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+              "450 울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고 2026.07.28 5370",
+              "449 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+              "448 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295"
+            ],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "independentDomEvidence": true,
+          "exactCount": true,
+          "exactTitleSet": true,
+          "strongAdapterRecordEvidence": false,
+          "missingTitleCount": 0,
+          "extraCandidateCount": 0,
+          "visibleUniqueTitleCount": 10,
+          "extractedTitleCount": 10
+        },
+        "counterTrace": {
+          "source": "visible-board-rows",
+          "rawDomRows": 13,
+          "uniqueVisibleTitleCount": 10,
+          "reportedVisiblePostCount": 10,
+          "acceptedCandidateCount": 10,
+          "exactAgainstRaw": false,
+          "exactAgainstUniqueTitles": true
+        },
+        "candidateClassCounts": {
+          "RECRUIT_POST": 10
+        },
+        "counts": {
+          "visiblePostCount": 10,
+          "candidateCount": 10,
+          "rawTableRows": 13,
+          "uniqueVisibleTitleCount": 10,
+          "sourceHtmlLength": 160641,
+          "missingRows": 0,
+          "extraCandidates": 0
+        },
+        "selectorCounts": {
+          "table tbody tr": 13,
+          "tr": 14,
+          "li": 58,
+          "article": 1,
+          "[onclick]": 2,
+          "[data-url]": 0,
+          "[data-href]": 0,
+          "a[href]": 293
+        },
+        "rejectReasonCounts": {
+          "UNMATCHED_BY_EXTRACTOR": 3
+        },
+        "visibleTitles": [
+          "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+          "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+          "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+          "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+          "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+          "울산광역시 제2시립노인복지관 2026년 직원 채용",
+          "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고"
+        ],
+        "extractedTitles": [
+          "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+          "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+          "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+          "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+          "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+          "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+          "울산광역시 제2시립노인복지관 2026년 직원 채용",
+          "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고"
+        ],
+        "missingRows": [],
+        "extraCandidates": [],
+        "rowTrace": [
+          {
+            "index": 0,
+            "title": "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "normalizedTitle": "울산형 촘촘안전망지원사업 전담인력 기간제 채용 최종 합격자 공고",
+            "text": "공지 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=Lss-nG9oSpT05TTrpy5N4oYMOU6MYThAZymHQYnsnzM&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\"><span class=\"notice\">공지</span></td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=Lss-nG9oSpT05TTrpy5N4oYMOU6MYThAZymHQYnsnzM&page=1\">\n                                <strong class=\"ellipsis\">울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">\n                            2026.07.30                        </td>\n                        <td class=\"hit-td m_hidden\">\n                            6802                        </td>\n                    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=Lss-nG9oSpT05TTrpy5N4oYMOU6MYThAZymHQYnsnzM",
+            "adapter": "울산복지가족진흥사회서비스원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 1,
+            "title": "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "normalizedTitle": "2026년 울산광역시 공익활동지원센터 기간제 직원 팀원 채용 공고",
+            "text": "공지 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=0B_C1FcmwwE3tZdFDwAO7F3WK28FtQj7bXtyk1njNDI&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\"><span class=\"notice\">공지</span></td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=0B_C1FcmwwE3tZdFDwAO7F3WK28FtQj7bXtyk1njNDI&page=1\">\n                                <strong class=\"ellipsis\">2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">\n                            2026.07.24                        </td>\n                        <td class=\"hit-td m_hidden\">\n                            11039                        </td>\n                    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=0B_C1FcmwwE3tZdFDwAO7F3WK28FtQj7bXtyk1njNDI",
+            "adapter": "울산복지가족진흥사회서비스원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 2,
+            "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "normalizedTitle": "울산광역시 사회서비스지원단 시설장 기간제 채용 공고",
+            "text": "공지 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=2GfMyZh_bByyacE8r3mK0t6ZrNaQQaW-muZ4laxCnTI&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\"><span class=\"notice\">공지</span></td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=2GfMyZh_bByyacE8r3mK0t6ZrNaQQaW-muZ4laxCnTI&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 사회서비스지원단 시설장(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">\n                            2026.07.22                        </td>\n                        <td class=\"hit-td m_hidden\">\n                            12295                        </td>\n                    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=2GfMyZh_bByyacE8r3mK0t6ZrNaQQaW-muZ4laxCnTI",
+            "adapter": "울산복지가족진흥사회서비스원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 3,
+            "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+            "normalizedTitle": "울산광역시 사회서비스지원단 시설장 기간제 채용 서류전형 합격자 및 면접시험 공",
+            "text": "452 울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공 2026.08.06 1119",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=TFoZT6MEjQdWNcZSQfXirR33YYrnp8nwCUFRKusDhhU&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\">452</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=TFoZT6MEjQdWNcZSQfXirR33YYrnp8nwCUFRKusDhhU&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.08.06</td>\n                        <td class=\"hit-td m_hidden\">1119</td>\n                    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=TFoZT6MEjQdWNcZSQfXirR33YYrnp8nwCUFRKusDhhU",
+            "adapter": "울산복지가족진흥사회서비스원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 4,
+            "title": "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+            "normalizedTitle": "울산형 촘촘안전망지원사업 전담인력 기간제 채용 최종 합격자 공고",
+            "text": "451 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=tz9oqutUV9ERI3d3PtsGts7ohe9GVeIHUfhWWwNPn9M&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\">451</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=tz9oqutUV9ERI3d3PtsGts7ohe9GVeIHUfhWWwNPn9M&page=1\">\n                                <strong class=\"ellipsis\">울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.30</td>\n                        <td class=\"hit-td m_hidden\">6802</td>\n                    </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "UNMATCHED_BY_EXTRACTOR"
+          },
+          {
+            "index": 5,
+            "title": "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+            "normalizedTitle": "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+            "text": "450 울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고 2026.07.28 5370",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=uugJwNu4UeRPEh7GEGwJqb-ZdZN6Wx3nRuCuQ4RQYBg&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\">450</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=uugJwNu4UeRPEh7GEGwJqb-ZdZN6Wx3nRuCuQ4RQYBg&page=1\">\n                                <strong class=\"ellipsis\">울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.28</td>\n                        <td class=\"hit-td m_hidden\">5370</td>\n                    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=uugJwNu4UeRPEh7GEGwJqb-ZdZN6Wx3nRuCuQ4RQYBg",
+            "adapter": "울산복지가족진흥사회서비스원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 6,
+            "title": "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+            "normalizedTitle": "2026년 울산광역시 공익활동지원센터 기간제 직원 팀원 채용 공고",
+            "text": "449 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=hjL7FAxmRx_UkoIMKI2oRayti_0csc9muvE3pPR2bCI&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\">449</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=hjL7FAxmRx_UkoIMKI2oRayti_0csc9muvE3pPR2bCI&page=1\">\n                                <strong class=\"ellipsis\">2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.24</td>\n                        <td class=\"hit-td m_hidden\">11039</td>\n                    </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "UNMATCHED_BY_EXTRACTOR"
+          },
+          {
+            "index": 7,
+            "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+            "normalizedTitle": "울산광역시 사회서비스지원단 시설장 기간제 채용 공고",
+            "text": "448 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=kQhv5n0vPxk2rjRRxsaoH1QscL1msNIBKKjrR0lOZqk&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\">448</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=kQhv5n0vPxk2rjRRxsaoH1QscL1msNIBKKjrR0lOZqk&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 사회서비스지원단 시설장(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.22</td>\n                        <td class=\"hit-td m_hidden\">12295</td>\n                    </tr>",
+            "accepted": false,
+            "acceptedLink": "",
+            "adapter": "",
+            "rejectionReason": "UNMATCHED_BY_EXTRACTOR"
+          },
+          {
+            "index": 8,
+            "title": "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+            "normalizedTitle": "울산형 촘촘안전망 지원사업 전담인력 기간제 채용 공고",
+            "text": "447 「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고 2026.07.15 9933",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=TUEJottnJZTTBzl-QTGO1X6pPxm4erf7Uh_jAbf8QDQ&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\">447</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=TUEJottnJZTTBzl-QTGO1X6pPxm4erf7Uh_jAbf8QDQ&page=1\">\n                                <strong class=\"ellipsis\">「울산형 촘촘안전망 지원사업」  전담인력(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.07.15</td>\n                        <td class=\"hit-td m_hidden\">9933</td>\n                    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=TUEJottnJZTTBzl-QTGO1X6pPxm4erf7Uh_jAbf8QDQ",
+            "adapter": "울산복지가족진흥사회서비스원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 9,
+            "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+            "normalizedTitle": "2026년 울산형 촘촘안전망 지원사업 수행 전담인력 기간제 채용 재공고",
+            "text": "446 2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고 2026.06.25 19715",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=o0xp0f4f_n8VKXcaCWZ0zHhUo2xVhlCruZX1J6K0Mlk&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\">446</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=o0xp0f4f_n8VKXcaCWZ0zHhUo2xVhlCruZX1J6K0Mlk&page=1\">\n                                <strong class=\"ellipsis\">2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.06.25</td>\n                        <td class=\"hit-td m_hidden\">19715</td>\n                    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=o0xp0f4f_n8VKXcaCWZ0zHhUo2xVhlCruZX1J6K0Mlk",
+            "adapter": "울산복지가족진흥사회서비스원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 10,
+            "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+            "normalizedTitle": "2026년 울산형 촘촘안전망 지원사업 수행 전담인력 기간제 채용 공고",
+            "text": "445 2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고 2026.06.12 25109",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=YZ8TPCCOjlghKWvzSBckjWfwEu_l1ncpJbCWUQKb6d4&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\">445</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=YZ8TPCCOjlghKWvzSBckjWfwEu_l1ncpJbCWUQKb6d4&page=1\">\n                                <strong class=\"ellipsis\">2026년  「울산형 촘촘안전망 지원사업」  수행 전담인력(기간제) 채용 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.06.12</td>\n                        <td class=\"hit-td m_hidden\">25109</td>\n                    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=YZ8TPCCOjlghKWvzSBckjWfwEu_l1ncpJbCWUQKb6d4",
+            "adapter": "울산복지가족진흥사회서비스원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 11,
+            "title": "울산광역시 제2시립노인복지관 2026년 직원 채용",
+            "normalizedTitle": "울산광역시 제2시립노인복지관 2026년 직원 채용",
+            "text": "444 울산광역시 제2시립노인복지관 2026년 직원 채용 2026.06.11 27551",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=1r4hD0PKiddtx6IGA9X7RMbVU7zZeJQczd5Nazng1f4&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\">444</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=1r4hD0PKiddtx6IGA9X7RMbVU7zZeJQczd5Nazng1f4&page=1\">\n                                <strong class=\"ellipsis\">울산광역시 제2시립노인복지관 2026년 직원 채용</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.06.11</td>\n                        <td class=\"hit-td m_hidden\">27551</td>\n                    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=1r4hD0PKiddtx6IGA9X7RMbVU7zZeJQczd5Nazng1f4",
+            "adapter": "울산복지가족진흥사회서비스원:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 12,
+            "title": "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고",
+            "normalizedTitle": "울산광역시립노인요양원 시설장 기간제 채용 최종 합격자 공고",
+            "text": "443 울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고 2026.05.12 28370",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "./view.html?em_id=mKNVFi42OXHRg1qXUPoVm0Kd83xnx6sNxbYIt7vjie8&page=1",
+            "onclick": "",
+            "dataUrl": "",
+            "html": "<tr>\n                        <td class=\"num-td m_hidden\">443</td>\n                        <td class=\"title-td\">\n                            <a href=\"./view.html?em_id=mKNVFi42OXHRg1qXUPoVm0Kd83xnx6sNxbYIt7vjie8&page=1\">\n                                <strong class=\"ellipsis\">울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고</strong>\n                                                            </a>\n                        </td>\n                        <td class=\"file-td\">\n                                                            <img src=\"https://wfps.or.kr/layout/user/img/sub/board/board-file.svg\"\n                                     alt=\"첨부 파일 아이콘\">\n                                                    </td>\n<!--                        <td class=\"write-td\">-->\n<!--                            --><!--                        </td>-->\n                        <td class=\"date-td\">2026.05.12</td>\n                        <td class=\"hit-td m_hidden\">28370</td>\n                    </tr>",
+            "accepted": true,
+            "acceptedLink": "https://wfps.or.kr/webuser/employment/view.html?em_id=mKNVFi42OXHRg1qXUPoVm0Kd83xnx6sNxbYIt7vjie8",
+            "adapter": "울산복지가족진흥사회서비스원:board-row",
+            "rejectionReason": ""
+          }
+        ]
+      },
+      "accuracyVerification": {
+        "verified": true,
+        "level": "DOM_TITLE_SET_EXACT",
+        "listVerificationTemplate": "TABLE_RECORD",
+        "templateRecordEvidence": {
+          "verified": false,
+          "template": "TABLE_RECORD",
+          "recordCount": 13,
+          "candidateCount": 10,
+          "matchedCount": 10,
+          "unmatchedTitles": [],
+          "recordSamples": [
+            "공지 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+            "공지 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+            "공지 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295",
+            "452 울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공 2026.08.06 1119",
+            "451 울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고 2026.07.30 6802",
+            "450 울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고 2026.07.28 5370",
+            "449 2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고 2026.07.24 11039",
+            "448 울산광역시 사회서비스지원단 시설장(기간제) 채용 공고 2026.07.22 12295"
+          ],
+          "level": "TEMPLATE_RECORD_MISMATCH"
+        },
+        "independentDomEvidence": true,
+        "exactCount": true,
+        "exactTitleSet": true,
+        "strongAdapterRecordEvidence": false,
+        "missingTitleCount": 0,
+        "extraCandidateCount": 0,
+        "visibleUniqueTitleCount": 10,
+        "extractedTitleCount": 10
+      }
     },
     "detail": {
-      "ok": false,
-      "targetCount": 0,
-      "attempted": 0,
-      "validated": 0,
+      "ok": true,
+      "targetCount": 10,
+      "attempted": 10,
+      "validated": 10,
       "failed": 0,
       "missingDetailUrl": 0,
-      "coverageRatio": 0,
-      "validationRatio": 0,
-      "samples": []
+      "coverageRatio": 1,
+      "validationRatio": 1,
+      "samples": [
+        {
+          "title": "울산형 촘촘안전망지원사업 전담인력(기간제) 채용 최종 합격자 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=Lss-nG9oSpT05TTrpy5N4oYMOU6MYThAZymHQYnsnzM",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=Lss-nG9oSpT05TTrpy5N4oYMOU6MYThAZymHQYnsnzM",
+          "textLength": 3299,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 울산광역시 공익활동지원센터 기간제 직원(팀원) 채용 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=0B_C1FcmwwE3tZdFDwAO7F3WK28FtQj7bXtyk1njNDI",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=0B_C1FcmwwE3tZdFDwAO7F3WK28FtQj7bXtyk1njNDI",
+          "textLength": 3330,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=2GfMyZh_bByyacE8r3mK0t6ZrNaQQaW-muZ4laxCnTI",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=2GfMyZh_bByyacE8r3mK0t6ZrNaQQaW-muZ4laxCnTI",
+          "textLength": 3326,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "울산광역시 사회서비스지원단 시설장(기간제) 채용 서류전형 합격자 및 면접시험 공",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=TFoZT6MEjQdWNcZSQfXirR33YYrnp8nwCUFRKusDhhU",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=TFoZT6MEjQdWNcZSQfXirR33YYrnp8nwCUFRKusDhhU",
+          "textLength": 3315,
+          "attachmentCount": 4,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "울산형 촘촘안전망지원사업 채용 서류전형 합격자 및 면접시험 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=uugJwNu4UeRPEh7GEGwJqb-ZdZN6Wx3nRuCuQ4RQYBg",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=uugJwNu4UeRPEh7GEGwJqb-ZdZN6Wx3nRuCuQ4RQYBg",
+          "textLength": 3333,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "「울산형 촘촘안전망 지원사업」 전담인력(기간제) 채용 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=TUEJottnJZTTBzl-QTGO1X6pPxm4erf7Uh_jAbf8QDQ",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=TUEJottnJZTTBzl-QTGO1X6pPxm4erf7Uh_jAbf8QDQ",
+          "textLength": 3325,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 재공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=o0xp0f4f_n8VKXcaCWZ0zHhUo2xVhlCruZX1J6K0Mlk",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=o0xp0f4f_n8VKXcaCWZ0zHhUo2xVhlCruZX1J6K0Mlk",
+          "textLength": 3353,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "2026년 「울산형 촘촘안전망 지원사업」 수행 전담인력(기간제) 채용 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=YZ8TPCCOjlghKWvzSBckjWfwEu_l1ncpJbCWUQKb6d4",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=YZ8TPCCOjlghKWvzSBckjWfwEu_l1ncpJbCWUQKb6d4",
+          "textLength": 3347,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "울산광역시 제2시립노인복지관 2026년 직원 채용",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=1r4hD0PKiddtx6IGA9X7RMbVU7zZeJQczd5Nazng1f4",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=1r4hD0PKiddtx6IGA9X7RMbVU7zZeJQczd5Nazng1f4",
+          "textLength": 3284,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        },
+        {
+          "title": "울산광역시립노인요양원 시설장(기간제) 채용 최종 합격자 공고",
+          "requestedUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=mKNVFi42OXHRg1qXUPoVm0Kd83xnx6sNxbYIt7vjie8",
+          "requestMethod": "GET",
+          "template": "CUSTOM",
+          "ok": true,
+          "finalUrl": "https://wfps.or.kr/webuser/employment/view.html?em_id=mKNVFi42OXHRg1qXUPoVm0Kd83xnx6sNxbYIt7vjie8",
+          "textLength": 3276,
+          "attachmentCount": 3,
+          "attachmentSignalCount": 5,
+          "explicitNoAttachment": false,
+          "transport": "IMAGE_CONTENT_PAGE",
+          "error": ""
+        }
+      ]
     },
     "attachmentDiscovery": {
-      "ok": false,
-      "discovered": 0,
-      "samples": [],
-      "status": "failed"
+      "ok": true,
+      "discovered": 31,
+      "samples": [
+        {
+          "name": "첨부파일 1 다운로드",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/employment/download.html?fi_id=27982",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-3.svg",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-4.svg",
+          "method": "GET"
+        },
+        {
+          "name": "첨부파일 1 다운로드",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/employment/download.html?fi_id=27975",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-3.svg",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-4.svg",
+          "method": "GET"
+        },
+        {
+          "name": "첨부파일 1 다운로드",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/employment/download.html?fi_id=27973",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-3.svg",
+          "method": "GET"
+        }
+      ],
+      "status": "success"
     },
     "attachmentDownload": {
-      "ok": false,
-      "status": "not-evaluated",
-      "attempted": 0,
-      "downloaded": 0,
-      "failed": 0
+      "ok": true,
+      "status": "sample-success",
+      "attempted": 2,
+      "downloaded": 2,
+      "failed": 0,
+      "verificationMode": "probe-sample",
+      "samples": [
+        {
+          "name": "첨부파일 1 다운로드",
+          "url": "https://wfps.or.kr/webuser/employment/download.html?fi_id=27982",
+          "ok": true,
+          "transport": "node-fetch",
+          "contentType": "file/unknown",
+          "error": ""
+        },
+        {
+          "name": "게시판 아이콘",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-3.svg",
+          "ok": true,
+          "transport": "node-fetch",
+          "contentType": "image/svg+xml",
+          "error": ""
+        }
+      ]
     },
     "documentAnalysis": {
       "ok": false,
-      "status": "not-evaluated",
-      "attempted": 0,
-      "parsed": 0,
-      "failed": 0
+      "capabilityOk": true,
+      "status": "sample-partial",
+      "coverageStatus": "partial",
+      "coverageRatio": 0.5,
+      "attempted": 2,
+      "parsed": 1,
+      "failed": 1,
+      "verificationMode": "probe-sample",
+      "analyzerVersion": "2.6-evidence-scoped-document-coverage",
+      "diagnostics": {
+        "byDetectedType": {
+          "hwp": 1,
+          "unknown": 1
+        },
+        "byContentType": {
+          "file/unknown": 1,
+          "image/svg+xml": 1
+        },
+        "byError": {
+          "unsupported or unknown attachment format": 1
+        }
+      },
+      "samples": [
+        {
+          "name": "첨부파일 1 다운로드",
+          "detectedType": "hwp",
+          "ok": true,
+          "method": "hwp5txt",
+          "textLength": 245,
+          "error": ""
+        },
+        {
+          "name": "게시판 아이콘",
+          "detectedType": "",
+          "ok": false,
+          "method": "",
+          "textLength": 0,
+          "error": "unsupported or unknown attachment format"
+        }
+      ]
     },
     "attachment": {
-      "ok": false,
-      "discovered": 0,
-      "samples": [],
-      "status": "failed"
+      "ok": true,
+      "discovered": 31,
+      "samples": [
+        {
+          "name": "첨부파일 1 다운로드",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/employment/download.html?fi_id=27982",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-3.svg",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-4.svg",
+          "method": "GET"
+        },
+        {
+          "name": "첨부파일 1 다운로드",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/employment/download.html?fi_id=27975",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-3.svg",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-4.svg",
+          "method": "GET"
+        },
+        {
+          "name": "첨부파일 1 다운로드",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/employment/download.html?fi_id=27973",
+          "method": "GET"
+        },
+        {
+          "name": "게시판 아이콘",
+          "type": "unknown",
+          "url": "https://wfps.or.kr/webuser/img/sub/board/icon-3.svg",
+          "method": "GET"
+        }
+      ],
+      "status": "success"
     }
   }
 }

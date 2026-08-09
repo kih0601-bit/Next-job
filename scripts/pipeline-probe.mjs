@@ -549,6 +549,7 @@ async function probeSource(source, artifacts) {
   const report = {
     org: source.org,
     accessTemplate: accessTemplateSummary(source),
+    sourceProvenance: source.sourceProvenance || { category:'unclassified', verificationStatus:'unknown', reason:'출처 근거 미분류' },
     access: { ok: false, httpOk: false, recruitVerifyOk: false, attempts: [], boardType: { type: 'UNKNOWN', confidence: 'low', evidence: [] } },
     list: { ok: false, status: 'unknown', pagesChecked: 0, visiblePostCount: null, candidateCount: 0, missingCount: null, extraCount: null, exactMatch: false, selectedUrl: '', detailUrlReady: 0, listOnlyCount: 0, extractionDiagnostics: [], rootCauseDiagnostics: [], diagnosticFiles: [], samples: [], errors: [] },
     detail: { ok: false, targetCount: 0, attempted: 0, validated: 0, failed: 0, missingDetailUrl: 0, coverageRatio: 0, validationRatio: 0, samples: [] },
@@ -765,7 +766,7 @@ async function probeSource(source, artifacts) {
     else if (!report.documentAnalysis.ok) report.bottleneck = report.documentAnalysis.capabilityOk
       ? `문서 분석 부분 성공 (${report.documentAnalysis.parsed}/${report.documentAnalysis.attempted})`
       : '문서 분석';
-    else report.bottleneck = '전체 파이프라인 통과';
+    else report.bottleneck = '현재 수집·문서분석 검증 범위 통과';
   } catch (error) {
     report.access.attempts = error.attempts || report.access.attempts;
     report.access.error = error.name === 'AbortError' ? 'timeout' : error.message;
@@ -801,7 +802,8 @@ const payload = {
     attachmentDownloadOk: results.filter(item => item.attachmentDownload?.ok).length,
     documentAnalysisOk: results.filter(item => item.documentAnalysis?.ok).length,
     documentAnalysisCapabilityOk: results.filter(item => item.documentAnalysis?.capabilityOk === true || item.documentAnalysis?.status === 'not-required').length,
-    fullPipelineOk: results.filter(item => item.access.recruitVerifyOk && item.list.ok && item.detail.ok && item.attachmentDiscovery.ok && item.attachmentDownload?.ok && item.documentAnalysis?.ok).length,
+    collectionDocumentSampleOk: results.filter(item => item.access.recruitVerifyOk && item.list.ok && item.detail.ok && item.attachmentDiscovery.ok && item.attachmentDownload?.ok && item.documentAnalysis?.ok).length,
+    deprecated: { fullPipelineOk: results.filter(item => item.access.recruitVerifyOk && item.list.ok && item.detail.ok && item.attachmentDiscovery.ok && item.attachmentDownload?.ok && item.documentAnalysis?.ok).length, note: '호환용 구 필드. Pipeline Complete 의미로 사용 금지' },
     causeCounts: results.reduce((acc, item) => { const key = item.primaryCause?.code || 'UNKNOWN'; acc[key] = (acc[key] || 0) + 1; return acc; }, {})
   },
   sources: results

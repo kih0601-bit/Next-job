@@ -842,7 +842,7 @@ if (pipelineReport.payload) {
     // reinterpret it as download or parsing success.
     stage.attachment = stage.attachmentDiscovery;
     if (stage.access?.recruitVerifyOk && stage.list?.ok && stage.detail?.ok && stage.attachmentDiscovery.ok && stage.attachmentDownload.ok && stage.documentAnalysis.ok) {
-      stage.bottleneck = noAttachmentWorkRequired ? '전체 파이프라인 통과 · 첨부/문서분석 대상 없음' : '전체 파이프라인 통과';
+      stage.bottleneck = noAttachmentWorkRequired ? '현재 수집·문서분석 검증 범위 통과 · 첨부/문서분석 대상 없음' : '현재 수집·문서분석 검증 범위 통과';
     } else if (stage.detail?.ok && !stage.attachmentDiscovery.ok) {
       stage.bottleneck = '첨부 발견/추출';
     } else if (stage.attachmentDiscovery.ok && !stage.attachmentDownload.ok) {
@@ -861,9 +861,12 @@ if (pipelineReport.payload) {
   pipelineReport.payload.summary.documentAnalysisCapabilityOk = stages.filter(s =>
     s.documentAnalysis?.capabilityOk === true || s.documentAnalysis?.status === 'not-required'
   ).length;
-  pipelineReport.payload.summary.fullPipelineOk = stages.filter(s =>
+  pipelineReport.payload.summary.collectionDocumentSampleOk = stages.filter(s =>
     s.access?.recruitVerifyOk && s.list?.ok && s.detail?.ok && s.attachmentDiscovery?.ok && s.attachmentDownload?.ok && s.documentAnalysis?.ok
   ).length;
+  pipelineReport.payload.summary.deprecated ||= {};
+  pipelineReport.payload.summary.deprecated.fullPipelineOk = pipelineReport.payload.summary.collectionDocumentSampleOk;
+  pipelineReport.payload.summary.deprecated.note = '호환용 구 필드. Pipeline Complete 의미로 사용 금지';
   pipelineReport.payload.policy = 'HTTP·채용게시판 검증·목록·상세·첨부 발견·첨부 다운로드·문서 분석을 각각 독립 단계로 검증';
   pipelineReport.payload.generatedAt = nowIso;
   await fs.writeFile('data/pipeline-report.json', `${JSON.stringify(pipelineReport.payload, null, 2)}\n`, 'utf8');

@@ -133,3 +133,16 @@
 - WFPS Timeout은 v87 한 실행의 네트워크 연결 timeout Evidence만 있으므로 추측 수정하지 않고 재현 여부를 다음 Actions에서 확인.
 - 한국동서발전 POST 다운로드 등 v86에서 확정된 기관별 정상 로직은 변경하지 않음.
 
+
+
+## v89 — 위탁 Source 출처 확정 + Actions 실행정보 자동기록 + Evidence 파일명 안전화
+- 위탁 Source 3기관을 매 Actions마다 unknown으로 반복 보고하지 않도록 2026-08-09 권위근거를 직접 대조해 registry에 고정했다.
+  - 근로복지공단: 근로복지공단 명의 채용페이지가 `comwel.saramin.co.kr`을 입사지원 사이트로 명시.
+  - 울산남구도시관리공단: 울산광역시 남구청 공식 산하기관 채용공고가 `uncmc.incruit.com`을 공단 채용홈페이지로 명시.
+  - 울주문화재단: 행정안전부 Cleaneye Job+가 `uljuculture.hubst.co.kr`을 재단 채용 홈페이지 지원 접수처로 명시.
+- 위 3기관 Source provenance를 `verified`로 승격하되 실제 Access/List 검증은 기존 Actions가 독립 수행한다. 출처 근거와 사이트 가용성을 같은 판정으로 섞지 않는다.
+- `data/run-metrics.json` 자동 기록 추가. `runId/runUrl/run_started_at`과 probe/collect/report/verification 구간 시간을 저장하고 finalize 시 `pipeline-report.runMetrics`에도 삽입한다. 정상 실행 후 사용자는 최신 전체 ZIP만 전달해도 별도 Actions 링크를 보낼 필요가 없다.
+- 공식 Pipeline JSON stage 출력 순서를 개발 순서(Source→Access→List→Detail→Attachment→Document Analysis→Pagination→Requirements→Filter→Output)와 완전 동기화.
+- 긴 공고 제목을 attachment-resolution Evidence 파일명에 그대로 넣던 문제를 짧은 prefix + stable hash 방식으로 변경. v88 전체 ZIP이 일부 환경에서 `File name too long`으로 풀리지 않는 실제 위험을 제거한다.
+- Reconciliation/Golden Dataset은 7단계 Pagination 진입 시 실제 활성화한다.
+- 선택형 Desktop Helper를 `tools/`에 추가. GitHub CLI를 자동 설치하거나 로그인하지 않으며, 개인 PC에서 이미 `gh`가 준비된 경우에만 최신 Actions 완료 대기/Artifact 다운로드를 지원한다. 약국·공용 PC에서는 실행하지 않아도 된다.

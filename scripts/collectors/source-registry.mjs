@@ -12,6 +12,34 @@ function alioUrl(org) {
 // The collector tries every URL until one returns a usable HTML response.
 // Each source selects one reusable access template. Institution-specific values stay here;
 // transport/entry behavior lives in scripts/lib/access-templates.mjs.
+
+const DELEGATED_SOURCE_PROVENANCE = {
+  '근로복지공단': {
+    category: 'official-delegated-platform', verificationStatus: 'verified', verificationMethod: 'manual-authoritative-review', verifiedAt: '2026-08-09',
+    reason: '근로복지공단 명의의 현재 채용공고가 입사지원 사이트를 comwel.saramin.co.kr로 명시하고, 해당 채용페이지가 근로복지공단 지원서·채용절차를 직접 운영함',
+    evidence: [
+      { authority: '근로복지공단 채용페이지', url: 'https://comwel.saramin.co.kr/service/comwel/3934/applicant/apply/recruit_default.asp', proves: '공고 본문에서 입사지원 사이트 https://comwel.saramin.co.kr 를 명시' },
+      { authority: '근로복지공단 위탁 채용홈페이지', url: 'https://comwel.saramin.co.kr/', proves: '근로복지공단 채용공고·지원·합격발표 전용 서비스' }
+    ]
+  },
+  '울산남구도시관리공단': {
+    category: 'official-delegated-platform', verificationStatus: 'verified', verificationMethod: 'manual-authoritative-review', verifiedAt: '2026-08-09',
+    reason: '울산광역시 남구청 공식 산하기관 채용공고가 공단 채용홈페이지 및 인터넷 접수처로 uncmc.incruit.com을 명시함',
+    evidence: [
+      { authority: '울산광역시 남구청 공식 산하기관 채용정보', url: 'https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=478249', proves: '접수방법을 공단 채용홈페이지 https://uncmc.incruit.com 으로 명시' },
+      { authority: '울산광역시남구도시관리공단 위탁 채용홈페이지', url: 'https://recruit.incruit.com/uncmc/job/', proves: '공단명으로 채용공고·전형일정·합격발표를 운영' }
+    ]
+  },
+  '울주문화재단': {
+    category: 'official-delegated-platform', verificationStatus: 'verified', verificationMethod: 'manual-authoritative-review', verifiedAt: '2026-08-09',
+    reason: '행정안전부 지방공공기관 채용정보(Cleaneye Job+)가 울주문화재단의 지원 접수처를 uljuculture.hubst.co.kr로 명시함',
+    evidence: [
+      { authority: '행정안전부 Cleaneye Job+ 지방공공기관 채용정보', url: 'https://job.cleaneye.go.kr/user/ypCareersData.do?empyear=2026&entSeq=000006&ypEntId=B000842', proves: '울주문화재단 채용 홈페이지 지원 접수처로 https://uljuculture.hubst.co.kr/ 명시' },
+      { authority: '울주문화재단 위탁 접수홈페이지', url: 'https://uljuculture.hubst.co.kr/', proves: '재단명·채용공고·지원확인·결과조회를 제공하는 전용 접수홈페이지' }
+    ]
+  }
+};
+
 const RAW_SOURCES = [
   { org: '한국동서발전', accessTemplate: 'DIRECT_BOARD', accessConfig: { platform: 'OFFICIAL+JOB_ALIO_FALLBACK' }, urls: [
     'https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U',
@@ -114,8 +142,8 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls, accessTemplate, accessConfi
   const directBoard = !/^(?:https:\/\/)?(?:www\.)?[^/]+\/?$/i.test(url);
   const delegated = /(?:INCRUIT|SARAMIN|HUBST)/i.test(String(accessConfig.platform || ''));
   const sourceProvenance = delegated
-    ? { category: 'official-delegated-platform', verificationStatus: 'unknown', reason: '공식 위탁 채용플랫폼으로 구성됨 · 기관→위탁플랫폼 연결 근거를 별도 evidence로 확정 필요' }
-    : { category: 'institution-owned-official-source', verificationStatus: 'verified', reason: '기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증' };
+    ? (DELEGATED_SOURCE_PROVENANCE[org] || { category: 'official-delegated-platform', verificationStatus: 'unknown', reason: '공식 위탁 채용플랫폼으로 구성됨 · 기관→위탁플랫폼 연결 근거를 별도 evidence로 확정 필요' })
+    : { category: 'institution-owned-official-source', verificationStatus: 'verified', verificationMethod: 'institution-owned-domain', reason: '기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증', evidence: [{ authority: '기관 소유 공식 도메인', url, proves: '기관 자체 공식 Source' }] };
   return {
     org,
     sourceProvenance,
@@ -135,4 +163,4 @@ export const SOURCES = RAW_SOURCES.map(({ org, urls, accessTemplate, accessConfi
   };
 });
 
-export const SOURCE_REGISTRY_VERSION = '15.15-pipeline-governance';
+export const SOURCE_REGISTRY_VERSION = '15.16-provenance-evidence-v89';

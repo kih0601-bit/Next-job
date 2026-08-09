@@ -83,7 +83,7 @@ Actions 성공 여부만 보지 않는다. Silent Failure(겉으로 정상인데
 아직 구현되지 않은 후단 단계가 있으면 전체 파이프라인은 `미완성`으로 표현한다. HTTP, 채용 키워드, 목록 건수, 개별 단계 성공은 중간 evidence일 뿐 전체 성공의 대체물이 아니다.
 
 ### Source provenance audit
-- Pagination 전에 20기관 각각의 실제 선택 Source를 `기관 자체 공식 채용게시판 / 근거 확인된 공식 위탁 채용플랫폼 / 근거 확인된 공공 채용 Source / 불명확`으로 분류하고 근거를 남긴다.
+- Pagination 전에 20기관 각각의 실제 선택 Source를 `기관 자체 공식 채용게시판 / 근거 확인된 공식 위탁 채용플랫폼 / 근거 확인된 공공 채용 Source / 불명확`으로 분류하고 근거를 남긴다. 위탁 Source는 매 Actions마다 재추정하지 않고 권위 있는 공개 근거를 수동 확인해 registry에 `verifiedAt/evidence`로 고정하며, 근거가 바뀌었을 때만 재검토한다.
 - Source가 불명확하면 목록이 정상적으로 파싱되어도 기관 성공으로 승격하지 않는다.
 - 공통 검증 규칙을 일괄 강화해 정상 기관을 깨뜨리지 않고, 불명확 기관만 기관별 evidence로 확정·수정한다.
 
@@ -132,3 +132,13 @@ Actions(액션)는 위 검증의 판정자 자체가 아니라 Runner 환경의 
 ## 14. 리포트 판정 원칙
 
 사람이 보는 메인 판정은 `Healthy/Degraded/Failed`가 아니라 기관별 10단계의 4상태와 `검증완료 x/10 · 확인불가 n · 실패 n · 미구현 n · 파이프라인 완성 여부`를 사용한다. 기존 Health 값은 호환성을 위해 당분간 `legacyHealth`로만 유지하고 운영·관리 단계에서 별도 지표로 재정의한다. `fullPipelineOk`는 Pipeline Complete와 의미가 충돌하므로 신규 판정에서 사용하지 않으며, 구 소비자 호환용 deprecated 값만 한시 유지한다.
+
+
+### Run Metrics(실행 성능 자동기록)
+- Actions는 `data/run-metrics.json`에 `runId`, `runUrl`, run 시작시각, 주요 작업 구간 시간, metrics finalize 시점까지의 관측 실행시간을 자동 저장한다.
+- 동일 정보를 `pipeline-report.json`의 `runMetrics`에도 삽입한다. 따라서 정상 실행 뒤 최신 전체 ZIP만 전달해도 별도 Actions 링크/스크린샷 없이 실행번호와 URL을 복원할 수 있다.
+- `observedDurationMs`는 artifact upload/commit/runner cleanup 전 finalize 시점까지이므로 GitHub UI의 최종 총시간과 수 초 차이가 날 수 있다. 정확한 총시간이 필요하면 자동 저장된 `runUrl`을 교차검증한다.
+
+### Evidence 파일명 안전 규칙
+- 진단 원문 내용은 보존하되 Evidence 파일명에는 긴 공고 제목 전체를 사용하지 않는다.
+- 긴 이름은 짧은 prefix + stable hash로 축약해 Windows/ZIP의 파일명 길이 제한 때문에 전체 ZIP이 풀리지 않는 문제를 예방한다.

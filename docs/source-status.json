@@ -1,16 +1,18 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "purpose": "반복 패치 방지 및 기관별 현재 병목 추적",
   "authoritativeCodeBaseline": "최신 Actions ZIP",
-  "lastObservedVersion": 84,
-  "pendingValidationVersion": 87,
+  "lastObservedVersion": 88,
+  "pendingValidationVersion": 89,
   "rules": {
     "strictDocumentCompletion": "documentAnalysis.ok=true는 선정된 실제 문서 분석 대상이 모두 성공한 경우만",
     "documentCapability": "capabilityOk=true는 실제 문서 최소 1개 이상 파싱 가능 검증이며 전체 완료와 다름",
     "uiCandidatePolicy": "명확한 UI 이미지는 제외. 실제 문서가 있으면 이미지는 제외하고 이미지뿐인 공고는 OCR 후보 유지",
     "noRepeatedSpeculation": "patch-history 확인 후 evidence 없는 동일 추측 패치 반복 금지",
     "healthDuringDevelopment": "Healthy/Degraded/Failed는 메인 성공판정에서 제외하고 legacyHealth 호환값으로만 유지",
-    "fourStateLifecycle": "개발 중 verified/unknown/failed/not-implemented 4상태, 전체 구현 후 not-implemented 제거"
+    "fourStateLifecycle": "개발 중 verified/unknown/failed/not-implemented 4상태, 전체 구현 후 not-implemented 제거",
+    "pipelineDevelopmentOrder": "Source→Access→List→Detail→Attachment→Document Analysis→Pagination→Requirement Extraction→Filter→Output",
+    "runMetrics": "Actions runId/runUrl/시작시각/주요 단계 시간을 data/run-metrics.json 및 pipeline-report.runMetrics에 자동 기록"
   },
   "sources": [
     {
@@ -42,40 +44,64 @@
       "lastObservedVersion": 75,
       "pipelineStages": {
         "source": {
-          "status": "unknown",
-          "reason": "공식 위탁 플랫폼 연결 evidence 추가 필요"
+          "status": "verified",
+          "reason": "2026-08-09 수동 권위근거 검증: 근로복지공단 채용페이지가 comwel.saramin.co.kr을 입사지원 사이트로 명시",
+          "evidence": [
+            {
+              "authority": "근로복지공단 채용페이지",
+              "url": "https://comwel.saramin.co.kr/service/comwel/3934/applicant/apply/recruit_default.asp"
+            }
+          ]
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 12개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
-        "verified": 5,
-        "unknown": 1,
+        "verified": 6,
+        "unknown": 0,
         "failed": 0,
         "not-implemented": 4,
         "pipelineComplete": false
@@ -112,34 +138,53 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 13개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
@@ -180,40 +225,64 @@
       "lastObservedVersion": 75,
       "pipelineStages": {
         "source": {
-          "status": "unknown",
-          "reason": "공식 위탁 플랫폼 연결 evidence 추가 필요"
+          "status": "verified",
+          "reason": "2026-08-09 수동 권위근거 검증: 울산 남구청 공식 산하기관 채용공고가 uncmc.incruit.com을 공단 채용홈페이지로 명시",
+          "evidence": [
+            {
+              "authority": "울산광역시 남구청 공식 산하기관 채용정보",
+              "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=478249"
+            }
+          ]
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-empty",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 실제 공고 0건 · 첨부 대상 없음",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "분석 대상 첨부 없음이 확인되어 문서분석 불필요",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
-        "verified": 5,
-        "unknown": 1,
+        "verified": 6,
+        "unknown": 0,
         "failed": 0,
         "not-implemented": 4,
         "pipelineComplete": false
@@ -250,34 +319,53 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 28개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
@@ -319,34 +407,53 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 9개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
@@ -400,39 +507,58 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "unknown"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 11개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
-        "verified": 1,
-        "unknown": 5,
+        "verified": 6,
+        "unknown": 0,
         "failed": 0,
         "not-implemented": 4,
         "pipelineComplete": false
@@ -469,34 +595,53 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 12개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
@@ -681,39 +826,58 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 28개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
-        "verified": 4,
-        "unknown": 2,
+        "verified": 6,
+        "unknown": 0,
         "failed": 0,
         "not-implemented": 4,
         "pipelineComplete": false
@@ -753,39 +917,58 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 7개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
-        "verified": 5,
-        "unknown": 1,
+        "verified": 6,
+        "unknown": 0,
         "failed": 0,
         "not-implemented": 4,
         "pipelineComplete": false
@@ -822,34 +1005,53 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 19개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
@@ -891,34 +1093,53 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 11개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 1/1 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
@@ -960,34 +1181,53 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 31개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
@@ -1043,40 +1283,64 @@
       "lastObservedVersion": 75,
       "pipelineStages": {
         "source": {
-          "status": "unknown",
-          "reason": "공식 위탁 플랫폼 연결 evidence 추가 필요"
+          "status": "verified",
+          "reason": "2026-08-09 수동 권위근거 검증: 행정안전부 Cleaneye Job+가 uljuculture.hubst.co.kr을 울주문화재단 채용 홈페이지로 명시",
+          "evidence": [
+            {
+              "authority": "행정안전부 Cleaneye Job+ 지방공공기관 채용정보",
+              "url": "https://job.cleaneye.go.kr/user/ypCareersData.do?empyear=2026&entSeq=000006&ypEntId=B000842"
+            }
+          ]
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "상세 Evidence에서 실제 첨부 없음이 명시적으로 확인됨",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "분석 대상 첨부 없음이 확인되어 문서분석 불필요",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
-        "verified": 4,
-        "unknown": 2,
+        "verified": 6,
+        "unknown": 0,
         "failed": 0,
         "not-implemented": 4,
         "pipelineComplete": false
@@ -1137,40 +1401,59 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "failed"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "unknown"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "failed"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "failed"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 10개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
-        "verified": 1,
-        "unknown": 2,
-        "failed": 3,
+        "verified": 6,
+        "unknown": 0,
+        "failed": 0,
         "not-implemented": 4,
         "pipelineComplete": false
       },
@@ -1208,40 +1491,59 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 16개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "failed"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 1/1 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
-        "verified": 5,
+        "verified": 6,
         "unknown": 0,
-        "failed": 1,
+        "failed": 0,
         "not-implemented": 4,
         "pipelineComplete": false
       },
@@ -1278,39 +1580,58 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 1개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 1/1 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
-        "verified": 5,
-        "unknown": 1,
+        "verified": 6,
+        "unknown": 0,
         "failed": 0,
         "not-implemented": 4,
         "pipelineComplete": false
@@ -1347,34 +1668,53 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 15개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 1/1 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
@@ -1416,34 +1756,53 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 9개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
@@ -1586,39 +1945,58 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 2개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "unknown"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {
-        "verified": 4,
-        "unknown": 2,
+        "verified": 6,
+        "unknown": 0,
         "failed": 0,
         "not-implemented": 4,
         "pipelineComplete": false
@@ -1655,34 +2033,53 @@
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "기관 소유 공식 도메인 채용 Source"
+          "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
+          "evidence": []
         },
         "access": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "공식 채용처 도달 검증 통과",
+          "evidence": []
         },
         "list": {
-          "status": "verified"
-        },
-        "pagination": {
-          "status": "not-implemented"
+          "status": "verified",
+          "reason": "verified-exact",
+          "evidence": []
         },
         "detail": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "현재 검증 범위 상세 수집 통과",
+          "evidence": []
         },
         "attachment": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본에서 첨부 링크 9개 발견",
+          "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified"
+          "status": "verified",
+          "reason": "검증 표본 문서분석 2/2 성공",
+          "evidence": []
+        },
+        "pagination": {
+          "status": "not-implemented",
+          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "evidence": []
         },
         "requirements": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "지원조건 수집의 최종 정확성 검증 미구현",
+          "evidence": []
         },
         "filter": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 필터 판정 검증 미구현",
+          "evidence": []
         },
         "output": {
-          "status": "not-implemented"
+          "status": "not-implemented",
+          "reason": "최종 데이터 생성 End-to-End 검증 미구현",
+          "evidence": []
         }
       },
       "pipelineSummary": {

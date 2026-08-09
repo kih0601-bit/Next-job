@@ -21,13 +21,13 @@ export function stageStatuses(source={}) {
         : source.detail?.ok ? STATUS.FAILED : STATUS.UNKNOWN;
   const docStatus=source.documentAnalysis?.status==='not-required' || source.documentAnalysis?.ok ? STATUS.VERIFIED : source.attachmentDownload?.ok ? STATUS.FAILED : STATUS.UNKNOWN;
   return {
-    source: stage(sourceStatus, provenance.reason || '공식채용처 출처 근거 상태'),
+    source: stage(sourceStatus, provenance.reason || '공식채용처 출처 근거 상태', provenance.evidence || []),
     access: stage(source.access?.recruitVerifyOk ? STATUS.VERIFIED : source.access?.httpOk ? STATUS.FAILED : STATUS.FAILED, source.access?.recruitVerifyOk?'공식 채용처 도달 검증 통과':'채용처 도달 검증 미통과'),
     list: stage(source.list?.ok ? STATUS.VERIFIED : source.access?.recruitVerifyOk ? STATUS.FAILED : STATUS.UNKNOWN, source.list?.status || '목록 검증 결과 없음'),
-    pagination: stage(STATUS.NOT_IMPLEMENTED, '전체 페이지 완전성 검증은 다음 개발 단계에서 구현'),
     detail: stage(source.detail?.ok ? STATUS.VERIFIED : source.list?.ok ? STATUS.FAILED : STATUS.UNKNOWN, source.detail?.ok?'현재 검증 범위 상세 수집 통과':'상세 수집 미통과'),
     attachment: stage(attachmentStatus, explicitNoAttachment ? '상세 Evidence에서 실제 첨부 없음이 명시적으로 확인됨' : (attachmentCause?.reason || '첨부 수집 검증 결과')),
     documentAnalysis: stage(docStatus, source.diagnosis?.documentAnalysis?.reason || '첨부파일 분석 검증 결과'),
+    pagination: stage(STATUS.NOT_IMPLEMENTED, '전체 페이지 완전성 검증은 다음 개발 단계에서 구현'),
     requirements: stage(STATUS.NOT_IMPLEMENTED, '지원조건 수집의 최종 정확성 검증 미구현'),
     filter: stage(STATUS.NOT_IMPLEMENTED, '최종 필터 판정 검증 미구현'),
     output: stage(STATUS.NOT_IMPLEMENTED, '최종 데이터 생성 End-to-End 검증 미구현')

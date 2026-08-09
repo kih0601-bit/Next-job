@@ -512,8 +512,17 @@ function detailConfidence(text = '', expectedTitle = '') {
 
 const DETAIL_DIAG_DIR = process.env.NEXTJOB_DETAIL_DIAG_DIR || '';
 
+function shortStableHash(value = '') {
+  let hash = 0x811c9dc5;
+  for (const char of String(value)) { hash ^= char.codePointAt(0); hash = Math.imul(hash, 0x01000193) >>> 0; }
+  return hash.toString(16).padStart(8, '0');
+}
 function safeDiagName(value = '') {
-  return String(value).normalize('NFKC').replace(/[^\p{L}\p{N}._-]+/gu, '_').replace(/^_+|_+$/g, '').slice(0, 120) || 'detail';
+  const cleaned = String(value).normalize('NFKC').replace(/[^\p{L}\p{N}._-]+/gu, '_').replace(/^_+|_+$/g, '') || 'detail';
+  // GitHub/ZIP clients may expand Hangul into #Uxxxx-like names. Keep evidence basenames
+  // deliberately short so Windows extraction never hits the per-component path limit.
+  if (cleaned.length <= 28 && Buffer.byteLength(cleaned, 'utf8') <= 56) return cleaned;
+  return `${cleaned.slice(0, 18)}-${shortStableHash(cleaned)}`;
 }
 
 function writeDetailDiagnostic({ org = 'unknown', expectedTitle = '', requestedUrl = '', finalUrl = '', status = 0, contentType = '', html = '', error = '', stage = '', verdict = {}, request = null }) {

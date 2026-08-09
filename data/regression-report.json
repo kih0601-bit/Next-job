@@ -1,13 +1,14 @@
 {
-  "generatedAt": "2026-08-09T09:34:12.484Z",
+  "generatedAt": "2026-08-09T10:12:01.676Z",
   "mode": "warning",
   "passed": false,
-  "regressionCount": 2,
-  "actionableRegressionCount": 2,
+  "regressionCount": 1,
+  "actionableRegressionCount": 1,
   "transientWatchCount": 0,
   "regressions": [
     {
       "org": "울산복지가족진흥사회서비스원",
+      "regressed": false,
       "primaryCause": {
         "stage": "http",
         "status": "failed",
@@ -39,93 +40,9 @@
         "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true,
       "regressionClass": "actionable",
       "transientWatch": false,
-      "consecutiveFailureCount": 4,
-      "watchPolicy": ""
-    },
-    {
-      "org": "울산테크노파크",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true,
-      "regressionClass": "actionable",
-      "transientWatch": false,
-      "consecutiveFailureCount": 0,
+      "consecutiveFailureCount": 5,
       "watchPolicy": ""
     }
   ]

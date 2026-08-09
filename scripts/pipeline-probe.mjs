@@ -4,6 +4,7 @@ import { promisify } from 'node:util';
 import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.mjs';
 import { discoverListingUrls } from './collectors/source-adapters.mjs';
 import { inspectListingPage } from './lib/list-pipeline.mjs';
+import { discoverPaginationPlan, paginationUrl, reconcilePages, pageFingerprint } from './lib/pagination-engine.mjs';
 import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics.mjs';
 import { cleanHtml, fetchDetail, decodeHtmlEntities } from './lib/detail-parser.mjs';
 import { fetchKepcoDynamicList } from './lib/kepco-dynamic.mjs';
@@ -561,6 +562,7 @@ async function probeSource(source, artifacts) {
     attachment: { ok: false, discovered: 0, samples: [] },
     attachmentDownload: { ok: false, status: 'not-evaluated', attempted: 0, downloaded: 0, failed: 0 },
     documentAnalysis: { ok: false, status: 'not-evaluated', attempted: 0, parsed: 0, failed: 0 },
+    pagination: { ok: false, status: 'not-evaluated', strategy: '', totalPages: null, pagesChecked: 0, rawCount: 0, uniqueCount: 0, duplicateCount: 0, pageFingerprints: [], errors: [], reconciliation: { status: 'not-evaluated' }, goldenDataset: { status: 'baseline-capture' } },
     bottleneck: '',
     elapsedMs: 0
   };
@@ -670,6 +672,74 @@ async function probeSource(source, artifacts) {
     else if (selected.status === 'exact') report.list.status = 'count-exact-unverified';
     else report.list.status = selected.status;
     report.list.ok = report.list.status === 'verified-exact' || report.list.status === 'verified-empty';
+
+    // v90: Pagination(전체 페이지 확장) is stage 7 in development order.
+    // Only verified page-1 extraction is allowed to seed expansion. Unsupported JS/POST
+    // boards are reported as unknown with evidence rather than guessed as success.
+    if (selected && report.list.ok) {
+      const plan = discoverPaginationPlan({ html: selected.rootCause?.rawHtml || '', source, selectedUrl: selected.url });
+      // rootCause intentionally does not retain raw HTML; recover the selected listing page.
+      const selectedPageResult = pageResults.find(item => item.url === selected.url);
+      const selectedListingItem = listingPages.find(item => (item.source.url === selected.url || item.page?.finalUrl === selected.url));
+      let firstHtml = selectedListingItem?.page?.html || '';
+      if (!firstHtml && selectedPageResult?.url) {
+        try { firstHtml = (await fetchHtml(selectedPageResult.url, LIST_TIMEOUT_MS, selectedPageResult.url, source)).html || ''; } catch {}
+      }
+      const finalPlan = discoverPaginationPlan({ html:firstHtml, source, selectedUrl:selected.url });
+      report.pagination.strategy = finalPlan.kind;
+      report.pagination.totalPages = finalPlan.totalPages;
+      report.pagination.totalCount = finalPlan.totalCount ?? null;
+      report.pagination.evidence = finalPlan.evidence || [];
+      const pageBase = Number.isInteger(finalPlan.pageBase) ? finalPlan.pageBase : 1;
+      const totalPages = Number.isInteger(finalPlan.totalPages) && finalPlan.totalPages > 0 ? finalPlan.totalPages : null;
+      const results = [{ page: pageBase, candidates: all, fingerprint: pageFingerprint(all), url:selected.url, exactMatch:Boolean(selected.exactMatch) }];
+      report.pagination.pageFingerprints.push({page:pageBase,fingerprint:results[0].fingerprint,count:all.length,url:selected.url});
+      if (finalPlan.kind === 'single-or-undetected') {
+        report.pagination.pagesChecked = 1;
+        report.pagination.status = 'unknown-single-or-no-control';
+        report.pagination.ok = false;
+        report.pagination.reconciliation = {status:'blocked',reason:'페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음'};
+        report.pagination.goldenDataset = {status:'baseline-capture', firstPageFingerprint:results[0].fingerprint, firstPageCount:all.length};
+      } else if (finalPlan.kind === 'query-get' && totalPages && totalPages <= 60) {
+        const start = pageBase === 0 ? 0 : 1;
+        for (let pg=start; pg<start+totalPages; pg++) {
+          if (pg === pageBase) continue;
+          const u = paginationUrl(finalPlan, selected.url, pg);
+          if (!u) break;
+          try {
+            const pp = await fetchHtml(u, LIST_TIMEOUT_MS, selected.url, source);
+            const inspect = inspectListingPage(pp.html, {...source,url:pp.finalUrl||u});
+            const fp = pageFingerprint(inspect.candidates);
+            results.push({page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl||u,exactMatch:Boolean(inspect.exactMatch)});
+            report.pagination.pageFingerprints.push({page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl||u});
+          } catch(error) { report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`); }
+        }
+        report.pagination.pagesChecked = results.length;
+        const rec = reconcilePages(results);
+        const repeated = report.pagination.pageFingerprints.some((x,i,a)=>a.findIndex(y=>y.fingerprint===x.fingerprint)<i && x.count>0);
+        const allExact = results.every(x=>x.exactMatch || x.candidates.length===0);
+        const allPages = results.length === totalPages;
+        report.pagination.reconciliation = {...rec,status: allPages && !repeated ? 'pass' : 'failed', repeatedPageFingerprint:repeated};
+        report.pagination.rawCount=rec.rawCount; report.pagination.uniqueCount=rec.uniqueCount; report.pagination.duplicateCount=rec.duplicateCount;
+        report.pagination.goldenDataset = {status:'active-structural-baseline', firstPageFingerprint:results[0].fingerprint, firstPageCount:all.length, note:'첫 도입 실행은 검증된 1페이지를 구조 기준선으로 저장; 이후 실행부터 regression 대조'};
+        report.pagination.ok = allPages && !repeated && allExact && report.pagination.errors.length===0;
+        report.pagination.status = report.pagination.ok ? 'verified-full' : 'partial-or-mismatch';
+      } else if (finalPlan.kind === 'kosha-api' && totalPages && totalPages <= 60) {
+        for (let pg=2; pg<=totalPages; pg++) {
+          try { const pp=await fetchKoshaTboard('boardList',{},pg); const inspect=inspectListingPage(pp.html,{...source,url:pp.finalUrl}); const fp=pageFingerprint(inspect.candidates); results.push({page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl,exactMatch:Boolean(inspect.exactMatch)}); report.pagination.pageFingerprints.push({page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl}); }
+          catch(error){report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`);}
+        }
+        report.pagination.pagesChecked=results.length; const rec=reconcilePages(results); const repeated=report.pagination.pageFingerprints.some((x,i,a)=>a.findIndex(y=>y.fingerprint===x.fingerprint)<i && x.count>0);
+        report.pagination.reconciliation={...rec,status:results.length===totalPages&&!repeated?'pass':'failed',repeatedPageFingerprint:repeated}; report.pagination.rawCount=rec.rawCount;report.pagination.uniqueCount=rec.uniqueCount;report.pagination.duplicateCount=rec.duplicateCount;
+        report.pagination.goldenDataset={status:'active-structural-baseline',firstPageFingerprint:results[0].fingerprint,firstPageCount:all.length}; report.pagination.ok=results.length===totalPages&&!repeated&&report.pagination.errors.length===0; report.pagination.status=report.pagination.ok?'verified-full':'partial-or-mismatch';
+      } else {
+        report.pagination.pagesChecked = 1;
+        report.pagination.status = finalPlan.kind === 'javascript-form' ? 'unknown-transport-contract' : 'unknown-total-pages';
+        report.pagination.ok = false;
+        report.pagination.reconciliation = {status:'blocked',reason:'전체 페이지 요청 규칙 또는 총 페이지 수가 아직 evidence로 확정되지 않음'};
+        report.pagination.goldenDataset = {status:'baseline-capture', firstPageFingerprint:results[0].fingerprint, firstPageCount:all.length};
+      }
+    }
 
     report.detail.targetCount = all.length;
     report.detail.missingDetailUrl = all.filter(item => item.listOnly).length;

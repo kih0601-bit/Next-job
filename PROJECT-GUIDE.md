@@ -142,3 +142,11 @@ Actions(액션)는 위 검증의 판정자 자체가 아니라 Runner 환경의 
 ### Evidence 파일명 안전 규칙
 - 진단 원문 내용은 보존하되 Evidence 파일명에는 긴 공고 제목 전체를 사용하지 않는다.
 - 긴 이름은 짧은 prefix + stable hash로 축약해 Windows/ZIP의 파일명 길이 제한 때문에 전체 ZIP이 풀리지 않는 문제를 예방한다.
+
+### v90 Pagination 구현 원칙
+- 7단계 전체 페이지 확장은 1~6단계가 검증된 기관만 대상으로 한다.
+- URL의 명시적 `page/pageIndex/pageNo` 또는 API의 `totalCnt/rowsPerPage`처럼 요청 규칙이 Evidence로 확인된 경우에만 자동 전체순회를 수행한다.
+- JavaScript/POST 기반 페이지 이동은 form/action/body contract가 확정되기 전 GET query를 추측해 만들지 않는다. 이 경우 `unknown-transport-contract`로 남겨 다음 Actions Evidence에서 기관 전용 요청 규칙을 확정한다.
+- 페이지 컨트롤이 보이지 않는다는 이유만으로 단일페이지 성공으로 간주하지 않는다.
+- Reconciliation은 전체 순회 페이지 수, page fingerprint 반복, raw/unique/duplicate 공고 수를 대조한다. 이유 없는 누락·반복·중복이 있으면 7단계 검증완료로 승격하지 않는다.
+- Golden Dataset은 첫 도입 실행의 검증된 1페이지 구조 기준선을 캡처하고, 이후 사람이 확인한 기준 정답 데이터로 점진적으로 강화한다.

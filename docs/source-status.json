@@ -1,9 +1,8 @@
 {
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "purpose": "반복 패치 방지 및 기관별 현재 병목 추적",
   "authoritativeCodeBaseline": "최신 Actions ZIP",
-  "lastObservedVersion": 88,
-  "pendingValidationVersion": 89,
+  "lastObservedVersion": 90,
   "rules": {
     "strictDocumentCompletion": "documentAnalysis.ok=true는 선정된 실제 문서 분석 대상이 모두 성공한 경우만",
     "documentCapability": "capabilityOk=true는 실제 문서 최소 1개 이상 파싱 가능 검증이며 전체 완료와 다름",
@@ -31,25 +30,28 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "2026-08-09 수동 권위근거 검증: 근로복지공단 채용페이지가 comwel.saramin.co.kr을 입사지원 사이트로 명시",
+          "reason": "근로복지공단 명의의 현재 채용공고가 입사지원 사이트를 comwel.saramin.co.kr로 명시하고, 해당 채용페이지가 근로복지공단 지원서·채용절차를 직접 운영함",
           "evidence": [
             {
               "authority": "근로복지공단 채용페이지",
-              "url": "https://comwel.saramin.co.kr/service/comwel/3934/applicant/apply/recruit_default.asp"
+              "url": "https://comwel.saramin.co.kr/service/comwel/3934/applicant/apply/recruit_default.asp",
+              "proves": "공고 본문에서 입사지원 사이트 https://comwel.saramin.co.kr 를 명시"
+            },
+            {
+              "authority": "근로복지공단 위탁 채용홈페이지",
+              "url": "https://comwel.saramin.co.kr/",
+              "proves": "근로복지공단 채용공고·지원·합격발표 전용 서비스"
             }
           ]
         },
@@ -80,7 +82,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -103,7 +105,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -124,22 +127,25 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산경제일자리진흥원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.ubpi.or.kr/sub/?mcode=0403080000",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -168,7 +174,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -191,7 +197,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -208,29 +215,32 @@
         "strictOk": true,
         "attempted": 0,
         "parsed": 0,
-        "observedCapability": true
+        "observedCapability": false
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과 · 첨부/문서분석 대상 없음",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "2026-08-09 수동 권위근거 검증: 울산 남구청 공식 산하기관 채용공고가 uncmc.incruit.com을 공단 채용홈페이지로 명시",
+          "reason": "울산광역시 남구청 공식 산하기관 채용공고가 공단 채용홈페이지 및 인터넷 접수처로 uncmc.incruit.com을 명시함",
           "evidence": [
             {
               "authority": "울산광역시 남구청 공식 산하기관 채용정보",
-              "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=478249"
+              "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=hireNotice2&nttId=478249",
+              "proves": "접수방법을 공단 채용홈페이지 https://uncmc.incruit.com 으로 명시"
+            },
+            {
+              "authority": "울산광역시남구도시관리공단 위탁 채용홈페이지",
+              "url": "https://recruit.incruit.com/uncmc/job/",
+              "proves": "공단명으로 채용공고·전형일정·합격발표를 운영"
             }
           ]
         },
@@ -261,7 +271,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -284,7 +294,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -305,22 +316,25 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산도시공사.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.umca.co.kr/umca/bbs/list.do?bbsId=BBS_0000000000000002&mId=001001002000000000",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -349,7 +363,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -372,7 +386,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -393,22 +408,25 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산문화관광재단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://uctf.or.kr/board/employment",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -437,7 +455,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -460,55 +478,47 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
     },
     {
       "org": "울산복지가족진흥사회서비스원",
-      "access": "degraded-silent-source-detected",
-      "list": "invalid-source-detected",
-      "detail": "not-authoritative",
-      "attachmentDiscovery": "not-authoritative",
-      "attachmentDownload": "not-authoritative",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
       "documentAnalysis": {
-        "status": "not-authoritative",
-        "strictOk": false,
-        "attempted": 0,
-        "parsed": 0,
-        "observedCapability": false
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "기관 공식 채용게시판 timeout 후 타기관 소식 fallback이 잘못 정상 판정됨",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "access/list",
-        "status": "failed",
-        "code": "SILENT_SOURCE_MISMATCH",
-        "reason": "v84 원본 evidence에서 울산광역시 타기관 소식의 타 기관 게시물을 WFPS 목록으로 파싱한 것을 확인",
-        "evidence": [
-          {
-            "source": "data/pipeline-report.json",
-            "fact": "WFPS 공식 도메인 timeout 뒤 울산광역시 타기관 소식이 activeRecruitUrl로 선택됨"
-          },
-          {
-            "source": "data/jobs.json",
-            "fact": "울산시설공단·울산테크노파크 등 타 기관 제목이 WFPS adapter 결과로 유입됨"
-          }
-        ],
-        "repairTarget": "scripts/collectors/source-registry.mjs + scripts/lib/recruit-verify.mjs",
-        "recommendedAction": "기관 소유 채용게시판만 허용하고 WFPS strict institution verification 적용"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 84,
-      "pendingAction": "v85 official-source-only + strict institution verification",
-      "pendingValidationVersion": 85,
-      "pendingPatch": "v85: 울산시/남구 범용 fallback 제거; WFPS/UWFDI 공식 employment board만 허용",
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://wfps.or.kr/webuser/employment/list.html",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -537,7 +547,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -560,7 +570,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -581,22 +592,25 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산북구시설관리공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.ubimc.or.kr/pageCont.do?menuNo=2040000",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -625,7 +639,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -648,7 +662,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -658,176 +673,36 @@
       "access": "success",
       "list": "verified-exact",
       "detail": "success",
-      "attachmentDiscovery": "failed",
-      "attachmentDownload": "blocked-by-discovery",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
       "documentAnalysis": {
-        "status": "blocked-by-download",
-        "strictOk": false,
-        "attempted": 0,
-        "parsed": 0,
-        "observedCapability": false
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "첨부 발견/추출",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "attachment",
-        "status": "unknown",
-        "code": "ATTACHMENT_ZERO_UNRESOLVED",
-        "reason": "첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함",
-        "evidence": [
-          {
-            "title": "울산시설공단 임원(비상임이사) 공개모집 공고",
-            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003114",
-            "requestMethod": "GET",
-            "template": "CUSTOM",
-            "ok": true,
-            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003114",
-            "textLength": 322,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 14,
-            "explicitNoAttachment": false,
-            "transport": "GET",
-            "error": ""
-          },
-          {
-            "title": "2026년도 울산시설공단 제2회 신규직원 채용 최종합격자 공고",
-            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003090",
-            "requestMethod": "GET",
-            "template": "CUSTOM",
-            "ok": true,
-            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003090",
-            "textLength": 275,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 12,
-            "explicitNoAttachment": false,
-            "transport": "GET",
-            "error": ""
-          },
-          {
-            "title": "2026년도 울산시설공단 제2회 신규직원 채용 면접시험 합격자 공고",
-            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003064",
-            "requestMethod": "GET",
-            "template": "CUSTOM",
-            "ok": true,
-            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003064",
-            "textLength": 298,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 12,
-            "explicitNoAttachment": false,
-            "transport": "GET",
-            "error": ""
-          },
-          {
-            "title": "2026년도 울산시설공단 제2회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
-            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003056",
-            "requestMethod": "GET",
-            "template": "CUSTOM",
-            "ok": true,
-            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003056",
-            "textLength": 355,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 12,
-            "explicitNoAttachment": false,
-            "transport": "GET",
-            "error": ""
-          },
-          {
-            "title": "2026년도 울산시설공단 제1회 신규직원 채용 최종합격자 공고",
-            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003032",
-            "requestMethod": "GET",
-            "template": "CUSTOM",
-            "ok": true,
-            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003032",
-            "textLength": 275,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 12,
-            "explicitNoAttachment": false,
-            "transport": "GET",
-            "error": ""
-          },
-          {
-            "title": "2026년도 울산시설공단 제2회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
-            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003031",
-            "requestMethod": "GET",
-            "template": "CUSTOM",
-            "ok": true,
-            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003031",
-            "textLength": 421,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 16,
-            "explicitNoAttachment": false,
-            "transport": "GET",
-            "error": ""
-          },
-          {
-            "title": "2026년도 울산시설공단 제1회 신규직원 채용 면접시험 합격자 공고",
-            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003026",
-            "requestMethod": "GET",
-            "template": "CUSTOM",
-            "ok": true,
-            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003026",
-            "textLength": 298,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 12,
-            "explicitNoAttachment": false,
-            "transport": "GET",
-            "error": ""
-          },
-          {
-            "title": "2026년도 제2회 울산시설공단 신규직원 채용 공고",
-            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003023",
-            "requestMethod": "GET",
-            "template": "CUSTOM",
-            "ok": true,
-            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003023",
-            "textLength": 417,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 19,
-            "explicitNoAttachment": false,
-            "transport": "GET",
-            "error": ""
-          },
-          {
-            "title": "2026년도 울산시설공단 제1회 신규직원 채용 필기시험 합격자 명단 안내 및 AI역량검사·면접시험(체력검정) 실시공고",
-            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003022",
-            "requestMethod": "GET",
-            "template": "CUSTOM",
-            "ok": true,
-            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003022",
-            "textLength": 355,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 12,
-            "explicitNoAttachment": false,
-            "transport": "GET",
-            "error": ""
-          },
-          {
-            "title": "2026년도 울산시설공단 제1회 신규직원 채용 서류심사 합격자 및 필기시험 공고",
-            "requestedUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003006",
-            "requestMethod": "GET",
-            "template": "CUSTOM",
-            "ok": true,
-            "finalUrl": "https://www.uic.or.kr/uimc/notify/noti06/selectEmploymentArticle.do?bbsId=BBSMSTR_000000000022&employmentId=EMPLOY_0000000003006",
-            "textLength": 421,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 16,
-            "explicitNoAttachment": false,
-            "transport": "GET",
-            "error": ""
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산시설공단.mjs",
-        "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
-      "pendingAction": "v77 FileDownNotice 검증",
-      "pendingValidationVersion": 77,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.uic.or.kr/notify/noti06.do",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -856,7 +731,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -879,7 +754,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -892,33 +768,33 @@
       "attachmentDiscovery": "success",
       "attachmentDownload": "success",
       "documentAnalysis": {
-        "status": "partial",
-        "strictOk": false,
-        "attempted": 3,
+        "status": "success",
+        "strictOk": true,
+        "attempted": 2,
         "parsed": 2,
         "observedCapability": true
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "문서 분석",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 78,
-      "pendingAction": "v77 HWP fallback 검증",
-      "pendingValidationVersion": 77,
-      "pendingPatch": "v79: administrative form excluded from strict coverage only when substantive recruitment document exists",
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.uipa.or.kr/webuser/recruit/list.html",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -947,7 +823,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -970,7 +846,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -991,22 +868,25 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.utp.or.kr/board/board.php?bo_table=sub0603&menu_group=4&sno=0408",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -1035,7 +915,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -1058,7 +938,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -1079,22 +960,25 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산항만공사.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.upa.or.kr/portal/contents.do?mid=0405000000",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -1123,7 +1007,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -1146,7 +1030,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -1167,22 +1052,25 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.uljusiseol.or.kr/portal/bbs/selectArticleList.do?bbsId=BBSMSTR_000000000011",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -1211,7 +1099,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -1234,7 +1122,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -1251,44 +1140,32 @@
         "strictOk": true,
         "attempted": 0,
         "parsed": 0,
-        "observedCapability": true
+        "observedCapability": false
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과 · 첨부/문서분석 대상 없음",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "attachment",
-        "status": "unknown",
-        "code": "ATTACHMENT_ZERO_UNRESOLVED",
-        "reason": "첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함",
-        "evidence": [
-          {
-            "title": "일반 (재)울주문화재단 2026년도 제2차 직원 채용 재공고 접수기간 2026-07-10(금) 11:00 ~ 2026-07-20(월) 18:00 공지사항 0 건 접수마감 개인정보처리방침 이메일주소 무단수집거부 ⓒ KPDI HR Co.,Ltd. HUBST",
-            "requestedUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningDetailPage.do",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": true,
-            "finalUrl": "https://uljuculture.hubst.co.kr/applicantMain/goJobOpeningDetailPage.do",
-            "textLength": 4862,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 4,
-            "explicitNoAttachment": true,
-            "transport": "FORM_POST",
-            "error": ""
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울주문화재단.mjs",
-        "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
-          "reason": "2026-08-09 수동 권위근거 검증: 행정안전부 Cleaneye Job+가 uljuculture.hubst.co.kr을 울주문화재단 채용 홈페이지로 명시",
+          "reason": "행정안전부 지방공공기관 채용정보(Cleaneye Job+)가 울주문화재단의 지원 접수처를 uljuculture.hubst.co.kr로 명시함",
           "evidence": [
             {
               "authority": "행정안전부 Cleaneye Job+ 지방공공기관 채용정보",
-              "url": "https://job.cleaneye.go.kr/user/ypCareersData.do?empyear=2026&entSeq=000006&ypEntId=B000842"
+              "url": "https://job.cleaneye.go.kr/user/ypCareersData.do?empyear=2026&entSeq=000006&ypEntId=B000842",
+              "proves": "울주문화재단 채용 홈페이지 지원 접수처로 https://uljuculture.hubst.co.kr/ 명시"
+            },
+            {
+              "authority": "울주문화재단 위탁 접수홈페이지",
+              "url": "https://uljuculture.hubst.co.kr/",
+              "proves": "재단명·채용공고·지원확인·결과조회를 제공하는 전용 접수홈페이지"
             }
           ]
         },
@@ -1319,7 +1196,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -1342,67 +1219,47 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
     },
     {
       "org": "한국동서발전",
-      "access": "failed",
-      "list": "unknown",
-      "detail": "failed",
-      "attachmentDiscovery": "failed",
-      "attachmentDownload": "not-evaluated",
+      "access": "success",
+      "list": "verified-exact",
+      "detail": "success",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
       "documentAnalysis": {
-        "status": "not-evaluated",
-        "strictOk": false,
-        "attempted": 0,
-        "parsed": 0,
-        "observedCapability": false
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "모든 후보 URL HTTP 접속 실패",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "http",
-        "status": "failed",
-        "code": "HTTP_FAILED",
-        "reason": "모든 후보 URL HTTP 접속 실패",
-        "evidence": [
-          {
-            "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
-            "ok": false,
-            "error": "HTTP 502",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.ewp.co.kr/",
-            "ok": false,
-            "error": "HTTP 502",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-            "ok": false,
-            "error": "fetch failed",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/한국동서발전.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 78,
-      "pendingAction": "외부 502 재현 여부 확인",
-      "pendingPatch": "v79: remove site-wide certification PDFs from recruitment attachments; new_download contract left evidence-gated",
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -1431,7 +1288,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -1454,7 +1311,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -1465,34 +1323,35 @@
       "list": "verified-exact",
       "detail": "success",
       "attachmentDiscovery": "success",
-      "attachmentDownload": "failed",
+      "attachmentDownload": "sample-success",
       "documentAnalysis": {
-        "status": "failed",
-        "strictOk": false,
-        "attempted": 4,
-        "parsed": 0,
-        "observedCapability": false
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 1,
+        "parsed": 1,
+        "observedCapability": true
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "첨부 다운로드",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국산업안전보건공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
-      "pendingAction": "v77 배열 처리 후 실파일 검증",
-      "pendingValidationVersion": 77,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.kosha.or.kr/notification/jobncontract/job",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -1521,7 +1380,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -1544,7 +1403,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -1555,33 +1415,35 @@
       "list": "verified-exact",
       "detail": "success",
       "attachmentDiscovery": "success",
-      "attachmentDownload": "sample-partial",
+      "attachmentDownload": "sample-success",
       "documentAnalysis": {
-        "status": "sample-partial",
-        "strictOk": false,
+        "status": "sample-success",
+        "strictOk": true,
         "attempted": 2,
-        "parsed": 1,
+        "parsed": 2,
         "observedCapability": true
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "첨부 다운로드",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국산업인력공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
-      "pendingAction": "HRDK 중복 첨부 후보 제거 후 attachSeq 실파일 1건 기준 검증",
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.hrdkorea.or.kr/3/1/2/2",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -1600,17 +1462,17 @@
         },
         "attachment": {
           "status": "verified",
-          "reason": "검증 표본에서 첨부 링크 1개 발견",
+          "reason": "검증 표본에서 첨부 링크 47개 발견",
           "evidence": []
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 1/1 성공",
+          "reason": "검증 표본 문서분석 2/2 성공",
           "evidence": []
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -1633,7 +1495,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -1654,22 +1517,25 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국석유공사.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.knoc.co.kr/sub01/sub01_7_9.jsp",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -1698,7 +1564,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -1721,7 +1587,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -1742,22 +1609,25 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.khnp.co.kr/recruit/rj00/RJ10100.do?mid=MI000000000000000484",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -1786,7 +1656,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -1809,7 +1679,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -1819,134 +1690,36 @@
       "access": "success",
       "list": "verified-exact",
       "detail": "success",
-      "attachmentDiscovery": "failed",
-      "attachmentDownload": "blocked-by-discovery",
+      "attachmentDiscovery": "success",
+      "attachmentDownload": "sample-success",
       "documentAnalysis": {
-        "status": "blocked-by-download",
-        "strictOk": false,
-        "attempted": 0,
-        "parsed": 0,
-        "observedCapability": false
+        "status": "sample-success",
+        "strictOk": true,
+        "attempted": 2,
+        "parsed": 2,
+        "observedCapability": true
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "첨부 발견/추출",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "attachment",
-        "status": "unknown",
-        "code": "ATTACHMENT_ZERO_UNRESOLVED",
-        "reason": "첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함",
-        "evidence": [
-          {
-            "title": "한국에너지공단 공무직(미화) 채용(사회형평인재 제한경쟁)",
-            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=135",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": true,
-            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-            "textLength": 635,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 6,
-            "explicitNoAttachment": false,
-            "transport": "FORM_POST",
-            "error": ""
-          },
-          {
-            "title": "한국에너지공단 청년인턴(체험형) 채용 공고",
-            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=134",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": true,
-            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-            "textLength": 726,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 10,
-            "explicitNoAttachment": false,
-            "transport": "FORM_POST",
-            "error": ""
-          },
-          {
-            "title": "한국에너지공단 공무직(시설관리 일반) 채용 공고",
-            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=133",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": true,
-            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-            "textLength": 613,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 6,
-            "explicitNoAttachment": false,
-            "transport": "FORM_POST",
-            "error": ""
-          },
-          {
-            "title": "한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)",
-            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=132",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": true,
-            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-            "textLength": 634,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 6,
-            "explicitNoAttachment": false,
-            "transport": "FORM_POST",
-            "error": ""
-          },
-          {
-            "title": "한국에너지공단 공무직(미화) 채용(사회형평인재 제한경쟁)",
-            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=131",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": true,
-            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-            "textLength": 633,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 6,
-            "explicitNoAttachment": false,
-            "transport": "FORM_POST",
-            "error": ""
-          },
-          {
-            "title": "한국에너지공단 전문경력직 채용 공고",
-            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=130",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": true,
-            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-            "textLength": 574,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 6,
-            "explicitNoAttachment": false,
-            "transport": "FORM_POST",
-            "error": ""
-          },
-          {
-            "title": "한국에너지공단 신입직원(채용형 인턴) 채용 공고",
-            "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=129",
-            "requestMethod": "POST",
-            "template": "FORM_POST",
-            "ok": true,
-            "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-            "textLength": 639,
-            "attachmentCount": 0,
-            "attachmentSignalCount": 8,
-            "explicitNoAttachment": false,
-            "transport": "FORM_POST",
-            "error": ""
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/한국에너지공단.mjs",
-        "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
-      "pendingAction": "v77 POST fileDownload 검증",
-      "pendingValidationVersion": 77,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://www.energy.or.kr/front/board/etc/jobList.do",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -1975,7 +1748,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -1998,7 +1771,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -2019,22 +1793,25 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
+      "bottleneck": "1~6단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+        "stage": "pagination",
+        "status": "pending",
+        "code": "PAGINATION_PENDING",
+        "reason": "전체 페이지 확장 검증 중"
       },
-      "lastObservedVersion": 75,
+      "lastObservedVersion": 90,
       "pipelineStages": {
         "source": {
           "status": "verified",
           "reason": "기관 소유 공식 도메인의 채용 Source로 구성·채용게시판 도달 검증",
-          "evidence": []
+          "evidence": [
+            {
+              "authority": "기관 소유 공식 도메인",
+              "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
+              "proves": "기관 자체 공식 Source"
+            }
+          ]
         },
         "access": {
           "status": "verified",
@@ -2063,7 +1840,7 @@
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 완전성 검증은 다음 개발 단계에서 구현",
+          "reason": "전체 페이지 확장 미구현",
           "evidence": []
         },
         "requirements": {
@@ -2086,7 +1863,8 @@
         "verified": 6,
         "unknown": 0,
         "failed": 0,
-        "not-implemented": 4,
+        "notImplemented": 4,
+        "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true

@@ -27,7 +27,7 @@ export function stageStatuses(source={}) {
     detail: stage(source.detail?.ok ? STATUS.VERIFIED : source.list?.ok ? STATUS.FAILED : STATUS.UNKNOWN, source.detail?.ok?'현재 검증 범위 상세 수집 통과':'상세 수집 미통과'),
     attachment: stage(attachmentStatus, explicitNoAttachment ? '상세 Evidence에서 실제 첨부 없음이 명시적으로 확인됨' : (attachmentCause?.reason || '첨부 수집 검증 결과')),
     documentAnalysis: stage(docStatus, source.diagnosis?.documentAnalysis?.reason || '첨부파일 분석 검증 결과'),
-    pagination: stage(STATUS.NOT_IMPLEMENTED, '전체 페이지 완전성 검증은 다음 개발 단계에서 구현'),
+    pagination: stage(source.pagination?.ok ? STATUS.VERIFIED : source.pagination?.status && source.pagination.status !== 'not-evaluated' ? (source.pagination.status.startsWith('unknown') ? STATUS.UNKNOWN : STATUS.FAILED) : STATUS.NOT_IMPLEMENTED, source.pagination?.status || '전체 페이지 확장 미구현', source.pagination?.evidence || []),
     requirements: stage(STATUS.NOT_IMPLEMENTED, '지원조건 수집의 최종 정확성 검증 미구현'),
     filter: stage(STATUS.NOT_IMPLEMENTED, '최종 필터 판정 검증 미구현'),
     output: stage(STATUS.NOT_IMPLEMENTED, '최종 데이터 생성 End-to-End 검증 미구현')
@@ -42,7 +42,7 @@ export function verificationSystems(source={}) {
   return {
     evidence:{status:'active'}, diagnostics:{status:'active'}, sourceVerification:{status:'active'}, regression:{status:'active'}, silentFailure:{status:'active'}, report:{status:'active'},
     provenance:{status:'active', result:source.sourceProvenance?.verificationStatus || 'unknown'},
-    reconciliation:{status:'planned', activatesAt:'Pagination(전체 페이지 확장)'},
-    goldenDataset:{status:'planned', activatesAt:'Pagination(전체 페이지 확장)'}
+    reconciliation:{status:source.pagination?.reconciliation?.status && source.pagination.reconciliation.status!=='not-evaluated' ? 'active' : 'planned', result:source.pagination?.reconciliation || {}, activatesAt:'Pagination(전체 페이지 확장)'},
+    goldenDataset:{status:source.pagination?.goldenDataset?.status ? 'active' : 'planned', result:source.pagination?.goldenDataset || {}, activatesAt:'Pagination(전체 페이지 확장)'}
   };
 }

@@ -530,6 +530,15 @@ async function fetchSource(source) {
         if(koshaDynamic?.html) listingUrls=[koshaDynamic.finalUrl];
       }catch(error){console.error(`[tboard-list] ${source.org}: ${error.message}`);}
     }
+    // v90 stage-7 handoff: probe has already verified/investigated pagination.
+    // Reuse only the exact URLs observed by the probe; never synthesize a new
+    // pagination contract in the production collector.
+    const paginationDiag = pipelineReport?.byOrg?.get(source.org)?.pagination || null;
+    if (paginationDiag?.strategy === 'query-get' && Array.isArray(paginationDiag.pageFingerprints)) {
+      for (const item of paginationDiag.pageFingerprints) {
+        if (item?.url && !listingUrls.includes(item.url)) listingUrls.push(item.url);
+      }
+    }
     const candidateMap = new Map();
     const extractionDiagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, titleSamples: [], unsafeSamples: [] };
     for (const listingUrl of listingUrls) {
@@ -554,6 +563,18 @@ async function fetchSource(source) {
       for (const candidate of extracted) {
         const key = `${candidate.org}|${normalizeTitleForDedup(candidate.title)}|${canonicalJobUrl(candidate.link)}`;
         if (!candidateMap.has(key)) candidateMap.set(key, candidate);
+      }
+    }
+    if (source.org === '한국산업안전보건공단' && paginationDiag?.strategy === 'kosha-api' && Number(paginationDiag.totalPages) > 1) {
+      for (let pg=2; pg<=Math.min(60, Number(paginationDiag.totalPages)); pg++) {
+        try {
+          const pp=await fetchKoshaTboardList(pg);
+          const inspection=inspectListPage(pp.html,{...activeSource,url:pp.finalUrl});
+          const extracted=inspection.candidates;
+          extractionDiagnostics.pages ||= [];
+          extractionDiagnostics.pages.push({url:`${pp.finalUrl}#page=${pg}`,visiblePostCount:inspection.visiblePostCount,candidateCount:inspection.candidateCount,exactMatch:inspection.exactMatch,missingCount:inspection.missingCount,extraCount:inspection.extraCount,status:inspection.status,countSource:inspection.diagnostics?.countSource||'api'});
+          for(const candidate of extracted){const key=`${candidate.org}|${normalizeTitleForDedup(candidate.title)}|${canonicalJobUrl(candidate.link)}`;if(!candidateMap.has(key))candidateMap.set(key,candidate);}
+        } catch(error){ console.error(`[pagination] ${source.org} page ${pg}: ${error.message}`); }
       }
     }
     const rawCandidates = [...candidateMap.values()];
@@ -621,7 +642,7 @@ async function fetchSource(source) {
       }
     }
     return {
-      ok: true, source: activeSource, jobs, candidates: candidates.length, rawCandidates: rawCandidates.length, collectionCandidates: collectionCandidates.length, listSelection, listingPagesChecked: listingUrls.length, accessAttempts: access.attempts, accessDiagnosis: access.accessDiagnosis || {}, activeRecruitUrl: access.accessDiagnosis?.activeRecruitUrl || activeSource.url,
+      ok: true, source: activeSource, jobs, candidates: candidates.length, rawCandidates: rawCandidates.length, collectionCandidates: collectionCandidates.length, listSelection, listingPagesChecked: Math.max(listingUrls.length, Number(paginationDiag?.pagesChecked || 0)), accessAttempts: access.attempts, accessDiagnosis: access.accessDiagnosis || {}, activeRecruitUrl: access.accessDiagnosis?.activeRecruitUrl || activeSource.url,
       rejected: Math.max(0, rawCandidates.length - jobs.length),
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))

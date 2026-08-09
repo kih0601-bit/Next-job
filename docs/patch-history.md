@@ -146,3 +146,11 @@
 - 긴 공고 제목을 attachment-resolution Evidence 파일명에 그대로 넣던 문제를 짧은 prefix + stable hash 방식으로 변경. v88 전체 ZIP이 일부 환경에서 `File name too long`으로 풀리지 않는 실제 위험을 제거한다.
 - Reconciliation/Golden Dataset은 7단계 Pagination 진입 시 실제 활성화한다.
 - 선택형 Desktop Helper를 `tools/`에 추가. GitHub CLI를 자동 설치하거나 로그인하지 않으며, 개인 PC에서 이미 `gh`가 준비된 경우에만 최신 Actions 완료 대기/Artifact 다운로드를 지원한다. 약국·공용 PC에서는 실행하지 않아도 된다.
+
+## v90 — Run Metrics 실제 연결 + 7단계 Pagination 진입
+- v89 브리핑 자체진단에서 `run-metrics.mjs`는 존재했지만 workflow가 호출하지 않아 `data/run-metrics.json`이 생성되지 않는 원인을 확정. workflow에 start/mark/finalize를 실제 연결하고 Artifact에도 포함했다.
+- 기존 긴 attachment-resolution Evidence는 새 파일명 규칙만으로 사라지지 않으므로 Actions에서 legacy 장파일명을 정리하는 cleanup을 추가했다. 새 Evidence는 기존 v89 short-name 규칙을 유지한다.
+- `docs/source-status.json`은 과거 장애/pending 문구를 현재 상태와 섞지 않도록 Actions 결과에서 현재 10단계 상태로 동기화한다. 과거 장애 이력은 patch-history에 보존한다.
+- 공식 7단계 Pagination(전체 페이지 확장) 구현을 시작했다. 검증된 단일페이지 목록만 확장 seed로 사용하며, explicit query page / API paging metadata는 전체 페이지를 순회한다. JavaScript/POST contract가 확정되지 않은 기관은 추측 요청을 만들지 않고 `unknown-transport-contract`로 Evidence를 남긴다.
+- Pagination에서 page fingerprint 반복, 전체 페이지 도달 여부, raw/unique/duplicate 건수를 Reconciliation Check로 검증한다. Golden Dataset Check는 첫 도입 실행에서 검증된 1페이지 구조 기준선을 캡처하고 이후 run에서 regression 기준으로 확장한다.
+- 안전 원칙: `pagination control 미검출 = 단일페이지`로 자동 성공 처리하지 않는다. 총 페이지/이동 규칙을 증명할 Evidence가 없으면 unknown으로 남긴다.

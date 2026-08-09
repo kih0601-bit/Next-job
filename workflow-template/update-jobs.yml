@@ -26,6 +26,11 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Start run metrics
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/run-metrics.mjs start
+
       - name: Initialize run metrics
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -104,6 +109,17 @@ jobs:
       - name: Update pipeline history
         run: node scripts/update-pipeline-history.mjs
 
+      - name: Clean legacy diagnostic filenames
+        run: node scripts/cleanup-legacy-diagnostics.mjs
+
+      - name: Mark verification end
+        run: node scripts/run-metrics.mjs mark verification-end
+
+      - name: Finalize run metrics
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/run-metrics.mjs finalize
+
       - name: Verify debug outputs
         shell: bash
         run: |
@@ -131,6 +147,7 @@ jobs:
             data/regression-report.json
             data/pipeline-history.json
             data/pipeline-artifacts.json
+            data/run-metrics.json
             data/run-metrics.json
             data/diagnostics/
           retention-days: 14

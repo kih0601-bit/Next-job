@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { safeFileComponent } from './safe-filename.mjs';
+import { safeFileComponent, shortStableHash } from './safe-filename.mjs';
 const ENTITY_MAP = {
   '&amp;': '&', '&quot;': '"', '&#39;': "'", '&lt;': '<', '&gt;': '>', '&nbsp;': ' '
 };
@@ -514,6 +514,11 @@ function detailConfidence(text = '', expectedTitle = '') {
 const DETAIL_DIAG_DIR = process.env.NEXTJOB_DETAIL_DIAG_DIR || '';
 
 function safeDiagName(value = '') { return safeFileComponent(value, { fallback:'detail', maxBytes:64, maxChars:30 }); }
+function safeDiagArtifactStem(value = '') {
+  const raw=String(value||'');
+  if (/^[A-Za-z0-9._-]{1,48}$/.test(raw)) return raw;
+  return `item-${shortStableHash(raw)}`;
+}
 
 function writeDetailDiagnostic({ org = 'unknown', expectedTitle = '', requestedUrl = '', finalUrl = '', status = 0, contentType = '', html = '', error = '', stage = '', verdict = {}, request = null }) {
   if (!DETAIL_DIAG_DIR) return;
@@ -523,8 +528,8 @@ function writeDetailDiagnostic({ org = 'unknown', expectedTitle = '', requestedU
     const id = new URL(finalUrl || requestedUrl).searchParams.get('nttId')
       || new URL(finalUrl || requestedUrl).searchParams.get('bd_id')
       || new URL(finalUrl || requestedUrl).searchParams.get('num')
-      || safeDiagName(expectedTitle);
-    const base = safeDiagName(String(id));
+      || expectedTitle;
+    const base = safeDiagArtifactStem(String(id));
     fs.writeFileSync(path.join(dir, `${base}-raw.html`), String(html || ''));
     fs.writeFileSync(path.join(dir, `${base}-meta.json`), JSON.stringify({
       org, expectedTitle, requestedUrl, finalUrl, status, contentType, error, stage,
@@ -552,7 +557,7 @@ function writeAttachmentResolutionDiagnostic({ org = '', expectedTitle = '', fin
       const parsed = new URL(finalUrl);
       id = parsed.searchParams.get('employmentId') || parsed.searchParams.get('boardNo') || '';
     } catch {}
-    const base = safeDiagName(id || expectedTitle);
+    const base = safeDiagArtifactStem(id || expectedTitle);
     fs.writeFileSync(path.join(dir, `${base}-detail.html`), String(html || ''));
     const snippets = [];
     for (const pattern of [

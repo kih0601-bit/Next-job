@@ -238,3 +238,14 @@
 - Ulju Culture Foundation: existing evidence showed exact 1:1 `ROWAREA_RECORD` verification, one recruitment record, and zero pagination controls. This strong source-specific DOM proof can now establish verified-single without inventing an explicit total.
 - COMWEL: legacy detail links emitted as HTTP are normalized to HTTPS before detail collection; this directly addresses the observed HTTP endpoint failure without changing the official recruitment source.
 - Guardrail: no historical/current mismatch is hidden by prior success; current partial mismatch remains failure.
+
+## v101 — 자체 심화진단: WFPS cache identity/fingerprint 일관성 수정
+- v100 자체진단에서 WFPS cache key는 rotating `em_id`를 제거했지만, 실제 재사용 판정에 쓰는 `candidateIdentityFingerprint`와 `candidateFingerprint`는 여전히 원 URL의 `em_id`를 포함하는 구조적 불일치를 확인했다. 이 경우 같은 공고도 다음 실행에서 `identity-mismatch` 또는 `fingerprint-changed`로 재처리될 수 있다.
+- 같은 코드에서 `listText`는 조회수/시간 등 volatile 값 때문에 fingerprint에서 제외한다고 명시하면서 WFPS `sourceStableIdentity`는 `listText`를 우선 사용하고 있어 안정성 원칙이 상충하는 점도 확인했다.
+- 수정: WFPS URL에서는 cache 판정용으로 `em_id` 하나만 제거하고 다른 path/query material은 유지한다. parser가 안정적인 `listIdentity`를 제공하면 이를 최우선으로 사용하고, 없으면 `em_id` 제거 URL을 사용한다. `listText`는 cache identity에서 제거했다.
+- 수정: cache key, identity fingerprint, full fingerprint가 모두 동일한 `sourceStableIdentity`를 사용하도록 통일했다. WFPS detailRequest URL/body의 `em_id`도 fingerprint 계산에서만 volatile marker로 정규화한다.
+- 안전성: 실제 수집 URL/detail request 자체는 변경하지 않는다. 네트워크 요청이나 parser 동작은 손대지 않고 incremental cache reuse 판정만 교정한다. 다른 기관의 URL identity는 기존과 동일하며 울산테크노파크는 계속 `wr_id`를 durable primary key로 사용한다.
+- Pagination: 울주문화재단 `verified-single`은 현재 코드상 record-exact + ROWAREA_RECORD verification + pagination control 0 조건으로 제한되어 있다. 다만 이는 실제 Actions HTML evidence가 있어야 최종 완료 판정할 수 있으므로 추가 추측 수정하지 않는다.
+- 다음 Actions 검증: WFPS에서 동일 공고의 `em_id`가 바뀌어도 `identity-mismatch`/`fingerprint-changed`가 발생하지 않는지, cacheHits가 회복되는지, UTP `wr_id` migration이 유지되는지, Pagination implementation/current-run 20기관 결과와 Regression 0건을 확인한다.
+- 추가 자체진단: 새 stable identity 규칙으로 키를 찾더라도 v99/v100 cache entry 내부의 old `identityFingerprint`/`fingerprint`가 남아 있으면 `reusableCachedOutcome`에서 즉시 탈락할 수 있음을 확인.
+- 추가 수정: UTP/WFPS의 기존 cache는 `기관 + 정규화 제목 + durable identity`가 모두 정확히 일치할 때만 현재 candidate fingerprint로 rehydrate한다. direct key에 이미 있는 old-schema entry와 과거 key entry 모두 처리한다. 단순 제목 일치만으로 migration하지 않는다.

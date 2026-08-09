@@ -1,86 +1,20 @@
 {
-  "generatedAt": "2026-08-09T06:06:48.060Z",
+  "generatedAt": "2026-08-09T06:50:09.747Z",
   "mode": "warning",
   "passed": false,
-  "regressionCount": 3,
+  "regressionCount": 1,
+  "actionableRegressionCount": 1,
+  "transientWatchCount": 0,
   "regressions": [
     {
-      "org": "울산복지가족진흥사회서비스원",
-      "primaryCause": {
-        "stage": "http",
-        "status": "failed",
-        "code": "HTTP_FAILED",
-        "reason": "모든 후보 URL HTTP 접속 실패",
-        "evidence": [
-          {
-            "url": "https://wfps.or.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://uwfdi.re.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to uwfdi.re.kr port 443 after 5002 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
-    {
-      "org": "울산정보산업진흥원",
+      "org": "울산도시공사",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
         "code": "PIPELINE_SAMPLE_OK",
         "reason": "현재 진단 표본에서 실패 원인 없음",
         "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
+        "repairTarget": "scripts/collectors/institutions/울산도시공사.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
@@ -116,53 +50,11 @@
         }
       },
       "improved": false,
-      "regressed": true
-    },
-    {
-      "org": "한국산업안전보건공단",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국산업안전보건공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true
+      "regressed": true,
+      "regressionClass": "actionable",
+      "transientWatch": false,
+      "consecutiveFailureCount": 0,
+      "watchPolicy": ""
     }
   ]
 }

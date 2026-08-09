@@ -23,7 +23,7 @@ const RECRUITMENT_STAGE_NOISE = /(?:최종|예비|추가)?합격자|합격자\s*
 const matchesAny = (text, patterns) => patterns.some(pattern => pattern.test(text));
 const pad = value => String(value).padStart(2, '0');
 const STRICT_TARGET_ONLY = true;
-const DATA_VERSION = '15.2-v100-stable-source-cache-identity';
+const DATA_VERSION = '15.3-v101-stable-cache-fingerprint';
 const execFileAsync = promisify(execFile);
 
 const COLLECTION_CACHE_PATH = 'data/collection-cache.json';
@@ -34,9 +34,24 @@ const CACHE_TERMINAL_MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000;
 const CACHE_RETENTION_MS = 120 * 24 * 60 * 60 * 1000;
 const CACHE_MAX_ENTRIES = 4000;
 
+function stableUrlForCache(org = '', rawUrl = '') {
+  const canonical = canonicalJobUrl(rawUrl || '');
+  if (!canonical) return '';
+  if (org !== '울산복지가족진흥사회서비스원') return canonical;
+  try {
+    const parsed = new URL(canonical);
+    // em_id is a per-run/session token observed to rotate. Removing only that parameter
+    // preserves any durable path/board parameters while preventing false cache invalidation.
+    parsed.searchParams.delete('em_id');
+    return parsed.toString();
+  } catch {
+    return canonical.replace(/([?&])em_id=[^&#]*/gi, '$1').replace(/[?&]$/, '');
+  }
+}
+
 function sourceStableIdentity(candidate = {}) {
   const org = String(candidate.org || '');
-  const url = canonicalJobUrl(candidate.link || '');
+  const url = stableUrlForCache(org, candidate.link || '');
   try {
     const parsed = new URL(url);
     if (org === '울산테크노파크') {
@@ -44,13 +59,12 @@ function sourceStableIdentity(candidate = {}) {
       if (wrId) return `wr_id:${wrId}`;
     }
   } catch {}
-  // WFPS em_id is observed to rotate between runs, so never treat that token as a durable identity.
-  // Use stable row material when available; unlike the URL token it survives a new server session.
   if (org === '울산복지가족진흥사회서비스원') {
-    const stableRow = String(candidate.listText || candidate.title || '')
-      .replace(/em_id=[A-Za-z0-9_-]+/gi, 'em_id=<volatile>')
-      .replace(/\s+/g, ' ').trim().toLowerCase();
-    if (stableRow) return `row:${crypto.createHash('sha256').update(stableRow).digest('hex').slice(0,20)}`;
+    // Do not use listText here: public-board rows often contain volatile view counts/timestamps.
+    // Prefer a parser-provided stable row id; otherwise use the URL with only em_id removed.
+    const listIdentity = String(candidate.listIdentity || '').trim();
+    if (listIdentity) return `wfps-id:${listIdentity}`;
+    if (url) return `wfps-url:${url}`;
   }
   return `url:${url}`;
 }
@@ -60,21 +74,50 @@ function candidateCacheKey(candidate = {}) {
   return `${candidate.org || ''}|${sourceStableIdentity(candidate)}|${title}`;
 }
 
+function cacheEntryStableMatch(candidate = {}, entry = {}) {
+  const org = String(candidate.org || '');
+  if (!org || String(entry.org || '') !== org) return false;
+  if (normalizeTitleForDedup(entry.title || '') !== normalizeTitleForDedup(candidate.title || '')) return false;
+  const entryIdentity = sourceStableIdentity({ org, link: entry.link || '', title: entry.title || '' });
+  return entryIdentity === sourceStableIdentity(candidate);
+}
+
+function rehydrateCompatibleCacheEntry(candidate = {}, entry = {}) {
+  if (!cacheEntryStableMatch(candidate, entry)) return null;
+  return {
+    ...entry,
+    org: candidate.org || entry.org || '',
+    link: canonicalJobUrl(candidate.link || entry.link || ''),
+    title: candidate.title || entry.title || '',
+    identityFingerprint: candidateIdentityFingerprint(candidate),
+    fingerprint: candidateFingerprint(candidate),
+    cacheIdentityMigratedAt: new Date().toISOString()
+  };
+}
+
 function findCompatibleCacheEntry(candidate, entries = {}) {
   const directKey = candidateCacheKey(candidate);
-  if (entries[directKey]) return { key: directKey, entry: entries[directKey], migrated: false };
+  const direct = entries[directKey];
+  if (direct) {
+    // v100/v99 entries may already sit under the right key while carrying fingerprints
+    // calculated with the old volatile URL rules. Upgrade only after a stable identity match.
+    const specialOrg = candidate.org === '울산테크노파크' || candidate.org === '울산복지가족진흥사회서비스원';
+    if (specialOrg && (direct.identityFingerprint !== candidateIdentityFingerprint(candidate) || (direct.fingerprint && direct.fingerprint !== candidateFingerprint(candidate)))) {
+      const upgraded = rehydrateCompatibleCacheEntry(candidate, direct);
+      if (upgraded) return { key: directKey, entry: upgraded, migrated: true };
+    }
+    return { key: directKey, entry: direct, migrated: false };
+  }
   const org = String(candidate.org || '');
-  // v99 UTP keys contained the full URL and title. wr_id is the board's durable primary key,
-  // so migrate only an exact wr_id match. This cannot merge two distinct UTP notices.
-  if (org === '울산테크노파크') {
-    let wrId = '';
-    try { wrId = new URL(canonicalJobUrl(candidate.link || '')).searchParams.get('wr_id') || ''; } catch {}
-    if (wrId) {
-      const matches = Object.entries(entries).filter(([,v]) => v?.org === org && (() => { try { return new URL(v.link || '').searchParams.get('wr_id') === wrId; } catch { return false; } })());
-      if (matches.length) {
-        matches.sort((a,b) => String(b[1]?.processedAt || '').localeCompare(String(a[1]?.processedAt || '')));
-        return { key: matches[0][0], entry: matches[0][1], migrated: true };
-      }
+  // Migrate prior cache schemas only on exact durable identity + normalized-title equality.
+  // This prevents two distinct notices from being merged merely because their volatile URL token changed.
+  if (org === '울산테크노파크' || org === '울산복지가족진흥사회서비스원') {
+    const matches = Object.entries(entries)
+      .map(([key, entry]) => [key, rehydrateCompatibleCacheEntry(candidate, entry)])
+      .filter(([, entry]) => Boolean(entry));
+    if (matches.length) {
+      matches.sort((a,b) => String(b[1]?.processedAt || '').localeCompare(String(a[1]?.processedAt || '')));
+      return { key: matches[0][0], entry: matches[0][1], migrated: true };
     }
   }
   return { key: directKey, entry: null, migrated: false };
@@ -82,18 +125,23 @@ function findCompatibleCacheEntry(candidate, entries = {}) {
 
 function stableRequestMaterial(candidate = {}) {
   const request = candidate.detailRequest || {};
-  return [String(request.method || '').toUpperCase(), canonicalJobUrl(request.url || ''), String(request.body || '')].join('\n');
+  const org = String(candidate.org || '');
+  let body = String(request.body || '');
+  if (org === '울산복지가족진흥사회서비스원') {
+    body = body.replace(/(^|[&?])em_id=[^&]*/gi, '$1em_id=<volatile>');
+  }
+  return [String(request.method || '').toUpperCase(), stableUrlForCache(org, request.url || ''), body].join('\n');
 }
 
 function candidateFingerprint(candidate = {}) {
   // listText is deliberately excluded: many public boards include volatile view counts / timestamps in the row text.
-  // Those values change between runs without the recruitment notice changing and previously invalidated the cache.
-  const material = [candidate.org || '', canonicalJobUrl(candidate.link || ''), candidate.title || '', candidate.listIdentity || '', stableRequestMaterial(candidate)].join('\n');
+  // Use the same durable source identity as the cache key so a rotating transport/session token cannot defeat reuse.
+  const material = [candidate.org || '', sourceStableIdentity(candidate), candidate.title || '', candidate.listIdentity || '', stableRequestMaterial(candidate)].join('\n');
   return crypto.createHash('sha256').update(material).digest('hex').slice(0, 20);
 }
 
 function candidateIdentityFingerprint(candidate = {}) {
-  const material = [candidate.org || '', canonicalJobUrl(candidate.link || ''), normalizeTitleForDedup(candidate.title || '')].join('\n');
+  const material = [candidate.org || '', sourceStableIdentity(candidate), normalizeTitleForDedup(candidate.title || '')].join('\n');
   return crypto.createHash('sha256').update(material).digest('hex').slice(0, 20);
 }
 

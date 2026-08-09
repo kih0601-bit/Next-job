@@ -88,3 +88,10 @@
 - `addAttachment`에서 확장자 판정 전에 known static asset을 제거하도록 수정. SVG처럼 FILE_EXT 밖의 UI asset도 attachment context 때문에 우회 유입되지 않게 함. 실제 문서 첨부 규칙은 변경하지 않음.
 - 한국동서발전 `new_download.html`은 v82에서도 실제 파일 대신 `text/html`을 반환. 요청 파라미터를 추측해 성공 처리하지 않고, 다음 Actions에서 반환 HTML과 당시 URL/referer/method/body/headers를 `data/diagnostics/한국동서발전/attachment-resolution`에 보존하도록 추가. 이 evidence로 실제 다운로드 계약을 확정한 뒤 기관 전용 수정한다.
 - 전체 기능 검증 원칙 강화: 패치 직접 목적과 별개로 매 브리핑/심화진단에서 20기관 접속→목록→상세→첨부→문서분석→필터→최종저장, 실행시간, Regression, 건수 급변/불일치와 Silent Failure를 함께 확인한다.
+
+## v84 — EWP download-contract evidence preservation
+- Scope: 한국동서발전 only; no shared download behavior changed.
+- Confirmed cause: `new_download.html` is being requested without the file-identifying request contract and returns the site's abnormal-access HTML.
+- Change: preserve the EWP detail-page attachment anchor/form/parameter evidence even when a filename candidate was already discovered, so the next real run captures the missing request contract instead of discarding it.
+- Safety: no guessed parameter names or synthetic download URL were introduced; the other 19 institutions keep their existing extraction/download path.
+- Next verification: inspect the EWP `attachment-resolution/*-detail.html` and evidence JSON, implement the exact GET/POST contract only after it is observed, and re-check all 20 pipeline stages/regressions.

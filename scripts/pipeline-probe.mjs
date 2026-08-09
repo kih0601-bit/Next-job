@@ -404,6 +404,22 @@ function classifyAttachment(report) {
   return { status: 'unknown', code: 'ATTACHMENT_ZERO_UNRESOLVED', reason: '첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함', evidence: report.detail.samples || [] };
 }
 
+function classifyAttachmentDownload(report) {
+  if (!report.attachmentDiscovery?.ok) return { status: 'blocked', code: 'ATTACHMENT_DOWNLOAD_BLOCKED_BY_DISCOVERY', reason: '첨부 발견 단계 미통과로 다운로드 검증 보류', evidence: [] };
+  const stage = report.attachmentDownload || {};
+  if (stage.status === 'not-required') return { status: 'success', code: 'ATTACHMENT_DOWNLOAD_NOT_REQUIRED', reason: '실제 첨부 대상 없음이 확인되어 다운로드 불필요', evidence: [] };
+  if (stage.ok) return { status: 'success', code: 'ATTACHMENT_DOWNLOAD_VERIFIED', reason: `검증 표본 다운로드 ${stage.downloaded || 0}/${stage.attempted || 0} 성공`, evidence: stage.samples || [] };
+  return { status: 'failed', code: 'ATTACHMENT_DOWNLOAD_FAILED', reason: `검증 표본 다운로드 ${stage.downloaded || 0}/${stage.attempted || 0} 성공 · 실패 ${stage.failed || 0}`, evidence: stage.samples || [] };
+}
+
+function classifyDocumentAnalysis(report) {
+  if (!report.attachmentDownload?.ok) return { status: 'blocked', code: 'DOCUMENT_ANALYSIS_BLOCKED_BY_DOWNLOAD', reason: '첨부 다운로드 실패로 문서분석 검증 불가', evidence: report.attachmentDownload?.samples || [] };
+  const stage = report.documentAnalysis || {};
+  if (stage.status === 'not-required') return { status: 'success', code: 'DOCUMENT_ANALYSIS_NOT_REQUIRED', reason: '분석 대상 첨부 없음이 확인되어 문서분석 불필요', evidence: [] };
+  if (stage.ok) return { status: 'success', code: 'DOCUMENT_ANALYSIS_VERIFIED', reason: `검증 표본 문서분석 ${stage.parsed || 0}/${stage.attempted || 0} 성공`, evidence: stage.samples || [] };
+  return { status: 'failed', code: 'DOCUMENT_ANALYSIS_FAILED', reason: `검증 표본 문서분석 ${stage.parsed || 0}/${stage.attempted || 0} 성공 · 실패 ${stage.failed || 0}`, evidence: stage.samples || [] };
+}
+
 function remediationFor(code = '', org = '') {
   const institutionAdapter = `scripts/collectors/institutions/${org}.mjs`;
   const map = {
@@ -424,7 +440,10 @@ function remediationFor(code = '', org = '') {
     DETAIL_URL_NOT_READY: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 상세 URL 생성 규칙 구현' },
     DETAIL_404: { repairTarget: institutionAdapter, recommendedAction: '기관 상세 URL 파라미터·POST 규칙 수정' },
     DETAIL_EMPTY_BODY: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 상세 본문 선택자 추가' },
-    ATTACHMENT_ZERO_UNRESOLVED: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가' }
+    ATTACHMENT_ZERO_UNRESOLVED: { repairTarget: institutionAdapter, recommendedAction: '기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가' },
+    ATTACHMENT_DOWNLOAD_FAILED: { repairTarget: institutionAdapter, recommendedAction: '원본 상세 evidence에서 다운로드 URL·method·parameter·referer를 복원하고 실제 파일 응답을 검증' },
+    DOCUMENT_ANALYSIS_BLOCKED_BY_DOWNLOAD: { repairTarget: institutionAdapter, recommendedAction: '첨부 다운로드 contract를 먼저 복구한 뒤 문서분석 재검증' },
+    DOCUMENT_ANALYSIS_FAILED: { repairTarget: 'scripts/lib/document-analyzer.mjs', recommendedAction: '다운로드된 실제 문서 형식과 analyzer 결과를 대조해 기관별 문서 처리 원인 확인' }
   };
   return map[code] || { repairTarget: institutionAdapter, recommendedAction: '진단 evidence를 기준으로 기관 전용 Adapter 확인' };
 }
@@ -435,11 +454,13 @@ function attachRootCauses(report) {
     recruitVerify: classifyRecruitVerify(report),
     list: classifyList(report),
     detail: classifyDetail(report),
-    attachment: classifyAttachment(report)
+    attachment: classifyAttachment(report),
+    attachmentDownload: classifyAttachmentDownload(report),
+    documentAnalysis: classifyDocumentAnalysis(report)
   };
   // Backward-compatible alias for older report consumers.
   report.diagnosis.access = report.diagnosis.recruitVerify;
-  const order = ['http', 'recruitVerify', 'list', 'detail', 'attachment'];
+  const order = ['http', 'recruitVerify', 'list', 'detail', 'attachment', 'attachmentDownload', 'documentAnalysis'];
   const first = order.map(stage => ({ stage, ...report.diagnosis[stage] })).find(item => item.status === 'failed' || item.status === 'partial' || item.status === 'unknown');
   report.primaryCause = first || { stage: 'complete', status: 'success', code: 'PIPELINE_SAMPLE_OK', reason: '현재 진단 표본에서 실패 원인 없음', evidence: [] };
   Object.assign(report.primaryCause, remediationFor(report.primaryCause.code, report.org));

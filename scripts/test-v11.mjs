@@ -305,3 +305,18 @@ console.log('v84 EWP download-contract evidence tests passed');
   assert.equal(officialBoard.verified, true, 'institution-owned WFPS employment board must verify');
 }
 console.log('v85 WFPS official-source-only verification tests passed');
+
+// v86: EWP evidence-proven POST contract + strict downstream diagnosis guards.
+{
+  const detailParserSource = await (await import('node:fs/promises')).readFile(new URL('./lib/detail-parser.mjs', import.meta.url), 'utf8');
+  assert.match(detailParserSource, /host === 'ewp\.co\.kr'/);
+  assert.match(detailParserSource, /new_down/);
+  assert.match(detailParserSource, /params\.set\('idx_to'/);
+  assert.match(detailParserSource, /params\.set\('order_num'/);
+  assert.match(detailParserSource, /new_download\.html/);
+  assert.match(detailParserSource, /method: 'POST'/);
+  const probeSource = await (await import('node:fs/promises')).readFile(new URL('./pipeline-probe.mjs', import.meta.url), 'utf8');
+  assert.match(probeSource, /classifyAttachmentDownload/);
+  assert.match(probeSource, /classifyDocumentAnalysis/);
+  assert.match(probeSource, /'attachmentDownload', 'documentAnalysis'/);
+}

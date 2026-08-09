@@ -255,3 +255,16 @@ console.log('v79 remaining-three evidence fixes passed');
   assert.match(probeSource, /transport === 'curl-resolved'/);
 }
 console.log('v80/v82 WFPS bounded resolved-IP transport tests passed');
+
+// v83: static SVG board chrome must never be promoted to an attachment merely
+// because it appears next to a real download link in an attachment-area DOM.
+{
+  const files = extractAttachments(`
+    <div class="attachment-file-area">
+      <a href="/webuser/employment/download.html?fi_id=27982">첨부파일 1 다운로드</a>
+      <a href="/webuser/img/sub/board/icon-3.svg">게시판 아이콘</a>
+    </div>
+  `, 'https://wfps.or.kr/webuser/employment/view.html');
+  assert.equal(files.some(item => /icon-3\\.svg/i.test(item.url)), false, 'WFPS board SVG icon must not be an attachment');
+}
+console.log('v83 static SVG attachment rejection tests passed');

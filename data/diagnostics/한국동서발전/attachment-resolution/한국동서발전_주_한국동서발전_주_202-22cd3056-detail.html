@@ -1,0 +1,379 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML>
+<html lang="KO">
+<head>
+		
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="keywords" content="">
+	<meta name="description" content=""> 
+	<link rel="canonical" href="">
+    <meta property="og:type" content="website"> 
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:image" content="">
+	<meta name="twitter:domain" content="">
+	<link rel="stylesheet" href="/jobalio/css/reset.css">
+	<link rel="stylesheet" href="/jobalio/css/style.css">
+	<link rel="stylesheet" href="/jobalio/css/swiper.css">
+	<link rel="stylesheet" type="text/css" href="/css/lib/select2.min.css" />
+	<script src="/jobalio/js/jquery-1.9.1.min.js"></script>
+	<script src="/jobalio/js/jquery.easing.1.3.js"></script>
+	<script src="/jobalio/js/jquery.bxslider.js"></script>
+	<script src="/jobalio/js/swiper.js"></script> 
+	<script src="/jobalio/js/script.js"></script> 
+	<script src="/jobalio/js/respond.src.js"></script> 
+	<script src="/jobalio/js/app_util.js"></script> 
+	<script type="text/javascript" src="/js/lib/select2.full.js"></script>
+	
+	<div class="loading">
+		<div class="img"><img src="/jobalio/img/ico_loading.png" alt="loading..."></div>
+	</div>
+	<title>잡알리오</title>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+				
+				
+				
+
+				
+
+				
+
+				
+				
+				
+
+				
+
+				
+
+			});
+		function fn_list() {
+			var f = document.frm;
+			f.action = "/mobile2021/recruit/recruit.do";
+			f.submit();
+		}
+		
+		function addRecruit() {
+			$.ajax({
+				type : "POST",
+				url : "/insertRecruit.do",
+				data : $("#frm").serialize(),
+				dataType: 'json',
+				success: function(data) {
+					if(data.resultmessage == "LN"){
+						alert("로그인 해 주세요.");
+						location.href="/main.do";
+					}else{
+						alert(data.resultmessage);
+					}
+				},
+				error : function(msg) {
+					alert("관심채용정보등록을 실패했습니다.");
+				}
+			}); 
+		}
+	</script>
+</head>
+<body>
+	
+	<div id="wrap">
+		<div class="pop_style">
+			<h1>채용정보 상세 보기</h1>
+			<a href="#" class="open_pop_share">공유하기</a>
+			<a href="javascript: history.back(-1);" class="close_pop_style"><img src="/jobalio/img/btn_close.png" alt="close"></a>
+			<div class="inner">
+				<div class="recruit_view">
+					<div class="top">
+						<div class="tit">한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고</div>
+						<div class="date">2026.04.06 / 
+							
+								
+								
+									<span class="cate02">마감</span>
+								
+								
+							
+						</div>
+					</div>
+					<div class="cont">
+
+						
+						<p class="tit">공공기관 채용정보</p>
+						<div class="table_list">
+							<table>
+								<caption class="hide"></caption>
+								<colgroup>
+									<col style="width:20%">
+									<col>
+								</colgroup>
+								<tr>
+									<th scope="row">기관명</th>
+									<td>한국동서발전(주)</td>
+								</tr>
+								<tr>
+									<th scope="row">표준직무(NCS)</th>
+									<td>경영.회계.사무</td>
+								</tr>
+								<tr>
+									<th scope="row">고용형태</th>
+									<td>비정규직</td>
+								</tr>
+								<tr>
+									<th scope="row">학력정보</th>
+									<td>학력무관</td>
+								</tr>
+								<tr>
+									<th scope="row">채용구분</th>
+									<td>신입</td>
+								</tr>
+								<tr>
+									<th scope="row">근무지</th>
+									<td>울산</td>
+								</tr>
+								<tr>
+									<th scope="row">근무분야</th>
+									<td>일반직,행정직</td>
+								</tr>
+								<tr>
+									<th scope="row">채용인원</th>
+									<td>1</td>
+								</tr>
+								<tr>
+									<th scope="row">우대조건</th>
+									<td>취업지원대상자(보훈)</td>
+								</tr>
+								<tr>
+									<th scope="row">공고기간</th>
+									<td>
+										26.04.06 ~
+										26.04.21
+									</td>
+								</tr>
+
+	
+								<tr>
+									<th scope="row">응시자격</th>
+									<td>
+										1. 연령, 성별, 학력, 어학 제한 없음<br/>2. 병역 : 병역법 제76조에서 정한 병역의무 불이행 사실이 없는 자<br/>- 현역의 경우, 최종합격자 발표일 이전에 전역 가능한 자<br/>3. 우대* : 공공기록물 관리에 관한 법률 시행령 제 78조에 따른 다음의 자격요건 중 어느 하나에 해당하는 사람 우대<br/> (1) 기록관리학 전공으로 석사학위 이상을 취득한 자<br/> (2) 다음 각 목의 어느 하나에 해당하는 자로서 행정안전부령으로 정하는 기록관리학 교육과정을 이수하고, 행정안전부장관이 시행하는 기록물관리 전문요원 시험에 합격한 자<br/>   가. 기록관리학 학사학위를 취득한 자<br/>   나. 역사학 또는 문헌정보학 학사학위 이상을 취득한 자<br/>※ 우대사항 해당자는 서류전형 평가시 가점 10점 부여<br/>4. 기타<br/>- 2026년 입사일부터 당사 근무가 가능한 자<br/>- 인사관리규정 제16조(신규채용자의 결격사유) 미해당자<br/>- 각종 자격 요건 등 구비 시점 : 입사지원서 접수 마감일 기준
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">결격사유</th>
+									<td>
+										당사 인사관리규정 제16조 신규채용자의 결격사유<br/><br/>제16조 (신규채용자의 결격사유) 다음 각호의 1에 해당하는 자는 직원으로 채용할 수 없다.<br/>1. 피성년후견인 또는 피한정후견인<br/>2. 파산자(破産者)로서 복권되지 아니한 자<br/>3. 금고(禁錮) 이상의 형을 받고 그 집행이 종료되거나 집행을 받지 아니하기로 확정된 후 5년을 경과하지 아니한 자<br/>4. 금고(禁錮) 이상의 형을 받고 그 집행유예기간이 만료된 날로부터 2년을 경과하지 아니한 자<br/>5. 금고(禁錮) 이상의 형의 선고유예를 받은 경우에 그 선고유예 기간중에 있는 자<br/>6. 징계(懲戒)에 의하여 해임의 처분을 받은 때로부터 5년을 경과하지 아니한 자<br/>7. 법원의 판결 또는 법률에 의하여 자격이 상실 또는 정지된 자<br/>8. 불량한 소행의 사실이 있는 자*<br/>9. 병역법 제76조에서 정한 병역의무 불이행자<br/>10. 입사제출서류에 허위사실이 발견된 자<br/>11. 신체검사 결과 불합격으로 판정된 자(채용업무관리세칙 별표9를 따름)<br/>12. 신원조회 결과 「부패방지 및 국민권익위원회의 설치와 운영에 관한 법률」 제82조에 따른 비위면직자 등의 취업제한 적용을 받은 날로부터 5년이 지나지 아니한 자<br/>13. 다음 각 호의 어느 하나에 해당하는 죄를 범한 사람으로서 100만원 이상의 벌금형을 선고받고 그 형이 확정된 후 3년이 지나지 아니한 사람<br/>가. 「성폭력범죄의 처벌 등에 관한 특례법」 제2조에 따른 성폭력범죄<br/>나. 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 제74조 제1항 제2호 및 제3호에 규정된 죄<br/>다. 「스토킹범죄의 처벌 등에 관한 법률」 제2조 제2호에 따른 스토킹범죄<br/>14. 미성년자에 대한 다음 각 목의 어느 하나에 해당하는 죄를 저질러 파면ㆍ해임되거나 형 또는 치료 감호를 선고받아 그 형 또는 치료감호가 확정된 사람(집행유예를 선고받은 후 그 집행유예기간이 경과한 사람을 포함한다)<br/>가. 「성폭력범죄의 처벌 등에 관한 특례법」 제2조에 따른 성폭력범죄<br/>나. 「아동ㆍ청소년의 성보호에 관한 법률」 제2조제2호에 따른 아동ㆍ청소년대상 성범죄<br/><br/>*‘8호 불량한 소행의 사실이 있는 자’는 다음과 같다<br/>[예 : 신원조회 결과 음주·무면허운전, 마약, 성범죄, 벌금 100만원 이상의 폭행·상해 등 폭력범죄, 사기·횡령 등 피해자있는 재산범죄 등 사회통념상 불량한 소행에 해당하는 특이사항이 발견된 자]
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">전형절차/방법</th>
+									<td>
+										1. 채용공고 및 지원서 접수 :<br/>- 채용공고 : 2026.04.06. ~ 2026.04.21. 10:00<br/>- 접수기간 : 2026.04.13. ~ 2026.04.21. 10:00<br/>2. 서류전형 합격자발표 : 2026.04.29.<br/>- 직무적합도(60점) 및 역량적합도(40점) 평가, 서류전형 고득점자 순위 최종선발예정인원의 5배수 선발<br/>3. 면접전형 : 2026.05.06. ~ 2026.05.08.(금) 중 1일 / 합격자발표 : 2026.05.11.<br/>- 면접전형 60점 이상 고득점자 순위 최종선발예정인원의 1배수 선발<br/>4. 신체검사, 신원조회 등 적부판정 : 2026.05.11.~05.14.<br/>5. 최종 합격자 통보 : 2026.05.14. <br/>6. 입사(근무)일 : 2026.05.18.<br/><br/>※ 그 외 자세한 사항은 공고문 참고
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">우대내용</th>
+									<td>
+										□ 가점부여<br/>취업지원대상자(보훈) : 전형 단계별 만점의 5~10%<br/><br/>※ 그 외 자세한 사항은 공고문 참고
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">전형단계별 채용정보</th>
+									<td>
+										<ul>
+		
+		
+		
+											<li>
+			
+				
+												<p class="cate">기록물관리지원담당</p>
+				
+				
+			
+			
+				
+				
+												<span class="blue">1차 :</span> 선발인원 4명 / 응시인원 12명<br />
+					
+												<span class="blue">전형단계별 결과확정일 :</span> 2026.04.29
+				
+			
+											</li>
+		
+											<li>
+			
+				
+				
+			
+			
+				
+				
+												<span class="blue">2차 :</span> 선발인원 1명 / 응시인원 3명<br />
+					
+												<span class="blue">전형단계별 결과확정일 :</span> 2026.05.08
+				
+			
+											</li>
+		
+											<li>
+			
+				
+				
+			
+			
+				
+												<span class="blue">최종 :</span> 선발인원 1명 / 응시인원 1명<br />
+												<span class="blue">전형단계별 결과확정일 :</span> 2026.05.18<br />
+					
+												<span class="blue">최종 경쟁률 :</span> 12 대 1
+					
+					
+				
+				
+			
+											</li>
+		
+										</ul>
+									</td>
+								</tr>
+	
+	
+
+								<tr>
+									<th scope="row">공고문</th>
+									<td>
+									
+										
+											
+												<div>
+													<a href="https://www.alio.go.kr/download/download.json?fileNo=3040628" target="_blank">(붙임) 한국동서발전 2026년 기간제근로자(기록물관리지원담당) 채용공고문.pdf</a>
+												</div>
+											
+										
+											
+										
+											
+										
+									
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">입사지원서</th>
+									<td>
+									
+										
+											
+										
+											
+										
+											
+												<div>
+													<a href="https://www.alio.go.kr/download/download.json?fileNo=3040715" target="_blank">(붙임) 2026년 기간제근로자(기록물관리지원담당) 입사지원서.hwp</a>
+												</div>
+											
+										
+									
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">직무기술서</th>
+									<td>
+									
+										
+											
+										
+											
+												<div>
+													<a href="https://www.alio.go.kr/download/download.json?fileNo=3040630" target="_blank">(붙임) 한국동서발전 직무기술서(기록물관리지원담당).pdf</a>
+												</div>
+											
+										
+											
+										
+									
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">기타 첨부파일</th>
+									<td>
+									
+										
+											
+										
+											
+										
+											
+										
+									
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">미첨부 사유</th>
+									<td>
+										
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">원문 URL</th>
+									<td>
+
+	
+									<a href="https://matchingbank.career.co.kr" target="_blank">https://matchingbank.career.co.kr</a>
+	
+	
+
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+<form id="frm" name="frm" method="post">
+	<input type="hidden" name="pageNo" id="pageNo" value="1" />
+	<input type="hidden" name="idxs" id="idxs" value="298887" />
+	<input type="hidden" name="param" id="param" value="" /> 
+	<input type="hidden" name="title" id="title" value=""/>
+	<input type="hidden" name="recruitYear" id="recruitYear" value=""/>
+	<input type="hidden" name="recruitMonth" id="recruitMonth" value=""/>
+	<input type="hidden" name="org_type" id="org_type" value=""/>
+	<input type="hidden" name="org_name" id="org_name" value=""/>
+	<input type="hidden" name="eduType" id="eduType" value=""/>
+	<input type="hidden" name="search_yn" id="search_yn" value=""/>
+</form>
+
+	<!-- 클립보드복사 팝업 -->
+	<div class="pop_share">
+		<div class="inner">
+			<h2>클립보드에 주소가 복사 되었습니다.</h2>
+			<a href="#" class="close_pop_share"><img src="/jobalio/img/btn_close.png" alt="닫기"></a>
+		</div>
+	</div>
+	<!-- //클립보드복사 팝업 -->
+	
+</body>
+</html>

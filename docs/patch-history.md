@@ -214,3 +214,11 @@
 - Evidence: EWP and other legacy forms expose real page/pageNum fields even when total page count is not printed.
 - Fix: evidence-backed GET/POST page fields can enter bounded terminal discovery. Probe walks sequential pages to an empty/repeated terminal response, caps at 100, and records terminalEvidence. No guessed page parameter is introduced.
 - Governance: pipeline report version updated to v97 source-of-truth string. Existing collector behavior and incremental cache remain unchanged.
+
+## v98 — Pagination proof state model + single-page proof
+- Separate stage-7 Implementation Coverage from Current Run Health. A transient access failure or temporarily absent pagination control no longer erases a previously proven pagination implementation.
+- Pagination statuses now distinguish `verified-full`, `verified-single`, `verified-historical`, `unknown-*`, and `partial-or-mismatch`; `implementationOk` and `currentRunOk` are recorded independently.
+- Historical verification is conservative: only a prior actually verified pagination result may be retained, and only when the current run is unknown/not-evaluated. A current structural mismatch remains a failure and is never hidden by history.
+- Single-page boards are no longer verified merely because no pager is visible. `verified-single` requires exact record extraction, an explicit total-count equal to extracted candidates, and no pagination control/page field evidence. Otherwise the board stays unknown and records `singlePageProof` diagnostics.
+- Pipeline summary records implementation-verified vs current-run-verified counts and verification class counts. Pipeline history now persists pagination implementation/current-run/status/class for future evidence.
+- This patch does not relax pagination completeness rules and does not activate stage 8.

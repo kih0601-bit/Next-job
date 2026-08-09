@@ -244,11 +244,14 @@ console.log('v79 remaining-three evidence fixes passed');
 // v80: WFPS source-scoped DoH + curl --resolve fallback.
 {
   const welfare = SOURCES.find(item => item.org === '울산복지가족진흥사회서비스원');
-  assert.deepEqual(welfare.accessConfig.transportChain, ['fetch', 'curl', 'curl-resolved'], 'probe must attempt resolved-IP transport only after normal transports fail');
-  assert.deepEqual(welfare.accessConfig.collectorTransportChain, ['node-browser', 'node-simple', 'curl', 'curl-resolved'], 'collector must preserve normal transports and add resolved-IP fallback last');
+  assert.deepEqual(welfare.accessConfig.transportChain, ['fetch', 'curl-resolved'], 'probe must use one normal path plus resolved-IP fallback without redundant curl retries');
+  assert.deepEqual(welfare.accessConfig.collectorTransportChain, ['node-browser', 'curl-resolved'], 'collector must use bounded normal access plus resolved-IP fallback');
+  assert.equal(welfare.accessConfig.accessAttemptsPerUrl, 1);
+  assert.equal(welfare.accessConfig.skipHostAfterConnectTimeout, true);
+  assert.equal(welfare.accessConfig.accessTimeoutMs, 9000);
   const probeSource = await (await import('node:fs/promises')).readFile(new URL('./pipeline-probe.mjs', import.meta.url), 'utf8');
   assert.match(probeSource, /resolveHostWithDoh/);
   assert.match(probeSource, /--resolve/);
   assert.match(probeSource, /transport === 'curl-resolved'/);
 }
-console.log('v80 WFPS resolved-IP transport fallback tests passed');
+console.log('v80/v82 WFPS bounded resolved-IP transport tests passed');

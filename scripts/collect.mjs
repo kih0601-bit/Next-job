@@ -191,9 +191,9 @@ async function fetchWithCurlResolved(url, timeoutMs, { referer = '' } = {}) {
   for (const ip of ips.slice(0, 3)) {
     const args = [
       '--silent', '--show-error', '--location', '--compressed', '--ipv4',
-      '--connect-timeout', String(Math.max(8, Math.floor(timeoutMs / 2000))),
-      '--max-time', String(Math.max(20, Math.ceil(timeoutMs / 1000))),
-      '--retry', '1', '--retry-delay', '2', '--retry-all-errors',
+      '--connect-timeout', String(Math.max(5, Math.floor(timeoutMs / 2000))),
+      '--max-time', String(Math.max(8, Math.ceil(timeoutMs / 1000))),
+      '--retry', '0',
       '--resolve', `${parsed.hostname}:${port}:${ip}`,
       '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
       '--header', 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -272,16 +272,29 @@ async function fetchHtml(url, timeoutMs = 15000, options = {}, source = {}) {
   throw new Error([...new Set(errors)].join(' / '));
 }
 
+function isConnectTimeoutError(error = '') {
+  return /Failed to connect|connect(?:ion)?\s+timed?\s*out|connect timeout|port\s+443.*Timeout/i.test(String(error));
+}
+
 async function fetchFirstAccessible(source) {
   const attempts = [];
   const successfulPages = [];
   const accessPlan = buildAccessPlan(source);
+  const blockedHosts = new Set();
+  const attemptsPerUrl = Math.max(1, Number(source.accessConfig?.accessAttemptsPerUrl || 2));
+  const configuredTimeout = Number(source.accessConfig?.accessTimeoutMs || 0);
   for (const plan of accessPlan) {
     const { url } = plan;
-    const allowInsecureTls = /(^|\.)ucf\.or\.kr$/i.test(new URL(url).hostname);
-    for (let attempt = 1; attempt <= 2; attempt += 1) {
+    const hostname = new URL(url).hostname.toLowerCase();
+    if (blockedHosts.has(hostname)) {
+      attempts.push({ url, ok: false, skipped: true, error: 'same-host connect timeout circuit open', accessTemplate: plan.template });
+      continue;
+    }
+    const allowInsecureTls = /(^|\.)ucf\.or\.kr$/i.test(hostname);
+    for (let attempt = 1; attempt <= attemptsPerUrl; attempt += 1) {
       try {
-        const result = await fetchHtml(url, attempt === 1 ? 20000 : 35000, { referer: source.homepage || '', allowInsecureTls }, source);
+        const timeoutMs = configuredTimeout > 0 ? configuredTimeout : (attempt === 1 ? 20000 : 35000);
+        const result = await fetchHtml(url, timeoutMs, { referer: source.homepage || '', allowInsecureTls }, source);
         const verification = inspectRecruitPage({ ...result, requestedUrl: url, org: source.org, accessTemplate: source.accessTemplate, accessConfig: source.accessConfig });
         const item = { ...result, requestedUrl: url, verification, accessPriority: plan.accessPriority, accessTemplate: plan.template };
         successfulPages.push(item);
@@ -293,7 +306,11 @@ async function fetchFirstAccessible(source) {
         break;
       } catch (error) {
         attempts.push({ url, ok: false, error: error.message, attempt, accessTemplate: plan.template });
-        if (attempt === 1) await new Promise(resolve => setTimeout(resolve, 1500));
+        if (source.accessConfig?.skipHostAfterConnectTimeout && isConnectTimeoutError(error.message)) {
+          blockedHosts.add(hostname);
+          break;
+        }
+        if (attempt < attemptsPerUrl) await new Promise(resolve => setTimeout(resolve, 1500));
       }
     }
   }

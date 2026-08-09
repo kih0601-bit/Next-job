@@ -157,9 +157,9 @@ async function fetchHtmlWithCurlResolved(url, timeoutMs = 22000, referer = '') {
   for (const ip of ips.slice(0, 3)) {
     const args = [
       '--silent', '--show-error', '--location', '--compressed', '--ipv4',
-      '--connect-timeout', String(Math.max(8, Math.floor(timeoutMs / 2000))),
-      '--max-time', String(Math.max(20, Math.ceil(timeoutMs / 1000))),
-      '--retry', '1', '--retry-delay', '2', '--retry-all-errors',
+      '--connect-timeout', String(Math.max(5, Math.floor(timeoutMs / 2000))),
+      '--max-time', String(Math.max(8, Math.ceil(timeoutMs / 1000))),
+      '--retry', '0',
       '--resolve', `${parsed.hostname}:${port}:${ip}`,
       '--user-agent', headers(referer)['user-agent'],
       '--header', 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -274,19 +274,33 @@ async function fetchKoshaTboard(serviceId = 'boardList', data = {}, page = 1) {
   } finally { clearTimeout(timer); }
 }
 
+function isConnectTimeoutError(error = '') {
+  return /Failed to connect|connect(?:ion)?\s+timed?\s*out|connect timeout|port\s+443.*Timeout/i.test(String(error));
+}
+
 async function accessiblePages(source) {
   const attempts = [];
   const pages = [];
-  const accessPlan = buildAccessPlan(source).slice(0, MAX_ACCESS_URLS);
+  const maxUrls = Math.max(1, Number(source.accessConfig?.maxProbeAccessUrls || MAX_ACCESS_URLS));
+  const accessPlan = buildAccessPlan(source).slice(0, maxUrls);
+  const blockedHosts = new Set();
+  const timeoutMs = Number(source.accessConfig?.accessTimeoutMs || ACCESS_TIMEOUT_MS);
   for (const plan of accessPlan) {
     const { accessPriority, url } = plan;
+    const hostname = new URL(url).hostname.toLowerCase();
+    if (blockedHosts.has(hostname)) {
+      attempts.push({ url, ok: false, skipped: true, error: 'same-host connect timeout circuit open', accessTemplate: plan.template, requestProfile: plan.requestProfile });
+      continue;
+    }
     try {
-      const result = await fetchHtml(url, ACCESS_TIMEOUT_MS, source.homepage || '', source);
+      const result = await fetchHtml(url, timeoutMs, source.homepage || '', source);
       const verification = inspectRecruitPage({ ...result, requestedUrl: url, org: source.org, accessTemplate: source.accessTemplate, accessConfig: source.accessConfig });
       attempts.push({ url, ok: true, status: result.status, finalUrl: result.finalUrl, verification, accessTemplate: plan.template, requestProfile: plan.requestProfile });
       pages.push({ ...result, requestedUrl: url, verification, accessPriority, accessTemplate: plan.template, requestProfile: plan.requestProfile });
     } catch (error) {
-      attempts.push({ url, ok: false, error: error.name === 'AbortError' ? 'timeout' : error.message, accessTemplate: plan.template, requestProfile: plan.requestProfile });
+      const message = error.name === 'AbortError' ? 'timeout' : error.message;
+      attempts.push({ url, ok: false, error: message, accessTemplate: plan.template, requestProfile: plan.requestProfile });
+      if (source.accessConfig?.skipHostAfterConnectTimeout && isConnectTimeoutError(message)) blockedHosts.add(hostname);
     }
   }
   if (!pages.length) {

@@ -237,7 +237,7 @@ console.log('v13.1/v85 welfare-service access-source tests passed');
 
   const analyzerSource = await (await import('node:fs/promises')).readFile(new URL('./lib/document-analyzer.mjs', import.meta.url), 'utf8');
   assert.match(analyzerSource, /isAdministrativeFormAttachment/);
-  assert.match(analyzerSource, /2\.6-evidence-scoped-document-coverage/);
+  assert.match(analyzerSource, /2\.7-hwp-render-and-archive-scope/);
 }
 console.log('v79 remaining-three evidence fixes passed');
 

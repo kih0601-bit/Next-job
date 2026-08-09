@@ -4,7 +4,7 @@ import { promisify } from 'node:util';
 import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.mjs';
 import { discoverListingUrls } from './collectors/source-adapters.mjs';
 import { inspectListingPage } from './lib/list-pipeline.mjs';
-import { discoverPaginationPlan, paginationUrl, reconcilePages, pageFingerprint } from './lib/pagination-engine.mjs';
+import { discoverPaginationPlan, paginationUrl, paginationRequest, reconcilePages, pageFingerprint } from './lib/pagination-engine.mjs';
 import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics.mjs';
 import { cleanHtml, fetchDetail, decodeHtmlEntities } from './lib/detail-parser.mjs';
 import { fetchKepcoDynamicList } from './lib/kepco-dynamic.mjs';
@@ -81,6 +81,29 @@ function headers(referer = '') {
     'accept-language': 'ko-KR,ko;q=0.9',
     ...(referer ? { referer } : {})
   };
+}
+
+async function fetchPaginationPage(request, timeoutMs = LIST_TIMEOUT_MS, referer = '', source = {}) {
+  if (!request || !request.url) throw new Error('pagination request missing');
+  if ((request.method || 'GET').toUpperCase() === 'GET') return fetchHtml(request.url, timeoutMs, referer, source);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(request.url, {
+      method: request.method || 'POST',
+      headers: { ...headers(referer), ...(request.headers || {}) },
+      body: request.body || undefined,
+      redirect: 'follow',
+      signal: controller.signal
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    const contentType = response.headers.get('content-type') || '';
+    const probe = new TextDecoder('utf-8').decode(bytes.slice(0, Math.min(bytes.length, 8192)));
+    const html = decodeResponseBytes(bytes, contentType, probe);
+    if (html.trim().length < 80) throw new Error('response body too short');
+    return { html, status: response.status, finalUrl: response.url || request.url, contentType };
+  } finally { clearTimeout(timer); }
 }
 
 
@@ -700,18 +723,25 @@ async function probeSource(source, artifacts) {
         report.pagination.ok = false;
         report.pagination.reconciliation = {status:'blocked',reason:'페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음'};
         report.pagination.goldenDataset = {status:'baseline-capture', firstPageFingerprint:results[0].fingerprint, firstPageCount:all.length};
-      } else if (finalPlan.kind === 'query-get' && totalPages && totalPages <= 60) {
+      } else if (totalPages === 1 && ['javascript-form','form-post','query-get'].includes(finalPlan.kind)) {
+        report.pagination.pagesChecked = 1;
+        report.pagination.rawCount = all.length; report.pagination.uniqueCount = new Set(all.map(x=>x.link||x.title)).size; report.pagination.duplicateCount = Math.max(0, all.length-report.pagination.uniqueCount);
+        report.pagination.reconciliation = {status:'pass',rawCount:all.length,uniqueCount:report.pagination.uniqueCount,duplicateCount:report.pagination.duplicateCount,repeatedPageFingerprint:false,reason:'페이지 컨트롤/총 페이지 Evidence가 1페이지임을 명시'};
+        report.pagination.goldenDataset = {status:'active-structural-baseline', firstPageFingerprint:results[0].fingerprint, firstPageCount:all.length};
+        report.pagination.ok = true;
+        report.pagination.status = 'verified-full';
+      } else if (['query-get','form-post'].includes(finalPlan.kind) && totalPages && totalPages <= 60) {
         const start = pageBase === 0 ? 0 : 1;
         for (let pg=start; pg<start+totalPages; pg++) {
           if (pg === pageBase) continue;
-          const u = paginationUrl(finalPlan, selected.url, pg);
-          if (!u) break;
+          const req = paginationRequest(finalPlan, selected.url, pg);
+          if (!req?.url) break;
           try {
-            const pp = await fetchHtml(u, LIST_TIMEOUT_MS, selected.url, source);
-            const inspect = inspectListingPage(pp.html, {...source,url:pp.finalUrl||u});
+            const pp = await fetchPaginationPage(req, LIST_TIMEOUT_MS, selected.url, source);
+            const inspect = inspectListingPage(pp.html, {...source,url:pp.finalUrl||req.url});
             const fp = pageFingerprint(inspect.candidates);
-            results.push({page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl||u,exactMatch:Boolean(inspect.exactMatch)});
-            report.pagination.pageFingerprints.push({page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl||u});
+            results.push({page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl||req.url,exactMatch:Boolean(inspect.exactMatch)});
+            report.pagination.pageFingerprints.push({page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl||req.url,method:req.method});
           } catch(error) { report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`); }
         }
         report.pagination.pagesChecked = results.length;

@@ -154,3 +154,13 @@
 - 공식 7단계 Pagination(전체 페이지 확장) 구현을 시작했다. 검증된 단일페이지 목록만 확장 seed로 사용하며, explicit query page / API paging metadata는 전체 페이지를 순회한다. JavaScript/POST contract가 확정되지 않은 기관은 추측 요청을 만들지 않고 `unknown-transport-contract`로 Evidence를 남긴다.
 - Pagination에서 page fingerprint 반복, 전체 페이지 도달 여부, raw/unique/duplicate 건수를 Reconciliation Check로 검증한다. Golden Dataset Check는 첫 도입 실행에서 검증된 1페이지 구조 기준선을 캡처하고 이후 run에서 regression 기준으로 확장한다.
 - 안전 원칙: `pagination control 미검출 = 단일페이지`로 자동 성공 처리하지 않는다. 총 페이지/이동 규칙을 증명할 Evidence가 없으면 unknown으로 남긴다.
+
+## v91 — 자체확정 수정 + Pagination POST 확장 + 일시적 실패 관찰 규칙
+- v90 결과에서 `run-metrics.mjs`와 cleanup 스크립트는 존재하지만 실제 기준 ZIP의 `.github/workflows/update-jobs.yml`이 이전 workflow라 호출되지 않는 것을 코드 대조로 확정. workflow와 workflow-template에 Run Metrics start/mark/finalize, source-status sync, legacy Evidence cleanup, run-metrics Artifact 포함을 실제 연결했다.
+- Run Metrics finalize와 diagnostic Artifact 업로드는 `if: always()`로 두어 후반 실패가 있어도 가능한 범위의 실행 Evidence가 남도록 강화했다.
+- 과거 정상 기관의 네트워크성 간헐 실패는 `pipeline-history.json`을 사용해 연속 실패 횟수를 계산하고 3회까지 `transient-watch`로 분리한다. 현재 단계 실패 자체는 유지하며 4회차 또는 오류 유형 변경 시 actionable regression으로 승격한다.
+- 7단계 Pagination에서 HTML에 이미 확인된 `form POST + pageIndex/page` 계약을 일반화했다. `goPage`, `fn_egov_select_noticeList`, `fn_egov_select_linkPage`, `fncSearch`의 form/action/page field를 Evidence에서 추출하고, 확인된 hidden fields를 그대로 보존해 POST 페이지를 순회한다. GET query를 임의 추측하지 않는다.
+- 총 페이지 Evidence가 명시적으로 1페이지인 JavaScript/form 게시판은 이동 요청이 불필요하므로 1페이지 전체로 검증할 수 있게 했다. 페이지 컨트롤 자체가 검출되지 않은 경우는 기존대로 unknown 유지.
+- production Collector도 Probe에서 `form-post`가 검증완료된 기관에 한해 동일 contract를 다시 읽어 전체 페이지 공고를 실제 수집한다.
+- KOSHA에서 ZIP 묶음이 다른 실질 채용문서와 함께 있을 때 ZIP 자체를 문서분석 실패로 세지 않도록 archive scope를 교정. UIPA 등 legacy HWP가 hwp5txt/LibreOffice text 변환에서 짧게 나오는 경우 LibreOffice PDF 렌더→PDF text/OCR fallback을 추가했다.
+- 8단계 지원조건 수집은 시작하지 않는다. v91 목적은 1~6단계 Regression 보호와 7단계 Pagination 정확성 확장이다.

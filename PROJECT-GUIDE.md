@@ -150,3 +150,9 @@ Actions(액션)는 위 검증의 판정자 자체가 아니라 Runner 환경의 
 - 페이지 컨트롤이 보이지 않는다는 이유만으로 단일페이지 성공으로 간주하지 않는다.
 - Reconciliation은 전체 순회 페이지 수, page fingerprint 반복, raw/unique/duplicate 공고 수를 대조한다. 이유 없는 누락·반복·중복이 있으면 7단계 검증완료로 승격하지 않는다.
 - Golden Dataset은 첫 도입 실행의 검증된 1페이지 구조 기준선을 캡처하고, 이후 사람이 확인한 기준 정답 데이터로 점진적으로 강화한다.
+
+### Transient Failure(일시적 실패) 3회 관찰 규칙
+- 과거 동일 단계가 검증완료였고 현재 실패가 `connect timeout/DNS/socket/일시적 HTTP 접속`처럼 네트워크성 Evidence로 한정되면 즉시 Collector 결함으로 단정하지 않는다.
+- 같은 유형의 실패가 **연속 3회까지**이면 `transient-watch(일시적 실패 관찰)`로 기록하되 현재 실행 자체의 단계 실패 사실은 그대로 유지한다. 성공으로 위장하지 않는다.
+- 4회차 연속 재현, 실패 유형 변경, Parser/문서분석/목록 불일치처럼 코드성 Evidence가 등장하면 `actionable regression(수정 대상 기능후퇴)`로 즉시 승격한다.
+- 하루 약 3회 엔진 실행을 전제로 간헐적 외부 서버 장애 때문에 정상 기관 코드를 반복 수정하는 일을 막는 운영 안전장치이며, 과거 성공 Evidence와 연속 실패 횟수는 `pipeline-history.json`을 기준으로 계산한다.

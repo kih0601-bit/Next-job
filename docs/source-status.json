@@ -30,12 +30,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-single-or-no-control",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-single-or-no-control",
+        "reason": "페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -77,13 +77,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 sample-success: 2/2 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-single-or-no-control",
+          "evidence": [
+            "no pagination control detected on verified list page"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -103,9 +105,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -127,12 +129,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "1~7단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "pagination",
-        "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "stage": "complete",
+        "status": "success",
+        "code": "verified-full",
+        "reason": "verified-full"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -169,13 +171,16 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 sample-success: 2/2 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "verified",
+          "reason": "verified-full",
+          "evidence": [
+            "explicit href page=N",
+            "max-linked-page=5"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -194,11 +199,11 @@
         }
       },
       "pipelineSummary": {
-        "verified": 6,
+        "verified": 7,
         "unknown": 0,
         "failed": 0,
-        "notImplemented": 4,
-        "contiguousVerifiedThrough": 6,
+        "notImplemented": 3,
+        "contiguousVerifiedThrough": 7,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -219,12 +224,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-single-or-no-control",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-single-or-no-control",
+        "reason": "페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -266,13 +271,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "분석 대상 첨부 없음이 확인되어 문서분석 불필요",
+          "reason": "문서분석 not-required: 0/0 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-single-or-no-control",
+          "evidence": [
+            "no pagination control detected on verified list page"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -292,9 +299,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -316,12 +323,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-transport-contract",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-transport-contract",
+        "reason": "전체 페이지 요청 규칙 또는 총 페이지 수가 아직 evidence로 확정되지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -358,13 +365,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 sample-success: 2/2 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-transport-contract",
+          "evidence": [
+            "javascript page calls 1,2,3,4,5,6,39"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -384,9 +393,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -408,12 +417,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "1~7단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "pagination",
-        "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "stage": "complete",
+        "status": "success",
+        "code": "verified-full",
+        "reason": "verified-full"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -450,13 +459,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 sample-success: 2/2 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "verified",
+          "reason": "verified-full",
+          "evidence": [
+            "UCTF notices API page parameter"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -475,28 +486,28 @@
         }
       },
       "pipelineSummary": {
-        "verified": 6,
+        "verified": 7,
         "unknown": 0,
         "failed": 0,
-        "notImplemented": 4,
-        "contiguousVerifiedThrough": 6,
+        "notImplemented": 3,
+        "contiguousVerifiedThrough": 7,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
     },
     {
       "org": "울산복지가족진흥사회서비스원",
-      "access": "success",
-      "list": "verified-exact",
-      "detail": "success",
-      "attachmentDiscovery": "success",
-      "attachmentDownload": "sample-success",
+      "access": "failed",
+      "list": "unknown",
+      "detail": "failed",
+      "attachmentDiscovery": "failed",
+      "attachmentDownload": "not-evaluated",
       "documentAnalysis": {
-        "status": "sample-success",
-        "strictOk": true,
-        "attempted": 2,
-        "parsed": 2,
-        "observedCapability": true
+        "status": "not-evaluated",
+        "strictOk": false,
+        "attempted": 0,
+        "parsed": 0,
+        "observedCapability": false
       },
       "filter": "not-finalized",
       "save": "not-finalized",
@@ -504,8 +515,8 @@
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "not-evaluated",
+        "reason": "not-evaluated"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -521,33 +532,33 @@
           ]
         },
         "access": {
-          "status": "verified",
-          "reason": "공식 채용처 도달 검증 통과",
+          "status": "failed",
+          "reason": "채용처 도달 검증 미통과",
           "evidence": []
         },
         "list": {
-          "status": "verified",
-          "reason": "verified-exact",
+          "status": "unknown",
+          "reason": "unknown",
           "evidence": []
         },
         "detail": {
-          "status": "verified",
-          "reason": "현재 검증 범위 상세 수집 통과",
+          "status": "unknown",
+          "reason": "상세 수집 미통과",
           "evidence": []
         },
         "attachment": {
-          "status": "verified",
-          "reason": "검증 표본에서 첨부 링크 11개 발견",
+          "status": "unknown",
+          "reason": "상세 단계 미통과로 첨부 진단 보류",
           "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "status": "unknown",
+          "reason": "문서분석 not-evaluated: 0/0 성공",
           "evidence": []
         },
         "pagination": {
           "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
+          "reason": "not-evaluated",
           "evidence": []
         },
         "requirements": {
@@ -567,11 +578,11 @@
         }
       },
       "pipelineSummary": {
-        "verified": 6,
-        "unknown": 0,
-        "failed": 0,
+        "verified": 1,
+        "unknown": 4,
+        "failed": 1,
         "notImplemented": 4,
-        "contiguousVerifiedThrough": 6,
+        "contiguousVerifiedThrough": 1,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -592,12 +603,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-transport-contract",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-transport-contract",
+        "reason": "전체 페이지 요청 규칙 또는 총 페이지 수가 아직 evidence로 확정되지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -634,13 +645,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 success: 1/1 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-transport-contract",
+          "evidence": [
+            "javascript page calls 1,2,3,4,5,6,7,8,9,10,11,30"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -660,9 +673,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -674,22 +687,22 @@
       "list": "verified-exact",
       "detail": "success",
       "attachmentDiscovery": "success",
-      "attachmentDownload": "sample-success",
+      "attachmentDownload": "success",
       "documentAnalysis": {
-        "status": "sample-success",
+        "status": "success",
         "strictOk": true,
-        "attempted": 2,
-        "parsed": 2,
+        "attempted": 5,
+        "parsed": 5,
         "observedCapability": true
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: partial-or-mismatch",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "partial-or-mismatch",
+        "reason": "partial-or-mismatch"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -726,13 +739,16 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 success: 5/5 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "failed",
+          "reason": "partial-or-mismatch",
+          "evidence": [
+            "explicit href pageIndex=N",
+            "max-linked-page=19"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -753,8 +769,8 @@
       "pipelineSummary": {
         "verified": 6,
         "unknown": 0,
-        "failed": 0,
-        "notImplemented": 4,
+        "failed": 1,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -768,20 +784,20 @@
       "attachmentDiscovery": "success",
       "attachmentDownload": "success",
       "documentAnalysis": {
-        "status": "success",
-        "strictOk": true,
-        "attempted": 2,
-        "parsed": 2,
+        "status": "partial",
+        "strictOk": false,
+        "attempted": 42,
+        "parsed": 32,
         "observedCapability": true
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: partial-or-mismatch",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "partial-or-mismatch",
+        "reason": "partial-or-mismatch"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -817,14 +833,17 @@
           "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "status": "failed",
+          "reason": "문서분석 partial: 32/42 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "failed",
+          "reason": "partial-or-mismatch",
+          "evidence": [
+            "explicit href page=N",
+            "max-linked-page=27"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -843,11 +862,11 @@
         }
       },
       "pipelineSummary": {
-        "verified": 6,
+        "verified": 5,
         "unknown": 0,
-        "failed": 0,
-        "notImplemented": 4,
-        "contiguousVerifiedThrough": 6,
+        "failed": 2,
+        "notImplemented": 3,
+        "contiguousVerifiedThrough": 5,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -868,12 +887,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-total-pages",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-total-pages",
+        "reason": "전체 페이지 요청 규칙 또는 총 페이지 수가 아직 evidence로 확정되지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -910,13 +929,16 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 sample-success: 2/2 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-total-pages",
+          "evidence": [
+            "explicit href page=N",
+            "max-linked-page=65"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -936,9 +958,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -960,12 +982,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-transport-contract",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-transport-contract",
+        "reason": "전체 페이지 요청 규칙 또는 총 페이지 수가 아직 evidence로 확정되지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -1002,13 +1024,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 1/1 성공",
+          "reason": "문서분석 success: 1/1 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-transport-contract",
+          "evidence": [
+            "javascript page calls 1,2,3,4,5,6,7,8,9,10,11,13"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -1028,9 +1052,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -1052,12 +1076,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-single-or-no-control",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-single-or-no-control",
+        "reason": "페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -1094,13 +1118,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 sample-success: 2/2 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-single-or-no-control",
+          "evidence": [
+            "no pagination control detected on verified list page"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -1120,9 +1146,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -1144,12 +1170,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-single-or-no-control",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-single-or-no-control",
+        "reason": "페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -1191,13 +1217,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "분석 대상 첨부 없음이 확인되어 문서분석 불필요",
+          "reason": "문서분석 not-required: 0/0 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-single-or-no-control",
+          "evidence": [
+            "no pagination control detected on verified list page"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -1217,9 +1245,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -1241,12 +1269,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-single-or-no-control",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-single-or-no-control",
+        "reason": "페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -1283,13 +1311,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 sample-success: 2/2 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-single-or-no-control",
+          "evidence": [
+            "no pagination control detected on verified list page"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -1309,9 +1339,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -1323,22 +1353,22 @@
       "list": "verified-exact",
       "detail": "success",
       "attachmentDiscovery": "success",
-      "attachmentDownload": "sample-success",
+      "attachmentDownload": "success",
       "documentAnalysis": {
-        "status": "sample-success",
-        "strictOk": true,
-        "attempted": 1,
-        "parsed": 1,
+        "status": "partial",
+        "strictOk": false,
+        "attempted": 11,
+        "parsed": 10,
         "observedCapability": true
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "1~7단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "pagination",
-        "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "stage": "complete",
+        "status": "success",
+        "code": "verified-full",
+        "reason": "verified-full"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -1374,14 +1404,16 @@
           "evidence": []
         },
         "documentAnalysis": {
-          "status": "verified",
-          "reason": "검증 표본 문서분석 1/1 성공",
+          "status": "failed",
+          "reason": "문서분석 partial: 10/11 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "verified",
+          "reason": "verified-full",
+          "evidence": [
+            "pagingInfo.totalCnt/rowsPerPage"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -1402,9 +1434,9 @@
       "pipelineSummary": {
         "verified": 6,
         "unknown": 0,
-        "failed": 0,
-        "notImplemented": 4,
-        "contiguousVerifiedThrough": 6,
+        "failed": 1,
+        "notImplemented": 3,
+        "contiguousVerifiedThrough": 5,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -1425,12 +1457,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-transport-contract",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-transport-contract",
+        "reason": "전체 페이지 요청 규칙 또는 총 페이지 수가 아직 evidence로 확정되지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -1467,13 +1499,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 sample-success: 2/2 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-transport-contract",
+          "evidence": [
+            "javascript page calls 2"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -1493,9 +1527,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -1517,12 +1551,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "1~7단계 현재 검증 범위 통과",
       "primaryCause": {
-        "stage": "pagination",
-        "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "stage": "complete",
+        "status": "success",
+        "code": "verified-full",
+        "reason": "verified-full"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -1559,13 +1593,16 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 1/1 성공",
+          "reason": "문서분석 sample-success: 1/1 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "verified",
+          "reason": "verified-full",
+          "evidence": [
+            "explicit href page=N",
+            "max-linked-page=2"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -1584,11 +1621,11 @@
         }
       },
       "pipelineSummary": {
-        "verified": 6,
+        "verified": 7,
         "unknown": 0,
         "failed": 0,
-        "notImplemented": 4,
-        "contiguousVerifiedThrough": 6,
+        "notImplemented": 3,
+        "contiguousVerifiedThrough": 7,
         "pipelineComplete": false
       },
       "legacyHealthDeprecated": true
@@ -1609,12 +1646,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-transport-contract",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-transport-contract",
+        "reason": "전체 페이지 요청 규칙 또는 총 페이지 수가 아직 evidence로 확정되지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -1651,13 +1688,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 sample-success: 2/2 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-transport-contract",
+          "evidence": [
+            "page text total=3"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -1677,9 +1716,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -1701,12 +1740,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-transport-contract",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-transport-contract",
+        "reason": "전체 페이지 요청 규칙 또는 총 페이지 수가 아직 evidence로 확정되지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -1743,13 +1782,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 sample-success: 2/2 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-transport-contract",
+          "evidence": [
+            "javascript page calls 1"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -1769,9 +1810,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },
@@ -1793,12 +1834,12 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "1~6단계 현재 검증 범위 통과",
+      "bottleneck": "7단계 전체 페이지 확장: unknown-single-or-no-control",
       "primaryCause": {
         "stage": "pagination",
         "status": "pending",
-        "code": "PAGINATION_PENDING",
-        "reason": "전체 페이지 확장 검증 중"
+        "code": "unknown-single-or-no-control",
+        "reason": "페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음"
       },
       "lastObservedVersion": 90,
       "pipelineStages": {
@@ -1835,13 +1876,15 @@
         },
         "documentAnalysis": {
           "status": "verified",
-          "reason": "검증 표본 문서분석 2/2 성공",
+          "reason": "문서분석 sample-success: 2/2 성공",
           "evidence": []
         },
         "pagination": {
-          "status": "not-implemented",
-          "reason": "전체 페이지 확장 미구현",
-          "evidence": []
+          "status": "unknown",
+          "reason": "unknown-single-or-no-control",
+          "evidence": [
+            "no pagination control detected on verified list page"
+          ]
         },
         "requirements": {
           "status": "not-implemented",
@@ -1861,9 +1904,9 @@
       },
       "pipelineSummary": {
         "verified": 6,
-        "unknown": 0,
+        "unknown": 1,
         "failed": 0,
-        "notImplemented": 4,
+        "notImplemented": 3,
         "contiguousVerifiedThrough": 6,
         "pipelineComplete": false
       },

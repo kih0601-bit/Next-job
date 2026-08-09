@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '2.6-evidence-scoped-document-coverage';
+const ANALYZER_VERSION = '2.7-hwp-render-and-archive-scope';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -454,6 +454,17 @@ async function extractHwp(file) {
         if (converted.length>=20) return {text:converted,method:'libreoffice-hwp-fallback'};
         if (converted.length>text.length) text=converted;
       }
+      // Some legacy HWP files expose almost no text to hwp5txt/LO text export,
+      // but LibreOffice can still render them. Convert to PDF and reuse the PDF
+      // extractor (pdftotext -> OCR fallback) before declaring analysis failure.
+      try {
+        await run('libreoffice',['--headless','--convert-to','pdf','--outdir',outDir,file],{timeoutMs:90000});
+        const pdfFiles=(await fs.readdir(outDir)).filter(name=>/\.pdf$/i.test(name));
+        if (pdfFiles.length) {
+          const rendered=await extractPdf(path.join(outDir,pdfFiles[0]));
+          if (rendered.text.length>=20) return {text:rendered.text,method:`libreoffice-hwp-pdf-${rendered.method}`};
+        }
+      } catch {}
     } finally { await fs.rm(outDir,{recursive:true,force:true}); }
   }
   return {text,method:text?'hwp-low-text':'hwp-no-text'};
@@ -504,7 +515,7 @@ async function extractLegacyOffice(file, type, workDir) {
 
 function attachmentType(attachment = {}) {
   const probe = `${attachment.type || ''} ${attachment.name || ''} ${attachment.url || ''}`.toLowerCase();
-  for (const type of ['pdf', 'hwpx', 'hwp', 'docx', 'doc', 'xlsx', 'xls', 'png', 'jpg', 'jpeg', 'tif', 'tiff']) {
+  for (const type of ['pdf', 'hwpx', 'hwp', 'docx', 'doc', 'xlsx', 'xls', 'zip', 'png', 'jpg', 'jpeg', 'tif', 'tiff']) {
     if (new RegExp(`\\.${type}(?:$|[?#&\\s])|\\b${type}\\b`, 'i').test(probe)) return type;
   }
   return 'unknown';
@@ -595,6 +606,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
   const hasSubstantiveDocument = prepared.some(item => /^(?:pdf|hwp|hwpx|doc|docx|xls|xlsx)$/i.test(item.hintedType) && isSubstantiveRecruitmentAttachment(item));
   const selected = prepared
     .filter(item => !hasDocumentCandidate || !/^(?:png|jpg|jpeg|tif|tiff)$/i.test(item.hintedType))
+    .filter(item => !(hasSubstantiveDocument && item.hintedType === 'zip'))
     .filter(item => !(hasSubstantiveDocument && isAdministrativeFormAttachment(item)))
     .sort((a, b) => documentPriority(b) - documentPriority(a))
     .slice(0, maxFiles);

@@ -63,7 +63,11 @@ jobs:
           python3 -m pip show pyhwp || true
 
       - name: Run collector self-test
-        run: node scripts/test-v11.mjs
+        shell: bash
+        run: |
+          node scripts/test-v11.mjs
+          node scripts/test-v90-pagination.mjs
+          node scripts/test-v87-governance.mjs
 
       - name: Remove retired institution data
         run: node scripts/cleanup-retired-sources.mjs
@@ -116,6 +120,7 @@ jobs:
         run: node scripts/run-metrics.mjs mark verification-end
 
       - name: Finalize run metrics
+        if: always()
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: node scripts/run-metrics.mjs finalize

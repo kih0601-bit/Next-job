@@ -13,6 +13,7 @@ import { analyzeAttachments, getDocumentToolDiagnostics } from './lib/document-a
 import { validateJob, runCollectionQA, VALIDATOR_VERSION } from './lib/validator.mjs';
 import { selectListCandidates, LIST_SELECTOR_VERSION } from './lib/list-selector.mjs';
 import { NON_JOB_PATTERNS, EXCLUDED_EMPLOYMENT_PATTERNS, LICENSE_JOB_PATTERNS, RULES_VERSION } from './lib/rules.mjs';
+import { discoverPaginationPlan, paginationRequest } from './lib/pagination-engine.mjs';
 
 import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.mjs';
 
@@ -274,6 +275,28 @@ async function fetchHtml(url, timeoutMs = 15000, options = {}, source = {}) {
 
 function isConnectTimeoutError(error = '') {
   return /Failed to connect|connect(?:ion)?\s+timed?\s*out|connect timeout|port\s+443.*Timeout/i.test(String(error));
+}
+
+async function fetchPaginationPost(request, timeoutMs = 22000, referer = '') {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(request.url, {
+      method: request.method || 'POST',
+      headers: {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
+        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'accept-language': 'ko-KR,ko;q=0.9',
+        referer,
+        ...(request.headers || {})
+      },
+      body: request.body || undefined,
+      redirect: 'follow',
+      signal: controller.signal
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return { html: await response.text(), finalUrl: response.url || request.url, status: response.status };
+  } finally { clearTimeout(timer); }
 }
 
 async function fetchFirstAccessible(source) {
@@ -539,6 +562,15 @@ async function fetchSource(source) {
         if (item?.url && !listingUrls.includes(item.url)) listingUrls.push(item.url);
       }
     }
+    let verifiedFormPagination = null;
+    if (paginationDiag?.strategy === 'form-post' && paginationDiag?.ok && Number(paginationDiag.totalPages) > 1) {
+      try {
+        const firstUrl = paginationDiag.pageFingerprints?.[0]?.url || listingUrls[0] || activeSource.url;
+        const firstHtml = firstUrl === activeSource.url ? html : (await fetchHtml(firstUrl, 22000, { referer: activeSource.url }, source)).html;
+        const plan = discoverPaginationPlan({html:firstHtml,source,selectedUrl:firstUrl});
+        if (plan.kind === 'form-post' && plan.form?.action && plan.key) verifiedFormPagination = {plan, firstUrl};
+      } catch(error) { console.error(`[pagination-contract] ${source.org}: ${error.message}`); }
+    }
     const candidateMap = new Map();
     const extractionDiagnostics = { anchors: 0, titleMatches: 0, noUrl: 0, unsafeUrl: 0, accepted: 0, rowFallbackAccepted: 0, titleSamples: [], unsafeSamples: [] };
     for (const listingUrl of listingUrls) {
@@ -563,6 +595,19 @@ async function fetchSource(source) {
       for (const candidate of extracted) {
         const key = `${candidate.org}|${normalizeTitleForDedup(candidate.title)}|${canonicalJobUrl(candidate.link)}`;
         if (!candidateMap.has(key)) candidateMap.set(key, candidate);
+      }
+    }
+    if (verifiedFormPagination) {
+      const total = Math.min(60, Number(paginationDiag.totalPages));
+      for (let pg=2; pg<=total; pg++) {
+        try {
+          const req = paginationRequest(verifiedFormPagination.plan, verifiedFormPagination.firstUrl, pg);
+          const pp = await fetchPaginationPost(req, 22000, verifiedFormPagination.firstUrl);
+          const inspection = inspectListPage(pp.html,{...activeSource,url:pp.finalUrl||req.url});
+          extractionDiagnostics.pages ||= [];
+          extractionDiagnostics.pages.push({url:`${pp.finalUrl||req.url}#post-page=${pg}`,visiblePostCount:inspection.visiblePostCount,candidateCount:inspection.candidateCount,exactMatch:inspection.exactMatch,missingCount:inspection.missingCount,extraCount:inspection.extraCount,status:inspection.status,countSource:inspection.diagnostics?.countSource||'form-post'});
+          for(const candidate of inspection.candidates){const key=`${candidate.org}|${normalizeTitleForDedup(candidate.title)}|${canonicalJobUrl(candidate.link)}`;if(!candidateMap.has(key))candidateMap.set(key,candidate);}
+        } catch(error){ console.error(`[pagination-post] ${source.org} page ${pg}: ${error.message}`); }
       }
     }
     if (source.org === '한국산업안전보건공단' && paginationDiag?.strategy === 'kosha-api' && Number(paginationDiag.totalPages) > 1) {

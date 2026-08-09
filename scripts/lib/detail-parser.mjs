@@ -327,6 +327,33 @@ function extractConfirmedInstitutionAttachments(source = '', baseUrl = '', reque
     }
   }
 
+  if (host === 'ewp.co.kr') {
+    const form = source.match(/<form\b[^>]*name=["']reform["'][^>]*>([\s\S]*?)<\/form>/i);
+    const baseParams = new URLSearchParams();
+    if (form) {
+      for (const input of form[1].matchAll(/<input\b([^>]*)>/gi)) {
+        const attrs = input[1] || '';
+        const name = attrs.match(/\bname\s*=\s*(["'])([^"']+)\1/i)?.[2] || '';
+        const value = attrs.match(/\bvalue\s*=\s*(["'])([^"']*)\1/i)?.[2] || '';
+        if (name) baseParams.set(decodeHtmlEntities(name), decodeHtmlEntities(value));
+      }
+    }
+    for (const match of source.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
+      const attrs = match[1] || '', label = cleanHtml(match[2]);
+      const call = attrs.match(/\bnew_down\s*\(\s*["']?(\d+)["']?\s*,\s*["']?(\d+)["']?\s*\)/i);
+      if (!call || !FILE_EXT.test(label)) continue;
+      const params = new URLSearchParams(baseParams);
+      params.set('idx_to', call[1]);
+      params.set('order_num', call[2]);
+      const url = new URL('/kor/include/new_download.html', new URL(baseUrl).origin).href;
+      addAttachment(attachments, seen, url, label, baseUrl, '', attachmentContext(source, match.index || 0, match[0].length), {
+        ...request, method: 'POST', body: params.toString(),
+        headers: { ...(request.headers || {}), 'content-type': 'application/x-www-form-urlencoded' },
+        referer: baseUrl
+      });
+    }
+  }
+
   if (host === 'ulsan.go.kr') {
     const anchors=[...source.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)];
     for (let i=0;i<anchors.length;i+=1) {

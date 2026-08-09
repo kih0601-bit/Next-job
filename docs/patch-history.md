@@ -181,3 +181,12 @@
 - transient-watch now tracks ongoing current network failures using pipeline history even when the diff is no longer a new regression.
 - LibreOffice legacy-office extraction locates the actual generated txt file, fixing confirmed ENOENT failures.
 - No speculative fix was applied to unresolved HTML gateway or low-text legacy HWP cases; those remain evidence targets.
+
+## v94 — Incremental Collection + Collect 병목 계측
+- v93 Actions Evidence에서 Probe는 약 4분 26초에 끝났지만 Collect가 약 40분을 소비해 45분 workflow timeout에 걸린 원인을 확정했다. 전체 Pagination 성공기관의 과거 공고를 매 실행마다 상세→첨부→문서분석까지 재처리하는 구조가 병목의 핵심이었다.
+- Production Collect에 Incremental Collection(증분 수집)을 도입한다. 동일 기관·공고 URL·정규화 제목·목록 fingerprint가 최근 20시간 내 처리된 경우 기존 판정/공고 결과를 재사용하고, 신규 또는 변경된 공고만 상세/첨부/문서분석을 다시 수행한다.
+- 첫 v94 실행에서도 효과가 나도록 기존 `debug-report.json` + `jobs.json`의 실제 이전 처리 결과를 안전하게 cache bootstrap 한다. 단, 이전 accepted 판정인데 재사용 가능한 jobs payload가 없는 항목은 bootstrap하지 않고 새로 처리하여 누락을 방지한다.
+- Cache는 `data/collection-cache.json`에 저장하며 30일/최대 4000항목으로 제한한다. 현재 실행의 문서분석 성공수처럼 보이지 않도록 cache hit의 pipeline 시도 카운트는 0으로 두고, Probe의 독립 검증 결과를 유지한다.
+- `data/collect-metrics.json`을 추가해 기관별 시작/종료·소요시간·cache hit/miss·heavyProcessed 건수를 기록한다. `run-metrics.json` finalize 시 이 값을 `collectByOrg`로 병합하여 다음 브리핑에서 기관별 Collect 병목을 직접 확인할 수 있게 한다.
+- workflow Artifact에 collection-cache/collect-metrics를 포함한다. 전체 페이지 정확성 검증 자체는 유지하며 Pagination을 축소해 속도를 얻지 않는다.
+- 8단계 Requirement Extraction은 아직 활성화하지 않는다. v94 목적은 7단계 전체페이지 정확도를 유지하면서 45분 Collect timeout 구조를 제거하는 것이다.

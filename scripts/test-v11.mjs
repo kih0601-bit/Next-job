@@ -268,3 +268,13 @@ console.log('v80/v82 WFPS bounded resolved-IP transport tests passed');
   assert.equal(files.some(item => /icon-3\\.svg/i.test(item.url)), false, 'WFPS board SVG icon must not be an attachment');
 }
 console.log('v83 static SVG attachment rejection tests passed');
+
+// v84: EWP is a special case where discovering a filename is not enough: the
+// raw detail contract must remain diagnosable until new_download parameters are known.
+{
+  const { readFile } = await import('node:fs/promises');
+  const source = await readFile(new URL('./lib/detail-parser.mjs', import.meta.url), 'utf8');
+  assert.match(source, /org !== '한국동서발전' && attachments\.length > 0/);
+  assert.match(source, /new_download\)\\b/);
+}
+console.log('v84 EWP download-contract evidence tests passed');

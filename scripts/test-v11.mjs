@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { analyzeJob } from './lib/classifier.mjs';
 import { scoreJobQuality } from './lib/quality-engine.mjs';
 import { validateJob, runCollectionQA } from './lib/validator.mjs';
+import { verifyRecruitPage } from './lib/recruit-verify.mjs';
 
 const detailText = `2026년 일반직 직원 채용 공고\n모집분야 행정 사무\n채용인원 1명\n응시자격 학력무관\n고용형태 정규직\n근무예정지 울산광역시 남구\n접수기간 2026.08.01부터 2026.08.20까지\n전형절차 서류전형, 필기전형, 면접전형\n제출서류 입사지원서 및 자기소개서`;
 const analysis = analyzeJob({ title: '2026년 일반직 직원 채용 공고', detailText, detailOk: true });
@@ -218,11 +219,10 @@ console.log('v12.6 document-backed classification tests passed');
 
   const welfareFamilyService = SOURCES.find(item => item.org === '울산복지가족진흥사회서비스원');
   assert.ok(welfareFamilyService.accessUrls.some(url => /wfps\.or\.kr\/webuser\/employment\/list\.html/.test(url)), '기관 공식 채용게시판을 주 경로로 유지해야 함');
-  assert.ok(welfareFamilyService.accessUrls.some(url => /ulsan\.go\.kr\/u\/rep\/contents\.(?:do|ulsan)\?mId=001004001003000000/.test(url)), '울산시 공식 타기관소식 경로를 대체 경로로 등록해야 함');
-  assert.ok(welfareFamilyService.accessUrls.some(url => /ulsannamgu\.go\.kr\/cop\/bbs\/selectBoardList\.do\?bbsId=hireNotice2/.test(url)), '공식 지방자치단체 채용게시판을 최종 가용성 경로로 등록해야 함');
+  assert.equal(welfareFamilyService.accessUrls.some(url => /ulsan\.go\.kr|ulsannamgu\.go\.kr/.test(url)), false, '기관 외 타기관/지자체 게시판은 WFPS fallback으로 사용하면 안 됨');
 }
 console.log('v12.8 KPI endpoint/detail recovery tests passed');
-console.log('v13.1 Phase 1 welfare-service access fallback tests passed');
+console.log('v13.1/v85 welfare-service access-source tests passed');
 // v79: evidence-scoped remaining-three fixes.
 {
   const welfare = SOURCES.find(item => item.org === '울산복지가족진흥사회서비스원');
@@ -249,6 +249,7 @@ console.log('v79 remaining-three evidence fixes passed');
   assert.equal(welfare.accessConfig.accessAttemptsPerUrl, 1);
   assert.equal(welfare.accessConfig.skipHostAfterConnectTimeout, true);
   assert.equal(welfare.accessConfig.accessTimeoutMs, 9000);
+  assert.equal(welfare.accessConfig.maxProbeAccessUrls, 3);
   const probeSource = await (await import('node:fs/promises')).readFile(new URL('./pipeline-probe.mjs', import.meta.url), 'utf8');
   assert.match(probeSource, /resolveHostWithDoh/);
   assert.match(probeSource, /--resolve/);
@@ -278,3 +279,29 @@ console.log('v83 static SVG attachment rejection tests passed');
   assert.match(source, /new_download\)\\b/);
 }
 console.log('v84 EWP download-contract evidence tests passed');
+
+
+// v85: WFPS must never pass recruitment verification on a cross-institution board.
+{
+  const foreignBoard = verifyRecruitPage({
+    org: '울산복지가족진흥사회서비스원',
+    requestedUrl: 'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000',
+    finalUrl: 'https://www.ulsan.go.kr/u/rep/contents.ulsan?mId=001004001003000000',
+    status: 200,
+    contentType: 'text/html',
+    html: '<html><title>울산광역시 타기관 소식</title><body><table><tr><td>울산시설공단 직원 채용 공고</td></tr></table>채용공고 번호 제목 등록일 페이지</body></html>'
+  });
+  assert.equal(foreignBoard.ok, false, 'generic Ulsan-city recruitment board must not verify as WFPS');
+  assert.equal(foreignBoard.strictInstitutionRule, true);
+
+  const officialBoard = verifyRecruitPage({
+    org: '울산복지가족진흥사회서비스원',
+    requestedUrl: 'https://wfps.or.kr/webuser/employment/list.html',
+    finalUrl: 'https://wfps.or.kr/webuser/employment/list.html',
+    status: 200,
+    contentType: 'text/html',
+    html: '<html><title>채용공고 - 복지가족진흥사회서비스원</title><body><table><tr><td>직원 채용 공고</td></tr></table>복지가족진흥사회서비스원 채용공고 번호 제목 등록일 페이지</body></html>'
+  });
+  assert.equal(officialBoard.verified, true, 'institution-owned WFPS employment board must verify');
+}
+console.log('v85 WFPS official-source-only verification tests passed');

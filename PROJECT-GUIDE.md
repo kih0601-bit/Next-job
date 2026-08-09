@@ -60,3 +60,9 @@ Actions 성공 여부만 보지 않는다. Silent Failure(겉으로 정상인데
 - 코드/기존 evidence/공개 사이트로 자체 확정 가능한 원인은 Actions 전에 끝까지 자체진단한다.
 - Runner의 실제 서버 응답이 필요한 부분만 Actions evidence로 확인한다.
 - 서버 contract가 확인되지 않은 상태에서 parameter/method를 추측해 성공처럼 보이게 만들지 않는다.
+
+### Evidence provenance / source identity
+- Evidence는 `어느 기관 / 어느 단계 / 어느 URL·요청 / 어느 실행`에서 수집됐는지 역추적 가능해야 한다.
+- 요약 상태값만으로 성공을 확정하지 않고 가능한 경우 원본 응답·원문과 대조한다.
+- 기관 자체 채용게시판이 실패했다고 해서 다른 기관이 섞인 범용 게시판을 해당 기관의 정상 source로 대체하지 않는다.
+- 특히 퇴역·제외된 `울산광역시 타기관 소식`을 개별 기관 fallback으로 재사용하지 않는다. 기관 source 불가용은 실패로 명시하는 편이 Silent Failure보다 우선한다.

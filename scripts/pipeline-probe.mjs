@@ -14,7 +14,7 @@ import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 import { analyzeAttachments } from './lib/document-analyzer.mjs';
 import { safeFileComponent } from './lib/safe-filename.mjs';
 
-const VERSION = '19.8-v98-pagination-proof-state-model';
+const VERSION = '19.9-v99-pagination-terminal-noise-and-single-proof';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const MAX_ATTACHMENT_VERIFY_FILES = 2; // representative files per institution; keeps Actions bounded
@@ -42,14 +42,20 @@ function singlePageProof(html='', selected={}) {
   const candidates = Number(selected.candidateCount ?? selected.candidates?.length ?? 0);
   const exact = Boolean(selected.exactMatch);
   const controlHints = (snapshot.pageControls?.length || 0) + (snapshot.forms || []).filter(f => (f.names||[]).some(n => /^(?:page|pageNo|pageNum|pageIndex|currentPage|curPage)$/i.test(n))).length;
+  const plain = cleanHtml(String(html || '')).replace(/\s+/g,' ');
+  const explicitEmpty = candidates === 0 && /(?:등록된\s*(?:채용)?\s*정보가\s*없습니다|등록된\s*(?:게시물|게시글|공고)가\s*없습니다|채용\s*공고가\s*없습니다|검색된\s*결과가\s*없습니다)/i.test(plain);
   const evidence = [
     `record-exact=${exact}`,
     `candidate-count=${candidates}`,
     `explicit-total=${total ?? 'not-found'}`,
+    `explicit-empty=${explicitEmpty}`,
     `pagination-control-hints=${controlHints}`
   ];
-  const proved = exact && total !== null && total === candidates && controlHints === 0;
-  return { proved, totalCount: total, candidateCount: candidates, controlHints, evidence, reason: proved ? 'explicit total count equals exact extracted record count and no pagination control exists' : 'single-page completeness not yet explicitly proved' };
+  const countProved = exact && total !== null && total === candidates && controlHints === 0;
+  const emptyProved = explicitEmpty && controlHints === 0;
+  const proved = countProved || emptyProved;
+  const reason = countProved ? 'explicit total count equals exact extracted record count and no pagination control exists' : emptyProved ? 'board explicitly states there are no registered recruitment records and no pagination control exists' : 'single-page completeness not yet explicitly proved';
+  return { proved, totalCount: total ?? (emptyProved ? 0 : null), candidateCount: candidates, controlHints, explicitEmpty, evidence, reason };
 }
 function applyHistoricalPagination(report) {
   const prev = PREVIOUS_BY_ORG.get(report.org);
@@ -851,6 +857,7 @@ async function probeSource(source, artifacts) {
         // empty page or a repeated non-empty page fingerprint. The terminal response is
         // evidence, not counted as a content page. Cap at 100 to prevent runaway loops.
         let terminal = null;
+        let pendingNoise = null;
         const seenFingerprints = new Set([results[0].fingerprint]);
         for (let pg = pageBase + 1; pg <= 100; pg++) {
           const req = paginationRequest(finalPlan, selected.url, pg);
@@ -861,11 +868,30 @@ async function probeSource(source, artifacts) {
             const inspect = inspectListingPage(pp.html, {...source,url:pp.finalUrl||req.url});
             const fp = pageFingerprint(inspect.candidates);
             if (inspect.candidates.length === 0) { terminal = {type:'empty-page', page:pg, url:pp.finalUrl||req.url}; break; }
+            // Some legacy boards return a navigation/error fragment after the real last page.
+            // Do not count that fragment as content. Confirm it only when the immediately
+            // following request repeats the exact same non-record fingerprint.
+            if (pendingNoise) {
+              if (fp === pendingNoise.fingerprint) { terminal = {type:'repeated-terminal-noise', page:pendingNoise.page, confirmedByPage:pg, fingerprint:fp, url:pendingNoise.url}; pendingNoise = null; break; }
+              // It was not terminal noise; preserve it as an observed mismatch page.
+              results.push(pendingNoise.result);
+              report.pagination.pageFingerprints.push(pendingNoise.fingerprintRow);
+              report.pagination.pageValidation.push(pendingNoise.validationRow);
+              seenFingerprints.add(pendingNoise.fingerprint);
+              pendingNoise = null;
+            }
             if (seenFingerprints.has(fp)) { terminal = {type:'repeated-page', page:pg, fingerprint:fp, url:pp.finalUrl||req.url}; break; }
+            const resultRow={page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl||req.url,exactMatch:Boolean(inspect.exactMatch)};
+            const fingerprintRow={page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl||req.url,method:req.method};
+            const validationRow={page:pg,url:pp.finalUrl||req.url,status:inspect.status||'',exactMatch:Boolean(inspect.exactMatch),visiblePostCount:inspect.visiblePostCount??null,candidateCount:inspect.candidateCount??inspect.candidates.length,missingCount:inspect.missingCount??null,extraCount:inspect.extraCount??null,method:req.method,exactMatchBasis:inspect.diagnostics?.exactMatchBasis||''};
+            if (!inspect.exactMatch && inspect.visiblePostCount == null) {
+              pendingNoise={page:pg,fingerprint:fp,url:pp.finalUrl||req.url,result:resultRow,fingerprintRow,validationRow};
+              continue;
+            }
             seenFingerprints.add(fp);
-            results.push({page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl||req.url,exactMatch:Boolean(inspect.exactMatch)});
-            report.pagination.pageFingerprints.push({page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl||req.url,method:req.method});
-            report.pagination.pageValidation.push({page:pg,url:pp.finalUrl||req.url,status:inspect.status||'',exactMatch:Boolean(inspect.exactMatch),visiblePostCount:inspect.visiblePostCount??null,candidateCount:inspect.candidateCount??inspect.candidates.length,missingCount:inspect.missingCount??null,extraCount:inspect.extraCount??null,method:req.method,exactMatchBasis:inspect.diagnostics?.exactMatchBasis||''});
+            results.push(resultRow);
+            report.pagination.pageFingerprints.push(fingerprintRow);
+            report.pagination.pageValidation.push(validationRow);
           } catch(error) { report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`); break; }
         }
         report.pagination.pagesChecked = results.length;
@@ -873,7 +899,7 @@ async function probeSource(source, artifacts) {
         report.pagination.terminalEvidence = terminal;
         const rec = reconcilePages(results);
         const allExact = results.every(x=>x.exactMatch);
-        const terminalProved = Boolean(terminal && ['empty-page','repeated-page'].includes(terminal.type));
+        const terminalProved = Boolean(terminal && ['empty-page','repeated-page','repeated-terminal-noise'].includes(terminal.type));
         report.pagination.reconciliation = {...rec,status:terminalProved?'pass':'blocked',repeatedPageFingerprint:false,reason:terminalProved?`terminal discovered by ${terminal.type}`:'100-page cap reached without terminal evidence'};
         report.pagination.rawCount=rec.rawCount; report.pagination.uniqueCount=rec.uniqueCount; report.pagination.duplicateCount=rec.duplicateCount;
         report.pagination.mismatchPages = report.pagination.pageValidation.filter(page => !page.exactMatch && Number(page.candidateCount || 0) > 0).slice(0,30);

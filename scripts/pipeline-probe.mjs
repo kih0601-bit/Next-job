@@ -14,7 +14,7 @@ import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 import { analyzeAttachments } from './lib/document-analyzer.mjs';
 import { safeFileComponent } from './lib/safe-filename.mjs';
 
-const VERSION = '19.7-v97-pagination-proof-and-terminal-discovery';
+const VERSION = '19.8-v98-pagination-proof-state-model';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const MAX_ATTACHMENT_VERIFY_FILES = 2; // representative files per institution; keeps Actions bounded
@@ -25,6 +25,50 @@ const MAX_HTML_EXCERPT = 18000;
 const MAX_RELEVANT_SNIPPETS = 24;
 const MAX_SCRIPT_SNIPPETS = 12;
 const execFileAsync = promisify(execFile);
+
+let PREVIOUS_REPORT = { sources: [] };
+try { PREVIOUS_REPORT = JSON.parse(await fs.readFile('data/pipeline-report.previous.json','utf8')); } catch {}
+const PREVIOUS_BY_ORG = new Map((PREVIOUS_REPORT.sources || []).map(row => [row.org, row]));
+
+function explicitTotalCount(html='') {
+  const text = cleanHtml(String(html || '')).replace(/,/g,' ');
+  const patterns = [/(?:총|전체)\s*(?:게시물|게시글|공고)?\s*(\d{1,6})\s*(?:건|개)/i, /(?:total|count)\s*[:：]?\s*(\d{1,6})/i];
+  for (const re of patterns) { const m=text.match(re); if(m) return Number(m[1]); }
+  return null;
+}
+function singlePageProof(html='', selected={}) {
+  const snapshot = paginationEvidenceSnapshot(html, selected.url || '');
+  const total = explicitTotalCount(html);
+  const candidates = Number(selected.candidateCount ?? selected.candidates?.length ?? 0);
+  const exact = Boolean(selected.exactMatch);
+  const controlHints = (snapshot.pageControls?.length || 0) + (snapshot.forms || []).filter(f => (f.names||[]).some(n => /^(?:page|pageNo|pageNum|pageIndex|currentPage|curPage)$/i.test(n))).length;
+  const evidence = [
+    `record-exact=${exact}`,
+    `candidate-count=${candidates}`,
+    `explicit-total=${total ?? 'not-found'}`,
+    `pagination-control-hints=${controlHints}`
+  ];
+  const proved = exact && total !== null && total === candidates && controlHints === 0;
+  return { proved, totalCount: total, candidateCount: candidates, controlHints, evidence, reason: proved ? 'explicit total count equals exact extracted record count and no pagination control exists' : 'single-page completeness not yet explicitly proved' };
+}
+function applyHistoricalPagination(report) {
+  const prev = PREVIOUS_BY_ORG.get(report.org);
+  const prior = prev?.pagination;
+  const priorVerified = Boolean(prior?.ok || prior?.implementationOk || ['verified-full','verified-single','verified-historical'].includes(prior?.status));
+  const currentVerified = Boolean(report.pagination?.ok || ['verified-full','verified-single'].includes(report.pagination?.status));
+  report.pagination.currentRunOk = currentVerified;
+  report.pagination.currentRunStatus = report.pagination?.status || 'not-evaluated';
+  report.pagination.implementationOk = currentVerified;
+  report.pagination.verificationClass = report.pagination?.status === 'verified-single' ? 'single-page' : currentVerified ? 'full-pagination' : 'unverified';
+  if (!currentVerified && priorVerified && ['not-evaluated','unknown-single-or-no-control','unknown-total-pages','unknown-transport-contract'].includes(report.pagination?.status)) {
+    report.pagination.historicalEvidence = { status: prior.status, verifiedAt: PREVIOUS_REPORT.generatedAt || '', totalPages: prior.totalPages ?? null, pagesChecked: prior.pagesChecked ?? null, reconciliation: prior.reconciliation || null };
+    report.pagination.status = 'verified-historical';
+    report.pagination.implementationOk = true;
+    report.pagination.verificationClass = 'historical';
+  }
+  report.pagination.currentHealth = report.access?.recruitVerifyOk ? (report.pagination.currentRunOk ? 'healthy' : 'needs-current-proof') : 'external-or-access-degraded';
+  return report;
+}
 
 
 function compactText(value = '', max = MAX_HTML_EXCERPT) {
@@ -603,7 +647,7 @@ async function probeSource(source, artifacts) {
     attachment: { ok: false, discovered: 0, samples: [] },
     attachmentDownload: { ok: false, status: 'not-evaluated', attempted: 0, downloaded: 0, failed: 0 },
     documentAnalysis: { ok: false, status: 'not-evaluated', attempted: 0, parsed: 0, failed: 0 },
-    pagination: { ok: false, status: 'not-evaluated', strategy: '', totalPages: null, pagesChecked: 0, rawCount: 0, uniqueCount: 0, duplicateCount: 0, pageFingerprints: [], pageValidation: [], mismatchPages: [], errors: [], reconciliation: { status: 'not-evaluated' }, goldenDataset: { status: 'baseline-capture' } },
+    pagination: { ok: false, implementationOk: false, currentRunOk: false, status: 'not-evaluated', strategy: '', totalPages: null, pagesChecked: 0, rawCount: 0, uniqueCount: 0, duplicateCount: 0, pageFingerprints: [], pageValidation: [], mismatchPages: [], errors: [], reconciliation: { status: 'not-evaluated' }, goldenDataset: { status: 'baseline-capture' } },
     bottleneck: '',
     elapsedMs: 0
   };
@@ -755,10 +799,18 @@ async function probeSource(source, artifacts) {
       report.pagination.pageValidation.push({page:pageBase,url:selected.url,status:selected.status||'',exactMatch:Boolean(selected.exactMatch),visiblePostCount:selected.visiblePostCount??null,candidateCount:selected.candidateCount??all.length,missingCount:selected.missingCount??null,extraCount:selected.extraCount??null});
       if (finalPlan.kind === 'single-or-undetected') {
         report.pagination.pagesChecked = 1;
-        report.pagination.status = 'unknown-single-or-no-control';
-        report.pagination.ok = false;
-        report.pagination.reconciliation = {status:'blocked',reason:'페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음'};
-        report.pagination.goldenDataset = {status:'baseline-capture', firstPageFingerprint:results[0].fingerprint, firstPageCount:all.length};
+        const proof = singlePageProof(firstHtml, selected);
+        report.pagination.singlePageProof = proof;
+        report.pagination.totalCount = proof.totalCount;
+        report.pagination.rawCount = all.length;
+        report.pagination.uniqueCount = new Set(all.map(x=>x.link||x.title)).size;
+        report.pagination.duplicateCount = Math.max(0, all.length-report.pagination.uniqueCount);
+        report.pagination.ok = proof.proved;
+        report.pagination.status = proof.proved ? 'verified-single' : 'unknown-single-or-no-control';
+        report.pagination.reconciliation = proof.proved
+          ? {status:'pass',rawCount:all.length,uniqueCount:report.pagination.uniqueCount,duplicateCount:report.pagination.duplicateCount,repeatedPageFingerprint:false,reason:proof.reason}
+          : {status:'blocked',reason:'페이지 컨트롤 미검출만으로 단일 페이지를 확정하지 않음; explicit total/record proof 필요'};
+        report.pagination.goldenDataset = {status:proof.proved?'active-structural-baseline':'baseline-capture', firstPageFingerprint:results[0].fingerprint, firstPageCount:all.length};
       } else if (totalPages === 1 && ['javascript-form','form-post','query-get'].includes(finalPlan.kind)) {
         report.pagination.pagesChecked = 1;
         report.pagination.rawCount = all.length; report.pagination.uniqueCount = new Set(all.map(x=>x.link||x.title)).size; report.pagination.duplicateCount = Math.max(0, all.length-report.pagination.uniqueCount);
@@ -951,6 +1003,7 @@ async function probeSource(source, artifacts) {
     report.bottleneck = error.recruitVerifyFailed ? '채용게시판 검증' : 'HTTP 접속';
   }
   report.elapsedMs = Date.now() - startedAt;
+  applyHistoricalPagination(report);
   return attachRootCauses(report);
 }
 
@@ -982,6 +1035,11 @@ const payload = {
     documentAnalysisCapabilityOk: results.filter(item => item.documentAnalysis?.capabilityOk === true || item.documentAnalysis?.status === 'not-required').length,
     collectionDocumentSampleOk: results.filter(item => item.access.recruitVerifyOk && item.list.ok && item.detail.ok && item.attachmentDiscovery.ok && item.attachmentDownload?.ok && item.documentAnalysis?.ok).length,
     deprecated: { fullPipelineOk: results.filter(item => item.access.recruitVerifyOk && item.list.ok && item.detail.ok && item.attachmentDiscovery.ok && item.attachmentDownload?.ok && item.documentAnalysis?.ok).length, note: '호환용 구 필드. Pipeline Complete 의미로 사용 금지' },
+    paginationImplementationVerified: results.filter(item => item.pagination?.implementationOk).length,
+    paginationCurrentRunVerified: results.filter(item => item.pagination?.currentRunOk).length,
+    paginationVerifiedFull: results.filter(item => item.pagination?.status === 'verified-full').length,
+    paginationVerifiedSingle: results.filter(item => item.pagination?.status === 'verified-single').length,
+    paginationVerifiedHistorical: results.filter(item => item.pagination?.status === 'verified-historical').length,
     causeCounts: results.reduce((acc, item) => { const key = item.primaryCause?.code || 'UNKNOWN'; acc[key] = (acc[key] || 0) + 1; return acc; }, {})
   },
   sources: results

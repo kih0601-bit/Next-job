@@ -114,3 +114,14 @@
 - v85 EWP 원본 detail evidence에서 `new_down(idx_to, order_num)` 함수와 `reform` POST contract를 확정: `idx_to`, `order_num` 및 기존 hidden form fields를 `/kor/include/new_download.html`로 POST하도록 기관 전용 첨부 resolver 추가. parameter 없는 GET 추측 경로를 사용하지 않음.
 - Pagination 전에 20기관 Source provenance audit을 완료하도록 명문화. 불명확 Source는 목록 파싱 성공만으로 기관 성공 처리하지 않음.
 - 공통 수집 규칙과 다른 19기관 adapter는 변경하지 않음.
+
+
+## v87 — Engine/Pipeline governance + report truth model
+- v86 브리핑 후속: `ATTACHMENT_ZERO_UNRESOLVED`가 Healthy로 보이는 모순을 메인 판정에서 제거. 첨부 0건 미확정은 `unknown(확인불가)`로 유지.
+- Next Job = Engine(엔진) + UI(화면), Engine 내부 공식 Pipeline 10단계와 사용자 확정 한글명을 문서화.
+- 개발단계 4상태 `verified/unknown/failed/not-implemented` 도입. 전체 구현 뒤 3상태 전환 원칙 기록.
+- 진단·검증 9종 확정. Provenance는 즉시 활성, Reconciliation/Golden Dataset은 Pagination부터 필수 적용하도록 구조화.
+- 사람이 보는 메인 판정에서 Healthy/Degraded를 제거하고 `legacyHealth`로 호환 유지. 운영단계에서 별도 Health 지표로 재정의 예정.
+- `fullPipelineOk` 신규 사용 중단. 현재 앞단 표본 성공은 `collectionDocumentSampleOk`로 명명하고 구 필드는 deprecated 호환 객체로만 유지.
+- Source provenance 20기관을 분류. 기관 소유 공식 도메인은 verified, Incruit/Saramin/HUBST 공식 위탁형은 기관→플랫폼 연결 evidence가 추가 확보될 때까지 unknown으로 보수 판정.
+- 동서발전 POST 다운로드 및 WFPS 공식 Source-only 로직은 변경하지 않고 Regression 보호 대상으로 유지.

@@ -1,14 +1,16 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "purpose": "반복 패치 방지 및 기관별 현재 병목 추적",
   "authoritativeCodeBaseline": "최신 Actions ZIP",
   "lastObservedVersion": 84,
-  "pendingValidationVersion": 85,
+  "pendingValidationVersion": 87,
   "rules": {
     "strictDocumentCompletion": "documentAnalysis.ok=true는 선정된 실제 문서 분석 대상이 모두 성공한 경우만",
     "documentCapability": "capabilityOk=true는 실제 문서 최소 1개 이상 파싱 가능 검증이며 전체 완료와 다름",
     "uiCandidatePolicy": "명확한 UI 이미지는 제외. 실제 문서가 있으면 이미지는 제외하고 이미지뿐인 공고는 OCR 후보 유지",
-    "noRepeatedSpeculation": "patch-history 확인 후 evidence 없는 동일 추측 패치 반복 금지"
+    "noRepeatedSpeculation": "patch-history 확인 후 evidence 없는 동일 추측 패치 반복 금지",
+    "healthDuringDevelopment": "Healthy/Degraded/Failed는 메인 성공판정에서 제외하고 legacyHealth 호환값으로만 유지",
+    "fourStateLifecycle": "개발 중 verified/unknown/failed/not-implemented 4상태, 전체 구현 후 not-implemented 제거"
   },
   "sources": [
     {
@@ -27,7 +29,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -37,7 +39,48 @@
         "repairTarget": "scripts/collectors/institutions/근로복지공단.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "unknown",
+          "reason": "공식 위탁 플랫폼 연결 evidence 추가 필요"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 5,
+        "unknown": 1,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울산경제일자리진흥원",
@@ -55,7 +98,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -65,7 +108,48 @@
         "repairTarget": "scripts/collectors/institutions/울산경제일자리진흥원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 6,
+        "unknown": 0,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울산남구도시관리공단",
@@ -83,7 +167,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과 · 첨부/문서분석 대상 없음",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과 · 첨부/문서분석 대상 없음",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -93,7 +177,48 @@
         "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "unknown",
+          "reason": "공식 위탁 플랫폼 연결 evidence 추가 필요"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 5,
+        "unknown": 1,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울산도시공사",
@@ -111,7 +236,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -121,7 +246,48 @@
         "repairTarget": "scripts/collectors/institutions/울산도시공사.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 6,
+        "unknown": 0,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울산문화관광재단",
@@ -139,7 +305,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -149,7 +315,48 @@
         "repairTarget": "scripts/collectors/institutions/울산문화관광재단.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 6,
+        "unknown": 0,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울산복지가족진흥사회서비스원",
@@ -189,7 +396,48 @@
       "lastObservedVersion": 84,
       "pendingAction": "v85 official-source-only + strict institution verification",
       "pendingValidationVersion": 85,
-      "pendingPatch": "v85: 울산시/남구 범용 fallback 제거; WFPS/UWFDI 공식 employment board만 허용"
+      "pendingPatch": "v85: 울산시/남구 범용 fallback 제거; WFPS/UWFDI 공식 employment board만 허용",
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "unknown"
+        },
+        "list": {
+          "status": "unknown"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "unknown"
+        },
+        "attachment": {
+          "status": "unknown"
+        },
+        "documentAnalysis": {
+          "status": "unknown"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 1,
+        "unknown": 5,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울산북구시설관리공단",
@@ -207,7 +455,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -217,7 +465,48 @@
         "repairTarget": "scripts/collectors/institutions/울산북구시설관리공단.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 6,
+        "unknown": 0,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울산시설공단",
@@ -388,7 +677,48 @@
       },
       "lastObservedVersion": 75,
       "pendingAction": "v77 FileDownNotice 검증",
-      "pendingValidationVersion": 77
+      "pendingValidationVersion": 77,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "unknown"
+        },
+        "documentAnalysis": {
+          "status": "unknown"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 4,
+        "unknown": 2,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울산정보산업진흥원",
@@ -419,7 +749,48 @@
       "lastObservedVersion": 78,
       "pendingAction": "v77 HWP fallback 검증",
       "pendingValidationVersion": 77,
-      "pendingPatch": "v79: administrative form excluded from strict coverage only when substantive recruitment document exists"
+      "pendingPatch": "v79: administrative form excluded from strict coverage only when substantive recruitment document exists",
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "unknown"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 5,
+        "unknown": 1,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울산테크노파크",
@@ -437,7 +808,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -447,7 +818,48 @@
         "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 6,
+        "unknown": 0,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울산항만공사",
@@ -465,7 +877,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -475,7 +887,48 @@
         "repairTarget": "scripts/collectors/institutions/울산항만공사.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 6,
+        "unknown": 0,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울주군시설관리공단",
@@ -493,7 +946,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -503,7 +956,48 @@
         "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 6,
+        "unknown": 0,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "울주문화재단",
@@ -521,7 +1015,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과 · 첨부/문서분석 대상 없음",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과 · 첨부/문서분석 대상 없음",
       "primaryCause": {
         "stage": "attachment",
         "status": "unknown",
@@ -546,7 +1040,48 @@
         "repairTarget": "scripts/collectors/institutions/울주문화재단.mjs",
         "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "unknown",
+          "reason": "공식 위탁 플랫폼 연결 evidence 추가 필요"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "unknown"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 4,
+        "unknown": 2,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "한국동서발전",
@@ -598,7 +1133,48 @@
       },
       "lastObservedVersion": 78,
       "pendingAction": "외부 502 재현 여부 확인",
-      "pendingPatch": "v79: remove site-wide certification PDFs from recruitment attachments; new_download contract left evidence-gated"
+      "pendingPatch": "v79: remove site-wide certification PDFs from recruitment attachments; new_download contract left evidence-gated",
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "failed"
+        },
+        "list": {
+          "status": "unknown"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "failed"
+        },
+        "attachment": {
+          "status": "failed"
+        },
+        "documentAnalysis": {
+          "status": "unknown"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 1,
+        "unknown": 2,
+        "failed": 3,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "한국산업안전보건공단",
@@ -628,7 +1204,48 @@
       },
       "lastObservedVersion": 75,
       "pendingAction": "v77 배열 처리 후 실파일 검증",
-      "pendingValidationVersion": 77
+      "pendingValidationVersion": 77,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "failed"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 5,
+        "unknown": 0,
+        "failed": 1,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "한국산업인력공단",
@@ -657,7 +1274,48 @@
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "lastObservedVersion": 75,
-      "pendingAction": "HRDK 중복 첨부 후보 제거 후 attachSeq 실파일 1건 기준 검증"
+      "pendingAction": "HRDK 중복 첨부 후보 제거 후 attachSeq 실파일 1건 기준 검증",
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "unknown"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 5,
+        "unknown": 1,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "한국석유공사",
@@ -675,7 +1333,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -685,7 +1343,48 @@
         "repairTarget": "scripts/collectors/institutions/한국석유공사.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 6,
+        "unknown": 0,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "한국수력원자력",
@@ -703,7 +1402,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -713,7 +1412,48 @@
         "repairTarget": "scripts/collectors/institutions/한국수력원자력.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 6,
+        "unknown": 0,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "한국에너지공단",
@@ -842,7 +1582,48 @@
       },
       "lastObservedVersion": 75,
       "pendingAction": "v77 POST fileDownload 검증",
-      "pendingValidationVersion": 77
+      "pendingValidationVersion": 77,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "unknown"
+        },
+        "documentAnalysis": {
+          "status": "unknown"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 4,
+        "unknown": 2,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     },
     {
       "org": "한국전력공사",
@@ -860,7 +1641,7 @@
       },
       "filter": "not-finalized",
       "save": "not-finalized",
-      "bottleneck": "전체 파이프라인 통과",
+      "bottleneck": "현재 수집·문서분석 검증 범위 통과",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -870,8 +1651,81 @@
         "repairTarget": "scripts/collectors/institutions/한국전력공사.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "lastObservedVersion": 75
+      "lastObservedVersion": 75,
+      "pipelineStages": {
+        "source": {
+          "status": "verified",
+          "reason": "기관 소유 공식 도메인 채용 Source"
+        },
+        "access": {
+          "status": "verified"
+        },
+        "list": {
+          "status": "verified"
+        },
+        "pagination": {
+          "status": "not-implemented"
+        },
+        "detail": {
+          "status": "verified"
+        },
+        "attachment": {
+          "status": "verified"
+        },
+        "documentAnalysis": {
+          "status": "verified"
+        },
+        "requirements": {
+          "status": "not-implemented"
+        },
+        "filter": {
+          "status": "not-implemented"
+        },
+        "output": {
+          "status": "not-implemented"
+        }
+      },
+      "pipelineSummary": {
+        "verified": 6,
+        "unknown": 0,
+        "failed": 0,
+        "not-implemented": 4,
+        "pipelineComplete": false
+      },
+      "legacyHealthDeprecated": true
     }
   ],
-  "batchPolicy": "브리핑에서 파악된 문제는 가능한 한 다음 한 수정본에 함께 반영한다."
+  "batchPolicy": "브리핑에서 파악된 문제는 가능한 한 다음 한 수정본에 함께 반영한다.",
+  "pipelineDefinition": {
+    "stages": [
+      "공식채용처확인",
+      "채용처 접속",
+      "단일페이지 공고목록 수집",
+      "전체 페이지 확장",
+      "공고 상세페이지 수집",
+      "첨부파일 수집",
+      "첨부파일 분석",
+      "지원조건 수집",
+      "필터링",
+      "최종 데이터 생성"
+    ],
+    "states": [
+      "verified",
+      "unknown",
+      "failed",
+      "not-implemented"
+    ],
+    "pipelineComplete": "10단계 모두 verified + 필수 진단·검증 통과"
+  },
+  "verificationSystems": [
+    "Evidence(증거수집)",
+    "Diagnostics(진단)",
+    "Source Verification(공식채용처 검증)",
+    "Regression Check(기능후퇴 검사)",
+    "Silent Failure Check(숨은 실패 검사)",
+    "Health/Report(상태 종합·리포트)",
+    "Provenance Check(출처 추적 검증)",
+    "Reconciliation Check(단계 간 개수 대조 검증)",
+    "Golden Dataset Check(기준 정답 검증)"
+  ]
 }

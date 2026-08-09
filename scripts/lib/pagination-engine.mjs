@@ -212,11 +212,25 @@ export function reconcilePages(pageResults=[]) {
   const seen=new Map(), duplicates=[];
   let raw=0;
   for(const page of pageResults){
-    for(const item of page.candidates||[]){ raw++; const key=canonicalJobUrl(item.link||'') || String(item.title||'').trim().toLowerCase(); if(!key) continue; if(seen.has(key)) duplicates.push({key,firstPage:seen.get(key),duplicatePage:page.page}); else seen.set(key,page.page); }
+    for(const item of page.candidates||[]){
+      raw++;
+      // Some boards (notably KEPCO) use one shared detail path and put the
+      // durable notice id in the query string. Prefer the extracted link as
+      // the reconciliation identity when it carries query material; otherwise
+      // keep the historical canonical URL/title fallback.
+      const rawLink=String(item.link||'').trim();
+      const key=(rawLink.includes('?') ? rawLink : canonicalJobUrl(rawLink)) || String(item.title||'').trim().toLowerCase();
+      if(!key) continue;
+      if(seen.has(key)) duplicates.push({key,firstPage:seen.get(key),duplicatePage:page.page}); else seen.set(key,page.page);
+    }
   }
   const unique=seen.size;
   return { rawCount:raw, uniqueCount:unique, duplicateCount:Math.max(0,raw-unique), duplicateSamples:duplicates.slice(0,20), unexplainedLoss:raw-unique-duplicates.length };
 }
 export function pageFingerprint(candidates=[]) {
-  return crypto.createHash('sha1').update((candidates||[]).map(x=>`${x.title}|${canonicalJobUrl(x.link||'')}`).join('\n')).digest('hex').slice(0,16);
+  return crypto.createHash('sha1').update((candidates||[]).map(x=>{
+    const rawLink=String(x.link||'').trim();
+    const identity=rawLink.includes('?') ? rawLink : canonicalJobUrl(rawLink);
+    return `${x.title}|${identity}`;
+  }).join('\n')).digest('hex').slice(0,16);
 }

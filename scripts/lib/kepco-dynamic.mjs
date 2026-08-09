@@ -64,9 +64,14 @@ export function extractKepcoRecords(html='', sourceUrl=''){
     const body=new URLSearchParams();
     keys.forEach((k,i)=>body.set(k,vals[i]||''));
     const endpoint=new URL(path, new URL('/frt/frt0001/', sourceUrl)).href;
+    // The endpoint path is shared by all notices. Preserve the POST identity
+    // in a display URL so list dedup/pagination can distinguish notices while
+    // the actual detail request remains POST to the original endpoint.
+    const display=new URL(endpoint);
+    for(const [k,v] of body) display.searchParams.set(k,v);
     out.push({
       title,
-      detailUrl:endpoint,
+      detailUrl:display.href,
       detailRequest:{
         method:'POST',
         url:endpoint,

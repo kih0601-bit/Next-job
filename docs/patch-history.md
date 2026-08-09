@@ -125,3 +125,11 @@
 - `fullPipelineOk` 신규 사용 중단. 현재 앞단 표본 성공은 `collectionDocumentSampleOk`로 명명하고 구 필드는 deprecated 호환 객체로만 유지.
 - Source provenance 20기관을 분류. 기관 소유 공식 도메인은 verified, Incruit/Saramin/HUBST 공식 위탁형은 기관→플랫폼 연결 evidence가 추가 확보될 때까지 unknown으로 보수 판정.
 - 동서발전 POST 다운로드 및 WFPS 공식 Source-only 로직은 변경하지 않고 Regression 보호 대상으로 유지.
+## v88 — 개발 순서 정렬 + 첨부 없음 판정 교정
+- 공식 Pipeline 단계 번호를 실제 개발·완성·검증 순서로 재정렬: Source → Access → List → Detail → Attachment → Document Analysis → Pagination → Requirement Extraction → Filter → Output.
+- Pipeline 단계 번호는 런타임 호출 순서가 아니라 개발·완성·검증 순서를 뜻한다고 명문화.
+- v87 브리핑 확정 원인 반영: 상세 Evidence의 `explicitNoAttachment=true`가 모든 검증 표본에서 확인되면 `ATTACHMENT_EXPLICITLY_NONE`으로 판정하고 Attachment(첨부파일 수집)를 `verified` 처리. `ATTACHMENT_ZERO_UNRESOLVED`는 실제 첨부 없음 여부를 구분할 Evidence가 없을 때만 유지.
+- Reconciliation/Golden Dataset의 적용 시작점을 공식 7단계 Pagination으로 정렬.
+- WFPS Timeout은 v87 한 실행의 네트워크 연결 timeout Evidence만 있으므로 추측 수정하지 않고 재현 여부를 다음 Actions에서 확인.
+- 한국동서발전 POST 다운로드 등 v86에서 확정된 기관별 정상 로직은 변경하지 않음.
+

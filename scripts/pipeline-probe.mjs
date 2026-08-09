@@ -401,7 +401,11 @@ function classifyAttachment(report) {
   if (report.list?.status === 'verified-empty' && (report.list?.candidateCount || 0) === 0) return { status: 'success', code: 'ATTACHMENT_NOT_APPLICABLE_EMPTY_BOARD', reason: '현재 실제 공고 0건 · 첨부 대상 없음', evidence: [] };
   if (!report.detail?.ok) return { status: 'blocked', code: 'ATTACHMENT_BLOCKED_BY_DETAIL', reason: '상세 단계 미통과로 첨부 진단 보류', evidence: [] };
   if ((report.attachmentDiscovery.discovered || 0) > 0) return { status: 'success', code: 'ATTACHMENT_FOUND', reason: `검증 표본에서 첨부 링크 ${report.attachmentDiscovery.discovered}개 발견`, evidence: report.attachmentDiscovery.samples || [] };
-  return { status: 'unknown', code: 'ATTACHMENT_ZERO_UNRESOLVED', reason: '첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함', evidence: report.detail.samples || [] };
+  const samples = report.detail.samples || [];
+  if (samples.length > 0 && samples.every(item => Boolean(item.explicitNoAttachment))) {
+    return { status: 'success', code: 'ATTACHMENT_EXPLICITLY_NONE', reason: '상세 Evidence에서 실제 첨부 없음이 명시적으로 확인됨', evidence: samples };
+  }
+  return { status: 'unknown', code: 'ATTACHMENT_ZERO_UNRESOLVED', reason: '첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함', evidence: samples };
 }
 
 function classifyAttachmentDownload(report) {

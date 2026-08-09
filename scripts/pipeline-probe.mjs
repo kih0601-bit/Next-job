@@ -4,7 +4,7 @@ import { promisify } from 'node:util';
 import { SOURCES, SOURCE_REGISTRY_VERSION } from './collectors/source-registry.mjs';
 import { discoverListingUrls } from './collectors/source-adapters.mjs';
 import { inspectListingPage } from './lib/list-pipeline.mjs';
-import { discoverPaginationPlan, paginationUrl, paginationRequest, reconcilePages, pageFingerprint } from './lib/pagination-engine.mjs';
+import { discoverPaginationPlan, paginationUrl, paginationRequest, reconcilePages, pageFingerprint, paginationEvidenceSnapshot } from './lib/pagination-engine.mjs';
 import { buildListRootCauseDiagnostics } from './lib/list-root-cause-diagnostics.mjs';
 import { cleanHtml, fetchDetail, decodeHtmlEntities } from './lib/detail-parser.mjs';
 import { fetchKepcoDynamicList } from './lib/kepco-dynamic.mjs';
@@ -12,6 +12,7 @@ import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } fro
 import { buildAccessPlan, getTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 import { analyzeAttachments } from './lib/document-analyzer.mjs';
+import { safeFileComponent } from './lib/safe-filename.mjs';
 
 const VERSION = '18.3-kepco-counter-and-document-probe';
 const MAX_LISTING_PAGES = 3;
@@ -713,6 +714,7 @@ async function probeSource(source, artifacts) {
       report.pagination.totalPages = finalPlan.totalPages;
       report.pagination.totalCount = finalPlan.totalCount ?? null;
       report.pagination.evidence = finalPlan.evidence || [];
+      report.pagination.contractEvidence = paginationEvidenceSnapshot(firstHtml, selected.url);
       const pageBase = Number.isInteger(finalPlan.pageBase) ? finalPlan.pageBase : 1;
       const totalPages = Number.isInteger(finalPlan.totalPages) && finalPlan.totalPages > 0 ? finalPlan.totalPages : null;
       const results = [{ page: pageBase, candidates: all, fingerprint: pageFingerprint(all), url:selected.url, exactMatch:Boolean(selected.exactMatch) }];
@@ -786,7 +788,7 @@ async function probeSource(source, artifacts) {
           if (detail.rawHtml) {
             const detailDir = path.join(orgDir,'detail');
             await fs.mkdir(detailDir,{recursive:true});
-            const safeId = String(candidate.link || candidate.title || report.detail.samples.length).replace(/[^a-zA-Z0-9가-힣_-]+/g,'_').slice(-80);
+            const safeId = safeFileComponent(candidate.link || candidate.title || report.detail.samples.length, { fallback:'detail', maxBytes:64, maxChars:30 });
             await fs.writeFile(path.join(detailDir,`detail-raw-${safeId}.html`), detail.rawHtml,'utf8');
           }
         } catch {}

@@ -156,3 +156,9 @@ Actions(액션)는 위 검증의 판정자 자체가 아니라 Runner 환경의 
 - 같은 유형의 실패가 **연속 3회까지**이면 `transient-watch(일시적 실패 관찰)`로 기록하되 현재 실행 자체의 단계 실패 사실은 그대로 유지한다. 성공으로 위장하지 않는다.
 - 4회차 연속 재현, 실패 유형 변경, Parser/문서분석/목록 불일치처럼 코드성 Evidence가 등장하면 `actionable regression(수정 대상 기능후퇴)`로 즉시 승격한다.
 - 하루 약 3회 엔진 실행을 전제로 간헐적 외부 서버 장애 때문에 정상 기관 코드를 반복 수정하는 일을 막는 운영 안전장치이며, 과거 성공 Evidence와 연속 실패 횟수는 `pipeline-history.json`을 기준으로 계산한다.
+
+### 8단계 진입 전 입력 경계 (v92)
+7단계가 안정화되기 전에는 Requirement Extraction(지원조건 수집)을 공식 성공 판정으로 활성화하지 않는다. 대신 `docs/requirement-input-contract.json`을 8단계 입력 계약으로 사용한다. 상세/문서 원문과 Provenance(출처)를 보존하고, 찾지 못한 조건은 `unknown(확인불가)`로 유지한다.
+
+### Safe Filename(안전한 Evidence 파일명)
+공고 제목 원문은 데이터에서 절대 자르지 않는다. 디스크 Evidence 파일명만 길이 제한 + stable hash(고정 식별값)를 사용하며, Actions는 Windows/ZIP 장경로를 방지하기 위해 legacy diagnostics를 정리하고 path-safety test를 통과해야 한다.

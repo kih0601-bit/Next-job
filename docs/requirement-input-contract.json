@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "stage": 8,
+  "name": "Requirement Extraction / 지원조건 수집",
+  "status": "prepared-not-active",
+  "purpose": "7단계 완료 후 8단계가 받는 입력 경계를 고정한다. 이 파일 자체는 8단계 성공 판정을 활성화하지 않는다.",
+  "input": {
+    "postingIdentity": ["org", "title", "detailUrl", "sourceUrl"],
+    "evidence": ["detailText", "documentText", "documentAnalysisResults", "provenance"],
+    "requiredCategories": ["education", "licenses", "experience", "age", "majorOrJob", "workLocation", "employmentType", "legalOrIdentity"],
+    "requirementLevels": ["required", "preferred", "unknown"]
+  },
+  "rules": [
+    "문서에서 못 찾은 조건을 조건 없음으로 바꾸지 않는다.",
+    "detail/document 출처를 각각 추적한다.",
+    "7단계 Pagination과 6단계 Document Analysis가 검증되지 않은 공고는 8단계 최종 검증 대상에서 제외한다."
+  ]
+}

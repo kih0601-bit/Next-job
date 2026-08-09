@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { safeFileComponent } from './safe-filename.mjs';
 const ENTITY_MAP = {
   '&amp;': '&', '&quot;': '"', '&#39;': "'", '&lt;': '<', '&gt;': '>', '&nbsp;': ' '
 };
@@ -512,18 +513,7 @@ function detailConfidence(text = '', expectedTitle = '') {
 
 const DETAIL_DIAG_DIR = process.env.NEXTJOB_DETAIL_DIAG_DIR || '';
 
-function shortStableHash(value = '') {
-  let hash = 0x811c9dc5;
-  for (const char of String(value)) { hash ^= char.codePointAt(0); hash = Math.imul(hash, 0x01000193) >>> 0; }
-  return hash.toString(16).padStart(8, '0');
-}
-function safeDiagName(value = '') {
-  const cleaned = String(value).normalize('NFKC').replace(/[^\p{L}\p{N}._-]+/gu, '_').replace(/^_+|_+$/g, '') || 'detail';
-  // GitHub/ZIP clients may expand Hangul into #Uxxxx-like names. Keep evidence basenames
-  // deliberately short so Windows extraction never hits the per-component path limit.
-  if (cleaned.length <= 28 && Buffer.byteLength(cleaned, 'utf8') <= 56) return cleaned;
-  return `${cleaned.slice(0, 18)}-${shortStableHash(cleaned)}`;
-}
+function safeDiagName(value = '') { return safeFileComponent(value, { fallback:'detail', maxBytes:64, maxChars:30 }); }
 
 function writeDetailDiagnostic({ org = 'unknown', expectedTitle = '', requestedUrl = '', finalUrl = '', status = 0, contentType = '', html = '', error = '', stage = '', verdict = {}, request = null }) {
   if (!DETAIL_DIAG_DIR) return;

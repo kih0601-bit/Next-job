@@ -164,3 +164,11 @@
 - production Collector도 Probe에서 `form-post`가 검증완료된 기관에 한해 동일 contract를 다시 읽어 전체 페이지 공고를 실제 수집한다.
 - KOSHA에서 ZIP 묶음이 다른 실질 채용문서와 함께 있을 때 ZIP 자체를 문서분석 실패로 세지 않도록 archive scope를 교정. UIPA 등 legacy HWP가 hwp5txt/LibreOffice text 변환에서 짧게 나오는 경우 LibreOffice PDF 렌더→PDF text/OCR fallback을 추가했다.
 - 8단계 지원조건 수집은 시작하지 않는다. v91 목적은 1~6단계 Regression 보호와 7단계 Pagination 정확성 확장이다.
+
+## v92 — 7단계 근거수집/관리체계 안정화 + 8단계 입력 경계 준비
+- 목적: v91 브리핑에서 확인된 실행 workflow/template 드리프트, Run Metrics 미생성, Windows 장경로 Evidence, Pagination 미확정 기관의 근거 부족을 동시에 정리한다.
+- Run Metrics: 실제 실행본 `.github/workflows/update-jobs.yml`에 start/mark/finalize와 artifact 포함을 직접 연결하고, `workflow-template/update-jobs.yml`을 실행본과 byte-identical로 유지하도록 테스트한다.
+- Safe Filename: 원문 제목은 데이터에 보존하고 Evidence 파일명만 짧은 prefix + stable hash로 제한한다. 기존 장경로 Evidence는 Actions 시작/종료 시 cleanup하고 이후 테스트가 경로 상한을 강제한다.
+- Pagination: 미확정 기관에서 form/action/input, JS page function, page control snippet을 `contractEvidence`로 저장해 다음 Actions가 단순 unknown 반복이 아니라 새 근거를 남기도록 강화한다.
+- 8단계: Requirement Extraction은 아직 활성화하지 않고 `docs/requirement-input-contract.json`으로 입력/출처/상태 경계만 고정한다.
+- 유지: 1~6단계 정상 로직 및 기관별 확정 Adapter는 변경 최소화. 8단계 성공 판정은 아직 not-implemented 유지.

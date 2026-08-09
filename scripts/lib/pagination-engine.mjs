@@ -122,6 +122,23 @@ function apiMeta(html='', source={}) {
   } catch {}
   return null;
 }
+
+export function paginationEvidenceSnapshot(html='', baseUrl='') {
+  const source=String(html||'');
+  const forms=[...source.matchAll(/<form\b[^>]*>[\s\S]*?<\/form>/gi)].slice(0,8).map(m=>{
+    const form=m[0];
+    return {
+      action: attr(form.match(/<form\b[^>]*>/i)?.[0]||'', 'action'),
+      method: (attr(form.match(/<form\b[^>]*>/i)?.[0]||'', 'method')||'GET').toUpperCase(),
+      names:[...form.matchAll(/\bname\s*=\s*(["'])([^"']+)\1/gi)].map(x=>x[2]).filter((v,i,a)=>a.indexOf(v)===i).slice(0,30)
+    };
+  });
+  const jsFunctions=[...source.matchAll(/(?:function\s+)?([A-Za-z_$][\w$]*(?:Page|page|List|list)[A-Za-z0-9_$]*)\s*\([^)]*\)\s*\{([\s\S]{0,1800}?)\}/g)]
+    .slice(0,20).map(m=>({name:m[1],body:m[2].replace(/\s+/g,' ').slice(0,700)}));
+  const pageControls=[...source.matchAll(/(?:href|onclick)\s*=\s*(["'])([^"']*(?:page|Page|goPage|select_linkPage|MovePage)[^"']*)\1/gi)]
+    .slice(0,30).map(m=>m[2]);
+  return {baseUrl,forms,jsFunctions,pageControls};
+}
 export function discoverPaginationPlan({html='', source={}, selectedUrl=''}) {
   const url = selectedUrl || source.url || '';
   const api = apiMeta(html,source);

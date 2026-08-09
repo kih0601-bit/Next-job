@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
-const source=fs.readFileSync(new URL('./lib/detail-parser.mjs', import.meta.url),'utf8');
-assert.match(source,/cleaned\.slice\(0, 18\).*shortStableHash/);
-assert.match(source,/Buffer\.byteLength\(cleaned, 'utf8'\) <= 56/);
+import { safeFileComponent } from './lib/safe-filename.mjs';
+const source='울산도시공사_2026년도_직원채용_매우긴제목_'.repeat(8);
+const safe=safeFileComponent(source,{maxBytes:64,maxChars:30});
+assert.ok(Buffer.byteLength(safe,'utf8')<=64);
+assert.match(safe,/-[0-9a-f]{8}$/);
 console.log('v89 diagnostic filename guard pass');

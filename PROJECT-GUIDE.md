@@ -55,3 +55,8 @@ Actions 성공 여부만 보지 않는다. Silent Failure(겉으로 정상인데
 - 이 `PROJECT-GUIDE.md`: 대화에서 확정된 장기 원칙과 로드맵을 보존한다.
 
 중요 합의가 변경되면 코드와 함께 이 문서도 증분 갱신한다.
+
+### 진단 실행 원칙
+- 코드/기존 evidence/공개 사이트로 자체 확정 가능한 원인은 Actions 전에 끝까지 자체진단한다.
+- Runner의 실제 서버 응답이 필요한 부분만 Actions evidence로 확인한다.
+- 서버 contract가 확인되지 않은 상태에서 parameter/method를 추측해 성공처럼 보이게 만들지 않는다.

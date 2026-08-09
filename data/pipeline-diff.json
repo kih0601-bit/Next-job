@@ -1,15 +1,82 @@
 {
-  "generatedAt": "2026-08-09T03:19:41.963Z",
+  "generatedAt": "2026-08-09T04:38:38.230Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 1,
-    "regressed": 0,
+    "improved": 0,
+    "regressed": 1,
     "unchanged": 19
   },
   "changes": [
     {
+      "org": "울산복지가족진흥사회서비스원",
+      "primaryCause": {
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://uwfdi.re.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to uwfdi.re.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
+    {
       "org": "울주문화재단",
-      "health": "healthy",
       "primaryCause": {
         "stage": "attachment",
         "status": "unknown",
@@ -71,7 +138,6 @@
     },
     {
       "org": "근로복지공단",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -118,7 +184,6 @@
     },
     {
       "org": "울산경제일자리진흥원",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -165,7 +230,6 @@
     },
     {
       "org": "울산남구도시관리공단",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -212,7 +276,6 @@
     },
     {
       "org": "울산도시공사",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -259,7 +322,6 @@
     },
     {
       "org": "울산문화관광재단",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -305,55 +367,7 @@
       "regressed": false
     },
     {
-      "org": "울산복지가족진흥사회서비스원",
-      "health": "healthy",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": false
-    },
-    {
       "org": "울산북구시설관리공단",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -400,7 +414,6 @@
     },
     {
       "org": "울산시설공단",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -447,7 +460,6 @@
     },
     {
       "org": "울산정보산업진흥원",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -494,7 +506,6 @@
     },
     {
       "org": "울산테크노파크",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -541,7 +552,6 @@
     },
     {
       "org": "울산항만공사",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -588,7 +598,6 @@
     },
     {
       "org": "울주군시설관리공단",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -635,7 +644,6 @@
     },
     {
       "org": "한국동서발전",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -672,17 +680,16 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
       "org": "한국산업안전보건공단",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -729,7 +736,6 @@
     },
     {
       "org": "한국산업인력공단",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -776,7 +782,6 @@
     },
     {
       "org": "한국석유공사",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -823,7 +828,6 @@
     },
     {
       "org": "한국수력원자력",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -870,7 +874,6 @@
     },
     {
       "org": "한국에너지공단",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",
@@ -917,7 +920,6 @@
     },
     {
       "org": "한국전력공사",
-      "health": "healthy",
       "primaryCause": {
         "stage": "complete",
         "status": "success",

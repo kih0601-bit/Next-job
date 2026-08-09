@@ -1,113 +1,13 @@
 {
   "org": "한국에너지공단",
-  "health": "degraded",
   "primaryCause": {
-    "stage": "attachment",
-    "status": "unknown",
-    "code": "ATTACHMENT_ZERO_UNRESOLVED",
-    "reason": "첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함",
-    "evidence": [
-      {
-        "title": "한국에너지공단 공무직(미화) 채용(사회형평인재 제한경쟁)",
-        "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=135",
-        "requestMethod": "POST",
-        "template": "FORM_POST",
-        "ok": true,
-        "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-        "textLength": 635,
-        "attachmentCount": 0,
-        "attachmentSignalCount": 6,
-        "explicitNoAttachment": false,
-        "transport": "FORM_POST",
-        "error": ""
-      },
-      {
-        "title": "한국에너지공단 청년인턴(체험형) 채용 공고",
-        "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=134",
-        "requestMethod": "POST",
-        "template": "FORM_POST",
-        "ok": true,
-        "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-        "textLength": 726,
-        "attachmentCount": 0,
-        "attachmentSignalCount": 10,
-        "explicitNoAttachment": false,
-        "transport": "FORM_POST",
-        "error": ""
-      },
-      {
-        "title": "한국에너지공단 공무직(시설관리 일반) 채용 공고",
-        "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=133",
-        "requestMethod": "POST",
-        "template": "FORM_POST",
-        "ok": true,
-        "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-        "textLength": 613,
-        "attachmentCount": 0,
-        "attachmentSignalCount": 6,
-        "explicitNoAttachment": false,
-        "transport": "FORM_POST",
-        "error": ""
-      },
-      {
-        "title": "한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)",
-        "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=132",
-        "requestMethod": "POST",
-        "template": "FORM_POST",
-        "ok": true,
-        "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-        "textLength": 634,
-        "attachmentCount": 0,
-        "attachmentSignalCount": 6,
-        "explicitNoAttachment": false,
-        "transport": "FORM_POST",
-        "error": ""
-      },
-      {
-        "title": "한국에너지공단 공무직(미화) 채용(사회형평인재 제한경쟁)",
-        "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=131",
-        "requestMethod": "POST",
-        "template": "FORM_POST",
-        "ok": true,
-        "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-        "textLength": 633,
-        "attachmentCount": 0,
-        "attachmentSignalCount": 6,
-        "explicitNoAttachment": false,
-        "transport": "FORM_POST",
-        "error": ""
-      },
-      {
-        "title": "한국에너지공단 전문경력직 채용 공고",
-        "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=130",
-        "requestMethod": "POST",
-        "template": "FORM_POST",
-        "ok": true,
-        "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-        "textLength": 574,
-        "attachmentCount": 0,
-        "attachmentSignalCount": 6,
-        "explicitNoAttachment": false,
-        "transport": "FORM_POST",
-        "error": ""
-      },
-      {
-        "title": "한국에너지공단 신입직원(채용형 인턴) 채용 공고",
-        "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=129",
-        "requestMethod": "POST",
-        "template": "FORM_POST",
-        "ok": true,
-        "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-        "textLength": 639,
-        "attachmentCount": 0,
-        "attachmentSignalCount": 8,
-        "explicitNoAttachment": false,
-        "transport": "FORM_POST",
-        "error": ""
-      }
-    ],
+    "stage": "complete",
+    "status": "success",
+    "code": "PIPELINE_SAMPLE_OK",
+    "reason": "현재 진단 표본에서 실패 원인 없음",
+    "evidence": [],
     "repairTarget": "scripts/collectors/institutions/한국에너지공단.mjs",
-    "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가"
+    "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
   },
   "diagnosis": {
     "http": {
@@ -153,6 +53,7 @@
               ]
             },
             "institutionRule": false,
+            "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
             "textLength": 7174,
             "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -201,6 +102,7 @@
               ]
             },
             "institutionRule": false,
+            "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
             "textLength": 270,
             "requestedUrl": "https://min24.energy.or.kr/job",
@@ -249,6 +151,7 @@
               ]
             },
             "institutionRule": false,
+            "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
             "textLength": 8457,
             "requestedUrl": "https://www.energy.or.kr/",
@@ -298,6 +201,7 @@
               ]
             },
             "institutionRule": false,
+            "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
             "textLength": 1581,
             "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
@@ -347,6 +251,7 @@
           ]
         },
         "institutionRule": false,
+        "strictInstitutionRule": false,
         "institutionRuleEvidence": [],
         "textLength": 7174,
         "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -824,7 +729,7 @@
           "ok": true,
           "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
           "textLength": 726,
-          "attachmentCount": 0,
+          "attachmentCount": 1,
           "attachmentSignalCount": 10,
           "explicitNoAttachment": false,
           "transport": "FORM_POST",
@@ -894,7 +799,7 @@
           "ok": true,
           "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
           "textLength": 639,
-          "attachmentCount": 0,
+          "attachmentCount": 1,
           "attachmentSignalCount": 8,
           "explicitNoAttachment": false,
           "transport": "FORM_POST",
@@ -903,106 +808,66 @@
       ]
     },
     "attachment": {
-      "status": "unknown",
-      "code": "ATTACHMENT_ZERO_UNRESOLVED",
-      "reason": "첨부 링크 0개 · 실제 첨부 없음과 추출 실패를 현재 표본만으로 구분하지 못함",
+      "status": "success",
+      "code": "ATTACHMENT_FOUND",
+      "reason": "검증 표본에서 첨부 링크 2개 발견",
       "evidence": [
         {
-          "title": "한국에너지공단 공무직(미화) 채용(사회형평인재 제한경쟁)",
-          "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=135",
-          "requestMethod": "POST",
-          "template": "FORM_POST",
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "type": "pdf",
+          "url": "https://www.energy.or.kr/commonFile/fileDownload.do",
+          "method": "POST"
+        },
+        {
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "type": "pdf",
+          "url": "https://www.energy.or.kr/commonFile/fileDownload.do",
+          "method": "POST"
+        }
+      ]
+    },
+    "attachmentDownload": {
+      "status": "success",
+      "code": "ATTACHMENT_DOWNLOAD_VERIFIED",
+      "reason": "검증 표본 다운로드 2/2 성공",
+      "evidence": [
+        {
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "url": "https://www.energy.or.kr/commonFile/fileDownload.do",
           "ok": true,
-          "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-          "textLength": 635,
-          "attachmentCount": 0,
-          "attachmentSignalCount": 6,
-          "explicitNoAttachment": false,
-          "transport": "FORM_POST",
+          "transport": "node-fetch",
+          "contentType": "application/octet-stream;charset=UTF-8",
           "error": ""
         },
         {
-          "title": "한국에너지공단 청년인턴(체험형) 채용 공고",
-          "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=134",
-          "requestMethod": "POST",
-          "template": "FORM_POST",
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "url": "https://www.energy.or.kr/commonFile/fileDownload.do",
           "ok": true,
-          "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-          "textLength": 726,
-          "attachmentCount": 0,
-          "attachmentSignalCount": 10,
-          "explicitNoAttachment": false,
-          "transport": "FORM_POST",
+          "transport": "node-fetch",
+          "contentType": "application/octet-stream;charset=UTF-8",
+          "error": ""
+        }
+      ]
+    },
+    "documentAnalysis": {
+      "status": "success",
+      "code": "DOCUMENT_ANALYSIS_VERIFIED",
+      "reason": "검증 표본 문서분석 2/2 성공",
+      "evidence": [
+        {
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "detectedType": "pdf",
+          "ok": true,
+          "method": "pdftotext",
+          "textLength": 5090,
           "error": ""
         },
         {
-          "title": "한국에너지공단 공무직(시설관리 일반) 채용 공고",
-          "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=133",
-          "requestMethod": "POST",
-          "template": "FORM_POST",
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "detectedType": "pdf",
           "ok": true,
-          "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-          "textLength": 613,
-          "attachmentCount": 0,
-          "attachmentSignalCount": 6,
-          "explicitNoAttachment": false,
-          "transport": "FORM_POST",
-          "error": ""
-        },
-        {
-          "title": "한국에너지공단 공무직(경비) 채용 공고(보훈 제한경쟁)",
-          "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=132",
-          "requestMethod": "POST",
-          "template": "FORM_POST",
-          "ok": true,
-          "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-          "textLength": 634,
-          "attachmentCount": 0,
-          "attachmentSignalCount": 6,
-          "explicitNoAttachment": false,
-          "transport": "FORM_POST",
-          "error": ""
-        },
-        {
-          "title": "한국에너지공단 공무직(미화) 채용(사회형평인재 제한경쟁)",
-          "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=131",
-          "requestMethod": "POST",
-          "template": "FORM_POST",
-          "ok": true,
-          "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-          "textLength": 633,
-          "attachmentCount": 0,
-          "attachmentSignalCount": 6,
-          "explicitNoAttachment": false,
-          "transport": "FORM_POST",
-          "error": ""
-        },
-        {
-          "title": "한국에너지공단 전문경력직 채용 공고",
-          "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=130",
-          "requestMethod": "POST",
-          "template": "FORM_POST",
-          "ok": true,
-          "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-          "textLength": 574,
-          "attachmentCount": 0,
-          "attachmentSignalCount": 6,
-          "explicitNoAttachment": false,
-          "transport": "FORM_POST",
-          "error": ""
-        },
-        {
-          "title": "한국에너지공단 신입직원(채용형 인턴) 채용 공고",
-          "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobView.do?boardNo=129",
-          "requestMethod": "POST",
-          "template": "FORM_POST",
-          "ok": true,
-          "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
-          "textLength": 639,
-          "attachmentCount": 0,
-          "attachmentSignalCount": 8,
-          "explicitNoAttachment": false,
-          "transport": "FORM_POST",
+          "method": "pdftotext",
+          "textLength": 5090,
           "error": ""
         }
       ]
@@ -1044,6 +909,7 @@
           ]
         },
         "institutionRule": false,
+        "strictInstitutionRule": false,
         "institutionRuleEvidence": [],
         "textLength": 7174,
         "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -1054,7 +920,7 @@
     }
   },
   "repairTarget": "scripts/collectors/institutions/한국에너지공단.mjs",
-  "recommendedAction": "기관 전용 첨부 영역 선택자와 실제 첨부 없음 판정 규칙 추가",
+  "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인",
   "stages": {
     "access": {
       "ok": true,
@@ -1104,6 +970,7 @@
               ]
             },
             "institutionRule": false,
+            "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
             "textLength": 7174,
             "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -1152,6 +1019,7 @@
               ]
             },
             "institutionRule": false,
+            "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
             "textLength": 270,
             "requestedUrl": "https://min24.energy.or.kr/job",
@@ -1200,6 +1068,7 @@
               ]
             },
             "institutionRule": false,
+            "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
             "textLength": 8457,
             "requestedUrl": "https://www.energy.or.kr/",
@@ -1249,6 +1118,7 @@
               ]
             },
             "institutionRule": false,
+            "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
             "textLength": 1581,
             "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
@@ -1293,6 +1163,7 @@
           ]
         },
         "institutionRule": false,
+        "strictInstitutionRule": false,
         "institutionRuleEvidence": [],
         "textLength": 7174,
         "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -1354,6 +1225,7 @@
                   ]
                 },
                 "institutionRule": false,
+                "strictInstitutionRule": false,
                 "institutionRuleEvidence": [],
                 "textLength": 7174,
                 "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -1402,6 +1274,7 @@
                   ]
                 },
                 "institutionRule": false,
+                "strictInstitutionRule": false,
                 "institutionRuleEvidence": [],
                 "textLength": 270,
                 "requestedUrl": "https://min24.energy.or.kr/job",
@@ -1450,6 +1323,7 @@
                   ]
                 },
                 "institutionRule": false,
+                "strictInstitutionRule": false,
                 "institutionRuleEvidence": [],
                 "textLength": 8457,
                 "requestedUrl": "https://www.energy.or.kr/",
@@ -1499,6 +1373,7 @@
                   ]
                 },
                 "institutionRule": false,
+                "strictInstitutionRule": false,
                 "institutionRuleEvidence": [],
                 "textLength": 1581,
                 "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%97%90%EB%84%88%EC%A7%80%EA%B3%B5%EB%8B%A8&search_yn=Y",
@@ -1557,6 +1432,7 @@
               ]
             },
             "institutionRule": false,
+            "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
             "textLength": 7174,
             "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -1600,6 +1476,7 @@
             ]
           },
           "institutionRule": false,
+          "strictInstitutionRule": false,
           "institutionRuleEvidence": [],
           "textLength": 7174,
           "requestedUrl": "https://www.energy.or.kr/front/board/etc/jobList.do",
@@ -3294,7 +3171,7 @@
           "ok": true,
           "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
           "textLength": 726,
-          "attachmentCount": 0,
+          "attachmentCount": 1,
           "attachmentSignalCount": 10,
           "explicitNoAttachment": false,
           "transport": "FORM_POST",
@@ -3364,7 +3241,7 @@
           "ok": true,
           "finalUrl": "https://www.energy.or.kr/front/board/etc/jobView.do",
           "textLength": 639,
-          "attachmentCount": 0,
+          "attachmentCount": 1,
           "attachmentSignalCount": 8,
           "explicitNoAttachment": false,
           "transport": "FORM_POST",
@@ -3373,36 +3250,107 @@
       ]
     },
     "attachmentDiscovery": {
-      "ok": false,
-      "discovered": 0,
-      "samples": [],
-      "status": "failed"
+      "ok": true,
+      "discovered": 2,
+      "samples": [
+        {
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "type": "pdf",
+          "url": "https://www.energy.or.kr/commonFile/fileDownload.do",
+          "method": "POST"
+        },
+        {
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "type": "pdf",
+          "url": "https://www.energy.or.kr/commonFile/fileDownload.do",
+          "method": "POST"
+        }
+      ],
+      "status": "success"
     },
     "attachmentDownload": {
-      "ok": false,
-      "status": "blocked-by-discovery",
-      "attempted": 0,
-      "downloaded": 0,
-      "failed": 0,
-      "verificationMode": "probe-sample"
-    },
-    "documentAnalysis": {
-      "ok": false,
-      "capabilityOk": false,
-      "status": "blocked-by-download",
-      "coverageStatus": "blocked",
-      "coverageRatio": null,
-      "attempted": 0,
-      "parsed": 0,
+      "ok": true,
+      "status": "sample-success",
+      "attempted": 2,
+      "downloaded": 2,
       "failed": 0,
       "verificationMode": "probe-sample",
-      "diagnostics": {}
+      "samples": [
+        {
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "url": "https://www.energy.or.kr/commonFile/fileDownload.do",
+          "ok": true,
+          "transport": "node-fetch",
+          "contentType": "application/octet-stream;charset=UTF-8",
+          "error": ""
+        },
+        {
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "url": "https://www.energy.or.kr/commonFile/fileDownload.do",
+          "ok": true,
+          "transport": "node-fetch",
+          "contentType": "application/octet-stream;charset=UTF-8",
+          "error": ""
+        }
+      ]
+    },
+    "documentAnalysis": {
+      "ok": true,
+      "capabilityOk": true,
+      "status": "sample-success",
+      "coverageStatus": "complete",
+      "coverageRatio": 1,
+      "attempted": 2,
+      "parsed": 2,
+      "failed": 0,
+      "verificationMode": "probe-sample",
+      "analyzerVersion": "2.6-evidence-scoped-document-coverage",
+      "diagnostics": {
+        "byDetectedType": {
+          "pdf": 2
+        },
+        "byContentType": {
+          "application/octet-stream;charset=UTF-8": 2
+        },
+        "byError": {}
+      },
+      "samples": [
+        {
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "detectedType": "pdf",
+          "ok": true,
+          "method": "pdftotext",
+          "textLength": 5090,
+          "error": ""
+        },
+        {
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "detectedType": "pdf",
+          "ok": true,
+          "method": "pdftotext",
+          "textLength": 5090,
+          "error": ""
+        }
+      ]
     },
     "attachment": {
-      "ok": false,
-      "discovered": 0,
-      "samples": [],
-      "status": "failed"
+      "ok": true,
+      "discovered": 2,
+      "samples": [
+        {
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "type": "pdf",
+          "url": "https://www.energy.or.kr/commonFile/fileDownload.do",
+          "method": "POST"
+        },
+        {
+          "name": "파일 아이콘 [기타첨부]외국어성적통합환산표.pdf",
+          "type": "pdf",
+          "url": "https://www.energy.or.kr/commonFile/fileDownload.do",
+          "method": "POST"
+        }
+      ],
+      "status": "success"
     }
   }
 }

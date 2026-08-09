@@ -2,65 +2,79 @@
   "version": "1.4-duplicate-title-safe-diagnostics",
   "mode": "passive",
   "org": "근로복지공단",
-  "url": "https://comwel.saramin.co.kr/service/comwel/index.asp",
-  "probableCause": "VISIBLE_ROW_COUNTER_UNAVAILABLE",
-  "listCounterFailureReason": "UNKNOWN",
+  "url": "https://comwel.incruit.com/index_main.asp",
+  "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+  "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
   "accuracyVerification": {
-    "verified": false,
-    "level": "NOT_EXACT",
+    "verified": true,
+    "level": "SOURCE_RECORD_EXACT",
     "listVerificationTemplate": "TABLE_RECORD",
     "templateRecordEvidence": {
       "verified": false,
       "template": "TABLE_RECORD",
       "recordCount": 0,
-      "candidateCount": 0,
+      "candidateCount": 1,
       "matchedCount": 0,
-      "unmatchedTitles": [],
+      "unmatchedTitles": [
+        "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기"
+      ],
       "recordSamples": [],
       "level": "TEMPLATE_RECORD_MISMATCH"
     },
     "independentDomEvidence": false,
-    "exactCount": false,
+    "exactCount": true,
     "exactTitleSet": false,
-    "strongAdapterRecordEvidence": false,
+    "strongAdapterRecordEvidence": true,
     "missingTitleCount": 0,
-    "extraCandidateCount": 0,
+    "extraCandidateCount": 1,
     "visibleUniqueTitleCount": 0,
-    "extractedTitleCount": 0
+    "extractedTitleCount": 1
   },
   "counterTrace": {
-    "source": "unavailable",
+    "source": "adapter-diagnostics",
     "rawDomRows": 0,
     "uniqueVisibleTitleCount": 0,
-    "reportedVisiblePostCount": null,
-    "acceptedCandidateCount": 0,
-    "exactAgainstRaw": true,
-    "exactAgainstUniqueTitles": true
+    "reportedVisiblePostCount": 1,
+    "acceptedCandidateCount": 1,
+    "exactAgainstRaw": false,
+    "exactAgainstUniqueTitles": false
   },
-  "candidateClassCounts": {},
+  "candidateClassCounts": {
+    "RECRUIT_POST": 1
+  },
   "counts": {
-    "visiblePostCount": null,
-    "candidateCount": 0,
+    "visiblePostCount": 1,
+    "candidateCount": 1,
     "rawTableRows": 0,
     "uniqueVisibleTitleCount": 0,
-    "sourceHtmlLength": 5778,
+    "sourceHtmlLength": 9621,
     "missingRows": 0,
-    "extraCandidates": 0
+    "extraCandidates": 1
   },
   "selectorCounts": {
     "table tbody tr": 0,
     "tr": 0,
-    "li": 0,
+    "li": 12,
     "article": 0,
     "[onclick]": 0,
     "[data-url]": 0,
     "[data-href]": 0,
-    "a[href]": 0
+    "a[href]": 22
   },
   "rejectReasonCounts": {},
   "visibleTitles": [],
-  "extractedTitles": [],
+  "extractedTitles": [
+    "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기"
+  ],
   "missingRows": [],
-  "extraCandidates": [],
+  "extraCandidates": [
+    {
+      "org": "근로복지공단",
+      "title": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+      "link": "http://comwel.incruit.com/hire/viewhire.asp?projectid=109",
+      "listText": "근로복지공단 ‘25년 2차 신규직원(행정직) 채용 공고 2025.08.14.(목) ~ 2025.08.28.(목) 18:00:00 바로가기",
+      "adapter": "근로복지공단:main-job-card"
+    }
+  ],
   "rowTrace": []
 }

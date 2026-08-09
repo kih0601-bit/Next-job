@@ -5,6 +5,7 @@ let history = { sources: {} };
 try { history = JSON.parse(await fs.readFile('data/pipeline-history.json','utf8')); } catch {}
 
 const regressions = (diff.changes || []).filter(x => x.regressed);
+let currentReport={sources:[]}; try { currentReport=JSON.parse(await fs.readFile('data/pipeline-report.json','utf8')); } catch {}
 
 function isTransientNetworkRegression(row = {}) {
   const cause = row.primaryCause || {};
@@ -41,6 +42,18 @@ const classified = regressions.map(row => {
       : ''
   };
 });
+
+
+const already=new Set(classified.map(x=>x.org));
+for (const src of currentReport.sources || []) {
+  if (already.has(src.org) || src?.access?.recruitVerifyOk !== false) continue;
+  const cause=src?.diagnosis?.primary || src?.primaryCause || {};
+  if (!isTransientNetworkRegression({primaryCause:cause})) continue;
+  const prior=trailingAccessFailures(src.org);
+  if (!prior.hadPriorSuccess) continue;
+  const count=prior.failures+1;
+  classified.push({org:src.org,regressed:false,primaryCause:cause,regressionClass:count<=3?'transient-watch':'actionable',transientWatch:count<=3,consecutiveFailureCount:count,watchPolicy:count<=3?'최근 정상 Evidence가 있는 동일 네트워크성 실패는 3회 연속까지 관찰; 4회차 또는 실패 양상 변경 시 원인분석 대상으로 승격':''});
+}
 
 const actionable = classified.filter(x => !x.transientWatch);
 const transient = classified.filter(x => x.transientWatch);

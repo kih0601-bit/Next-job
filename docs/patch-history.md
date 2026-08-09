@@ -172,3 +172,12 @@
 - Pagination: 미확정 기관에서 form/action/input, JS page function, page control snippet을 `contractEvidence`로 저장해 다음 Actions가 단순 unknown 반복이 아니라 새 근거를 남기도록 강화한다.
 - 8단계: Requirement Extraction은 아직 활성화하지 않고 `docs/requirement-input-contract.json`으로 입력/출처/상태 경계만 고정한다.
 - 유지: 1~6단계 정상 로직 및 기관별 확정 Adapter는 변경 최소화. 8단계 성공 판정은 아직 not-implemented 유지.
+
+
+## v93 evidence-based fixes
+- Executable workflow synchronized to the verified template so Run Metrics actually executes.
+- Pagination discovery now uses observed POST/GET forms carrying page keys before generic query fallbacks; traversal cap raised to 100 for UTP 65-page evidence.
+- source-status observation version/time now derives from the current pipeline report instead of hard-coded v90.
+- transient-watch now tracks ongoing current network failures using pipeline history even when the diff is no longer a new regression.
+- LibreOffice legacy-office extraction locates the actual generated txt file, fixing confirmed ENOENT failures.
+- No speculative fix was applied to unresolved HTML gateway or low-text legacy HWP cases; those remain evidence targets.

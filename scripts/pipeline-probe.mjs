@@ -732,7 +732,7 @@ async function probeSource(source, artifacts) {
         report.pagination.goldenDataset = {status:'active-structural-baseline', firstPageFingerprint:results[0].fingerprint, firstPageCount:all.length};
         report.pagination.ok = true;
         report.pagination.status = 'verified-full';
-      } else if (['query-get','form-post'].includes(finalPlan.kind) && totalPages && totalPages <= 60) {
+      } else if (['query-get','form-post'].includes(finalPlan.kind) && totalPages && totalPages <= 100) {
         const start = pageBase === 0 ? 0 : 1;
         for (let pg=start; pg<start+totalPages; pg++) {
           if (pg === pageBase) continue;
@@ -756,7 +756,7 @@ async function probeSource(source, artifacts) {
         report.pagination.goldenDataset = {status:'active-structural-baseline', firstPageFingerprint:results[0].fingerprint, firstPageCount:all.length, note:'첫 도입 실행은 검증된 1페이지를 구조 기준선으로 저장; 이후 실행부터 regression 대조'};
         report.pagination.ok = allPages && !repeated && allExact && report.pagination.errors.length===0;
         report.pagination.status = report.pagination.ok ? 'verified-full' : 'partial-or-mismatch';
-      } else if (finalPlan.kind === 'kosha-api' && totalPages && totalPages <= 60) {
+      } else if (finalPlan.kind === 'kosha-api' && totalPages && totalPages <= 100) {
         for (let pg=2; pg<=totalPages; pg++) {
           try { const pp=await fetchKoshaTboard('boardList',{},pg); const inspect=inspectListingPage(pp.html,{...source,url:pp.finalUrl}); const fp=pageFingerprint(inspect.candidates); results.push({page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl,exactMatch:Boolean(inspect.exactMatch)}); report.pagination.pageFingerprints.push({page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl}); }
           catch(error){report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`);}

@@ -509,7 +509,13 @@ async function extractLegacyOffice(file, type, workDir) {
   }
   if (!(await commandExists('libreoffice'))) throw new Error('libreoffice unavailable');
   await run('libreoffice', ['--headless', '--convert-to', 'txt:Text', '--outdir', workDir, file], { timeoutMs: 75000 });
-  const converted = path.join(workDir, `${path.basename(file, path.extname(file))}.txt`);
+  const expected = path.join(workDir, `${path.basename(file, path.extname(file))}.txt`);
+  let converted = expected;
+  try { await fs.access(converted); } catch {
+    const txtFiles=(await fs.readdir(workDir)).filter(name=>/\.txt$/i.test(name));
+    if (!txtFiles.length) throw new Error('libreoffice conversion produced no txt output');
+    converted=path.join(workDir,txtFiles[0]);
+  }
   return { text: normalizeText(await fs.readFile(converted, 'utf8')), method: 'libreoffice' };
 }
 

@@ -111,6 +111,27 @@ function discoverFormContract(html='', baseUrl='') {
   }
   return null;
 }
+
+function formFieldPaginationContract(html='', baseUrl='') {
+  const s=String(html);
+  const js=jsPages(s);
+  const total=parseTotalPages(s);
+  for (const m of s.matchAll(/<form\b[^>]*>[\s\S]*?<\/form>/gi)) {
+    const block=m[0];
+    const tag=block.match(/<form\b[^>]*>/i)?.[0] || '';
+    const fields=parseInputFields(block);
+    const key=PAGE_KEYS.find(k=>Object.prototype.hasOwnProperty.call(fields,k));
+    if (!key) continue;
+    const method=(attr(tag,'method')||'GET').toUpperCase();
+    const rawAction=attr(tag,'action') || baseUrl;
+    let action=''; try { action=new URL(rawAction,baseUrl).href; } catch {}
+    if (!action) continue;
+    if (method==='POST' && (js.length || total)) return {kind:'form-post',key,pageBase:1,totalPages:total || (js.length?Math.max(...js):null),totalCount:null,form:{action,method:'POST',formName:attr(tag,'name')||attr(tag,'id')||'',pageKey:key,fields},evidence:[`evidence-backed POST form ${key}=N`,...(js.length?[`javascript page calls ${js.slice(0,12).join(',')}`]:[]),...(total?[`page text total=${total}`]:[])]};
+    if (method==='GET' && (js.length || total)) return {kind:'query-get',key,pageBase:1,totalPages:total || (js.length?Math.max(...js):null),totalCount:null,evidence:[`evidence-backed GET form ${key}=N`,...(js.length?[`javascript page calls ${js.slice(0,12).join(',')}`]:[]),...(total?[`page text total=${total}`]:[])]};
+  }
+  return null;
+}
+
 function apiMeta(html='', source={}) {
   try {
     const j = JSON.parse(String(html));
@@ -146,6 +167,9 @@ export function discoverPaginationPlan({html='', source={}, selectedUrl=''}) {
   if (source.org==='울산문화관광재단' && /\/api\/notices/i.test(url)) {
     return {kind:'query-get', key:'page', pageBase:0, totalPages:api?.totalPages || null, totalCount:api?.totalCount ?? null, evidence:['UCTF notices API page parameter']};
   }
+  const verifiedForm=discoverFormContract(html,url) || formFieldPaginationContract(html,url);
+  if (verifiedForm?.kind) return verifiedForm;
+  if (verifiedForm) return {kind:'form-post',key:verifiedForm.pageKey,pageBase:1,totalPages:parseTotalPages(html) || (jsPages(html).length?Math.max(...jsPages(html)):null),totalCount:null,form:verifiedForm,evidence:[`verified form POST ${verifiedForm.formName}.${verifiedForm.pageKey}=N`, `action=${verifiedForm.action}`]};
   const links=explicitPageLinks(html,url);
   if (links.length) {
     const counts={}; for(const x of links) counts[x.key]=(counts[x.key]||0)+1;
@@ -156,8 +180,7 @@ export function discoverPaginationPlan({html='', source={}, selectedUrl=''}) {
   }
   const existingKey=pageKeyFromUrl(url);
   if(existingKey) return {kind:'query-get',key:existingKey,pageBase:Number(new URL(url).searchParams.get(existingKey)||1),totalPages:parseTotalPages(html),totalCount:null,evidence:[`selected URL contains ${existingKey}`]};
-  const total=parseTotalPages(html), js=jsPages(html), form=discoverFormContract(html,url);
-  if (form) return {kind:'form-post',key:form.pageKey,pageBase:1,totalPages:total || (js.length?Math.max(...js):null),totalCount:null,form,evidence:[`verified form POST ${form.formName}.${form.pageKey}=N`, `action=${form.action}`, ...(total?[`page text total=${total}`]:[]), ...(js.length?[`javascript page calls ${js.slice(0,12).join(',')}`]:[])]};
+  const total=parseTotalPages(html), js=jsPages(html);
   if(js.length || total) return {kind:'javascript-form',key:'',pageBase:1,totalPages:total || (js.length?Math.max(...js):null),totalCount:null,evidence:[...(total?[`page text total=${total}`]:[]),...(js.length?[`javascript page calls ${js.slice(0,12).join(',')}`]:[])]};
   return {kind:'single-or-undetected',key:'',pageBase:1,totalPages:1,totalCount:null,evidence:['no pagination control detected on verified list page']};
 }

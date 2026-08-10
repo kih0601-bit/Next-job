@@ -14,7 +14,7 @@ import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 import { analyzeAttachments } from './lib/document-analyzer.mjs';
 import { safeFileComponent } from './lib/safe-filename.mjs';
 
-const VERSION = '20.0-v107-stage7-close-ready';
+const VERSION = '20.0-v110-stage8-input-and-session-guard';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const MAX_ATTACHMENT_VERIFY_FILES = 2; // representative files per institution; keeps Actions bounded

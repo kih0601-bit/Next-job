@@ -28,6 +28,7 @@ const DATA_VERSION = '15.3-v101-stable-cache-fingerprint';
 const execFileAsync = promisify(execFile);
 
 const COLLECTION_CACHE_PATH = 'data/collection-cache.json';
+const STAGE8_CACHE_SCHEMA_VERSION = '1.0.0-stage8-objective';
 const COLLECT_METRICS_PATH = 'data/collect-metrics.json';
 const CACHE_MAX_AGE_MS = 20 * 60 * 60 * 1000;
 const CACHE_IDENTITY_GRACE_MS = 3 * 60 * 60 * 1000;
@@ -221,7 +222,7 @@ function reusableCachedOutcome(candidate, cacheEntry, nowMs = Date.now()) {
 
   // v108 and earlier cache entries do not contain objective Stage-8 structure.
   // Reprocess once instead of treating a legacy terminal rejection as a valid Stage-8 hit.
-  if (!cacheEntry.outcome?.stage8Posting) return null;
+  if (cacheEntry.outcome?.stage8CacheSchemaVersion !== STAGE8_CACHE_SCHEMA_VERSION || !cacheEntry.outcome?.stage8Posting) return null;
   const outcome = structuredClone(cacheEntry.outcome);
   if (Array.isArray(outcome.jobs)) outcome.jobs = outcome.jobs.filter(job => !isExpired(job.deadline));
   outcome.pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 };
@@ -238,7 +239,8 @@ function cacheableOutcome(outcome = {}) {
     rejection: outcome.rejection || '',
     vacancyDecisions: Array.isArray(outcome.vacancyDecisions) ? outcome.vacancyDecisions : [],
     vacancyStats: outcome.vacancyStats || { detected: 0, accepted: 0, rejected: 0 },
-    stage8Posting: outcome.stage8Posting || null
+    stage8Posting: outcome.stage8Posting || null,
+    stage8CacheSchemaVersion: outcome.stage8Posting ? STAGE8_CACHE_SCHEMA_VERSION : ''
   };
 }
 
@@ -508,25 +510,61 @@ function isConnectTimeoutError(error = '') {
   return /Failed to connect|connect(?:ion)?\s+timed?\s*out|connect timeout|port\s+443.*Timeout/i.test(String(error));
 }
 
-async function fetchPaginationPost(request, timeoutMs = 22000, referer = '') {
+async function fetchPaginationPost(request, timeoutMs = 22000, referer = '', attempts = 3) {
+  const failures = [];
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(request.url, {
+        method: request.method || 'POST',
+        headers: {
+          'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
+          accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'accept-language': 'ko-KR,ko;q=0.9',
+          referer,
+          ...(request.headers || {})
+        },
+        body: request.body || undefined,
+        redirect: 'follow',
+        signal: controller.signal
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return { html: await response.text(), finalUrl: response.url || request.url, status: response.status, retryEvidence:{attempts:attempt,failures} };
+    } catch(error) {
+      const message=error?.name==='AbortError'?'timeout':String(error?.message||error);
+      failures.push({attempt,error:message});
+      const transient=error?.name==='AbortError'||/timeout|fetch failed|ECONNRESET|ETIMEDOUT|EAI_AGAIN|HTTP 429|HTTP 5\d\d/i.test(message);
+      if(!transient || attempt>=attempts) {
+        error.paginationRetryEvidence={attempts:attempt,failures};
+        throw error;
+      }
+      await new Promise(resolve=>setTimeout(resolve,700*attempt));
+    } finally { clearTimeout(timer); }
+  }
+}
+
+async function fetchFreshFormPaginationSession(url, timeoutMs = 22000, referer = '') {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const response = await fetch(request.url, {
-      method: request.method || 'POST',
-      headers: {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
-        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'accept-language': 'ko-KR,ko;q=0.9',
-        referer,
-        ...(request.headers || {})
-      },
-      body: request.body || undefined,
-      redirect: 'follow',
-      signal: controller.signal
+    const response = await fetch(url, {
+      signal: controller.signal,
+      redirect:'follow',
+      headers:{
+        'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138 Safari/537.36',
+        accept:'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'accept-language':'ko-KR,ko;q=0.9',
+        referer
+      }
     });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    return { html: await response.text(), finalUrl: response.url || request.url, status: response.status };
+    if(!response.ok) throw new Error(`HTTP ${response.status}`);
+    const html=await response.text();
+    const setCookies=typeof response.headers.getSetCookie==='function'
+      ? response.headers.getSetCookie()
+      : [response.headers.get('set-cookie')||''];
+    const cookie=setCookies.filter(Boolean).map(value=>String(value).split(';',1)[0]).filter(Boolean).join('; ');
+    return {html,finalUrl:response.url||url,cookie};
   } finally { clearTimeout(timer); }
 }
 
@@ -849,9 +887,20 @@ async function fetchSource(source) {
     if (paginationDiag?.strategy === 'form-post' && paginationDiag?.ok && Number(paginationDiag.totalPages) > 1) {
       try {
         const firstUrl = paginationDiag.pageFingerprints?.[0]?.url || listingUrls[0] || activeSource.url;
-        const firstHtml = firstUrl === activeSource.url ? html : (await fetchHtml(firstUrl, 22000, { referer: activeSource.url }, source)).html;
-        const plan = discoverPaginationPlan({html:firstHtml,source,selectedUrl:firstUrl});
-        if (plan.kind === 'form-post' && plan.form?.action && plan.key) verifiedFormPagination = {plan, firstUrl};
+        let firstHtml = firstUrl === activeSource.url ? html : (await fetchHtml(firstUrl, 22000, { referer: activeSource.url }, source)).html;
+        let plan = discoverPaginationPlan({html:firstHtml,source,selectedUrl:firstUrl});
+        let cookie = '';
+        const hasCsrf = Object.keys(plan.form?.fields || {}).some(key=>/csrf/i.test(key));
+        if (plan.kind === 'form-post' && hasCsrf) {
+          const session = await fetchFreshFormPaginationSession(firstUrl, 22000, activeSource.url);
+          const sessionPlan = discoverPaginationPlan({html:session.html,source,selectedUrl:session.finalUrl||firstUrl});
+          if(sessionPlan.kind==='form-post' && sessionPlan.form?.action && sessionPlan.key){
+            firstHtml=session.html;
+            plan=sessionPlan;
+            cookie=session.cookie||'';
+          }
+        }
+        if (plan.kind === 'form-post' && plan.form?.action && plan.key) verifiedFormPagination = {plan, firstUrl, cookie, hasCsrf};
       } catch(error) { console.error(`[pagination-contract] ${source.org}: ${error.message}`); }
     }
     const candidateMap = new Map();
@@ -885,6 +934,7 @@ async function fetchSource(source) {
       for (let pg=2; pg<=total; pg++) {
         try {
           const req = paginationRequest(verifiedFormPagination.plan, verifiedFormPagination.firstUrl, pg);
+          if (verifiedFormPagination.cookie) req.headers = { ...(req.headers || {}), cookie: verifiedFormPagination.cookie };
           const pp = await fetchPaginationPost(req, 22000, verifiedFormPagination.firstUrl);
           const inspection = inspectListPage(pp.html,{...activeSource,url:pp.finalUrl||req.url});
           extractionDiagnostics.pages ||= [];
@@ -1029,7 +1079,9 @@ async function fetchSource(source) {
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
-      rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions, stage8Postings
+      rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions, stage8Postings,
+      stage8CandidateCount: candidates.length,
+      stage8DerivedCount: stage8Postings.length
     };
   } catch (error) {
     return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], stage8Postings: [], incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, cacheMissSamples, cacheKeyMigrations, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
@@ -1108,6 +1160,8 @@ for (const result of results) {
     documentDiagnostics: result.documentDiagnostics || { byDetectedType: {}, byContentType: {}, byError: {} },
     documentSamples: result.documentSamples || [],
     stage8Postings: result.stage8Postings || [],
+    stage8CandidateCount: Number(result.stage8CandidateCount || 0),
+    stage8DerivedCount: Number(result.stage8DerivedCount || 0),
     vacancyDecisions: result.vacancyDecisions || [],
     incremental: result.incremental || { cacheHits: 0, cacheMisses: 0, heavyProcessed: 0, durationMs: 0 }
   });
@@ -1294,7 +1348,22 @@ if (pipelineReport.payload) {
 
 
 const stage8Postings = sources.flatMap(source => source.stage8Postings || []);
+const stage8CandidateCount = sources.reduce((n,source)=>n+Number(source.stage8CandidateCount||0),0);
 const stage8Report = buildStage8Report(stage8Postings, nowIso);
+stage8Report.inputDiagnostics = {
+  candidateCount: stage8CandidateCount,
+  derivedPostingCount: stage8Postings.length,
+  byOrg: sources.map(source=>({
+    org:source.org,
+    candidates:Number(source.stage8CandidateCount||0),
+    derived:Number(source.stage8DerivedCount||0),
+    cacheHits:Number(source.incremental?.cacheHits||0),
+    cacheMisses:Number(source.incremental?.cacheMisses||0)
+  }))
+};
+if (stage8CandidateCount > 0 && stage8Postings.length === 0) {
+  throw new Error(`STAGE8_SILENT_FAILURE: ${stage8CandidateCount} objective candidates produced 0 structured postings`);
+}
 
 // Compatibility alias: requirement-report now points to the same objective Stage-8 data.
 // New consumers should use data/stage8-eligibility-report.json.

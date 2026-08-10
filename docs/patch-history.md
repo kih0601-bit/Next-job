@@ -321,3 +321,14 @@
 - Fix: Stage 8 now analyzes a separate objective recruitment candidate set while `jobs.json` remains gated by the original personal selection.
 - Fix: cache entries without `stage8Posting` are intentionally reprocessed once; subsequent runs can reuse the new Stage-8-aware cache.
 - Stage 7 remains closed; this is a Stage-8 integration defect, not a reason to reopen Pagination work.
+
+
+## v110 — Stage-8 silent-failure guard + Ulsan Facilities form-session alignment
+- Uploaded run kept Stage 7 closed (20/20 implementation proof).
+- Ulsan Facilities Corporation console 403s came from the production collector's duplicate form-POST pagination replay. The authoritative probe independently succeeded 19/19 pages, 189 raw/189 unique, with fresh CSRF + cookie evidence. Collector now mirrors that session principle and adds bounded transient retry.
+- Stage-8 output was still 0 postings/0 units. Uploaded cache has 2,376 entries and zero Stage-8 structures despite metrics reporting cache hits.
+- Added explicit Stage-8 cache schema version. Legacy/non-Stage8 cache entries cannot be reused as Stage-8-complete.
+- Added per-source Stage-8 candidate/derived counters and report input diagnostics.
+- Added hard `STAGE8_SILENT_FAILURE` guard when objective candidates exist but zero structured postings are emitted. Empty success reports can no longer hide the integration defect.
+- Goal decision: do not reopen Stage 7; use the next Actions run to force a decisive Stage-8 data result.
+- Regression maintenance: v105/v109 tests were updated from historical literal implementation strings to the strengthened v110 provenance/cache contract. Full local suite now passes.\n

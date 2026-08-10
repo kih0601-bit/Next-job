@@ -1,27 +1,26 @@
 # Current Self Diagnostic
 
 ## Uploaded run
-Generated: 2026-08-10T01:10:50.862Z
+Generated: 2026-08-10T01:27:49.624Z
 
 ## Stage 7
-`stage7Gate.decision = close-stage-7`.
-20/20 Pagination implementation proof, no Stage-7 blocker.
-Five sources are current-run historical/watch items; this does not reopen Stage 7.
+Stage-7 gate remains `close-stage-7` with 20/20 implementation proof.
 
-## Stage 8 observed result
-`stage8-eligibility-report.json` was generated but contained 0 postings / 0 recruitment units.
+### Ulsan Facilities Corporation 403 observation
+The console showed repeated production-collector POST pagination HTTP 403 errors, but the authoritative pipeline probe completed all 19 pages with 189 raw = 189 unique and no errors. The probe evidence shows the site requires a fresh CSRF form token and captured session cookie. Therefore the 403 is a duplicate production-collector session-replay defect, not a Stage-7 data-proof failure.
 
-## Root cause
-The first Stage-8 integration was placed after the existing personal list-selection boundary.
-That boundary intentionally excludes contract/intern/license-job titles for the user's personal jobs output, so it is not a valid input boundary for objective Stage 8.
+v110 makes the collector use the same fresh form session/cookie principle and bounded retry.
 
-A second issue compounded it: the uploaded collection cache contains 2,376 legacy entries and none has `stage8Posting`. Reusing those entries would skip the new Stage-8 derivation even when a posting is otherwise eligible for objective analysis.
+## Stage 8
+The generated Stage-8 report still contains 0 postings / 0 recruitment units even though the repository contains the v109 objective-input code.
 
-## v109 correction
-- Stage 8 receives its own broader objective recruitment-posting candidate set.
-- Personal list selection remains intact for `jobs.json`.
-- Legacy cache entries without `stage8Posting` are reprocessed once instead of being accepted as Stage-8-complete cache hits.
-- Personal jobs output is still gated by the original personal selection.
+The uploaded cache contains 2,376 entries and none carries `stage8Posting`, while run metrics still report many cache hits. This is an unacceptable silent mismatch between intended cache migration and observed output.
 
-## Goal-progress
-Stage 8 remains open. The next Actions run is now meaningful because it should produce real posting/recruitment-unit structures rather than an empty report.
+v110 hardens this boundary:
+- cached outcomes are reusable for Stage 8 only when an explicit Stage-8 cache schema version and a structured posting are present;
+- source output records Stage-8 candidate and derived counts;
+- if objective candidates exist but zero structured postings are produced, collection fails loudly with `STAGE8_SILENT_FAILURE` instead of publishing an empty success report.
+
+## Goal-progress decision
+Stage 7 remains closed. Stage 8 remains open.
+The next run should either produce real structured postings or fail with an exact Stage-8 input/derivation blocker; another silent 0-posting success is no longer acceptable.

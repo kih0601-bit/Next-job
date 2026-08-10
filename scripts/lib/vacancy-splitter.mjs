@@ -1,5 +1,5 @@
 const MAX_VACANCIES = 24;
-export const VACANCY_SPLITTER_VERSION = '11.4.0-inline-multi-role';
+export const VACANCY_SPLITTER_VERSION = '11.5.0-balanced-inline-multi-role';
 
 const HEADER_PATTERN = /^(?:\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*)?(?:모집|채용)\s*(?:분야|직무|직종|직렬)|^(?:분야|직무|직종|직렬|구분)\s*[:：]/i;
 const SECTION_PATTERN = /^(?:\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*)?(?:채용개요|모집개요|분야별\s*응시자격|직무별\s*자격요건)\s*$/i;
@@ -78,22 +78,54 @@ function splitByRows(lines) {
 }
 
 
+function splitTopLevel(text='', separators=new Set([',','·','/'])) {
+  const out=[]; let buf=''; let depth=0;
+  for(const ch of String(text)){
+    if(ch==='(' || ch==='[' || ch==='{') depth++;
+    if(ch===')' || ch===']' || ch==='}') depth=Math.max(0,depth-1);
+    if(depth===0 && separators.has(ch)) { if(cleanLine(buf)) out.push(cleanLine(buf)); buf=''; continue; }
+    buf+=ch;
+  }
+  if(cleanLine(buf)) out.push(cleanLine(buf));
+  return out;
+}
+
+function expandRoleItem(item='') {
+  const text=cleanLine(item);
+  const open=text.indexOf('('); const close=text.lastIndexOf(')');
+  if(open<1 || close<=open) return [text];
+  const base=cleanLine(text.slice(0,open));
+  const inner=text.slice(open+1,close);
+  const children=splitTopLevel(inner);
+  if(children.length<2) return [text];
+  const out=[];
+  for(const child of children){
+    const nestedOpen=child.indexOf('('), nestedClose=child.lastIndexOf(')');
+    if(nestedOpen>0 && nestedClose>nestedOpen){
+      const role=cleanLine(child.slice(0,nestedOpen));
+      const subs=splitTopLevel(child.slice(nestedOpen+1,nestedClose));
+      if(subs.length>1){ for(const sub of subs) out.push(`${base} ${role} ${sub}`); continue; }
+    }
+    out.push(`${base} ${child}`);
+  }
+  return out;
+}
+
 function splitInlineRecruitmentList(lines) {
   const blocks=[];
   for (const line of lines) {
     const match=line.match(/(?:모집|채용)\s*분야(?:\([^)]*\))?\s*[:：]\s*(.+)$/i);
     if(!match) continue;
     const tail=match[1].replace(/※.*$/,'').trim();
-    if(tail.length<8 || tail.length>500) continue;
-    const raw=tail.split(/\s*[,·]\s*|\s*\/\s*/).map(cleanLine).filter(Boolean);
-    const parts=[];
-    for(const item of raw){
-      if(item.length>80) continue;
-      if(/^(?:일반|지역인재|장애|기계|전기|화공|환경|건축|토목)$/.test(item) && parts.length){
-        parts[parts.length-1]=`${parts[parts.length-1]} ${item}`;
-      } else parts.push(item);
+    if(tail.length<8 || tail.length>700) continue;
+    const top=splitTopLevel(tail);
+    const roleParts=[];
+    for(const item of top){
+      const expanded=expandRoleItem(item);
+      for(const x of expanded){
+        if(x.length<=100 && /(?:급|직|행정|사무|전산|정보|시설|기계|전기|소방|건축|토목|운전|환경|회계|재무|기술|연구|경영|총무|인사|기획|보안|미화|조리|산업안전|산업보건|건설안전)/.test(x)) roleParts.push(x);
+      }
     }
-    const roleParts=parts.filter(x=>/(?:급|직|행정|사무|전산|정보|시설|기계|전기|소방|건축|토목|운전|환경|회계|재무|기술|연구|경영|총무|인사|기획|보안|미화|조리|산업안전|산업보건|건설안전)/.test(x));
     if(roleParts.length>=2){
       for(const item of roleParts) blocks.push({name:titleFromLine(item,blocks.length),lines:[`${item} | ${line}`]});
     }

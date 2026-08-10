@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { splitVacancies, VACANCY_SPLITTER_VERSION } from './lib/vacancy-splitter.mjs';
 import { auditStage8Quality } from './lib/stage8-quality-audit.mjs';
 
-assert.match(VACANCY_SPLITTER_VERSION,/11\.7\.0/);
+assert.match(VACANCY_SPLITTER_VERSION,/11\.[78]\.0/);
 
 const noisy=`
 모집분야 | 채용인원 | 근무지

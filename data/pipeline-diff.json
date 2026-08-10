@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-10T11:40:59.868Z",
+  "generatedAt": "2026-08-10T12:20:29.828Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 5,
-    "regressed": 1,
-    "unchanged": 14
+    "improved": 0,
+    "regressed": 0,
+    "unchanged": 20
   },
   "changes": [
     {
@@ -41,49 +41,61 @@
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "regressionCause": {
-        "stage": "access",
+        "stage": "http",
         "status": "failed",
-        "code": "ACCESS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: access",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
         "evidence": [
           {
+            "url": "https://wfps.or.kr/webuser/employment/list.html",
             "ok": false,
-            "status": "",
-            "attempted": null,
-            "downloaded": null,
-            "parsed": null,
-            "failed": null,
-            "error": "all access URLs failed",
-            "samples": []
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://uwfdi.re.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to uwfdi.re.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
           }
         ],
-        "source": "pipeline-diff-stage"
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
         "access": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "list": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "detail": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "attachmentDiscovery": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "attachmentDownload": {
-          "from": true,
+          "from": false,
           "to": false,
-          "change": "regressed"
+          "change": "same"
         },
         "documentAnalysis": {
           "from": false,
@@ -92,7 +104,7 @@
         }
       },
       "improved": false,
-      "regressed": true
+      "regressed": false
     },
     {
       "org": "근로복지공단",
@@ -306,12 +318,12 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -526,12 +538,12 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -576,17 +588,17 @@
           "change": "same"
         },
         "attachmentDownload": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -691,12 +703,12 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -851,17 +863,17 @@
           "change": "same"
         },
         "attachmentDownload": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {

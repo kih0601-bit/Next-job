@@ -9,6 +9,6 @@ if (!/function candidateIdentityFingerprint[\s\S]*?sourceStableIdentity\(candida
 for (const x of ['cacheEntryStableMatch','rehydrateCompatibleCacheEntry','cacheIdentityMigratedAt']) if(!collect.includes(x)) throw new Error(`missing cache migration safeguard: ${x}`);
 const sourceIdentityBody = collect.match(/function sourceStableIdentity[\s\S]*?\n}\n\nfunction candidateCacheKey/)?.[0] || '';
 if (/candidate\.listText/.test(sourceIdentityBody)) throw new Error('WFPS source identity still depends on volatile listText');
-for (const x of ['20.0-v100-cache-identity-and-final-pagination-proof','strongHubstRecord','ROWAREA_RECORD']) if(!probe.includes(x)) throw new Error(`missing ${x}`);
+for (const x of ['const VERSION =','strongHubstRecord','ROWAREA_RECORD']) if(!probe.includes(x)) throw new Error(`missing ${x}`);
 if(!adapters.includes("canonical.replace(/^http:/i, 'https:')")) throw new Error('COMWEL https normalization missing');
 console.log('v101 deep-diagnostic regression tests passed');

@@ -14,7 +14,7 @@ import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 import { analyzeAttachments } from './lib/document-analyzer.mjs';
 import { safeFileComponent } from './lib/safe-filename.mjs';
 
-const VERSION = '20.0-v100-cache-identity-and-final-pagination-proof';
+const VERSION = '20.0-v106-stage7-completion-gate';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const MAX_ATTACHMENT_VERIFY_FILES = 2; // representative files per institution; keeps Actions bounded
@@ -63,9 +63,16 @@ function singlePageProof(html='', selected={}, org='') {
   ];
   const countProved = exact && total !== null && total === candidates && controlHints === 0;
   const emptyProved = explicitEmpty && controlHints === 0;
-  const strongHubstRecord = org === '울주문화재단' && exact && candidates > 0 && controlHints === 0 && selected?.accuracyVerification?.templateRecordEvidence?.verified === true && selected?.accuracyVerification?.listVerificationTemplate === 'ROWAREA_RECORD';
+  const pageParamHints = (snapshot.forms || []).filter(f => (f.names||[]).some(n => /^(?:page|pageNo|pageNum|pageIndex|currentPage|curPage)$/i.test(n))).length;
+  const explicitPagerMarkup = /(?:class|id)\s*=\s*["'][^"']*(?:pagination|paging|pager|page_navi|paginate)[^"']*["']/i.test(String(html || ''));
+  const strongHubstRecord = org === '울주문화재단'
+    && exact && candidates > 0
+    && pageParamHints === 0 && !explicitPagerMarkup
+    && selected?.accuracyVerification?.templateRecordEvidence?.verified === true
+    && selected?.accuracyVerification?.listVerificationTemplate === 'ROWAREA_RECORD';
+  if (org === '울주문화재단') evidence.push(`hubst-page-param-hints=${pageParamHints}`, `hubst-explicit-pager-markup=${explicitPagerMarkup}`);
   const proved = countProved || emptyProved || strongHubstRecord;
-  const reason = countProved ? 'explicit total count equals exact extracted record count and no pagination control exists' : emptyProved ? 'board explicitly states there are no registered recruitment records and no pagination control exists' : strongHubstRecord ? 'HUBST recruitment card container matches extracted records exactly and no pagination control exists' : 'single-page completeness not yet explicitly proved';
+  const reason = countProved ? 'explicit total count equals exact extracted record count and no pagination control exists' : emptyProved ? 'board explicitly states there are no registered recruitment records and no pagination control exists' : strongHubstRecord ? 'HUBST ROWAREA_RECORD matches extracted records exactly and no actual pagination parameter/markup exists; generic page-like UI hints ignored' : 'single-page completeness not yet explicitly proved';
   return { proved, totalCount: total ?? (emptyProved ? 0 : null), candidateCount: candidates, controlHints, explicitEmpty, evidence, reason };
 }
 function applyHistoricalPagination(report) {
@@ -168,6 +175,25 @@ async function fetchPaginationPage(request, timeoutMs = LIST_TIMEOUT_MS, referer
   } finally { clearTimeout(timer); }
 }
 
+
+async function fetchPaginationPageWithRetry(request, timeoutMs = LIST_TIMEOUT_MS, referer = '', source = {}, attempts = 3) {
+  const failures = [];
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    try {
+      const page = await fetchPaginationPage(request, timeoutMs, referer, source);
+      return { ...page, retryEvidence: { attempts: attempt, failures } };
+    } catch (error) {
+      const message = error?.name === 'AbortError' ? 'timeout' : String(error?.message || error);
+      failures.push({ attempt, error: message });
+      const transient = error?.name === 'AbortError' || /timeout|fetch failed|ECONNRESET|ETIMEDOUT|EAI_AGAIN|HTTP 429|HTTP 5\d\d/i.test(message);
+      if (!transient || attempt >= attempts) {
+        error.paginationRetryEvidence = { attempts: attempt, failures };
+        throw error;
+      }
+      await new Promise(resolve => setTimeout(resolve, 700 * attempt));
+    }
+  }
+}
 
 function decodeResponseBytes(bytes, contentType = '', htmlProbe = '') {
   const headerCharset = String(contentType).match(/charset\s*=\s*["']?([^;"'\s]+)/i)?.[1] || '';
@@ -843,13 +869,17 @@ async function probeSource(source, artifacts) {
           if (!req?.url) break;
           if (paginationSessionCookie) req.headers = { ...(req.headers || {}), cookie: paginationSessionCookie };
           try {
-            const pp = await fetchPaginationPage(req, LIST_TIMEOUT_MS, selected.url, source);
+            const pp = await fetchPaginationPageWithRetry(req, LIST_TIMEOUT_MS, selected.url, source);
             const inspect = inspectListingPage(pp.html, {...source,url:pp.finalUrl||req.url});
             const fp = pageFingerprint(inspect.candidates);
             results.push({page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl||req.url,exactMatch:Boolean(inspect.exactMatch)});
             report.pagination.pageFingerprints.push({page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl||req.url,method:req.method});
-            report.pagination.pageValidation.push({page:pg,url:pp.finalUrl||req.url,status:inspect.status||'',exactMatch:Boolean(inspect.exactMatch),visiblePostCount:inspect.visiblePostCount??null,candidateCount:inspect.candidateCount??inspect.candidates.length,missingCount:inspect.missingCount??null,extraCount:inspect.extraCount??null,method:req.method,exactMatchBasis:inspect.diagnostics?.exactMatchBasis||''});
-          } catch(error) { report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`); }
+            report.pagination.pageValidation.push({page:pg,url:pp.finalUrl||req.url,status:inspect.status||'',exactMatch:Boolean(inspect.exactMatch),visiblePostCount:inspect.visiblePostCount??null,candidateCount:inspect.candidateCount??inspect.candidates.length,missingCount:inspect.missingCount??null,extraCount:inspect.extraCount??null,method:req.method,retryEvidence:pp.retryEvidence||null,exactMatchBasis:inspect.diagnostics?.exactMatchBasis||''});
+          } catch(error) {
+            report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`);
+            report.pagination.retryFailures = report.pagination.retryFailures || [];
+            report.pagination.retryFailures.push({ page: pg, ...(error.paginationRetryEvidence || { attempts: 1, failures: [{ attempt: 1, error: error.name==='AbortError'?'timeout':error.message }] }) });
+          }
         }
         report.pagination.pagesChecked = results.length;
         const rec = reconcilePages(results);
@@ -876,7 +906,7 @@ async function probeSource(source, artifacts) {
           if (!req?.url) break;
           if (paginationSessionCookie) req.headers = { ...(req.headers || {}), cookie: paginationSessionCookie };
           try {
-            const pp = await fetchPaginationPage(req, LIST_TIMEOUT_MS, selected.url, source);
+            const pp = await fetchPaginationPageWithRetry(req, LIST_TIMEOUT_MS, selected.url, source);
             const inspect = inspectListingPage(pp.html, {...source,url:pp.finalUrl||req.url});
             const fp = pageFingerprint(inspect.candidates);
             if (inspect.candidates.length === 0) { terminal = {type:'empty-page', page:pg, url:pp.finalUrl||req.url}; break; }
@@ -894,8 +924,8 @@ async function probeSource(source, artifacts) {
             }
             if (seenFingerprints.has(fp)) { terminal = {type:'repeated-page', page:pg, fingerprint:fp, url:pp.finalUrl||req.url}; break; }
             const resultRow={page:pg,candidates:inspect.candidates,fingerprint:fp,url:pp.finalUrl||req.url,exactMatch:Boolean(inspect.exactMatch)};
-            const fingerprintRow={page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl||req.url,method:req.method};
-            const validationRow={page:pg,url:pp.finalUrl||req.url,status:inspect.status||'',exactMatch:Boolean(inspect.exactMatch),visiblePostCount:inspect.visiblePostCount??null,candidateCount:inspect.candidateCount??inspect.candidates.length,missingCount:inspect.missingCount??null,extraCount:inspect.extraCount??null,method:req.method,exactMatchBasis:inspect.diagnostics?.exactMatchBasis||''};
+            const fingerprintRow={page:pg,fingerprint:fp,count:inspect.candidates.length,url:pp.finalUrl||req.url,method:req.method,retryEvidence:pp.retryEvidence||null};
+            const validationRow={page:pg,url:pp.finalUrl||req.url,status:inspect.status||'',exactMatch:Boolean(inspect.exactMatch),visiblePostCount:inspect.visiblePostCount??null,candidateCount:inspect.candidateCount??inspect.candidates.length,missingCount:inspect.missingCount??null,extraCount:inspect.extraCount??null,method:req.method,retryEvidence:pp.retryEvidence||null,exactMatchBasis:inspect.diagnostics?.exactMatchBasis||''};
             if (!inspect.exactMatch && inspect.visiblePostCount == null) {
               pendingNoise={page:pg,fingerprint:fp,url:pp.finalUrl||req.url,result:resultRow,fingerprintRow,validationRow};
               continue;
@@ -904,7 +934,12 @@ async function probeSource(source, artifacts) {
             results.push(resultRow);
             report.pagination.pageFingerprints.push(fingerprintRow);
             report.pagination.pageValidation.push(validationRow);
-          } catch(error) { report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`); break; }
+          } catch(error) {
+            report.pagination.errors.push(`page ${pg}: ${error.name==='AbortError'?'timeout':error.message}`);
+            report.pagination.retryFailures = report.pagination.retryFailures || [];
+            report.pagination.retryFailures.push({ page: pg, ...(error.paginationRetryEvidence || { attempts: 1, failures: [{ attempt: 1, error: error.name==='AbortError'?'timeout':error.message }] }) });
+            break;
+          }
         }
         report.pagination.pagesChecked = results.length;
         report.pagination.totalPages = terminal ? results.length : null;
@@ -1056,8 +1091,66 @@ for (let index = 0; index < SOURCES.length; index += CONCURRENCY) {
   for (const result of batch) console.log(`${result.org}: ${result.bottleneck}`);
 }
 
+
+function evaluateStage7Gate(results = []) {
+  const rows = results.map(item => {
+    const p = item.pagination || {};
+    const rec = p.reconciliation || {};
+    const structuralOk = !rec.identityCollapseDetected
+      && Number(rec.unexplainedLoss || 0) === 0
+      && (!Number.isFinite(rec.identityUniqueRatio) || rec.identityUniqueRatio >= 0.5);
+    const implementationOk = Boolean(p.implementationOk);
+    const currentRunOk = Boolean(p.currentRunOk);
+    const historicalOnly = p.status === 'verified-historical' && implementationOk && !currentRunOk;
+    const transientOnly = !currentRunOk
+      && Array.isArray(p.retryFailures)
+      && p.retryFailures.length > 0
+      && p.retryFailures.every(row => (row.failures || []).every(f => /timeout|fetch failed|HTTP 429|HTTP 5\d\d|ECONNRESET|ETIMEDOUT|EAI_AGAIN/i.test(String(f.error || ''))));
+    return {
+      org: item.org,
+      status: p.status || 'not-evaluated',
+      implementationOk,
+      currentRunOk,
+      historicalOnly,
+      transientOnly,
+      structuralOk,
+      errors: p.errors || []
+    };
+  });
+
+  // Stage 7 may close only when every source has implementation proof and no
+  // structural reconciliation defect remains. A historical-only source is
+  // allowed as implementation proof only when current Access/List remain healthy;
+  // it is surfaced separately so operational monitoring can keep watching it.
+  const implementationComplete = rows.every(r => r.implementationOk && r.structuralOk);
+  const currentRunComplete = rows.every(r => r.currentRunOk && r.structuralOk);
+  const historicalOnly = rows.filter(r => r.historicalOnly).map(r => r.org);
+  const transientOnly = rows.filter(r => r.transientOnly).map(r => r.org);
+  const blockers = rows.filter(r => !r.implementationOk || !r.structuralOk).map(r => ({
+    org: r.org, status: r.status, implementationOk: r.implementationOk,
+    structuralOk: r.structuralOk, errors: r.errors
+  }));
+  const decision = implementationComplete ? 'close-stage-7' : 'keep-stage-7-open';
+
+  return {
+    decision,
+    implementationComplete,
+    currentRunComplete,
+    sourceCount: rows.length,
+    implementationVerified: rows.filter(r => r.implementationOk && r.structuralOk).length,
+    currentRunVerified: rows.filter(r => r.currentRunOk && r.structuralOk).length,
+    historicalOnly,
+    transientOnly,
+    blockers,
+    rule: '20/20 implementation proof + no structural reconciliation defect; historical-only evidence may preserve implementation proof but remains operational-watch'
+  };
+}
+
+const stage7Gate = evaluateStage7Gate(results);
+
 const payload = {
   version: VERSION,
+  stage7Gate,
   sourceRegistryVersion: SOURCE_REGISTRY_VERSION,
   generatedAt: new Date().toISOString(),
   policy: 'HTTP·채용게시판 검증·목록·상세·첨부 발견·대표 첨부 다운로드·문서 분석을 기관별로 독립 검증하고, 실제 수집 결과와 병합',
@@ -1080,6 +1173,10 @@ const payload = {
     paginationVerifiedFull: results.filter(item => item.pagination?.status === 'verified-full').length,
     paginationVerifiedSingle: results.filter(item => item.pagination?.status === 'verified-single').length,
     paginationVerifiedHistorical: results.filter(item => item.pagination?.status === 'verified-historical').length,
+    stage7ImplementationComplete: stage7Gate.implementationComplete,
+    stage7CurrentRunComplete: stage7Gate.currentRunComplete,
+    stage7Decision: stage7Gate.decision,
+    stage7BlockerCount: stage7Gate.blockers.length,
     causeCounts: results.reduce((acc, item) => { const key = item.primaryCause?.code || 'UNKNOWN'; acc[key] = (acc[key] || 0) + 1; return acc; }, {})
   },
   sources: results

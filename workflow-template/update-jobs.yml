@@ -73,6 +73,7 @@ jobs:
           node scripts/test-v119-current-year-regression-scope.mjs
           node scripts/test-v120-stage9-foundation.mjs
           node scripts/test-v121-stage9-accuracy-fixes.mjs
+          node scripts/test-v122-stage9-known-zero-region-fallback.mjs
 
       - name: Preserve previous pipeline report
         shell: bash
@@ -169,6 +170,7 @@ jobs:
             data/stage8-benchmark-result.json
             data/stage9-user-profile.json
             data/stage9-search-filter-config.json
+            data/stage9-organization-region-policy.json
             data/stage9-filter-report.json
             data/qa-report.json
             data/diagnostics/

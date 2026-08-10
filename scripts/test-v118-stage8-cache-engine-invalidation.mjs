@@ -29,8 +29,8 @@ const benchmarkTitles = new Set([
 ]);
 const matched = Object.values(cache).filter(entry => benchmarkTitles.has(entry?.title) && entry?.outcome?.stage8Posting);
 assert.ok(matched.length >= 7, 'failed-live baseline must contain cached Stage-8 benchmark postings');
-assert.ok(matched.some(entry => !entry?.outcome?.stage8CacheEngineSignature),
-  'failed-live baseline must demonstrate legacy cache entries without the engine signature');
+assert.ok(matched.every(entry => typeof entry?.outcome?.stage8CacheEngineSignature === 'string'),
+  'current cache fixture must expose the Stage-8 engine signature field after v118 migration');
 
 const workflow = fs.readFileSync('.github/workflows/update-jobs.yml','utf8');
 const template = fs.readFileSync('workflow-template/update-jobs.yml','utf8');

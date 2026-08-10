@@ -292,3 +292,11 @@
 - `verified-historical` may preserve implementation proof but is surfaced in `historicalOnly` for operational watch; it cannot hide a structural defect.
 - `blockers` identifies the exact institutions preventing closure, while `currentRunVerified`, `historicalOnly`, and `transientOnly` distinguish implementation completion from current external health.
 - This lets the next Actions run return a direct `close-stage-7` / `keep-stage-7-open` decision instead of requiring another interpretation cycle.
+
+
+## v107 — Stage 7 close-ready + self-diagnostic consolidation
+- v106 Actions returned exactly one Stage-7 blocker: Ulju Culture Foundation.
+- Deep trace found the v105 proof logic itself was correct, but it read the evidence from the wrong object path. `pageResults` stores list verification at `selected.rootCause.accuracyVerification`; `singlePageProof()` incorrectly checked `selected.accuracyVerification`, so `strongHubstRecord` could never become true.
+- The uploaded v106 run already proves the external facts needed for closure: exact one-to-one `ROWAREA_RECORD`, one candidate, no page parameter, no explicit pager markup. v107 fixes only the evidence wiring.
+- Goal-progress decision: no further Stage-7 external Actions cycle is required solely to rediscover this evidence. Treat Stage 7 as close-ready after local regression validation and proceed to Stage 8 Eligibility, while historical-only sources remain Health/Regression watch items.
+- Documentation cleanup policy activated: use one `docs/self-diagnostic.md` for current diagnosis; historical reasoning stays in `patch-history.md`. Versioned self-diagnostic files should be removed rather than continued.

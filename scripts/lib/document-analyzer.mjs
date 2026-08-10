@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '2.9-short-text-root-cause';
+const ANALYZER_VERSION = '2.10-content-image-hwp-table-recovery';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -442,7 +442,13 @@ async function extractHwp(file) {
   let text='';
   if (await commandExists('hwp5txt')) {
     try { text=normalizeText((await run('hwp5txt',[file],{timeoutMs:45000})).stdout); } catch {}
-    if (text.length>=20) return {text,method:'hwp5txt'};
+    // hwp5txt can technically succeed while collapsing a table-heavy HWP into
+    // little more than table markers. Do not accept that as usable evidence;
+    // continue to LibreOffice rendering so row/cell text can be recovered.
+    const tableMarkerCount=(text.match(/<\s*표\s*>|\b표\s*\d*\b/g)||[]).length;
+    const recruitmentSignals=(text.match(/채용분야|모집분야|직무|담당업무|응시자격|지원자격|근무조건/g)||[]).length;
+    const suspiciousTableOnly = text.length < 220 && tableMarkerCount > 0 && recruitmentSignals < 2;
+    if (text.length>=20 && !suspiciousTableOnly) return {text,method:'hwp5txt'};
   }
   if (await commandExists('libreoffice')) {
     const outDir=`${file}-lo`; await fs.mkdir(outDir,{recursive:true});

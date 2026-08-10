@@ -1,31 +1,71 @@
-function first(obj, keys, fallback=null) {
-  for (const k of keys) if (obj?.[k] !== undefined && obj?.[k] !== null && String(obj[k]).trim() !== '') return obj[k];
-  return fallback;
+import { sourceMap } from './source-maps.mjs';
+
+const emptyish = new Set(['', '-', '--', 'null', 'undefined', '없음', '해당없음', '해당 없음']);
+const cleanText = v => v == null ? '' : String(v).trim();
+const meaningful = v => !emptyish.has(cleanText(v).toLowerCase());
+
+function first(raw, keys = []) {
+  for (const k of keys) if (Object.prototype.hasOwnProperty.call(raw || {}, k) && meaningful(raw[k])) return raw[k];
+  return null;
 }
-const text = v => v == null ? '' : String(v).trim();
-const arr = v => Array.isArray(v) ? v.map(text).filter(Boolean) : text(v) ? [text(v)] : [];
+function many(raw, keys = []) {
+  return keys.map(k => raw?.[k]).filter(meaningful).map(cleanText);
+}
+function splitList(v) {
+  if (!meaningful(v)) return [];
+  return String(v).split(/\s*(?:,|;|\||\/|·)\s*/).map(x=>x.trim()).filter(meaningful);
+}
+function n(v){ const x=Number(v); return Number.isFinite(x) ? x : null; }
+function norm(s){ return cleanText(s).toLowerCase().replace(/\s+/g,' ').trim(); }
 
 export function normalizePosting(source, raw) {
-  const common = {
+  const m = sourceMap(source);
+  const workRaw = first(raw,m.workplaces);
+  const detailParts = many(raw,m.detailText);
+  const p = {
+    schemaVersion:'nextjob-v2-normalized-v2',
     source,
-    sourceId: text(first(raw, ['idx','id','seq','empSeq','empmnsn','uniqueNo','고유번호'])),
-    institution: text(first(raw, ['institution','orgNm','insttNm','entNm','기관명','companyName'])),
-    title: text(first(raw, ['title','recruitTitle','empTitle','채용제목','subject'])),
-    applyStart: text(first(raw, ['applyStart','startDate','receiptStart','접수게시일','regDate'])),
-    applyEnd: text(first(raw, ['applyEnd','endDate','receiptEnd','접수마감일','deadline'])),
-    employmentType: text(first(raw, ['employmentType','empType','고용형태'])),
-    workplaces: arr(first(raw, ['workplaces','workplace','workRegion','근무지','region'])),
-    headcount: Number(first(raw, ['headcount','recruitCount','채용인원'], NaN)),
-    sourceUrl: text(first(raw, ['sourceUrl','linkUrl','링크URL','url'])),
-    detailText: text(first(raw, ['detailText','qualification','jobDetail','직무세부내용','content'])),
-    attachments: Array.isArray(raw?.attachments) ? raw.attachments : [],
-    raw
+    sourceId: cleanText(first(raw,m.sourceId)),
+    institution: cleanText(first(raw,m.institution)),
+    title: cleanText(first(raw,m.title)),
+    applyStart: cleanText(first(raw,m.applyStart)),
+    applyEnd: cleanText(first(raw,m.applyEnd)),
+    employmentType: cleanText(first(raw,m.employmentType)),
+    workplaces: splitList(workRaw),
+    headcount: n(first(raw,m.headcount)),
+    sourceUrl: cleanText(first(raw,m.sourceUrl)),
+    detailText: detailParts.join('\n').trim(),
+    structured: {
+      education: cleanText(first(raw,m.education)),
+      preferenceText: many(raw,m.preferenceText).join('\n'),
+      disqualificationText: many(raw,m.disqualificationText).join('\n'),
+      recruitmentType: cleanText(first(raw,m.recruitmentType)),
+      jobCategory: cleanText(first(raw,m.jobCategory)),
+      localRestrictionFlag: cleanText(first(raw,m.localRestrictionFlag)),
+      localRestrictionName: cleanText(first(raw,m.localRestrictionName)),
+      licenses: many(raw,m.licenses),
+      reference: many(raw,m.reference).join('\n'),
+    },
+    raw,
   };
-  if (!Number.isFinite(common.headcount)) common.headcount = null;
-  common.fingerprint = fingerprint(common);
-  return common;
+  p.identity = buildIdentity(p);
+  p.fingerprint = buildFingerprint(p);
+  p.mappingWarnings = validateCoreMapping(p);
+  return p;
 }
 
-function fingerprint(p) {
-  return [p.institution,p.title,p.applyStart,p.applyEnd].map(v => text(v).toLowerCase().replace(/\s+/g,' ')).join('|');
+export function buildIdentity(p){
+  return p.sourceId ? `${p.source}:${p.sourceId}` : `${p.source}:${buildFingerprint(p)}`;
+}
+export function buildFingerprint(p){
+  return [p.institution,p.title,p.applyStart,p.applyEnd].map(norm).join('|');
+}
+export function validateCoreMapping(p){
+  const w=[];
+  if(!p.sourceId) w.push('missing_source_id');
+  if(!p.institution) w.push('missing_institution');
+  if(!p.title) w.push('missing_title');
+  if(!p.applyStart && !p.applyEnd) w.push('missing_dates');
+  if(!p.fingerprint || p.fingerprint === '|||') w.push('empty_fingerprint');
+  return w;
 }

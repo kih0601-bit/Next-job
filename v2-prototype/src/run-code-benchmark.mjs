@@ -51,7 +51,7 @@ for(const sidoCd of sidoCodes){
 raw.sourceStatus.cleaneye={
   status: cleaneyeOk ? (cleaneyeForbidden||cleaneyeOtherErrors?'partial':'ok') : (cleaneyeForbidden===sidoCodes.length?'authorization_forbidden':'error'),
   regionsOk:cleaneyeOk,regionsForbidden:cleaneyeForbidden,regionsOtherErrors:cleaneyeOtherErrors,rawRows:raw.cleaneye.length,
-  note:cleaneyeForbidden?'403 means this data.go.kr service is not authorized for the current key or provider access is not active; it is not treated as a parser failure.':undefined
+  note:cleaneyeForbidden?'403 is an API access/authentication-layer failure (for example approval state or invalid/mis-encoded service key). It is not treated as a parser failure.':undefined
 };
 
 const all=[

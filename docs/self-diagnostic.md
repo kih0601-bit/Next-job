@@ -1,23 +1,33 @@
 # Current Self Diagnostic
 
-## Current baseline
-Uploaded Actions artifact: v106, generated 2026-08-10T00:22:18.431Z.
+## Current goal
+Stage 8 — 지원조건 구조화.
 
-## Stage 7 status
-- 19/20 implementation verified in the generated v106 report.
-- The only reported blocker is Ulju Culture Foundation.
-- The same run already contains the evidence required to clear that blocker: one exact `ROWAREA_RECORD`, one extracted candidate, no pagination form parameter, and no explicit pager markup.
-- Root cause of the remaining blocker is local code wiring, not missing external evidence: `singlePageProof()` read `selected.accuracyVerification`, while the selected page stores it at `selected.rootCause.accuracyVerification`.
-- v107 corrects that path.
+## Objective boundary
+Stage 8 is not the user's eligibility decision. It converts each recruitment posting into an objective, readable structure using board title/list metadata, detail-page text, and attachments.
 
-## Other Stage 7 evidence
-- KEPCO: 141 raw / 141 unique / 0 duplicates; full Pagination verified.
-- 17 sources current-run full verified.
-- Workers' Compensation & Welfare Service and Ulsan Nam-gu Urban Management Corporation retain implementation proof as `verified-historical` and remain operational-watch items, not Stage-7 implementation blockers.
-- No structural identity-collapse blocker remains in the uploaded run.
+## Data model
+Posting → common requirements + one or more recruitment units.
 
-## Goal-progress decision
-There is no evidence-based reason to keep expanding Stage-7 diagnostics after the v107 wiring correction. The uploaded run already contains the external evidence needed for the sole blocker. Stage 7 is therefore code/evidence-close-ready; further work should move to Stage 8 Eligibility while Stage 7 remains under Health/Regression monitoring.
+Each recruitment unit carries:
+- job/field name,
+- headcount when derivable,
+- work location and employment type,
+- education / license / experience / age / major / job-related / legal-identity / other requirements,
+- required / preferred / unknown,
+- source-linked evidence.
 
-## Documentation policy
-This file is the single current self-diagnostic. Historical decisions belong in `patch-history.md`; do not create a new `self-diagnostic-vNNN.md` for every patch.
+## Multi-position postings
+A posting containing different jobs, grades, locations, headcounts or requirements is split into separate recruitment units so conditions are not incorrectly merged.
+
+## Analysis-state rule
+`unknown/not-specified` is different from `analysis-failed`.
+A missing condition does not mean a failed parser, and a failed attachment parse does not mean the posting has no condition.
+
+## Output
+- `data/stage8-eligibility-report.json`: official Stage-8 objective structure.
+- `data/requirement-report.json`: compatibility alias during migration.
+- `data/jobs.json`: existing personal-fit output remains unchanged for now.
+
+## Goal-progress
+This patch establishes the Stage-8 production data contract and integration point. Stage-8 completion still requires real-run validation that current postings are correctly split and structured.

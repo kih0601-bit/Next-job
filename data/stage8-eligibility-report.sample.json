@@ -1,0 +1,682 @@
+{
+  "stage": 8,
+  "schemaVersion": "2.0.0",
+  "version": "8.1.0-recruitment-unit-objective-structure",
+  "generatedAt": "2026-08-10T00:50:36.289Z",
+  "purpose": "객관적 공고 구조화. 사용자 개인 지원가능 여부 판정과 분리.",
+  "sourcePriority": [
+    "title/list metadata",
+    "detail page",
+    "attachments (PDF/HWP/HWPX etc.)"
+  ],
+  "requirementLevels": [
+    "required",
+    "preferred",
+    "unknown"
+  ],
+  "summary": {
+    "postingCount": 1,
+    "recruitmentUnitCount": 3,
+    "complete": 1,
+    "partial": 0,
+    "failed": 0
+  },
+  "stage8Gate": {
+    "decision": "close-stage-8",
+    "postingCount": 1,
+    "recruitmentUnitCount": 3,
+    "completePostings": 1,
+    "partialPostings": 0,
+    "failedPostings": 0,
+    "completionRate": 1,
+    "blockers": [],
+    "watch": [],
+    "rule": "every current target posting has recruitment-unit support conditions derived from all available readable sources; analysis failure is distinct from unknown/not-specified requirements"
+  },
+  "postings": [
+    {
+      "stage": 8,
+      "schemaVersion": "2.0.0",
+      "extractorSchemaVersion": "2.0.0-source-linked",
+      "version": "8.1.0-recruitment-unit-objective-structure",
+      "posting": {
+        "org": "검증샘플",
+        "title": "복수 모집분야 채용",
+        "link": "sample://stage8"
+      },
+      "sourceCoverage": {
+        "title": {
+          "status": "analyzed",
+          "available": true,
+          "attempted": true,
+          "readable": true,
+          "error": "",
+          "count": null
+        },
+        "list": {
+          "status": "analyzed",
+          "available": true,
+          "attempted": true,
+          "readable": true,
+          "error": "",
+          "count": null
+        },
+        "detail": {
+          "status": "analyzed",
+          "available": true,
+          "attempted": true,
+          "readable": true,
+          "error": "",
+          "count": null
+        },
+        "document": {
+          "status": "analyzed",
+          "available": true,
+          "attempted": true,
+          "readable": true,
+          "error": "",
+          "count": 1
+        }
+      },
+      "commonRequirements": {
+        "schemaVersion": "2.0.0-source-linked",
+        "sourcePriority": [
+          "document",
+          "detail",
+          "list",
+          "title"
+        ],
+        "evidenceSources": {
+          "title": true,
+          "list": true,
+          "detail": true,
+          "document": false
+        },
+        "education": {
+          "values": [],
+          "level": "unknown",
+          "resolution": "not-specified",
+          "evidence": [],
+          "evidenceDetailed": []
+        },
+        "licenses": [],
+        "experience": [],
+        "age": [],
+        "major": [],
+        "jobRelated": [],
+        "legalOrIdentity": [
+          {
+            "value": "대한민국 국적",
+            "level": "unknown",
+            "source": "detail",
+            "evidence": [
+              "대한민국 국적"
+            ],
+            "evidenceDetailed": [
+              {
+                "source": "detail",
+                "text": "대한민국 국적"
+              }
+            ]
+          }
+        ],
+        "location": {
+          "values": [
+            "울산"
+          ],
+          "level": "unknown",
+          "resolution": "observed",
+          "evidence": [
+            "행정 | 3명 | 울산",
+            "전산 | 2명 | 울산",
+            "시설 | 1명 | 울산"
+          ],
+          "evidenceDetailed": [
+            {
+              "source": "detail",
+              "text": "행정 | 3명 | 울산"
+            },
+            {
+              "source": "detail",
+              "text": "전산 | 2명 | 울산"
+            },
+            {
+              "source": "detail",
+              "text": "시설 | 1명 | 울산"
+            }
+          ]
+        },
+        "employment": {
+          "values": [],
+          "level": "unknown",
+          "resolution": "not-specified",
+          "evidence": [],
+          "evidenceDetailed": []
+        },
+        "other": [],
+        "identity": [
+          {
+            "value": "대한민국 국적",
+            "level": "unknown",
+            "source": "detail",
+            "evidence": [
+              "대한민국 국적"
+            ],
+            "evidenceDetailed": [
+              {
+                "source": "detail",
+                "text": "대한민국 국적"
+              }
+            ]
+          }
+        ]
+      },
+      "commonRequirementSummary": {
+        "required": 0,
+        "preferred": 0,
+        "unknown": 2,
+        "explicitNoRestriction": 0,
+        "evidenceCount": 4
+      },
+      "recruitmentUnits": [
+        {
+          "id": "v1",
+          "name": "행정",
+          "source": "table-row",
+          "splitConfidence": 0.9,
+          "headcount": {
+            "value": 3,
+            "status": "derived",
+            "evidence": [
+              "3명"
+            ]
+          },
+          "workLocations": [
+            "울산"
+          ],
+          "employmentTypes": [],
+          "requirements": {
+            "schemaVersion": "2.0.0-source-linked",
+            "sourcePriority": [
+              "document",
+              "detail",
+              "list",
+              "title"
+            ],
+            "evidenceSources": {
+              "title": true,
+              "list": false,
+              "detail": true,
+              "document": true
+            },
+            "education": {
+              "values": [
+                "학력무관",
+                "대졸 이상"
+              ],
+              "level": "unknown",
+              "resolution": "explicit-no-restriction",
+              "evidence": [
+                "학력 무관",
+                "대학교 졸업 이상"
+              ],
+              "evidenceDetailed": [
+                {
+                  "source": "document",
+                  "text": "학력 무관"
+                },
+                {
+                  "source": "document",
+                  "text": "대학교 졸업 이상"
+                }
+              ]
+            },
+            "licenses": [
+              {
+                "value": "정보처리기사 소지자에 한함",
+                "level": "required",
+                "source": "document",
+                "evidence": [
+                  "정보처리기사 소지자에 한함"
+                ],
+                "evidenceDetailed": [
+                  {
+                    "source": "document",
+                    "text": "정보처리기사 소지자에 한함"
+                  }
+                ]
+              }
+            ],
+            "experience": [],
+            "age": [],
+            "major": [],
+            "jobRelated": [],
+            "legalOrIdentity": [
+              {
+                "value": "대한민국 국적",
+                "level": "unknown",
+                "source": "detail",
+                "evidence": [
+                  "대한민국 국적"
+                ],
+                "evidenceDetailed": [
+                  {
+                    "source": "detail",
+                    "text": "대한민국 국적"
+                  }
+                ]
+              }
+            ],
+            "location": {
+              "values": [
+                "울산"
+              ],
+              "level": "unknown",
+              "resolution": "observed",
+              "evidence": [
+                "행정 | 3명 | 울산",
+                "전산 | 2명 | 울산",
+                "시설 | 1명 | 울산"
+              ],
+              "evidenceDetailed": [
+                {
+                  "source": "detail",
+                  "text": "행정 | 3명 | 울산"
+                },
+                {
+                  "source": "detail",
+                  "text": "전산 | 2명 | 울산"
+                },
+                {
+                  "source": "detail",
+                  "text": "시설 | 1명 | 울산"
+                }
+              ]
+            },
+            "employment": {
+              "values": [],
+              "level": "unknown",
+              "resolution": "not-specified",
+              "evidence": [],
+              "evidenceDetailed": []
+            },
+            "other": [],
+            "identity": [
+              {
+                "value": "대한민국 국적",
+                "level": "unknown",
+                "source": "detail",
+                "evidence": [
+                  "대한민국 국적"
+                ],
+                "evidenceDetailed": [
+                  {
+                    "source": "detail",
+                    "text": "대한민국 국적"
+                  }
+                ]
+              }
+            ]
+          },
+          "requirementSummary": {
+            "required": 1,
+            "preferred": 0,
+            "unknown": 4,
+            "explicitNoRestriction": 1,
+            "evidenceCount": 7
+          },
+          "evidenceScope": {
+            "detail": "공통 응시자격 대한민국 국적 행정 | 3명 | 울산 전산 | 2명 | 울산 시설 | 1명 | 울산",
+            "document": "행정 학력 무관 전산 대학교 졸업 이상 정보처리기사 소지자에 한함 시설",
+            "fallbackLocalUsed": false
+          }
+        },
+        {
+          "id": "v2",
+          "name": "전산",
+          "source": "table-row",
+          "splitConfidence": 0.9,
+          "headcount": {
+            "value": 2,
+            "status": "derived",
+            "evidence": [
+              "2명"
+            ]
+          },
+          "workLocations": [
+            "울산"
+          ],
+          "employmentTypes": [],
+          "requirements": {
+            "schemaVersion": "2.0.0-source-linked",
+            "sourcePriority": [
+              "document",
+              "detail",
+              "list",
+              "title"
+            ],
+            "evidenceSources": {
+              "title": true,
+              "list": false,
+              "detail": true,
+              "document": true
+            },
+            "education": {
+              "values": [
+                "학력무관",
+                "대졸 이상",
+                "고졸 이상"
+              ],
+              "level": "unknown",
+              "resolution": "explicit-no-restriction",
+              "evidence": [
+                "학력 무관",
+                "대학교 졸업 이상",
+                "고등학교 졸업 이상"
+              ],
+              "evidenceDetailed": [
+                {
+                  "source": "document",
+                  "text": "학력 무관"
+                },
+                {
+                  "source": "document",
+                  "text": "대학교 졸업 이상"
+                },
+                {
+                  "source": "document",
+                  "text": "고등학교 졸업 이상"
+                }
+              ]
+            },
+            "licenses": [
+              {
+                "value": "정보처리기사 소지자에 한함",
+                "level": "required",
+                "source": "document",
+                "evidence": [
+                  "정보처리기사 소지자에 한함"
+                ],
+                "evidenceDetailed": [
+                  {
+                    "source": "document",
+                    "text": "정보처리기사 소지자에 한함"
+                  }
+                ]
+              },
+              {
+                "value": "전기기사 소지자에 한함",
+                "level": "required",
+                "source": "document",
+                "evidence": [
+                  "전기기사 소지자에 한함"
+                ],
+                "evidenceDetailed": [
+                  {
+                    "source": "document",
+                    "text": "전기기사 소지자에 한함"
+                  }
+                ]
+              }
+            ],
+            "experience": [],
+            "age": [],
+            "major": [],
+            "jobRelated": [],
+            "legalOrIdentity": [
+              {
+                "value": "대한민국 국적",
+                "level": "unknown",
+                "source": "detail",
+                "evidence": [
+                  "대한민국 국적"
+                ],
+                "evidenceDetailed": [
+                  {
+                    "source": "detail",
+                    "text": "대한민국 국적"
+                  }
+                ]
+              }
+            ],
+            "location": {
+              "values": [
+                "울산"
+              ],
+              "level": "unknown",
+              "resolution": "observed",
+              "evidence": [
+                "행정 | 3명 | 울산",
+                "전산 | 2명 | 울산",
+                "시설 | 1명 | 울산"
+              ],
+              "evidenceDetailed": [
+                {
+                  "source": "detail",
+                  "text": "행정 | 3명 | 울산"
+                },
+                {
+                  "source": "detail",
+                  "text": "전산 | 2명 | 울산"
+                },
+                {
+                  "source": "detail",
+                  "text": "시설 | 1명 | 울산"
+                }
+              ]
+            },
+            "employment": {
+              "values": [],
+              "level": "unknown",
+              "resolution": "not-specified",
+              "evidence": [],
+              "evidenceDetailed": []
+            },
+            "other": [],
+            "identity": [
+              {
+                "value": "대한민국 국적",
+                "level": "unknown",
+                "source": "detail",
+                "evidence": [
+                  "대한민국 국적"
+                ],
+                "evidenceDetailed": [
+                  {
+                    "source": "detail",
+                    "text": "대한민국 국적"
+                  }
+                ]
+              }
+            ]
+          },
+          "requirementSummary": {
+            "required": 2,
+            "preferred": 0,
+            "unknown": 5,
+            "explicitNoRestriction": 1,
+            "evidenceCount": 9
+          },
+          "evidenceScope": {
+            "detail": "대한민국 국적 행정 | 3명 | 울산 전산 | 2명 | 울산 시설 | 1명 | 울산",
+            "document": "행정 학력 무관 전산 대학교 졸업 이상 정보처리기사 소지자에 한함 시설 고등학교 졸업 이상 전기기사 소지자에 한함",
+            "fallbackLocalUsed": false
+          }
+        },
+        {
+          "id": "v3",
+          "name": "시설",
+          "source": "table-row",
+          "splitConfidence": 0.9,
+          "headcount": {
+            "value": 1,
+            "status": "derived",
+            "evidence": [
+              "1명"
+            ]
+          },
+          "workLocations": [
+            "울산"
+          ],
+          "employmentTypes": [],
+          "requirements": {
+            "schemaVersion": "2.0.0-source-linked",
+            "sourcePriority": [
+              "document",
+              "detail",
+              "list",
+              "title"
+            ],
+            "evidenceSources": {
+              "title": true,
+              "list": false,
+              "detail": true,
+              "document": true
+            },
+            "education": {
+              "values": [
+                "대졸 이상",
+                "고졸 이상"
+              ],
+              "level": "required",
+              "resolution": "observed",
+              "evidence": [
+                "대학교 졸업 이상",
+                "고등학교 졸업 이상"
+              ],
+              "evidenceDetailed": [
+                {
+                  "source": "document",
+                  "text": "대학교 졸업 이상"
+                },
+                {
+                  "source": "document",
+                  "text": "고등학교 졸업 이상"
+                }
+              ]
+            },
+            "licenses": [
+              {
+                "value": "정보처리기사 소지자에 한함",
+                "level": "required",
+                "source": "document",
+                "evidence": [
+                  "정보처리기사 소지자에 한함"
+                ],
+                "evidenceDetailed": [
+                  {
+                    "source": "document",
+                    "text": "정보처리기사 소지자에 한함"
+                  }
+                ]
+              },
+              {
+                "value": "전기기사 소지자에 한함",
+                "level": "required",
+                "source": "document",
+                "evidence": [
+                  "전기기사 소지자에 한함"
+                ],
+                "evidenceDetailed": [
+                  {
+                    "source": "document",
+                    "text": "전기기사 소지자에 한함"
+                  }
+                ]
+              }
+            ],
+            "experience": [
+              {
+                "value": "관련 분야 경력 2년 이상",
+                "level": "required",
+                "source": "document",
+                "evidence": [
+                  "관련 분야 경력 2년 이상"
+                ],
+                "evidenceDetailed": [
+                  {
+                    "source": "document",
+                    "text": "관련 분야 경력 2년 이상"
+                  }
+                ]
+              }
+            ],
+            "age": [],
+            "major": [],
+            "jobRelated": [
+              {
+                "value": "관련 분야 경력 2년 이상",
+                "level": "unknown",
+                "source": "document",
+                "evidence": [
+                  "관련 분야 경력 2년 이상"
+                ],
+                "evidenceDetailed": [
+                  {
+                    "source": "document",
+                    "text": "관련 분야 경력 2년 이상"
+                  }
+                ]
+              }
+            ],
+            "legalOrIdentity": [],
+            "location": {
+              "values": [
+                "울산"
+              ],
+              "level": "unknown",
+              "resolution": "observed",
+              "evidence": [
+                "행정 | 3명 | 울산",
+                "전산 | 2명 | 울산",
+                "시설 | 1명 | 울산"
+              ],
+              "evidenceDetailed": [
+                {
+                  "source": "detail",
+                  "text": "행정 | 3명 | 울산"
+                },
+                {
+                  "source": "detail",
+                  "text": "전산 | 2명 | 울산"
+                },
+                {
+                  "source": "detail",
+                  "text": "시설 | 1명 | 울산"
+                }
+              ]
+            },
+            "employment": {
+              "values": [],
+              "level": "unknown",
+              "resolution": "not-specified",
+              "evidence": [],
+              "evidenceDetailed": []
+            },
+            "other": [],
+            "identity": []
+          },
+          "requirementSummary": {
+            "required": 5,
+            "preferred": 0,
+            "unknown": 2,
+            "explicitNoRestriction": 0,
+            "evidenceCount": 9
+          },
+          "evidenceScope": {
+            "detail": "행정 | 3명 | 울산 전산 | 2명 | 울산 시설 | 1명 | 울산",
+            "document": "대학교 졸업 이상 정보처리기사 소지자에 한함 시설 고등학교 졸업 이상 전기기사 소지자에 한함 관련 분야 경력 2년 이상",
+            "fallbackLocalUsed": false
+          }
+        }
+      ],
+      "analysisStatus": "complete",
+      "completion": {
+        "derived": true,
+        "fatal": [],
+        "watch": [],
+        "definition": "posting split into recruitment units; common/unit requirements structured with source-linked evidence and source-analysis state"
+      }
+    }
+  ]
+}

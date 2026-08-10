@@ -300,3 +300,16 @@
 - The uploaded v106 run already proves the external facts needed for closure: exact one-to-one `ROWAREA_RECORD`, one candidate, no page parameter, no explicit pager markup. v107 fixes only the evidence wiring.
 - Goal-progress decision: no further Stage-7 external Actions cycle is required solely to rediscover this evidence. Treat Stage 7 as close-ready after local regression validation and proceed to Stage 8 Eligibility, while historical-only sources remain Health/Regression watch items.
 - Documentation cleanup policy activated: use one `docs/self-diagnostic.md` for current diagnosis; historical reasoning stays in `patch-history.md`. Versioned self-diagnostic files should be removed rather than continued.
+
+
+## v108 — Stage 8 objective recruitment-unit structuring
+- Stage 8 is formally separated from personal eligibility filtering. Its purpose is to make each posting objectively readable from board title/list metadata, detail page and attachments.
+- Existing vacancy splitting is reused, but Stage-8 output is generated before personal-fit rejection and stored separately.
+- Added `stage8-eligibility-structure.mjs` and official `data/stage8-eligibility-report.json` generation.
+- Posting model: posting-level common requirements + one or more recruitment units. Each unit can independently carry headcount, location, employment type and support requirements.
+- Requirement evidence is now source-linked (`title`, `list`, `detail`, `document`). Added explicit `age`, `jobRelated`, and `legalOrIdentity` categories while retaining `identity` as a backward-compatible alias.
+- Analysis state distinguishes `not-specified/unknown` from `detail/attachment analysis failed`.
+- `requirement-report.json` is retained as a compatibility alias during migration; new Stage-8 consumers should use `stage8-eligibility-report.json`.
+- Stage-8 gate is based on individual posting derivation completeness, not user-profile match.
+- Documentation cleanup applied: only `docs/self-diagnostic.md` remains current; versioned self-diagnostic files are removed.
+- Local validation: all 28 regression tests pass after updating the old v74 implementation-pinned requirement sampling test to the Stage-8 output contract. Synthetic multi-unit test confirms 3/2/1 headcounts and distinct unit requirements remain separated.\n

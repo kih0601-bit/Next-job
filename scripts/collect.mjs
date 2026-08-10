@@ -9,6 +9,7 @@ import { inspectListingPage } from './lib/list-pipeline.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 import { buildAccessPlan, getCollectorTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { analyzeVacancies } from './lib/classifier.mjs';
+import { buildStage8Posting, buildStage8Report, STAGE8_VERSION } from './lib/stage8-eligibility-structure.mjs';
 import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
 import { analyzeAttachments, getDocumentToolDiagnostics } from './lib/document-analyzer.mjs';
 import { validateJob, runCollectionQA, VALIDATOR_VERSION } from './lib/validator.mjs';
@@ -233,7 +234,8 @@ function cacheableOutcome(outcome = {}) {
     jobs: Array.isArray(outcome.jobs) ? outcome.jobs : [],
     rejection: outcome.rejection || '',
     vacancyDecisions: Array.isArray(outcome.vacancyDecisions) ? outcome.vacancyDecisions : [],
-    vacancyStats: outcome.vacancyStats || { detected: 0, accepted: 0, rejected: 0 }
+    vacancyStats: outcome.vacancyStats || { detected: 0, accepted: 0, rejected: 0 },
+    stage8Posting: outcome.stage8Posting || null
   };
 }
 
@@ -571,9 +573,15 @@ async function enrichCandidate(candidate, source) {
     });
   }
   if (source.requireValidDetail && !detail.ok) {
+    const stage8Posting = buildStage8Posting({
+      org:candidate.org, title:candidate.title, link:canonicalJobUrl(candidate.link || ''),
+      listText:candidate.listText, detailText:detail.text || '', detailOk:false, detailError:detail.error || 'detail validation failed',
+      attachments:detail.attachments || [], documents:{discovered:0,attempted:0,successful:0,text:'',results:[]}, vacancies:[]
+    });
     return {
       jobs: [],
       rejection: detail.error || 'detail validation failed',
+      stage8Posting,
       pipeline: { detailAttempted: Number(Boolean(source.detail)), detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 },
       documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }
     };
@@ -595,6 +603,18 @@ async function enrichCandidate(candidate, source) {
     detailOk: detail.ok
   });
   const finalLink = canonicalJobUrl(detail.finalUrl || candidate.link);
+  const stage8Posting = buildStage8Posting({
+    org:candidate.org,
+    title:candidate.title,
+    link:finalLink,
+    listText:candidate.listText,
+    detailText:detail.text,
+    detailOk:detail.ok,
+    detailError:detail.error || '',
+    attachments:detail.attachments,
+    documents,
+    vacancies:vacancyAnalyses
+  });
   const jobs = [];
   const vacancyRejections = [];
   const vacancyDecisions = [];
@@ -683,6 +703,7 @@ async function enrichCandidate(candidate, source) {
 
   return {
     jobs,
+    stage8Posting,
     rejection: jobs.length ? '' : (vacancyRejections.join(' | ') || 'no eligible vacancy'),
     pipeline: {
       detailAttempted: Number(Boolean(source.detail)),
@@ -877,6 +898,7 @@ async function fetchSource(source) {
     const pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 };
     const documentDiagnostics = { byDetectedType: {}, byContentType: {}, byError: {} };
     const documentSamples = [];
+    const stage8Postings = [];
     const vacancyDecisions = listSelection.rejected.map(candidate => ({
       candidateTitle: candidate.title,
       candidateLink: candidate.link || '',
@@ -957,6 +979,7 @@ async function fetchSource(source) {
       if (outcome.documentResults?.length && documentSamples.length < 40) {
         documentSamples.push(...outcome.documentResults.slice(0, Math.max(0, 40 - documentSamples.length)));
       }
+      if (outcome.stage8Posting) stage8Postings.push(outcome.stage8Posting);
       if (outcome.vacancyStats) {
         vacancyStats.detected += outcome.vacancyStats.detected || 0;
         vacancyStats.accepted += outcome.vacancyStats.accepted || 0;
@@ -982,10 +1005,10 @@ async function fetchSource(source) {
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
-      rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions
+      rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions, stage8Postings
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, cacheMissSamples, cacheKeyMigrations, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], stage8Postings: [], incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, cacheMissSamples, cacheKeyMigrations, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPipelineReport() {
@@ -1060,6 +1083,7 @@ for (const result of results) {
     vacancyStats: result.vacancyStats || { detected: 0, accepted: 0, rejected: 0 },
     documentDiagnostics: result.documentDiagnostics || { byDetectedType: {}, byContentType: {}, byError: {} },
     documentSamples: result.documentSamples || [],
+    stage8Postings: result.stage8Postings || [],
     vacancyDecisions: result.vacancyDecisions || [],
     incremental: result.incremental || { cacheHits: 0, cacheMisses: 0, heavyProcessed: 0, durationMs: 0 }
   });
@@ -1145,6 +1169,7 @@ const debugPayload = {
     documentSamples: source.documentSamples,
     vacancyStats: source.vacancyStats,
     vacancyDecisions: source.vacancyDecisions,
+    stage8Postings: source.stage8Postings,
     incremental: source.incremental,
     rejected: source.rejected,
     rejectionReasons: source.rejectionReasons,
@@ -1244,87 +1269,14 @@ if (pipelineReport.payload) {
 }
 
 
-const requirementSamples = sources.flatMap(source => {
-  const seen = new Set();
-  return (source.vacancyDecisions || []).flatMap(decision => {
-    const analysis = decision.analysis || {};
-    const requirements = analysis.supportRequirements || null;
-    const hasEvidence = Boolean(
-      requirements && (
-        requirements.evidenceSources?.document ||
-        requirements.evidenceSources?.detail ||
-        requirements.evidenceSources?.list
-      )
-    );
-    if (!hasEvidence) return [];
+const stage8Postings = sources.flatMap(source => source.stage8Postings || []);
+const stage8Report = buildStage8Report(stage8Postings, nowIso);
 
-    // One sample represents one real posting/vacancy. Attachment filenames are
-    // evidence belonging to that posting, never independent vacancies.
-    const rawKey = decision.link || decision.detailUrl || decision.vacancyId || decision.vacancyName || '';
-    const attachmentLike = /\.(pdf|hwp|hwpx|docx?|xlsx?|zip)$/i.test(String(decision.vacancyName || '').trim());
-    if (attachmentLike && !decision.link && !decision.detailUrl) return [];
-
-    const sampleKey = `${source.org}::${rawKey || decision.vacancyName}`;
-    if (seen.has(sampleKey)) return [];
-    seen.add(sampleKey);
-
-    return [{
-      sampleKey,
-      org: source.org,
-      vacancyId: decision.vacancyId || '',
-      title: decision.vacancyName || '',
-      link: decision.link || decision.detailUrl || '',
-      collectorStatus: decision.status || '',
-      collectorReason: decision.reason || '',
-      supportRequirements: requirements,
-      supportEligibility: analysis.supportEligibility || null,
-      evidenceSources: requirements.evidenceSources || {},
-      attachmentEvidence: analysis.documentAnalysis?.results || []
-    }];
-  });
-});
-
-const requirementCategoryStats = {};
-for (const sample of requirementSamples) {
-  const req = sample.supportRequirements || {};
-  for (const category of ['education','licenses','experience','major','identity','location','employment','other']) {
-    const value = req[category];
-    const rows = Array.isArray(value) ? value : (value?.values || []).map(item => ({ value:item, level:value.level || 'unknown' }));
-    if (!rows.length) continue;
-    const stat = requirementCategoryStats[category] ||= { postings:0, required:0, preferred:0, unknown:0, institutions:[] };
-    stat.postings += 1;
-    stat.institutions.push(sample.org);
-    for (const row of rows) {
-      const level = row?.level || 'unknown';
-      if (level === 'required') stat.required += 1;
-      else if (level === 'preferred') stat.preferred += 1;
-      else stat.unknown += 1;
-    }
-  }
-}
-for (const stat of Object.values(requirementCategoryStats)) {
-  stat.institutions = [...new Set(stat.institutions)].sort();
-  stat.institutionCount = stat.institutions.length;
-}
-
+// Compatibility alias: requirement-report now points to the same objective Stage-8 data.
+// New consumers should use data/stage8-eligibility-report.json.
 const requirementReport = {
-  generatedAt: nowIso,
-  schemaVersion: '1.1.0',
-  policy: [
-    '필터 연구용 표본은 최종 jobs.json 통과 여부와 분리한다.',
-    '문서/상세/목록 근거가 있는 실제 공고 단위로 1개 표본을 만든다.',
-    'PDF/HWP/HWPX 등 첨부파일명은 독립 공고로 집계하지 않고 공고의 근거로 귀속한다.',
-    '지원조건은 required/preferred/unknown으로 관측하며 아직 신규 hard filter로 사용하지 않는다.'
-  ],
-  summary: {
-    acceptedJobs: jobs.length,
-    sampledPostings: requirementSamples.length,
-    sampledInstitutions: [...new Set(requirementSamples.map(sample => sample.org))].length,
-    documentBackedPostings: requirementSamples.filter(sample => sample.evidenceSources?.document).length,
-    detailBackedPostings: requirementSamples.filter(sample => sample.evidenceSources?.detail).length
-  },
-  categoryStats: requirementCategoryStats,
-  samples: requirementSamples
+  ...stage8Report,
+  compatibilityAlias:'data/stage8-eligibility-report.json'
 };
 
 const cacheCutoff = Date.now() - CACHE_RETENTION_MS;
@@ -1341,6 +1293,7 @@ await Promise.all([
   fs.writeFile(COLLECTION_CACHE_PATH, `${JSON.stringify(cachePayload, null, 2)}\n`, 'utf8'),
   fs.writeFile(COLLECT_METRICS_PATH, `${JSON.stringify(collectMetrics, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/requirement-report.json', `${JSON.stringify(requirementReport, null, 2)}\n`, 'utf8'),
+  fs.writeFile('data/stage8-eligibility-report.json', `${JSON.stringify(stage8Report, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, ...qa }, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/debug-report.json', `${JSON.stringify(debugPayload, null, 2)}\n`, 'utf8')
 ]);

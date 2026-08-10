@@ -1,3 +1,14 @@
+
+## v120 - Stage 9 foundation: 9A eligibility / extensible 9B / exclusive job taxonomy
+- Purpose: begin Stage 9 without mixing eligibility with UI preference filtering.
+- Added `stage9-filter-engine.mjs`: required-only 9A decisions (`eligible/ineligible/needs-review`), per-dimension reasons/evidence, preferred-match preservation, and mutable-failure/spec-up metadata.
+- Added `stage9-search-filter.mjs` + `stage9-search-filter-config.json`: initial 9B facets are region / organization / job category / employment type, but facet count is registry-driven so real-use feedback can add/remove filters without changing 9A semantics.
+- Added mutually exclusive primary `Job Category` taxonomy. Original vacancy names remain preserved; exactly one standardized category is assigned by ordered rules.
+- Added `stage9-user-profile.json`: profile stays separate from engine logic. Unknown profile fields remain unknown instead of being guessed into pass/fail.
+- Added `stage9-filter-run.mjs` and Actions artifact wiring so Stage 9 progress can be measured while Stage 8 remains the upstream trust gate.
+- Preferred conditions are recommendation signals only. Salary remains display-only and is not a Stage 9 filter.
+- Spec-up v1 preserves unlock causes; license acquisition is the first safe UI candidate, while other mutable dimensions remain structured for later use.
+- Added `test-v120-stage9-foundation.mjs` including proof that a future fifth UI facet can be added without changing 9A.
 # Next Job Patch History
 
 최신 Actions ZIP이 코드 기준본이며 수정 전 이 파일과 `docs/source-status.json`을 확인한다.

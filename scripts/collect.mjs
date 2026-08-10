@@ -219,6 +219,9 @@ function reusableCachedOutcome(candidate, cacheEntry, nowMs = Date.now()) {
   else if (age <= CACHE_IDENTITY_GRACE_MS) reuseReason = 'identity-grace';
   if (!reuseReason) return null;
 
+  // v108 and earlier cache entries do not contain objective Stage-8 structure.
+  // Reprocess once instead of treating a legacy terminal rejection as a valid Stage-8 hit.
+  if (!cacheEntry.outcome?.stage8Posting) return null;
   const outcome = structuredClone(cacheEntry.outcome);
   if (Array.isArray(outcome.jobs)) outcome.jobs = outcome.jobs.filter(job => !isExpired(job.deadline));
   outcome.pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 };
@@ -246,6 +249,20 @@ function validTitle(title) {
   if (matchesAny(title, NON_JOB_PATTERNS)) return false;
   if (matchesAny(title, EXCLUDED_EMPLOYMENT_PATTERNS)) return false;
   if (matchesAny(title, LICENSE_JOB_PATTERNS)) return false;
+  return true;
+}
+
+// Stage 8 is an objective posting-structure stage, not the user's personal-fit filter.
+// Contract/intern/license-job postings may still need to be structured even when they
+// are later excluded from the user's jobs.json.
+function validStage8Candidate(candidate = {}) {
+  const title = String(candidate.title || '').trim();
+  const listText = String(candidate.listText || '').replace(/\s+/g, ' ').trim();
+  if (!title || title.length < 6 || title.length > 220) return false;
+  if (!POSITIVE.test(title)) return false;
+  if (RECRUITMENT_STAGE_NOISE.test(title)) return false;
+  if (matchesAny(title, NON_JOB_PATTERNS)) return false;
+  if (/접수(?:가|는)?\s*(?:마감|종료)|채용\s*마감|마감된\s*공고|모집\s*마감|\/\s*마감(?:\s|$)/.test(`${title} ${listText}`)) return false;
   return true;
 }
 
@@ -889,9 +906,13 @@ async function fetchSource(source) {
       }
     }
     const rawCandidates = [...candidateMap.values()];
+    // Personal list selection is retained for jobs.json compatibility.
     const collectionCandidates = rawCandidates.filter(candidate => validTitle(candidate.title));
     const listSelection = selectListCandidates(collectionCandidates);
-    const candidates = listSelection.accepted;
+    const personalAcceptedKeys = new Set(listSelection.accepted.map(candidate => candidateCacheKey(candidate)));
+    // Stage 8 intentionally uses a broader objective set. Personal employment/license
+    // exclusions must not erase a posting before its support conditions are structured.
+    const candidates = rawCandidates.filter(validStage8Candidate);
     const jobs = [];
     const rejectionReasons = {};
     const vacancyStats = { detected: 0, accepted: 0, rejected: 0 };
@@ -992,9 +1013,12 @@ async function fetchSource(source) {
           ...decision
         })));
       }
-      if (outcome.jobs?.length) jobs.push(...outcome.jobs);
+      const personalAccepted = personalAcceptedKeys.has(candidateCacheKey(candidate));
+      if (personalAccepted && outcome.jobs?.length) jobs.push(...outcome.jobs);
       else {
-        const reason = outcome.rejection || 'unknown rejection';
+        const reason = personalAccepted
+          ? (outcome.rejection || 'unknown rejection')
+          : 'stage8 objective-only posting; excluded from personal jobs output';
         rejectionReasons[reason] = (rejectionReasons[reason] || 0) + 1;
       }
     }

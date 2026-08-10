@@ -313,3 +313,11 @@
 - Stage-8 gate is based on individual posting derivation completeness, not user-profile match.
 - Documentation cleanup applied: only `docs/self-diagnostic.md` remains current; versioned self-diagnostic files are removed.
 - Local validation: all 28 regression tests pass after updating the old v74 implementation-pinned requirement sampling test to the Stage-8 output contract. Synthetic multi-unit test confirms 3/2/1 headcounts and distinct unit requirements remain separated.\n
+
+## v109 — Stage 8 objective-input boundary correction
+- Uploaded v108 Actions evidence generated `stage8-eligibility-report.json` successfully but with 0 postings / 0 recruitment units.
+- Root cause 1: Stage-8 derivation was downstream of the existing personal list-selection boundary. That boundary excludes contract/intern/license-job postings by design, which violates Stage 8's objective-structuring scope.
+- Root cause 2: 2,376 uploaded cache entries predate Stage 8 and 0 contain `stage8Posting`; accepting those cache entries would silently bypass Stage-8 derivation.
+- Fix: Stage 8 now analyzes a separate objective recruitment candidate set while `jobs.json` remains gated by the original personal selection.
+- Fix: cache entries without `stage8Posting` are intentionally reprocessed once; subsequent runs can reuse the new Stage-8-aware cache.
+- Stage 7 remains closed; this is a Stage-8 integration defect, not a reason to reopen Pagination work.

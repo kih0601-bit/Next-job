@@ -463,3 +463,11 @@
 - 사전 검증: 새 v123 회귀 테스트 통과. 기존 v72~v123 테스트 전체 통과(legacy diagnostic path cleanup 후). trusted baseline Fast Run에서 254 postings / 428 units, 비모집 unit 0, structural clean, 기존 Stage 8 Benchmark 7/7 유지. 최신 candidate 271 inputs를 동일 splitter로 재분석했을 때 466 units 중 알려진 비모집 패턴 0, 기존 7개 Benchmark 모집단위명 7/7 유지.
 - 책임 원칙: 후속 Stage에서 증상이 보여도 최초 잘못된 Output을 만든 Stage만 수정한다. Stage 8 오염을 Stage 9 예외처리로 숨기지 않는다.
 - 다음 Live 확인: Live 1→8 재실행에서 현재년도 non-vacancy unit 0 + Benchmark 7/7 + actionable structural blocker 0을 확인한 뒤 Stage 8을 다시 완료 처리하고, 동일 Output으로 Stage 9를 재실행한다.
+
+## v129 — Brand app icon only
+- Scope: Product/UI asset only. Engine Stage 1~10 logic and data contracts are intentionally unchanged.
+- Applied the approved light app icon: centered blue ribbon-N/up-arrow with a small yellow paper airplane on a white rounded-square field.
+- Added `next-job-icon-192.png`, `next-job-icon-512.png`, and `apple-touch-icon.png`.
+- Updated `manifest.webmanifest` and `index.html` icon references to versioned filenames so browser/PWA icon cache does not keep the old placeholder `N` icon.
+- The in-page header logo/wordmark is intentionally unchanged; only the install/home-screen/browser app icon is in this patch.
+- Next work resumes from live-data quality diagnosis; do not treat this branding-only patch as an Engine validation change.

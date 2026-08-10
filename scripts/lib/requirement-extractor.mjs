@@ -1,4 +1,4 @@
-export const REQUIREMENT_SCHEMA_VERSION = '2.1.0-alternative-paths';
+export const REQUIREMENT_SCHEMA_VERSION = '2.2.0-contextual-alternative-paths';
 export const REQUIREMENT_LEVEL = Object.freeze({ REQUIRED:'required', PREFERRED:'preferred', UNKNOWN:'unknown' });
 const {REQUIRED,PREFERRED,UNKNOWN}=REQUIREMENT_LEVEL;
 const normalize=(text='')=>String(text).replace(/\u00a0/g,' ').replace(/[ \t]+/g,' ').trim();
@@ -66,7 +66,10 @@ function extractExperience(text='',source='unknown'){
   });
 }
 function extractAge(text='',source='unknown'){
-  return extractRows(text,source,/(?:만\s*)?\d{1,2}\s*세|연령\s*(?:제한|무관)|정년|청년\s*연령/,10);
+  return extractRows(text,source,/(?:만\s*)?\d{1,2}\s*세|연령\s*(?:제한|무관)|정년|청년\s*연령/,10,line=>{
+    if(/지원자격|응시자격|자격요건|필요자격|채용공고일\s*기준/.test(line) && /(?:만\s*)?\d{1,2}\s*세/.test(line)) return REQUIRED;
+    return levelFromLine(line);
+  });
 }
 function extractLegalIdentity(text='',source='unknown'){
   return extractRows(text,source,/(보훈|장애인|취업지원대상|병역|대한민국\s*국적|국적|결격사유|해외여행\s*결격)/,12);
@@ -93,6 +96,20 @@ function extractQualificationAlternatives(text='',source='unknown'){
       options.push(option);
     }
     if(options.length>=2) groups.push({level:REQUIRED,source,intro:ls[i].slice(0,300),options,evidenceDetailed:[detailed(source,ls[i]),...options.flatMap(x=>x.evidenceDetailed)]});
+  }
+  // Some public-institution forms omit an explicit 'one of the following' intro and express
+  // the second route as '학위가 없는 경우'. Preserve that semantic OR instead of flattening
+  // the first education phrase into an unconditional requirement.
+  if(groups.length===0) for(let i=0;i<ls.length-1;i++){
+    const a=ls[i], b=ls[i+1];
+    if(!/(전문학사|학사|대졸)/.test(a) || !/(학위가\s*없는\s*경우|학위\s*미소지)/.test(b)) continue;
+    if(!/(경력|직무\s*관련)/.test(`${a} ${b}`)) continue;
+    const make=(line)=>{ const option={raw:line.slice(0,300),education:[],experience:[],licenses:[],source,evidenceDetailed:[detailed(source,line)]};
+      if(/학위가\s*없는|학위\s*미소지|고졸/.test(line)) option.education.push('고졸 가능');
+      if(/전문학사|전문대/.test(line)) option.education.push('전문대 이상');
+      if(/학사|대졸/.test(line) && !/전문학사/.test(line)) option.education.push('대졸 이상');
+      const em=line.match(/(?:직무\s*관련\s*)?(\d+)\s*년\s*이상\s*경력/); if(em) option.experience.push(`${em[1]}년 이상 경력`); return option; };
+    groups.push({level:REQUIRED,source,intro:'학위 보유 여부에 따른 대체 지원자격',options:[make(a),make(b)],evidenceDetailed:[detailed(source,a),detailed(source,b)]});
   }
   return groups;
 }

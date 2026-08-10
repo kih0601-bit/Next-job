@@ -1,7 +1,7 @@
 import { extractSupportRequirements, REQUIREMENT_SCHEMA_VERSION } from './requirement-extractor.mjs';
 
 export const STAGE8_SCHEMA_VERSION = '2.0.0';
-export const STAGE8_VERSION = '8.2.0-source-grounded-alternative-paths';
+export const STAGE8_VERSION = '8.3.0-posting-year-and-fallback-accountability';
 
 const compact = (value='', max=500) => String(value || '').replace(/\s+/g,' ').trim().slice(0,max);
 const lines = (text='') => String(text || '').replace(/\r/g,'\n').split(/\n+/).map(x=>x.replace(/\s+/g,' ').trim()).filter(Boolean);
@@ -12,6 +12,18 @@ function sourceState({available=false, attempted=false, readable=false, error=''
   if (available && readable) return { status:'analyzed', available:true, attempted:Boolean(attempted), readable:true, error:'', count };
   if (attempted && !readable) return { status:'analysis-failed', available:Boolean(available), attempted:true, readable:false, error:compact(error,260), count };
   return { status:'available-unread', available:Boolean(available), attempted:Boolean(attempted), readable:false, error:compact(error,260), count };
+}
+
+
+function derivePostingYear(title='', listText='', link='') {
+  const firstYear=(text='')=>{ const m=String(text||'').match(/(?:19\d{2}|20[0-2]\d)/); return m?Number(m[0]):null; };
+  const titleYear=firstYear(title);
+  if(titleYear) return {value:titleYear,source:'title',confidence:'high'};
+  const listYear=firstYear(listText);
+  if(listYear) return {value:listYear,source:'list',confidence:'medium'};
+  const linkYear=firstYear(link);
+  if(linkYear) return {value:linkYear,source:'link',confidence:'low'};
+  return {value:null,source:'unknown',confidence:'unknown'};
 }
 
 function headcountFromText(text='') {
@@ -188,7 +200,7 @@ export function buildStage8Posting({
     extractorSchemaVersion:REQUIREMENT_SCHEMA_VERSION,
     version:STAGE8_VERSION,
     posting:{org,title,link},
-    sourceHints:{years:[...new Set([...`${title} ${listText} ${detailText}`.matchAll(/(?:19\d{2}|20[0-2]\d)/g)].map(x=>Number(x[0])))].slice(0,12),closed:/\b종료\b|접수마감|마감/.test(`${listText} ${detailText}`)},
+    sourceHints:{postingYear:derivePostingYear(title,listText,link),referencedYears:[...new Set([...`${detailText} ${documentText}`.matchAll(/(?:19\d{2}|20[0-2]\d)/g)].map(x=>Number(x[0])))].slice(0,12),years:[...new Set([...`${title} ${listText} ${detailText}`.matchAll(/(?:19\d{2}|20[0-2]\d)/g)].map(x=>Number(x[0])))].slice(0,12),closed:/\b종료\b|접수마감|마감/.test(`${listText} ${detailText}`)},
     sourceCoverage,
     commonRequirements,
     commonRequirementSummary:summarizeRequirements(commonRequirements),

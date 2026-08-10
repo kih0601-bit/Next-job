@@ -2,6 +2,13 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { normalizePosting } from '../src/lib/normalize.mjs';
 import { extractCodeOnly } from '../src/code/code-extract.mjs';
+import { normalizePublicDataServiceKey, redactSensitiveUrl } from '../src/adapters/common.mjs';
+assert.equal(normalizePublicDataServiceKey('abc%2Bdef%2Fghi%3D%3D'),'abc+def/ghi==');
+assert.equal(normalizePublicDataServiceKey('abc+def/ghi=='),'abc+def/ghi==');
+const redacted=redactSensitiveUrl('https://example.test/api?serviceKey=abc%2Bdef%2Fghi%3D%3D&pageNo=1');
+assert.ok(!redacted.includes('abc'));
+assert.match(redacted,/REDACTED/);
+
 const f=JSON.parse(await fs.readFile(new URL('./fixtures/api-real-samples.json',import.meta.url),'utf8'));
 
 const j=normalizePosting('job-alio',f.jobAlio);

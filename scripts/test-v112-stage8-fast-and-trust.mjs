@@ -15,7 +15,7 @@ assert.match(collect,/1\.1\.0-stage8-input-snapshot/);
 assert.match(collect,/stage8-schema-missing/);
 assert.match(collect,/stage7-stage8-snapshot\.json/);
 assert.match(collect,/stage8-benchmark-candidates\.json/);
-assert.match(analyzer,/2\.9-short-text-root-cause/);
+assert.match(analyzer,/const ANALYZER_VERSION = '[^']+'/); assert.match(analyzer,/analyzerVersion: ANALYZER_VERSION/);
 assert.match(analyzer,/failureClass/);
 assert.match(fast,/stage8-fast-snapshot/);
 assert.match(fast,/live-full-pipeline-validation-required/);

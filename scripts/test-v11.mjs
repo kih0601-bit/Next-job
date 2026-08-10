@@ -237,7 +237,8 @@ console.log('v13.1/v85 welfare-service access-source tests passed');
 
   const analyzerSource = await (await import('node:fs/promises')).readFile(new URL('./lib/document-analyzer.mjs', import.meta.url), 'utf8');
   assert.match(analyzerSource, /isAdministrativeFormAttachment/);
-  assert.match(analyzerSource, /2\.9-short-text-root-cause/);
+  assert.match(analyzerSource, /const ANALYZER_VERSION = '[^']+'/);
+  assert.match(analyzerSource, /analyzerVersion: ANALYZER_VERSION/);
 }
 console.log('v79 remaining-three evidence fixes passed');
 

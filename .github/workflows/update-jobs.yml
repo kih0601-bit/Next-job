@@ -63,6 +63,7 @@ jobs:
           node scripts/test-v92-safety-and-workflow.mjs
           node scripts/test-v111-stage8-diagnostic-gate.mjs
           node scripts/test-v112-stage8-fast-and-trust.mjs
+          node scripts/test-v113-parallel-stage7-stage8.mjs
 
       - name: Preserve previous pipeline report
         shell: bash
@@ -145,6 +146,9 @@ jobs:
             data/stage8-eligibility-report.json
             data/stage8-quality-report.json
             data/stage7-stage8-snapshot.json
+            data/stage7-stage8-baseline.json
+            data/stage7-stage8-candidate.json
+            data/stage8-snapshot-lifecycle.json
             data/stage8-benchmark-candidates.json
             data/qa-report.json
             data/diagnostics/

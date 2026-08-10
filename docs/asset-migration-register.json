@@ -1,0 +1,25 @@
+{
+  "version":"v136",
+  "policy":"legacy-isolated-not-deleted",
+  "retired":[
+    {"asset":"legacy scheduled institution-site collector","action":"disabled schedule; manual retired guard only"},
+    {"asset":"old 1-10 pipeline as official architecture","action":"retired"}
+  ],
+  "keepLegacy":[
+    "document extraction utilities",
+    "provenance/evidence/reconciliation concepts",
+    "regression and silent-failure diagnostics",
+    "UI/brand assets",
+    "historical diagnostics and patch history"
+  ],
+  "rewrite":[
+    "official API adapters",
+    "source field mapping",
+    "normalized schema",
+    "code-only eligibility extraction",
+    "eligibility and output"
+  ],
+  "blocked":[
+    {"asset":"narailter production adapter","reason":"default list observed returning 2008-2009 rows; current-row request semantics and real field schema not yet verified"}
+  ]
+}

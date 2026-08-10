@@ -681,7 +681,17 @@ async function enrichCandidate(candidate, source) {
     };
   }
 
-  const documents = await analyzeAttachments(detail.attachments, { maxFiles: 12 });
+  // Stage 4 -> 6 evidence bridge: some public boards (notably UIPA) publish
+  // the actual recruitment notice as images inside the detail body rather than
+  // as file attachments. Treat only detail-parser-confirmed content images as
+  // document-analysis inputs; generic page images never reach this path.
+  const contentImageInputs = (detail.contentImages || []).map((image, index) => {
+    const url = typeof image === 'string' ? image : image?.url;
+    const alt = typeof image === 'string' ? '' : (image?.alt || '');
+    return { name: alt || `본문 채용공고 이미지 ${index + 1}`, url, type: 'image', referer: detail.finalUrl || candidate.link, evidenceRole: 'detail-content-image' };
+  }).filter(item => item.url);
+  const documentInputs = [...(detail.attachments || []), ...contentImageInputs];
+  const documents = await analyzeAttachments(documentInputs, { maxFiles: 12 });
   const analysisText = `${candidate.title}\n${candidate.listText}\n${detail.text}\n${documents.text}`;
   const deadline = extractDeadline(analysisText);
   if (isExpired(deadline)) return { jobs: [], rejection: 'expired deadline' };

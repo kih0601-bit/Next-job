@@ -1,5 +1,5 @@
 const MAX_VACANCIES = 24;
-export const VACANCY_SPLITTER_VERSION = '11.3.0-position-unit';
+export const VACANCY_SPLITTER_VERSION = '11.4.0-inline-multi-role';
 
 const HEADER_PATTERN = /^(?:\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*)?(?:모집|채용)\s*(?:분야|직무|직종|직렬)|^(?:분야|직무|직종|직렬|구분)\s*[:：]/i;
 const SECTION_PATTERN = /^(?:\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*)?(?:채용개요|모집개요|분야별\s*응시자격|직무별\s*자격요건)\s*$/i;
@@ -77,6 +77,30 @@ function splitByRows(lines) {
   return rows;
 }
 
+
+function splitInlineRecruitmentList(lines) {
+  const blocks=[];
+  for (const line of lines) {
+    const match=line.match(/(?:모집|채용)\s*분야(?:\([^)]*\))?\s*[:：]\s*(.+)$/i);
+    if(!match) continue;
+    const tail=match[1].replace(/※.*$/,'').trim();
+    if(tail.length<8 || tail.length>500) continue;
+    const raw=tail.split(/\s*[,·]\s*|\s*\/\s*/).map(cleanLine).filter(Boolean);
+    const parts=[];
+    for(const item of raw){
+      if(item.length>80) continue;
+      if(/^(?:일반|지역인재|장애|기계|전기|화공|환경|건축|토목)$/.test(item) && parts.length){
+        parts[parts.length-1]=`${parts[parts.length-1]} ${item}`;
+      } else parts.push(item);
+    }
+    const roleParts=parts.filter(x=>/(?:급|직|행정|사무|전산|정보|시설|기계|전기|소방|건축|토목|운전|환경|회계|재무|기술|연구|경영|총무|인사|기획|보안|미화|조리|산업안전|산업보건|건설안전)/.test(x));
+    if(roleParts.length>=2){
+      for(const item of roleParts) blocks.push({name:titleFromLine(item,blocks.length),lines:[`${item} | ${line}`]});
+    }
+  }
+  return blocks;
+}
+
 function dedupeBlocks(blocks) {
   const seen = new Set();
   return blocks.filter(block => {
@@ -95,6 +119,10 @@ export function splitVacancies({ title = '', detailText = '', documentText = '' 
   if (blocks.length < 2) {
     const rowBlocks = splitByRows(lines);
     if (rowBlocks.length >= 2) blocks = rowBlocks;
+  }
+  if (blocks.length < 2) {
+    const inlineBlocks = splitInlineRecruitmentList(lines);
+    if (inlineBlocks.length >= 2) blocks = inlineBlocks;
   }
   blocks = dedupeBlocks(blocks);
 

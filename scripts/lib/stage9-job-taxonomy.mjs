@@ -1,4 +1,4 @@
-export const STAGE9_JOB_TAXONOMY_VERSION = '1.1.0-v121';
+export const STAGE9_JOB_TAXONOMY_VERSION = '1.2.0-v122';
 
 export const JOB_CATEGORIES = Object.freeze([
   { id:'medical-health', label:'의료·보건', description:'의사·간호·보건의료 등 의료/보건 전문직', patterns:[/의사|간호|수의|약사|의료|보건의학|산업보건\s*[-(]?의학/i] },

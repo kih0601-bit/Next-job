@@ -1,6 +1,6 @@
 import { classifyJobCategory } from './stage9-job-taxonomy.mjs';
 
-export const STAGE9_FILTER_ENGINE_VERSION='1.1.0-v121';
+export const STAGE9_FILTER_ENGINE_VERSION='1.2.0-v122';
 export const ELIGIBILITY_STATUS=Object.freeze({ELIGIBLE:'eligible',INELIGIBLE:'ineligible',REVIEW:'needs-review'});
 
 const uniq=(a=[])=>[...new Set(a.filter(Boolean))];
@@ -143,17 +143,45 @@ function normalizeEmployment(values=[], text=''){
   for(const [v,p] of rules) if(p.test(source)) out.push(v);
   return uniq(out.length?out:values);
 }
-function normalizeRegions(values=[], text=''){
-  const out=[...values];
-  if(/울산(?:광역시)?/.test(text)) out.push('울산'); if(/서울(?:특별시)?/.test(text)) out.push('서울'); if(/부산(?:광역시)?/.test(text)) out.push('부산'); if(/대구(?:광역시)?/.test(text)) out.push('대구');
-  return uniq(out.map(x=>String(x).replace(/광역시|특별시/g,'').trim()));
+function normalizeRegionValues(values=[]){
+  const out=[];
+  for(const value of values){
+    const text=String(value||'');
+    if(/울산(?:광역시)?/.test(text)) out.push('울산');
+    if(/서울(?:특별시)?/.test(text)) out.push('서울');
+    if(/부산(?:광역시)?/.test(text)) out.push('부산');
+    if(/대구(?:광역시)?/.test(text)) out.push('대구');
+    if(/인천(?:광역시)?/.test(text)) out.push('인천');
+    if(/광주(?:광역시)?/.test(text)) out.push('광주');
+    if(/대전(?:광역시)?/.test(text)) out.push('대전');
+    if(/세종(?:특별자치시)?/.test(text)) out.push('세종');
+  }
+  return uniq(out);
+}
+function explicitWorkRegionsFromText(text=''){
+  const lines=String(text).split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+  const candidates=lines.filter(line=>/(?:근무지|근무지역|근무장소|근무예정지|배치예정지)\s*[:：]?/i.test(line));
+  return normalizeRegionValues(candidates);
+}
+function resolveRegionFacet({locationRaw=[],evidenceText='',org='',organizationRegionPolicy={}}={}){
+  const structured=normalizeRegionValues(locationRaw);
+  if(structured.length) return {values:structured,source:'posting-explicit',confidence:'high',evidence:'stage8-location'};
+  const labeled=explicitWorkRegionsFromText(evidenceText);
+  if(labeled.length) return {values:labeled,source:'posting-explicit',confidence:'high',evidence:'work-location-labeled-text'};
+  const policy=organizationRegionPolicy?.organizations?.[org]||{};
+  if(policy.allowFallback && policy.fallbackRegion) return {values:[policy.fallbackRegion],source:'organization-inferred',confidence:'medium',evidence:`organization-region-policy:${policy.scope||'local'}`};
+  return {values:[],source:'unknown',confidence:'unknown',evidence:policy.scope?`fallback-blocked:${policy.scope}`:'no-region-evidence'};
 }
 
-export function buildStage9Unit({posting={},unit={},profile={}}={}){
+export function buildStage9Unit({posting={},unit={},profile={},organizationRegionPolicy={}}={}){
   const req=unit.requirements||{};
   const evidenceText=`${unit.evidenceScope?.detail||''}\n${unit.evidenceScope?.document||''}`;
   const localText=[...(req.jobRelated||[]),...(req.major||[])].map(x=>x?.value||'').filter(Boolean).join('\n')+'\n'+evidenceText;
   const employmentRaw=uniq([...(unit.employmentTypes||[]),...(req.employment?.values||[])]), locationRaw=uniq([...(unit.workLocations||[]),...(req.location?.values||[])]);
   const jobCategory=classifyJobCategory({vacancyName:unit.name,title:posting.title,localText});
-  return {posting:{org:posting.org||'',title:posting.title||'',link:posting.link||''},unit:{id:unit.id||'',name:unit.name||'',source:unit.source||''},eligibility:evaluateStage9Eligibility(req,profile,{posting,unit}),searchFacets:{region:normalizeRegions(locationRaw,`${posting.title||''}\n${unit.name||''}\n${evidenceText}`),organization:[posting.org||''].filter(Boolean),jobCategory:[jobCategory.label],employmentType:normalizeEmployment(employmentRaw,`${posting.title||''}\n${unit.name||''}\n${evidenceText}`)},jobCategory,rawVacancyName:unit.name||''};
+  const region=resolveRegionFacet({locationRaw,evidenceText,org:posting.org||'',organizationRegionPolicy});
+  // Employment inference is intentionally limited to structured values and the vacancy/posting labels.
+  // Full document text can mention unrelated contract types and contaminate a recruitment unit.
+  const employmentText=`${posting.title||''}\n${unit.name||''}`;
+  return {posting:{org:posting.org||'',title:posting.title||'',link:posting.link||''},unit:{id:unit.id||'',name:unit.name||'',source:unit.source||''},eligibility:evaluateStage9Eligibility(req,profile,{posting,unit}),searchFacets:{region:region.values,organization:[posting.org||''].filter(Boolean),jobCategory:[jobCategory.label],employmentType:normalizeEmployment(employmentRaw,employmentText)},searchFacetProvenance:{region:{source:region.source,confidence:region.confidence,evidence:region.evidence},employmentType:{source:employmentRaw.length?'stage8-structured':'posting-or-unit-label',confidence:employmentRaw.length?'high':'medium'}},jobCategory,rawVacancyName:unit.name||''};
 }

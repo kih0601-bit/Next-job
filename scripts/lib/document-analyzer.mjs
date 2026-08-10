@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '2.8-legacy-office-pdf-fallback';
+const ANALYZER_VERSION = '2.9-short-text-root-cause';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -650,6 +650,9 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
       const item = selected[index];
       const tempFile = path.join(dir, `attachment-${index}.bin`);
       let meta = null;
+      let detectedType = '';
+      let extractionMethod = '';
+      let extractedTextLength = 0;
       try {
         meta = await download(item, tempFile);
         let effectiveItem = item;
@@ -685,6 +688,7 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
         if (detected.type === 'unsupported' || detected.type === 'unknown') throw new Error('unsupported or unknown attachment format');
 
         const ext = detected.type === 'jpeg' ? 'jpg' : detected.type;
+        detectedType = ext;
         const file = path.join(dir, `attachment-${index}.${ext}`);
         await fs.rename(tempFile, file);
 
@@ -697,7 +701,9 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
         else if (['png', 'jpg', 'jpeg', 'tif', 'tiff'].includes(ext)) extracted = await extractImage(file);
         else extracted = await extractLegacyOffice(file, ext, dir);
 
-        if (extracted.text.length < 20) throw new Error('extracted text too short');
+        extractionMethod = extracted?.method || '';
+        extractedTextLength = Number(extracted?.text?.length || 0);
+        if (extractedTextLength < 20) throw new Error(`extracted text too short (${extractedTextLength}) via ${extractionMethod || 'unknown-method'}`);
         results.push({
           name: item.name,
           url: item.url,
@@ -727,7 +733,10 @@ export async function analyzeAttachments(attachments = [], { maxFiles = 12 } = {
           url: item.url,
           finalUrl: meta?.finalUrl || '',
           hintedType: item.hintedType,
-          detectedType: '',
+          detectedType,
+          extractionMethod,
+          extractedTextLength,
+          failureClass: /extracted text too short/i.test(error.message) ? 'TEXT_TOO_SHORT' : /download/i.test(error.message) ? 'DOWNLOAD_OR_GATEWAY' : 'ANALYSIS_ERROR',
           contentType: meta?.contentType || '',
           contentDisposition: meta?.contentDisposition || '',
           signature: meta?.signature || '',

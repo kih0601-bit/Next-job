@@ -341,3 +341,14 @@
 - Legacy DOC/XLS LibreOffice TXT 무출력 시 PDF render → PDF text/OCR fallback 추가.
 - Actions artifact에 stage8-eligibility, stage8-quality, qa-report를 직접 포함.
 - 구조화 알고리즘 자체는 다음 진단 Evidence를 보존하기 위해 이번 패치에서 변경하지 않음.
+
+## v112 — Stage 8 fast-run + trust-boundary diagnostics
+- Full Pipeline과 Stage 8 반복개발을 분리. Full Run이 `data/stage7-stage8-snapshot.json`에 Stage 7→8 경계 입력(제목/목록/상세/첨부 메타데이터/문서추출 텍스트)을 저장하고, 별도 `Stage 8 fast verification` workflow가 네트워크·문서도구 재실행 없이 동일 입력으로 Stage 8만 반복 검증한다.
+- Fast Run 성공은 Stage 8 최종 완료 근거가 아니다. 보고서에 `live-full-pipeline-validation-required`를 강제로 남겨 실제 1→8 Full Run 및 Benchmark 검증 없이 Stage 8 Gate가 닫히지 않게 했다.
+- Snapshot은 원본 PDF/HWP 바이너리를 중복 저장하지 않고 Stage 8에 필요한 텍스트/메타데이터만 저장한다. Snapshot 생성 당시 선결단계 문제는 `trust.status/issues`로 함께 기록한다.
+- 울산남구도시관리공단: 실제 채용게시판의 명시적 `등록된 정보가 없습니다` 증거가 noisy Incruit landing page의 단일 링크보다 우선 선택되도록 목록페이지 ranking을 수정. 반복 `LIST_COUNTER_FAILED`의 확정된 선택 오류를 제거한다.
+- 울산복지가족진흥사회서비스원: 회전하는 `em_id`를 제거한 URL만 Cache identity로 쓰던 충돌 위험을 줄이기 위해 목록의 날짜+제목을 stable `listIdentity`로 추가.
+- Document Analysis: `extracted text too short` 실패에서 detected type / extraction method / extracted length / failure class를 보존해 다음 회차에서 실제 저텍스트 원인을 구분할 수 있게 함. 임의 성공 처리하지 않음.
+- Cache miss `other`를 `stage8-schema-missing`, `processed-at-invalid`, `reuse-policy-expired` 등으로 세분화. 첫 v112 Full Run은 새 Stage8 input schema 때문에 재처리가 늘 수 있으나 이후 Fast Run 및 Cache 재사용 진단의 근거가 된다.
+- Stage 8 Quality Audit에 unread source의 기관/원인/source/current-year hint 집계를 추가하고, 원문 Benchmark 작성 우선순위용 `data/stage8-benchmark-candidates.json`을 생성한다. 이 파일은 정답표가 아니며 자동 Benchmark 통과 근거로 사용하지 않는다.
+- Full diagnostic workflow timeout은 60→90분으로 조정. 이는 느린 구조를 정상화한 것이 아니라 첫 Snapshot 생성/Full Gate 검증이 timeout으로 증거를 잃지 않도록 한 안전 여유이며, 반복개발은 Fast workflow로 분리한다.

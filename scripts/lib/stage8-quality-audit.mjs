@@ -1,4 +1,4 @@
-export const STAGE8_QUALITY_AUDIT_VERSION = '1.0.0';
+export const STAGE8_QUALITY_AUDIT_VERSION = '1.1.0-unread-root-cause';
 
 const compact=(v='',max=500)=>String(v||'').replace(/\s+/g,' ').trim().slice(0,max);
 const multiRecruitSignal=/(?:모집|채용)\s*분야|채용직렬|채용직종|모집직무|직렬\s*[|:：]|분야\s*[|:：]|(?:신입|경력)직\s*\d*급|지역인재|장애[^\n]{0,30}(?:일반|경력|신입)/i;
@@ -46,6 +46,19 @@ export function auditStage8Quality(report={}, {inputDiagnostics={}}={}) {
     if(bad.length) unreadRequiredSources.push(samplePosting(posting,{sources:bad}));
   }
 
+  const unreadDiagnostics={bySource:{},byError:{},byOrg:{},currentYearHint:0,historicalOrUnknownHint:0};
+  const currentYear=String(new Date().getUTCFullYear());
+  for(const row of unreadRequiredSources){
+    unreadDiagnostics.byOrg[row.org]=Number(unreadDiagnostics.byOrg[row.org]||0)+1;
+    const currentHint=String(row.title||'').includes(currentYear);
+    if(currentHint) unreadDiagnostics.currentYearHint+=1; else unreadDiagnostics.historicalOrUnknownHint+=1;
+    for(const source of row.sources||[]){
+      unreadDiagnostics.bySource[source.source||'unknown']=Number(unreadDiagnostics.bySource[source.source||'unknown']||0)+1;
+      const key=String(source.error||source.status||'unknown').slice(0,180);
+      unreadDiagnostics.byError[key]=Number(unreadDiagnostics.byError[key]||0)+1;
+    }
+  }
+
   const cacheHits=(inputDiagnostics?.byOrg||[]).reduce((n,x)=>n+Number(x.cacheHits||0),0);
   const cacheMisses=(inputDiagnostics?.byOrg||[]).reduce((n,x)=>n+Number(x.cacheMisses||0),0);
   const cacheTotal=cacheHits+cacheMisses;
@@ -75,6 +88,7 @@ export function auditStage8Quality(report={}, {inputDiagnostics={}}={}) {
     structuralBlockers,
     counts,
     cacheReuse,
+    unreadDiagnostics,
     samples:{
       singleDespiteMultiSignal:singleDespiteMultiSignal.slice(0,40),
       requirementSignalWithoutEvidence:requirementSignalWithoutEvidence.slice(0,40),

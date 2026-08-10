@@ -29,7 +29,7 @@ const DATA_VERSION = '15.3-v101-stable-cache-fingerprint';
 const execFileAsync = promisify(execFile);
 
 const COLLECTION_CACHE_PATH = 'data/collection-cache.json';
-const STAGE8_CACHE_SCHEMA_VERSION = '1.0.0-stage8-objective';
+const STAGE8_CACHE_SCHEMA_VERSION = '1.1.0-stage8-input-snapshot';
 const COLLECT_METRICS_PATH = 'data/collect-metrics.json';
 const CACHE_MAX_AGE_MS = 20 * 60 * 60 * 1000;
 const CACHE_IDENTITY_GRACE_MS = 3 * 60 * 60 * 1000;
@@ -241,8 +241,22 @@ function cacheableOutcome(outcome = {}) {
     vacancyDecisions: Array.isArray(outcome.vacancyDecisions) ? outcome.vacancyDecisions : [],
     vacancyStats: outcome.vacancyStats || { detected: 0, accepted: 0, rejected: 0 },
     stage8Posting: outcome.stage8Posting || null,
-    stage8CacheSchemaVersion: outcome.stage8Posting ? STAGE8_CACHE_SCHEMA_VERSION : ''
+    stage8Input: outcome.stage8Input || null,
+    stage8CacheSchemaVersion: outcome.stage8Posting && outcome.stage8Input ? STAGE8_CACHE_SCHEMA_VERSION : ''
   };
+}
+
+function classifyCacheMiss(candidate = {}, cacheEntry = {}, nowMs = Date.now()) {
+  if (!cacheEntry) return 'missing-key';
+  if (cacheEntry.identityFingerprint !== candidateIdentityFingerprint(candidate)) return 'identity-mismatch';
+  const processedAt = new Date(cacheEntry.processedAt || 0).getTime();
+  if (!Number.isFinite(processedAt) || processedAt <= 0) return 'processed-at-invalid';
+  if (cacheEntry.outcome?.stage8CacheSchemaVersion !== STAGE8_CACHE_SCHEMA_VERSION || !cacheEntry.outcome?.stage8Posting || !cacheEntry.outcome?.stage8Input) return 'stage8-schema-missing';
+  const age = nowMs - processedAt;
+  if (cacheEntry.fingerprint && cacheEntry.fingerprint !== candidateFingerprint(candidate)) return 'fingerprint-changed';
+  if (age > CACHE_MAX_AGE_MS && !terminalCacheOutcome(cacheEntry.outcome)) return 'stale';
+  if (age > CACHE_IDENTITY_GRACE_MS && !terminalCacheOutcome(cacheEntry.outcome)) return 'reuse-policy-expired';
+  return 'other';
 }
 
 function validTitle(title) {
@@ -651,6 +665,22 @@ async function enrichCandidate(candidate, source) {
     return { jobs: [], rejection: 'closed notice text' };
   }
 
+  const stage8Input = {
+    schemaVersion: '1.0.0-stage7-stage8-boundary',
+    org: candidate.org,
+    title: candidate.title,
+    link: canonicalJobUrl(detail.finalUrl || candidate.link),
+    listText: candidate.listText || '',
+    detailText: detail.text || '',
+    detailOk: Boolean(detail.ok),
+    detailError: detail.error || '',
+    attachments: Array.isArray(detail.attachments) ? detail.attachments.map(item => ({ name:item.name||'', type:item.type||'', url:item.url||'', method:item.method||'GET', resolver:item.resolver||'' })) : [],
+    documents: {
+      discovered: Number(documents.discovered || 0), attempted: Number(documents.attempted || 0), successful: Number(documents.successful || 0),
+      text: documents.text || '', analyzerVersion: documents.analyzerVersion || '', coverage: documents.coverage || null,
+      results: Array.isArray(documents.results) ? documents.results.map(({text, ...meta}) => meta) : []
+    }
+  };
   const vacancyAnalyses = analyzeVacancies({
     title: candidate.title,
     listText: candidate.listText,
@@ -658,7 +688,7 @@ async function enrichCandidate(candidate, source) {
     documentText: documents.text,
     detailOk: detail.ok
   });
-  const finalLink = canonicalJobUrl(detail.finalUrl || candidate.link);
+  const finalLink = stage8Input.link;
   const stage8Posting = buildStage8Posting({
     org:candidate.org,
     title:candidate.title,
@@ -760,6 +790,7 @@ async function enrichCandidate(candidate, source) {
   return {
     jobs,
     stage8Posting,
+    stage8Input,
     rejection: jobs.length ? '' : (vacancyRejections.join(' | ') || 'no eligible vacancy'),
     pipeline: {
       detailAttempted: Number(Boolean(source.detail)),
@@ -824,7 +855,7 @@ async function fetchSource(source) {
   let cacheMisses = 0;
   let heavyProcessed = 0;
   const cacheHitReasons = { 'full-fingerprint': 0, 'bootstrap-identity': 0, 'identity-grace': 0, 'terminal-identity': 0 };
-  const cacheMissReasons = { 'missing-key': 0, 'identity-mismatch': 0, 'fingerprint-changed': 0, 'stale': 0, 'other': 0 };
+  const cacheMissReasons = { 'missing-key': 0, 'identity-mismatch': 0, 'fingerprint-changed': 0, 'stale': 0, 'stage8-schema-missing': 0, 'processed-at-invalid': 0, 'reuse-policy-expired': 0, 'other': 0 };
   // Keep small, evidence-rich samples so one Actions run explains *why*
   // identity/fingerprint reuse failed instead of only counting failures.
   const cacheMissSamples = { 'missing-key': [], 'identity-mismatch': [], 'fingerprint-changed': [], 'stale': [], 'other': [] };
@@ -971,6 +1002,7 @@ async function fetchSource(source) {
     const documentDiagnostics = { byDetectedType: {}, byContentType: {}, byError: {} };
     const documentSamples = [];
     const stage8Postings = [];
+    const stage8Inputs = [];
     const vacancyDecisions = listSelection.rejected.map(candidate => ({
       candidateTitle: candidate.title,
       candidateLink: candidate.link || '',
@@ -1007,26 +1039,9 @@ async function fetchSource(source) {
       } else {
         cacheMisses += 1;
         const existingEntry = cacheLookup.entry;
-        if (!existingEntry) {
-          cacheMissReasons['missing-key'] += 1;
-          pushCacheMissSample('missing-key', candidate, null);
-        } else {
-          const identityMatch = existingEntry.identityFingerprint === candidateIdentityFingerprint(candidate);
-          const age = Date.now() - new Date(existingEntry.processedAt || 0).getTime();
-          if (!identityMatch) {
-            cacheMissReasons['identity-mismatch'] += 1;
-            pushCacheMissSample('identity-mismatch', candidate, existingEntry);
-          } else if (Number.isFinite(age) && age > CACHE_MAX_AGE_MS && !terminalCacheOutcome(existingEntry.outcome)) {
-            cacheMissReasons.stale += 1;
-            pushCacheMissSample('stale', candidate, existingEntry);
-          } else if (existingEntry.fingerprint && existingEntry.fingerprint !== candidateFingerprint(candidate)) {
-            cacheMissReasons['fingerprint-changed'] += 1;
-            pushCacheMissSample('fingerprint-changed', candidate, existingEntry);
-          } else {
-            cacheMissReasons.other += 1;
-            pushCacheMissSample('other', candidate, existingEntry);
-          }
-        }
+        const missReason = classifyCacheMiss(candidate, existingEntry);
+        cacheMissReasons[missReason] = Number(cacheMissReasons[missReason] || 0) + 1;
+        pushCacheMissSample(missReason, candidate, existingEntry || null);
         heavyProcessed += 1;
         outcome = await enrichCandidate(candidate, source);
         nextCacheEntries[cacheKey] = {
@@ -1052,6 +1067,7 @@ async function fetchSource(source) {
         documentSamples.push(...outcome.documentResults.slice(0, Math.max(0, 40 - documentSamples.length)));
       }
       if (outcome.stage8Posting) stage8Postings.push(outcome.stage8Posting);
+      if (outcome.stage8Input) stage8Inputs.push(outcome.stage8Input);
       if (outcome.vacancyStats) {
         vacancyStats.detected += outcome.vacancyStats.detected || 0;
         vacancyStats.accepted += outcome.vacancyStats.accepted || 0;
@@ -1080,12 +1096,12 @@ async function fetchSource(source) {
       detailFailures: Object.entries(rejectionReasons)
         .filter(([reason]) => /detail|404|list page|redirect|title mismatch|structure/i.test(reason))
         .reduce((sum, [, count]) => sum + count, 0),
-      rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions, stage8Postings,
+      rejectionReasons, vacancyStats, pipeline, extractionDiagnostics, documentDiagnostics, documentSamples, vacancyDecisions, stage8Postings, stage8Inputs,
       stage8CandidateCount: candidates.length,
       stage8DerivedCount: stage8Postings.length
     };
   } catch (error) {
-    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], stage8Postings: [], incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, cacheMissSamples, cacheKeyMigrations, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
+    return { ok: false, source, jobs: [], candidates: 0, rawCandidates: 0, collectionCandidates: 0, listSelection: { stats: { input: 0, accepted: 0, rejected: 0 }, reasonCounts: {}, selectorVersion: LIST_SELECTOR_VERSION }, accessAttempts: error.accessAttempts || [], accessDiagnosis: error.accessDiagnosis || {}, activeRecruitUrl: '', rejectionReasons: {}, pipeline: { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 }, documentDiagnostics: { byDetectedType: {}, byContentType: {}, byError: {} }, documentSamples: [], stage8Postings: [], stage8Inputs: [], incremental: { cacheHits, cacheMisses, heavyProcessed, cacheHitReasons, cacheMissReasons, cacheMissSamples, cacheKeyMigrations, durationMs: Date.now() - sourceStartedAt.getTime(), startedAt: sourceStartedAt.toISOString(), finishedAt: new Date().toISOString() }, error: error.name === 'AbortError' ? 'timeout' : error.message };
   }
 }
 async function readPipelineReport() {
@@ -1161,6 +1177,7 @@ for (const result of results) {
     documentDiagnostics: result.documentDiagnostics || { byDetectedType: {}, byContentType: {}, byError: {} },
     documentSamples: result.documentSamples || [],
     stage8Postings: result.stage8Postings || [],
+    stage8Inputs: result.stage8Inputs || [],
     stage8CandidateCount: Number(result.stage8CandidateCount || 0),
     stage8DerivedCount: Number(result.stage8DerivedCount || 0),
     vacancyDecisions: result.vacancyDecisions || [],
@@ -1365,6 +1382,35 @@ stage8Report.inputDiagnostics = {
 };
 const stage8QualityAudit = auditStage8Quality(stage8Report,{inputDiagnostics:stage8Report.inputDiagnostics});
 stage8Report.qualityAudit = stage8QualityAudit;
+
+const stage8Inputs = sources.flatMap(source => source.stage8Inputs || []);
+const currentYear = new Date(nowIso).getUTCFullYear();
+const stage7TrustIssues = (pipelineReport.payload.sources || []).flatMap(source => {
+  const issues=[];
+  for (const key of ['access','list','detail','attachmentDownload','documentAnalysis','pagination']) {
+    const row=source?.stages?.[key];
+    if (row && ['failed','blocked'].includes(row.status)) issues.push({org:source.org,stage:key,status:row.status,reason:row.reason||''});
+  }
+  return issues;
+});
+const stage8Snapshot = {
+  version:'1.0.0',
+  generatedAt:nowIso,
+  boundary:'stage7-output-to-stage8-input',
+  purpose:'Stage 8 deterministic fast-run input. Not a substitute for live 1→8 full-pipeline validation.',
+  trust:{status:stage7TrustIssues.length?'provisional':'verified',issues:stage7TrustIssues,rule:'Fast-run may measure Stage 8 deterministically, but Stage 8 closure still requires live full-pipeline validation.'},
+  currentYear,
+  counts:{inputs:stage8Inputs.length,currentYearHints:stage8Inputs.filter(x=>String(x.title||'').includes(String(currentYear)) || String(x.listText||'').includes(String(currentYear))).length},
+  inputs:stage8Inputs
+};
+const benchmarkCandidateRows = [
+  ...(stage8QualityAudit.samples?.singleDespiteMultiSignal||[]).map(x=>({...x,risk:'single-despite-multi-signal'})),
+  ...(stage8QualityAudit.samples?.unreadRequiredSources||[]).map(x=>({...x,risk:'unread-required-source'})),
+  ...(stage8QualityAudit.samples?.lowConfidenceSingles||[]).map(x=>({...x,risk:'low-confidence-single'})),
+  ...(stage8QualityAudit.samples?.noEvidenceUnits||[]).map(x=>({...x,risk:'no-evidence-unit'}))
+];
+const benchmarkSeen=new Set();
+const stage8BenchmarkCandidates={version:'1.0.0',generatedAt:nowIso,status:'candidate-set-only',note:'정답표가 아니라 사람이 원문 대조할 우선 표본. 이 파일만으로 Benchmark 통과 처리 금지.',samples:benchmarkCandidateRows.filter(x=>{const k=`${x.org}|${x.link}|${x.unit||''}|${x.risk}`;if(benchmarkSeen.has(k))return false;benchmarkSeen.add(k);return true;}).slice(0,120)};
 stage8Report.stage8Gate.preQualityDecision = stage8Report.stage8Gate.decision;
 stage8Report.stage8Gate.accuracyValidationRequired = true;
 stage8Report.stage8Gate.qualityAuditStatus = stage8QualityAudit.status;
@@ -1404,6 +1450,8 @@ await Promise.all([
   fs.writeFile('data/requirement-report.json', `${JSON.stringify(requirementReport, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/stage8-eligibility-report.json', `${JSON.stringify(stage8Report, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/stage8-quality-report.json', `${JSON.stringify(stage8QualityAudit, null, 2)}\n`, 'utf8'),
+  fs.writeFile('data/stage7-stage8-snapshot.json', `${JSON.stringify(stage8Snapshot, null, 2)}\n`, 'utf8'),
+  fs.writeFile('data/stage8-benchmark-candidates.json', `${JSON.stringify(stage8BenchmarkCandidates, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, stage8:{checked:stage8QualityAudit.counts.units,status:stage8QualityAudit.status,closureEligible:stage8QualityAudit.closureEligible}, ...qa }, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/debug-report.json', `${JSON.stringify(debugPayload, null, 2)}\n`, 'utf8')
 ]);

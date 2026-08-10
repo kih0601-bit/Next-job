@@ -16,6 +16,6 @@ import { extractAttachments } from './lib/detail-parser.mjs';
 }
 {
  const analyzer=await fs.readFile(new URL('./lib/document-analyzer.mjs',import.meta.url),'utf8');
- assert.match(analyzer,/Array\.isArray\(directInfo\)/); assert.match(analyzer,/resolveUlsanEncryptedBoardFile/); assert.match(analyzer,/libreoffice-hwp-fallback/); assert.match(analyzer,/2\.8-legacy-office-pdf-fallback/);
+ assert.match(analyzer,/Array\.isArray\(directInfo\)/); assert.match(analyzer,/resolveUlsanEncryptedBoardFile/); assert.match(analyzer,/libreoffice-hwp-fallback/); assert.match(analyzer,/2\.9-short-text-root-cause/);
 }
 console.log('v77-remaining-five-pass');

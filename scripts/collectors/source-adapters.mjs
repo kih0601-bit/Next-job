@@ -749,7 +749,14 @@ export function extractCandidatesForSource(html, source, { validTitle, normalize
     } else if (source.org === '한국에너지공단') {
       detailRequest = energyAgencyDetailRequest(row.block, source)?.request || null;
     }
-    jobs.push({ org: source.org, title, link: canonical, listText: cleanHtml(row.block).replace(/\s+/g, ' ').trim(), adapter: `${source.org}:board-row`, ...(detailRequest ? { detailRequest } : {}), ...(link ? {} : { listOnly: true, listIdentity: identity }) });
+    const listText = cleanHtml(row.block).replace(/\s+/g, ' ').trim();
+    const wfpsDate = source.org === '울산복지가족진흥사회서비스원'
+      ? (listText.match(/(?:19|20)\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}/)?.[0] || '')
+      : '';
+    const stableListIdentity = source.org === '울산복지가족진흥사회서비스원'
+      ? `date-title:${wfpsDate}|${normalizeTitleForDedup(title)}`
+      : identity;
+    jobs.push({ org: source.org, title, link: canonical, listText, adapter: `${source.org}:board-row`, ...(detailRequest ? { detailRequest } : {}), ...(source.org === '울산복지가족진흥사회서비스원' ? { listIdentity: stableListIdentity } : {}), ...(link ? {} : { listOnly: true, listIdentity: stableListIdentity }) });
     diagnostics.accepted += 1;
     diagnostics.titleMatches += 1;
     if (!link) { diagnostics.listOnlyAccepted += 1; diagnostics.noUrl += 1; }

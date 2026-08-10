@@ -780,7 +780,19 @@ async function probeSource(source, artifacts) {
     }
     // Select the real board page, not the homepage/navigation page. Exact matches
     // win first; otherwise prefer the page with the largest visible board-row count.
-    const selected = source.org === '한국전력공사' ? (pageResults.find(item => /\/frt\/frt0001\/addList\.do/i.test(item.url)) || pageResults[0]) : pageResults.sort((a, b) => Number(b.exactMatch) - Number(a.exactMatch) || (b.visiblePostCount ?? -1) - (a.visiblePostCount ?? -1) || b.candidateCount - a.candidateCount)[0];
+    const listPageRank = item => {
+      // An explicit institution-configured empty marker on the real recruitment board
+      // is stronger evidence than a landing page that merely exposes one noisy link.
+      if (item?.status === 'exact' && item?.rootCause?.accuracyVerification?.verified) return 50;
+      if (item?.status === 'verified-empty') return 45;
+      if (item?.status === 'exact') return 40;
+      if (item?.visiblePostCount != null) return 30;
+      if ((item?.candidateCount || 0) > 0) return 20;
+      return 10;
+    };
+    const selected = source.org === '한국전력공사'
+      ? (pageResults.find(item => /\/frt\/frt0001\/addList\.do/i.test(item.url)) || pageResults[0])
+      : pageResults.sort((a, b) => listPageRank(b) - listPageRank(a) || (b.visiblePostCount ?? -1) - (a.visiblePostCount ?? -1) || b.candidateCount - a.candidateCount)[0];
     const all = selected?.found || [];
     report.list.selectedUrl = selected?.url || '';
     report.list.visiblePostCount = selected ? selected.visiblePostCount : null;

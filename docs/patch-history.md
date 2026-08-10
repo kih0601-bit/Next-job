@@ -367,3 +367,11 @@
 - 안전장치: terminal TTL, identity match, non-terminal Stage 8 schema gate는 유지. Stage 8 활성 구조화 범위와 개인 jobs.json 판정 로직은 변경하지 않음.
 - 검증: `test-v114-terminal-cache-optimization.mjs` 추가, executable/template workflow byte-identical 유지.
 - 다음 Actions 관찰: `collect-metrics.json`에서 `stage8-schema-missing`, `heavyProcessed`, collect duration이 급감하는지 확인. 신규/변경 공고는 기존 cache miss 경로로 정상 재처리되어야 함.
+
+## v115 — Stage 8 closure diagnostics + balanced multi-recruitment splitter
+- 목적: Stage 8 완료 전에 남은 구조적 오탐/미분리와 원문 Benchmark 부재를 진단 가능한 형태로 고정한다.
+- Multi-vacancy: `모집분야:` 한 줄 안의 괄호/쉼표가 섞인 복합 모집구조를 단순 comma split하지 않고 괄호 depth를 보존해 분리. KOSHA 2026 상반기 예비공고 같은 `신입직 5급(... 산업안전(기계,전기,화공) ...)` 구조에서 잘린 모집단위명을 방지한다.
+- Benchmark: `scripts/stage8-benchmark.mjs` 추가. multi-split/unread/low-confidence/no-evidence 위험군을 기관·최신연도 우선으로 40건 표본화하고 `expected.reviewed=false` 정답 입력 Template을 생성한다. 자동 생성값을 정답으로 취급하지 않는다.
+- 진단 유지: 최신 원문/첨부 unread는 성공으로 완화하지 않으며 Stage 8 blocker로 계속 남긴다. 현재 Fast baseline 기준 current-year unread 1건(KOSHA 2026 예비공고)은 다음 Full Run에서 Document Analysis 원인 재검증 대상이다.
+- 검증: `test-v115-stage8-closure-diagnostics.mjs` 추가. balanced inline split과 unread-current-year gate를 회귀 테스트한다.
+- 범위 컷: required/preferred 추출 규칙과 unread attachment 복구 로직은 Benchmark/Full Run 증거 없이 한 패치에서 동시에 변경하지 않는다. 다음 Actions 증거 후 v116 교정 대상으로 둔다.

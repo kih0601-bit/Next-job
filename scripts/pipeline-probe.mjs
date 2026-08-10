@@ -14,7 +14,7 @@ import { classifyDetailTemplate } from './lib/detail-templates.mjs';
 import { analyzeAttachments } from './lib/document-analyzer.mjs';
 import { safeFileComponent } from './lib/safe-filename.mjs';
 
-const VERSION = '20.0-v106-stage7-completion-gate';
+const VERSION = '20.0-v107-stage7-close-ready';
 const MAX_LISTING_PAGES = 3;
 const MAX_DETAIL_SAMPLES = 50; // first-page target: verify every extracted post on selected first page
 const MAX_ATTACHMENT_VERIFY_FILES = 2; // representative files per institution; keeps Actions bounded
@@ -68,8 +68,8 @@ function singlePageProof(html='', selected={}, org='') {
   const strongHubstRecord = org === '울주문화재단'
     && exact && candidates > 0
     && pageParamHints === 0 && !explicitPagerMarkup
-    && selected?.accuracyVerification?.templateRecordEvidence?.verified === true
-    && selected?.accuracyVerification?.listVerificationTemplate === 'ROWAREA_RECORD';
+    && selected?.rootCause?.accuracyVerification?.templateRecordEvidence?.verified === true
+    && selected?.rootCause?.accuracyVerification?.listVerificationTemplate === 'ROWAREA_RECORD';
   if (org === '울주문화재단') evidence.push(`hubst-page-param-hints=${pageParamHints}`, `hubst-explicit-pager-markup=${explicitPagerMarkup}`);
   const proved = countProved || emptyProved || strongHubstRecord;
   const reason = countProved ? 'explicit total count equals exact extracted record count and no pagination control exists' : emptyProved ? 'board explicitly states there are no registered recruitment records and no pagination control exists' : strongHubstRecord ? 'HUBST ROWAREA_RECORD matches extracted records exactly and no actual pagination parameter/markup exists; generic page-like UI hints ignored' : 'single-page completeness not yet explicitly proved';

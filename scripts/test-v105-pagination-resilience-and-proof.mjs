@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const probe=fs.readFileSync('scripts/pipeline-probe.mjs','utf8');
-assert.match(probe,/20\.0-v106-stage7-completion-gate/);
+assert.match(probe,/20\.0-v107-stage7-close-ready/);
 assert.match(probe,/fetchPaginationPageWithRetry/);
 assert.match(probe,/attempts = 3/);
 assert.match(probe,/paginationRetryEvidence/);

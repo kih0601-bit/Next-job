@@ -454,3 +454,12 @@
 - 로컬 결과(기준 snapshot): 506 units -> eligible 368 / ineligible 120 / review 18 / spec-up possible 1. 2026 힌트 기준 review는 17 -> 3으로 감소했으며 남은 3건은 KOSHA 예비공고의 경력직/지역인재/장애 모집단위처럼 Stage 8에 실제 필수조건이 구조화되지 않아 안전하게 Review로 유지되는 사례다.
 - 9B 원문/근거 대조 결과: 전국기관(KOSHA) 예비공고의 지역 미확정은 본사 소재지 추정 금지로 유지하는 것이 맞고, 울산 단일지역 기관의 미기재 지역은 `organization-inferred`로 보완한다. 추정값은 확정값과 동일 취급하지 않는다.
 - 유지: 9A required-only, preferred 추천신호, 9B 확장 가능한 필터 registry, 연봉 display-only 정책.
+
+## v123 — Stage 8 Recruitment Unit responsibility fix
+- 목적: Stage 9에서 발견된 안내문·첨부파일명·접근성/테이블 설명문 오염을 Stage 9 보정으로 떠넘기지 않고, 최초 잘못된 Output을 만든 Stage 8 Recruitment Unit Extraction에서 해결한다.
+- 확정 원인: Vacancy Splitter의 row 후보 규칙이 `시설/기술/직렬` 같은 역할 신호와 `울산/인턴/채용` 같은 조건 신호가 함께 있는 문장을 실제 모집행으로 오인할 수 있었다. 그 결과 `※ ... 직원채용과 무관함`, `...직무기술서.pdf`, `...구성된 테이블 입니다` 같은 비모집 문구가 Recruitment Unit으로 생성됐다.
+- 수정: Stage 8 Vacancy Splitter에 Non-vacancy Candidate Guard를 추가해 첨부파일명(PDF/HWP/HWPX/DOC/XLS/ZIP), 메뉴 breadcrumb, 테이블 접근성 설명, 무관 안내문, 응시원서/이의신청서/첨부/직무기술서 문서명 등을 모집단위 후보에서 제거한다. Stage 9 코드는 수정하지 않는다.
+- 검증 보강: Stage 8 Quality Audit이 현재년도 비모집 Recruitment Unit을 `actionable-non-vacancy-recruitment-unit` blocker로 직접 탐지한다. 이는 새 기능이 아니라 이번 실제 결함의 재발 방지 검증이다.
+- 사전 검증: 새 v123 회귀 테스트 통과. 기존 v72~v123 테스트 전체 통과(legacy diagnostic path cleanup 후). trusted baseline Fast Run에서 254 postings / 428 units, 비모집 unit 0, structural clean, 기존 Stage 8 Benchmark 7/7 유지. 최신 candidate 271 inputs를 동일 splitter로 재분석했을 때 466 units 중 알려진 비모집 패턴 0, 기존 7개 Benchmark 모집단위명 7/7 유지.
+- 책임 원칙: 후속 Stage에서 증상이 보여도 최초 잘못된 Output을 만든 Stage만 수정한다. Stage 8 오염을 Stage 9 예외처리로 숨기지 않는다.
+- 다음 Live 확인: Live 1→8 재실행에서 현재년도 non-vacancy unit 0 + Benchmark 7/7 + actionable structural blocker 0을 확인한 뒤 Stage 8을 다시 완료 처리하고, 동일 Output으로 Stage 9를 재실행한다.

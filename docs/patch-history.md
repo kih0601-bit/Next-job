@@ -404,3 +404,12 @@
   - fast-run에서는 closureEligible=false / await-live-closure 확인.
   - live 분기 모의검증에서는 closureEligible=true / decision=stage-8-complete 확인.
 - 다음 Actions 확인 항목: 실제 Live Run에서 benchmark 7/7, actionable blockers 0, snapshot trust verified, `stage-8-complete`가 동일하게 재현되는지 확인. 새 진단기 추가보다 이 완료조건 검증을 우선.
+
+## v118 — Stage 8 cache engine invalidation
+- 목적: v116/v117의 새 Stage 8 구조/모집단위 분리 로직이 Live Actions에서 오래된 `collection-cache.json` Stage 8 결과에 가려져 적용되지 않던 문제 해결.
+- 확정 원인: `STAGE8_CACHE_SCHEMA_VERSION`만 재사용 판정에 사용되어 `STAGE8_VERSION`, `STAGE8_SCHEMA_VERSION`, `VACANCY_SPLITTER_VERSION`, `REQUIREMENT_SCHEMA_VERSION` 변경이 캐시 무효화로 이어지지 않음.
+- 해결: 네 버전을 합친 `STAGE8_CACHE_ENGINE_SIGNATURE`를 비종료(non-terminal) Stage 8 캐시의 저장/재사용 조건에 포함. 엔진 버전이 달라지면 상세/문서→Stage 8을 재처리하도록 함.
+- 유지: v114의 종료/만료 공고 Terminal Cache 90일 재사용 최적화는 그대로 유지하여 과거 공고 수천 건의 불필요한 재분석을 방지.
+- 검증: 현재 #176 실패 기준 캐시에 Benchmark 대상의 구형 Stage 8 결과가 실제 존재하고 engine signature가 없음을 회귀테스트로 증명. v72~v118 전체 테스트 및 workflow/template 동일성 검증.
+- 다음 Actions 확인: `stage8-schema-missing` 또는 엔진 서명 불일치로 필요한 비종료 공고가 재처리되고, Benchmark 7/7 및 `stage-8-complete` 도달 여부 확인.
+- 사전 회귀검증 중 `test-v113`이 Vacancy Splitter 11.6.0을 허용하지 않는 오래된 정규식(11.4/11.5만 허용)을 발견해 테스트 기대값만 11.6까지 동기화. 기능 코드는 변경하지 않음.

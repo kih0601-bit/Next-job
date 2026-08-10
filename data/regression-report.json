@@ -1,18 +1,205 @@
 {
-  "generatedAt": "2026-08-10T14:25:12.347Z",
+  "generatedAt": "2026-08-10T16:12:54.768Z",
   "mode": "warning",
-  "passed": false,
-  "regressionCount": 6,
-  "actionableRegressionCount": 1,
-  "transientWatchCount": 0,
-  "historicalNonBlockingCount": 5,
+  "passed": true,
+  "regressionCount": 3,
+  "actionableRegressionCount": 0,
+  "transientWatchCount": 1,
+  "historicalNonBlockingCount": 2,
   "currentYearScope": {
     "rule": "Attachment/Document regression은 Stage 8 source audit의 현재년도 actionable unread와 교차검증해 실제 현재 공고 영향만 blocker로 승격",
     "actionableUnreadSources": 0
   },
   "regressions": [
     {
+      "org": "울산항만공사",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산항만공사.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "regressionCause": {
+        "stage": "documentAnalysis",
+        "status": "failed",
+        "code": "DOCUMENT_ANALYSIS_REGRESSED",
+        "reason": "이전 실행 true → 현재 false: documentAnalysis",
+        "evidence": [
+          {
+            "ok": false,
+            "status": "partial",
+            "attempted": 50,
+            "downloaded": null,
+            "parsed": 25,
+            "failed": 25,
+            "error": "",
+            "samples": []
+          }
+        ],
+        "source": "pipeline-diff-stage"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true,
+      "effectiveCause": {
+        "stage": "documentAnalysis",
+        "status": "failed",
+        "code": "DOCUMENT_ANALYSIS_REGRESSED",
+        "reason": "이전 실행 true → 현재 false: documentAnalysis",
+        "evidence": [
+          {
+            "ok": false,
+            "status": "partial",
+            "attempted": 50,
+            "downloaded": null,
+            "parsed": 25,
+            "failed": 25,
+            "error": "",
+            "samples": []
+          }
+        ],
+        "source": "pipeline-diff-stage"
+      },
+      "regressionClass": "historical-nonblocking",
+      "transientWatch": false,
+      "consecutiveFailureCount": 0,
+      "watchPolicy": "과거/안내성 원문 실패는 누적 관찰하되 현재년도 Stage 8 완료를 차단하지 않음",
+      "currentYearImpact": {
+        "known": true,
+        "blocking": false,
+        "reason": "Stage 8 source audit에서 현재 실사용 actionable unread 0건; 관측 실패는 historical/informational 범위"
+      }
+    },
+    {
+      "org": "울주군시설관리공단",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "regressionCause": {
+        "stage": "attachmentDownload",
+        "status": "failed",
+        "code": "ATTACHMENT_DOWNLOAD_REGRESSED",
+        "reason": "이전 실행 true → 현재 false: attachmentDownload",
+        "evidence": [
+          {
+            "ok": false,
+            "status": "partial",
+            "attempted": 4,
+            "downloaded": 3,
+            "parsed": null,
+            "failed": 1,
+            "error": "",
+            "samples": []
+          }
+        ],
+        "source": "pipeline-diff-stage"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "documentAnalysis": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": false,
+      "regressed": true,
+      "effectiveCause": {
+        "stage": "attachmentDownload",
+        "status": "failed",
+        "code": "ATTACHMENT_DOWNLOAD_REGRESSED",
+        "reason": "이전 실행 true → 현재 false: attachmentDownload",
+        "evidence": [
+          {
+            "ok": false,
+            "status": "partial",
+            "attempted": 4,
+            "downloaded": 3,
+            "parsed": null,
+            "failed": 1,
+            "error": "",
+            "samples": []
+          }
+        ],
+        "source": "pipeline-diff-stage"
+      },
+      "regressionClass": "historical-nonblocking",
+      "transientWatch": false,
+      "consecutiveFailureCount": 0,
+      "watchPolicy": "과거/안내성 원문 실패는 누적 관찰하되 현재년도 Stage 8 완료를 차단하지 않음",
+      "currentYearImpact": {
+        "known": true,
+        "blocking": false,
+        "reason": "Stage 8 source audit에서 현재 실사용 actionable unread 0건; 관측 실패는 historical/informational 범위"
+      }
+    },
+    {
       "org": "울산복지가족진흥사회서비스원",
+      "regressed": false,
       "primaryCause": {
         "stage": "http",
         "status": "failed",
@@ -44,552 +231,10 @@
         "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "regressionCause": {
-        "stage": "access",
-        "status": "failed",
-        "code": "ACCESS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: access",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "",
-            "attempted": null,
-            "downloaded": null,
-            "parsed": null,
-            "failed": null,
-            "error": "all access URLs failed",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true,
-      "effectiveCause": {
-        "stage": "access",
-        "status": "failed",
-        "code": "ACCESS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: access",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "",
-            "attempted": null,
-            "downloaded": null,
-            "parsed": null,
-            "failed": null,
-            "error": "all access URLs failed",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "regressionClass": "actionable",
-      "transientWatch": false,
-      "consecutiveFailureCount": 0,
-      "watchPolicy": "",
-      "currentYearImpact": {
-        "known": false,
-        "blocking": true,
-        "reason": "current-year scope not established for this stage"
-      }
-    },
-    {
-      "org": "울산도시공사",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산도시공사.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "regressionCause": {
-        "stage": "documentAnalysis",
-        "status": "failed",
-        "code": "DOCUMENT_ANALYSIS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: documentAnalysis",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 82,
-            "downloaded": null,
-            "parsed": 47,
-            "failed": 35,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true,
-      "effectiveCause": {
-        "stage": "documentAnalysis",
-        "status": "failed",
-        "code": "DOCUMENT_ANALYSIS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: documentAnalysis",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 82,
-            "downloaded": null,
-            "parsed": 47,
-            "failed": 35,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "regressionClass": "historical-nonblocking",
-      "transientWatch": false,
-      "consecutiveFailureCount": 0,
-      "watchPolicy": "과거/안내성 원문 실패는 누적 관찰하되 현재년도 Stage 8 완료를 차단하지 않음",
-      "currentYearImpact": {
-        "known": true,
-        "blocking": false,
-        "reason": "Stage 8 source audit에서 현재 실사용 actionable unread 0건; 관측 실패는 historical/informational 범위"
-      }
-    },
-    {
-      "org": "울산정보산업진흥원",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "regressionCause": {
-        "stage": "documentAnalysis",
-        "status": "failed",
-        "code": "DOCUMENT_ANALYSIS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: documentAnalysis",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 42,
-            "downloaded": null,
-            "parsed": 32,
-            "failed": 10,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true,
-      "effectiveCause": {
-        "stage": "documentAnalysis",
-        "status": "failed",
-        "code": "DOCUMENT_ANALYSIS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: documentAnalysis",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 42,
-            "downloaded": null,
-            "parsed": 32,
-            "failed": 10,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "regressionClass": "historical-nonblocking",
-      "transientWatch": false,
-      "consecutiveFailureCount": 0,
-      "watchPolicy": "과거/안내성 원문 실패는 누적 관찰하되 현재년도 Stage 8 완료를 차단하지 않음",
-      "currentYearImpact": {
-        "known": true,
-        "blocking": false,
-        "reason": "Stage 8 source audit에서 현재 실사용 actionable unread 0건; 관측 실패는 historical/informational 범위"
-      }
-    },
-    {
-      "org": "울산테크노파크",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "regressionCause": {
-        "stage": "attachmentDownload",
-        "status": "failed",
-        "code": "ATTACHMENT_DOWNLOAD_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: attachmentDownload",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 250,
-            "downloaded": 236,
-            "parsed": null,
-            "failed": 14,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true,
-      "effectiveCause": {
-        "stage": "attachmentDownload",
-        "status": "failed",
-        "code": "ATTACHMENT_DOWNLOAD_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: attachmentDownload",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 250,
-            "downloaded": 236,
-            "parsed": null,
-            "failed": 14,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "regressionClass": "historical-nonblocking",
-      "transientWatch": false,
-      "consecutiveFailureCount": 0,
-      "watchPolicy": "과거/안내성 원문 실패는 누적 관찰하되 현재년도 Stage 8 완료를 차단하지 않음",
-      "currentYearImpact": {
-        "known": true,
-        "blocking": false,
-        "reason": "Stage 8 source audit에서 현재 실사용 actionable unread 0건; 관측 실패는 historical/informational 범위"
-      }
-    },
-    {
-      "org": "울주군시설관리공단",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "regressionCause": {
-        "stage": "documentAnalysis",
-        "status": "failed",
-        "code": "DOCUMENT_ANALYSIS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: documentAnalysis",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "failed",
-            "attempted": 2,
-            "downloaded": null,
-            "parsed": 0,
-            "failed": 2,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true,
-      "effectiveCause": {
-        "stage": "documentAnalysis",
-        "status": "failed",
-        "code": "DOCUMENT_ANALYSIS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: documentAnalysis",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "failed",
-            "attempted": 2,
-            "downloaded": null,
-            "parsed": 0,
-            "failed": 2,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "regressionClass": "historical-nonblocking",
-      "transientWatch": false,
-      "consecutiveFailureCount": 0,
-      "watchPolicy": "과거/안내성 원문 실패는 누적 관찰하되 현재년도 Stage 8 완료를 차단하지 않음",
-      "currentYearImpact": {
-        "known": true,
-        "blocking": false,
-        "reason": "Stage 8 source audit에서 현재 실사용 actionable unread 0건; 관측 실패는 historical/informational 범위"
-      }
-    },
-    {
-      "org": "한국산업안전보건공단",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/한국산업안전보건공단.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "regressionCause": {
-        "stage": "attachmentDownload",
-        "status": "failed",
-        "code": "ATTACHMENT_DOWNLOAD_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: attachmentDownload",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 26,
-            "downloaded": 11,
-            "parsed": null,
-            "failed": 15,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true,
-      "effectiveCause": {
-        "stage": "attachmentDownload",
-        "status": "failed",
-        "code": "ATTACHMENT_DOWNLOAD_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: attachmentDownload",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 26,
-            "downloaded": 11,
-            "parsed": null,
-            "failed": 15,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "regressionClass": "historical-nonblocking",
-      "transientWatch": false,
-      "consecutiveFailureCount": 0,
-      "watchPolicy": "과거/안내성 원문 실패는 누적 관찰하되 현재년도 Stage 8 완료를 차단하지 않음",
-      "currentYearImpact": {
-        "known": true,
-        "blocking": false,
-        "reason": "Stage 8 source audit에서 현재 실사용 actionable unread 0건; 관측 실패는 historical/informational 범위"
-      }
+      "regressionClass": "transient-watch",
+      "transientWatch": true,
+      "consecutiveFailureCount": 2,
+      "watchPolicy": "최근 정상 Evidence가 있는 동일 네트워크성 실패는 3회 연속까지 관찰; 4회차 또는 실패 양상 변경 시 원인분석 대상으로 승격"
     }
   ]
 }

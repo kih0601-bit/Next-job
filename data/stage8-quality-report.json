@@ -1,6 +1,6 @@
 {
   "version": "1.1.0-unread-root-cause",
-  "generatedAt": "2026-08-10T08:51:40.582Z",
+  "generatedAt": "2026-08-10T09:24:27.423Z",
   "status": "needs-review",
   "closureEligible": false,
   "closureReason": "Stage 8 종료에는 structural audit뿐 아니라 원문 대조 Benchmark 정확도 검증이 필요함. 현재 benchmark gate는 아직 확립 전.",
@@ -14,24 +14,24 @@
     "available-source-unreadable"
   ],
   "counts": {
-    "postings": 273,
-    "units": 478,
-    "lowConfidenceSingles": 184,
-    "singleDespiteMultiSignal": 50,
+    "postings": 254,
+    "units": 446,
+    "lowConfidenceSingles": 171,
+    "singleDespiteMultiSignal": 46,
     "requirementSignalWithoutEvidence": 0,
-    "unreadRequiredSources": 36,
+    "unreadRequiredSources": 33,
     "noEvidenceUnits": 19
   },
   "cacheReuse": {
-    "hits": 1070,
-    "misses": 1,
-    "total": 1071,
-    "hitRate": 0.9990662931839402,
+    "hits": 810,
+    "misses": 28,
+    "total": 838,
+    "hitRate": 0.9665871121718377,
     "status": "reuse-observed"
   },
   "unreadDiagnostics": {
     "bySource": {
-      "document": 36
+      "document": 33
     },
     "byError": {
       "legacy office analysis failed: txt=libreoffice conversion produced no txt output; pdf=no output": 5,
@@ -40,17 +40,15 @@
       "extracted text too short (7) via hwp-low-text": 1,
       "extracted text too short (3) via hwp-low-text": 3,
       "extracted text too short (19) via hwp-low-text": 1,
-      "download HTTP 404 / curl: curl exited 22": 6,
-      "extracted text too short (0) via hwp-no-text": 3
+      "download HTTP 404 / curl: curl exited 22": 6
     },
     "byOrg": {
       "한국산업안전보건공단": 16,
       "울주군시설관리공단": 1,
-      "울산테크노파크": 16,
-      "울산복지가족진흥사회서비스원": 3
+      "울산테크노파크": 16
     },
     "currentYearHint": 1,
-    "historicalOrUnknownHint": 35
+    "historicalOrUnknownHint": 32
   },
   "samples": {
     "singleDespiteMultiSignal": [
@@ -770,42 +768,6 @@
             "source": "document",
             "status": "analysis-failed",
             "error": "download HTTP 404 / curl: curl exited 22"
-          }
-        ]
-      },
-      {
-        "org": "울산복지가족진흥사회서비스원",
-        "title": "2022년 울산광역시사회서비스원 소속시설(울산시립노인요양원) 직원 채용 공고",
-        "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=hJaAYp1uvZEwhJh-bLvY4powTf68jt2pyoFNWhVuKnU",
-        "sources": [
-          {
-            "source": "document",
-            "status": "analysis-failed",
-            "error": "extracted text too short (0) via hwp-no-text"
-          }
-        ]
-      },
-      {
-        "org": "울산복지가족진흥사회서비스원",
-        "title": "2022년 제 5차 울산광역시사회서비스원 소속시설(대체인력지원센터) 직원 채용 공고",
-        "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=qB3DMv9s3QYtNo4jMk0KwmTDW7UTqxEBpiaUjEj9mJ4",
-        "sources": [
-          {
-            "source": "document",
-            "status": "analysis-failed",
-            "error": "extracted text too short (0) via hwp-no-text"
-          }
-        ]
-      },
-      {
-        "org": "울산복지가족진흥사회서비스원",
-        "title": "2022년 제 4차 울산광역시사회서비스원 소속시설 직원 채용 공고",
-        "link": "https://wfps.or.kr/webuser/employment/view.html?em_id=Dma7FBypmFqV7mMkwDpZOmbp4G5TzSykum8NgAbiyvg",
-        "sources": [
-          {
-            "source": "document",
-            "status": "analysis-failed",
-            "error": "extracted text too short (0) via hwp-no-text"
           }
         ]
       }

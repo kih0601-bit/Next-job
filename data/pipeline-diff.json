@@ -1,12 +1,99 @@
 {
-  "generatedAt": "2026-08-10T08:51:41.661Z",
+  "generatedAt": "2026-08-10T09:24:28.481Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 1,
-    "regressed": 0,
+    "improved": 0,
+    "regressed": 1,
     "unchanged": 19
   },
   "changes": [
+    {
+      "org": "울산복지가족진흥사회서비스원",
+      "primaryCause": {
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://uwfdi.re.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to uwfdi.re.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "regressionCause": {
+        "stage": "access",
+        "status": "failed",
+        "code": "ACCESS_REGRESSED",
+        "reason": "이전 실행 true → 현재 false: access",
+        "evidence": [
+          {
+            "ok": false,
+            "status": "",
+            "attempted": null,
+            "downloaded": null,
+            "parsed": null,
+            "failed": null,
+            "error": "all access URLs failed",
+            "samples": []
+          }
+        ],
+        "source": "pipeline-diff-stage"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true
+    },
     {
       "org": "근로복지공단",
       "primaryCause": {
@@ -280,61 +367,6 @@
         }
       },
       "improved": false,
-      "regressed": false
-    },
-    {
-      "org": "울산복지가족진흥사회서비스원",
-      "primaryCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "regressionCause": {
-        "stage": "complete",
-        "status": "success",
-        "code": "PIPELINE_SAMPLE_OK",
-        "reason": "현재 진단 표본에서 실패 원인 없음",
-        "evidence": [],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "list": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "detail": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": true,
-          "change": "same"
-        },
-        "documentAnalysis": {
-          "from": false,
-          "to": true,
-          "change": "improved"
-        }
-      },
-      "improved": true,
       "regressed": false
     },
     {

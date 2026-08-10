@@ -433,3 +433,11 @@
 - 진단기 추가 목적이 아니라 기존 Regression 오탐을 실제 현재년도 범위에 맞게 처리하는 수정이며 과거 실패 데이터는 삭제하지 않음.
 - 로컬 검증: v118 결과 기준 기존 5건 모두 historical-nonblocking, actionable regression 0. v119 회귀 테스트 추가.
 - 다음 Live Full Run 완료조건: 20기관 현재년도 입력에서 actionable upstream regression 0 + Stage 8 actionable unread 0 + Benchmark 7/7 + failed postings 0 + Stage 8 closure 유지.
+
+## v121 - Stage 9 accuracy fixes
+- Goal: process the first v120 live findings instead of adding diagnostics.
+- 9A: prevent missing Stage-8 requirement rows from silently becoming Eligible when vacancy/title signals a likely hard condition (career track, license-bound profession, regional-talent/disability identity track). Such cases become needs-review with a reason.
+- 9A OR routes: ignore table/header fragments that contain no usable condition; parse the minimum education level from each option's raw text so `전문학사 + 경력` is not accidentally treated as bachelor's; preserve AND-inside-option / OR-between-options semantics.
+- Job taxonomy: unit name > local evidence > title fallback priority; generic shared titles can no longer steal the category from a specific vacancy. Added explicit general-track mapping without adding overlapping top-level categories.
+- 9B facets: normalize explicit region/employment wording (e.g. 울산광역시→울산, 체험형/채용형/청년인턴→인턴, 위촉직→계약직) but never guess an unstated employment type.
+- Verification: added `test-v121-stage9-accuracy-fixes.mjs`; workflow/template stay synchronized.

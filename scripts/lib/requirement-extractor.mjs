@@ -52,6 +52,10 @@ function extractRows(text='',source='unknown',pattern,limit=12,levelOverride=nul
   for(const line of contextLines(text)){
     if(!pattern.test(line)){pattern.lastIndex=0;continue;}
     pattern.lastIndex=0;
+    // A flattened recruitment-overview table can contain words such as '기사' or an age
+    // anywhere in a very long row. Do not promote that whole row to a personal
+    // eligibility requirement unless it is in an explicit qualification context.
+    if(line.length>220 && !/(지원자격|응시자격|자격요건|필요자격|우대사항|필수자격|응시요건)/.test(line)) continue;
     let level=levelOverride?levelOverride(line):levelFromLine(line);
     rows.push({value:line.slice(0,300),level,source,evidence:[line.slice(0,300)],evidenceDetailed:[detailed(source,line)]});
     if(rows.length>=limit)break;

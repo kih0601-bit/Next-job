@@ -1,11 +1,11 @@
 const MAX_VACANCIES = 24;
-export const VACANCY_SPLITTER_VERSION = '11.7.0-stage8-non-vacancy-row-guard';
+export const VACANCY_SPLITTER_VERSION = '11.8.0-public-facility-table-rows';
 
 const HEADER_PATTERN = /^(?:\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*)?(?:모집|채용|응시)\s*(?:분야|직무|직종|직렬)|^(?:분야|직무|직종|직렬|구분)\s*[:：]/i;
 const SECTION_PATTERN = /^(?:\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*)?(?:채용개요|모집개요|분야별\s*응시자격|직무별\s*자격요건)\s*$/i;
 const GLOBAL_PATTERN = /(?:접수기간|원서접수|전형절차|제출서류|공통\s*응시자격|공통사항|결격사유|보수|복리후생|근무시간|채용일정|문의처)/i;
-const ROLE_SIGNAL = /(?:행정|사무|전산|정보|시설|기계|전기|소방|건축|토목|운전|환경|회계|재무|고객|상담|기술|연구|경영|총무|인사|기획|보안|미화|조리)/;
-const CONDITION_SIGNAL = /(?:정규직|무기계약|공무직|상용직|일반직|기간제|계약직|인턴|학력|고졸|학사|전문학사|근무지|근무지역|울산|서울|부산|채용인원|명\b)/;
+const ROLE_SIGNAL = /(?:행정|사무|전산|정보|시설|기계|전기|소방|건축|토목|운전|환경|회계|재무|고객|상담|기술|연구|경영|총무|인사|기획|보안|미화|조리|운영보조|안전요원|체육지도사|안내관리원|환경관리원)/;
+const CONDITION_SIGNAL = /(?:정규직|무기계약|공무직|상용직|일반직|기간제|계약직|인턴|학력|고졸|학사|전문학사|근무지|근무지역|울산|서울|부산|채용인원|선발인원|인원|명\b)/;
 
 const NON_VACANCY_NAME_PATTERN = /(?:\.(?:pdf|hwp|hwpx|docx?|xlsx?|zip)(?:\s|$|\[|\()|정보통신접근성\s*품질인증|(?:알림마당|채용공고)\s*>|테이블\s*(?:입니다|이다)|구성된\s*테이블|현재\s*진행\s*중.*무관함|붙임과\s*같이\s*공고|첨부파일|응시원서|이의신청서|직무기술서(?:\s*\d+|\s*\d*번)?\s*$)/i;
 const MARKDOWN_FILE_PATTERN = /^#{1,6}\s+.*\.(?:pdf|hwp|hwpx|docx?|xlsx?|zip)\b/i;
@@ -54,7 +54,7 @@ function likelyRow(line = '') {
   if (line.length < 4 || line.length > 320) return false;
   if (GLOBAL_PATTERN.test(line)) return false;
   const pipeParts = line.split(/\s*\|\s*/).filter(Boolean);
-  if (pipeParts.length >= 2 && ROLE_SIGNAL.test(line) && CONDITION_SIGNAL.test(line)) return true;
+  if (pipeParts.length >= 2 && ROLE_SIGNAL.test(line) && (CONDITION_SIGNAL.test(line) || /\d{1,3}\s*명/.test(line))) return true;
   return ROLE_SIGNAL.test(line) && CONDITION_SIGNAL.test(line) && /(?:채용|모집|직|분야|인원|명\b)/.test(line);
 }
 

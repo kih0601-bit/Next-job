@@ -274,3 +274,21 @@
 - Cache diagnostics: institution metrics now retain up to five samples per miss reason. Each sample records current/cached stable identity, current/cached identity fingerprint, current/cached full fingerprint, links, title, and cache age. A future `identity-mismatch` run should therefore expose the changing component in the same Actions artifact.
 - This is diagnostic hardening, not a broad cache-policy change. No institution-specific identity rule was guessed for UIPA/UUC/KOSHA/etc. based on a single run.
 - v103 KEPCO end-to-end identity preservation and manual-only workflow remain intact.
+
+
+## v105 — Pagination transient retry + HUBST proof correction + report provenance
+- Uploaded v104 Actions evidence: Collect completed in ~246 s; all previously problematic UTP/WFPS/UIPA/UUC/KOSHA cache identities reused cleanly. KEPCO identity is now correct (`132 raw = 132 unique`, no collapse) but page 3 timed out once, leaving 15/16 pages and `partial-or-mismatch`.
+- General resilience fix: Pagination page requests now retry transient timeout/network/429/5xx failures up to 3 times with bounded backoff inside the same Actions run. Successful/failed retry evidence is retained so an external transient does not automatically consume another full Actions cycle.
+- Ulju Culture Foundation: the uploaded HTML proves one `.rowArea[opnIdx]` recruitment record, exact `ROWAREA_RECORD` extraction, and a POST form containing only `orgIdx/opnIdx/openType/boardType` — no page parameter and no explicit pager markup. The previous generic `pageControls` heuristic counted a page-like application UI signal and blocked the already-supported HUBST single-page proof. v105 uses actual page parameter/pager markup evidence for this HUBST proof.
+- Provenance fix: `pipeline-probe.mjs` still emitted the old v100 VERSION string despite v101-v104 code. Updated to v105 so future Actions artifacts identify the code generation correctly.
+- No speculative institution parser changes were made. Worker's Compensation & Welfare Service remains historical implementation proof with current-run proof unavailable; this is not treated as a parser regression without new contrary evidence.
+- Regression maintenance: the old v100 Stage-7 test pinned the literal v100 report version, so advancing provenance correctly made the suite fail. The test now verifies that a VERSION declaration exists rather than freezing a historical version string.
+
+
+## v106 — Explicit Stage-7 completion gate
+- Pre-Actions closure audit found that reports exposed counts but had no machine-readable answer to “can Stage 7 close now?”. This left room for repeated manual interpretation of historical-only proof, transient failures, and structural reconciliation defects.
+- Added `stage7Gate` to `pipeline-report.json`.
+- Closure rule: all 20 sources must have Pagination implementation proof and no structural reconciliation defect. Current-run 20/20 is reported separately from implementation completeness.
+- `verified-historical` may preserve implementation proof but is surfaced in `historicalOnly` for operational watch; it cannot hide a structural defect.
+- `blockers` identifies the exact institutions preventing closure, while `currentRunVerified`, `historicalOnly`, and `transientOnly` distinguish implementation completion from current external health.
+- This lets the next Actions run return a direct `close-stage-7` / `keep-stage-7-open` decision instead of requiring another interpretation cycle.

@@ -1,0 +1,17 @@
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import { splitVacancies, VACANCY_SPLITTER_VERSION } from './lib/vacancy-splitter.mjs';
+const sample='○ 모집분야(상반기) : 경력직 2급(산업보건-의학), 신입직 5급(일반, 지역인재, 장애 / 산업안전(기계,전기,화공), 산업보건(환경), 건설안전(건축,토목))';
+const rows=splitVacancies({title:'채용 예비공고',detailText:sample});
+assert.ok(rows.length>=2,'inline multi recruitment signal must not remain single');
+assert.match(VACANCY_SPLITTER_VERSION,/11\.4\.0/);
+const baseline=JSON.parse(await fs.readFile('data/stage7-stage8-baseline.json','utf8'));
+assert.equal(baseline.trust?.status,'verified');
+assert.ok(Array.isArray(baseline.inputs)&&baseline.inputs.length>0);
+const fast=await fs.readFile('scripts/stage8-fast-run.mjs','utf8');
+assert.match(fast,/stage7-stage8-baseline\.json/);
+assert.match(fast,/stage7-stage8-candidate\.json/);
+const collect=await fs.readFile('scripts/collect.mjs','utf8');
+assert.match(collect,/stage7-stage8-candidate\.json/);
+assert.match(collect,/stage7-stage8-baseline\.json/);
+console.log('v113 parallel Stage7/Stage8 + snapshot lifecycle tests passed');

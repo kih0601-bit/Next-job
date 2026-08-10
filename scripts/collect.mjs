@@ -1451,9 +1451,11 @@ await Promise.all([
   fs.writeFile('data/stage8-eligibility-report.json', `${JSON.stringify(stage8Report, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/stage8-quality-report.json', `${JSON.stringify(stage8QualityAudit, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/stage7-stage8-snapshot.json', `${JSON.stringify(stage8Snapshot, null, 2)}\n`, 'utf8'),
+  fs.writeFile('data/stage7-stage8-candidate.json', `${JSON.stringify({...stage8Snapshot, role:'candidate'}, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/stage8-benchmark-candidates.json', `${JSON.stringify(stage8BenchmarkCandidates, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, stage8:{checked:stage8QualityAudit.counts.units,status:stage8QualityAudit.status,closureEligible:stage8QualityAudit.closureEligible}, ...qa }, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/debug-report.json', `${JSON.stringify(debugPayload, null, 2)}\n`, 'utf8')
 ]);
+try { await fs.access('data/stage7-stage8-baseline.json'); } catch { await fs.writeFile('data/stage7-stage8-baseline.json', `${JSON.stringify({...stage8Snapshot, role:'baseline'}, null, 2)}\n`, 'utf8'); }
 console.log(payload.stats);
 console.log({ debugReportPath: 'data/debug-report.json', debugReportWritten: true });

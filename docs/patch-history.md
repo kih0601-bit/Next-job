@@ -376,10 +376,31 @@
 - 검증: `test-v115-stage8-closure-diagnostics.mjs` 추가. balanced inline split과 unread-current-year gate를 회귀 테스트한다.
 - 범위 컷: required/preferred 추출 규칙과 unread attachment 복구 로직은 Benchmark/Full Run 증거 없이 한 패치에서 동시에 변경하지 않는다. 다음 Actions 증거 후 v116 교정 대상으로 둔다.
 
-## v116 — Stage 8 diagnosed-result processing first (2026-08-10)
-- Purpose: stop diagnostic-only iteration; process already identified Stage 8 defects and keep diagnostics as verification tools.
-- Fixed Ulsan Port Authority detail extraction so nested recruitment tables are not truncated at the first nested closing tag; this is required to split multiple recruitment units from the actual notice body.
-- Rejected site-wide `정보통신접근성 품질인증서` PDFs as recruitment attachments to prevent unrelated certification documents from contaminating Stage 8 document evidence.
-- Added Stage 9/10 consumer contract: search/recommendation lists expose required conditions first; preferred conditions are detail-level information and may boost ranking when matched, but preferred-condition mismatch alone never excludes an otherwise eligible posting.
-- Added regression test `test-v116-stage8-fix-and-policy.mjs`; existing v111/v114/v115 regression tests remain passing.
-- No new diagnostic subsystem added. Existing Stage 8 quality/benchmark diagnostics remain the verification mechanism. Live Actions must confirm the UPA source now supplies complete table rows and quantify remaining Stage 8 blockers.
+## v116 — Stage 8 결과처리 우선 + 원문 Benchmark 실제 적용
+- 목적: 기존 Stage 8 진단 결과를 미루지 않고 실제 해결하고, 필요한 진단 보강은 완료 여부만 검증한 뒤 닫는다.
+- 해결: 울산테크노파크 `응시분야` 기반 복수 모집단위를 실제 원문 구조대로 분리한다.
+- 해결: `학사 / 전문학사+경력 / 무학위+경력 중 하나` 같은 OR 지원조건을 `qualificationAlternatives`로 보존하여 고졸 지원자를 학력 하나만 보고 오탈락시키지 않는다.
+- 해결: 검색/추천 목록용 `required` 조건과 상세용 `preferred` 조건을 분리한 presentation projection을 Stage 8에 저장한다. preferred 미충족은 탈락 조건으로 쓰지 않는다.
+- 처리: 과거 공고, 종료 공고, 인턴·기간제·계약직 등 현재 개인 목표 밖 공고, 사전안내는 진단 데이터에는 누적하되 Stage 8 완료를 영구 차단하는 actionable blocker와 분리한다.
+- Benchmark: trusted Stage 7→8 원문을 직접 대조해 확정한 7개 대표 정답 사례를 고정하고, 매 Actions에서 자동 비교한다. 후보 생성만 하고 끝내지 않는다.
+- 중단 원칙: 이미 원인 판별 가능한 진단기는 추가 보강하지 않는다. 해결 → 기존/필요 최소 진단으로 재검증 → 완료면 다음 단계로 이동한다.
+
+## v117 — Stage 8 live closure wiring completion
+- 목적: v116에서 구현된 Stage 8 실제 수정/Benchmark가 GitHub Actions Live Pipeline까지 완전히 연결되지 않은 누락을 해결.
+- 확정 원인: 실행 Workflow가 v115/v116 테스트와 Stage 8 benchmark 실행을 호출하지 않았고, benchmark 결과가 stage8-quality-report / stage8-eligibility-report에만 일부 반영되어 requirement-report / qa-report와 완료판정이 불일치할 수 있었음.
+- 적용 해결책:
+  - Workflow self-test에 v115, v116 두 계열 테스트 및 v117 wiring regression 추가.
+  - Collect 직후 source-grounded Stage 8 benchmark를 실제 실행.
+  - benchmark ground truth/result를 Artifact에 포함.
+  - benchmark 결과를 stage8-quality-report, stage8-eligibility-report, requirement-report, qa-report 모두에 동기화.
+  - Live Stage 7 input verified + failed postings 0 + actionable structural blocker 0 + benchmark pass일 때만 `stage-8-complete` 판정.
+  - Fast snapshot은 benchmark가 통과해도 `stage-8-benchmark-passed-await-live-closure`로 유지하여 Live 검증을 가장하지 않음.
+  - historical/closed/out-of-target 및 partial-document 상태는 누적 진단 데이터로 유지하되 actionable blocker가 없으면 Stage 8을 영구 차단하지 않도록 정리.
+  - required 목록 노출 / preferred 상세 노출 및 추천 가점-only downstream policy 유지.
+- 사전 검증:
+  - v72~v117 회귀 테스트 전체 통과(legacy diagnostic path cleanup 후 safety test 포함).
+  - trusted Stage7→8 snapshot 기준 254 postings / 497 units, actionable structural blockers 0.
+  - source-grounded benchmark 7/7 통과.
+  - fast-run에서는 closureEligible=false / await-live-closure 확인.
+  - live 분기 모의검증에서는 closureEligible=true / decision=stage-8-complete 확인.
+- 다음 Actions 확인 항목: 실제 Live Run에서 benchmark 7/7, actionable blockers 0, snapshot trust verified, `stage-8-complete`가 동일하게 재현되는지 확인. 새 진단기 추가보다 이 완료조건 검증을 우선.

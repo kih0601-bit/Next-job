@@ -65,6 +65,10 @@ jobs:
           node scripts/test-v112-stage8-fast-and-trust.mjs
           node scripts/test-v113-parallel-stage7-stage8.mjs
           node scripts/test-v114-terminal-cache-optimization.mjs
+          node scripts/test-v115-stage8-closure-diagnostics.mjs
+          node scripts/test-v116-stage8-fix-and-policy.mjs
+          node scripts/test-v116-stage8-resolve-and-close.mjs
+          node scripts/test-v117-stage8-live-closure-wiring.mjs
 
       - name: Preserve previous pipeline report
         shell: bash
@@ -82,6 +86,9 @@ jobs:
           node scripts/run-metrics.mjs mark collect-start
           node scripts/collect.mjs
           node scripts/run-metrics.mjs mark collect-end
+
+      - name: Validate Stage 8 source-grounded benchmark
+        run: node scripts/stage8-benchmark.mjs
 
       - name: Build unified institution report
         run: |
@@ -151,6 +158,8 @@ jobs:
             data/stage7-stage8-candidate.json
             data/stage8-snapshot-lifecycle.json
             data/stage8-benchmark-candidates.json
+            data/stage8-benchmark-ground-truth.json
+            data/stage8-benchmark-result.json
             data/qa-report.json
             data/diagnostics/
           retention-days: 14

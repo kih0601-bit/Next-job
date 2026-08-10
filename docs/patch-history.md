@@ -359,3 +359,11 @@
 - 승격 기준: baseline의 정상 입력에서 failed=0, partial=0, structural blocker=0이 된 뒤 verified candidate를 다음 baseline 후보로 삼는다. Stage 7 입력 결함이 확인된 baseline은 교정 snapshot으로 교체할 수 있다.
 - Stage 8: inline `모집분야:` 다중 역할 신호를 추가 분리하는 보수적 splitter 규칙 추가. 기존 baseline Fast Run 기준 모집단위 446→451, multi-signal single 46→45. 이 수치만으로 정확도 향상/완료 판정 금지; Benchmark 원문 대조 필요.
 - 유지: Fast Run 성공은 Stage 8 closure 근거가 아니며 live Full Run + Benchmark gate를 계속 요구한다.
+
+## v114 — terminal cache reuse / repeated heavy-work elimination
+- 목적: Stage 8 확장 이후 만료·마감된 과거 공고가 `stage8-schema-missing`으로 매 실행마다 상세/첨부/문서분석을 다시 수행하던 반복 비용 제거.
+- 근거: 최신 run에서 collect 49분 6초, cache miss 817건 중 `stage8-schema-missing` 584건. 기존 terminal 결과는 Stage 8 활성 출력 대상이 아닌데도 현 schema의 `stage8Posting`이 없다는 이유만으로 재처리됨.
+- 변경: durable identity가 일치하고 기존 terminal TTL(90일) 안인 `expired deadline` / `closed notice text` 결과는 Stage 8 legacy schema라도 재사용. 비-terminal 결과는 종전대로 현 Stage 8 schema를 반드시 요구.
+- 안전장치: terminal TTL, identity match, non-terminal Stage 8 schema gate는 유지. Stage 8 활성 구조화 범위와 개인 jobs.json 판정 로직은 변경하지 않음.
+- 검증: `test-v114-terminal-cache-optimization.mjs` 추가, executable/template workflow byte-identical 유지.
+- 다음 Actions 관찰: `collect-metrics.json`에서 `stage8-schema-missing`, `heavyProcessed`, collect duration이 급감하는지 확인. 신규/변경 공고는 기존 cache miss 경로로 정상 재처리되어야 함.

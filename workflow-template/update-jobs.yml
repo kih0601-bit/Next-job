@@ -75,6 +75,9 @@ jobs:
           node scripts/test-v121-stage9-accuracy-fixes.mjs
           node scripts/test-v122-stage9-known-zero-region-fallback.mjs
           node scripts/test-v123-stage8-unit-responsibility-guard.mjs
+          node scripts/test-v124-stage8-source-accountability.mjs
+          node scripts/test-v125-uipa-evidence-bridge.mjs
+          node scripts/test-v126-bukgu-multiunit-scope.mjs
 
       - name: Preserve previous pipeline report
         shell: bash
@@ -98,6 +101,11 @@ jobs:
 
       - name: Build Stage 9 filter foundation report
         run: node scripts/stage9-filter-run.mjs
+
+      - name: Build Stage 10 UI output
+        run: |
+          node scripts/stage10-output-run.mjs
+          node scripts/test-v127-stage10-ui-contract.mjs
 
       - name: Build unified institution report
         run: |

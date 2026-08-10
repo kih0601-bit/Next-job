@@ -13,7 +13,7 @@
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "2개 후보 URL HTTP 응답 성공",
+      "reason": "3개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
@@ -116,8 +116,50 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "잡알리오",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*정보",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "institutionRule": false,
+            "strictInstitutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 1638,
+            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         }
@@ -254,14 +296,14 @@
             "matchedCount": 10,
             "unmatchedTitles": [],
             "recordSamples": [
-              "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2917",
-              "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 209",
-              "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 242",
-              "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5974",
-              "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 342",
-              "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 569",
-              "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 315",
-              "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48692"
+              "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2961",
+              "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 211",
+              "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 243",
+              "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5977",
+              "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 343",
+              "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 570",
+              "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 316",
+              "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48702"
             ],
             "level": "TEMPLATE_TABLE_RECORD_EXACT"
           },
@@ -330,19 +372,19 @@
             {
               "title": "정보공개청구",
               "reason": "detail-url-pending",
-              "identity": "row-36041",
+              "identity": "row-36042",
               "row": "<div class=\"list01\"><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새 창 열림\">정보공개청구</a></div>"
             },
             {
               "title": "웹접근성 인증마크",
               "reason": "detail-url-pending",
-              "identity": "row-49509",
+              "identity": "row-49510",
               "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
             },
             {
               "title": "웹개방성 인증마크",
               "reason": "detail-url-pending",
-              "identity": "row-49660",
+              "identity": "row-49661",
               "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
             }
           ],
@@ -483,6 +525,45 @@
           "verifiedEmpty": false,
           "emptyMarker": "",
           "countSource": "unavailable",
+          "countTemplate": ""
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "anchors": 53,
+          "titleMatches": 27,
+          "noUrl": 6,
+          "unsafeUrl": 14,
+          "accepted": 7,
+          "rowFallbackAccepted": 0,
+          "visiblePostCount": 7,
+          "candidateCount": 7,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "ALIO_CARD",
+            "recordCount": 7,
+            "candidateCount": 7,
+            "matchedCount": 7,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
+              "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
+              "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
+              "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
+              "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
+              "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
+              "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감"
+            ],
+            "level": "TEMPLATE_ALIO_CARD_EXACT"
+          },
+          "countExactMatch": true,
+          "templateExactMatch": true,
+          "exactMatchBasis": "record-template-1to1",
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows",
           "countTemplate": ""
         }
       ]
@@ -897,8 +978,50 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "잡알리오",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*정보",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "institutionRule": false,
+            "strictInstitutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 1638,
+            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         }
@@ -959,7 +1082,7 @@
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "2개 후보 URL HTTP 응답 성공",
+          "reason": "3개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
@@ -1062,8 +1185,50 @@
             },
             {
               "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-              "ok": false,
-              "error": "fetch failed",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "잡알리오",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*정보",
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 3,
+                "boardType": {
+                  "type": "JOB_ALIO",
+                  "confidence": "high",
+                  "evidence": [
+                    "JOB-ALIO URL/본문 신호"
+                  ]
+                },
+                "institutionRule": false,
+                "strictInstitutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 1638,
+                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              },
               "accessTemplate": "DIRECT_BOARD",
               "requestProfile": "browser-default"
             }
@@ -1174,7 +1339,7 @@
     "list": {
       "ok": true,
       "status": "verified-exact",
-      "pagesChecked": 2,
+      "pagesChecked": 3,
       "visiblePostCount": 10,
       "candidateCount": 10,
       "missingCount": 0,
@@ -1263,14 +1428,14 @@
             "matchedCount": 10,
             "unmatchedTitles": [],
             "recordSamples": [
-              "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2917",
-              "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 209",
-              "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 242",
-              "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5974",
-              "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 342",
-              "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 569",
-              "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 315",
-              "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48692"
+              "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2961",
+              "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 211",
+              "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 243",
+              "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5977",
+              "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 343",
+              "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 570",
+              "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 316",
+              "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48702"
             ],
             "level": "TEMPLATE_TABLE_RECORD_EXACT"
           },
@@ -1339,19 +1504,19 @@
             {
               "title": "정보공개청구",
               "reason": "detail-url-pending",
-              "identity": "row-36041",
+              "identity": "row-36042",
               "row": "<div class=\"list01\"><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새 창 열림\">정보공개청구</a></div>"
             },
             {
               "title": "웹접근성 인증마크",
               "reason": "detail-url-pending",
-              "identity": "row-49509",
+              "identity": "row-49510",
               "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
             },
             {
               "title": "웹개방성 인증마크",
               "reason": "detail-url-pending",
-              "identity": "row-49660",
+              "identity": "row-49661",
               "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
             }
           ],
@@ -1493,6 +1658,45 @@
           "emptyMarker": "",
           "countSource": "unavailable",
           "countTemplate": ""
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "anchors": 53,
+          "titleMatches": 27,
+          "noUrl": 6,
+          "unsafeUrl": 14,
+          "accepted": 7,
+          "rowFallbackAccepted": 0,
+          "visiblePostCount": 7,
+          "candidateCount": 7,
+          "exactMatch": true,
+          "missingCount": 0,
+          "extraCount": 0,
+          "recordVerification": {
+            "verified": true,
+            "template": "ALIO_CARD",
+            "recordCount": 7,
+            "candidateCount": 7,
+            "matchedCount": 7,
+            "unmatchedTitles": [],
+            "recordSamples": [
+              "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
+              "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
+              "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
+              "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
+              "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
+              "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
+              "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감"
+            ],
+            "level": "TEMPLATE_ALIO_CARD_EXACT"
+          },
+          "countExactMatch": true,
+          "templateExactMatch": true,
+          "exactMatchBasis": "record-template-1to1",
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "visible-board-rows",
+          "countTemplate": ""
         }
       ],
       "rootCauseDiagnostics": [
@@ -1515,14 +1719,14 @@
               "matchedCount": 10,
               "unmatchedTitles": [],
               "recordSamples": [
-                "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2917",
-                "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 209",
-                "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 242",
-                "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5974",
-                "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 342",
-                "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 569",
-                "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 315",
-                "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48692"
+                "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2961",
+                "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 211",
+                "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 243",
+                "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5977",
+                "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 343",
+                "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 570",
+                "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 316",
+                "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48702"
               ],
               "level": "TEMPLATE_TABLE_RECORD_EXACT"
             },
@@ -1599,14 +1803,14 @@
               "index": 0,
               "title": "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
               "normalizedTitle": "한국동서발전 주 2026년도 하반기 체험형 인턴 선발",
-              "text": "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2917",
+              "text": "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2961",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "#",
               "onclick": "view(45171); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>93</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(45171); return false;\" title=\"한국동서발전(주) 2026년도 하반기 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 하반기 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.07.29 ~ 2026.08.12</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state02\">접수중</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>2917</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>93</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(45171); return false;\" title=\"한국동서발전(주) 2026년도 하반기 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 하반기 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.07.29 ~ 2026.08.12</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state02\">접수중</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>2961</td>\r\n\t\t\t\t\t\t\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=45171&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
               "adapter": "한국동서발전:board-row",
@@ -1616,14 +1820,14 @@
               "index": 1,
               "title": "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
               "normalizedTitle": "영덕해맞이풍력발전 주 대표이사 모집공고 재공고",
-              "text": "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 209",
+              "text": "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 211",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "#",
               "onclick": "view(44849); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>92</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44849); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.15 ~ 2026.06.19</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>209</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>92</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44849); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.15 ~ 2026.06.19</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>211</td>\r\n\t\t\t\t\t\t\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44849&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
               "adapter": "한국동서발전:board-row",
@@ -1633,14 +1837,14 @@
               "index": 2,
               "title": "영덕해맞이풍력발전(주) 대표이사 모집공고",
               "normalizedTitle": "영덕해맞이풍력발전 주 대표이사 모집공고",
-              "text": "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 242",
+              "text": "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 243",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "#",
               "onclick": "view(44777); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>91</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44777); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.02 ~ 2026.06.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>242</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>91</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44777); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.02 ~ 2026.06.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>243</td>\r\n\t\t\t\t\t\t\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44777&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
               "adapter": "한국동서발전:board-row",
@@ -1650,14 +1854,14 @@
               "index": 3,
               "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
               "normalizedTitle": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안",
-              "text": "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5974",
+              "text": "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5977",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "#",
               "onclick": "view(44635); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>90</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44635); return false;\" title=\"2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안내\" class=\"ellipsis1\">2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.29 ~ 2026.05.05</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>5974</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>90</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44635); return false;\" title=\"2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안내\" class=\"ellipsis1\">2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.29 ~ 2026.05.05</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>5977</td>\r\n\t\t\t\t\t\t\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44635&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
               "adapter": "한국동서발전:board-row",
@@ -1667,14 +1871,14 @@
               "index": 4,
               "title": "한국동서발전(주) 비상임이사 후보자 모집공고",
               "normalizedTitle": "한국동서발전 주 비상임이사 후보자 모집공고",
-              "text": "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 342",
+              "text": "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 343",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "#",
               "onclick": "view(44611); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>89</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44611); return false;\" title=\"한국동서발전(주) 비상임이사 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.28 ~ 2026.05.07</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>342</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>89</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44611); return false;\" title=\"한국동서발전(주) 비상임이사 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.28 ~ 2026.05.07</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>343</td>\r\n\t\t\t\t\t\t\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44611&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
               "adapter": "한국동서발전:board-row",
@@ -1684,14 +1888,14 @@
               "index": 5,
               "title": "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
               "normalizedTitle": "한국동서발전 주 비상임이사 일반 후보자 모집공고",
-              "text": "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 569",
+              "text": "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 570",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "#",
               "onclick": "view(44578); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>88</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44578); return false;\" title=\"한국동서발전(주) 비상임이사(일반) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(일반) 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>569</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>88</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44578); return false;\" title=\"한국동서발전(주) 비상임이사(일반) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(일반) 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>570</td>\r\n\t\t\t\t\t\t\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44578&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
               "adapter": "한국동서발전:board-row",
@@ -1701,14 +1905,14 @@
               "index": 6,
               "title": "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
               "normalizedTitle": "한국동서발전 주 비상임이사 회계 또는 재무전문가 후보자 모집",
-              "text": "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 315",
+              "text": "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 316",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "#",
               "onclick": "view(44576); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>87</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44576); return false;\" title=\"한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>315</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>87</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44576); return false;\" title=\"한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>316</td>\r\n\t\t\t\t\t\t\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44576&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
               "adapter": "한국동서발전:board-row",
@@ -1718,14 +1922,14 @@
               "index": 7,
               "title": "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
               "normalizedTitle": "2026년도 하반기 신입사원 대졸수준 일반 보훈 고졸 및 별",
-              "text": "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48692",
+              "text": "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48702",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "#",
               "onclick": "view(44467); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>86</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44467); return false;\" title=\"2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별정직) 채용공고\" class=\"ellipsis1\">2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.03.25 ~ 2026.04.08</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>48692</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>86</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44467); return false;\" title=\"2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별정직) 채용공고\" class=\"ellipsis1\">2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.03.25 ~ 2026.04.08</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>48702</td>\r\n\t\t\t\t\t\t\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44467&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
               "adapter": "한국동서발전:board-row",
@@ -1735,14 +1939,14 @@
               "index": 8,
               "title": "한국동서발전(주) 2026년도 체험형 인턴 선발",
               "normalizedTitle": "한국동서발전 주 2026년도 체험형 인턴 선발",
-              "text": "85 한국동서발전(주) 2026년도 체험형 인턴 선발 Download 2026.01.28 ~ 2026.02.11 접수마감 16821",
+              "text": "85 한국동서발전(주) 2026년도 체험형 인턴 선발 Download 2026.01.28 ~ 2026.02.11 접수마감 16825",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "#",
               "onclick": "view(44091); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>85</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44091); return false;\" title=\"한국동서발전(주) 2026년도 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.01.28 ~ 2026.02.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>16821</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>85</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44091); return false;\" title=\"한국동서발전(주) 2026년도 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.01.28 ~ 2026.02.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>16825</td>\r\n\t\t\t\t\t\t\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44091&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
               "adapter": "한국동서발전:board-row",
@@ -1752,14 +1956,14 @@
               "index": 9,
               "title": "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...",
               "normalizedTitle": "한국동서발전 주 개방형 계약직위 중대재해예방tf부장 수소사",
-              "text": "84 한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사... Download 2025.10.31 ~ 2025.11.14 접수마감 1942",
+              "text": "84 한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사... Download 2025.10.31 ~ 2025.11.14 접수마감 1943",
               "hasDate": true,
               "hasSequence": true,
               "hasAction": true,
               "href": "#",
               "onclick": "view(43653); return false;",
               "dataUrl": "",
-              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>84</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(43653); return false;\" title=\"한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사업부장) 및 경력전문가 (국내 /해외 변호사) 선발\" class=\"ellipsis1\">한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2025.10.31 ~ 2025.11.14</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>1942</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>84</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(43653); return false;\" title=\"한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사업부장) 및 경력전문가 (국내 /해외 변호사) 선발\" class=\"ellipsis1\">한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2025.10.31 ~ 2025.11.14</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>1943</td>\r\n\t\t\t\t\t\t\t\t</tr>",
               "accepted": true,
               "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=43653&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
               "adapter": "한국동서발전:board-row",
@@ -1829,7 +2033,7 @@
             "candidateCount": 39,
             "rawTableRows": 0,
             "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 54729,
+            "sourceHtmlLength": 54730,
             "missingRows": 0,
             "extraCandidates": 39
           },
@@ -1978,11 +2182,11 @@
             {
               "org": "한국동서발전",
               "title": "정보공개청구",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-36041",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-36042",
               "listText": "정보공개청구",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-36041"
+              "listIdentity": "row-36042"
             },
             {
               "org": "한국동서발전",
@@ -2092,110 +2296,244 @@
             {
               "org": "한국동서발전",
               "title": "웹접근성 인증마크",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-49509",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-49510",
               "listText": "웹접근성 인증마크 ISO27001(보안) ISO27701(개인정보) ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-49509"
+              "listIdentity": "row-49510"
             },
             {
               "org": "한국동서발전",
               "title": "웹개방성 인증마크",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-49660",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-49661",
               "listText": "웹접근성 인증마크 ISO27001(보안) ISO27701(개인정보) ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-49660"
+              "listIdentity": "row-49661"
             },
             {
               "org": "한국동서발전",
               "title": "ISO27001(보안)",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-49767",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-49768",
               "listText": "웹접근성 인증마크 ISO27001(보안) ISO27701(개인정보) ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-49767"
+              "listIdentity": "row-49768"
             },
             {
               "org": "한국동서발전",
               "title": "ISO27701(개인정보)",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-49899",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-49900",
               "listText": "웹접근성 인증마크 ISO27001(보안) ISO27701(개인정보) ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-49899"
+              "listIdentity": "row-49900"
             },
             {
               "org": "한국동서발전",
               "title": "ISMS-P 인증마크",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-50061",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-50062",
               "listText": "ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-50061"
+              "listIdentity": "row-50062"
             },
             {
               "org": "한국동서발전",
               "title": "070-5000-1000",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-53265",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-53266",
               "listText": "한국동서발전(주) 울산광역시 중구 종가로 395 우)44543&emsp;대표자 : 권명호 사업자등록번호 : 120-86-19199 TEL : 070-5000-1000 (주간), &emsp;FAX : 070-5000-1299 &emsp;당직실 : 070-5000-1098 , 1099 (야간 및 공휴일) COPYRIGHT ⓒ 2022 KOREA EAST-WEST POWER CO.,LTD (EWP). ALL RIGHTS RESERVED. 웹접근성 인증마크 ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-53265"
+              "listIdentity": "row-53266"
             },
             {
               "org": "한국동서발전",
               "title": "070-5000-1098",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-53398",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-53399",
               "listText": "한국동서발전(주) 울산광역시 중구 종가로 395 우)44543&emsp;대표자 : 권명호 사업자등록번호 : 120-86-19199 TEL : 070-5000-1000 (주간), &emsp;FAX : 070-5000-1299 &emsp;당직실 : 070-5000-1098 , 1099 (야간 및 공휴일) COPYRIGHT ⓒ 2022 KOREA EAST-WEST POWER CO.,LTD (EWP). ALL RIGHTS RESERVED. 웹접근성 인증마크 ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-53398"
+              "listIdentity": "row-53399"
             },
             {
               "org": "한국동서발전",
               "title": "웹접근성 인증마크",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-53731",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-53732",
               "listText": "웹접근성 인증마크 ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-53731"
+              "listIdentity": "row-53732"
             },
             {
               "org": "한국동서발전",
               "title": "웹개방성 인증마크",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-53882",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-53883",
               "listText": "웹접근성 인증마크 ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-53882"
+              "listIdentity": "row-53883"
             },
             {
               "org": "한국동서발전",
               "title": "ISMS-P 인증마크",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-54030",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-54031",
               "listText": "ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-54030"
+              "listIdentity": "row-54031"
             },
             {
               "org": "한국동서발전",
               "title": "ISO27001(보안)",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-54199",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-54200",
               "listText": "ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02 --> ISO27001(보안) ISO27701(개인정보)",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-54199"
+              "listIdentity": "row-54200"
             },
             {
               "org": "한국동서발전",
               "title": "ISO27701(개인정보)",
-              "link": "https://www.ewp.co.kr/kor/main#list-row-54330",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-54331",
               "listText": "ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02 --> ISO27001(보안) ISO27701(개인정보)",
               "adapter": "한국동서발전",
               "listOnly": true,
-              "listIdentity": "row-54330"
+              "listIdentity": "row-54331"
+            }
+          ],
+          "rowTrace": []
+        },
+        {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "한국동서발전",
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+          "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+          "accuracyVerification": {
+            "verified": true,
+            "level": "TEMPLATE_ALIO_CARD_EXACT",
+            "listVerificationTemplate": "ALIO_CARD",
+            "templateRecordEvidence": {
+              "verified": true,
+              "template": "ALIO_CARD",
+              "recordCount": 7,
+              "candidateCount": 7,
+              "matchedCount": 7,
+              "unmatchedTitles": [],
+              "recordSamples": [
+                "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
+                "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
+                "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
+                "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
+                "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
+                "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
+                "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감"
+              ],
+              "level": "TEMPLATE_ALIO_CARD_EXACT"
+            },
+            "independentDomEvidence": false,
+            "exactCount": true,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 7,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 7
+          },
+          "counterTrace": {
+            "source": "visible-board-rows",
+            "rawDomRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "reportedVisiblePostCount": 7,
+            "acceptedCandidateCount": 7,
+            "exactAgainstRaw": false,
+            "exactAgainstUniqueTitles": false
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 7
+          },
+          "counts": {
+            "visiblePostCount": 7,
+            "candidateCount": 7,
+            "rawTableRows": 0,
+            "uniqueVisibleTitleCount": 0,
+            "sourceHtmlLength": 53055,
+            "missingRows": 0,
+            "extraCandidates": 7
+          },
+          "selectorCounts": {
+            "table tbody tr": 0,
+            "tr": 0,
+            "li": 122,
+            "article": 0,
+            "[onclick]": 7,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 53
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [],
+          "extractedTitles": [
+            "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
+            "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
+            "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
+            "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
+            "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
+            "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
+            "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감"
+          ],
+          "missingRows": [],
+          "extraCandidates": [
+            {
+              "org": "한국동서발전",
+              "title": "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303191",
+              "listText": "h();\"> 진행상태 진행중 마감 한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감 한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300179",
+              "listText": "청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감 한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299624",
+              "listText": "비정규직 / 2026.05.06 ~ 26.05.21 / 마감 한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298887",
+              "listText": "비정규직 / 2026.04.22 ~ 26.05.06 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298470",
+              "listText": "비정규직 / 2026.04.06 ~ 26.04.21 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감 한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감 한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298299",
+              "listText": "정규직 / 2026.03.25 ~ 26.04.08 / 마감 한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감 한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감 </",
+              "sourceType": "ALIO"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감",
+              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=297317",
+              "listText": "비정규직 / 2026.03.23 ~ 26.04.07 / 마감 한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감 1 저작권정책 &emsp; 이메일무단수집거부 &emsp; 개인정보처리방침",
+              "sourceType": "ALIO"
             }
           ],
           "rowTrace": []
@@ -2215,6 +2553,13 @@
           "diagnosisPath": "data/diagnostics/한국동서발전/list/page-2-root-cause.json",
           "rowsPath": "data/diagnostics/한국동서발전/list/page-2-rows.txt",
           "url": "https://www.ewp.co.kr/kor/main/"
+        },
+        {
+          "org": "한국동서발전",
+          "htmlPath": "data/diagnostics/한국동서발전/list/page-3-raw.html",
+          "diagnosisPath": "data/diagnostics/한국동서발전/list/page-3-root-cause.json",
+          "rowsPath": "data/diagnostics/한국동서발전/list/page-3-rows.txt",
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y"
         }
       ],
       "samples": [
@@ -2289,14 +2634,14 @@
             "matchedCount": 10,
             "unmatchedTitles": [],
             "recordSamples": [
-              "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2917",
-              "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 209",
-              "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 242",
-              "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5974",
-              "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 342",
-              "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 569",
-              "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 315",
-              "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48692"
+              "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2961",
+              "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 211",
+              "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 243",
+              "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5977",
+              "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 343",
+              "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 570",
+              "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 316",
+              "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48702"
             ],
             "level": "TEMPLATE_TABLE_RECORD_EXACT"
           },
@@ -2373,14 +2718,14 @@
             "index": 0,
             "title": "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
             "normalizedTitle": "한국동서발전 주 2026년도 하반기 체험형 인턴 선발",
-            "text": "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2917",
+            "text": "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2961",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "#",
             "onclick": "view(45171); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>93</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(45171); return false;\" title=\"한국동서발전(주) 2026년도 하반기 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 하반기 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.07.29 ~ 2026.08.12</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state02\">접수중</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>2917</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>93</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(45171); return false;\" title=\"한국동서발전(주) 2026년도 하반기 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 하반기 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.07.29 ~ 2026.08.12</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state02\">접수중</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>2961</td>\r\n\t\t\t\t\t\t\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=45171&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
             "adapter": "한국동서발전:board-row",
@@ -2390,14 +2735,14 @@
             "index": 1,
             "title": "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
             "normalizedTitle": "영덕해맞이풍력발전 주 대표이사 모집공고 재공고",
-            "text": "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 209",
+            "text": "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 211",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "#",
             "onclick": "view(44849); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>92</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44849); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.15 ~ 2026.06.19</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>209</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>92</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44849); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.15 ~ 2026.06.19</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>211</td>\r\n\t\t\t\t\t\t\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44849&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
             "adapter": "한국동서발전:board-row",
@@ -2407,14 +2752,14 @@
             "index": 2,
             "title": "영덕해맞이풍력발전(주) 대표이사 모집공고",
             "normalizedTitle": "영덕해맞이풍력발전 주 대표이사 모집공고",
-            "text": "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 242",
+            "text": "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 243",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "#",
             "onclick": "view(44777); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>91</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44777); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.02 ~ 2026.06.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>242</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>91</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44777); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.02 ~ 2026.06.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>243</td>\r\n\t\t\t\t\t\t\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44777&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
             "adapter": "한국동서발전:board-row",
@@ -2424,14 +2769,14 @@
             "index": 3,
             "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
             "normalizedTitle": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안",
-            "text": "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5974",
+            "text": "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5977",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "#",
             "onclick": "view(44635); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>90</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44635); return false;\" title=\"2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안내\" class=\"ellipsis1\">2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.29 ~ 2026.05.05</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>5974</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>90</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44635); return false;\" title=\"2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안내\" class=\"ellipsis1\">2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.29 ~ 2026.05.05</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>5977</td>\r\n\t\t\t\t\t\t\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44635&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
             "adapter": "한국동서발전:board-row",
@@ -2441,14 +2786,14 @@
             "index": 4,
             "title": "한국동서발전(주) 비상임이사 후보자 모집공고",
             "normalizedTitle": "한국동서발전 주 비상임이사 후보자 모집공고",
-            "text": "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 342",
+            "text": "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 343",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "#",
             "onclick": "view(44611); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>89</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44611); return false;\" title=\"한국동서발전(주) 비상임이사 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.28 ~ 2026.05.07</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>342</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>89</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44611); return false;\" title=\"한국동서발전(주) 비상임이사 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.28 ~ 2026.05.07</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>343</td>\r\n\t\t\t\t\t\t\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44611&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
             "adapter": "한국동서발전:board-row",
@@ -2458,14 +2803,14 @@
             "index": 5,
             "title": "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
             "normalizedTitle": "한국동서발전 주 비상임이사 일반 후보자 모집공고",
-            "text": "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 569",
+            "text": "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 570",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "#",
             "onclick": "view(44578); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>88</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44578); return false;\" title=\"한국동서발전(주) 비상임이사(일반) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(일반) 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>569</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>88</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44578); return false;\" title=\"한국동서발전(주) 비상임이사(일반) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(일반) 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>570</td>\r\n\t\t\t\t\t\t\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44578&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
             "adapter": "한국동서발전:board-row",
@@ -2475,14 +2820,14 @@
             "index": 6,
             "title": "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
             "normalizedTitle": "한국동서발전 주 비상임이사 회계 또는 재무전문가 후보자 모집",
-            "text": "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 315",
+            "text": "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 316",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "#",
             "onclick": "view(44576); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>87</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44576); return false;\" title=\"한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>315</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>87</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44576); return false;\" title=\"한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>316</td>\r\n\t\t\t\t\t\t\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44576&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
             "adapter": "한국동서발전:board-row",
@@ -2492,14 +2837,14 @@
             "index": 7,
             "title": "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
             "normalizedTitle": "2026년도 하반기 신입사원 대졸수준 일반 보훈 고졸 및 별",
-            "text": "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48692",
+            "text": "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48702",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "#",
             "onclick": "view(44467); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>86</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44467); return false;\" title=\"2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별정직) 채용공고\" class=\"ellipsis1\">2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.03.25 ~ 2026.04.08</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>48692</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>86</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44467); return false;\" title=\"2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별정직) 채용공고\" class=\"ellipsis1\">2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.03.25 ~ 2026.04.08</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>48702</td>\r\n\t\t\t\t\t\t\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44467&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
             "adapter": "한국동서발전:board-row",
@@ -2509,14 +2854,14 @@
             "index": 8,
             "title": "한국동서발전(주) 2026년도 체험형 인턴 선발",
             "normalizedTitle": "한국동서발전 주 2026년도 체험형 인턴 선발",
-            "text": "85 한국동서발전(주) 2026년도 체험형 인턴 선발 Download 2026.01.28 ~ 2026.02.11 접수마감 16821",
+            "text": "85 한국동서발전(주) 2026년도 체험형 인턴 선발 Download 2026.01.28 ~ 2026.02.11 접수마감 16825",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "#",
             "onclick": "view(44091); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>85</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44091); return false;\" title=\"한국동서발전(주) 2026년도 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.01.28 ~ 2026.02.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>16821</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>85</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44091); return false;\" title=\"한국동서발전(주) 2026년도 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.01.28 ~ 2026.02.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>16825</td>\r\n\t\t\t\t\t\t\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44091&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
             "adapter": "한국동서발전:board-row",
@@ -2526,14 +2871,14 @@
             "index": 9,
             "title": "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...",
             "normalizedTitle": "한국동서발전 주 개방형 계약직위 중대재해예방tf부장 수소사",
-            "text": "84 한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사... Download 2025.10.31 ~ 2025.11.14 접수마감 1942",
+            "text": "84 한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사... Download 2025.10.31 ~ 2025.11.14 접수마감 1943",
             "hasDate": true,
             "hasSequence": true,
             "hasAction": true,
             "href": "#",
             "onclick": "view(43653); return false;",
             "dataUrl": "",
-            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>84</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(43653); return false;\" title=\"한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사업부장) 및 경력전문가 (국내 /해외 변호사) 선발\" class=\"ellipsis1\">한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2025.10.31 ~ 2025.11.14</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>1942</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>84</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(43653); return false;\" title=\"한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사업부장) 및 경력전문가 (국내 /해외 변호사) 선발\" class=\"ellipsis1\">한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2025.10.31 ~ 2025.11.14</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>1943</td>\r\n\t\t\t\t\t\t\t\t</tr>",
             "accepted": true,
             "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=43653&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
             "adapter": "한국동서발전:board-row",
@@ -2553,14 +2898,14 @@
           "matchedCount": 10,
           "unmatchedTitles": [],
           "recordSamples": [
-            "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2917",
-            "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 209",
-            "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 242",
-            "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5974",
-            "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 342",
-            "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 569",
-            "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 315",
-            "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48692"
+            "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 2961",
+            "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 211",
+            "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 243",
+            "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5977",
+            "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 343",
+            "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 570",
+            "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 316",
+            "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48702"
           ],
           "level": "TEMPLATE_TABLE_RECORD_EXACT"
         },

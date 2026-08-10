@@ -69152,5 +69152,1314 @@
     }
   ],
   "schemaVersion": "1.5.0",
-  "reportType": "institution-centered-unified-pipeline-report"
+  "reportType": "institution-centered-unified-pipeline-report",
+  "runMetrics": {
+    "schemaVersion": "1.0.0",
+    "purpose": "Actions 실행정보를 ZIP 자체에 보존해 별도 실행 링크/스크린샷 없이 브리핑 가능하게 함",
+    "repository": "kih0601-bit/Next-job",
+    "workflow": "Update job postings",
+    "job": "collect",
+    "runId": "31345963621",
+    "runNumber": "164",
+    "runAttempt": "1",
+    "runUrl": "https://github.com/kih0601-bit/Next-job/actions/runs/31345963621",
+    "commitSha": "67b4b044e85093570e8eb428af96fa624916f55c",
+    "eventName": "workflow_dispatch",
+    "metricsInitializedAt": "2026-08-10T01:01:13.195Z",
+    "githubRunStartedAt": "2026-08-10T01:01:02Z",
+    "marks": {
+      "probe-start": "2026-08-10T01:01:52.640Z",
+      "probe-end": "2026-08-10T01:05:04.592Z",
+      "collect-start": "2026-08-10T01:05:04.634Z",
+      "collect-end": "2026-08-10T01:10:52.085Z",
+      "unifiedReport-start": "2026-08-10T01:10:52.141Z",
+      "unifiedReport-end": "2026-08-10T01:10:52.303Z",
+      "verification-start": "2026-08-10T01:10:52.348Z",
+      "verification-end": "2026-08-10T01:10:53.056Z"
+    },
+    "durations": {
+      "probe": 191952,
+      "collect": 347451,
+      "unifiedReport": 162,
+      "verification": 708
+    },
+    "finalizedAt": "2026-08-10T01:10:53.374Z",
+    "observedDurationMs": 591374,
+    "note": "observedDurationMs는 GitHub run_started_at부터 metrics finalize까지이며 artifact upload/commit/runner cleanup은 제외될 수 있음. runUrl/runId로 GitHub 총 실행시간 교차검증 가능.",
+    "githubStatusAtFinalize": "in_progress",
+    "githubConclusionAtFinalize": "",
+    "collect": {
+      "schemaVersion": "1.1.0",
+      "startedAt": "2026-08-10T01:05:04.834Z",
+      "finishedAt": "2026-08-10T01:10:50.861Z",
+      "durationMs": 346027,
+      "cacheMaxAgeHours": 20,
+      "identityGraceHours": 3,
+      "terminalCacheMaxAgeDays": 90,
+      "cacheBootstrappedFromPreviousOutputs": false,
+      "bootstrapEntryCount": 2376,
+      "institutions": [
+        {
+          "org": "한국동서발전",
+          "ok": false,
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 0
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 123178,
+          "startedAt": "2026-08-10T01:05:04.835Z",
+          "finishedAt": "2026-08-10T01:07:08.013Z"
+        },
+        {
+          "org": "한국석유공사",
+          "ok": true,
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 0
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 3438,
+          "startedAt": "2026-08-10T01:05:04.862Z",
+          "finishedAt": "2026-08-10T01:05:08.300Z"
+        },
+        {
+          "org": "한국에너지공단",
+          "ok": true,
+          "cacheHits": 3,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 3
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 2657,
+          "startedAt": "2026-08-10T01:07:09.214Z",
+          "finishedAt": "2026-08-10T01:07:11.871Z"
+        },
+        {
+          "org": "한국산업인력공단",
+          "ok": true,
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 0
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 1713,
+          "startedAt": "2026-08-10T01:07:09.216Z",
+          "finishedAt": "2026-08-10T01:07:10.929Z"
+        },
+        {
+          "org": "근로복지공단",
+          "ok": true,
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 0
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 3393,
+          "startedAt": "2026-08-10T01:07:13.072Z",
+          "finishedAt": "2026-08-10T01:07:16.465Z"
+        },
+        {
+          "org": "한국산업안전보건공단",
+          "ok": true,
+          "cacheHits": 76,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 8,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 68
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 15029,
+          "startedAt": "2026-08-10T01:07:13.074Z",
+          "finishedAt": "2026-08-10T01:07:28.103Z"
+        },
+        {
+          "org": "울산항만공사",
+          "ok": true,
+          "cacheHits": 4,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 4,
+            "terminal-identity": 0
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 15311,
+          "startedAt": "2026-08-10T01:07:29.304Z",
+          "finishedAt": "2026-08-10T01:07:44.615Z"
+        },
+        {
+          "org": "한국전력공사",
+          "ok": true,
+          "cacheHits": 77,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 77
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 10524,
+          "startedAt": "2026-08-10T01:07:29.306Z",
+          "finishedAt": "2026-08-10T01:07:39.830Z"
+        },
+        {
+          "org": "한국수력원자력",
+          "ok": true,
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 0
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 1848,
+          "startedAt": "2026-08-10T01:07:45.815Z",
+          "finishedAt": "2026-08-10T01:07:47.663Z"
+        },
+        {
+          "org": "울산도시공사",
+          "ok": true,
+          "cacheHits": 76,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 25,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 51
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 10173,
+          "startedAt": "2026-08-10T01:07:45.817Z",
+          "finishedAt": "2026-08-10T01:07:55.990Z"
+        },
+        {
+          "org": "울산시설공단",
+          "ok": true,
+          "cacheHits": 1,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 1
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 5500,
+          "startedAt": "2026-08-10T01:07:57.192Z",
+          "finishedAt": "2026-08-10T01:08:02.692Z"
+        },
+        {
+          "org": "울산남구도시관리공단",
+          "ok": true,
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 0
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 967,
+          "startedAt": "2026-08-10T01:07:57.193Z",
+          "finishedAt": "2026-08-10T01:07:58.160Z"
+        },
+        {
+          "org": "울산북구시설관리공단",
+          "ok": true,
+          "cacheHits": 2,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 1,
+            "terminal-identity": 1
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 21526,
+          "startedAt": "2026-08-10T01:08:03.893Z",
+          "finishedAt": "2026-08-10T01:08:25.419Z"
+        },
+        {
+          "org": "울주군시설관리공단",
+          "ok": true,
+          "cacheHits": 8,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 8
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 12863,
+          "startedAt": "2026-08-10T01:08:03.894Z",
+          "finishedAt": "2026-08-10T01:08:16.757Z"
+        },
+        {
+          "org": "울산정보산업진흥원",
+          "ok": true,
+          "cacheHits": 59,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 29,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 30
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 36145,
+          "startedAt": "2026-08-10T01:08:26.620Z",
+          "finishedAt": "2026-08-10T01:09:02.765Z"
+        },
+        {
+          "org": "울산테크노파크",
+          "ok": true,
+          "cacheHits": 304,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 93,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 211
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 32169,
+          "startedAt": "2026-08-10T01:08:26.621Z",
+          "finishedAt": "2026-08-10T01:08:58.790Z"
+        },
+        {
+          "org": "울산경제일자리진흥원",
+          "ok": true,
+          "cacheHits": 1,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 1
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 5649,
+          "startedAt": "2026-08-10T01:09:03.965Z",
+          "finishedAt": "2026-08-10T01:09:09.614Z"
+        },
+        {
+          "org": "울산문화관광재단",
+          "ok": true,
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 0
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 61843,
+          "startedAt": "2026-08-10T01:09:03.966Z",
+          "finishedAt": "2026-08-10T01:10:05.809Z"
+        },
+        {
+          "org": "울산복지가족진흥사회서비스원",
+          "ok": false,
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 0
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 43850,
+          "startedAt": "2026-08-10T01:10:07.011Z",
+          "finishedAt": "2026-08-10T01:10:50.861Z"
+        },
+        {
+          "org": "울주문화재단",
+          "ok": true,
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "heavyProcessed": 0,
+          "cacheHitReasons": {
+            "full-fingerprint": 0,
+            "bootstrap-identity": 0,
+            "identity-grace": 0,
+            "terminal-identity": 0
+          },
+          "cacheMissReasons": {
+            "missing-key": 0,
+            "identity-mismatch": 0,
+            "fingerprint-changed": 0,
+            "stale": 0,
+            "other": 0
+          },
+          "cacheMissSamples": {
+            "missing-key": [],
+            "identity-mismatch": [],
+            "fingerprint-changed": [],
+            "stale": [],
+            "other": []
+          },
+          "cacheKeyMigrations": 0,
+          "durationMs": 1871,
+          "startedAt": "2026-08-10T01:10:07.012Z",
+          "finishedAt": "2026-08-10T01:10:08.883Z"
+        }
+      ],
+      "summary": {
+        "cacheHits": 611,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 155,
+          "bootstrap-identity": 0,
+          "identity-grace": 5,
+          "terminal-identity": 451
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        }
+      }
+    },
+    "collectByOrg": [
+      {
+        "org": "한국동서발전",
+        "ok": false,
+        "cacheHits": 0,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 0
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 123178,
+        "startedAt": "2026-08-10T01:05:04.835Z",
+        "finishedAt": "2026-08-10T01:07:08.013Z"
+      },
+      {
+        "org": "한국석유공사",
+        "ok": true,
+        "cacheHits": 0,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 0
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 3438,
+        "startedAt": "2026-08-10T01:05:04.862Z",
+        "finishedAt": "2026-08-10T01:05:08.300Z"
+      },
+      {
+        "org": "한국에너지공단",
+        "ok": true,
+        "cacheHits": 3,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 3
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 2657,
+        "startedAt": "2026-08-10T01:07:09.214Z",
+        "finishedAt": "2026-08-10T01:07:11.871Z"
+      },
+      {
+        "org": "한국산업인력공단",
+        "ok": true,
+        "cacheHits": 0,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 0
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 1713,
+        "startedAt": "2026-08-10T01:07:09.216Z",
+        "finishedAt": "2026-08-10T01:07:10.929Z"
+      },
+      {
+        "org": "근로복지공단",
+        "ok": true,
+        "cacheHits": 0,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 0
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 3393,
+        "startedAt": "2026-08-10T01:07:13.072Z",
+        "finishedAt": "2026-08-10T01:07:16.465Z"
+      },
+      {
+        "org": "한국산업안전보건공단",
+        "ok": true,
+        "cacheHits": 76,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 8,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 68
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 15029,
+        "startedAt": "2026-08-10T01:07:13.074Z",
+        "finishedAt": "2026-08-10T01:07:28.103Z"
+      },
+      {
+        "org": "울산항만공사",
+        "ok": true,
+        "cacheHits": 4,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 4,
+          "terminal-identity": 0
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 15311,
+        "startedAt": "2026-08-10T01:07:29.304Z",
+        "finishedAt": "2026-08-10T01:07:44.615Z"
+      },
+      {
+        "org": "한국전력공사",
+        "ok": true,
+        "cacheHits": 77,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 77
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 10524,
+        "startedAt": "2026-08-10T01:07:29.306Z",
+        "finishedAt": "2026-08-10T01:07:39.830Z"
+      },
+      {
+        "org": "한국수력원자력",
+        "ok": true,
+        "cacheHits": 0,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 0
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 1848,
+        "startedAt": "2026-08-10T01:07:45.815Z",
+        "finishedAt": "2026-08-10T01:07:47.663Z"
+      },
+      {
+        "org": "울산도시공사",
+        "ok": true,
+        "cacheHits": 76,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 25,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 51
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 10173,
+        "startedAt": "2026-08-10T01:07:45.817Z",
+        "finishedAt": "2026-08-10T01:07:55.990Z"
+      },
+      {
+        "org": "울산시설공단",
+        "ok": true,
+        "cacheHits": 1,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 1
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 5500,
+        "startedAt": "2026-08-10T01:07:57.192Z",
+        "finishedAt": "2026-08-10T01:08:02.692Z"
+      },
+      {
+        "org": "울산남구도시관리공단",
+        "ok": true,
+        "cacheHits": 0,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 0
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 967,
+        "startedAt": "2026-08-10T01:07:57.193Z",
+        "finishedAt": "2026-08-10T01:07:58.160Z"
+      },
+      {
+        "org": "울산북구시설관리공단",
+        "ok": true,
+        "cacheHits": 2,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 1,
+          "terminal-identity": 1
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 21526,
+        "startedAt": "2026-08-10T01:08:03.893Z",
+        "finishedAt": "2026-08-10T01:08:25.419Z"
+      },
+      {
+        "org": "울주군시설관리공단",
+        "ok": true,
+        "cacheHits": 8,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 8
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 12863,
+        "startedAt": "2026-08-10T01:08:03.894Z",
+        "finishedAt": "2026-08-10T01:08:16.757Z"
+      },
+      {
+        "org": "울산정보산업진흥원",
+        "ok": true,
+        "cacheHits": 59,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 29,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 30
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 36145,
+        "startedAt": "2026-08-10T01:08:26.620Z",
+        "finishedAt": "2026-08-10T01:09:02.765Z"
+      },
+      {
+        "org": "울산테크노파크",
+        "ok": true,
+        "cacheHits": 304,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 93,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 211
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 32169,
+        "startedAt": "2026-08-10T01:08:26.621Z",
+        "finishedAt": "2026-08-10T01:08:58.790Z"
+      },
+      {
+        "org": "울산경제일자리진흥원",
+        "ok": true,
+        "cacheHits": 1,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 1
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 5649,
+        "startedAt": "2026-08-10T01:09:03.965Z",
+        "finishedAt": "2026-08-10T01:09:09.614Z"
+      },
+      {
+        "org": "울산문화관광재단",
+        "ok": true,
+        "cacheHits": 0,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 0
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 61843,
+        "startedAt": "2026-08-10T01:09:03.966Z",
+        "finishedAt": "2026-08-10T01:10:05.809Z"
+      },
+      {
+        "org": "울산복지가족진흥사회서비스원",
+        "ok": false,
+        "cacheHits": 0,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 0
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 43850,
+        "startedAt": "2026-08-10T01:10:07.011Z",
+        "finishedAt": "2026-08-10T01:10:50.861Z"
+      },
+      {
+        "org": "울주문화재단",
+        "ok": true,
+        "cacheHits": 0,
+        "cacheMisses": 0,
+        "heavyProcessed": 0,
+        "cacheHitReasons": {
+          "full-fingerprint": 0,
+          "bootstrap-identity": 0,
+          "identity-grace": 0,
+          "terminal-identity": 0
+        },
+        "cacheMissReasons": {
+          "missing-key": 0,
+          "identity-mismatch": 0,
+          "fingerprint-changed": 0,
+          "stale": 0,
+          "other": 0
+        },
+        "cacheMissSamples": {
+          "missing-key": [],
+          "identity-mismatch": [],
+          "fingerprint-changed": [],
+          "stale": [],
+          "other": []
+        },
+        "cacheKeyMigrations": 0,
+        "durationMs": 1871,
+        "startedAt": "2026-08-10T01:10:07.012Z",
+        "finishedAt": "2026-08-10T01:10:08.883Z"
+      }
+    ]
+  }
 }

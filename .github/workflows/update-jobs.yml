@@ -71,6 +71,7 @@ jobs:
           node scripts/test-v117-stage8-live-closure-wiring.mjs
           node scripts/test-v118-stage8-cache-engine-invalidation.mjs
           node scripts/test-v119-current-year-regression-scope.mjs
+          node scripts/test-v120-stage9-foundation.mjs
 
       - name: Preserve previous pipeline report
         shell: bash
@@ -91,6 +92,9 @@ jobs:
 
       - name: Validate Stage 8 source-grounded benchmark
         run: node scripts/stage8-benchmark.mjs
+
+      - name: Build Stage 9 filter foundation report
+        run: node scripts/stage9-filter-run.mjs
 
       - name: Build unified institution report
         run: |
@@ -162,6 +166,9 @@ jobs:
             data/stage8-benchmark-candidates.json
             data/stage8-benchmark-ground-truth.json
             data/stage8-benchmark-result.json
+            data/stage9-user-profile.json
+            data/stage9-search-filter-config.json
+            data/stage9-filter-report.json
             data/qa-report.json
             data/diagnostics/
           retention-days: 14

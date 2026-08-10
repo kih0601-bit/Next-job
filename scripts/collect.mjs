@@ -9,7 +9,9 @@ import { inspectListingPage } from './lib/list-pipeline.mjs';
 import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } from './lib/access-diagnostics.mjs';
 import { buildAccessPlan, getCollectorTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { analyzeVacancies } from './lib/classifier.mjs';
-import { buildStage8Posting, buildStage8Report, STAGE8_VERSION } from './lib/stage8-eligibility-structure.mjs';
+import { buildStage8Posting, buildStage8Report, STAGE8_VERSION, STAGE8_SCHEMA_VERSION } from './lib/stage8-eligibility-structure.mjs';
+import { VACANCY_SPLITTER_VERSION } from './lib/vacancy-splitter.mjs';
+import { REQUIREMENT_SCHEMA_VERSION } from './lib/requirement-extractor.mjs';
 import { auditStage8Quality } from './lib/stage8-quality-audit.mjs';
 import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
 import { analyzeAttachments, getDocumentToolDiagnostics } from './lib/document-analyzer.mjs';
@@ -30,6 +32,13 @@ const execFileAsync = promisify(execFile);
 
 const COLLECTION_CACHE_PATH = 'data/collection-cache.json';
 const STAGE8_CACHE_SCHEMA_VERSION = '1.1.0-stage8-input-snapshot';
+const STAGE8_CACHE_ENGINE_SIGNATURE = [
+  STAGE8_CACHE_SCHEMA_VERSION,
+  STAGE8_SCHEMA_VERSION,
+  STAGE8_VERSION,
+  VACANCY_SPLITTER_VERSION,
+  REQUIREMENT_SCHEMA_VERSION
+].join('|');
 const COLLECT_METRICS_PATH = 'data/collect-metrics.json';
 const CACHE_MAX_AGE_MS = 20 * 60 * 60 * 1000;
 const CACHE_IDENTITY_GRACE_MS = 3 * 60 * 60 * 1000;
@@ -228,6 +237,7 @@ function reusableCachedOutcome(candidate, cacheEntry, nowMs = Date.now()) {
   // Non-terminal legacy entries still require the current Stage-8 schema.
   const terminal = terminalCacheOutcome(cacheEntry.outcome);
   const hasCurrentStage8 = cacheEntry.outcome?.stage8CacheSchemaVersion === STAGE8_CACHE_SCHEMA_VERSION
+    && cacheEntry.outcome?.stage8CacheEngineSignature === STAGE8_CACHE_ENGINE_SIGNATURE
     && Boolean(cacheEntry.outcome?.stage8Posting)
     && Boolean(cacheEntry.outcome?.stage8Input);
   if (!terminal && !hasCurrentStage8) return null;
@@ -249,7 +259,8 @@ function cacheableOutcome(outcome = {}) {
     vacancyStats: outcome.vacancyStats || { detected: 0, accepted: 0, rejected: 0 },
     stage8Posting: outcome.stage8Posting || null,
     stage8Input: outcome.stage8Input || null,
-    stage8CacheSchemaVersion: outcome.stage8Posting && outcome.stage8Input ? STAGE8_CACHE_SCHEMA_VERSION : ''
+    stage8CacheSchemaVersion: outcome.stage8Posting && outcome.stage8Input ? STAGE8_CACHE_SCHEMA_VERSION : '',
+    stage8CacheEngineSignature: outcome.stage8Posting && outcome.stage8Input ? STAGE8_CACHE_ENGINE_SIGNATURE : ''
   };
 }
 
@@ -262,6 +273,7 @@ function classifyCacheMiss(candidate = {}, cacheEntry = {}, nowMs = Date.now()) 
   // Stage-8 cache schema. They are not part of the active Stage-8 report by design.
   if (!terminalCacheOutcome(cacheEntry.outcome)
       && (cacheEntry.outcome?.stage8CacheSchemaVersion !== STAGE8_CACHE_SCHEMA_VERSION
+        || cacheEntry.outcome?.stage8CacheEngineSignature !== STAGE8_CACHE_ENGINE_SIGNATURE
         || !cacheEntry.outcome?.stage8Posting
         || !cacheEntry.outcome?.stage8Input)) return 'stage8-schema-missing';
   const age = nowMs - processedAt;

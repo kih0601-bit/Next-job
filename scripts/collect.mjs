@@ -221,9 +221,16 @@ function reusableCachedOutcome(candidate, cacheEntry, nowMs = Date.now()) {
   else if (age <= CACHE_IDENTITY_GRACE_MS) reuseReason = 'identity-grace';
   if (!reuseReason) return null;
 
-  // v108 and earlier cache entries do not contain objective Stage-8 structure.
-  // Reprocess once instead of treating a legacy terminal rejection as a valid Stage-8 hit.
-  if (cacheEntry.outcome?.stage8CacheSchemaVersion !== STAGE8_CACHE_SCHEMA_VERSION || !cacheEntry.outcome?.stage8Posting) return null;
+  // Terminal notices (expired/closed) are intentionally outside the active Stage-8 output.
+  // Older cache schemas therefore do not need expensive detail/document reprocessing just
+  // to manufacture Stage-8 data that will be discarded again. Reuse a terminal outcome
+  // only when the durable identity matched above and the terminal TTL is still valid.
+  // Non-terminal legacy entries still require the current Stage-8 schema.
+  const terminal = terminalCacheOutcome(cacheEntry.outcome);
+  const hasCurrentStage8 = cacheEntry.outcome?.stage8CacheSchemaVersion === STAGE8_CACHE_SCHEMA_VERSION
+    && Boolean(cacheEntry.outcome?.stage8Posting)
+    && Boolean(cacheEntry.outcome?.stage8Input);
+  if (!terminal && !hasCurrentStage8) return null;
   const outcome = structuredClone(cacheEntry.outcome);
   if (Array.isArray(outcome.jobs)) outcome.jobs = outcome.jobs.filter(job => !isExpired(job.deadline));
   outcome.pipeline = { detailAttempted: 0, detailValidated: 0, attachmentsDiscovered: 0, attachmentDownloadsAttempted: 0, attachmentsDownloaded: 0, documentsAttempted: 0, documentsParsed: 0 };
@@ -251,7 +258,12 @@ function classifyCacheMiss(candidate = {}, cacheEntry = {}, nowMs = Date.now()) 
   if (cacheEntry.identityFingerprint !== candidateIdentityFingerprint(candidate)) return 'identity-mismatch';
   const processedAt = new Date(cacheEntry.processedAt || 0).getTime();
   if (!Number.isFinite(processedAt) || processedAt <= 0) return 'processed-at-invalid';
-  if (cacheEntry.outcome?.stage8CacheSchemaVersion !== STAGE8_CACHE_SCHEMA_VERSION || !cacheEntry.outcome?.stage8Posting || !cacheEntry.outcome?.stage8Input) return 'stage8-schema-missing';
+  // Historical terminal results are valid reusable negatives even if they predate the
+  // Stage-8 cache schema. They are not part of the active Stage-8 report by design.
+  if (!terminalCacheOutcome(cacheEntry.outcome)
+      && (cacheEntry.outcome?.stage8CacheSchemaVersion !== STAGE8_CACHE_SCHEMA_VERSION
+        || !cacheEntry.outcome?.stage8Posting
+        || !cacheEntry.outcome?.stage8Input)) return 'stage8-schema-missing';
   const age = nowMs - processedAt;
   if (cacheEntry.fingerprint && cacheEntry.fingerprint !== candidateFingerprint(candidate)) return 'fingerprint-changed';
   if (age > CACHE_MAX_AGE_MS && !terminalCacheOutcome(cacheEntry.outcome)) return 'stale';

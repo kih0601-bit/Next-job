@@ -1,162 +1,121 @@
 {
-  "generatedAt": "2026-08-10T00:22:20.442Z",
+  "generatedAt": "2026-08-10T01:10:52.782Z",
   "mode": "warning",
   "passed": true,
-  "regressionCount": 1,
+  "regressionCount": 2,
   "actionableRegressionCount": 0,
-  "transientWatchCount": 1,
+  "transientWatchCount": 2,
   "regressions": [
     {
-      "org": "울산남구도시관리공단",
+      "org": "울산복지가족진흥사회서비스원",
       "primaryCause": {
-        "stage": "list",
+        "stage": "http",
         "status": "failed",
-        "code": "LIST_COUNTER_FAILED",
-        "reason": "게시글 후보 신호는 있으나 화면 게시글 행 수를 판정하지 못함",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
         "evidence": [
           {
-            "url": "https://recruit.incruit.com/uncmc/job/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 1,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "recordVerification": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
-              "candidateCount": 0,
-              "matchedCount": 0,
-              "unmatchedTitles": [],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
-            },
-            "countExactMatch": false,
-            "templateExactMatch": false,
-            "exactMatchBasis": "none",
-            "verifiedEmpty": true,
-            "emptyMarker": "등록된 정보가 없습니다",
-            "countSource": "unavailable",
-            "countTemplate": ""
+            "url": "https://wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
           },
           {
-            "url": "https://recruit.incruit.com/uncmc/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 6,
-            "titleMatches": 1,
-            "noUrl": 0,
-            "unsafeUrl": 1,
-            "accepted": 1,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 1,
-            "titleSamples": [
-              "incruitworks@incruit.com"
-            ],
-            "unsafeSamples": [
-              {
-                "title": "incruitworks@incruit.com",
-                "reason": "detail-url-pending",
-                "identity": "row-8747",
-                "row": "<div class=\"inner-box bg-blue\">\r\n\t\t\t\t\t\t<dl class=\"notice-list\">\r\n\t\t\t\t\t\t\t<dt><span>점검 시간</span></dt>\r\n\t\t\t\t\t\t\t<dd>2026년 08월 22일(토) 00:00 ~ 01:00 (1시간)</dd>\r\n\t\t\t\t\t\t\t<dt><span>점검 내용</span></dt>\r\n\t\t\t\t\t\t\t<dd>IT 인프라의 안정성 및 보안 향상을 위한 정기점검</dd>\r\n\t\t\t\t\t\t</dl>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<p class=\"sub-txt\">※ 점검 완료 시간은 진행에 따라 조정될 수도 있습니다.</p>\r\n\t\t\t\t\t<p class=\"mgt32 sub-txt gray-txt\">기타 문의사항은 인크루트 담당자 또는<br><a href=\"mailto:incruitworks@incruit.com\">incruitworks@incruit.com</a>으로 연락 부탁드립니다.<br>서비스 이용에 불편을 드리게 되는 점 양해 부탁드리며,<br>더 나은 서비스로 보답드리도록 노력하겠습니다. 감사합니다.</p>\r\n\t\t\t\t</div>"
-              }
-            ],
-            "actionSamples": [],
-            "candidateUrlSamples": [
-              {
-                "title": "incruitworks@incruit.com",
-                "url": "mailto:incruitworks@incruit.com",
-                "allowed": false
-              }
-            ],
-            "candidateCount": 1,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "recordVerification": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
-              "candidateCount": 1,
-              "matchedCount": 0,
-              "unmatchedTitles": [
-                "incruitworks@incruit.com"
-              ],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
-            },
-            "countExactMatch": false,
-            "templateExactMatch": false,
-            "exactMatchBasis": "none",
-            "verifiedEmpty": false,
-            "emptyMarker": "",
-            "countSource": "unavailable",
-            "countTemplate": ""
+            "url": "https://uwfdi.re.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to uwfdi.re.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
           },
           {
-            "url": "https://uncmc.incruit.com/",
-            "visiblePostCount": null,
-            "rowMode": false,
-            "anchors": 0,
-            "titleMatches": 0,
-            "noUrl": 0,
-            "unsafeUrl": 0,
-            "accepted": 0,
-            "rowFallbackAccepted": 0,
-            "clickableBlocksScanned": 0,
-            "clickableBlocksAccepted": 0,
-            "listOnlyAccepted": 0,
-            "titleSamples": [],
-            "unsafeSamples": [],
-            "actionSamples": [],
-            "candidateUrlSamples": [],
-            "candidateCount": 0,
-            "exactMatch": false,
-            "missingCount": null,
-            "extraCount": null,
-            "recordVerification": {
-              "verified": false,
-              "template": "TABLE_RECORD",
-              "recordCount": 0,
-              "candidateCount": 0,
-              "matchedCount": 0,
-              "unmatchedTitles": [],
-              "recordSamples": [],
-              "level": "TEMPLATE_RECORD_MISMATCH"
-            },
-            "countExactMatch": false,
-            "templateExactMatch": false,
-            "exactMatchBasis": "none",
-            "verifiedEmpty": false,
-            "emptyMarker": "",
-            "countSource": "unavailable",
-            "countTemplate": ""
+            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
+            "ok": false,
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
           }
         ],
-        "repairTarget": "scripts/collectors/institutions/울산남구도시관리공단.mjs",
-        "recommendedAction": "기관 게시판의 실제 글 행 선택자를 지정해 화면 글 수 계산 수정"
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
         "access": {
           "from": true,
-          "to": true,
-          "change": "same"
+          "to": false,
+          "change": "regressed"
+        },
+        "list": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "detail": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true,
+      "regressionClass": "transient-watch",
+      "transientWatch": true,
+      "consecutiveFailureCount": 1,
+      "watchPolicy": "최근 정상 Evidence가 있는 동일 네트워크성 실패는 3회 연속까지 관찰; 4회차 또는 실패 양상 변경 시 원인분석 대상으로 승격"
+    },
+    {
+      "org": "한국동서발전",
+      "primaryCause": {
+        "stage": "http",
+        "status": "failed",
+        "code": "HTTP_FAILED",
+        "reason": "모든 후보 URL HTTP 접속 실패",
+        "evidence": [
+          {
+            "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+            "ok": false,
+            "error": "HTTP 502",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://www.ewp.co.kr/",
+            "ok": false,
+            "error": "HTTP 502",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          },
+          {
+            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+            "ok": false,
+            "error": "fetch failed",
+            "accessTemplate": "DIRECT_BOARD",
+            "requestProfile": "browser-default"
+          }
+        ],
+        "repairTarget": "scripts/collectors/institutions/한국동서발전.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
         },
         "list": {
           "from": true,

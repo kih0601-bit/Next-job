@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-10T01:10:52.782Z",
+  "generatedAt": "2026-08-10T03:00:42.053Z",
   "mode": "warning",
-  "passed": true,
-  "regressionCount": 2,
-  "actionableRegressionCount": 0,
+  "passed": false,
+  "regressionCount": 7,
+  "actionableRegressionCount": 5,
   "transientWatchCount": 2,
   "regressions": [
     {
@@ -17,7 +17,7 @@
           {
             "url": "https://wfps.or.kr/webuser/employment/list.html",
             "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
+            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 5001 ms: Timeout was reached)",
             "accessTemplate": "DIRECT_BOARD",
             "requestProfile": "browser-default"
           },
@@ -75,7 +75,7 @@
       "regressed": true,
       "regressionClass": "transient-watch",
       "transientWatch": true,
-      "consecutiveFailureCount": 1,
+      "consecutiveFailureCount": 2,
       "watchPolicy": "최근 정상 Evidence가 있는 동일 네트워크성 실패는 3회 연속까지 관찰; 4회차 또는 실패 양상 변경 시 원인분석 대상으로 승격"
     },
     {
@@ -147,8 +147,258 @@
       "regressed": true,
       "regressionClass": "transient-watch",
       "transientWatch": true,
-      "consecutiveFailureCount": 1,
+      "consecutiveFailureCount": 2,
       "watchPolicy": "최근 정상 Evidence가 있는 동일 네트워크성 실패는 3회 연속까지 관찰; 4회차 또는 실패 양상 변경 시 원인분석 대상으로 승격"
+    },
+    {
+      "org": "울산도시공사",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산도시공사.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true,
+      "regressionClass": "actionable",
+      "transientWatch": false,
+      "consecutiveFailureCount": 0,
+      "watchPolicy": ""
+    },
+    {
+      "org": "울산정보산업진흥원",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true,
+      "regressionClass": "actionable",
+      "transientWatch": false,
+      "consecutiveFailureCount": 0,
+      "watchPolicy": ""
+    },
+    {
+      "org": "울산테크노파크",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true,
+      "regressionClass": "actionable",
+      "transientWatch": false,
+      "consecutiveFailureCount": 0,
+      "watchPolicy": ""
+    },
+    {
+      "org": "울주군시설관리공단",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true,
+      "regressionClass": "actionable",
+      "transientWatch": false,
+      "consecutiveFailureCount": 0,
+      "watchPolicy": ""
+    },
+    {
+      "org": "한국산업안전보건공단",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/한국산업안전보건공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "list": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "detail": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDiscovery": {
+          "from": true,
+          "to": true,
+          "change": "same"
+        },
+        "attachmentDownload": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        },
+        "documentAnalysis": {
+          "from": true,
+          "to": false,
+          "change": "regressed"
+        }
+      },
+      "improved": false,
+      "regressed": true,
+      "regressionClass": "actionable",
+      "transientWatch": false,
+      "consecutiveFailureCount": 0,
+      "watchPolicy": ""
     }
   ]
 }

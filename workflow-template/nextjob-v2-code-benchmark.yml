@@ -23,9 +23,10 @@ jobs:
       - name: Capture 100 real API cases and code predictions
         run: node v2-prototype/src/run-code-benchmark.mjs
       - name: Upload code benchmark artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: nextjob-v2-code-benchmark-100
           path: v2-prototype/output/code-benchmark/
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 14

@@ -61,6 +61,7 @@ jobs:
           node scripts/test-v90-pagination.mjs
           node scripts/test-v87-governance.mjs
           node scripts/test-v92-safety-and-workflow.mjs
+          node scripts/test-v111-stage8-diagnostic-gate.mjs
 
       - name: Preserve previous pipeline report
         shell: bash
@@ -140,6 +141,9 @@ jobs:
             data/collect-metrics.json
             data/collection-cache.json
             data/requirement-report.json
+            data/stage8-eligibility-report.json
+            data/stage8-quality-report.json
+            data/qa-report.json
             data/diagnostics/
           retention-days: 14
 

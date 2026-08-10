@@ -8,7 +8,7 @@ const regressions = (diff.changes || []).filter(x => x.regressed);
 let currentReport={sources:[]}; try { currentReport=JSON.parse(await fs.readFile('data/pipeline-report.json','utf8')); } catch {}
 
 function isTransientNetworkRegression(row = {}) {
-  const cause = row.primaryCause || {};
+  const cause = row.regressionCause || row.primaryCause || {};
   const text = `${cause.stage || ''} ${cause.code || ''} ${cause.reason || ''} ${JSON.stringify(cause.evidence || [])}`.toLowerCase();
   return /(?:http|access|connect|network|timeout|timed out|econnreset|econnrefused|dns|socket)/i.test(text)
     && !/(?:parser|parse|selector|document|attachment|list mismatch|count mismatch)/i.test(text);
@@ -34,6 +34,7 @@ const classified = regressions.map(row => {
   const transientWatch = transientCandidate && consecutiveFailureCount <= 3;
   return {
     ...row,
+    effectiveCause: row.regressionCause || row.primaryCause || null,
     regressionClass: transientWatch ? 'transient-watch' : 'actionable',
     transientWatch,
     consecutiveFailureCount: transientCandidate ? consecutiveFailureCount : 0,

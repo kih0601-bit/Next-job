@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 
 const MAX_FILE_BYTES = 18 * 1024 * 1024;
 const MAX_TEXT = 90000;
-const ANALYZER_VERSION = '2.7-hwp-render-and-archive-scope';
+const ANALYZER_VERSION = '2.8-legacy-office-pdf-fallback';
 
 function run(command, args, { timeoutMs = 35000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -505,18 +505,37 @@ async function extractImage(file) {
 
 async function extractLegacyOffice(file, type, workDir) {
   if (type === 'doc' && await commandExists('antiword')) {
-    return { text: normalizeText((await run('antiword', [file])).stdout), method: 'antiword' };
+    try {
+      const text=normalizeText((await run('antiword', [file])).stdout);
+      if(text.length>=20) return { text, method: 'antiword' };
+    } catch {}
   }
   if (!(await commandExists('libreoffice'))) throw new Error('libreoffice unavailable');
-  await run('libreoffice', ['--headless', '--convert-to', 'txt:Text', '--outdir', workDir, file], { timeoutMs: 75000 });
-  const expected = path.join(workDir, `${path.basename(file, path.extname(file))}.txt`);
-  let converted = expected;
-  try { await fs.access(converted); } catch {
-    const txtFiles=(await fs.readdir(workDir)).filter(name=>/\.txt$/i.test(name));
-    if (!txtFiles.length) throw new Error('libreoffice conversion produced no txt output');
-    converted=path.join(workDir,txtFiles[0]);
+  let txtError='';
+  try {
+    await run('libreoffice', ['--headless', '--convert-to', 'txt:Text', '--outdir', workDir, file], { timeoutMs: 75000 });
+    const expected = path.join(workDir, `${path.basename(file, path.extname(file))}.txt`);
+    let converted = expected;
+    try { await fs.access(converted); } catch {
+      const txtFiles=(await fs.readdir(workDir)).filter(name=>/\.txt$/i.test(name));
+      if (!txtFiles.length) throw new Error('libreoffice conversion produced no txt output');
+      converted=path.join(workDir,txtFiles[0]);
+    }
+    const text=normalizeText(await fs.readFile(converted, 'utf8'));
+    if(text.length>=20) return { text, method: 'libreoffice-txt' };
+    txtError='libreoffice txt output too short';
+  } catch(error) { txtError=error.message; }
+  try {
+    await run('libreoffice', ['--headless', '--convert-to', 'pdf', '--outdir', workDir, file], { timeoutMs: 90000 });
+    const pdfFiles=(await fs.readdir(workDir)).filter(name=>/\.pdf$/i.test(name));
+    if(pdfFiles.length){
+      const rendered=await extractPdf(path.join(workDir,pdfFiles[0]));
+      if(rendered.text.length>=20) return {text:rendered.text,method:`libreoffice-${type}-pdf-${rendered.method}`};
+    }
+  } catch(error) {
+    throw new Error(`legacy office analysis failed: txt=${txtError||'unknown'}; pdf=${error.message}`);
   }
-  return { text: normalizeText(await fs.readFile(converted, 'utf8')), method: 'libreoffice' };
+  throw new Error(`legacy office analysis failed: txt=${txtError||'no txt'}; pdf=no output`);
 }
 
 function attachmentType(attachment = {}) {

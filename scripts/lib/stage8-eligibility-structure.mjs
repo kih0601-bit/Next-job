@@ -215,7 +215,8 @@ export function buildStage8Report(postings=[], generatedAt=new Date().toISOStrin
   const partial=items.filter(p=>p.analysisStatus==='partial').length;
   const failed=items.filter(p=>p.analysisStatus==='failed').length;
   const stage8Gate={
-    decision:items.length>0 && failed===0 && partial===0 ? 'close-stage-8' : 'keep-stage-8-open',
+    decision:'keep-stage-8-open',
+    preQualityEligible:items.length>0 && failed===0 && partial===0,
     postingCount:items.length,
     recruitmentUnitCount:unitCount,
     completePostings:complete,
@@ -224,7 +225,7 @@ export function buildStage8Report(postings=[], generatedAt=new Date().toISOStrin
     completionRate:items.length ? complete/items.length : 0,
     blockers:items.filter(p=>p.analysisStatus==='failed').map(p=>({org:p.posting.org,title:p.posting.title,reasons:p.completion.fatal})),
     watch:items.filter(p=>p.analysisStatus==='partial').map(p=>({org:p.posting.org,title:p.posting.title,reasons:p.completion.watch})),
-    rule:'every current target posting has recruitment-unit support conditions derived from all available readable sources; analysis failure is distinct from unknown/not-specified requirements'
+    rule:'source-completeness gate only; final Stage 8 closure additionally requires structural QA and original-source benchmark accuracy validation'
   };
   return {
     stage:8,

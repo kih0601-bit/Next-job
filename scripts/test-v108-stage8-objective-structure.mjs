@@ -57,7 +57,8 @@ assert(req.location.evidenceDetailed.every(x=>x.source==='detail'));
 const report=buildStage8Report([posting]);
 assert.equal(report.summary.postingCount,1);
 assert.equal(report.summary.recruitmentUnitCount,3);
-assert.equal(report.stage8Gate.decision,'close-stage-8');
+assert.equal(report.stage8Gate.decision,'keep-stage-8-open');
+assert.equal(report.stage8Gate.preQualityEligible,true);
 
 const partial=buildStage8Posting({
  org:'테스트기관',title:'상세 실패 공고',link:'https://example.com/2',

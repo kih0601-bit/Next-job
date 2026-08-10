@@ -332,3 +332,12 @@
 - Added hard `STAGE8_SILENT_FAILURE` guard when objective candidates exist but zero structured postings are emitted. Empty success reports can no longer hide the integration defect.
 - Goal decision: do not reopen Stage 7; use the next Actions run to force a decisive Stage-8 data result.
 - Regression maintenance: v105/v109 tests were updated from historical literal implementation strings to the strengthened v110 provenance/cache contract. Full local suite now passes.\n
+
+## v111 — Stage 8 diagnostic gate + known document resilience fixes
+- Stage 8 전용 structural QA와 sample evidence를 추가.
+- Stage 8 종료 Gate를 원문 Benchmark 검증 전 자동 종료 불가로 강화.
+- Regression의 실제 하락 stage를 별도 `regressionCause`로 기록해 `PIPELINE_SAMPLE_OK` 도돌이표 방지.
+- Stage 8 Cache hit/miss 재사용 상태를 품질 리포트에 포함.
+- Legacy DOC/XLS LibreOffice TXT 무출력 시 PDF render → PDF text/OCR fallback 추가.
+- Actions artifact에 stage8-eligibility, stage8-quality, qa-report를 직접 포함.
+- 구조화 알고리즘 자체는 다음 진단 Evidence를 보존하기 위해 이번 패치에서 변경하지 않음.

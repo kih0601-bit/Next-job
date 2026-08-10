@@ -10,6 +10,7 @@ import { inspectRecruitPage, chooseBestAccessPage, summarizeAccessAttempts } fro
 import { buildAccessPlan, getCollectorTransportChain, accessTemplateSummary } from './lib/access-templates.mjs';
 import { analyzeVacancies } from './lib/classifier.mjs';
 import { buildStage8Posting, buildStage8Report, STAGE8_VERSION } from './lib/stage8-eligibility-structure.mjs';
+import { auditStage8Quality } from './lib/stage8-quality-audit.mjs';
 import { scoreJobQuality, QUALITY_ENGINE_VERSION } from './lib/quality-engine.mjs';
 import { analyzeAttachments, getDocumentToolDiagnostics } from './lib/document-analyzer.mjs';
 import { validateJob, runCollectionQA, VALIDATOR_VERSION } from './lib/validator.mjs';
@@ -1358,9 +1359,24 @@ stage8Report.inputDiagnostics = {
     candidates:Number(source.stage8CandidateCount||0),
     derived:Number(source.stage8DerivedCount||0),
     cacheHits:Number(source.incremental?.cacheHits||0),
-    cacheMisses:Number(source.incremental?.cacheMisses||0)
+    cacheMisses:Number(source.incremental?.cacheMisses||0),
+    heavyProcessed:Number(source.incremental?.heavyProcessed||0)
   }))
 };
+const stage8QualityAudit = auditStage8Quality(stage8Report,{inputDiagnostics:stage8Report.inputDiagnostics});
+stage8Report.qualityAudit = stage8QualityAudit;
+stage8Report.stage8Gate.preQualityDecision = stage8Report.stage8Gate.decision;
+stage8Report.stage8Gate.accuracyValidationRequired = true;
+stage8Report.stage8Gate.qualityAuditStatus = stage8QualityAudit.status;
+stage8Report.stage8Gate.benchmarkStatus = stage8QualityAudit.benchmark.status;
+stage8Report.stage8Gate.decision = 'keep-stage-8-open';
+stage8Report.stage8Gate.closureBlockers = [
+  ...(stage8Report.stage8Gate.blockers||[]).length ? ['failed-postings'] : [],
+  ...(stage8Report.stage8Gate.watch||[]).length ? ['partial-postings'] : [],
+  ...stage8QualityAudit.structuralBlockers,
+  'benchmark-accuracy-validation-not-established'
+];
+stage8Report.stage8Gate.rule = 'Stage 8 closes only after source completeness + structural QA + original-source benchmark accuracy validation. partial=0/failed=0 alone is insufficient.';
 if (stage8CandidateCount > 0 && stage8Postings.length === 0) {
   throw new Error(`STAGE8_SILENT_FAILURE: ${stage8CandidateCount} objective candidates produced 0 structured postings`);
 }
@@ -1387,7 +1403,8 @@ await Promise.all([
   fs.writeFile(COLLECT_METRICS_PATH, `${JSON.stringify(collectMetrics, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/requirement-report.json', `${JSON.stringify(requirementReport, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/stage8-eligibility-report.json', `${JSON.stringify(stage8Report, null, 2)}\n`, 'utf8'),
-  fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, ...qa }, null, 2)}\n`, 'utf8'),
+  fs.writeFile('data/stage8-quality-report.json', `${JSON.stringify(stage8QualityAudit, null, 2)}\n`, 'utf8'),
+  fs.writeFile('data/qa-report.json', `${JSON.stringify({ version: payload.version, updatedAt: nowIso, stage8:{checked:stage8QualityAudit.counts.units,status:stage8QualityAudit.status,closureEligible:stage8QualityAudit.closureEligible}, ...qa }, null, 2)}\n`, 'utf8'),
   fs.writeFile('data/debug-report.json', `${JSON.stringify(debugPayload, null, 2)}\n`, 'utf8')
 ]);
 console.log(payload.stats);

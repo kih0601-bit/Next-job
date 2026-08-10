@@ -441,3 +441,16 @@
 - Job taxonomy: unit name > local evidence > title fallback priority; generic shared titles can no longer steal the category from a specific vacancy. Added explicit general-track mapping without adding overlapping top-level categories.
 - 9B facets: normalize explicit region/employment wording (e.g. 울산광역시→울산, 체험형/채용형/청년인턴→인턴, 위촉직→계약직) but never guess an unstated employment type.
 - Verification: added `test-v121-stage9-accuracy-fixes.mjs`; workflow/template stay synchronized.
+
+## v122 — Stage 9 known-zero profile + safe region fallback
+- 목적: v121 Live에서 Review가 사용자 Profile의 unknown 때문에 과도하게 남는 문제를 줄이고, 9B 지역 미확정 값을 기관 소재지로 보완하되 전국/다지역 기관의 실제 근무지를 오판하지 않도록 한다.
+- 실제 처리:
+  - Stage 9 테스트/현재 사용자 Profile의 `experienceKnown=true, experienceYears=0`, `licensesKnown=true, licenses=[]`를 명시했다.
+  - 지역 판정 우선순위를 `Stage 8 구조화 근무지 -> 근무지 라벨이 붙은 원문 Evidence -> 허용된 기관 소재지 fallback -> unknown`으로 고정했다.
+  - 기관 소재지 fallback은 울산 지방기관, 울산본부/새울본부처럼 단일 지역성이 명확한 기관만 허용했다. 한국동서발전·한국석유공사·한국에너지공단·근로복지공단·한국산업안전보건공단 등 전국/다지역 기관은 본사 소재지로 자동 추정하지 않는다.
+  - 지역값에 `posting-explicit / organization-inferred / unknown` Provenance를 저장한다.
+  - 주민등록/최종학교 소재지 같은 지원자 지역요건의 `울산` 표기를 실제 근무지역으로 오인하지 않도록 전체 문서 자유검색을 제거하고 근무지 라벨 Evidence만 사용한다.
+  - 고용형태도 전체 문서의 무관한 `계약` 표현에 오염되지 않도록 Stage 8 구조값 + 공고/모집단위 명칭만으로 보수적으로 정규화한다.
+- 로컬 결과(기준 snapshot): 506 units -> eligible 368 / ineligible 120 / review 18 / spec-up possible 1. 2026 힌트 기준 review는 17 -> 3으로 감소했으며 남은 3건은 KOSHA 예비공고의 경력직/지역인재/장애 모집단위처럼 Stage 8에 실제 필수조건이 구조화되지 않아 안전하게 Review로 유지되는 사례다.
+- 9B 원문/근거 대조 결과: 전국기관(KOSHA) 예비공고의 지역 미확정은 본사 소재지 추정 금지로 유지하는 것이 맞고, 울산 단일지역 기관의 미기재 지역은 `organization-inferred`로 보완한다. 추정값은 확정값과 동일 취급하지 않는다.
+- 유지: 9A required-only, preferred 추천신호, 9B 확장 가능한 필터 registry, 연봉 display-only 정책.

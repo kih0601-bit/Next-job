@@ -13,7 +13,7 @@
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "3개 후보 URL HTTP 응답 성공",
+      "reason": "4개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
@@ -173,8 +173,51 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "잡알리오",
+            "orgMatched": true,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "institutionRule": false,
+            "strictInstitutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 1846,
+            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
           "accessTemplate": "DEDICATED_RECRUIT_SITE",
           "requestProfile": "browser-default"
         }
@@ -275,7 +318,7 @@
       "evidence": [
         {
           "title": "2026년도 NDIS데이터관리원 채용",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=C&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -289,7 +332,7 @@
         },
         {
           "title": "2026년도 제2차 전문직원 채용",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=D&employSeq=2",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -303,7 +346,7 @@
         },
         {
           "title": "2026년도 4직급 고졸 신입사원 채용 공고",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=4&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -317,7 +360,7 @@
         },
         {
           "title": "2026년도 제1차 체험형 청년인턴 모집공고",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=5&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -331,7 +374,7 @@
         },
         {
           "title": "2026년 상반기 보훈채용 모집 공고",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=E&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -345,7 +388,7 @@
         },
         {
           "title": "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=F&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -359,7 +402,7 @@
         },
         {
           "title": "2026년 상반기 전기원 채용 공고",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=9&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -373,7 +416,7 @@
         },
         {
           "title": "2026년도 상반기 4직급 대졸수준 채용 공고",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=1&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -387,7 +430,7 @@
         },
         {
           "title": "2026년도 제1차 전문직원 채용",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=D&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -721,8 +764,51 @@
         },
         {
           "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-          "ok": false,
-          "error": "fetch failed",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "잡알리오",
+            "orgMatched": true,
+            "positiveHits": 3,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보",
+              "recruit(?:ment)?"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 3,
+            "boardType": {
+              "type": "JOB_ALIO",
+              "confidence": "high",
+              "evidence": [
+                "JOB-ALIO URL/본문 신호"
+              ]
+            },
+            "institutionRule": false,
+            "strictInstitutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 1846,
+            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+            "status": 200,
+            "contentType": "text/html;charset=UTF-8"
+          },
           "accessTemplate": "DEDICATED_RECRUIT_SITE",
           "requestProfile": "browser-default"
         }
@@ -783,7 +869,7 @@
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "3개 후보 URL HTTP 응답 성공",
+          "reason": "4개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://recruit.kepco.co.kr:444/frt/frt0001/list.do",
@@ -943,8 +1029,51 @@
             },
             {
               "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
-              "ok": false,
-              "error": "fetch failed",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 3개 · 게시판 신호 3개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "잡알리오",
+                "orgMatched": true,
+                "positiveHits": 3,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "채용\\s*정보",
+                  "recruit(?:ment)?"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 3,
+                "boardType": {
+                  "type": "JOB_ALIO",
+                  "confidence": "high",
+                  "evidence": [
+                    "JOB-ALIO URL/본문 신호"
+                  ]
+                },
+                "institutionRule": false,
+                "strictInstitutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 1846,
+                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EC%A0%84%EB%A0%A5%EA%B3%B5%EC%82%AC&search_yn=Y",
+                "status": 200,
+                "contentType": "text/html;charset=UTF-8"
+              },
               "accessTemplate": "DEDICATED_RECRUIT_SITE",
               "requestProfile": "browser-default"
             }
@@ -1189,7 +1318,7 @@
             {
               "org": "한국전력공사",
               "title": "2026년도 NDIS데이터관리원 채용",
-              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=C&employSeq=1",
               "listText": "D-100 --> NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 접수일 : 2026.07.30 ~ 2026.08.06 서류심사중",
               "adapter": "한국전력공사:state-li",
               "detailRequest": {
@@ -1205,7 +1334,7 @@
             {
               "org": "한국전력공사",
               "title": "2026년도 제2차 전문직원 채용",
-              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=D&employSeq=2",
               "listText": "D-100 --> 전문인력(계약직) 채용 2026년도 제2차 전문직원 채용 접수일 : 2026.06.09 ~ 2026.06.16 채용종료",
               "adapter": "한국전력공사:state-li",
               "detailRequest": {
@@ -1221,7 +1350,7 @@
             {
               "org": "한국전력공사",
               "title": "2026년도 4직급 고졸 신입사원 채용 공고",
-              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=4&employSeq=1",
               "listText": "D-100 --> 4직급 고졸 채용 2026년도 4직급 고졸 신입사원 채용 공고 접수일 : 2026.06.04 ~ 2026.06.12 채용종료",
               "adapter": "한국전력공사:state-li",
               "detailRequest": {
@@ -1237,7 +1366,7 @@
             {
               "org": "한국전력공사",
               "title": "2026년도 제1차 체험형 청년인턴 모집공고",
-              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=5&employSeq=1",
               "listText": "D-100 --> 체험형 인턴 선발 2026년도 제1차 체험형 청년인턴 모집공고 접수일 : 2026.04.16 ~ 2026.04.23 채용종료",
               "adapter": "한국전력공사:state-li",
               "detailRequest": {
@@ -1253,7 +1382,7 @@
             {
               "org": "한국전력공사",
               "title": "2026년 상반기 보훈채용 모집 공고",
-              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=E&employSeq=1",
               "listText": "D-100 --> 4직급 보훈 채용 2026년 상반기 보훈채용 모집 공고 접수일 : 2026.04.16 ~ 2026.04.23 채용종료",
               "adapter": "한국전력공사:state-li",
               "detailRequest": {
@@ -1269,7 +1398,7 @@
             {
               "org": "한국전력공사",
               "title": "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
-              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=F&employSeq=1",
               "listText": "D-100 --> 전문인력(4직급) 채용 2026년도 제1차 4(나)직급 전문인력 채용(발전직군) 접수일 : 2026.04.01 ~ 2026.04.08 채용종료",
               "adapter": "한국전력공사:state-li",
               "detailRequest": {
@@ -1285,7 +1414,7 @@
             {
               "org": "한국전력공사",
               "title": "2026년 상반기 전기원 채용 공고",
-              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=9&employSeq=1",
               "listText": "D-100 --> 5직급 전기원 채용 2026년 상반기 전기원 채용 공고 접수일 : 2026.03.24 ~ 2026.03.31 채용종료",
               "adapter": "한국전력공사:state-li",
               "detailRequest": {
@@ -1301,7 +1430,7 @@
             {
               "org": "한국전력공사",
               "title": "2026년도 상반기 4직급 대졸수준 채용 공고",
-              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=1&employSeq=1",
               "listText": "D-100 --> 4직급 대졸수준 채용 2026년도 상반기 4직급 대졸수준 채용 공고 접수일 : 2026.03.23 ~ 2026.03.27 채용종료",
               "adapter": "한국전력공사:state-li",
               "detailRequest": {
@@ -1317,7 +1446,7 @@
             {
               "org": "한국전력공사",
               "title": "2026년도 제1차 전문직원 채용",
-              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+              "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=D&employSeq=1",
               "listText": "D-100 --> 전문인력(계약직) 채용 2026년도 제1차 전문직원 채용 접수일 : 2026.03.17 ~ 2026.03.24 채용종료",
               "adapter": "한국전력공사:state-li",
               "detailRequest": {
@@ -1346,54 +1475,51 @@
       "samples": [
         {
           "title": "2026년도 NDIS데이터관리원 채용",
-          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=C&employSeq=1",
           "adapter": "한국전력공사:state-li"
         },
         {
           "title": "2026년도 제2차 전문직원 채용",
-          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=D&employSeq=2",
           "adapter": "한국전력공사:state-li"
         },
         {
           "title": "2026년도 4직급 고졸 신입사원 채용 공고",
-          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=4&employSeq=1",
           "adapter": "한국전력공사:state-li"
         },
         {
           "title": "2026년도 제1차 체험형 청년인턴 모집공고",
-          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=5&employSeq=1",
           "adapter": "한국전력공사:state-li"
         },
         {
           "title": "2026년 상반기 보훈채용 모집 공고",
-          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=E&employSeq=1",
           "adapter": "한국전력공사:state-li"
         },
         {
           "title": "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
-          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=F&employSeq=1",
           "adapter": "한국전력공사:state-li"
         },
         {
           "title": "2026년 상반기 전기원 채용 공고",
-          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=9&employSeq=1",
           "adapter": "한국전력공사:state-li"
         },
         {
           "title": "2026년도 상반기 4직급 대졸수준 채용 공고",
-          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=1&employSeq=1",
           "adapter": "한국전력공사:state-li"
         },
         {
           "title": "2026년도 제1차 전문직원 채용",
-          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=D&employSeq=1",
           "adapter": "한국전력공사:state-li"
         }
       ],
-      "errors": [
-        "KEPCO dynamic-list: fetch failed",
-        "KEPCO dynamic-list: fetch failed"
-      ],
+      "errors": [],
       "selectedRootCause": {
         "version": "1.4-duplicate-title-safe-diagnostics",
         "mode": "passive",
@@ -1482,7 +1608,7 @@
           {
             "org": "한국전력공사",
             "title": "2026년도 NDIS데이터관리원 채용",
-            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=C&employSeq=1",
             "listText": "D-100 --> NDIS데이터관리원채용 2026년도 NDIS데이터관리원 채용 접수일 : 2026.07.30 ~ 2026.08.06 서류심사중",
             "adapter": "한국전력공사:state-li",
             "detailRequest": {
@@ -1498,7 +1624,7 @@
           {
             "org": "한국전력공사",
             "title": "2026년도 제2차 전문직원 채용",
-            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=D&employSeq=2",
             "listText": "D-100 --> 전문인력(계약직) 채용 2026년도 제2차 전문직원 채용 접수일 : 2026.06.09 ~ 2026.06.16 채용종료",
             "adapter": "한국전력공사:state-li",
             "detailRequest": {
@@ -1514,7 +1640,7 @@
           {
             "org": "한국전력공사",
             "title": "2026년도 4직급 고졸 신입사원 채용 공고",
-            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=4&employSeq=1",
             "listText": "D-100 --> 4직급 고졸 채용 2026년도 4직급 고졸 신입사원 채용 공고 접수일 : 2026.06.04 ~ 2026.06.12 채용종료",
             "adapter": "한국전력공사:state-li",
             "detailRequest": {
@@ -1530,7 +1656,7 @@
           {
             "org": "한국전력공사",
             "title": "2026년도 제1차 체험형 청년인턴 모집공고",
-            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=5&employSeq=1",
             "listText": "D-100 --> 체험형 인턴 선발 2026년도 제1차 체험형 청년인턴 모집공고 접수일 : 2026.04.16 ~ 2026.04.23 채용종료",
             "adapter": "한국전력공사:state-li",
             "detailRequest": {
@@ -1546,7 +1672,7 @@
           {
             "org": "한국전력공사",
             "title": "2026년 상반기 보훈채용 모집 공고",
-            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=E&employSeq=1",
             "listText": "D-100 --> 4직급 보훈 채용 2026년 상반기 보훈채용 모집 공고 접수일 : 2026.04.16 ~ 2026.04.23 채용종료",
             "adapter": "한국전력공사:state-li",
             "detailRequest": {
@@ -1562,7 +1688,7 @@
           {
             "org": "한국전력공사",
             "title": "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
-            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=F&employSeq=1",
             "listText": "D-100 --> 전문인력(4직급) 채용 2026년도 제1차 4(나)직급 전문인력 채용(발전직군) 접수일 : 2026.04.01 ~ 2026.04.08 채용종료",
             "adapter": "한국전력공사:state-li",
             "detailRequest": {
@@ -1578,7 +1704,7 @@
           {
             "org": "한국전력공사",
             "title": "2026년 상반기 전기원 채용 공고",
-            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=9&employSeq=1",
             "listText": "D-100 --> 5직급 전기원 채용 2026년 상반기 전기원 채용 공고 접수일 : 2026.03.24 ~ 2026.03.31 채용종료",
             "adapter": "한국전력공사:state-li",
             "detailRequest": {
@@ -1594,7 +1720,7 @@
           {
             "org": "한국전력공사",
             "title": "2026년도 상반기 4직급 대졸수준 채용 공고",
-            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=1&employSeq=1",
             "listText": "D-100 --> 4직급 대졸수준 채용 2026년도 상반기 4직급 대졸수준 채용 공고 접수일 : 2026.03.23 ~ 2026.03.27 채용종료",
             "adapter": "한국전력공사:state-li",
             "detailRequest": {
@@ -1610,7 +1736,7 @@
           {
             "org": "한국전력공사",
             "title": "2026년도 제1차 전문직원 채용",
-            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+            "link": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=D&employSeq=1",
             "listText": "D-100 --> 전문인력(계약직) 채용 2026년도 제1차 전문직원 채용 접수일 : 2026.03.17 ~ 2026.03.24 채용종료",
             "adapter": "한국전력공사:state-li",
             "detailRequest": {
@@ -1671,7 +1797,7 @@
       "samples": [
         {
           "title": "2026년도 NDIS데이터관리원 채용",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=C&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -1685,7 +1811,7 @@
         },
         {
           "title": "2026년도 제2차 전문직원 채용",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=D&employSeq=2",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -1699,7 +1825,7 @@
         },
         {
           "title": "2026년도 4직급 고졸 신입사원 채용 공고",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=4&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -1713,7 +1839,7 @@
         },
         {
           "title": "2026년도 제1차 체험형 청년인턴 모집공고",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=5&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -1727,7 +1853,7 @@
         },
         {
           "title": "2026년 상반기 보훈채용 모집 공고",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=E&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -1741,7 +1867,7 @@
         },
         {
           "title": "2026년도 제1차 4(나)직급 전문인력 채용(발전직군)",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=F&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -1755,7 +1881,7 @@
         },
         {
           "title": "2026년 상반기 전기원 채용 공고",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=9&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -1769,7 +1895,7 @@
         },
         {
           "title": "2026년도 상반기 4직급 대졸수준 채용 공고",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=1&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,
@@ -1783,7 +1909,7 @@
         },
         {
           "title": "2026년도 제1차 전문직원 채용",
-          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do",
+          "requestedUrl": "https://recruit.kepco.co.kr:444/frt/frt0001/view.do?employYear=2026&employId=D&employSeq=1",
           "requestMethod": "POST",
           "template": "FORM_POST",
           "ok": true,

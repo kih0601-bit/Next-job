@@ -1,7 +1,7 @@
 import { extractSupportRequirements, REQUIREMENT_SCHEMA_VERSION } from './requirement-extractor.mjs';
 
 export const STAGE8_SCHEMA_VERSION = '2.0.0';
-export const STAGE8_VERSION = '8.1.0-recruitment-unit-objective-structure';
+export const STAGE8_VERSION = '8.2.0-source-grounded-alternative-paths';
 
 const compact = (value='', max=500) => String(value || '').replace(/\s+/g,' ').trim().slice(0,max);
 const lines = (text='') => String(text || '').replace(/\r/g,'\n').split(/\n+/).map(x=>x.replace(/\s+/g,' ').trim()).filter(Boolean);
@@ -126,11 +126,12 @@ export function buildStage8Posting({
     const scopedDetail=scopedSourceText(unitName,detailText,vacancy.source==='single'?detailText:'');
     const scopedDocument=scopedSourceText(unitName,documentText,vacancy.source==='single'?documentText:'');
     const fallbackLocal=String(vacancy.localText || '');
+    const structuredLocal=unitInputs.length>1 ? fallbackLocal : '';
     const requirements=extractSupportRequirements({
       title: unitInputs.length===1 ? title : `${title} ${unitName}`,
       listText: unitInputs.length===1 ? listText : '',
-      detailText:scopedDetail || (!scopedDocument ? fallbackLocal : ''),
-      documentText:scopedDocument
+      detailText:structuredLocal ? '' : (scopedDetail || (!scopedDocument ? fallbackLocal : '')),
+      documentText:structuredLocal || scopedDocument
     });
     const headcount=headcountFromText(fallbackLocal || `${scopedDetail}\n${scopedDocument}`);
     return {
@@ -145,7 +146,7 @@ export function buildStage8Posting({
       requirementSummary:summarizeRequirements(requirements),
       evidenceScope:{
         detail:compact(scopedDetail,1200),
-        document:compact(scopedDocument,1200),
+        document:compact(structuredLocal || scopedDocument,1200),
         fallbackLocalUsed:Boolean(!scopedDetail && !scopedDocument && fallbackLocal)
       }
     };
@@ -187,6 +188,7 @@ export function buildStage8Posting({
     extractorSchemaVersion:REQUIREMENT_SCHEMA_VERSION,
     version:STAGE8_VERSION,
     posting:{org,title,link},
+    sourceHints:{years:[...new Set([...`${title} ${listText} ${detailText}`.matchAll(/(?:19\d{2}|20[0-2]\d)/g)].map(x=>Number(x[0])))].slice(0,12),closed:/\b종료\b|접수마감|마감/.test(`${listText} ${detailText}`)},
     sourceCoverage,
     commonRequirements,
     commonRequirementSummary:summarizeRequirements(commonRequirements),

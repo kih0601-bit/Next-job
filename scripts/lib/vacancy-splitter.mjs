@@ -1,7 +1,7 @@
 const MAX_VACANCIES = 24;
-export const VACANCY_SPLITTER_VERSION = '11.5.0-balanced-inline-multi-role';
+export const VACANCY_SPLITTER_VERSION = '11.6.0-application-field-sections';
 
-const HEADER_PATTERN = /^(?:\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*)?(?:모집|채용)\s*(?:분야|직무|직종|직렬)|^(?:분야|직무|직종|직렬|구분)\s*[:：]/i;
+const HEADER_PATTERN = /^(?:\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*)?(?:모집|채용|응시)\s*(?:분야|직무|직종|직렬)|^(?:분야|직무|직종|직렬|구분)\s*[:：]/i;
 const SECTION_PATTERN = /^(?:\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*)?(?:채용개요|모집개요|분야별\s*응시자격|직무별\s*자격요건)\s*$/i;
 const GLOBAL_PATTERN = /(?:접수기간|원서접수|전형절차|제출서류|공통\s*응시자격|공통사항|결격사유|보수|복리후생|근무시간|채용일정|문의처)/i;
 const ROLE_SIGNAL = /(?:행정|사무|전산|정보|시설|기계|전기|소방|건축|토목|운전|환경|회계|재무|고객|상담|기술|연구|경영|총무|인사|기획|보안|미화|조리)/;
@@ -27,8 +27,9 @@ function normalizeLines(text = '') {
 function titleFromLine(line = '', index = 0) {
   const stripped = cleanLine(line)
     .replace(/^\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*/, '')
-    .replace(/^(?:모집|채용)?\s*(?:분야|직무|직종|직렬|구분)\s*[:：]?\s*/i, '')
+    .replace(/^(?:모집|채용|응시)?\s*(?:분야|직무|직종|직렬|구분)\s*[:：]?\s*/i, '')
     .replace(/\s*[|].*$/, '')
+    .replace(/\s+(?:전문직|연구직|위촉직|청년인턴)?\s*직무기술서\s*\d*\s*$/i, '')
     .trim();
   if (!stripped || stripped.length > 80) return `모집분야 ${index + 1}`;
   return stripped;
@@ -51,6 +52,15 @@ function collectGlobalContext(lines) {
   return [...new Set(global)].slice(0, 35).join('\n');
 }
 
+function headerTitle(lines,start,index=0){
+  let name=titleFromLine(lines[start],index);
+  if(/^(?:연구직|전문직|위촉직|청년인턴|직무기술서|모집분야\s*\d+)$/i.test(name)){
+    const next=cleanLine(lines[start+1]||'');
+    if(/^(?:사업|행정|기술|연구|장비|경영|시설)[가-힣A-Za-z]*-?\d+\b/.test(next)) name=titleFromLine(next,index);
+  }
+  return name;
+}
+
 function splitByExplicitHeaders(lines) {
   const starts = [];
   lines.forEach((line, index) => {
@@ -60,8 +70,8 @@ function splitByExplicitHeaders(lines) {
   const blocks = [];
   starts.forEach((start, i) => {
     const end = starts[i + 1] ?? lines.length;
-    const slice = lines.slice(start, Math.min(end, start + 45));
-    if (slice.join(' ').length >= 25) blocks.push({ name: titleFromLine(lines[start], blocks.length), lines: slice });
+    const slice = lines.slice(start, Math.min(end, start + 120));
+    if (slice.join(' ').length >= 25) blocks.push({ name: headerTitle(lines,start,blocks.length), lines: slice });
   });
   return blocks;
 }

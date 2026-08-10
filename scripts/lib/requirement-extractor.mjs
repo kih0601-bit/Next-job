@@ -1,4 +1,4 @@
-export const REQUIREMENT_SCHEMA_VERSION = '2.0.0-source-linked';
+export const REQUIREMENT_SCHEMA_VERSION = '2.1.0-alternative-paths';
 export const REQUIREMENT_LEVEL = Object.freeze({ REQUIRED:'required', PREFERRED:'preferred', UNKNOWN:'unknown' });
 const {REQUIRED,PREFERRED,UNKNOWN}=REQUIREMENT_LEVEL;
 const normalize=(text='')=>String(text).replace(/\u00a0/g,' ').replace(/[ \t]+/g,' ').trim();
@@ -73,6 +73,38 @@ function extractLegalIdentity(text='',source='unknown'){
 }
 function simpleValues(text='',labels=[]){return unique(labels.filter(label=>String(text).includes(label)));}
 
+
+function extractQualificationAlternatives(text='',source='unknown'){
+  const ls=contextLines(text); const groups=[];
+  for(let i=0;i<ls.length;i++){
+    if(!/(?:아래|다음).{0,20}(?:자격|요건).{0,20}(?:한\s*가지|하나).{0,10}(?:해당|충족)|(?:각\s*호|다음\s*중).{0,15}(?:하나|어느\s*하나)/.test(ls[i])) continue;
+    const options=[];
+    for(let j=i+1;j<Math.min(ls.length,i+8);j++){
+      const line=ls[j];
+      if(/^(?:참고사이트|직업기초능력|전형방법|필요지식|필요기술|직무수행|태도)/.test(line)) break;
+      if(!/(?:학사|전문학사|학위가\s*없는|고졸|경력|자격증|면허)/.test(line)) continue;
+      const option={raw:line.slice(0,300),education:[],experience:[],licenses:[],source,evidenceDetailed:[detailed(source,line)]};
+      if(/학위가\s*없는|고졸/.test(line)) option.education.push('고졸 가능');
+      if(/전문학사|전문대/.test(line)) option.education.push('전문대 이상');
+      if(/(?:공학계열|이.?공계열|관련\s*분야)?\s*학사|대졸/.test(line)) option.education.push('대졸 이상');
+      const em=line.match(/(?:직무\s*관련\s*)?(\d+)\s*년\s*이상\s*경력/);
+      if(em) option.experience.push(`${em[1]}년 이상 경력`);
+      if(/자격증|면허|기사|산업기사|기능사/.test(line)) option.licenses.push(line.slice(0,300));
+      options.push(option);
+    }
+    if(options.length>=2) groups.push({level:REQUIRED,source,intro:ls[i].slice(0,300),options,evidenceDetailed:[detailed(source,ls[i]),...options.flatMap(x=>x.evidenceDetailed)]});
+  }
+  return groups;
+}
+function mergeAlternativeGroups(groups=[]){
+  const out=[]; const seen=new Set();
+  for(const group of groups.flat()){
+    const key=(group.options||[]).map(x=>x.raw).join('|');
+    if(!key||seen.has(key)) continue; seen.add(key); out.push(group);
+  }
+  return out.slice(0,8);
+}
+
 function perSourceExtract(source,text=''){
   return {
     education:extractEducation(text,source),
@@ -94,7 +126,8 @@ function perSourceExtract(source,text=''){
       resolution:/(정규직|무기계약직|공무직|일반직|상용직|기간제|계약직|인턴)/.test(text)?'observed':'not-specified',
       evidenceDetailed:contextLines(text).filter(x=>/(정규직|무기계약직|공무직|일반직|상용직|기간제|계약직|인턴)/.test(x)).slice(0,8).map(x=>detailed(source,x))
     },
-    other:extractRows(text,source,/(교대근무|야간근무|운전\s*가능|신체검사|채용\s*결격|거주지\s*제한)/,12)
+    other:extractRows(text,source,/(교대근무|야간근무|운전\s*가능|신체검사|채용\s*결격|거주지\s*제한)/,12),
+    qualificationAlternatives:extractQualificationAlternatives(text,source)
   };
 }
 
@@ -121,10 +154,16 @@ export function extractSupportRequirements({title='',listText='',detailText='',d
     legalOrIdentity:rows('legalOrIdentity'),
     location:scalar('location'),
     employment:scalar('employment'),
-    other:rows('other')
+    other:rows('other'),
+    qualificationAlternatives:mergeAlternativeGroups(extracted.flatMap(x=>x.data.qualificationAlternatives||[]))
   };
   // Backward-compatible alias used by older reports/tests.
   result.identity=[...result.age,...result.legalOrIdentity];
+  const requiredConditions=[]; const preferredConditions=[]; const unknownConditions=[];
+  const pushRows=(label,value)=>{ const rows=Array.isArray(value)?value:(value?[value]:[]); for(const row of rows){ if(Array.isArray(row?.values)) for(const v of row.values){const t=`${label}: ${v}`;(row.level===REQUIRED?requiredConditions:row.level===PREFERRED?preferredConditions:unknownConditions).push(t);} else if(row?.value){const t=`${label}: ${row.value}`;(row.level===REQUIRED?requiredConditions:row.level===PREFERRED?preferredConditions:unknownConditions).push(t);} } };
+  pushRows('학력',result.education); pushRows('자격/면허',result.licenses); pushRows('경력',result.experience); pushRows('연령',result.age); pushRows('전공',result.major); pushRows('직무',result.jobRelated); pushRows('지역',result.location); pushRows('고용형태',result.employment); pushRows('기타',result.other);
+  if(result.qualificationAlternatives.length) requiredConditions.push(`선택형 필수요건: 아래 ${result.qualificationAlternatives[0].options.length}개 경로 중 1개 이상 충족`);
+  result.presentation={listRequired:unique(requiredConditions),detailPreferred:unique(preferredConditions),detailUnknown:unique(unknownConditions),rule:'목록/추천에는 required 중심 노출; preferred는 상세에서 노출하며 추천순위 가점에만 사용'};
   return result;
 }
 
@@ -132,8 +171,10 @@ export function extractSupportRequirements({title='',listText='',detailText='',d
 export function evaluateSupportEligibility(requirements={},profile={}){
   const reasons=[],unresolved=[]; let hardFail=false;
   const educationValues=requirements.education?.values||[];
+  const alternativeGroups=requirements.qualificationAlternatives||[];
   if(profile.educationKnown&&profile.education){
-    if((educationValues.includes('대졸 이상')||educationValues.includes('전문대 이상'))&&profile.education==='고졸'){hardFail=true;reasons.push('학력 필수조건 미충족');}
+    if(!alternativeGroups.length && (educationValues.includes('대졸 이상')||educationValues.includes('전문대 이상'))&&profile.education==='고졸'){hardFail=true;reasons.push('학력 필수조건 미충족');}
+    if(alternativeGroups.length && profile.education==='고졸') unresolved.push('선택형 필수요건의 경력/자격 경로 충족여부 확인 필요');
   } else if(educationValues.length) unresolved.push('학력 보유정보 확인 필요');
 
   const requiredLicenses=(requirements.licenses||[]).filter(item=>item.level===REQUIRED);

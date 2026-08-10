@@ -1,0 +1,49 @@
+name: Next Job v2 Annual Volume Count
+
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: '측정할 연도 (AI 호출 없음 / 비용 0원)'
+        required: true
+        default: '2025'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      DATA_GO_KR_SERVICE_KEY: ${{ secrets.DATA_GO_KR_SERVICE_KEY }}
+      NEXTJOB_COUNT_YEAR: ${{ inputs.year }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Free preflight (no OpenAI)
+        shell: bash
+        run: |
+          test -n "$DATA_GO_KR_SERVICE_KEY" || (echo 'DATA_GO_KR_SERVICE_KEY is missing' && exit 1)
+          echo "Counting year=$NEXTJOB_COUNT_YEAR; OpenAI is NOT used."
+      - name: Volume logic self-test
+        run: node v2-prototype/tests/annual-volume.test.mjs
+      - name: Count official API records
+        run: node v2-prototype/src/run-annual-volume-count.mjs
+      - name: Job summary
+        if: always()
+        shell: bash
+        run: |
+          F="v2-prototype/output/annual-volume/annual-volume-${NEXTJOB_COUNT_YEAR}.md"
+          if [ -f "$F" ]; then cat "$F" >> "$GITHUB_STEP_SUMMARY"; fi
+      - name: Upload annual-volume artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextjob-v2-annual-volume-${{ inputs.year }}
+          path: v2-prototype/output/annual-volume/**
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,11 +1,26 @@
 const MAX_VACANCIES = 24;
-export const VACANCY_SPLITTER_VERSION = '11.6.0-application-field-sections';
+export const VACANCY_SPLITTER_VERSION = '11.7.0-stage8-non-vacancy-row-guard';
 
 const HEADER_PATTERN = /^(?:\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*)?(?:모집|채용|응시)\s*(?:분야|직무|직종|직렬)|^(?:분야|직무|직종|직렬|구분)\s*[:：]/i;
 const SECTION_PATTERN = /^(?:\s*(?:\d+|[가-힣]|[①-⑳])\s*[.)-]\s*)?(?:채용개요|모집개요|분야별\s*응시자격|직무별\s*자격요건)\s*$/i;
 const GLOBAL_PATTERN = /(?:접수기간|원서접수|전형절차|제출서류|공통\s*응시자격|공통사항|결격사유|보수|복리후생|근무시간|채용일정|문의처)/i;
 const ROLE_SIGNAL = /(?:행정|사무|전산|정보|시설|기계|전기|소방|건축|토목|운전|환경|회계|재무|고객|상담|기술|연구|경영|총무|인사|기획|보안|미화|조리)/;
 const CONDITION_SIGNAL = /(?:정규직|무기계약|공무직|상용직|일반직|기간제|계약직|인턴|학력|고졸|학사|전문학사|근무지|근무지역|울산|서울|부산|채용인원|명\b)/;
+
+const NON_VACANCY_NAME_PATTERN = /(?:\.(?:pdf|hwp|hwpx|docx?|xlsx?|zip)(?:\s|$|\[|\()|정보통신접근성\s*품질인증|(?:알림마당|채용공고)\s*>|테이블\s*(?:입니다|이다)|구성된\s*테이블|현재\s*진행\s*중.*무관함|붙임과\s*같이\s*공고|첨부파일|응시원서|이의신청서|직무기술서(?:\s*\d+|\s*\d*번)?\s*$)/i;
+const MARKDOWN_FILE_PATTERN = /^#{1,6}\s+.*\.(?:pdf|hwp|hwpx|docx?|xlsx?|zip)\b/i;
+
+function isNonVacancyCandidate(name='', lines=[]) {
+  const candidate=cleanLine(name);
+  const joined=(Array.isArray(lines)?lines:[]).map(cleanLine).join(' ');
+  if(!candidate) return true;
+  if(MARKDOWN_FILE_PATTERN.test(candidate) || NON_VACANCY_NAME_PATTERN.test(candidate)) return true;
+  if(/^(?:주요담당\s*업무|선발인원|직렬\s*선발예정인원).*(?:구성된\s*테이블|테이블\s*(?:입니다|이다))/i.test(candidate)) return true;
+  if(/^(?:※|\*).*무관함[.!]?$/i.test(candidate)) return true;
+  // Attachment/navigation noise may leak through a row because the surrounding line contains role/condition words.
+  if(MARKDOWN_FILE_PATTERN.test(joined)) return true;
+  return false;
+}
 
 function cleanLine(line = '') {
   return String(line)
@@ -146,6 +161,7 @@ function splitInlineRecruitmentList(lines) {
 function dedupeBlocks(blocks) {
   const seen = new Set();
   return blocks.filter(block => {
+    if (isNonVacancyCandidate(block.name, block.lines)) return false;
     const key = `${block.name}|${block.lines.join(' ')}`.replace(/\s+/g, ' ').toLowerCase();
     if (seen.has(key)) return false;
     seen.add(key);

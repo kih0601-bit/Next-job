@@ -8,7 +8,7 @@ const units=splitVacancies({title:'전문직 채용',documentText:utp});
 assert.match(VACANCY_SPLITTER_VERSION,/11\.(?:6|7)\.0/);
 assert.deepEqual(units.map(x=>x.name),['사업지원-1','사업지원-2']);
 const req=extractSupportRequirements({documentText:units[0].localText});
-assert.match(REQUIREMENT_SCHEMA_VERSION,/2\.1\.0/);
+assert.match(REQUIREMENT_SCHEMA_VERSION,/2\.[12]\.0/);
 assert.equal(req.qualificationAlternatives.length,1);
 assert.equal(req.qualificationAlternatives[0].options.length,3);
 assert.ok(req.presentation.listRequired.some(x=>x.includes('선택형 필수요건')));

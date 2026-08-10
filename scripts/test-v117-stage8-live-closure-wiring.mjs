@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const workflow=fs.readFileSync('.github/workflows/update-jobs.yml','utf8');
+const template=fs.readFileSync('workflow-template/update-jobs.yml','utf8');
+const bench=fs.readFileSync('scripts/stage8-benchmark.mjs','utf8');
+const structure=fs.readFileSync('scripts/lib/stage8-eligibility-structure.mjs','utf8');
+assert.equal(workflow,template,'workflow and template must remain byte-identical');
+for(const test of ['test-v116-stage8-fix-and-policy.mjs','test-v116-stage8-resolve-and-close.mjs','test-v117-stage8-live-closure-wiring.mjs']) assert.match(workflow,new RegExp(test.replaceAll('.','\\.')));
+assert.match(workflow,/Validate Stage 8 source-grounded benchmark/);
+assert.match(workflow,/stage8-benchmark-result\.json/);
+assert.match(workflow,/stage8-benchmark-ground-truth\.json/);
+for(const path of ['requirement-report.json','qa-report.json','stage8-eligibility-report.json','stage8-quality-report.json']) assert.match(bench,new RegExp(path.replaceAll('.','\\.')));
+assert.match(bench,/decision=liveClosureEligible\?'stage-8-complete'/);
+assert.match(bench,/report\.executionMode!==['"]stage8-fast-snapshot['"]/);
+assert.match(bench,/partial postings are watch-only/);
+assert.match(structure,/downstreamPolicy:\{listExposure:'required-only'/);
+console.log('v117 Stage 8 live closure wiring regression passed');

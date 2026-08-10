@@ -1,186 +1,12 @@
 {
-  "generatedAt": "2026-08-10T06:42:25.500Z",
+  "generatedAt": "2026-08-10T07:55:03.460Z",
   "baselineAvailable": true,
   "summary": {
-    "improved": 1,
-    "regressed": 7,
-    "unchanged": 12
+    "improved": 7,
+    "regressed": 0,
+    "unchanged": 13
   },
   "changes": [
-    {
-      "org": "울산복지가족진흥사회서비스원",
-      "primaryCause": {
-        "stage": "http",
-        "status": "failed",
-        "code": "HTTP_FAILED",
-        "reason": "모든 후보 URL HTTP 접속 실패",
-        "evidence": [
-          {
-            "url": "https://wfps.or.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://uwfdi.re.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to uwfdi.re.kr port 443 after 5002 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.wfps.or.kr/webuser/employment/list.html",
-            "ok": false,
-            "error": "resolved curl failed (183.111.144.94: curl: (28) Failed to connect to www.wfps.or.kr port 443 after 5002 ms: Timeout was reached)",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "regressionCause": {
-        "stage": "access",
-        "status": "failed",
-        "code": "ACCESS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: access",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "",
-            "attempted": null,
-            "downloaded": null,
-            "parsed": null,
-            "failed": null,
-            "error": "all access URLs failed",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "documentAnalysis": {
-          "from": false,
-          "to": false,
-          "change": "same"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
-    {
-      "org": "한국동서발전",
-      "primaryCause": {
-        "stage": "http",
-        "status": "failed",
-        "code": "HTTP_FAILED",
-        "reason": "모든 후보 URL HTTP 접속 실패",
-        "evidence": [
-          {
-            "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
-            "ok": false,
-            "error": "HTTP 502",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://www.ewp.co.kr/",
-            "ok": false,
-            "error": "HTTP 502",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          },
-          {
-            "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-            "ok": false,
-            "error": "fetch failed",
-            "accessTemplate": "DIRECT_BOARD",
-            "requestProfile": "browser-default"
-          }
-        ],
-        "repairTarget": "scripts/collectors/institutions/한국동서발전.mjs",
-        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
-      },
-      "regressionCause": {
-        "stage": "access",
-        "status": "failed",
-        "code": "ACCESS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: access",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "",
-            "attempted": null,
-            "downloaded": null,
-            "parsed": null,
-            "failed": null,
-            "error": "all access URLs failed",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true
-    },
     {
       "org": "근로복지공단",
       "primaryCause": {
@@ -318,32 +144,32 @@
           "change": "same"
         },
         "list": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "detail": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "attachmentDiscovery": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "attachmentDownload": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         },
         "documentAnalysis": {
-          "from": false,
+          "from": true,
           "to": true,
-          "change": "improved"
+          "change": "same"
         }
       },
-      "improved": true,
+      "improved": false,
       "regressed": false
     },
     {
@@ -358,23 +184,13 @@
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "regressionCause": {
-        "stage": "documentAnalysis",
-        "status": "failed",
-        "code": "DOCUMENT_ANALYSIS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: documentAnalysis",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 82,
-            "downloaded": null,
-            "parsed": 47,
-            "failed": 35,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산도시공사.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
         "access": {
@@ -403,13 +219,13 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
+          "from": false,
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
-      "regressed": true
+      "improved": true,
+      "regressed": false
     },
     {
       "org": "울산문화관광재단",
@@ -464,6 +280,61 @@
         }
       },
       "improved": false,
+      "regressed": false
+    },
+    {
+      "org": "울산복지가족진흥사회서비스원",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "regressionCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "list": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "detail": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachmentDiscovery": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachmentDownload": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "documentAnalysis": {
+          "from": false,
+          "to": false,
+          "change": "same"
+        }
+      },
+      "improved": true,
       "regressed": false
     },
     {
@@ -588,23 +459,13 @@
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "regressionCause": {
-        "stage": "documentAnalysis",
-        "status": "failed",
-        "code": "DOCUMENT_ANALYSIS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: documentAnalysis",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 42,
-            "downloaded": null,
-            "parsed": 32,
-            "failed": 10,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산정보산업진흥원.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
         "access": {
@@ -633,13 +494,13 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
+          "from": false,
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
-      "regressed": true
+      "improved": true,
+      "regressed": false
     },
     {
       "org": "울산테크노파크",
@@ -653,23 +514,13 @@
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "regressionCause": {
-        "stage": "attachmentDownload",
-        "status": "failed",
-        "code": "ATTACHMENT_DOWNLOAD_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: attachmentDownload",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 250,
-            "downloaded": 236,
-            "parsed": null,
-            "failed": 14,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울산테크노파크.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
         "access": {
@@ -693,18 +544,18 @@
           "change": "same"
         },
         "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
+          "from": false,
+          "to": true,
+          "change": "improved"
         },
         "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
+          "from": false,
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
-      "regressed": true
+      "improved": true,
+      "regressed": false
     },
     {
       "org": "울산항만공사",
@@ -773,23 +624,13 @@
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "regressionCause": {
-        "stage": "documentAnalysis",
-        "status": "failed",
-        "code": "DOCUMENT_ANALYSIS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: documentAnalysis",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "failed",
-            "attempted": 2,
-            "downloaded": null,
-            "parsed": 0,
-            "failed": 2,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/울주군시설관리공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
         "access": {
@@ -818,13 +659,13 @@
           "change": "same"
         },
         "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
+          "from": false,
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
-      "regressed": true
+      "improved": true,
+      "regressed": false
     },
     {
       "org": "울주문화재단",
@@ -882,6 +723,61 @@
       "regressed": false
     },
     {
+      "org": "한국동서발전",
+      "primaryCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/한국동서발전.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "regressionCause": {
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/한국동서발전.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
+      },
+      "stages": {
+        "access": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "list": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "detail": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachmentDiscovery": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "attachmentDownload": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        },
+        "documentAnalysis": {
+          "from": false,
+          "to": true,
+          "change": "improved"
+        }
+      },
+      "improved": true,
+      "regressed": false
+    },
+    {
       "org": "한국산업안전보건공단",
       "primaryCause": {
         "stage": "complete",
@@ -893,23 +789,13 @@
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "regressionCause": {
-        "stage": "attachmentDownload",
-        "status": "failed",
-        "code": "ATTACHMENT_DOWNLOAD_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: attachmentDownload",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "partial",
-            "attempted": 26,
-            "downloaded": 11,
-            "parsed": null,
-            "failed": 15,
-            "error": "",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
+        "stage": "complete",
+        "status": "success",
+        "code": "PIPELINE_SAMPLE_OK",
+        "reason": "현재 진단 표본에서 실패 원인 없음",
+        "evidence": [],
+        "repairTarget": "scripts/collectors/institutions/한국산업안전보건공단.mjs",
+        "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
       "stages": {
         "access": {
@@ -933,18 +819,18 @@
           "change": "same"
         },
         "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
+          "from": false,
+          "to": true,
+          "change": "improved"
         },
         "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
+          "from": false,
+          "to": true,
+          "change": "improved"
         }
       },
-      "improved": false,
-      "regressed": true
+      "improved": true,
+      "regressed": false
     },
     {
       "org": "한국산업인력공단",

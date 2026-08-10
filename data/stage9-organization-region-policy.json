@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0-v122",
+  "purpose": "9B region fallback policy. Explicit posting/work-location evidence always wins. Organization location is used only for locally scoped institutions or explicitly named local branches; nationwide/multi-region institutions remain unknown when the posting does not state the work location.",
+  "organizations": {
+    "울산항만공사": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "한국전력공사 울산본부": {"fallbackRegion":"울산","allowFallback":true,"scope":"named-local-branch"},
+    "한국수력원자력 새울원자력본부": {"fallbackRegion":"울산","allowFallback":true,"scope":"named-local-branch"},
+    "울산도시공사": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "울산시설공단": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "울산남구도시관리공단": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "울산북구시설관리공단": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "울주군시설관리공단": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "울산정보산업진흥원": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "울산테크노파크": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "울산경제일자리진흥원": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "울산문화관광재단": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "울산복지가족진흥사회서비스원": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "울주문화재단": {"fallbackRegion":"울산","allowFallback":true,"scope":"local-single-region"},
+    "한국동서발전": {"allowFallback":false,"scope":"nationwide-or-multi-region"},
+    "한국석유공사": {"allowFallback":false,"scope":"nationwide-or-multi-region"},
+    "한국에너지공단": {"allowFallback":false,"scope":"nationwide-or-multi-region"},
+    "한국산업인력공단": {"allowFallback":false,"scope":"nationwide-or-multi-region"},
+    "근로복지공단": {"allowFallback":false,"scope":"nationwide-or-multi-region"},
+    "한국산업안전보건공단": {"allowFallback":false,"scope":"nationwide-or-multi-region"}
+  }
+}

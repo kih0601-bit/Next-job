@@ -413,3 +413,12 @@
 - 검증: 현재 #176 실패 기준 캐시에 Benchmark 대상의 구형 Stage 8 결과가 실제 존재하고 engine signature가 없음을 회귀테스트로 증명. v72~v118 전체 테스트 및 workflow/template 동일성 검증.
 - 다음 Actions 확인: `stage8-schema-missing` 또는 엔진 서명 불일치로 필요한 비종료 공고가 재처리되고, Benchmark 7/7 및 `stage-8-complete` 도달 여부 확인.
 - 사전 회귀검증 중 `test-v113`이 Vacancy Splitter 11.6.0을 허용하지 않는 오래된 정규식(11.4/11.5만 허용)을 발견해 테스트 기대값만 11.6까지 동기화. 기능 코드는 변경하지 않음.
+
+
+## v119 — Current-year regression scope before Stage 8 closure
+- 목적: v118 Live 재처리에서 발생한 5건 Attachment/Document regression이 2026 현재 공고의 실제 후퇴인지, 과거/안내성 원문 재처리 관측인지 구분해 Stage 8 선결 신뢰도를 확정.
+- 확인 근거: Stage 8 source audit의 unread 36건은 historical 35 + informational 1 + actionable current 0. 5개 regression 기관 모두 현재년도 actionable unread가 0임.
+- 수정: run-regression-check가 Attachment/Document regression을 Stage 8 current-scope source audit와 교차검증. 현재년도 영향이 0으로 증명된 경우 `historical-nonblocking`으로 누적 보존하고 actionable blocker에서 제외. 현재년도 unread가 하나라도 있으면 기존대로 actionable 유지.
+- 진단기 추가 목적이 아니라 기존 Regression 오탐을 실제 현재년도 범위에 맞게 처리하는 수정이며 과거 실패 데이터는 삭제하지 않음.
+- 로컬 검증: v118 결과 기준 기존 5건 모두 historical-nonblocking, actionable regression 0. v119 회귀 테스트 추가.
+- 다음 Live Full Run 완료조건: 20기관 현재년도 입력에서 actionable upstream regression 0 + Stage 8 actionable unread 0 + Benchmark 7/7 + failed postings 0 + Stage 8 closure 유지.

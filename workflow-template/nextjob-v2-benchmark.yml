@@ -1,0 +1,57 @@
+name: Next Job v2 Benchmark
+
+on:
+  workflow_dispatch:
+    inputs:
+      phase:
+        description: 'capture = 30건 수집+AI 예측 / score = 봉인 정답지와 채점'
+        required: true
+        default: capture
+        type: choice
+        options:
+          - capture
+          - score
+      ai_model:
+        description: 'OpenAI API model ID'
+        required: true
+        default: gpt-5
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      DATA_GO_KR_SERVICE_KEY: ${{ secrets.DATA_GO_KR_SERVICE_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      NEXTJOB_AI_MODEL: ${{ inputs.ai_model }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Self-test
+        run: node v2-prototype/tests/run-all.mjs
+      - name: Secret/API preflight
+        if: ${{ inputs.phase == 'capture' }}
+        run: node v2-prototype/src/preflight.mjs --strict
+      - name: Capture 30 blind cases and AI predictions
+        if: ${{ inputs.phase == 'capture' }}
+        run: node v2-prototype/src/run-benchmark-capture.mjs
+      - name: Score against sealed Ground Truth
+        if: ${{ inputs.phase == 'score' }}
+        run: node v2-prototype/src/run-blind-score.mjs
+      - name: Upload benchmark artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextjob-v2-benchmark-${{ inputs.phase }}
+          path: |
+            v2-prototype/output/**
+            v2-prototype/benchmark/benchmark-manifest.json
+            v2-prototype/docs/legal-register.json
+          if-no-files-found: warn
+          retention-days: 14

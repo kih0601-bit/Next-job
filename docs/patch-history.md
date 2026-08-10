@@ -375,3 +375,11 @@
 - 진단 유지: 최신 원문/첨부 unread는 성공으로 완화하지 않으며 Stage 8 blocker로 계속 남긴다. 현재 Fast baseline 기준 current-year unread 1건(KOSHA 2026 예비공고)은 다음 Full Run에서 Document Analysis 원인 재검증 대상이다.
 - 검증: `test-v115-stage8-closure-diagnostics.mjs` 추가. balanced inline split과 unread-current-year gate를 회귀 테스트한다.
 - 범위 컷: required/preferred 추출 규칙과 unread attachment 복구 로직은 Benchmark/Full Run 증거 없이 한 패치에서 동시에 변경하지 않는다. 다음 Actions 증거 후 v116 교정 대상으로 둔다.
+
+## v116 — Stage 8 diagnosed-result processing first (2026-08-10)
+- Purpose: stop diagnostic-only iteration; process already identified Stage 8 defects and keep diagnostics as verification tools.
+- Fixed Ulsan Port Authority detail extraction so nested recruitment tables are not truncated at the first nested closing tag; this is required to split multiple recruitment units from the actual notice body.
+- Rejected site-wide `정보통신접근성 품질인증서` PDFs as recruitment attachments to prevent unrelated certification documents from contaminating Stage 8 document evidence.
+- Added Stage 9/10 consumer contract: search/recommendation lists expose required conditions first; preferred conditions are detail-level information and may boost ranking when matched, but preferred-condition mismatch alone never excludes an otherwise eligible posting.
+- Added regression test `test-v116-stage8-fix-and-policy.mjs`; existing v111/v114/v115 regression tests remain passing.
+- No new diagnostic subsystem added. Existing Stage 8 quality/benchmark diagnostics remain the verification mechanism. Live Actions must confirm the UPA source now supplies complete table rows and quantify remaining Stage 8 blockers.

@@ -352,3 +352,10 @@
 - Cache miss `other`를 `stage8-schema-missing`, `processed-at-invalid`, `reuse-policy-expired` 등으로 세분화. 첫 v112 Full Run은 새 Stage8 input schema 때문에 재처리가 늘 수 있으나 이후 Fast Run 및 Cache 재사용 진단의 근거가 된다.
 - Stage 8 Quality Audit에 unread source의 기관/원인/source/current-year hint 집계를 추가하고, 원문 Benchmark 작성 우선순위용 `data/stage8-benchmark-candidates.json`을 생성한다. 이 파일은 정답표가 아니며 자동 Benchmark 통과 근거로 사용하지 않는다.
 - Full diagnostic workflow timeout은 60→90분으로 조정. 이는 느린 구조를 정상화한 것이 아니라 첫 Snapshot 생성/Full Gate 검증이 timeout으로 증거를 잃지 않도록 한 안전 여유이며, 반복개발은 Fast workflow로 분리한다.
+
+## v113 — Stage 7/8 병렬 개발 + Snapshot Baseline 수명주기
+- 목적: Stage 7 실데이터 복구와 Stage 8 구조화 개선을 같은 패치에서 진행하되 검증 인과관계를 분리한다.
+- Snapshot 정책: Full Run은 최신 candidate를 생성하되 baseline을 자동 덮어쓰지 않는다. Fast Run은 baseline만 사용한다.
+- 승격 기준: baseline의 정상 입력에서 failed=0, partial=0, structural blocker=0이 된 뒤 verified candidate를 다음 baseline 후보로 삼는다. Stage 7 입력 결함이 확인된 baseline은 교정 snapshot으로 교체할 수 있다.
+- Stage 8: inline `모집분야:` 다중 역할 신호를 추가 분리하는 보수적 splitter 규칙 추가. 기존 baseline Fast Run 기준 모집단위 446→451, multi-signal single 46→45. 이 수치만으로 정확도 향상/완료 판정 금지; Benchmark 원문 대조 필요.
+- 유지: Fast Run 성공은 Stage 8 closure 근거가 아니며 live Full Run + Benchmark gate를 계속 요구한다.

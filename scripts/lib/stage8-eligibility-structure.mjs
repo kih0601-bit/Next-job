@@ -233,6 +233,7 @@ export function buildStage8Report(postings=[], generatedAt=new Date().toISOStrin
     version:STAGE8_VERSION,
     generatedAt,
     purpose:'객관적 공고 구조화. 사용자 개인 지원가능 여부 판정과 분리.',
+    downstreamPolicy:{listExposure:'required-only',detailExposure:'required-and-preferred',recommendation:'required conditions determine eligibility; matched preferred conditions may raise ranking but never exclude by themselves',note:'Stage 9/10 consumer contract. 우대조건 미충족만으로 지원 가능한 공고를 제외하지 않음.'},
     sourcePriority:['title/list metadata','detail page','attachments (PDF/HWP/HWPX etc.)'],
     requirementLevels:['required','preferred','unknown'],
     summary:{postingCount:items.length,recruitmentUnitCount:unitCount,complete,partial,failed},

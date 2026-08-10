@@ -85,7 +85,7 @@ function isKnownGlobalCertificationDocument(item = {}) {
   const url = String(item.url || '');
   // Site-wide footer certifications are real PDFs, but never recruitment attachments.
   // EWP's detail HTML repeats these links on every post and v78 counted them as files.
-  return /(?:웹접근성|웹개방성|ISO\s*27001|ISO\s*27701|ISMS-?P)\s*(?:인증)?(?:마크)?/i.test(name)
+  return /(?:웹접근성|웹개방성|정보통신접근성\s*품질인증서|ISO\s*27001|ISO\s*27701|ISMS-?P)\s*(?:인증)?(?:마크)?/i.test(name)
     || /\/kor\/download\/(?:wa\/wa\.pdf|web_open\/web_open_2022\.pdf|IC\.pdf|PI\.pdf)(?:[?#]|$)/i.test(url);
 }
 
@@ -466,6 +466,22 @@ const DETAIL_BODY_SELECTORS = [
 export function extractDetailBody(html = '', expectedTitle = '', sourceOrg = '') {
   const source = String(html);
   const candidates = [];
+
+  // UPA's recruitment detail contains nested table markup inside the board body.
+  // Generic non-greedy DIV matching can stop at the first nested closing tag and
+  // leave only the first table cell. Keep the whole notice region through the
+  // navigation/footer boundary so Stage 8 sees every recruitment row.
+  if (sourceOrg === '울산항만공사') {
+    const marker = source.search(/(?:202\d년[^<]{0,120}채용\s*공고|울산항만공사\s*공고)/i);
+    if (marker >= 0) {
+      const start = Math.max(0, source.lastIndexOf('<', marker));
+      const tail = source.slice(start);
+      const endMatch = tail.search(/(?:이전글|다음글|이\s*페이지에서\s*제공하는\s*정보|콘텐츠\s*정보관리)/i);
+      const block = endMatch > 0 ? tail.slice(0, endMatch) : tail.slice(0, 70000);
+      const text = cleanHtml(block);
+      if (text.length >= 80) candidates.push(text);
+    }
+  }
 
   if (sourceOrg === '울주군시설관리공단') {
     const marker = source.search(/<div\b[^>]*class=["'][^"']*\bb_con\b[^"']*["'][^>]*>/i);

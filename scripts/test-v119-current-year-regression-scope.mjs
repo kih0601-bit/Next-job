@@ -11,5 +11,6 @@ for(const row of r.regressions.filter(x=>target.has(x.org))){
   assert.equal(row.currentYearImpact?.blocking,false,`${row.org} should be nonblocking for current-year Stage 8`);
   assert.equal(row.regressionClass,'historical-nonblocking');
 }
-assert.equal(r.actionableRegressionCount,0);
+const targetActionable=r.regressions.filter(x=>target.has(x.org)&&x.actionable);
+assert.equal(targetActionable.length,0,'v119 only guarantees the five audited regressions are nonblocking; unrelated later regressions must remain visible');
 console.log('v119 current-year regression scope test passed');

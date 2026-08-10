@@ -13,33 +13,19 @@
     "http": {
       "status": "success",
       "code": "HTTP_OK",
-      "reason": "1개 후보 URL HTTP 응답 성공",
+      "reason": "2개 후보 URL HTTP 응답 성공",
       "evidence": [
         {
           "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
-          "ok": false,
-          "error": "HTTP 502",
-          "accessTemplate": "DIRECT_BOARD",
-          "requestProfile": "browser-default"
-        },
-        {
-          "url": "https://www.ewp.co.kr/",
-          "ok": false,
-          "error": "HTTP 502",
-          "accessTemplate": "DIRECT_BOARD",
-          "requestProfile": "browser-default"
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
           "verification": {
             "ok": true,
             "verified": true,
             "fallback": false,
             "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+            "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
             "score": 5,
             "maxScore": 5,
             "checks": {
@@ -49,32 +35,89 @@
               "organizationMatch": true,
               "meaningfulBody": true
             },
-            "title": "잡알리오",
+            "title": "채용공고 > 채용정보 > 회사소개 > 한국동서발전-KOREA EAST-WEST POWER",
             "orgMatched": true,
-            "positiveHits": 2,
+            "positiveHits": 3,
             "positiveMatches": [
+              "채용\\s*공고",
               "채용\\s*정보",
-              "recruit(?:ment)?"
+              "직원\\s*채용"
             ],
             "negativeHits": 0,
             "negativeMatches": [],
-            "boardSignals": 3,
+            "boardSignals": 4,
             "boardType": {
-              "type": "JOB_ALIO",
+              "type": "IFRAME",
               "confidence": "high",
               "evidence": [
-                "JOB-ALIO URL/본문 신호"
+                "iframe 태그 발견"
               ]
             },
             "institutionRule": false,
             "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
-            "textLength": 1638,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+            "textLength": 3722,
+            "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+            "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
             "status": 200,
-            "contentType": "text/html;charset=UTF-8"
+            "contentType": "text/html; Charset=utf-8"
           },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        },
+        {
+          "url": "https://www.ewp.co.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ewp.co.kr/kor/main/",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "한국동서발전-KOREA EAST-WEST POWER",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "institutionRule": false,
+            "strictInstitutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 3652,
+            "requestedUrl": "https://www.ewp.co.kr/",
+            "finalUrl": "https://www.ewp.co.kr/kor/main/",
+            "status": 200,
+            "contentType": "text/html; Charset=utf-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "ok": false,
+          "error": "fetch failed",
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         }
@@ -82,14 +125,14 @@
     },
     "recruitVerify": {
       "status": "success",
-      "code": "RECRUIT_VERIFY_FALLBACK_OK",
-      "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
       "evidence": {
         "ok": true,
         "verified": true,
         "fallback": false,
         "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+        "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
         "score": 5,
         "maxScore": 5,
         "checks": {
@@ -99,68 +142,128 @@
           "organizationMatch": true,
           "meaningfulBody": true
         },
-        "title": "잡알리오",
+        "title": "채용공고 > 채용정보 > 회사소개 > 한국동서발전-KOREA EAST-WEST POWER",
         "orgMatched": true,
-        "positiveHits": 2,
+        "positiveHits": 3,
         "positiveMatches": [
+          "채용\\s*공고",
           "채용\\s*정보",
-          "recruit(?:ment)?"
+          "직원\\s*채용"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 3,
+        "boardSignals": 4,
         "boardType": {
-          "type": "JOB_ALIO",
+          "type": "IFRAME",
           "confidence": "high",
           "evidence": [
-            "JOB-ALIO URL/본문 신호"
+            "iframe 태그 발견"
           ]
         },
         "institutionRule": false,
         "strictInstitutionRule": false,
         "institutionRuleEvidence": [],
-        "textLength": 1638,
-        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+        "textLength": 3722,
+        "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+        "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
         "status": 200,
-        "contentType": "text/html;charset=UTF-8"
+        "contentType": "text/html; Charset=utf-8"
       }
     },
     "list": {
       "status": "success",
       "code": "LIST_VERIFIED_EXACT",
-      "reason": "실제 게시글 목록 검증 완료 · 화면 7건 = 추출 7건 · TEMPLATE_ALIO_CARD_EXACT",
+      "reason": "실제 게시글 목록 검증 완료 · 화면 10건 = 추출 10건 · DOM_TITLE_SET_EXACT",
       "evidence": [
         {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-          "anchors": 53,
-          "titleMatches": 27,
-          "noUrl": 6,
-          "unsafeUrl": 14,
-          "accepted": 7,
+          "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 282,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
           "rowFallbackAccepted": 0,
-          "visiblePostCount": 7,
-          "candidateCount": 7,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+            "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+            "영덕해맞이풍력발전(주) 대표이사 모집공고",
+            "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+            "한국동서발전(주) 비상임이사 후보자 모집공고",
+            "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+            "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+            "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별..."
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [
+            {
+              "title": "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+              "action": "view(45171); return false;"
+            },
+            {
+              "title": "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+              "action": "view(44849); return false;"
+            },
+            {
+              "title": "영덕해맞이풍력발전(주) 대표이사 모집공고",
+              "action": "view(44777); return false;"
+            },
+            {
+              "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+              "action": "view(44635); return false;"
+            },
+            {
+              "title": "한국동서발전(주) 비상임이사 후보자 모집공고",
+              "action": "view(44611); return false;"
+            },
+            {
+              "title": "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+              "action": "view(44578); return false;"
+            },
+            {
+              "title": "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+              "action": "view(44576); return false;"
+            },
+            {
+              "title": "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
+              "action": "view(44467); return false;"
+            },
+            {
+              "title": "한국동서발전(주) 2026년도 체험형 인턴 선발",
+              "action": "view(44091); return false;"
+            },
+            {
+              "title": "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...",
+              "action": "view(43653); return false;"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
           "exactMatch": true,
           "missingCount": 0,
           "extraCount": 0,
           "recordVerification": {
             "verified": true,
-            "template": "ALIO_CARD",
-            "recordCount": 7,
-            "candidateCount": 7,
-            "matchedCount": 7,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
             "unmatchedTitles": [],
             "recordSamples": [
-              "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-              "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-              "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-              "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-              "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-              "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-              "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감"
+              "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 3004",
+              "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 212",
+              "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 244",
+              "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5982",
+              "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 344",
+              "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 571",
+              "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 317",
+              "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48712"
             ],
-            "level": "TEMPLATE_ALIO_CARD_EXACT"
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
           },
           "countExactMatch": true,
           "templateExactMatch": true,
@@ -169,110 +272,364 @@
           "emptyMarker": "",
           "countSource": "visible-board-rows",
           "countTemplate": ""
+        },
+        {
+          "url": "https://www.ewp.co.kr/kor/main/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 290,
+          "titleMatches": 265,
+          "noUrl": 2,
+          "unsafeUrl": 16,
+          "accepted": 39,
+          "rowFallbackAccepted": 21,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 18,
+          "titleSamples": [
+            "주메뉴 바로가기",
+            "본문 바로가기",
+            "푸터 바로가기",
+            "한국동서발전(주)",
+            "챗봇상담",
+            "챗봇상담",
+            "ENG LISH",
+            "동서발전 유튜브"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "REC 계약",
+              "reason": "detail-url-pending",
+              "identity": "row-20248",
+              "row": "<li> \r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 계약</a>\r\n<ul class='depth3'>\r\n<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 입찰</a>\r\n</li>"
+            },
+            {
+              "title": "REC 입찰",
+              "reason": "detail-url-pending",
+              "identity": "row-20393",
+              "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 입찰</a>\r\n</li>"
+            },
+            {
+              "title": "REC 양수양도",
+              "reason": "detail-url-pending",
+              "identity": "row-20524",
+              "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 양수양도</a>\r\n</li>"
+            },
+            {
+              "title": "REC 대금지급",
+              "reason": "detail-url-pending",
+              "identity": "row-20657",
+              "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 대금지급</a>\r\n</li>"
+            },
+            {
+              "title": "REC 거래절차",
+              "reason": "detail-url-pending",
+              "identity": "row-20790",
+              "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 거래절차</a>\r\n</li>"
+            },
+            {
+              "title": "정보공개청구",
+              "reason": "detail-url-pending",
+              "identity": "row-36041",
+              "row": "<div class=\"list01\"><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새 창 열림\">정보공개청구</a></div>"
+            },
+            {
+              "title": "웹접근성 인증마크",
+              "reason": "detail-url-pending",
+              "identity": "row-49509",
+              "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
+            },
+            {
+              "title": "웹개방성 인증마크",
+              "reason": "detail-url-pending",
+              "identity": "row-49660",
+              "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
+            }
+          ],
+          "actionSamples": [
+            {
+              "title": "REC 계약",
+              "action": "pop20190221();"
+            },
+            {
+              "title": "REC 입찰",
+              "action": "pop20190221();"
+            },
+            {
+              "title": "REC 양수양도",
+              "action": "pop20190221();"
+            },
+            {
+              "title": "REC 대금지급",
+              "action": "pop20190221();"
+            },
+            {
+              "title": "REC 거래절차",
+              "action": "pop20190221();"
+            }
+          ],
+          "candidateUrlSamples": [
+            {
+              "title": "검색하기",
+              "url": "https://www.ewp.co.kr/kor/main/?id=searchtext",
+              "allowed": true
+            },
+            {
+              "title": "검색하기",
+              "url": "https://www.ewp.co.kr/kor/main/?id=header_s_reset",
+              "allowed": true
+            },
+            {
+              "title": "회사소개",
+              "url": "https://www.ewp.co.kr/kor/subpage/contents.asp?cn=JZ75USU3&ln=I2CS5QSE&sb=R55YFXSD&tb=2CWMVPO",
+              "allowed": false
+            },
+            {
+              "title": "회사소개",
+              "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=2CWMVPOR55YFXSDI2CS5QSEJZ75USU3",
+              "allowed": true
+            },
+            {
+              "title": "정보공개",
+              "url": "https://www.ewp.co.kr/kor/subpage/contents.asp?cn=UFNBTISZ&ln=DDRIVQC1&sb=YZFMV61B&tb=OVACUC1",
+              "allowed": false
+            },
+            {
+              "title": "정보공개",
+              "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=XKRBVIUMMJCLF16EGZGE2KO0L3ZOA6O",
+              "allowed": true
+            },
+            {
+              "title": "국민소통센터",
+              "url": "https://www.ewp.co.kr/kor/subpage/contents.asp?cn=55GXSZ3W&ln=EHWNUQKN&sb=G32QE25U&tb=WOEGHP8",
+              "allowed": false
+            },
+            {
+              "title": "국민소통센터",
+              "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=WOEGHP8G32QE25UEHWNUQKN55GXSZ3W",
+              "allowed": true
+            },
+            {
+              "title": "REC 계약",
+              "url": "https://newrec.ewp.co.kr:8443/service/main",
+              "allowed": false
+            },
+            {
+              "title": "REC 입찰",
+              "url": "https://newrec.ewp.co.kr:8443/service/main",
+              "allowed": false
+            },
+            {
+              "title": "REC 양수양도",
+              "url": "https://newrec.ewp.co.kr:8443/service/main",
+              "allowed": false
+            },
+            {
+              "title": "REC 대금지급",
+              "url": "https://newrec.ewp.co.kr:8443/service/main",
+              "allowed": false
+            },
+            {
+              "title": "REC 거래절차",
+              "url": "https://newrec.ewp.co.kr:8443/service/main",
+              "allowed": false
+            },
+            {
+              "title": "기업지원센터",
+              "url": "https://www.ewp.co.kr/kor/subpage/contents.asp?cn=ET8709JP&ln=Y7LBXFT2&sb=ID0KZ636&tb=9B5819Q&taborder=1",
+              "allowed": false
+            },
+            {
+              "title": "기업지원센터",
+              "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=9B5819QID0KZ636Y7LBXFT2ET8709JP",
+              "allowed": true
+            },
+            {
+              "title": "사이버홍보실",
+              "url": "https://www.ewp.co.kr/kor/subpage/contents.asp?cn=8B073MG0&ln=51SG246L&sb=4F3LZV1D&tb=W7ADTHM",
+              "allowed": false
+            }
+          ],
+          "candidateCount": 39,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 39,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "검색하기",
+              "회사소개",
+              "정보공개",
+              "국민소통센터",
+              "REC 계약",
+              "REC 입찰",
+              "REC 양수양도",
+              "REC 대금지급",
+              "REC 거래절차",
+              "기업지원센터",
+              "사이버홍보실",
+              "정보공개청구"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "countExactMatch": false,
+          "templateExactMatch": false,
+          "exactMatchBasis": "none",
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable",
+          "countTemplate": ""
         }
       ]
     },
     "detail": {
       "status": "success",
       "code": "DETAIL_FIRST_PAGE_VERIFIED_EXACT",
-      "reason": "첫 페이지 7건 전체 상세 URL·본문 1:1 검증 완료",
+      "reason": "첫 페이지 10건 전체 상세 URL·본문 1:1 검증 완료",
       "evidence": [
         {
-          "title": "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303191",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=45171&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303191",
-          "textLength": 4526,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3894,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300179",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44849&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300179",
-          "textLength": 2576,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3724,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299624",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "영덕해맞이풍력발전(주) 대표이사 모집공고",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44777&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299624",
-          "textLength": 2710,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3720,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298887",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44635&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298887",
-          "textLength": 2879,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3482,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298470",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "한국동서발전(주) 비상임이사 후보자 모집공고",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44611&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298470",
-          "textLength": 11060,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 4876,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298299",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44578&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298299",
-          "textLength": 2790,
-          "attachmentCount": 4,
-          "attachmentSignalCount": 10,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 4844,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=297317",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44576&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=297317",
-          "textLength": 2990,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 4920,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44467&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 4072,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "한국동서발전(주) 2026년도 체험형 인턴 선발",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44091&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3957,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=43653&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3849,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
           "error": ""
         }
       ]
@@ -280,55 +637,55 @@
     "attachment": {
       "status": "success",
       "code": "ATTACHMENT_FOUND",
-      "reason": "검증 표본에서 첨부 링크 22개 발견",
+      "reason": "검증 표본에서 첨부 링크 10개 발견",
       "evidence": [
         {
           "name": "(붙임) 2026년 하반기 체험형 인턴 채용 공고.pdf",
           "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064657",
-          "method": "GET"
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
         },
         {
-          "name": "2026년 하반기 체험형 인턴 입사지원서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064568",
-          "method": "GET"
-        },
-        {
-          "name": "2026년 하반기 체험형 인턴 직무설명서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064569",
-          "method": "GET"
-        },
-        {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 채용 공고문.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3047650",
-          "method": "GET"
-        },
-        {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 입사지원서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3047651",
-          "method": "GET"
-        },
-        {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 직무기술서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3047652",
-          "method": "GET"
-        },
-        {
-          "name": "2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 채용공고문.hwpx",
+          "name": "출자회사 대표이사 모집 공고문(제출양식 등 포함)_재공고_20260612.hwpx",
           "type": "hwpx",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3044843",
-          "method": "GET"
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
         },
         {
-          "name": "2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 입사지원서.hwpx",
-          "type": "hwpx",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3044844",
-          "method": "GET"
+          "name": "출자회사 대표이사 모집 공고문(제출양식 등 포함).hwp",
+          "type": "hwp",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "한국동서발전_자기소개서 문항 사전공개(26년 하반기 신입사원 적용).pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "비상임이사 후보자 모집공고.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "비상임이사 후보자 모집공고.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "비상임이사 후보자 모집공고_회계재무전문가.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "(붙임) 2026년도 하반기 신입직원 채용 공고문(안) 최종.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
         }
       ]
     },
@@ -338,19 +695,19 @@
       "reason": "검증 표본 다운로드 2/2 성공",
       "evidence": [
         {
-          "name": "2026년 하반기 체험형 인턴 직무설명서.pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064569",
+          "name": "비상임이사 후보자 모집공고.pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
           "ok": true,
           "transport": "node-fetch",
-          "contentType": "application/pdf;charset=utf-8",
+          "contentType": "application/octet-stream; Charset=utf-8",
           "error": ""
         },
         {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 직무기술서.pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3047652",
+          "name": "비상임이사 후보자 모집공고.pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
           "ok": true,
           "transport": "node-fetch",
-          "contentType": "application/pdf;charset=utf-8",
+          "contentType": "application/octet-stream; Charset=utf-8",
           "error": ""
         }
       ]
@@ -361,33 +718,33 @@
       "reason": "검증 표본 문서분석 2/2 성공",
       "evidence": [
         {
-          "name": "2026년 하반기 체험형 인턴 직무설명서.pdf",
+          "name": "비상임이사 후보자 모집공고.pdf",
           "detectedType": "pdf",
           "ok": true,
           "method": "pdftotext",
-          "textLength": 1212,
+          "textLength": 1434,
           "error": ""
         },
         {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 직무기술서.pdf",
+          "name": "비상임이사 후보자 모집공고.pdf",
           "detectedType": "pdf",
           "ok": true,
           "method": "pdftotext",
-          "textLength": 759,
+          "textLength": 1422,
           "error": ""
         }
       ]
     },
     "access": {
       "status": "success",
-      "code": "RECRUIT_VERIFY_FALLBACK_OK",
-      "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+      "code": "RECRUIT_VERIFY_OK",
+      "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
       "evidence": {
         "ok": true,
         "verified": true,
         "fallback": false,
         "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+        "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
         "score": 5,
         "maxScore": 5,
         "checks": {
@@ -397,31 +754,32 @@
           "organizationMatch": true,
           "meaningfulBody": true
         },
-        "title": "잡알리오",
+        "title": "채용공고 > 채용정보 > 회사소개 > 한국동서발전-KOREA EAST-WEST POWER",
         "orgMatched": true,
-        "positiveHits": 2,
+        "positiveHits": 3,
         "positiveMatches": [
+          "채용\\s*공고",
           "채용\\s*정보",
-          "recruit(?:ment)?"
+          "직원\\s*채용"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 3,
+        "boardSignals": 4,
         "boardType": {
-          "type": "JOB_ALIO",
+          "type": "IFRAME",
           "confidence": "high",
           "evidence": [
-            "JOB-ALIO URL/본문 신호"
+            "iframe 태그 발견"
           ]
         },
         "institutionRule": false,
         "strictInstitutionRule": false,
         "institutionRuleEvidence": [],
-        "textLength": 1638,
-        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+        "textLength": 3722,
+        "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+        "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
         "status": 200,
-        "contentType": "text/html;charset=UTF-8"
+        "contentType": "text/html; Charset=utf-8"
       }
     }
   },
@@ -432,37 +790,23 @@
       "ok": true,
       "httpOk": true,
       "recruitVerifyOk": true,
-      "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-      "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-      "activeRecruitUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+      "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+      "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+      "activeRecruitUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
       "status": 200,
-      "contentType": "text/html;charset=UTF-8",
+      "contentType": "text/html; Charset=utf-8",
       "attempts": [
         {
           "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
-          "ok": false,
-          "error": "HTTP 502",
-          "accessTemplate": "DIRECT_BOARD",
-          "requestProfile": "browser-default"
-        },
-        {
-          "url": "https://www.ewp.co.kr/",
-          "ok": false,
-          "error": "HTTP 502",
-          "accessTemplate": "DIRECT_BOARD",
-          "requestProfile": "browser-default"
-        },
-        {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
           "ok": true,
           "status": 200,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
           "verification": {
             "ok": true,
             "verified": true,
             "fallback": false,
             "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+            "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
             "score": 5,
             "maxScore": 5,
             "checks": {
@@ -472,32 +816,89 @@
               "organizationMatch": true,
               "meaningfulBody": true
             },
-            "title": "잡알리오",
+            "title": "채용공고 > 채용정보 > 회사소개 > 한국동서발전-KOREA EAST-WEST POWER",
             "orgMatched": true,
-            "positiveHits": 2,
+            "positiveHits": 3,
             "positiveMatches": [
+              "채용\\s*공고",
               "채용\\s*정보",
-              "recruit(?:ment)?"
+              "직원\\s*채용"
             ],
             "negativeHits": 0,
             "negativeMatches": [],
-            "boardSignals": 3,
+            "boardSignals": 4,
             "boardType": {
-              "type": "JOB_ALIO",
+              "type": "IFRAME",
               "confidence": "high",
               "evidence": [
-                "JOB-ALIO URL/본문 신호"
+                "iframe 태그 발견"
               ]
             },
             "institutionRule": false,
             "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
-            "textLength": 1638,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+            "textLength": 3722,
+            "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+            "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
             "status": 200,
-            "contentType": "text/html;charset=UTF-8"
+            "contentType": "text/html; Charset=utf-8"
           },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        },
+        {
+          "url": "https://www.ewp.co.kr/",
+          "ok": true,
+          "status": 200,
+          "finalUrl": "https://www.ewp.co.kr/kor/main/",
+          "verification": {
+            "ok": true,
+            "verified": true,
+            "fallback": false,
+            "code": "RECRUIT_VERIFY_OK",
+            "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+            "score": 5,
+            "maxScore": 5,
+            "checks": {
+              "httpDocument": true,
+              "recruitKeyword": true,
+              "boardStructure": true,
+              "organizationMatch": true,
+              "meaningfulBody": true
+            },
+            "title": "한국동서발전-KOREA EAST-WEST POWER",
+            "orgMatched": true,
+            "positiveHits": 2,
+            "positiveMatches": [
+              "채용\\s*공고",
+              "채용\\s*정보"
+            ],
+            "negativeHits": 0,
+            "negativeMatches": [],
+            "boardSignals": 2,
+            "boardType": {
+              "type": "IFRAME",
+              "confidence": "high",
+              "evidence": [
+                "iframe 태그 발견"
+              ]
+            },
+            "institutionRule": false,
+            "strictInstitutionRule": false,
+            "institutionRuleEvidence": [],
+            "textLength": 3652,
+            "requestedUrl": "https://www.ewp.co.kr/",
+            "finalUrl": "https://www.ewp.co.kr/kor/main/",
+            "status": 200,
+            "contentType": "text/html; Charset=utf-8"
+          },
+          "accessTemplate": "DIRECT_BOARD",
+          "requestProfile": "browser-default"
+        },
+        {
+          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "ok": false,
+          "error": "fetch failed",
           "accessTemplate": "DIRECT_BOARD",
           "requestProfile": "browser-default"
         }
@@ -507,7 +908,7 @@
         "verified": true,
         "fallback": false,
         "code": "RECRUIT_VERIFY_OK",
-        "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+        "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
         "score": 5,
         "maxScore": 5,
         "checks": {
@@ -517,73 +918,60 @@
           "organizationMatch": true,
           "meaningfulBody": true
         },
-        "title": "잡알리오",
+        "title": "채용공고 > 채용정보 > 회사소개 > 한국동서발전-KOREA EAST-WEST POWER",
         "orgMatched": true,
-        "positiveHits": 2,
+        "positiveHits": 3,
         "positiveMatches": [
+          "채용\\s*공고",
           "채용\\s*정보",
-          "recruit(?:ment)?"
+          "직원\\s*채용"
         ],
         "negativeHits": 0,
         "negativeMatches": [],
-        "boardSignals": 3,
+        "boardSignals": 4,
         "boardType": {
-          "type": "JOB_ALIO",
+          "type": "IFRAME",
           "confidence": "high",
           "evidence": [
-            "JOB-ALIO URL/본문 신호"
+            "iframe 태그 발견"
           ]
         },
         "institutionRule": false,
         "strictInstitutionRule": false,
         "institutionRuleEvidence": [],
-        "textLength": 1638,
-        "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-        "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+        "textLength": 3722,
+        "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+        "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
         "status": 200,
-        "contentType": "text/html;charset=UTF-8"
+        "contentType": "text/html; Charset=utf-8"
       },
       "boardType": {
-        "type": "JOB_ALIO",
+        "type": "IFRAME",
         "confidence": "high",
         "evidence": [
-          "JOB-ALIO URL/본문 신호"
+          "iframe 태그 발견"
         ]
       },
       "diagnosis": {
         "ok": true,
-        "code": "RECRUIT_VERIFY_FALLBACK_OK",
-        "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+        "code": "RECRUIT_VERIFY_OK",
+        "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
         "http": {
           "ok": true,
           "code": "HTTP_OK",
-          "reason": "1개 후보 URL HTTP 응답 성공",
+          "reason": "2개 후보 URL HTTP 응답 성공",
           "attempts": [
             {
               "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
-              "ok": false,
-              "error": "HTTP 502",
-              "accessTemplate": "DIRECT_BOARD",
-              "requestProfile": "browser-default"
-            },
-            {
-              "url": "https://www.ewp.co.kr/",
-              "ok": false,
-              "error": "HTTP 502",
-              "accessTemplate": "DIRECT_BOARD",
-              "requestProfile": "browser-default"
-            },
-            {
-              "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
               "ok": true,
               "status": 200,
-              "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+              "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
               "verification": {
                 "ok": true,
                 "verified": true,
                 "fallback": false,
                 "code": "RECRUIT_VERIFY_OK",
-                "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+                "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
                 "score": 5,
                 "maxScore": 5,
                 "checks": {
@@ -593,32 +981,89 @@
                   "organizationMatch": true,
                   "meaningfulBody": true
                 },
-                "title": "잡알리오",
+                "title": "채용공고 > 채용정보 > 회사소개 > 한국동서발전-KOREA EAST-WEST POWER",
                 "orgMatched": true,
-                "positiveHits": 2,
+                "positiveHits": 3,
                 "positiveMatches": [
+                  "채용\\s*공고",
                   "채용\\s*정보",
-                  "recruit(?:ment)?"
+                  "직원\\s*채용"
                 ],
                 "negativeHits": 0,
                 "negativeMatches": [],
-                "boardSignals": 3,
+                "boardSignals": 4,
                 "boardType": {
-                  "type": "JOB_ALIO",
+                  "type": "IFRAME",
                   "confidence": "high",
                   "evidence": [
-                    "JOB-ALIO URL/본문 신호"
+                    "iframe 태그 발견"
                   ]
                 },
                 "institutionRule": false,
                 "strictInstitutionRule": false,
                 "institutionRuleEvidence": [],
-                "textLength": 1638,
-                "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-                "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+                "textLength": 3722,
+                "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+                "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
                 "status": 200,
-                "contentType": "text/html;charset=UTF-8"
+                "contentType": "text/html; Charset=utf-8"
               },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            },
+            {
+              "url": "https://www.ewp.co.kr/",
+              "ok": true,
+              "status": 200,
+              "finalUrl": "https://www.ewp.co.kr/kor/main/",
+              "verification": {
+                "ok": true,
+                "verified": true,
+                "fallback": false,
+                "code": "RECRUIT_VERIFY_OK",
+                "reason": "채용 키워드 2개 · 게시판 신호 2개 확인",
+                "score": 5,
+                "maxScore": 5,
+                "checks": {
+                  "httpDocument": true,
+                  "recruitKeyword": true,
+                  "boardStructure": true,
+                  "organizationMatch": true,
+                  "meaningfulBody": true
+                },
+                "title": "한국동서발전-KOREA EAST-WEST POWER",
+                "orgMatched": true,
+                "positiveHits": 2,
+                "positiveMatches": [
+                  "채용\\s*공고",
+                  "채용\\s*정보"
+                ],
+                "negativeHits": 0,
+                "negativeMatches": [],
+                "boardSignals": 2,
+                "boardType": {
+                  "type": "IFRAME",
+                  "confidence": "high",
+                  "evidence": [
+                    "iframe 태그 발견"
+                  ]
+                },
+                "institutionRule": false,
+                "strictInstitutionRule": false,
+                "institutionRuleEvidence": [],
+                "textLength": 3652,
+                "requestedUrl": "https://www.ewp.co.kr/",
+                "finalUrl": "https://www.ewp.co.kr/kor/main/",
+                "status": 200,
+                "contentType": "text/html; Charset=utf-8"
+              },
+              "accessTemplate": "DIRECT_BOARD",
+              "requestProfile": "browser-default"
+            },
+            {
+              "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+              "ok": false,
+              "error": "fetch failed",
               "accessTemplate": "DIRECT_BOARD",
               "requestProfile": "browser-default"
             }
@@ -626,15 +1071,15 @@
         },
         "recruitVerify": {
           "ok": true,
-          "code": "RECRUIT_VERIFY_FALLBACK_OK",
-          "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+          "code": "RECRUIT_VERIFY_OK",
+          "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
           "score": 5,
           "maxScore": 5,
           "boardType": {
-            "type": "JOB_ALIO",
+            "type": "IFRAME",
             "confidence": "high",
             "evidence": [
-              "JOB-ALIO URL/본문 신호"
+              "iframe 태그 발견"
             ]
           },
           "evidence": {
@@ -642,7 +1087,7 @@
             "verified": true,
             "fallback": false,
             "code": "RECRUIT_VERIFY_OK",
-            "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+            "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
             "score": 5,
             "maxScore": 5,
             "checks": {
@@ -652,41 +1097,42 @@
               "organizationMatch": true,
               "meaningfulBody": true
             },
-            "title": "잡알리오",
+            "title": "채용공고 > 채용정보 > 회사소개 > 한국동서발전-KOREA EAST-WEST POWER",
             "orgMatched": true,
-            "positiveHits": 2,
+            "positiveHits": 3,
             "positiveMatches": [
+              "채용\\s*공고",
               "채용\\s*정보",
-              "recruit(?:ment)?"
+              "직원\\s*채용"
             ],
             "negativeHits": 0,
             "negativeMatches": [],
-            "boardSignals": 3,
+            "boardSignals": 4,
             "boardType": {
-              "type": "JOB_ALIO",
+              "type": "IFRAME",
               "confidence": "high",
               "evidence": [
-                "JOB-ALIO URL/본문 신호"
+                "iframe 태그 발견"
               ]
             },
             "institutionRule": false,
             "strictInstitutionRule": false,
             "institutionRuleEvidence": [],
-            "textLength": 1638,
-            "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-            "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+            "textLength": 3722,
+            "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+            "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
             "status": 200,
-            "contentType": "text/html;charset=UTF-8"
+            "contentType": "text/html; Charset=utf-8"
           }
         },
-        "activeRecruitUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-        "selectedRequestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+        "activeRecruitUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+        "selectedRequestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
         "verification": {
           "ok": true,
           "verified": true,
           "fallback": false,
           "code": "RECRUIT_VERIFY_OK",
-          "reason": "채용 키워드 2개 · 게시판 신호 3개 확인",
+          "reason": "채용 키워드 3개 · 게시판 신호 4개 확인",
           "score": 5,
           "maxScore": 5,
           "checks": {
@@ -696,77 +1142,137 @@
             "organizationMatch": true,
             "meaningfulBody": true
           },
-          "title": "잡알리오",
+          "title": "채용공고 > 채용정보 > 회사소개 > 한국동서발전-KOREA EAST-WEST POWER",
           "orgMatched": true,
-          "positiveHits": 2,
+          "positiveHits": 3,
           "positiveMatches": [
+            "채용\\s*공고",
             "채용\\s*정보",
-            "recruit(?:ment)?"
+            "직원\\s*채용"
           ],
           "negativeHits": 0,
           "negativeMatches": [],
-          "boardSignals": 3,
+          "boardSignals": 4,
           "boardType": {
-            "type": "JOB_ALIO",
+            "type": "IFRAME",
             "confidence": "high",
             "evidence": [
-              "JOB-ALIO URL/본문 신호"
+              "iframe 태그 발견"
             ]
           },
           "institutionRule": false,
           "strictInstitutionRule": false,
           "institutionRuleEvidence": [],
-          "textLength": 1638,
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
+          "textLength": 3722,
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
           "status": 200,
-          "contentType": "text/html;charset=UTF-8"
+          "contentType": "text/html; Charset=utf-8"
         }
       }
     },
     "list": {
       "ok": true,
       "status": "verified-exact",
-      "pagesChecked": 1,
-      "visiblePostCount": 7,
-      "candidateCount": 7,
+      "pagesChecked": 2,
+      "visiblePostCount": 10,
+      "candidateCount": 10,
       "missingCount": 0,
       "extraCount": 0,
       "exactMatch": true,
-      "selectedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-      "detailUrlReady": 7,
+      "selectedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+      "detailUrlReady": 10,
       "listOnlyCount": 0,
       "extractionDiagnostics": [
         {
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-          "anchors": 53,
-          "titleMatches": 27,
-          "noUrl": 6,
-          "unsafeUrl": 14,
-          "accepted": 7,
+          "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+          "visiblePostCount": 10,
+          "rowMode": true,
+          "anchors": 282,
+          "titleMatches": 10,
+          "noUrl": 0,
+          "unsafeUrl": 0,
+          "accepted": 10,
           "rowFallbackAccepted": 0,
-          "visiblePostCount": 7,
-          "candidateCount": 7,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 0,
+          "titleSamples": [
+            "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+            "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+            "영덕해맞이풍력발전(주) 대표이사 모집공고",
+            "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+            "한국동서발전(주) 비상임이사 후보자 모집공고",
+            "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+            "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+            "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별..."
+          ],
+          "unsafeSamples": [],
+          "actionSamples": [
+            {
+              "title": "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+              "action": "view(45171); return false;"
+            },
+            {
+              "title": "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+              "action": "view(44849); return false;"
+            },
+            {
+              "title": "영덕해맞이풍력발전(주) 대표이사 모집공고",
+              "action": "view(44777); return false;"
+            },
+            {
+              "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+              "action": "view(44635); return false;"
+            },
+            {
+              "title": "한국동서발전(주) 비상임이사 후보자 모집공고",
+              "action": "view(44611); return false;"
+            },
+            {
+              "title": "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+              "action": "view(44578); return false;"
+            },
+            {
+              "title": "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+              "action": "view(44576); return false;"
+            },
+            {
+              "title": "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
+              "action": "view(44467); return false;"
+            },
+            {
+              "title": "한국동서발전(주) 2026년도 체험형 인턴 선발",
+              "action": "view(44091); return false;"
+            },
+            {
+              "title": "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...",
+              "action": "view(43653); return false;"
+            }
+          ],
+          "candidateUrlSamples": [],
+          "candidateCount": 10,
           "exactMatch": true,
           "missingCount": 0,
           "extraCount": 0,
           "recordVerification": {
             "verified": true,
-            "template": "ALIO_CARD",
-            "recordCount": 7,
-            "candidateCount": 7,
-            "matchedCount": 7,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
             "unmatchedTitles": [],
             "recordSamples": [
-              "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-              "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-              "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-              "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-              "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-              "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-              "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감"
+              "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 3004",
+              "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 212",
+              "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 244",
+              "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5982",
+              "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 344",
+              "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 571",
+              "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 317",
+              "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48712"
             ],
-            "level": "TEMPLATE_ALIO_CARD_EXACT"
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
           },
           "countExactMatch": true,
           "templateExactMatch": true,
@@ -775,6 +1281,218 @@
           "emptyMarker": "",
           "countSource": "visible-board-rows",
           "countTemplate": ""
+        },
+        {
+          "url": "https://www.ewp.co.kr/kor/main/",
+          "visiblePostCount": null,
+          "rowMode": false,
+          "anchors": 290,
+          "titleMatches": 265,
+          "noUrl": 2,
+          "unsafeUrl": 16,
+          "accepted": 39,
+          "rowFallbackAccepted": 21,
+          "clickableBlocksScanned": 0,
+          "clickableBlocksAccepted": 0,
+          "listOnlyAccepted": 18,
+          "titleSamples": [
+            "주메뉴 바로가기",
+            "본문 바로가기",
+            "푸터 바로가기",
+            "한국동서발전(주)",
+            "챗봇상담",
+            "챗봇상담",
+            "ENG LISH",
+            "동서발전 유튜브"
+          ],
+          "unsafeSamples": [
+            {
+              "title": "REC 계약",
+              "reason": "detail-url-pending",
+              "identity": "row-20248",
+              "row": "<li> \r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 계약</a>\r\n<ul class='depth3'>\r\n<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 입찰</a>\r\n</li>"
+            },
+            {
+              "title": "REC 입찰",
+              "reason": "detail-url-pending",
+              "identity": "row-20393",
+              "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 입찰</a>\r\n</li>"
+            },
+            {
+              "title": "REC 양수양도",
+              "reason": "detail-url-pending",
+              "identity": "row-20524",
+              "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 양수양도</a>\r\n</li>"
+            },
+            {
+              "title": "REC 대금지급",
+              "reason": "detail-url-pending",
+              "identity": "row-20657",
+              "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 대금지급</a>\r\n</li>"
+            },
+            {
+              "title": "REC 거래절차",
+              "reason": "detail-url-pending",
+              "identity": "row-20790",
+              "row": "<li>\r\n<a href='https://newrec.ewp.co.kr:8443/service/main'  target='_blank' title=''  onclick='pop20190221();' >REC 거래절차</a>\r\n</li>"
+            },
+            {
+              "title": "정보공개청구",
+              "reason": "detail-url-pending",
+              "identity": "row-36041",
+              "row": "<div class=\"list01\"><a href=\"https://www.open.go.kr/com/main/mainView.do\" target=\"_blank\" title=\"새 창 열림\">정보공개청구</a></div>"
+            },
+            {
+              "title": "웹접근성 인증마크",
+              "reason": "detail-url-pending",
+              "identity": "row-49509",
+              "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
+            },
+            {
+              "title": "웹개방성 인증마크",
+              "reason": "detail-url-pending",
+              "identity": "row-49660",
+              "row": "<div class=\"mark mobile\">\r\n                    <a href=\"/kor/download/wa/wa.pdf?var=20260626\" target=\"_blank\" class=\"accessibility\"  title=\"웹접근성 인증마크(새 창 열림)\">웹접근성 인증마크</a>\r\n                    <!--<a href=\"/kor/download/web_open/web_open_2022.pdf\" target=\"_blank\" class=\"web_open\">웹개방성 인증마크</a>-->\r\n\t\t\t\t\t<a href=\"/kor/download/IC.pdf\" target=\"_blank\" class=\"iso27001\"  title=\"ISO27001(보안)(새 창 열림)\">ISO27001(보안)</a>\r\n                    <a href=\"/kor/download/PI.pdf\" target=\"_blank\" class=\"iso27701\"  title=\"ISO27701(개인정보)(새 창 열림)\">ISO27701(개인정보)</a>\r\n\t\t\t\t\t<!--\r\n\t\t\t\t\t<div class=\"isms-pbx\">\r\n\t\t\t\t\t\t<a href=\"#\" class=\"isms-p\">ISMS-P 인증마크</a>\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<p>[인증범위] 인터넷 대민서비스(대표홈페이지)</p>\r\n\t\t\t\t\t\t\t<p>[유효기간] 2021.02.03~2024.02.02</p>\r\n\t\t\t\t\t\t</div>"
+            }
+          ],
+          "actionSamples": [
+            {
+              "title": "REC 계약",
+              "action": "pop20190221();"
+            },
+            {
+              "title": "REC 입찰",
+              "action": "pop20190221();"
+            },
+            {
+              "title": "REC 양수양도",
+              "action": "pop20190221();"
+            },
+            {
+              "title": "REC 대금지급",
+              "action": "pop20190221();"
+            },
+            {
+              "title": "REC 거래절차",
+              "action": "pop20190221();"
+            }
+          ],
+          "candidateUrlSamples": [
+            {
+              "title": "검색하기",
+              "url": "https://www.ewp.co.kr/kor/main/?id=searchtext",
+              "allowed": true
+            },
+            {
+              "title": "검색하기",
+              "url": "https://www.ewp.co.kr/kor/main/?id=header_s_reset",
+              "allowed": true
+            },
+            {
+              "title": "회사소개",
+              "url": "https://www.ewp.co.kr/kor/subpage/contents.asp?cn=JZ75USU3&ln=I2CS5QSE&sb=R55YFXSD&tb=2CWMVPO",
+              "allowed": false
+            },
+            {
+              "title": "회사소개",
+              "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=2CWMVPOR55YFXSDI2CS5QSEJZ75USU3",
+              "allowed": true
+            },
+            {
+              "title": "정보공개",
+              "url": "https://www.ewp.co.kr/kor/subpage/contents.asp?cn=UFNBTISZ&ln=DDRIVQC1&sb=YZFMV61B&tb=OVACUC1",
+              "allowed": false
+            },
+            {
+              "title": "정보공개",
+              "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=XKRBVIUMMJCLF16EGZGE2KO0L3ZOA6O",
+              "allowed": true
+            },
+            {
+              "title": "국민소통센터",
+              "url": "https://www.ewp.co.kr/kor/subpage/contents.asp?cn=55GXSZ3W&ln=EHWNUQKN&sb=G32QE25U&tb=WOEGHP8",
+              "allowed": false
+            },
+            {
+              "title": "국민소통센터",
+              "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=WOEGHP8G32QE25UEHWNUQKN55GXSZ3W",
+              "allowed": true
+            },
+            {
+              "title": "REC 계약",
+              "url": "https://newrec.ewp.co.kr:8443/service/main",
+              "allowed": false
+            },
+            {
+              "title": "REC 입찰",
+              "url": "https://newrec.ewp.co.kr:8443/service/main",
+              "allowed": false
+            },
+            {
+              "title": "REC 양수양도",
+              "url": "https://newrec.ewp.co.kr:8443/service/main",
+              "allowed": false
+            },
+            {
+              "title": "REC 대금지급",
+              "url": "https://newrec.ewp.co.kr:8443/service/main",
+              "allowed": false
+            },
+            {
+              "title": "REC 거래절차",
+              "url": "https://newrec.ewp.co.kr:8443/service/main",
+              "allowed": false
+            },
+            {
+              "title": "기업지원센터",
+              "url": "https://www.ewp.co.kr/kor/subpage/contents.asp?cn=ET8709JP&ln=Y7LBXFT2&sb=ID0KZ636&tb=9B5819Q&taborder=1",
+              "allowed": false
+            },
+            {
+              "title": "기업지원센터",
+              "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=9B5819QID0KZ636Y7LBXFT2ET8709JP",
+              "allowed": true
+            },
+            {
+              "title": "사이버홍보실",
+              "url": "https://www.ewp.co.kr/kor/subpage/contents.asp?cn=8B073MG0&ln=51SG246L&sb=4F3LZV1D&tb=W7ADTHM",
+              "allowed": false
+            }
+          ],
+          "candidateCount": 39,
+          "exactMatch": false,
+          "missingCount": null,
+          "extraCount": null,
+          "recordVerification": {
+            "verified": false,
+            "template": "TABLE_RECORD",
+            "recordCount": 0,
+            "candidateCount": 39,
+            "matchedCount": 0,
+            "unmatchedTitles": [
+              "검색하기",
+              "회사소개",
+              "정보공개",
+              "국민소통센터",
+              "REC 계약",
+              "REC 입찰",
+              "REC 양수양도",
+              "REC 대금지급",
+              "REC 거래절차",
+              "기업지원센터",
+              "사이버홍보실",
+              "정보공개청구"
+            ],
+            "recordSamples": [],
+            "level": "TEMPLATE_RECORD_MISMATCH"
+          },
+          "countExactMatch": false,
+          "templateExactMatch": false,
+          "exactMatchBasis": "none",
+          "verifiedEmpty": false,
+          "emptyMarker": "",
+          "countSource": "unavailable",
+          "countTemplate": ""
         }
       ],
       "rootCauseDiagnostics": [
@@ -782,132 +1500,702 @@
           "version": "1.4-duplicate-title-safe-diagnostics",
           "mode": "passive",
           "org": "한국동서발전",
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-          "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+          "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+          "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+          "listCounterFailureReason": "UNKNOWN",
           "accuracyVerification": {
             "verified": true,
-            "level": "TEMPLATE_ALIO_CARD_EXACT",
-            "listVerificationTemplate": "ALIO_CARD",
+            "level": "DOM_TITLE_SET_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
             "templateRecordEvidence": {
               "verified": true,
-              "template": "ALIO_CARD",
-              "recordCount": 7,
-              "candidateCount": 7,
-              "matchedCount": 7,
+              "template": "TABLE_RECORD",
+              "recordCount": 10,
+              "candidateCount": 10,
+              "matchedCount": 10,
               "unmatchedTitles": [],
               "recordSamples": [
-                "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-                "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-                "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-                "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-                "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-                "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-                "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감"
+                "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 3004",
+                "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 212",
+                "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 244",
+                "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5982",
+                "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 344",
+                "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 571",
+                "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 317",
+                "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48712"
               ],
-              "level": "TEMPLATE_ALIO_CARD_EXACT"
+              "level": "TEMPLATE_TABLE_RECORD_EXACT"
             },
-            "independentDomEvidence": false,
+            "independentDomEvidence": true,
             "exactCount": true,
-            "exactTitleSet": false,
+            "exactTitleSet": true,
             "strongAdapterRecordEvidence": false,
             "missingTitleCount": 0,
-            "extraCandidateCount": 7,
-            "visibleUniqueTitleCount": 0,
-            "extractedTitleCount": 7
+            "extraCandidateCount": 0,
+            "visibleUniqueTitleCount": 10,
+            "extractedTitleCount": 10
           },
           "counterTrace": {
             "source": "visible-board-rows",
+            "rawDomRows": 10,
+            "uniqueVisibleTitleCount": 10,
+            "reportedVisiblePostCount": 10,
+            "acceptedCandidateCount": 10,
+            "exactAgainstRaw": true,
+            "exactAgainstUniqueTitles": true
+          },
+          "candidateClassCounts": {
+            "RECRUIT_POST": 8,
+            "UNCLASSIFIED": 2
+          },
+          "counts": {
+            "visiblePostCount": 10,
+            "candidateCount": 10,
+            "rawTableRows": 10,
+            "uniqueVisibleTitleCount": 10,
+            "sourceHtmlLength": 66611,
+            "missingRows": 0,
+            "extraCandidates": 0
+          },
+          "selectorCounts": {
+            "table tbody tr": 1,
+            "tr": 11,
+            "li": 159,
+            "article": 0,
+            "[onclick]": 29,
+            "[data-url]": 0,
+            "[data-href]": 0,
+            "a[href]": 282
+          },
+          "rejectReasonCounts": {},
+          "visibleTitles": [
+            "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+            "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+            "영덕해맞이풍력발전(주) 대표이사 모집공고",
+            "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+            "한국동서발전(주) 비상임이사 후보자 모집공고",
+            "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+            "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+            "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
+            "한국동서발전(주) 2026년도 체험형 인턴 선발",
+            "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사..."
+          ],
+          "extractedTitles": [
+            "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+            "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+            "영덕해맞이풍력발전(주) 대표이사 모집공고",
+            "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+            "한국동서발전(주) 비상임이사 후보자 모집공고",
+            "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+            "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+            "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
+            "한국동서발전(주) 2026년도 체험형 인턴 선발",
+            "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사..."
+          ],
+          "missingRows": [],
+          "extraCandidates": [],
+          "rowTrace": [
+            {
+              "index": 0,
+              "title": "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+              "normalizedTitle": "한국동서발전 주 2026년도 하반기 체험형 인턴 선발",
+              "text": "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 3004",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#",
+              "onclick": "view(45171); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>93</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(45171); return false;\" title=\"한국동서발전(주) 2026년도 하반기 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 하반기 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.07.29 ~ 2026.08.12</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state02\">접수중</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>3004</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=45171&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+              "adapter": "한국동서발전:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 1,
+              "title": "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+              "normalizedTitle": "영덕해맞이풍력발전 주 대표이사 모집공고 재공고",
+              "text": "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 212",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#",
+              "onclick": "view(44849); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>92</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44849); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.15 ~ 2026.06.19</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>212</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44849&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+              "adapter": "한국동서발전:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 2,
+              "title": "영덕해맞이풍력발전(주) 대표이사 모집공고",
+              "normalizedTitle": "영덕해맞이풍력발전 주 대표이사 모집공고",
+              "text": "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 244",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#",
+              "onclick": "view(44777); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>91</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44777); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.02 ~ 2026.06.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>244</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44777&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+              "adapter": "한국동서발전:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 3,
+              "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+              "normalizedTitle": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안",
+              "text": "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5982",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#",
+              "onclick": "view(44635); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>90</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44635); return false;\" title=\"2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안내\" class=\"ellipsis1\">2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.29 ~ 2026.05.05</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>5982</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44635&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+              "adapter": "한국동서발전:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 4,
+              "title": "한국동서발전(주) 비상임이사 후보자 모집공고",
+              "normalizedTitle": "한국동서발전 주 비상임이사 후보자 모집공고",
+              "text": "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 344",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#",
+              "onclick": "view(44611); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>89</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44611); return false;\" title=\"한국동서발전(주) 비상임이사 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.28 ~ 2026.05.07</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>344</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44611&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+              "adapter": "한국동서발전:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 5,
+              "title": "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+              "normalizedTitle": "한국동서발전 주 비상임이사 일반 후보자 모집공고",
+              "text": "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 571",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#",
+              "onclick": "view(44578); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>88</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44578); return false;\" title=\"한국동서발전(주) 비상임이사(일반) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(일반) 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>571</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44578&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+              "adapter": "한국동서발전:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 6,
+              "title": "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+              "normalizedTitle": "한국동서발전 주 비상임이사 회계 또는 재무전문가 후보자 모집",
+              "text": "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 317",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#",
+              "onclick": "view(44576); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>87</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44576); return false;\" title=\"한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>317</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44576&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+              "adapter": "한국동서발전:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 7,
+              "title": "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
+              "normalizedTitle": "2026년도 하반기 신입사원 대졸수준 일반 보훈 고졸 및 별",
+              "text": "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48712",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#",
+              "onclick": "view(44467); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>86</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44467); return false;\" title=\"2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별정직) 채용공고\" class=\"ellipsis1\">2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.03.25 ~ 2026.04.08</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>48712</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44467&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+              "adapter": "한국동서발전:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 8,
+              "title": "한국동서발전(주) 2026년도 체험형 인턴 선발",
+              "normalizedTitle": "한국동서발전 주 2026년도 체험형 인턴 선발",
+              "text": "85 한국동서발전(주) 2026년도 체험형 인턴 선발 Download 2026.01.28 ~ 2026.02.11 접수마감 16829",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#",
+              "onclick": "view(44091); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>85</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44091); return false;\" title=\"한국동서발전(주) 2026년도 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.01.28 ~ 2026.02.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>16829</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44091&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+              "adapter": "한국동서발전:board-row",
+              "rejectionReason": ""
+            },
+            {
+              "index": 9,
+              "title": "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...",
+              "normalizedTitle": "한국동서발전 주 개방형 계약직위 중대재해예방tf부장 수소사",
+              "text": "84 한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사... Download 2025.10.31 ~ 2025.11.14 접수마감 1944",
+              "hasDate": true,
+              "hasSequence": true,
+              "hasAction": true,
+              "href": "#",
+              "onclick": "view(43653); return false;",
+              "dataUrl": "",
+              "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>84</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(43653); return false;\" title=\"한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사업부장) 및 경력전문가 (국내 /해외 변호사) 선발\" class=\"ellipsis1\">한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2025.10.31 ~ 2025.11.14</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>1944</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+              "accepted": true,
+              "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=43653&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+              "adapter": "한국동서발전:board-row",
+              "rejectionReason": ""
+            }
+          ]
+        },
+        {
+          "version": "1.4-duplicate-title-safe-diagnostics",
+          "mode": "passive",
+          "org": "한국동서발전",
+          "url": "https://www.ewp.co.kr/kor/main/",
+          "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
+          "listCounterFailureReason": "DOM_COUNT_ZERO",
+          "accuracyVerification": {
+            "verified": false,
+            "level": "NOT_EXACT",
+            "listVerificationTemplate": "TABLE_RECORD",
+            "templateRecordEvidence": {
+              "verified": false,
+              "template": "TABLE_RECORD",
+              "recordCount": 0,
+              "candidateCount": 39,
+              "matchedCount": 0,
+              "unmatchedTitles": [
+                "검색하기",
+                "회사소개",
+                "정보공개",
+                "국민소통센터",
+                "REC 계약",
+                "REC 입찰",
+                "REC 양수양도",
+                "REC 대금지급",
+                "REC 거래절차",
+                "기업지원센터",
+                "사이버홍보실",
+                "정보공개청구"
+              ],
+              "recordSamples": [],
+              "level": "TEMPLATE_RECORD_MISMATCH"
+            },
+            "independentDomEvidence": false,
+            "exactCount": false,
+            "exactTitleSet": false,
+            "strongAdapterRecordEvidence": false,
+            "missingTitleCount": 0,
+            "extraCandidateCount": 39,
+            "visibleUniqueTitleCount": 0,
+            "extractedTitleCount": 39
+          },
+          "counterTrace": {
+            "source": "unavailable",
             "rawDomRows": 0,
             "uniqueVisibleTitleCount": 0,
-            "reportedVisiblePostCount": 7,
-            "acceptedCandidateCount": 7,
+            "reportedVisiblePostCount": null,
+            "acceptedCandidateCount": 39,
             "exactAgainstRaw": false,
             "exactAgainstUniqueTitles": false
           },
           "candidateClassCounts": {
-            "RECRUIT_POST": 7
+            "UNCLASSIFIED": 36,
+            "MENU_OR_IR": 1,
+            "RECRUIT_POST": 2
           },
           "counts": {
-            "visiblePostCount": 7,
-            "candidateCount": 7,
+            "visiblePostCount": null,
+            "candidateCount": 39,
             "rawTableRows": 0,
             "uniqueVisibleTitleCount": 0,
-            "sourceHtmlLength": 53055,
+            "sourceHtmlLength": 54729,
             "missingRows": 0,
-            "extraCandidates": 7
+            "extraCandidates": 39
           },
           "selectorCounts": {
             "table tbody tr": 0,
             "tr": 0,
-            "li": 122,
-            "article": 0,
-            "[onclick]": 7,
+            "li": 154,
+            "article": 12,
+            "[onclick]": 27,
             "[data-url]": 0,
             "[data-href]": 0,
-            "a[href]": 53
+            "a[href]": 290
           },
           "rejectReasonCounts": {},
           "visibleTitles": [],
           "extractedTitles": [
-            "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-            "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-            "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-            "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-            "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-            "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-            "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감"
+            "검색하기",
+            "회사소개",
+            "정보공개",
+            "국민소통센터",
+            "REC 계약",
+            "REC 입찰",
+            "REC 양수양도",
+            "REC 대금지급",
+            "REC 거래절차",
+            "기업지원센터",
+            "사이버홍보실",
+            "정보공개청구",
+            "공지사항",
+            "2026년 발전5사 협력연구과제 사업공고 및 이의제기 공고",
+            "[다함께 감사 ON] 감사 착안사항 공모",
+            "친환경 에너지전환 R&D 아이디어 공모",
+            "울산발전본부 혁신아이디어 R&D 선정 현장연구개발과제 수행기관 공모",
+            "보도자료",
+            "여름 혈액 수급난 해소 위해 제25차 헌혈 행사 시행",
+            "중소기업 대상 실무중심 생성형 인공지능 활용 교육 실시",
+            "복날 맞이‘복(福) 담은 여름나기’건강꾸러미 전달",
+            "동서발전, 2026 울산조선해양축제 후원금 전달",
+            "동서발전 소식",
+            "2026년 7월 한국동서발전 주요 뉴스",
+            "2026년 6월 한국동서발전 주요 뉴스",
+            "2026년 5월 한국동서발전 주요 뉴스",
+            "2026년 4월 한국동서발전 주요 뉴스",
+            "웹접근성 인증마크",
+            "웹개방성 인증마크",
+            "ISO27001(보안)",
+            "ISO27701(개인정보)",
+            "ISMS-P 인증마크",
+            "070-5000-1000",
+            "070-5000-1098",
+            "웹접근성 인증마크",
+            "웹개방성 인증마크",
+            "ISMS-P 인증마크",
+            "ISO27001(보안)",
+            "ISO27701(개인정보)"
           ],
           "missingRows": [],
           "extraCandidates": [
             {
               "org": "한국동서발전",
-              "title": "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303191",
-              "listText": "h();\"> 진행상태 진행중 마감 한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감 한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체",
-              "sourceType": "ALIO"
+              "title": "검색하기",
+              "link": "https://www.ewp.co.kr/kor/main/?id=searchtext",
+              "listText": "입력\" placeholder=\"검색어를 입력하세요\" onkeyup=\"topsearchSb(event);\" onkeydown=\"clearBtnShow();\" onchange=\"searchEvent()\"> 검색하기 회사소개 회사소개 EWP 연혁 조직도 <a href='",
+              "adapter": "한국동서발전"
             },
             {
               "org": "한국동서발전",
-              "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300179",
-              "listText": "청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감 한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지",
-              "sourceType": "ALIO"
+              "title": "회사소개",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=2CWMVPOR55YFXSDI2CS5QSEJZ75USU3",
+              "listText": "rap'> 회사소개 회사소개 EWP 연혁 조직도 경영진 찾아오시는길 기관 상징(CI) 최고 경영자(CEO",
+              "adapter": "한국동서발전"
             },
             {
               "org": "한국동서발전",
-              "title": "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299624",
-              "listText": "비정규직 / 2026.05.06 ~ 26.05.21 / 마감 한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대",
-              "sourceType": "ALIO"
+              "title": "정보공개",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=XKRBVIUMMJCLF16EGZGE2KO0L3ZOA6O",
+              "listText": "공공기관 안전관리등급 메뉴닫기 정보공개 정보공개 정보공개제도 안내 정보공개책임관 정보공개제도 개요 업무처리절차 청구방법 및 접수처 관련법령 서식 수수료 안내 정보공개 청년서포터즈 </li",
+              "adapter": "한국동서발전"
             },
             {
               "org": "한국동서발전",
-              "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298887",
-              "listText": "비정규직 / 2026.04.22 ~ 26.05.06 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-              "sourceType": "ALIO"
+              "title": "국민소통센터",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=WOEGHP8G32QE25UEHWNUQKN55GXSZ3W",
+              "listText": "/li> 자주하는 질문 메뉴닫기 국민소통센터 국민소통센터 EWP에 바란다 EWP에 바란다 안내 청렴 신문고(기명) 레드휘슬(무기명) 청탁 신고센터 부패방지아이디어접수 <a href='/kor/subpage/conten",
+              "adapter": "한국동서발전"
             },
             {
               "org": "한국동서발전",
-              "title": "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298470",
-              "listText": "비정규직 / 2026.04.06 ~ 26.04.21 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감 한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감 한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발",
-              "sourceType": "ALIO"
+              "title": "REC 계약",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-20248",
+              "listText": "REC 계약 REC 입찰",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-20248"
             },
             {
               "org": "한국동서발전",
-              "title": "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298299",
-              "listText": "정규직 / 2026.03.25 ~ 26.04.08 / 마감 한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감 한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감 </",
-              "sourceType": "ALIO"
+              "title": "REC 입찰",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-20393",
+              "listText": "REC 입찰",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-20393"
             },
             {
               "org": "한국동서발전",
-              "title": "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감",
-              "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=297317",
-              "listText": "비정규직 / 2026.03.23 ~ 26.04.07 / 마감 한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감 1 저작권정책 &emsp; 이메일무단수집거부 &emsp; 개인정보처리방침",
-              "sourceType": "ALIO"
+              "title": "REC 양수양도",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-20524",
+              "listText": "REC 양수양도",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-20524"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "REC 대금지급",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-20657",
+              "listText": "REC 대금지급",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-20657"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "REC 거래절차",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-20790",
+              "listText": "REC 거래절차",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-20790"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "기업지원센터",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=9B5819QID0KZ636Y7LBXFT2ET8709JP",
+              "listText": "i> 지속가능경영보고서 메뉴닫기 기업지원센터 기업지원센터 입찰정보 입찰참여방법 입찰리스트 하도급 승인 공개 SW사업 계약정보 공개 계약제도 안내 제안서 평가결과 공개 입찰자료게시(종합심사낙찰제 자료)</",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "사이버홍보실",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=W7ADTHM4F3LZV1D51SG246L8B073MG0",
+              "listText": "중소기업동반성장센터 메뉴닫기 사이버홍보실 사이버홍보실 동서뉴스 보도자료 동서발전 소식 소셜미디어 블로그 인스타그램 페이스북 유튜브</a",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "정보공개청구",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-36041",
+              "listText": "정보공개청구",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-36041"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "공지사항",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=6DP9QZAJ0UTZYGSTBXZM2LIV6V25JGP",
+              "listText": "/a> 공지사항 2026년 발전5사 협력연구과제 사업공고 및 이의제기 공고 2026.08.10 [다함께 감사 ON] 감사 착안사항 공모 2026.08.10 친환경 에너지전환 R&D 아이디어 공모 2026.08.05 울산발전본부 혁신아이디어 R&D 선정 현장연구개발과제 수행기관 공모 2026.08.05",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "2026년 발전5사 협력연구과제 사업공고 및 이의제기 공고",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=6DP9QZAJ0UTZYGSTBXZM2LIV6V25JGP",
+              "listText": "공지사항 2026년 발전5사 협력연구과제 사업공고 및 이의제기 공고 2026.08.10 [다함께 감사 ON] 감사 착안사항 공모 2026.08.10 친환경 에너지전환 R&D 아이디어 공모 2026.08.05 울산발전본부 혁신아이디어 R&D 선정 현장연구개발과제 수행기관 공모 2026.08.05 더보기 보도자료 <div id=\"press\" class=\"tab_con",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "[다함께 감사 ON] 감사 착안사항 공모",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=6DP9QZAJ0UTZYGSTBXZM2LIV6V25JGP",
+              "listText": "nt\"> 2026년 발전5사 협력연구과제 사업공고 및 이의제기 공고 2026.08.10 [다함께 감사 ON] 감사 착안사항 공모 2026.08.10 친환경 에너지전환 R&D 아이디어 공모 2026.08.05 울산발전본부 혁신아이디어 R&D 선정 현장연구개발과제 수행기관 공모 2026.08.05 더보기 보도자료 여름 혈액 수급난 해소 위해 제25차 헌혈 행사 시행 2026.08.06",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "친환경 에너지전환 R&D 아이디어 공모",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=6DP9QZAJ0UTZYGSTBXZM2LIV6V25JGP",
+              "listText": "[다함께 감사 ON] 감사 착안사항 공모 2026.08.10 친환경 에너지전환 R&D 아이디어 공모 2026.08.05 울산발전본부 혁신아이디어 R&D 선정 현장연구개발과제 수행기관 공모 2026.08.05 더보기 보도자료 여름 혈액 수급난 해소 위해 제25차 헌혈 행사 시행 2026.08.06 중소기업 대상 실무중심 생성형 인공지능 활용 교육 실시 2026.08.04</span",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "울산발전본부 혁신아이디어 R&D 선정 현장연구개발과제 수행기관 공모",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=6DP9QZAJ0UTZYGSTBXZM2LIV6V25JGP",
+              "listText": "친환경 에너지전환 R&D 아이디어 공모 2026.08.05 울산발전본부 혁신아이디어 R&D 선정 현장연구개발과제 수행기관 공모 2026.08.05 더보기 보도자료 여름 혈액 수급난 해소 위해 제25차 헌혈 행사 시행 2026.08.06 중소기업 대상 실무중심 생성형 인공지능 활용 교육 실시 2026.08.04 복날 맞이‘복(福) 담은 여름나기’건강꾸러미 전달 2026.08.04 </art",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "보도자료",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=W7ADTHM4F3LZV1D51SG246L8B073MG0",
+              "listText": "본부 혁신아이디어 R&D 선정 현장연구개발과제 수행기관 공모 2026.08.05 더보기 보도자료 여름 혈액 수급난 해소 위해 제25차 헌혈 행사 시행 2026.08.06 중소기업 대상 실무중심 생성형 인공지능 활용 교육 실시 2026.08.04 복날 맞이‘복(福) 담은 여름나기’건강꾸러미 전달 2026.08.04 동서발전, 2026 울산조선해양축제 후원금 전달 2026.08.04 <a href=\"/kor/subpage/con",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "여름 혈액 수급난 해소 위해 제25차 헌혈 행사 시행",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=W7ADTHM4F3LZV1D51SG246L8B073MG0",
+              "listText": "ef=\"/kor/subpage/content.html?pc=6DP9QZAJ0UTZYGSTBXZM2LIV6V25JGP\" class=\"more\" title=\"공지사항\">더보기 보도자료 여름 혈액 수급난 해소 위해 제25차 헌혈 행사 시행 2026.08.06 중소기업 대상 실무중심 생성형 인공지능 활용 교육 실시 2026.08.04 복날 맞이‘복(福) 담은 여름나기’건강꾸러미 전달 2026.08.04 동서발전, 2026 울산조선해양축제 후원금 전달 2026.08.04 더보기 동서발전 소식",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "중소기업 대상 실무중심 생성형 인공지능 활용 교육 실시",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=W7ADTHM4F3LZV1D51SG246L8B073MG0",
+              "listText": "content\"> 여름 혈액 수급난 해소 위해 제25차 헌혈 행사 시행 2026.08.06 중소기업 대상 실무중심 생성형 인공지능 활용 교육 실시 2026.08.04 복날 맞이‘복(福) 담은 여름나기’건강꾸러미 전달 2026.08.04 동서발전, 2026 울산조선해양축제 후원금 전달 2026.08.04 더보기 동서발전 소식 2026년 7월 한국동서발전 주요 뉴스 2026.07.31",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "복날 맞이‘복(福) 담은 여름나기’건강꾸러미 전달",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=W7ADTHM4F3LZV1D51SG246L8B073MG0",
+              "listText": "article> 중소기업 대상 실무중심 생성형 인공지능 활용 교육 실시 2026.08.04 복날 맞이‘복(福) 담은 여름나기’건강꾸러미 전달 2026.08.04 동서발전, 2026 울산조선해양축제 후원금 전달 2026.08.04 더보기 동서발전 소식 2026년 7월 한국동서발전 주요 뉴스 2026.07.31 2026년 6월 한국동서발전 주요 뉴스 2026.06.30 <arti",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "동서발전, 2026 울산조선해양축제 후원금 전달",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=W7ADTHM4F3LZV1D51SG246L8B073MG0",
+              "listText": "복날 맞이‘복(福) 담은 여름나기’건강꾸러미 전달 2026.08.04 동서발전, 2026 울산조선해양축제 후원금 전달 2026.08.04 더보기 동서발전 소식 2026년 7월 한국동서발전 주요 뉴스 2026.07.31 2026년 6월 한국동서발전 주요 뉴스 2026.06.30 2026년 5월 한국동서발전 주요 뉴스 2026.05.28",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "동서발전 소식",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=QWM8Q59BN4EW53A0QXGW4OPW1ILA4WT",
+              "listText": "=\"ellipsis1\"> 동서발전, 2026 울산조선해양축제 후원금 전달 2026.08.04 더보기 동서발전 소식 2026년 7월 한국동서발전 주요 뉴스 2026.07.31 2026년 6월 한국동서발전 주요 뉴스 2026.06.30 2026년 5월 한국동서발전 주요 뉴스 2026.05.28 2026년 4월 한국동서발전 주요 뉴스 2026.04.30 <a href=\"/kor/subpage/content.html?pc=QWM8Q59BN4EW53A0",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "2026년 7월 한국동서발전 주요 뉴스",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=QWM8Q59BN4EW53A0QXGW4OPW1ILA4WT",
+              "listText": "f=\"/kor/subpage/content.html?pc=W7ADTHM4F3LZV1D51SG246L8B073MG0\" class=\"more\" title=\"보도자료\">더보기 동서발전 소식 2026년 7월 한국동서발전 주요 뉴스 2026.07.31 2026년 6월 한국동서발전 주요 뉴스 2026.06.30 2026년 5월 한국동서발전 주요 뉴스 2026.05.28 2026년 4월 한국동서발전 주요 뉴스 2026.04.30 더보기 정책 브리핑 <div",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "2026년 6월 한국동서발전 주요 뉴스",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=QWM8Q59BN4EW53A0QXGW4OPW1ILA4WT",
+              "listText": "ss=\"tab_content\"> 2026년 7월 한국동서발전 주요 뉴스 2026.07.31 2026년 6월 한국동서발전 주요 뉴스 2026.06.30 2026년 5월 한국동서발전 주요 뉴스 2026.05.28 2026년 4월 한국동서발전 주요 뉴스 2026.04.30 더보기 정책 브리핑",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "2026년 5월 한국동서발전 주요 뉴스",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=QWM8Q59BN4EW53A0QXGW4OPW1ILA4WT",
+              "listText": "2026년 6월 한국동서발전 주요 뉴스 2026.06.30 2026년 5월 한국동서발전 주요 뉴스 2026.05.28 2026년 4월 한국동서발전 주요 뉴스 2026.04.30 더보기 정책 브리핑 // 공지사항 바로가기 function view_notice(no){ gourl = \"/kor/subpage/content.html?pc=6DP9QZAJ0UTZYGSTBXZM2LIV6V25JGP&state=view&idx=\"+no; location.href=gourl; } // 보도",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "2026년 4월 한국동서발전 주요 뉴스",
+              "link": "https://www.ewp.co.kr/kor/subpage/content.html?pc=QWM8Q59BN4EW53A0QXGW4OPW1ILA4WT",
+              "listText": "2026년 5월 한국동서발전 주요 뉴스 2026.05.28 2026년 4월 한국동서발전 주요 뉴스 2026.04.30 더보기 정책 브리핑 // 공지사항 바로가기 function view_notice(no){ gourl = \"/kor/subpage/content.html?pc=6DP9QZAJ0UTZYGSTBXZM2LIV6V25JGP&state=view&idx=\"+no; location.href=gourl; } // 보도자료 바로가기 function view_bodo(no){ gourl = \"/kor/subpage/content.html?pc=W7ADTHM4F3LZV1D51SG246L8B073MG0&state=view&idx=\"+no; location.href=gourl; } // EWP ZINE 바로가기 function vi",
+              "adapter": "한국동서발전"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "웹접근성 인증마크",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-49509",
+              "listText": "웹접근성 인증마크 ISO27001(보안) ISO27701(개인정보) ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-49509"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "웹개방성 인증마크",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-49660",
+              "listText": "웹접근성 인증마크 ISO27001(보안) ISO27701(개인정보) ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-49660"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "ISO27001(보안)",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-49767",
+              "listText": "웹접근성 인증마크 ISO27001(보안) ISO27701(개인정보) ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-49767"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "ISO27701(개인정보)",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-49899",
+              "listText": "웹접근성 인증마크 ISO27001(보안) ISO27701(개인정보) ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-49899"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "ISMS-P 인증마크",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-50061",
+              "listText": "ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-50061"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "070-5000-1000",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-53265",
+              "listText": "한국동서발전(주) 울산광역시 중구 종가로 395 우)44543&emsp;대표자 : 권명호 사업자등록번호 : 120-86-19199 TEL : 070-5000-1000 (주간), &emsp;FAX : 070-5000-1299 &emsp;당직실 : 070-5000-1098 , 1099 (야간 및 공휴일) COPYRIGHT ⓒ 2022 KOREA EAST-WEST POWER CO.,LTD (EWP). ALL RIGHTS RESERVED. 웹접근성 인증마크 ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-53265"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "070-5000-1098",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-53398",
+              "listText": "한국동서발전(주) 울산광역시 중구 종가로 395 우)44543&emsp;대표자 : 권명호 사업자등록번호 : 120-86-19199 TEL : 070-5000-1000 (주간), &emsp;FAX : 070-5000-1299 &emsp;당직실 : 070-5000-1098 , 1099 (야간 및 공휴일) COPYRIGHT ⓒ 2022 KOREA EAST-WEST POWER CO.,LTD (EWP). ALL RIGHTS RESERVED. 웹접근성 인증마크 ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-53398"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "웹접근성 인증마크",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-53731",
+              "listText": "웹접근성 인증마크 ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-53731"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "웹개방성 인증마크",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-53882",
+              "listText": "웹접근성 인증마크 ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-53882"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "ISMS-P 인증마크",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-54030",
+              "listText": "ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-54030"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "ISO27001(보안)",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-54199",
+              "listText": "ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02 --> ISO27001(보안) ISO27701(개인정보)",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-54199"
+            },
+            {
+              "org": "한국동서발전",
+              "title": "ISO27701(개인정보)",
+              "link": "https://www.ewp.co.kr/kor/main#list-row-54330",
+              "listText": "ISMS-P 인증마크 [인증범위] 인터넷 대민서비스(대표홈페이지) [유효기간] 2021.02.03~2024.02.02 --> ISO27001(보안) ISO27701(개인정보)",
+              "adapter": "한국동서발전",
+              "listOnly": true,
+              "listIdentity": "row-54330"
             }
           ],
           "rowTrace": []
@@ -919,44 +2207,66 @@
           "htmlPath": "data/diagnostics/한국동서발전/list/page-1-raw.html",
           "diagnosisPath": "data/diagnostics/한국동서발전/list/page-1-root-cause.json",
           "rowsPath": "data/diagnostics/한국동서발전/list/page-1-rows.txt",
-          "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y"
+          "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U"
+        },
+        {
+          "org": "한국동서발전",
+          "htmlPath": "data/diagnostics/한국동서발전/list/page-2-raw.html",
+          "diagnosisPath": "data/diagnostics/한국동서발전/list/page-2-root-cause.json",
+          "rowsPath": "data/diagnostics/한국동서발전/list/page-2-rows.txt",
+          "url": "https://www.ewp.co.kr/kor/main/"
         }
       ],
       "samples": [
         {
-          "title": "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303191",
-          "adapter": ""
+          "title": "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+          "link": "https://www.ewp.co.kr/kor/subpage/content.html?idx=45171&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "adapter": "한국동서발전:board-row"
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300179",
-          "adapter": ""
+          "title": "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+          "link": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44849&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "adapter": "한국동서발전:board-row"
         },
         {
-          "title": "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299624",
-          "adapter": ""
+          "title": "영덕해맞이풍력발전(주) 대표이사 모집공고",
+          "link": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44777&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "adapter": "한국동서발전:board-row"
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298887",
-          "adapter": ""
+          "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+          "link": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44635&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "adapter": "한국동서발전:board-row"
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298470",
-          "adapter": ""
+          "title": "한국동서발전(주) 비상임이사 후보자 모집공고",
+          "link": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44611&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "adapter": "한국동서발전:board-row"
         },
         {
-          "title": "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298299",
-          "adapter": ""
+          "title": "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+          "link": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44578&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "adapter": "한국동서발전:board-row"
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감",
-          "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=297317",
-          "adapter": ""
+          "title": "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+          "link": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44576&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "adapter": "한국동서발전:board-row"
+        },
+        {
+          "title": "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
+          "link": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44467&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "adapter": "한국동서발전:board-row"
+        },
+        {
+          "title": "한국동서발전(주) 2026년도 체험형 인턴 선발",
+          "link": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44091&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "adapter": "한국동서발전:board-row"
+        },
+        {
+          "title": "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...",
+          "link": "https://www.ewp.co.kr/kor/subpage/content.html?idx=43653&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "adapter": "한국동서발전:board-row"
         }
       ],
       "errors": [],
@@ -964,329 +2274,509 @@
         "version": "1.4-duplicate-title-safe-diagnostics",
         "mode": "passive",
         "org": "한국동서발전",
-        "url": "https://job.alio.go.kr/mobile2021/recruit/recruit.do?order=REG_DATE&org_name=%ED%95%9C%EA%B5%AD%EB%8F%99%EC%84%9C%EB%B0%9C%EC%A0%84&search_yn=Y",
-        "probableCause": "VISIBLE_ROW_COUNTER_INCOMPATIBLE_WITH_PAGE_STRUCTURE",
-        "listCounterFailureReason": "EXTRA_NON_ROW_CANDIDATES",
+        "url": "https://www.ewp.co.kr/kor/subpage/content.html?pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U",
+        "probableCause": "NO_LIST_ROOT_CAUSE_DETECTED",
+        "listCounterFailureReason": "UNKNOWN",
         "accuracyVerification": {
           "verified": true,
-          "level": "TEMPLATE_ALIO_CARD_EXACT",
-          "listVerificationTemplate": "ALIO_CARD",
+          "level": "DOM_TITLE_SET_EXACT",
+          "listVerificationTemplate": "TABLE_RECORD",
           "templateRecordEvidence": {
             "verified": true,
-            "template": "ALIO_CARD",
-            "recordCount": 7,
-            "candidateCount": 7,
-            "matchedCount": 7,
+            "template": "TABLE_RECORD",
+            "recordCount": 10,
+            "candidateCount": 10,
+            "matchedCount": 10,
             "unmatchedTitles": [],
             "recordSamples": [
-              "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-              "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-              "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-              "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-              "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-              "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-              "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감"
+              "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 3004",
+              "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 212",
+              "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 244",
+              "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5982",
+              "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 344",
+              "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 571",
+              "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 317",
+              "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48712"
             ],
-            "level": "TEMPLATE_ALIO_CARD_EXACT"
+            "level": "TEMPLATE_TABLE_RECORD_EXACT"
           },
-          "independentDomEvidence": false,
+          "independentDomEvidence": true,
           "exactCount": true,
-          "exactTitleSet": false,
+          "exactTitleSet": true,
           "strongAdapterRecordEvidence": false,
           "missingTitleCount": 0,
-          "extraCandidateCount": 7,
-          "visibleUniqueTitleCount": 0,
-          "extractedTitleCount": 7
+          "extraCandidateCount": 0,
+          "visibleUniqueTitleCount": 10,
+          "extractedTitleCount": 10
         },
         "counterTrace": {
           "source": "visible-board-rows",
-          "rawDomRows": 0,
-          "uniqueVisibleTitleCount": 0,
-          "reportedVisiblePostCount": 7,
-          "acceptedCandidateCount": 7,
-          "exactAgainstRaw": false,
-          "exactAgainstUniqueTitles": false
+          "rawDomRows": 10,
+          "uniqueVisibleTitleCount": 10,
+          "reportedVisiblePostCount": 10,
+          "acceptedCandidateCount": 10,
+          "exactAgainstRaw": true,
+          "exactAgainstUniqueTitles": true
         },
         "candidateClassCounts": {
-          "RECRUIT_POST": 7
+          "RECRUIT_POST": 8,
+          "UNCLASSIFIED": 2
         },
         "counts": {
-          "visiblePostCount": 7,
-          "candidateCount": 7,
-          "rawTableRows": 0,
-          "uniqueVisibleTitleCount": 0,
-          "sourceHtmlLength": 53055,
+          "visiblePostCount": 10,
+          "candidateCount": 10,
+          "rawTableRows": 10,
+          "uniqueVisibleTitleCount": 10,
+          "sourceHtmlLength": 66611,
           "missingRows": 0,
-          "extraCandidates": 7
+          "extraCandidates": 0
         },
         "selectorCounts": {
-          "table tbody tr": 0,
-          "tr": 0,
-          "li": 122,
+          "table tbody tr": 1,
+          "tr": 11,
+          "li": 159,
           "article": 0,
-          "[onclick]": 7,
+          "[onclick]": 29,
           "[data-url]": 0,
           "[data-href]": 0,
-          "a[href]": 53
+          "a[href]": 282
         },
         "rejectReasonCounts": {},
-        "visibleTitles": [],
+        "visibleTitles": [
+          "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+          "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+          "영덕해맞이풍력발전(주) 대표이사 모집공고",
+          "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+          "한국동서발전(주) 비상임이사 후보자 모집공고",
+          "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+          "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+          "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
+          "한국동서발전(주) 2026년도 체험형 인턴 선발",
+          "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사..."
+        ],
         "extractedTitles": [
-          "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-          "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-          "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-          "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-          "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-          "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-          "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감"
+          "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+          "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+          "영덕해맞이풍력발전(주) 대표이사 모집공고",
+          "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+          "한국동서발전(주) 비상임이사 후보자 모집공고",
+          "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+          "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+          "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
+          "한국동서발전(주) 2026년도 체험형 인턴 선발",
+          "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사..."
         ],
         "missingRows": [],
-        "extraCandidates": [
+        "extraCandidates": [],
+        "rowTrace": [
           {
-            "org": "한국동서발전",
-            "title": "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303191",
-            "listText": "h();\"> 진행상태 진행중 마감 한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감 한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체",
-            "sourceType": "ALIO"
+            "index": 0,
+            "title": "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+            "normalizedTitle": "한국동서발전 주 2026년도 하반기 체험형 인턴 선발",
+            "text": "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 3004",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#",
+            "onclick": "view(45171); return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>93</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(45171); return false;\" title=\"한국동서발전(주) 2026년도 하반기 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 하반기 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.07.29 ~ 2026.08.12</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state02\">접수중</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>3004</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=45171&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+            "adapter": "한국동서발전:board-row",
+            "rejectionReason": ""
           },
           {
-            "org": "한국동서발전",
-            "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300179",
-            "listText": "청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감 한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지",
-            "sourceType": "ALIO"
+            "index": 1,
+            "title": "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+            "normalizedTitle": "영덕해맞이풍력발전 주 대표이사 모집공고 재공고",
+            "text": "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 212",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#",
+            "onclick": "view(44849); return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>92</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44849); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.15 ~ 2026.06.19</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>212</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44849&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+            "adapter": "한국동서발전:board-row",
+            "rejectionReason": ""
           },
           {
-            "org": "한국동서발전",
-            "title": "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299624",
-            "listText": "비정규직 / 2026.05.06 ~ 26.05.21 / 마감 한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대",
-            "sourceType": "ALIO"
+            "index": 2,
+            "title": "영덕해맞이풍력발전(주) 대표이사 모집공고",
+            "normalizedTitle": "영덕해맞이풍력발전 주 대표이사 모집공고",
+            "text": "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 244",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#",
+            "onclick": "view(44777); return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>91</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44777); return false;\" title=\"영덕해맞이풍력발전(주) 대표이사 모집공고\" class=\"ellipsis1\">영덕해맞이풍력발전(주) 대표이사 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.06.02 ~ 2026.06.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>244</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44777&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+            "adapter": "한국동서발전:board-row",
+            "rejectionReason": ""
           },
           {
-            "org": "한국동서발전",
-            "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298887",
-            "listText": "비정규직 / 2026.04.22 ~ 26.05.06 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-            "sourceType": "ALIO"
+            "index": 3,
+            "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+            "normalizedTitle": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안",
+            "text": "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5982",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#",
+            "onclick": "view(44635); return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>90</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44635); return false;\" title=\"2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안내\" class=\"ellipsis1\">2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.29 ~ 2026.05.05</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>5982</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44635&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+            "adapter": "한국동서발전:board-row",
+            "rejectionReason": ""
           },
           {
-            "org": "한국동서발전",
-            "title": "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298470",
-            "listText": "비정규직 / 2026.04.06 ~ 26.04.21 / 마감 한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감 한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감 한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발",
-            "sourceType": "ALIO"
+            "index": 4,
+            "title": "한국동서발전(주) 비상임이사 후보자 모집공고",
+            "normalizedTitle": "한국동서발전 주 비상임이사 후보자 모집공고",
+            "text": "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 344",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#",
+            "onclick": "view(44611); return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>89</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44611); return false;\" title=\"한국동서발전(주) 비상임이사 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.28 ~ 2026.05.07</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>344</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44611&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+            "adapter": "한국동서발전:board-row",
+            "rejectionReason": ""
           },
           {
-            "org": "한국동서발전",
-            "title": "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298299",
-            "listText": "정규직 / 2026.03.25 ~ 26.04.08 / 마감 한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감 한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감 </",
-            "sourceType": "ALIO"
+            "index": 5,
+            "title": "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+            "normalizedTitle": "한국동서발전 주 비상임이사 일반 후보자 모집공고",
+            "text": "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 571",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#",
+            "onclick": "view(44578); return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>88</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44578); return false;\" title=\"한국동서발전(주) 비상임이사(일반) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(일반) 후보자 모집공고</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>571</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44578&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+            "adapter": "한국동서발전:board-row",
+            "rejectionReason": ""
           },
           {
-            "org": "한국동서발전",
-            "title": "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감",
-            "link": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=297317",
-            "listText": "비정규직 / 2026.03.23 ~ 26.04.07 / 마감 한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감 1 저작권정책 &emsp; 이메일무단수집거부 &emsp; 개인정보처리방침",
-            "sourceType": "ALIO"
+            "index": 6,
+            "title": "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+            "normalizedTitle": "한국동서발전 주 비상임이사 회계 또는 재무전문가 후보자 모집",
+            "text": "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 317",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#",
+            "onclick": "view(44576); return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>87</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44576); return false;\" title=\"한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집공고\" class=\"ellipsis1\">한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.04.14 ~ 2026.04.23</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>317</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44576&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+            "adapter": "한국동서발전:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 7,
+            "title": "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
+            "normalizedTitle": "2026년도 하반기 신입사원 대졸수준 일반 보훈 고졸 및 별",
+            "text": "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48712",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#",
+            "onclick": "view(44467); return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>86</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44467); return false;\" title=\"2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별정직) 채용공고\" class=\"ellipsis1\">2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.03.25 ~ 2026.04.08</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>48712</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44467&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+            "adapter": "한국동서발전:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 8,
+            "title": "한국동서발전(주) 2026년도 체험형 인턴 선발",
+            "normalizedTitle": "한국동서발전 주 2026년도 체험형 인턴 선발",
+            "text": "85 한국동서발전(주) 2026년도 체험형 인턴 선발 Download 2026.01.28 ~ 2026.02.11 접수마감 16829",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#",
+            "onclick": "view(44091); return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>85</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(44091); return false;\" title=\"한국동서발전(주) 2026년도 체험형 인턴 선발\" class=\"ellipsis1\">한국동서발전(주) 2026년도 체험형 인턴 선발</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2026.01.28 ~ 2026.02.11</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>16829</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44091&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+            "adapter": "한국동서발전:board-row",
+            "rejectionReason": ""
+          },
+          {
+            "index": 9,
+            "title": "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...",
+            "normalizedTitle": "한국동서발전 주 개방형 계약직위 중대재해예방tf부장 수소사",
+            "text": "84 한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사... Download 2025.10.31 ~ 2025.11.14 접수마감 1944",
+            "hasDate": true,
+            "hasSequence": true,
+            "hasAction": true,
+            "href": "#",
+            "onclick": "view(43653); return false;",
+            "dataUrl": "",
+            "html": "<tr>\r\n\t\t\t\t\t\t\t\t\t<td>84</td>\r\n\t\t\t\t\t\t\t\t\t<td class=\"t_left\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"view(43653); return false;\" title=\"한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사업부장) 및 경력전문가 (국내 /해외 변호사) 선발\" class=\"ellipsis1\">한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...</a>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href=\"#n\" class=\"attach_btn file\">Download</a></td>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<td>2025.10.31 ~ 2025.11.14</td>                        \r\n\t\t\t\t\t\t\t\t\t<td><span class=\"state state04\">접수마감</span></td>\r\n\t\t\t\t\t\t\t\t\t<td>1944</td>\r\n\t\t\t\t\t\t\t\t</tr>",
+            "accepted": true,
+            "acceptedLink": "https://www.ewp.co.kr/kor/subpage/content.html?idx=43653&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+            "adapter": "한국동서발전:board-row",
+            "rejectionReason": ""
           }
-        ],
-        "rowTrace": []
+        ]
       },
       "accuracyVerification": {
         "verified": true,
-        "level": "TEMPLATE_ALIO_CARD_EXACT",
-        "listVerificationTemplate": "ALIO_CARD",
+        "level": "DOM_TITLE_SET_EXACT",
+        "listVerificationTemplate": "TABLE_RECORD",
         "templateRecordEvidence": {
           "verified": true,
-          "template": "ALIO_CARD",
-          "recordCount": 7,
-          "candidateCount": 7,
-          "matchedCount": 7,
+          "template": "TABLE_RECORD",
+          "recordCount": 10,
+          "candidateCount": 10,
+          "matchedCount": 10,
           "unmatchedTitles": [],
           "recordSamples": [
-            "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-            "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-            "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-            "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-            "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-            "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-            "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감"
+            "93 한국동서발전(주) 2026년도 하반기 체험형 인턴 선발 Download 2026.07.29 ~ 2026.08.12 접수중 3004",
+            "92 영덕해맞이풍력발전(주) 대표이사 모집공고(재공고) Download 2026.06.15 ~ 2026.06.19 접수마감 212",
+            "91 영덕해맞이풍력발전(주) 대표이사 모집공고 Download 2026.06.02 ~ 2026.06.11 접수마감 244",
+            "90 2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안... Download 2026.04.29 ~ 2026.05.05 접수마감 5982",
+            "89 한국동서발전(주) 비상임이사 후보자 모집공고 Download 2026.04.28 ~ 2026.05.07 접수마감 344",
+            "88 한국동서발전(주) 비상임이사(일반) 후보자 모집공고 Download 2026.04.14 ~ 2026.04.23 접수마감 571",
+            "87 한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집... Download 2026.04.14 ~ 2026.04.23 접수마감 317",
+            "86 2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별... Download 2026.03.25 ~ 2026.04.08 접수마감 48712"
           ],
-          "level": "TEMPLATE_ALIO_CARD_EXACT"
+          "level": "TEMPLATE_TABLE_RECORD_EXACT"
         },
-        "independentDomEvidence": false,
+        "independentDomEvidence": true,
         "exactCount": true,
-        "exactTitleSet": false,
+        "exactTitleSet": true,
         "strongAdapterRecordEvidence": false,
         "missingTitleCount": 0,
-        "extraCandidateCount": 7,
-        "visibleUniqueTitleCount": 0,
-        "extractedTitleCount": 7
+        "extraCandidateCount": 0,
+        "visibleUniqueTitleCount": 10,
+        "extractedTitleCount": 10
       }
     },
     "detail": {
       "ok": true,
-      "targetCount": 7,
-      "attempted": 7,
-      "validated": 7,
+      "targetCount": 10,
+      "attempted": 10,
+      "validated": 10,
       "failed": 0,
       "missingDetailUrl": 0,
       "coverageRatio": 1,
       "validationRatio": 1,
       "samples": [
         {
-          "title": "한국동서발전(주) 2026년도 하반기 한국동서발전(주) 체험형 인턴 선발 울산 외 2 / 청년인턴(체험형) / 2026.07.29 ~ 26.08.12 / 진행중",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303191",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "한국동서발전(주) 2026년도 하반기 체험형 인턴 선발",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=45171&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=303191",
-          "textLength": 4526,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3894,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(사무담당원) 선발 공고 울산 / 비정규직 / 2026.05.06 ~ 26.05.21 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300179",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "영덕해맞이풍력발전(주) 대표이사 모집공고(재공고)",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44849&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=300179",
-          "textLength": 2576,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3724,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.04.22 ~ 26.05.06 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299624",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "영덕해맞이풍력발전(주) 대표이사 모집공고",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44777&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=299624",
-          "textLength": 2710,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3720,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 2026년 기간제근로자(기록물관리지원담당) 선발공고 울산 / 비정규직 / 2026.04.06 ~ 26.04.21 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298887",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "2026년 하반기 한국동서발전 신입직원 채용 자기소개서 문항 안...",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44635&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298887",
-          "textLength": 2879,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3482,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 2026년 하반기 신입직원(대졸수준(일반/보훈) 및 고졸, 별정직) 선발 울산 외 6 / 정규직 / 2026.03.25 ~ 26.04.08 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298470",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "한국동서발전(주) 비상임이사 후보자 모집공고",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44611&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298470",
-          "textLength": 11060,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 4876,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 2026년 한국동서발전(주) 동해발전본부 대체근로자 모집 강원 / 비정규직 / 2026.03.23 ~ 26.04.07 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298299",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "한국동서발전(주) 비상임이사(일반) 후보자 모집공고",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44578&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=298299",
-          "textLength": 2790,
-          "attachmentCount": 4,
-          "attachmentSignalCount": 10,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 4844,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
           "error": ""
         },
         {
-          "title": "한국동서발전(주) 한국동서발전(주) 당진발전본부 대체근로자 선발 충남 / 비정규직 / 2026.02.27 ~ 26.03.15 / 마감",
-          "requestedUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=297317",
-          "requestMethod": "GET",
-          "template": "COMMON_PLATFORM",
+          "title": "한국동서발전(주) 비상임이사(회계 또는 재무전문가) 후보자 모집...",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44576&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
           "ok": true,
-          "finalUrl": "https://job.alio.go.kr/mobile2021/recruit/recruitView.do?idx=297317",
-          "textLength": 2990,
-          "attachmentCount": 3,
-          "attachmentSignalCount": 8,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 4920,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
           "explicitNoAttachment": false,
-          "transport": "GET",
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "2026년도 하반기 신입사원(대졸수준(일반/보훈), 고졸 및 별...",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44467&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 4072,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "한국동서발전(주) 2026년도 체험형 인턴 선발",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=44091&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3957,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
+          "error": ""
+        },
+        {
+          "title": "한국동서발전(주) 개방형 계약직위 (중대재해예방TF부장, 수소사...",
+          "requestedUrl": "https://www.ewp.co.kr/kor/subpage/content.html?idx=43653&pc=SP5RQGKR3BAUE4W1XB8Q9IE8WF9WA4U&state=view",
+          "requestMethod": "POST",
+          "template": "FORM_POST",
+          "ok": true,
+          "finalUrl": "https://www.ewp.co.kr/kor/subpage/content.html",
+          "textLength": 3849,
+          "attachmentCount": 1,
+          "attachmentSignalCount": 18,
+          "explicitNoAttachment": false,
+          "transport": "FORM_POST",
           "error": ""
         }
       ]
     },
     "attachmentDiscovery": {
       "ok": true,
-      "discovered": 22,
+      "discovered": 10,
       "samples": [
         {
           "name": "(붙임) 2026년 하반기 체험형 인턴 채용 공고.pdf",
           "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064657",
-          "method": "GET"
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
         },
         {
-          "name": "2026년 하반기 체험형 인턴 입사지원서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064568",
-          "method": "GET"
-        },
-        {
-          "name": "2026년 하반기 체험형 인턴 직무설명서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064569",
-          "method": "GET"
-        },
-        {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 채용 공고문.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3047650",
-          "method": "GET"
-        },
-        {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 입사지원서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3047651",
-          "method": "GET"
-        },
-        {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 직무기술서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3047652",
-          "method": "GET"
-        },
-        {
-          "name": "2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 채용공고문.hwpx",
+          "name": "출자회사 대표이사 모집 공고문(제출양식 등 포함)_재공고_20260612.hwpx",
           "type": "hwpx",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3044843",
-          "method": "GET"
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
         },
         {
-          "name": "2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 입사지원서.hwpx",
-          "type": "hwpx",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3044844",
-          "method": "GET"
+          "name": "출자회사 대표이사 모집 공고문(제출양식 등 포함).hwp",
+          "type": "hwp",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "한국동서발전_자기소개서 문항 사전공개(26년 하반기 신입사원 적용).pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "비상임이사 후보자 모집공고.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "비상임이사 후보자 모집공고.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "비상임이사 후보자 모집공고_회계재무전문가.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "(붙임) 2026년도 하반기 신입직원 채용 공고문(안) 최종.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
         }
       ],
       "status": "success"
@@ -1300,19 +2790,19 @@
       "verificationMode": "probe-sample",
       "samples": [
         {
-          "name": "2026년 하반기 체험형 인턴 직무설명서.pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064569",
+          "name": "비상임이사 후보자 모집공고.pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
           "ok": true,
           "transport": "node-fetch",
-          "contentType": "application/pdf;charset=utf-8",
+          "contentType": "application/octet-stream; Charset=utf-8",
           "error": ""
         },
         {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 직무기술서.pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3047652",
+          "name": "비상임이사 후보자 모집공고.pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
           "ok": true,
           "transport": "node-fetch",
-          "contentType": "application/pdf;charset=utf-8",
+          "contentType": "application/octet-stream; Charset=utf-8",
           "error": ""
         }
       ]
@@ -1333,80 +2823,80 @@
           "pdf": 2
         },
         "byContentType": {
-          "application/pdf;charset=utf-8": 2
+          "application/octet-stream; Charset=utf-8": 2
         },
         "byError": {}
       },
       "samples": [
         {
-          "name": "2026년 하반기 체험형 인턴 직무설명서.pdf",
+          "name": "비상임이사 후보자 모집공고.pdf",
           "detectedType": "pdf",
           "ok": true,
           "method": "pdftotext",
-          "textLength": 1212,
+          "textLength": 1434,
           "error": ""
         },
         {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 직무기술서.pdf",
+          "name": "비상임이사 후보자 모집공고.pdf",
           "detectedType": "pdf",
           "ok": true,
           "method": "pdftotext",
-          "textLength": 759,
+          "textLength": 1422,
           "error": ""
         }
       ]
     },
     "attachment": {
       "ok": true,
-      "discovered": 22,
+      "discovered": 10,
       "samples": [
         {
           "name": "(붙임) 2026년 하반기 체험형 인턴 채용 공고.pdf",
           "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064657",
-          "method": "GET"
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
         },
         {
-          "name": "2026년 하반기 체험형 인턴 입사지원서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064568",
-          "method": "GET"
-        },
-        {
-          "name": "2026년 하반기 체험형 인턴 직무설명서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3064569",
-          "method": "GET"
-        },
-        {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 채용 공고문.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3047650",
-          "method": "GET"
-        },
-        {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 입사지원서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3047651",
-          "method": "GET"
-        },
-        {
-          "name": "(붙임) 2026년 기간제근로자(사무담당원) 직무기술서.pdf",
-          "type": "pdf",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3047652",
-          "method": "GET"
-        },
-        {
-          "name": "2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 채용공고문.hwpx",
+          "name": "출자회사 대표이사 모집 공고문(제출양식 등 포함)_재공고_20260612.hwpx",
           "type": "hwpx",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3044843",
-          "method": "GET"
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
         },
         {
-          "name": "2026년도 2차 한국동서발전(주) 당진발전본부 대체근로자 입사지원서.hwpx",
-          "type": "hwpx",
-          "url": "https://www.alio.go.kr/download/download.json?fileNo=3044844",
-          "method": "GET"
+          "name": "출자회사 대표이사 모집 공고문(제출양식 등 포함).hwp",
+          "type": "hwp",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "한국동서발전_자기소개서 문항 사전공개(26년 하반기 신입사원 적용).pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "비상임이사 후보자 모집공고.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "비상임이사 후보자 모집공고.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "비상임이사 후보자 모집공고_회계재무전문가.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
+        },
+        {
+          "name": "(붙임) 2026년도 하반기 신입직원 채용 공고문(안) 최종.pdf",
+          "type": "pdf",
+          "url": "https://www.ewp.co.kr/kor/include/new_download.html",
+          "method": "POST"
         }
       ],
       "status": "success"

@@ -2,8 +2,14 @@
   "stage": 8,
   "schemaVersion": "2.0.0",
   "version": "8.1.0-recruitment-unit-objective-structure",
-  "generatedAt": "2026-08-10T09:24:26.283Z",
+  "generatedAt": "2026-08-10T10:00:44.561Z",
   "purpose": "객관적 공고 구조화. 사용자 개인 지원가능 여부 판정과 분리.",
+  "downstreamPolicy": {
+    "listExposure": "required-only",
+    "detailExposure": "required-and-preferred",
+    "recommendation": "required conditions determine eligibility; matched preferred conditions may raise ranking but never exclude by themselves",
+    "note": "Stage 9/10 consumer contract. 우대조건 미충족만으로 지원 가능한 공고를 제외하지 않음."
+  },
   "sourcePriority": [
     "title/list metadata",
     "detail page",
@@ -91290,9 +91296,9 @@
         "org": "울산항만공사",
         "candidates": 27,
         "derived": 27,
-        "cacheHits": 0,
-        "cacheMisses": 27,
-        "heavyProcessed": 27
+        "cacheHits": 27,
+        "cacheMisses": 0,
+        "heavyProcessed": 0
       },
       {
         "org": "한국전력공사",
@@ -91338,9 +91344,9 @@
         "org": "울산북구시설관리공단",
         "candidates": 2,
         "derived": 1,
-        "cacheHits": 1,
-        "cacheMisses": 1,
-        "heavyProcessed": 1
+        "cacheHits": 2,
+        "cacheMisses": 0,
+        "heavyProcessed": 0
       },
       {
         "org": "울주군시설관리공단",
@@ -91402,7 +91408,7 @@
   },
   "qualityAudit": {
     "version": "1.1.0-unread-root-cause",
-    "generatedAt": "2026-08-10T09:24:27.423Z",
+    "generatedAt": "2026-08-10T10:00:45.794Z",
     "status": "needs-review",
     "closureEligible": false,
     "closureReason": "Stage 8 종료에는 structural audit뿐 아니라 원문 대조 Benchmark 정확도 검증이 필요함. 현재 benchmark gate는 아직 확립 전.",
@@ -91425,10 +91431,10 @@
       "noEvidenceUnits": 19
     },
     "cacheReuse": {
-      "hits": 810,
-      "misses": 28,
+      "hits": 838,
+      "misses": 0,
       "total": 838,
-      "hitRate": 0.9665871121718377,
+      "hitRate": 1,
       "status": "reuse-observed"
     },
     "unreadDiagnostics": {

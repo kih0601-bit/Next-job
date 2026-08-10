@@ -1,13 +1,14 @@
 {
-  "generatedAt": "2026-08-10T09:24:28.614Z",
+  "generatedAt": "2026-08-10T10:00:46.977Z",
   "mode": "warning",
-  "passed": false,
+  "passed": true,
   "regressionCount": 1,
-  "actionableRegressionCount": 1,
-  "transientWatchCount": 0,
+  "actionableRegressionCount": 0,
+  "transientWatchCount": 1,
   "regressions": [
     {
       "org": "울산복지가족진흥사회서비스원",
+      "regressed": false,
       "primaryCause": {
         "stage": "http",
         "status": "failed",
@@ -39,82 +40,10 @@
         "repairTarget": "scripts/collectors/institutions/울산복지가족진흥사회서비스원.mjs",
         "recommendedAction": "진단 evidence를 기준으로 기관 전용 Adapter 확인"
       },
-      "regressionCause": {
-        "stage": "access",
-        "status": "failed",
-        "code": "ACCESS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: access",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "",
-            "attempted": null,
-            "downloaded": null,
-            "parsed": null,
-            "failed": null,
-            "error": "all access URLs failed",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "stages": {
-        "access": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "list": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "detail": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDiscovery": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "attachmentDownload": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        },
-        "documentAnalysis": {
-          "from": true,
-          "to": false,
-          "change": "regressed"
-        }
-      },
-      "improved": false,
-      "regressed": true,
-      "effectiveCause": {
-        "stage": "access",
-        "status": "failed",
-        "code": "ACCESS_REGRESSED",
-        "reason": "이전 실행 true → 현재 false: access",
-        "evidence": [
-          {
-            "ok": false,
-            "status": "",
-            "attempted": null,
-            "downloaded": null,
-            "parsed": null,
-            "failed": null,
-            "error": "all access URLs failed",
-            "samples": []
-          }
-        ],
-        "source": "pipeline-diff-stage"
-      },
-      "regressionClass": "actionable",
-      "transientWatch": false,
-      "consecutiveFailureCount": 0,
-      "watchPolicy": ""
+      "regressionClass": "transient-watch",
+      "transientWatch": true,
+      "consecutiveFailureCount": 2,
+      "watchPolicy": "최근 정상 Evidence가 있는 동일 네트워크성 실패는 3회 연속까지 관찰; 4회차 또는 실패 양상 변경 시 원인분석 대상으로 승격"
     }
   ]
 }

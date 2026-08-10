@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import { splitVacancies, VACANCY_SPLITTER_VERSION } from './lib/vacancy-splitter.mjs';
+import { auditStage8Quality } from './lib/stage8-quality-audit.mjs';
+const text='○ 모집분야(상반기) : 경력직 2급(산업보건-의학), 신입직 5급(일반, 지역인재, 장애 / 산업안전(기계,전기,화공), 산업보건(환경), 건설안전(건축,토목))';
+const rows=splitVacancies({title:'2026 신규직원',detailText:text});
+assert.match(VACANCY_SPLITTER_VERSION,/11\.5\.0/);
+assert.ok(rows.length>=5,'balanced inline recruitment list must split into multiple units');
+assert.ok(rows.some(x=>x.name.includes('산업안전 기계')));
+assert.ok(rows.some(x=>x.name.includes('건설안전 토목')));
+assert.ok(rows.every(x=>!/[,(]$/.test(x.name)),'unit names must not be truncated at nested commas');
+const q=auditStage8Quality({postings:[{posting:{org:'X',title:'2026 채용',link:'x'},sourceCoverage:{document:{available:true,readable:false,status:'analysis-failed',error:'x'}},recruitmentUnits:[{name:'a',source:'single',splitConfidence:.4,evidenceScope:{detail:'모집분야: 행정, 기술',document:''},requirementSummary:{evidenceCount:0}}]}]});
+assert.equal(q.unreadDiagnostics.currentYearHint,1);
+assert.ok(q.structuralBlockers.includes('available-source-unreadable'));
+console.log('v115 stage8 closure diagnostics tests passed');

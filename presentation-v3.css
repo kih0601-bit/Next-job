@@ -1,12 +1,12 @@
-:root { --v3-bg: #f4f8ff; --v3-blue: #1769ff; --v3-line: #e5ecf7; }
+:root { --v3-bg: #eef4ff; --v3-blue: #1769ff; --v3-line: #dce6f5; --v3-secondary: #eaf2ff; }
 html, body { background: var(--v3-bg); }
 .content { background: transparent; }
-.job-card, .settings-card, .institution { border-color: var(--v3-line); box-shadow: 0 6px 20px rgba(36, 84, 150, .055); }
+.job-card, .settings-card, .institution, .metric { background: #fff; border: 1px solid var(--v3-line); box-shadow: none; }
 .job-card { padding: 16px; }
 .ru-card .ru-card-kicker { color: var(--v3-blue); letter-spacing: .02em; }
 .ru-card .vacancy { color: #142a50; font-size: 17px; }
 .ru-card .posting-title { margin-top: 7px; }
-.settings-card { background: rgba(255,255,255,.92); padding: 17px 18px; }
+.settings-card { background: #fff; padding: 17px 18px; }
 .settings-card h3 { margin: 0 0 4px; color: #142a50; }
 .field { margin: 0; border-bottom: 1px solid var(--v3-line); }
 .field:last-child { border-bottom: 0; }
@@ -28,4 +28,7 @@ html, body { background: var(--v3-bg); }
 .license-entry input { flex: 1; border: 1px solid var(--v3-line); border-radius: 13px; padding: 12px; }
 .license-entry button { border: 0; border-radius: 13px; padding: 0 15px; color: #fff; background: var(--v3-blue); font-weight: 800; }
 .bottomnav { background: rgba(255,255,255,.97); }
+.trust, .default-banner { background: var(--v3-secondary); border: 1px solid #d7e5fa; }
+.recommendation-empty, .spec-card { background: var(--v3-secondary); border-color: #cbdcf4; }
+.metric { border-radius: 18px; }
 @media (min-width: 760px) { .select-panel { left: 50%; right: auto; width: min(560px, 96vw); transform: translate(-50%, 100%); } .select-sheet.open .select-panel { transform: translate(-50%, 0); } }

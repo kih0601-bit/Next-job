@@ -3,7 +3,7 @@
   fetch('data/jobs.json').then((response) => response.json()).then((data) => { productJobs = data.jobs || []; });
   const labels = { REQUIRED: '지원 필수조건', PREFERRED: '우대사항', WORK_CONDITION: '근무조건', APPLICANT_CHECK: '지원 전 확인사항' };
   const escText = (value) => esc(value || '정보 없음');
-  const replacePresentationLabels = () => { const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode); nodes.forEach((node) => { if (node.nodeValue.includes('지원 가능')) node.nodeValue = node.nodeValue.replaceAll('지원 가능', '공고 확인'); if (node.nodeValue.includes('내 조건')) node.nodeValue = node.nodeValue.replaceAll('내 조건', '전체 공고'); }); };
+  const replacePresentationLabels = () => { const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode); nodes.forEach((node) => { if (node.nodeValue.includes('지원 가능')) node.nodeValue = node.nodeValue.replaceAll('지원 가능', '공고 확인'); }); };
   replacePresentationLabels();
   setTimeout(replacePresentationLabels, 1200);
   new MutationObserver(replacePresentationLabels).observe(document.body, { childList: true, subtree: true });
@@ -19,7 +19,7 @@
   };
   document.addEventListener('click', (event) => {
     const article = event.target.closest('article');
-    if (!article || event.target.closest('button')) return;
+    if (!article || article.classList.contains('ru-card') || event.target.closest('button')) return;
     const job = productJobs.find((item) => article.textContent.includes(item.org) && article.textContent.includes(item.title));
     if (!job) return;
     event.preventDefault();

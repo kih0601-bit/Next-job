@@ -1,0 +1,21 @@
+:root { --soft-radius: 22px; --soft-line: #e9edf5; }
+.job-card, .settings-card, .institution { border-color: var(--soft-line); border-radius: var(--soft-radius); box-shadow: 0 8px 24px rgba(25, 51, 92, .06); }
+.ru-card { cursor: pointer; padding: 17px; }
+.ru-card-kicker { color: var(--blue); font-size: 11px; font-weight: 800; margin-bottom: 5px; }
+.detail-section-title { margin: 22px 0 10px; font-size: 16px; }
+.detail-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.v2-condition { border: 1px solid var(--soft-line); border-radius: 16px; margin: 9px 0; overflow: hidden; background: #fbfcff; }
+.v2-condition summary { cursor: pointer; list-style: none; padding: 14px; font-weight: 800; display: flex; justify-content: space-between; }
+.v2-condition summary::-webkit-details-marker { display: none; }
+.v2-condition summary span { color: var(--muted); font-size: 12px; font-weight: 600; }
+.v2-condition[open] summary { color: var(--blue); border-bottom: 1px solid var(--soft-line); }
+.v2-condition .condition-text { padding: 4px 14px 12px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.75; }
+.v2-condition p { margin: 9px 0; }
+.recommendation-empty { padding: 28px 18px; background: #f7f9ff; border: 1px dashed #bfd0f6; border-radius: var(--soft-radius); line-height: 1.8; }
+.recommendation-empty strong { color: var(--navy); }
+.recommendation-empty span { color: var(--muted); font-size: 13px; }
+.primary-action { display: block; margin-top: 15px; border: 0; border-radius: 14px; padding: 11px 14px; color: #fff; background: var(--blue); font-weight: 800; }
+.settings-row { width: 100%; display: flex; justify-content: space-between; align-items: center; border: 0; background: transparent; padding: 3px 0 12px; color: var(--ink); font-weight: 800; text-align: left; }
+.settings-row b { color: var(--muted); font-size: 12px; font-weight: 600; }
+.settings-row.expanded b { color: var(--blue); }
+@media (max-width: 759px) { .searchbox { border-radius: 18px; } .panel { padding-left: 18px; padding-right: 18px; } }

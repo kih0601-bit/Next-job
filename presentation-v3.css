@@ -1,0 +1,31 @@
+:root { --v3-bg: #f4f8ff; --v3-blue: #1769ff; --v3-line: #e5ecf7; }
+html, body { background: var(--v3-bg); }
+.content { background: transparent; }
+.job-card, .settings-card, .institution { border-color: var(--v3-line); box-shadow: 0 6px 20px rgba(36, 84, 150, .055); }
+.job-card { padding: 16px; }
+.ru-card .ru-card-kicker { color: var(--v3-blue); letter-spacing: .02em; }
+.ru-card .vacancy { color: #142a50; font-size: 17px; }
+.ru-card .posting-title { margin-top: 7px; }
+.settings-card { background: rgba(255,255,255,.92); padding: 17px 18px; }
+.settings-card h3 { margin: 0 0 4px; color: #142a50; }
+.field { margin: 0; border-bottom: 1px solid var(--v3-line); }
+.field:last-child { border-bottom: 0; }
+.settings-row { min-height: 54px; padding: 12px 0; }
+.settings-row span { color: #263b5c; }
+.settings-row b { color: #172b4d; }
+.settings-row i { font-style: normal; color: #7890b5; font-size: 18px; margin-left: 5px; }
+.select-sheet { position: fixed; inset: 0; z-index: 80; opacity: 0; pointer-events: none; transition: opacity .18s; }
+.select-sheet.open { opacity: 1; pointer-events: auto; }
+.select-shade { position: absolute; inset: 0; background: rgba(13, 31, 60, .36); }
+.select-panel { position: absolute; left: 0; right: 0; bottom: 0; max-height: 78vh; overflow: auto; background: #fff; border-radius: 26px 26px 0 0; padding: 14px 18px calc(22px + env(safe-area-inset-bottom)); transform: translateY(100%); transition: transform .22s; }
+.select-sheet.open .select-panel { transform: translateY(0); }
+.select-handle { width: 42px; height: 5px; border-radius: 99px; background: #d5dfef; margin: 0 auto 16px; }
+.select-panel h2 { margin: 0 0 12px; font-size: 19px; color: #142a50; }
+.select-option { width: 100%; border: 0; border-bottom: 1px solid var(--v3-line); background: #fff; padding: 14px 3px; text-align: left; color: #253b5e; font-size: 15px; }
+.select-option span { display: inline-block; width: 27px; color: var(--v3-blue); }
+.select-option.selected { color: var(--v3-blue); font-weight: 800; }
+.license-entry { display: flex; gap: 8px; }
+.license-entry input { flex: 1; border: 1px solid var(--v3-line); border-radius: 13px; padding: 12px; }
+.license-entry button { border: 0; border-radius: 13px; padding: 0 15px; color: #fff; background: var(--v3-blue); font-weight: 800; }
+.bottomnav { background: rgba(255,255,255,.97); }
+@media (min-width: 760px) { .select-panel { left: 50%; right: auto; width: min(560px, 96vw); transform: translate(-50%, 100%); } .select-sheet.open .select-panel { transform: translate(-50%, 0); } }

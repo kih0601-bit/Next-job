@@ -1,12 +1,12 @@
-:root { --v3-bg: #eef4ff; --v3-blue: #1769ff; --v3-line: #dce6f5; --v3-secondary: #eaf2ff; }
+:root { --v3-bg: #e9f1fd; --v3-blue: #1769ff; --v3-line: #d8e3f2; --v3-secondary: #e7f0fd; --v3-navy: #142a50; --v3-muted: #7184a3; }
 html, body { background: var(--v3-bg); }
 .content { background: transparent; }
-.job-card, .settings-card, .institution, .metric { background: #fff; border: 1px solid var(--v3-line); box-shadow: none; }
-.job-card { padding: 16px; }
+.job-card, .settings-card, .institution, .metric { background: #fff; border: 1px solid var(--v3-line); box-shadow: 0 7px 20px rgba(32, 72, 130, .07); }
+.job-card { padding: 18px; border-radius: 22px; }
 .ru-card .ru-card-kicker { color: var(--v3-blue); letter-spacing: .02em; }
-.ru-card .vacancy { color: #142a50; font-size: 17px; }
+.ru-card .vacancy { color: var(--v3-navy); font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
 .ru-card .posting-title { margin-top: 7px; }
-.settings-card { background: #fff; padding: 17px 18px; }
+.settings-card { background: #fff; padding: 18px 19px; border-radius: 22px; }
 .settings-card h3 { margin: 0 0 4px; color: #142a50; }
 .field { margin: 0; border-bottom: 1px solid var(--v3-line); }
 .field:last-child { border-bottom: 0; }
@@ -27,8 +27,22 @@ html, body { background: var(--v3-bg); }
 .license-entry { display: flex; gap: 8px; }
 .license-entry input { flex: 1; border: 1px solid var(--v3-line); border-radius: 13px; padding: 12px; }
 .license-entry button { border: 0; border-radius: 13px; padding: 0 15px; color: #fff; background: var(--v3-blue); font-weight: 800; }
-.bottomnav { background: rgba(255,255,255,.97); }
+.bottomnav { background: rgba(255,255,255,.98); box-shadow: 0 -4px 18px rgba(32,72,130,.05); }
 .trust, .default-banner { background: var(--v3-secondary); border: 1px solid #d7e5fa; }
 .recommendation-empty, .spec-card { background: var(--v3-secondary); border-color: #cbdcf4; }
-.metric { border-radius: 18px; }
+.metric { border-radius: 22px; padding: 15px 13px; }
+.ui-icon { width: 20px; height: 20px; display: inline-block; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+.bottomnav button { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #7184a3; }
+.bottomnav button .ui-icon { width: 21px; height: 21px; }
+.bottomnav button span { font-size: 10px; }
+.icon-btn .ui-icon { width: 19px; height: 19px; }
+.section-head h2 { display: flex; align-items: center; gap: 8px; color: var(--v3-navy); letter-spacing: -.02em; }
+.section-head h2 .ui-icon { width: 18px; height: 18px; color: var(--v3-blue); }
+.metric-icon { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 12px; color: var(--v3-blue); background: var(--v3-secondary); margin-bottom: 10px; }
+.metric-icon .ui-icon { width: 17px; height: 17px; }
+.metric.green .metric-icon { color: #159b63; background: #e8f8ef; }
+.metric.red .metric-icon { color: #e45d68; background: #fff0f1; }
+.metric span { color: var(--v3-muted); }
+.metric strong { color: var(--v3-navy); }
+.trust, .default-banner { box-shadow: none; }
 @media (min-width: 760px) { .select-panel { left: 50%; right: auto; width: min(560px, 96vw); transform: translate(-50%, 100%); } .select-sheet.open .select-panel { transform: translate(-50%, 0); } }

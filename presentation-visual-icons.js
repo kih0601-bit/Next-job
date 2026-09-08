@@ -6,8 +6,12 @@
   const addIcon = (element, name) => { if (element && !element.querySelector('.ui-icon')) element.insertAdjacentHTML('afterbegin', svg(name)); };
   const navIcons = ['home', 'search', 'building', 'settings'];
   document.querySelectorAll('.bottomnav button').forEach((button, index) => { const label = button.lastChild?.textContent?.trim() || ''; button.innerHTML = `${svg(navIcons[index])}<span>${label}</span>`; });
-  addIcon(document.querySelector('#refresh'), 'refresh');
+  const refresh = document.querySelector('#refresh');
+  if (refresh) refresh.innerHTML = svg('refresh');
   const headings = [...document.querySelectorAll('#home .section-head h2')];
   headings.forEach((heading) => { const name = heading.textContent.includes('마감') ? 'clock' : 'sparkle'; heading.innerHTML = `${svg(name)}<span>${heading.textContent.replace(/^[^\s]+\s*/, '')}</span>`; });
   document.querySelectorAll('.metric').forEach((metric, index) => { if (!metric.querySelector('.metric-icon')) { const names = ['search', 'sparkle', 'clock']; metric.insertAdjacentHTML('afterbegin', `<div class="metric-icon">${svg(names[index])}</div>`); } });
+  const decorateEmptyStates = () => document.querySelectorAll('#closingList > .empty, #recommended > .empty').forEach((empty) => { if (!empty.querySelector('.empty-icon')) empty.insertAdjacentHTML('afterbegin', `<div class="empty-icon">${svg(empty.textContent.includes('마감') ? 'clock' : 'sparkle')}</div>`); });
+  decorateEmptyStates();
+  new MutationObserver(decorateEmptyStates).observe(document.body, { childList: true, subtree: true });
 })();
